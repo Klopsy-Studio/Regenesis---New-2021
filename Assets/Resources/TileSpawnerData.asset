@@ -1,0 +1,252 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fbfd9a8f32c674191e14687ae08993, type: 3}
+  m_Name: TileSpawnerData
+  m_EditorClassIdentifier: 
+  desertTiles: []
+  placeholderTiles: []
+  test: []
+  cityTiles:
+  - name: Asphalt To Stone
+    type: 3
+    sprites:
+    - type: 0
+      Sprites:
+      - {fileID: 21300000, guid: ba7c2d128f9445a409190ab671e3c99a, type: 3}
+      - {fileID: 21300000, guid: c49a32ca127e7914992d55457393433f, type: 3}
+      - {fileID: 21300000, guid: 7613dd15009a59a4384c90957a1ccf39, type: 3}
+      - {fileID: 21300000, guid: d97123f563ffc0b48a4b48e07eebc30c, type: 3}
+    - type: 1
+      Sprites:
+      - {fileID: 21300000, guid: 2711b992f3c1b57428ba0ab9088cc04f, type: 3}
+      - {fileID: 21300000, guid: 83a7d52252abb1c46b51044bea671893, type: 3}
+      - {fileID: 21300000, guid: b22ff88f8d74a584a924c6720e706e61, type: 3}
+      - {fileID: 21300000, guid: 2f39a01ee186f4d479fcd88345929fdc, type: 3}
+      - {fileID: 21300000, guid: 62188a67104e0684a9a5573f8d576bbf, type: 3}
+      - {fileID: 21300000, guid: b70dbb9a885c21a4796adef950c0c4e8, type: 3}
+      - {fileID: 21300000, guid: f25d908701bc25742bcd435249107eff, type: 3}
+      - {fileID: 21300000, guid: 0293a82d828255944814ffb7a8689361, type: 3}
+    - type: 2
+      Sprites:
+      - {fileID: 21300000, guid: 99f8999cd74e9e9439495ace8160f83e, type: 3}
+      - {fileID: 21300000, guid: fd28dbea1486b31478a71ca3d702061f, type: 3}
+      - {fileID: 21300000, guid: c77d946834f4b2a4f90b7ff7aeafdf1a, type: 3}
+      - {fileID: 21300000, guid: 61267281d1475f3419c53e4f44767a8c, type: 3}
+  - name: Dirt To Grass
+    type: 3
+    sprites:
+    - type: 0
+      Sprites:
+      - {fileID: 21300000, guid: 688f23093fd24bb4a849c3a4daffe178, type: 3}
+      - {fileID: 21300000, guid: 53bc36b92ff06a14891a5cc7aa49e46b, type: 3}
+      - {fileID: 21300000, guid: f9318c472be406a46a6a624c8d25b252, type: 3}
+      - {fileID: 21300000, guid: 2b88489af48eeab4f9c69170836ef365, type: 3}
+    - type: 3
+      Sprites:
+      - {fileID: 21300000, guid: 46ef2a3d40483a541aa2cabc72f1c67f, type: 3}
+      - {fileID: 21300000, guid: ce1888449b17bea46a90b1978b03797f, type: 3}
+    - type: 1
+      Sprites:
+      - {fileID: 21300000, guid: 82cac419c8a3d324bb69db0c59d45a1c, type: 3}
+      - {fileID: 21300000, guid: d926afd8a3528ff4ba7a46200558c199, type: 3}
+      - {fileID: 21300000, guid: cce3cd1b3f532fa46ba6c82b1bd03c18, type: 3}
+      - {fileID: 21300000, guid: c6a134faca31f8e46a60db5c6e1a0c3e, type: 3}
+      - {fileID: 21300000, guid: 517f1bf520a990f4a8a6a73173637f33, type: 3}
+      - {fileID: 21300000, guid: 68bdcd739f6794447aeda4d20510f6f2, type: 3}
+      - {fileID: 21300000, guid: ffe5a65c2e53f694c9d4e1c7bee40af0, type: 3}
+      - {fileID: 21300000, guid: 8ba11dd49d1b1f14b9efbbc2bd5408a3, type: 3}
+  - name: Grass To Dirt
+    type: 3
+    sprites:
+    - type: 0
+      Sprites:
+      - {fileID: 21300000, guid: 878a1c380b0a51d479312271bd33c580, type: 3}
+      - {fileID: 21300000, guid: f25c789ced67c324b862c7afda6dcc66, type: 3}
+      - {fileID: 21300000, guid: 0fa9e2e244232c440be0cbba300fd181, type: 3}
+      - {fileID: 21300000, guid: d441f89cb30ef384f8f6b3192f5290c9, type: 3}
+    - type: 1
+      Sprites:
+      - {fileID: 21300000, guid: ff986b7bbb57cd84db06e01a2751f4e3, type: 3}
+      - {fileID: 21300000, guid: d44f08f05cf840f49937507232bb9714, type: 3}
+      - {fileID: 21300000, guid: 3f7b3acd0fb37204bba8a6518767c76e, type: 3}
+      - {fileID: 21300000, guid: a3499971d9394c84dacc8ad18e4d3093, type: 3}
+      - {fileID: 21300000, guid: 640002ba2b217da47a077902f63f9ada, type: 3}
+      - {fileID: 21300000, guid: 358a0eb16cd430245a3637760e574077, type: 3}
+      - {fileID: 21300000, guid: d80c4c989a893d1498556cbfe9b21628, type: 3}
+      - {fileID: 21300000, guid: 313db53411909e64b8a60e5af9b19928, type: 3}
+    - type: 2
+      Sprites:
+      - {fileID: 21300000, guid: 3bb4ce00f57bfee4690da9abae4f10b3, type: 3}
+      - {fileID: 21300000, guid: f660ce68d853ed5428a39bee2b305247, type: 3}
+      - {fileID: 21300000, guid: c78bb22542c1a8e4c9e936fcb211601e, type: 3}
+      - {fileID: 21300000, guid: 48c81992b7c83b44cb22d2086a2b6a09, type: 3}
+  - name: StoneTo Asphalt
+    type: 3
+    sprites:
+    - type: 0
+      Sprites:
+      - {fileID: 21300000, guid: d51868f6bfb67134191a35f5f408275f, type: 3}
+      - {fileID: 21300000, guid: 98e22401df8db364a935ca2043cbc791, type: 3}
+      - {fileID: 21300000, guid: 0bac4ae17a5c65943b9ccc52dd26966b, type: 3}
+      - {fileID: 21300000, guid: 09fd5e359bbdccb45b900c7c34618225, type: 3}
+    - type: 3
+      Sprites:
+      - {fileID: 21300000, guid: 7c6f008e4d1589740a62bc9294556966, type: 3}
+      - {fileID: 21300000, guid: d1a8fd30f4ac7a34abe76129cfb0473c, type: 3}
+    - type: 1
+      Sprites:
+      - {fileID: 21300000, guid: 53f38f858fc56da428fe7c01e4139000, type: 3}
+      - {fileID: 21300000, guid: 6315b3e6d04359640af28793b830b52a, type: 3}
+      - {fileID: 21300000, guid: a8725aadbe2e81b4b9c08d8644999b3a, type: 3}
+      - {fileID: 21300000, guid: 5a7b48a78b2c2a5438fb008f3d54f79b, type: 3}
+      - {fileID: 21300000, guid: 154308e37f8f7424aaadb699fa348719, type: 3}
+      - {fileID: 21300000, guid: 7d94c14179f6b884e99c5a5fc2f0bdd5, type: 3}
+      - {fileID: 21300000, guid: 54c24e0fbfad0754e8b55cdf910ca4af, type: 3}
+      - {fileID: 21300000, guid: e155da7c085b6264da3b3c2c5f86dde6, type: 3}
+    - type: 4
+      Sprites:
+      - {fileID: 21300000, guid: fe0cec57ebb697b48893f9b37d2b9d33, type: 3}
+      - {fileID: 21300000, guid: f598b013c5152c14b8e0a06943ed031f, type: 3}
+    - type: 2
+      Sprites:
+      - {fileID: 21300000, guid: 8a180d94c45014a428c04e5a8f33ff17, type: 3}
+      - {fileID: 21300000, guid: b8fa365f0ac11214aa0a75b2ec8b837a, type: 3}
+      - {fileID: 21300000, guid: bce72a8a931b266489b98b15ff000174, type: 3}
+      - {fileID: 21300000, guid: 8220f90ffecb44740a624c98156c2cf4, type: 3}
+  - name: Asphal To Grass
+    type: 3
+    sprites:
+    - type: 0
+      Sprites:
+      - {fileID: 21300000, guid: 63f2d08800e8c434e973c0a406b07d10, type: 3}
+      - {fileID: 21300000, guid: fc85cfdd36d90924cb8b8a2a5b75b55d, type: 3}
+      - {fileID: 21300000, guid: bbc45f3a9f94410499ad1d9d0d056f01, type: 3}
+      - {fileID: 21300000, guid: 02164fa6cb4fb05438b7cf30dc272310, type: 3}
+    - type: 1
+      Sprites:
+      - {fileID: 21300000, guid: b0fa00293fef9f34baec2fdc4916c7f0, type: 3}
+      - {fileID: 21300000, guid: 0544340ada25ac04992913888d65614d, type: 3}
+      - {fileID: 21300000, guid: bddff3881bdfe494b9a70ecebb9ed4be, type: 3}
+      - {fileID: 21300000, guid: 5a7a85cddf64b794ea95a24b1520a5a7, type: 3}
+      - {fileID: 21300000, guid: 0976e57b9fd1b944ab2f9a4d95acc36e, type: 3}
+      - {fileID: 21300000, guid: 9495a8823f9a9ad43b3c2e63cfb02b1e, type: 3}
+      - {fileID: 21300000, guid: 52a3ad9e51fefc045b442a1001fa3b2b, type: 3}
+      - {fileID: 21300000, guid: cd7e57d9034ae6a4299d934c520efcd9, type: 3}
+    - type: 2
+      Sprites:
+      - {fileID: 21300000, guid: 953600164b8f2c84896aa42540e76581, type: 3}
+      - {fileID: 21300000, guid: 9e6e1eb6de37a3c42aea69713e41b4fe, type: 3}
+      - {fileID: 21300000, guid: abbe6afaf5d692f41b4d143597ba0e8f, type: 3}
+      - {fileID: 21300000, guid: 6099f53c0bd1cf0469a549f2c7e0723a, type: 3}
+  - name: Grass To Asphalt
+    type: 3
+    sprites:
+    - type: 0
+      Sprites:
+      - {fileID: 21300000, guid: 297722ac2eff7454796efc733c8286fb, type: 3}
+      - {fileID: 21300000, guid: 99f18e500db914042b3474400ad2e80f, type: 3}
+      - {fileID: 21300000, guid: 7f9128cb4de943847a98c184bfb37da0, type: 3}
+      - {fileID: 21300000, guid: 2baf811d1c8cb6245b9bb81278be3064, type: 3}
+    - type: 1
+      Sprites:
+      - {fileID: 21300000, guid: e80bded94f587944ca1a325a0e4805ee, type: 3}
+      - {fileID: 21300000, guid: d80a7744168de5941b92d1d4b6a31c9c, type: 3}
+      - {fileID: 21300000, guid: 8a2d13a8b35e2404e81939e2a659d22e, type: 3}
+      - {fileID: 21300000, guid: 147105eed51931246983771aff4ffd4d, type: 3}
+      - {fileID: 21300000, guid: f19d0fa7d3f4cdb4caeedb02b3494a34, type: 3}
+      - {fileID: 21300000, guid: 9c87c27367325a54abb228fcf0da12d5, type: 3}
+      - {fileID: 21300000, guid: 706bab09e01f4af45892f0bfcc156ba6, type: 3}
+      - {fileID: 21300000, guid: 3f24dbdf4c778844d96bf0c317aa081d, type: 3}
+    - type: 1
+      Sprites:
+      - {fileID: 21300000, guid: 53f38f858fc56da428fe7c01e4139000, type: 3}
+      - {fileID: 21300000, guid: 6315b3e6d04359640af28793b830b52a, type: 3}
+      - {fileID: 21300000, guid: a8725aadbe2e81b4b9c08d8644999b3a, type: 3}
+      - {fileID: 21300000, guid: 5a7b48a78b2c2a5438fb008f3d54f79b, type: 3}
+      - {fileID: 21300000, guid: 154308e37f8f7424aaadb699fa348719, type: 3}
+      - {fileID: 21300000, guid: 7d94c14179f6b884e99c5a5fc2f0bdd5, type: 3}
+      - {fileID: 21300000, guid: 54c24e0fbfad0754e8b55cdf910ca4af, type: 3}
+      - {fileID: 21300000, guid: e155da7c085b6264da3b3c2c5f86dde6, type: 3}
+    - type: 2
+      Sprites:
+      - {fileID: 21300000, guid: 07cec67054da45c4d8398de54727d6db, type: 3}
+      - {fileID: 21300000, guid: f0c8207d567d48047ad7b76be21b24e0, type: 3}
+      - {fileID: 21300000, guid: 4deb9058a1ce44d4c9edc56be0ed657b, type: 3}
+      - {fileID: 21300000, guid: 239844debd6b5304899972b77eb54bec, type: 3}
+  - name: Grass To Stone
+    type: 3
+    sprites:
+    - type: 0
+      Sprites:
+      - {fileID: 21300000, guid: ceddf2e39f6ceb44db95dda950ae0a65, type: 3}
+      - {fileID: 21300000, guid: dd387c6dde3337245940a011bb3d3a35, type: 3}
+      - {fileID: 21300000, guid: 94111e7ee60ae1641ba696b0c90c438a, type: 3}
+      - {fileID: 21300000, guid: 119470daf269ed640a8260de648495a9, type: 3}
+    - type: 1
+      Sprites:
+      - {fileID: 21300000, guid: 49d40fafc4cc8884399e721f424daae6, type: 3}
+      - {fileID: 21300000, guid: b492c5f506092bc47b02619f083e0c70, type: 3}
+      - {fileID: 21300000, guid: 5ca5ab391502bb141b4864f709c2751a, type: 3}
+      - {fileID: 21300000, guid: b26ca3b5480417f499d60716e3f78c7b, type: 3}
+      - {fileID: 21300000, guid: e5c796a6eb60a8341a5c58527c2b74a7, type: 3}
+      - {fileID: 21300000, guid: 0e41c243e2bbd3f439295c1a57d8d95d, type: 3}
+      - {fileID: 21300000, guid: 9f89533e5554cad4b847fdffe2a0e4b2, type: 3}
+      - {fileID: 21300000, guid: 35bc2652f47f7b74796570f2f2910148, type: 3}
+    - type: 2
+      Sprites:
+      - {fileID: 21300000, guid: 77b4d6815ffa5384dbb262c2c5b78a3e, type: 3}
+      - {fileID: 21300000, guid: 237c8dd0287cd8d4daae8a429a369588, type: 3}
+      - {fileID: 21300000, guid: 4a2230d016d576348a7c81af0ca97bdc, type: 3}
+      - {fileID: 21300000, guid: cc358345a98dc3d40a5000be6662ba44, type: 3}
+  - name: Stone To Grass
+    type: 3
+    sprites:
+    - type: 0
+      Sprites:
+      - {fileID: 21300000, guid: ca34a3f23ad36034f96e17a5ccbb9fe3, type: 3}
+      - {fileID: 21300000, guid: 1dc3a65cc949df947b8f917c0441cc9d, type: 3}
+      - {fileID: 21300000, guid: e6c338023c0192b4d9418e0499ae0fc4, type: 3}
+      - {fileID: 21300000, guid: bfabb66e2b9157d4aaa35d3e928f4a44, type: 3}
+    - type: 1
+      Sprites:
+      - {fileID: 21300000, guid: 61f8e1d9ccc5ec34d8c4e0c943bc0f53, type: 3}
+      - {fileID: 21300000, guid: 705f91edee5b5a4448b9b801c781d4ea, type: 3}
+      - {fileID: 21300000, guid: 3fa773fb13f6fbe49a4bb8def667cfa0, type: 3}
+      - {fileID: 21300000, guid: 68fc0b1d0cdd1704bad5fba68a30ed77, type: 3}
+      - {fileID: 21300000, guid: 1f49e31cb5e701a4e9d4f48b3331a4d1, type: 3}
+      - {fileID: 21300000, guid: e86edda7dddce1647b02f86fff051d68, type: 3}
+      - {fileID: 21300000, guid: 6a03f2c34a0fda849b753f327c0d31f4, type: 3}
+      - {fileID: 21300000, guid: 07fa1ea076c984b4cae027fbe9162033, type: 3}
+    - type: 2
+      Sprites:
+      - {fileID: 21300000, guid: d7d8f71dfb1ec4840a4834b3cdadafc4, type: 3}
+      - {fileID: 21300000, guid: edff654e061dcca4692ea30dae797735, type: 3}
+      - {fileID: 21300000, guid: 3e34fad8e44af564982731b072aaaa54, type: 3}
+      - {fileID: 21300000, guid: a7671dc020196884f9467b91a307f6b1, type: 3}
+  nonPlayableTiles: []
+  cityProps:
+  - {fileID: 1307419332375427910, guid: 9685b429da347734684dd57a1114764a, type: 3}
+  - {fileID: 1307419332375427910, guid: c8c063caa395ef9488f96ae011ad9d55, type: 3}
+  - {fileID: 1307419332375427910, guid: c8e5069709fc7434bb18da8d1b6f07c5, type: 3}
+  - {fileID: 1307419332375427910, guid: 15c093cb1ae94ae4287ebe86aca3a019, type: 3}
+  - {fileID: 1307419332375427910, guid: 60c5c6e53b5e8f04aa71d0a8659879c1, type: 3}
+  - {fileID: 1307419332375427910, guid: ef0de51d8e377aa42bba7dce7fb820bf, type: 3}
+  - {fileID: 1307419332375427910, guid: 186e8fdfbeb9b214a8262a68b1600931, type: 3}
+  - {fileID: 1307419332375427910, guid: f3082168b9240704caac06d56e376891, type: 3}
+  - {fileID: 1307419332375427910, guid: 447617f2556439e468af8c2b98b46683, type: 3}
+  - {fileID: 1307419332375427910, guid: d4adb659409e2fc49925109cb3ace1ef, type: 3}
+  - {fileID: 1307419332375427910, guid: 1a9bb8337656f7949b96a9066ae2b98e, type: 3}
+  - {fileID: 1307419332375427910, guid: a607a0dc86c64d94db32cdcf761663b9, type: 3}
+  - {fileID: 1307419332375427910, guid: 11d8ed7ec66689a4592d455145e879a3, type: 3}
+  - {fileID: 1307419332375427910, guid: d07b8cd9795c5c04599a7f25ee9f38de, type: 3}
+  desertProps: []
+  parkProps: []

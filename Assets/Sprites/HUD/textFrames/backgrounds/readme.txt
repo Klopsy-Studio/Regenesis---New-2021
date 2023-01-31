@@ -1,0 +1,2 @@
+backgroundStatus: 164x118
+backgroundShops: 610x330

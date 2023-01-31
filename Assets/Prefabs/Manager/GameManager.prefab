@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8466311377366334688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8466311377366334690}
+  - component: {fileID: 8466311377366334691}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8466311377366334690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8466311377366334688}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8466311377366334691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8466311377366334688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e08395d4436bbf43b5bfa2e02ffadfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialInventory: {fileID: 11400000, guid: 2f9e3a9b313e7094ab10e3351d3b0017, type: 2}
+  equipmentInventory: {fileID: 11400000, guid: f10321b6418451b4cad52286af6067e9, type: 2}
+  consumableInventory: {fileID: 11400000, guid: 972abb1e68fcc244fa956728ca86e636, type: 2}
+  consumableBackpack: {fileID: 11400000, guid: fc79751ca6ca7414cb0aa2740a95d8a5, type: 2}
+  currentMission: {fileID: 11400000, guid: 6f8d056180f863748b6497c8a3ee33d8, type: 2}
+  unitProfilesList:
+  - {fileID: 11400000, guid: 3609f0e1a50e98047b59b4bde7eb0835, type: 2}
+  - {fileID: 11400000, guid: bdf2f419ed9883641978a87198ace31a, type: 2}
+  - {fileID: 11400000, guid: 5d81cf013bfa7a043a0a51e4eb1ad5b8, type: 2}
+  unitsPrefab:
+  - {fileID: 3783648232820829175, guid: cc682c42333305941a2e18e39b714c57, type: 3}
+  - {fileID: 3783648232820829175, guid: d8cf93eeaa2fe624a8ae8db3482590ee, type: 3}
+  - {fileID: 3783648232820829175, guid: a30a800811cef7344a96c8a7263bb9e8, type: 3}
