@@ -30,25 +30,25 @@ public class SelectItemState : BattleState
         {
             var item = itemList[i];
             owner.itemSelectionUI.options[i].gameObject.SetActive(true);
-            owner.itemSelectionUI.options[i].GetComponent<Text>().text = itemList[i].consumable.ItemName;
+            owner.itemSelectionUI.options[i].GetComponent<Text>().text = itemList[i].consumable.itemName;
             owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = itemList[i].amount.ToString();
             owner.itemSelectionUI.itemImage[i].GetComponent<Image>().sprite = itemList[i].consumable.iconSprite;
 
             //Only for testing purposes
-            if(item.amount == item.consumable.maxBackPackAmount)
-            {
-                owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.green;
-            }
-            else if(item.amount < item.consumable.maxBackPackAmount)
-            {
-                owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.black;
-            }
-            else if(item.amount > item.consumable.maxBackPackAmount)
-            {
-                owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.red;
-            }
+            //if(item.amount == item.consumable.maxBackPackAmount)
+            //{
+            //    owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.green;
+            //}
+            //else if(item.amount < item.consumable.maxBackPackAmount)
+            //{
+            //    owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.black;
+            //}
+            //else if(item.amount > item.consumable.maxBackPackAmount)
+            //{
+            //    owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.red;
+            //}
 
-            owner.itemSelectionUI.options[i].GetComponent<Text>().text = item.consumable.ItemName;
+            owner.itemSelectionUI.options[i].GetComponent<Text>().text = item.consumable.itemName;
             owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = item.amount.ToString();
             owner.itemSelectionUI.itemImage[i].sprite = item.consumable.iconSprite;
             
