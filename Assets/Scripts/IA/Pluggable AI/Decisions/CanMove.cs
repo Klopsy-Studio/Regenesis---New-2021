@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "PluggableAI/Decisions/Can Move To Unit")]
-public class CanMoveToUnit : Decision
+public class CanMove : Decision
 {
     [SerializeField] bool differentTarget;
     public override bool Decide(MonsterController controller)

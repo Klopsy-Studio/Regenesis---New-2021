@@ -12,7 +12,7 @@ namespace TheKiwiCoder {
 
         [SerializeReference]
         public RootNode rootNode;
-
+        public MonsterController controller;
         [SerializeReference]
         public List<Node> nodes = new List<Node>();
 
@@ -73,6 +73,15 @@ namespace TheKiwiCoder {
                 node.context = context;
                 node.blackboard = blackboard;
             });
+        }
+
+
+        public void AssignOwnerOnNodes()
+        {
+            foreach(Node n in nodes)
+            {
+                n.owner = this;
+            }
         }
     }
 }

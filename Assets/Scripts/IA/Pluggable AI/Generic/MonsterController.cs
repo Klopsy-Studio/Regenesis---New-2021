@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TheKiwiCoder;
 
 public class MonsterController : MonoBehaviour
 {
+    [Header("Behaviour Tree Variables")]
+    public BehaviourTree tree;
+    BehaviourTree originalTree;
+    public bool test = false;
+    public bool behaviourTest = false;
     public bool isUpdatingState = false;
-   
+    [HideInInspector] public Tile tileToMove;
     public MState currentState;
 
     public MState startState;
@@ -34,12 +40,32 @@ public class MonsterController : MonoBehaviour
     [Header("Animation Variables")]
     public bool animPlaying;
     public Animator monsterAnimations;
+
+    private void Start()
+    {
+        originalTree = tree;
+        context = CreateBehaviourTreeContext();
+        tree = tree.Clone();
+        tree.controller = this;
+        tree.Bind(context);
+    }
     public void StartMonster()
     {
-        currentState.UpdateState(this);
+        context = CreateBehaviourTreeContext();
+        tree = originalTree;
+        tree = tree.Clone();
+        tree.controller = this;
+        tree.Bind(context);
+        test = true;
+        //currentState.UpdateState(this);
     }
 
+    Context CreateBehaviourTreeContext()
+    {
+        return Context.CreateFromGameObject(gameObject);
+    }
 
+    Context context;
 
     protected void OnDrawGizmos()
     {
@@ -50,6 +76,13 @@ public class MonsterController : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        if (test)
+        {
+            tree.Update();
+        }
+    }
     public void TransitionToState(MState nextState)
     {
         if (nextState != currentState)
@@ -94,4 +127,16 @@ public class MonsterController : MonoBehaviour
     {
         return null;
     }
+
+    public BearObstacleScript SpawnObstacle(Tile tileToPlaceObstacle)
+    {
+        return Instantiate(obstacle, new Vector3(tileToPlaceObstacle.pos.x, 1, tileToPlaceObstacle.pos.y), obstacle.transform.rotation).GetComponent<BearObstacleScript>();
+    }
+
+    public MonsterEvent SpawnEvent(MonsterEvent e)
+    {
+        e.controller = this;
+        return Instantiate(e);
+    }
+
 }

@@ -1,31 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TheKiwiCoder;
 
-[CreateAssetMenu(menuName = "PluggableAI/Actions/Place Obstacle")]
-
-public class PlaceObstacleAction : Action
+[System.Serializable]
+public class PlaceOrDestroyObstacle : ActionNode
 {
     [SerializeField] MonsterAbility obstacleRange;
+    [SerializeField] int obstaclesToPlace;
 
-    public int obstaclesToPlace;
-    public override void Act(MonsterController controller)
-    {
-        controller.CallCoroutine(PlaceObstacle(controller));
+    bool treeRunning;
+    protected override void OnStart() {
+        treeRunning = true;
+        owner.controller.StartCoroutine(PlaceObstacle());
     }
 
-    IEnumerator PlaceObstacle(MonsterController controller)
+    protected override void OnStop() {
+    }
+
+    IEnumerator PlaceObstacle()
     {
-        if(controller.obstaclesInGame.Count >= controller.obstacleLimit)
+        MonsterController controller = owner.controller;
+
+        if (controller.obstaclesInGame.Count >= controller.obstacleLimit)
         {
             AudioManager.instance.Play("MonsterObstacle");
-            foreach(BearObstacleScript o in controller.obstaclesInGame)
+            foreach (BearObstacleScript o in controller.obstaclesInGame)
             {
                 List<Tile> tiles = o.Explode(controller.battleController.board, controller.battleController);
 
                 controller.battleController.SelectTile(o.pos);
                 ActionEffect.instance.Play(3, 0.5f, 0.01f, 0.05f);
                 AudioManager.instance.Play("ObstacleExplosion");
+
                 while (ActionEffect.instance.CheckActionEffectState())
                 {
                     yield return null;
@@ -38,7 +45,7 @@ public class PlaceObstacleAction : Action
             }
 
             controller.obstaclesInGame.Clear();
-            OnExit(controller);
+            treeRunning = false;
 
         }
         else
@@ -67,14 +74,14 @@ public class PlaceObstacleAction : Action
 
                 else
                 {
-                    OnExit(controller);
+                    treeRunning = false;
                     yield break;
                 }
 
 
                 tiles.Add(tileToPlaceObstacle);
 
-                BearObstacleScript obstacle = Instantiate(controller.obstacle, new Vector3(tileToPlaceObstacle.pos.x, 1, tileToPlaceObstacle.pos.y), controller.obstacle.transform.rotation).GetComponent<BearObstacleScript>();
+                BearObstacleScript obstacle = controller.SpawnObstacle(tileToPlaceObstacle);
                 obstacle.controller = controller;
                 obstacle.pos = tileToPlaceObstacle.pos;
                 controller.obstaclesInGame.Add(obstacle.GetComponent<BearObstacleScript>());
@@ -104,8 +111,19 @@ public class PlaceObstacleAction : Action
             controller.monsterAnimations.SetBool("roar", false);
             controller.battleController.board.DeSelectTiles(tiles);
 
-            OnExit(controller);
+            treeRunning = false;
         }
+    }
         
+    protected override State OnUpdate() {
+
+        if (treeRunning)
+        {
+            return State.Running;
+        }
+        else
+        {
+            return State.Success;
+        }
     }
 }

@@ -20,6 +20,7 @@ namespace TheKiwiCoder {
         [HideInInspector] public Blackboard blackboard;
         [TextArea] public string description;
         public bool drawGizmos = false;
+        public BehaviourTree owner;
 
         public State Update() {
 

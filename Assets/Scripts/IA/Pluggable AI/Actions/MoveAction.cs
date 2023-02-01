@@ -198,32 +198,7 @@ public class MoveAction : Action
 
         if (!impossibleMovement)
         {
-            tileToMove = validTiles[Random.Range(0, validTiles.Count)];
-            //controller.battleController.board.SelectMovementTiles(test);
-
-
-            controller.monsterAnimations.SetBool("hide", true);
-            AudioManager.instance.Play("MonsterMovement");
-            yield return new WaitForSeconds(1f);
-
-            controller.monsterAnimations.SetBool("hide", false);
-
-            controller.battleController.tileSelectionToggle.MakeTileSelectionBig();
-            controller.CallCoroutine(m.SimpleTraverse(tileToMove));
-            controller.battleController.SelectTile(tileToMove.pos);
-            controller.monsterAnimations.SetBool("appear", true);
-            //AudioManager.instance.Play("MonsterMovement");
-
-            yield return new WaitForSeconds(1f);
-
-            controller.monsterAnimations.SetBool("appear", false);
-            controller.monsterAnimations.SetBool("idle", true);
-            controller.monsterAnimations.SetBool("idle", false);
-
-            controller.currentEnemy.currentPoint = tileToMove.pos;
-            controller.currentEnemy.UpdateMonsterSpace(controller.battleController.board);
-
-            controller.currentEnemy.actionDone = true;
+            
         }
 
         OnExit(controller);
