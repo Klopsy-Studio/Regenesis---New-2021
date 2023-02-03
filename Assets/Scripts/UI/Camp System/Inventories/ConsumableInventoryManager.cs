@@ -33,9 +33,8 @@ public class ConsumableInventoryManager : MonoBehaviour
 
             var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, contentTransform);
             slotPrefabList.Add(obj);
-            obj.consumableImage.sprite = inventory.consumableContainer[i].consumable.iconSprite;
-            obj.amountText.SetText(inventory.consumableContainer[i].amount.ToString());
-            obj.consName = inventory.consumableContainer[i].consumable.name;
+            var consumableSlot = inventory.consumableContainer[i];
+            obj.SetSlotButton(consumableSlot);
             consumableDisplayed.Add(inventory.consumableContainer[i], obj);
             if (obj.TryGetComponent(out ConsSlotButton slotButton))
             {
@@ -47,40 +46,39 @@ public class ConsumableInventoryManager : MonoBehaviour
     }
 
 
-    public void UpdateDisplay()
-    {
-        for (int i = 0; i < inventory.consumableContainer.Count; i++)
-        {
-            if (consumableDisplayed.ContainsKey(inventory.consumableContainer[i]))
-            {
+    //public void UpdateDisplay()
+    //{
+    //    for (int i = 0; i < inventory.consumableContainer.Count; i++)
+    //    {
+    //        if (consumableDisplayed.ContainsKey(inventory.consumableContainer[i]))
+    //        {
 
-                consumableDisplayed[inventory.consumableContainer[i]].amountText.SetText(inventory.consumableContainer[i].amount.ToString());
-            }
-            else
-            {
-                var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, contentTransform);
-                slotPrefabList.Add(obj);
-                obj.consumableImage.sprite = inventory.consumableContainer[i].consumable.iconSprite;
-                obj.amountText.SetText(inventory.consumableContainer[i].amount.ToString());
-                obj.consName = inventory.consumableContainer[i].consumable.name;
-                consumableDisplayed.Add(inventory.consumableContainer[i], obj);
-                //if (obj.TryGetComponent(out ConsInventoryButton inventoryButton))
-                //{
+    //            consumableDisplayed[inventory.consumableContainer[i]].amountText.SetText(inventory.consumableContainer[i].amount.ToString());
+    //        }
+    //        else
+    //        {
+    //            var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, contentTransform);
+    //            slotPrefabList.Add(obj);
+    //            var consumableSlot = inventory.consumableContainer[i];
+    //            obj.SetSlotButton(consumableSlot);
+    //            consumableDisplayed.Add(inventory.consumableContainer[i], obj);
+    //            //if (obj.TryGetComponent(out ConsInventoryButton inventoryButton))
+    //            //{
 
-                //    inventoryButton.FillVariables(inventory, i, this);
-                //}
-            }
+    //            //    inventoryButton.FillVariables(inventory, i, this);
+    //            //}
+    //        }
 
-            if (slotPrefabList[i].TryGetComponent(out ConsSlotButton slotButton))
-            {
+    //        if (slotPrefabList[i].TryGetComponent(out ConsSlotButton slotButton))
+    //        {
 
-                slotButton.FillVariables(this);
-            }
-
+    //            slotButton.FillVariables(this);
+    //        }
 
 
-        }
-    }
+
+    //    }
+    //}
 
     public void UpdateConsPanelInfo(ConsSlotButton _consSlotButton)
     {
@@ -98,6 +96,6 @@ public class ConsumablePanelInfo
     {
         Debug.Log("el nombre es " + _consSlotButton.consName);
         consumableName.SetText(_consSlotButton.consName);
-        //consumableDescription.SetText(_consSlotButton)
+        consumableDescription.SetText(_consSlotButton.description);
     }
 }

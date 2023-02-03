@@ -7,12 +7,21 @@ using UnityEngine.EventSystems;
 //Esta clase sirve para el inventario defecto en la base para que funcione el panel de descripción
 public class ConsSlotButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler 
 {
-    public Image consumableImage;
-    public TextMeshProUGUI amountText;
+    [SerializeField] Image consumableImage;
+    [SerializeField] TextMeshProUGUI amountText;
     public string consName;
+    public string description;
     // Start is called before the first frame update
 
     ConsumableInventoryManager consInventoryManager;
+
+    public void SetSlotButton(ConsumableSlot _consumableSlot)
+    {
+        consumableImage.sprite = _consumableSlot.consumable.iconSprite;
+        amountText.SetText(_consumableSlot.amount.ToString());
+        consName = _consumableSlot.consumable.name;
+        description = _consumableSlot.consumable.description;
+    }
     public void FillVariables(ConsumableInventoryManager _consInventoryManager)
     {
 

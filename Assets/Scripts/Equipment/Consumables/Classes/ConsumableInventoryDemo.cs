@@ -6,8 +6,8 @@ using UnityEngine;
 //INVENTORY FOR BATTLE. 
 public class ConsumableInventoryDemo : MonoBehaviour
 {
-    [SerializeField] List<consumableSlot> consumableList;
-    public List<consumableSlot> ConsumableList { get { return consumableList; } }
+    [SerializeField] List<ConsumableSlotDeprecated> consumableList;
+    public List<ConsumableSlotDeprecated> ConsumableList { get { return consumableList; } }
     // Start is called before the first frame update
 
     public void UseConsumable(int indexItem, Unit targetUnit = null, Tile tileSpawn = null, BattleController battleController = null)
@@ -43,7 +43,7 @@ public class ConsumableInventoryDemo : MonoBehaviour
 }
 
 [System.Serializable]
-public class consumableSlot
+public class ConsumableSlotDeprecated
 {
     [SerializeField] Consumables consumable;
     [SerializeField] int count;
