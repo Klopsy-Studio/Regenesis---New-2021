@@ -27,10 +27,10 @@ public class DisplayMaterialInventory : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
-    {
-        UpdateDisplay();
-    }
+    //void Update()
+    //{
+    //    UpdateDisplay();
+    //}
 
     private void CreateDisplay()
     {

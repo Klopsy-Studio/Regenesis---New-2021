@@ -20,7 +20,7 @@ public abstract class Consumables : ScriptableObject
     public int maxBackPackAmount;
 
     [TextArea]
-    public string description;
+    public string consumableDescription;
     public ConsumableType ConsumableType { get { return consumableType; } }
 
   
@@ -32,7 +32,5 @@ public abstract class Consumables : ScriptableObject
     {
         return true;
     }
-
-
 
 }

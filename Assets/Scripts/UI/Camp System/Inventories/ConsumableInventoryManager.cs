@@ -34,14 +34,9 @@ public class ConsumableInventoryManager : MonoBehaviour
             var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, contentTransform);
             slotPrefabList.Add(obj);
             var consumableSlot = inventory.consumableContainer[i];
-            obj.SetSlotButton(consumableSlot);
+            obj.SetSlotButton(consumableSlot, this);
             consumableDisplayed.Add(inventory.consumableContainer[i], obj);
-            if (obj.TryGetComponent(out ConsSlotButton slotButton))
-            {
-
-                slotButton.FillVariables(this);
-            }
-
+       
         }
     }
 
@@ -84,6 +79,11 @@ public class ConsumableInventoryManager : MonoBehaviour
     {
         consumablePanelInfo.UpdatePanelInfo(_consSlotButton);
     }
+
+    public void OnDisable()
+    {
+        consumablePanelInfo.ResetInfo();
+    }
 }
 
 [System.Serializable]
@@ -97,5 +97,11 @@ public class ConsumablePanelInfo
         Debug.Log("el nombre es " + _consSlotButton.consName);
         consumableName.SetText(_consSlotButton.consName);
         consumableDescription.SetText(_consSlotButton.description);
+    }
+
+    public void ResetInfo()
+    {
+        consumableName.SetText("");
+        consumableDescription.SetText("");
     }
 }
