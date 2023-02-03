@@ -17,6 +17,7 @@ public class TabInventoryButton : MonoBehaviour, IPointerClickHandler, IPointerE
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+      
         tabGroup.OnTabEnter(this);
     }
 
