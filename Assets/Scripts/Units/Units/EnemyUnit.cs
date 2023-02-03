@@ -73,7 +73,7 @@ public class EnemyUnit : Unit
     }
  
   
-    public void UpdateMonsterSpace(Board board)
+    public virtual void UpdateMonsterSpace(Board board)
     {
         if(monsterSpace != null)
         {
