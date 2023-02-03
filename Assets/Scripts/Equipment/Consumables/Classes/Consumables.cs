@@ -18,9 +18,12 @@ public abstract class Consumables : ScriptableObject
     public RangeData itemRange;
     public RangeData effectRange;
     public int maxBackPackAmount;
+
+    [TextArea]
     public string description;
     public ConsumableType ConsumableType { get { return consumableType; } }
 
+  
     public string ItemName { get { return itemName; } }
     public abstract bool ApplyConsumable(Unit unit);
     public abstract bool ApplyConsumable(Tile t, BattleController battleController);
@@ -29,5 +32,7 @@ public abstract class Consumables : ScriptableObject
     {
         return true;
     }
+
+
 
 }
