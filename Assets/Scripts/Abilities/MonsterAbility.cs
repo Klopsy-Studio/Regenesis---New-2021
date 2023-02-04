@@ -241,7 +241,17 @@ public class MonsterAbility : ScriptableObject
         float criticalDmg = 1f;
         if (Random.value * 100 <= enemy.criticalPercentage) criticalDmg = 1.5f;
         float elementDmg = ElementsEffectiveness.GetEffectiveness(enemy.attackElement, target.defenseElement);
+        int finalPower = enemy.power;
 
-        finalDamage = (((enemy.power * criticalDmg) + (enemy.power * enemy.elementPower) * elementDmg) * abilityModifier) - target.defense;
+        if(target.damageIncrease != null)
+        {
+            foreach(DamageModifier m in target.damageIncrease)
+            {
+                finalPower += m.damageIncrease;
+            }
+
+            target.damageIncrease.Clear();
+        }
+        finalDamage = (((finalPower * criticalDmg) + (enemy.power * enemy.elementPower) * elementDmg) * abilityModifier) - target.defense;
     }
 }

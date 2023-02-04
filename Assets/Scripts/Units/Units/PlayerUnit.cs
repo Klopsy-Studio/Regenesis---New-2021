@@ -21,8 +21,6 @@ public class PlayerUnit : Unit
 
     [Header("Animations")]
     public UnitAnimations animations;
-
-    
     
     [Header("VFX")]
     [SerializeField] Animator movementEffect;

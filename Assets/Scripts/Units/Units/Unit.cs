@@ -81,6 +81,7 @@ public class Unit : TimelineElements
     [Header("Modifiers")]
     public List<DamageModifier> criticalModifiers = new List<DamageModifier>();
     public List<DamageModifier> defenseModifier = new List<DamageModifier>();
+    public List<DamageModifier> damageIncrease = new List<DamageModifier>();
     protected virtual void Start()
     {
         Match();
@@ -149,8 +150,11 @@ public class Unit : TimelineElements
     }
     public void Match()
     {
-        transform.localPosition = tile.center;
-        currentPoint = tile.pos;
+        if(tile != null)
+        {
+            transform.localPosition = tile.center;
+            currentPoint = tile.pos;
+        }     
     }
 
     public void ApplyStunValue(float value)
