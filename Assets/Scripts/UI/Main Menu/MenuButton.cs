@@ -19,6 +19,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [Space]
     [Header("References")]
     [SerializeField] Text buttonText;
+    [SerializeField] Image buttonImage;
 
     public UnityEvent action;
     public UnityEvent onHover;
@@ -61,6 +62,10 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         buttonText.color = defaultTextColor;
     }
 
+    public void ChangeButtonImage(Sprite newSprite)
+    {
+        buttonImage.sprite = newSprite;
+    }
     public void Selected()
     {
         selected = true;
@@ -69,5 +74,15 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void UnSelected()
     {
         selected = false;
+    }
+
+    public void ActivateButton()
+    {
+        canBeSelected = true;
+    }
+
+    public void DeactivateButton()
+    {
+        canBeSelected = false;
     }
 }

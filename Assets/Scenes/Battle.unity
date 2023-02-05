@@ -424,6 +424,7 @@ MonoBehaviour:
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
   buttonText: {fileID: 242339614}
+  buttonImage: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -628,6 +629,7 @@ MonoBehaviour:
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
   buttonText: {fileID: 245198386}
+  buttonImage: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -1193,6 +1195,7 @@ MonoBehaviour:
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
   buttonText: {fileID: 415898230}
+  buttonImage: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -1642,6 +1645,7 @@ MonoBehaviour:
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
   buttonText: {fileID: 687040966}
+  buttonImage: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -2218,7 +2222,7 @@ RectTransform:
   m_Children:
   - {fileID: 687040970}
   m_Father: {fileID: 1224427383}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2261,7 +2265,7 @@ RectTransform:
   - {fileID: 1545279875}
   - {fileID: 2107259023}
   m_Father: {fileID: 1224427383}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2664,7 +2668,7 @@ RectTransform:
   - {fileID: 1564656777}
   - {fileID: 415463252}
   m_Father: {fileID: 1224427383}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2989,6 +2993,7 @@ MonoBehaviour:
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
   buttonText: {fileID: 1173158973}
+  buttonImage: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -3004,9 +3009,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2051066909}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: DefaultText
+      - m_Target: {fileID: 1173158976}
+        m_TargetAssemblyTypeName: MenuTab, Assembly-CSharp
+        m_MethodName: OpenTab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3016,9 +3021,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1173158976}
-        m_TargetAssemblyTypeName: MenuTab, Assembly-CSharp
-        m_MethodName: OpenTab
+      - m_Target: {fileID: 2051066909}
+        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
+        m_MethodName: ChangeButtonImage
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8805195219446727975, guid: c811c065f3ab0e043a045d1c8eedbd53, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2051066909}
+        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
+        m_MethodName: ActivateButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3110,10 +3127,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2051066907}
   - {fileID: 1125090868}
   - {fileID: 851763439}
   - {fileID: 925041792}
+  - {fileID: 2051066907}
   m_Father: {fileID: 320294320}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3349,6 +3366,7 @@ MonoBehaviour:
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
   buttonText: {fileID: 1545279880}
+  buttonImage: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -4038,6 +4056,7 @@ MonoBehaviour:
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
   buttonText: {fileID: 1627172682}
+  buttonImage: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -4204,6 +4223,7 @@ MonoBehaviour:
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
   buttonText: {fileID: 1635425108}
+  buttonImage: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -4767,10 +4787,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2051066907}
   - component: {fileID: 2051066911}
-  - component: {fileID: 2051066910}
   - component: {fileID: 2051066909}
   - component: {fileID: 2051066908}
   - component: {fileID: 2051066912}
+  - component: {fileID: 2051066913}
   m_Layer: 0
   m_Name: PauseButton
   m_TagString: Untagged
@@ -4791,12 +4811,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1224427383}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 826.7237, y: 463.87128}
-  m_SizeDelta: {x: 145.5873, y: 49.7745}
+  m_AnchoredPosition: {x: 846.13, y: 435.79}
+  m_SizeDelta: {x: 77.14286, y: 77.14286}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2051066908
 MonoBehaviour:
@@ -4826,7 +4846,8 @@ MonoBehaviour:
   selected: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
-  buttonText: {fileID: 2051066910}
+  buttonText: {fileID: 0}
+  buttonImage: {fileID: 2051066913}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -4854,9 +4875,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2051066909}
+        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
+        m_MethodName: ChangeButtonImage
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -153901419143313940, guid: c811c065f3ab0e043a045d1c8eedbd53, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1173158977}
         m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
         m_MethodName: DefaultText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2051066909}
+        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
+        m_MethodName: DeactivateButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4871,18 +4916,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2051066909}
         m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: HighlightText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2051066909}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
         m_MethodName: Selected
         m_Mode: 1
         m_Arguments:
@@ -4893,21 +4926,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onExit:
-    m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 2051066909}
         m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: DefaultText
-        m_Mode: 1
+        m_MethodName: ChangeButtonImage
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: -7654993051645860753, guid: c811c065f3ab0e043a045d1c8eedbd53, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onExit:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 2051066909}
         m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
         m_MethodName: UnSelected
@@ -4920,40 +4953,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2051066910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2051066906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 1fb61431d67ffcf46ba90a1053ae7acc, type: 3}
-    m_FontSize: 52
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 5
-    m_MaxSize: 139
-    m_Alignment: 1
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: Pause
+      - m_Target: {fileID: 2051066909}
+        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
+        m_MethodName: ChangeButtonImage
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8805195219446727975, guid: c811c065f3ab0e043a045d1c8eedbd53, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &2051066911
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4975,7 +4986,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tab: {fileID: 1125090867}
-  currentTab: {fileID: 2051066906}
+  currentTab: {fileID: 0}
+--- !u!114 &2051066913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051066906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 8805195219446727975, guid: c811c065f3ab0e043a045d1c8eedbd53, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2107259022
 GameObject:
   m_ObjectHideFlags: 0
