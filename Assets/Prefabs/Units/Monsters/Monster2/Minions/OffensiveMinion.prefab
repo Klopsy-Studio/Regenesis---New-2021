@@ -391,16 +391,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 592527016245274243}
-  - component: {fileID: 6266325514909725169}
+  - component: {fileID: -1513724830092217078}
   - component: {fileID: 4319465372067614749}
   - component: {fileID: 3750714900836069021}
-  - component: {fileID: 3696183858730657262}
   - component: {fileID: 4163113487782176203}
   - component: {fileID: 2205082520672670710}
   - component: {fileID: 1341529962989315905}
   - component: {fileID: 1001810233096341232}
   - component: {fileID: 495454402488301013}
   - component: {fileID: 6506816317216550856}
+  - component: {fileID: 1657144206059741189}
+  - component: {fileID: 6004166796365510151}
   m_Layer: 6
   m_Name: OffensiveMinion
   m_TagString: Untagged
@@ -426,7 +427,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6266325514909725169
+--- !u!114 &-1513724830092217078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -435,35 +436,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 8324575531128616137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 476b2cb9d69ae8c42bfb16dd8c2203f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 4486a0f176ede8c4ea458f99f5e291bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionsPerTurn: 0
   timelineTypes: 2
   timelineVelocity: 2
   elementEnabled: 1
-  fTimelineVelocity: 15
-  timelineFill: 49.012787
+  fTimelineVelocity: 0
+  timelineFill: 0
   isTimelineActive: 0
-  timelineIcon: {fileID: 21300000, guid: ce955d0e51a26ed4ab464f13611a9354, type: 3}
+  timelineIcon: {fileID: 21300000, guid: 08458008cd1c5194eb4fee92f2c8a4a8, type: 3}
   iconTimeline: {fileID: 0}
   dir: 0
   unitSpeed: 0
   element: {fileID: 0}
   stunned: 0
-  timeStunned: 2
+  timeStunned: 0
   previousVelocity: 0
   controller: {fileID: 0}
   turnEnded: 0
   actionDone: 0
   currentPoint:
     x: 0
-    y: 22
-  maxHealth: 300
-  health: 300
+    y: 0
+  maxHealth: 0
+  health: 0
   hurtAnimation: {fileID: 0}
-  unitName: Ursamyr
-  particleHitPrefab: {fileID: 9195261423928058443, guid: db77acff450030546aa4b9db9dbeda8a, type: 3}
+  unitName: 
+  particleHitPrefab: {fileID: 0}
   isInAction: 0
   isDead: 0
   healEffect: {fileID: 5836840817937991826, guid: f9cca9c5e1f673240a697914a64478cd, type: 3}
@@ -471,13 +472,13 @@ MonoBehaviour:
   criticalMark: {fileID: 4275134778538292248}
   battlecryMark: {fileID: 5199714969756058278}
   stunThreshold: 0
-  stunLimit: 30
+  stunLimit: 0
   unitSprite: {fileID: 6455163749675579260}
   thisIsMyFuckingTurn: 0
-  power: 80
-  originalPower: 80
-  criticalPercentage: 10
-  originalCriticalPercentage: 10
+  power: 0
+  originalPower: 0
+  criticalPercentage: 0
+  originalCriticalPercentage: 0
   attackElement: 0
   defenseElement: 0
   elementPower: 0
@@ -487,17 +488,35 @@ MonoBehaviour:
   criticalModifiers: []
   defenseModifier: []
   damageIncrease: []
-  abilities:
-  - {fileID: 11400000, guid: cef1499263dfaa64d99306c6c33ac9c2, type: 2}
+  abilities: []
   target: {fileID: 0}
-  monsterAttackElement: 0
-  monsterDefenseElement: 0
-  sprite: {fileID: 6455163749675579260}
-  defaultSprite: {fileID: 21300000, guid: 61b579e26d144ac448c7e81bc5af7340, type: 3}
-  reactSprite: {fileID: 21300000, guid: 662c4f150086c11409210e8ae2bccc6b, type: 3}
-  monsterControl: {fileID: 4319465372067614749}
-  lowHealth: 100
+  monsterAttackElement: 1
+  monsterDefenseElement: 1
+  sprite: {fileID: 0}
+  defaultSprite: {fileID: 0}
+  reactSprite: {fileID: 0}
+  monsterControl: {fileID: 0}
+  lowHealth: 0
   monsterUI: {fileID: 1001810233096341232}
+  range:
+    range: 9
+    lineDir: 0
+    lineLength: 0
+    stopLine: 0
+    lineOffset: 0
+    sideDir: 0
+    sideReach: 0
+    sideLength: 0
+    crossLength: 0
+    crossOffset: 0
+    squareReach: 0
+    alternateSideDir: 0
+    alternateSideReach: 0
+    alternateSideLength: 0
+    movementRange: 2
+    removeOrigin: 1
+    itemRange: 0
+    itemRemoveContent: 0
 --- !u!114 &4319465372067614749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,7 +537,7 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: 09a3ec0b0ef00094c8d6ce49d44e611f, type: 2}
   startState: {fileID: 11400000, guid: 09a3ec0b0ef00094c8d6ce49d44e611f, type: 2}
   battleController: {fileID: 0}
-  currentEnemy: {fileID: 6266325514909725169}
+  currentEnemy: {fileID: 0}
   target: {fileID: 0}
   targetsInRange: []
   possibleTargets: []
@@ -533,6 +552,8 @@ MonoBehaviour:
   minionsInGame: []
   maxMinions: 3
   minionRangeSpawn: []
+  hasSpawnedMinionsInLastTurn: 0
+  hasDoneFirstTurn: 0
   animPlaying: 0
   monsterAnimations: {fileID: 2205082520672670710}
 --- !u!114 &3750714900836069021
@@ -549,29 +570,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 1
   vertical: 2147483647
-  unit: {fileID: 6266325514909725169}
+  unit: {fileID: 0}
   startPos:
     x: 0
     y: 0
   squareReach: 1
   removeOrigin: 0
---- !u!114 &3696183858730657262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8324575531128616137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7d88fce6c8bc944b41f26d1a1a4ff1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isTraverseCalled: 0
-  range: 10
-  jumpHeight: 1
-  moving: 0
-  allowStun: 0
 --- !u!114 &4163113487782176203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,7 +590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 1
   vertical: 2147483647
-  unit: {fileID: 6266325514909725169}
+  unit: {fileID: 0}
   startPos:
     x: 0
     y: 0
@@ -627,7 +631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 1
   vertical: 2147483647
-  unit: {fileID: 6266325514909725169}
+  unit: {fileID: 0}
   startPos:
     x: 0
     y: 0
@@ -676,7 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 1
   vertical: 2147483647
-  unit: {fileID: 6266325514909725169}
+  unit: {fileID: 0}
   startPos:
     x: 0
     y: 0
@@ -684,3 +688,41 @@ MonoBehaviour:
   lineDir: 0
   stopLine: 0
   lineOffset: 0
+--- !u!114 &1657144206059741189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8324575531128616137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ccfab9b7ca6353408f5d878f350051a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTraverseCalled: 0
+  range: 5
+  jumpHeight: 0
+  moving: 0
+--- !u!114 &6004166796365510151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8324575531128616137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d778e19a7ddda40bcceebf9521e871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontal: 1
+  vertical: 2147483647
+  unit: {fileID: -1513724830092217078}
+  startPos:
+    x: 0
+    y: 0
+  tile: {fileID: 0}
+  range: 2
+  removeContent: 0
+  removeOrigin: 1

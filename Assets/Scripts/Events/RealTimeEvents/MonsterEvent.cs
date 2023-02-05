@@ -31,7 +31,7 @@ public class MonsterEvent : TimelineElements
 
 
 
-    public List<Tile> GetEventTiles()
+    public virtual List<Tile> GetEventTiles()
     {
         List<Tile> tiles = new List<Tile>();
 

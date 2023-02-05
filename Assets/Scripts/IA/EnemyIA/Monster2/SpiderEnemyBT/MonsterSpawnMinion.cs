@@ -43,7 +43,6 @@ public class MonsterSpawnMinion : ActionNode
             }
         }
 
-        controller.board.SelectAttackTiles(areaTiles);
         //Check how many minions can i spawn and which type first type 1, second type 2, third type random.
 
         int numberToSpawn = owner.controller.maxMinions - owner.controller.minionsInGame.Count;

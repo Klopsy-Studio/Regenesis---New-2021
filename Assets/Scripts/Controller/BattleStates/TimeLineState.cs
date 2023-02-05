@@ -169,7 +169,11 @@ public class TimeLineState : BattleState
                 if(owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.EnemyEvent)
                 {
                     selectTiles = owner.timelineUI.selectedIcon.element.GetComponent<MonsterEvent>().GetEventTiles();
-                    board.SelectAttackTiles(selectTiles);
+
+                    if(selectTiles != null)
+                    {
+                        board.SelectAttackTiles(selectTiles);
+                    }
                 }
 
                 if(owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.HunterEvent)
