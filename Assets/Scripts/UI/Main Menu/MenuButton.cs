@@ -6,9 +6,10 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler, IPointerDownHandler
 {
     [Header("Button Checks")]
+    public bool test;
     public bool canBeSelected;
     public bool selected;
     [Space]
@@ -24,16 +25,39 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public UnityEvent action;
     public UnityEvent onHover;
     public UnityEvent onExit;
+    public UnityEvent onUp;
 
-    public void OnPointerClick(PointerEventData eventData)
+
+    public void OnPointerDown(PointerEventData eventData)
     {
-        if(canBeSelected && selected)
+        if (canBeSelected && selected)
         {
-            if(action != null)
+            if (onUp != null)
             {
-                action.Invoke();
+               action.Invoke();
             }
         }
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (canBeSelected && selected)
+        {
+            if(onUp != null)
+            {
+                onUp.Invoke();
+
+            }
+        }
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        //if (canBeSelected && selected)
+        //{
+        //    if (action != null)
+        //    {
+        //        action.Invoke();
+        //    }
+        //}
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -84,5 +108,10 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void DeactivateButton()
     {
         canBeSelected = false;
+    }
+
+    public void Log(string message)
+    {
+        Debug.Log(message);
     }
 }

@@ -100,7 +100,7 @@ public class BattleController : StateMachine
     [Header("Timeline Variables")]
     public bool pauseTimeline;
     [SerializeField] Text pauseText;
-    [SerializeField] Text pauseTextButton;
+    [SerializeField] Image pauseButton;
     public void BeginGame()
     {
         cinemachineCamera.m_Lens.NearClipPlane = -1f;
@@ -276,25 +276,9 @@ public class BattleController : StateMachine
         }
     }
 
-    public void PauseOrResumeTimeline()
+    public void ToggleTimeline()
     {
         pauseTimeline = !pauseTimeline;
-
-        if (!pauseTimeline)
-        {
-            pauseText.color = Color.green;
-            pauseText.text = "Active";
-            pauseTextButton.text = "Pause Timeline";
-        }
-        else
-        {
-            pauseText.color = Color.red;
-            pauseText.text = "Paused";
-
-            pauseTextButton.text = "Resume Timeline";
-
-
-        }
     }
     public void ResetUnits()
     {
