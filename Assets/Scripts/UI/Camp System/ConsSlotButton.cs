@@ -25,6 +25,7 @@ public class ConsSlotButton : MonoBehaviour, IPointerClickHandler
     }
   
 
+
     public void OnPointerClick(PointerEventData eventData)
     {
         consInventoryManager.UpdateConsPanelInfo(this);

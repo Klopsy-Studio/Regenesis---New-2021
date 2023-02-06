@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +14,23 @@ public class ConsumableInventory : ScriptableObject
         {
             if (consumableContainer[i].consumable == _consumable)
             {
-                consumableContainer[i].AddAmount(_amount);
-                hasConsumable = true;
-                break;
+
+
+                //if (!consumableContainer[i].AddAmount(_amount))
+                //{
+                //    continue;
+                //}
+                if (consumableContainer[i].CheckIfIsMoreThan99Amount(_amount))
+                {
+                    continue;
+                }
+                else
+                {
+                    consumableContainer[i].AddAmount(_amount);
+                    hasConsumable = true;
+                    break;
+                }
+              
             }
         }
 
@@ -80,14 +95,30 @@ public class ConsumableSlot
         amount = _amount;
     }
 
-    public void AddAmount(int value)
+    public void AddAmount(int _newAmount)
     {
-
-        amount += value;
-        if(amount > 99)
-        {
-            amount = 99;
-            Debug.Log("NO PUEDE SUPERARSE DE 99 stack");
-        }
+ 
+        //-------
+        amount += _newAmount;
+      
     }
+
+    public bool CheckIfIsMoreThan99Amount(int _newAmount)
+    {
+        bool isMoreThan99;
+        if (amount + _newAmount > 99)
+        {
+            isMoreThan99 = true; 
+        }
+        else
+        {
+            isMoreThan99=false;
+        }
+
+        return isMoreThan99;
+    }
+
+
+
+
 }

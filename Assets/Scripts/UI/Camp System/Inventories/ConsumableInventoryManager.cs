@@ -38,7 +38,7 @@ public class ConsumableInventoryManager : MonoBehaviour
             consumableDisplayed.Add(inventory.consumableContainer[i], obj);
        
         }
-    }
+    }   
 
 
     //public void UpdateDisplay()
