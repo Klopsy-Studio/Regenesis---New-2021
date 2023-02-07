@@ -38,6 +38,7 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public float minDistance;
     public float maxDistance;
 
+    public bool enableUpdate;
     public void EnableStun()
     {
         stunnedIndicator.SetActive(true);
@@ -62,10 +63,13 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         //Change the timeline type comparison for each timeline type, kai example
         //Has dicho que de esto te vas a acordar en dos meses jodete
 
-
-        //UpdatePreviousIcon();
-        UpdateNextIcon();
-        UpdatePreviousIcon();
+        if (enableUpdate)
+        {
+            //UpdatePreviousIcon();
+            UpdateNextIcon();
+            UpdatePreviousIcon();
+        }
+       
     }
 
   

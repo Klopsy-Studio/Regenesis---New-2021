@@ -24,7 +24,11 @@ public class MonsterMark : ActionNode
         BattleController controller = owner.controller.battleController;
         Unit chosenTarget = controller.playerUnits[Random.Range(0, controller.playerUnits.Count)];
         chosenTarget.damageIncrease.Add(monsterMark);
-
+        
+        if(chosenTarget.GetComponent<PlayerUnit>()!= null)
+        {
+            chosenTarget.GetComponent<PlayerUnit>().marked = true;
+        }
 
         //Action Effect
         controller.SelectTile(chosenTarget.tile.pos);

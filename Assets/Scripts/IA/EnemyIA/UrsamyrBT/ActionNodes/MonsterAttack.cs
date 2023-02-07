@@ -19,8 +19,14 @@ public class MonsterAttack : ActionNode
     IEnumerator Attack(MonsterAbility ability)
     {
         MonsterController controller = owner.controller;
-        Directions dir = controller.currentEnemy.tile.GetDirections(controller.target.tile);
-        List<Tile> tiles = ability.ShowAttackRange(dir, controller);
+        List<Tile> tiles = new List<Tile>();
+        Directions dir = Directions.North;
+        if(controller.target != null)
+        {
+            dir = controller.currentEnemy.tile.GetDirections(controller.target.tile);
+            tiles = ability.ShowAttackRange(dir, controller);
+        }
+        
         controller.targetsInRange.Clear();
 
         switch (ability.targetType)
@@ -40,7 +46,21 @@ public class MonsterAttack : ActionNode
                         }
                     }
                 }
+                break;
+            case TypeOfTarget.RandomSingleTarget:
+                foreach (Tile t in tiles)
+                {
+                    List<PlayerUnit> possibleTargets = new List<PlayerUnit>();
+                    if (t.content != null)
+                    {
+                        if (t.content.GetComponent<PlayerUnit>() != null)
+                        {
+                            possibleTargets.Add(t.content.GetComponent<PlayerUnit>());
+                        }
+                    }
 
+                    controller.targetsInRange.Add(possibleTargets[Random.Range(0, possibleTargets.Count)]);
+                }
                 break;
             default:
                 break;

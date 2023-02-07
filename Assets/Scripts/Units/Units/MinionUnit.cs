@@ -4,12 +4,35 @@ using UnityEngine;
 
 public class MinionUnit : EnemyUnit
 {
+    public MonsterController parent;
     [SerializeField] RangeData range;
+
+
+    protected override void Start()
+    {
+        Match();
+        SetInitVelocity();
+        originalTimeStunned = timeStunned;
+        timelineTypes = TimeLineTypes.EnemyUnit;
+        health = maxHealth;
+
+        SetOriginalValues();
+    }
     public override void UpdateMonsterSpace(Board board)
     {
         
     }
 
+    public override void Die()
+    {
+        controller.timelineElements.Remove(this);
+        parent.minionsInGame.Remove(this);
+        controller.enemyUnits.Remove(this);
+
+        tile.content = null;
+
+        Destroy(gameObject);
+    }
     public List<Tile> GetMinionAttackArea(Board board)
     {
         AbilityRange ability = range.GetOrCreateRange(range.range, this.gameObject);
