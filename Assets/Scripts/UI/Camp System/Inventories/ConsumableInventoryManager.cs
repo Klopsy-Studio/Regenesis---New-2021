@@ -20,10 +20,10 @@ public class ConsumableInventoryManager : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+
     void Update()
     {
-        //UpdateDisplay();
+        UpdateDisplay();
     }
 
     private void CreateDisplay()
@@ -38,42 +38,42 @@ public class ConsumableInventoryManager : MonoBehaviour
             consumableDisplayed.Add(inventory.consumableContainer[i], obj);
        
         }
-    }   
+    }
 
+    
+    public void UpdateDisplay()
+    {
+        for (int i = 0; i < inventory.consumableContainer.Count; i++)
+        {
+            if (consumableDisplayed.ContainsKey(inventory.consumableContainer[i]))
+            {
 
-    //public void UpdateDisplay()
-    //{
-    //    for (int i = 0; i < inventory.consumableContainer.Count; i++)
-    //    {
-    //        if (consumableDisplayed.ContainsKey(inventory.consumableContainer[i]))
-    //        {
+                consumableDisplayed[inventory.consumableContainer[i]].amountText.SetText(inventory.consumableContainer[i].amount.ToString());
+            }
+            else
+            {
+                var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, contentTransform);
+                slotPrefabList.Add(obj);
+                var consumableSlot = inventory.consumableContainer[i];
+                obj.SetSlotButton(consumableSlot, this);
+                consumableDisplayed.Add(inventory.consumableContainer[i], obj);
+                //if (obj.TryGetComponent(out ConsInventoryButton inventoryButton))
+                //{
 
-    //            consumableDisplayed[inventory.consumableContainer[i]].amountText.SetText(inventory.consumableContainer[i].amount.ToString());
-    //        }
-    //        else
-    //        {
-    //            var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, contentTransform);
-    //            slotPrefabList.Add(obj);
-    //            var consumableSlot = inventory.consumableContainer[i];
-    //            obj.SetSlotButton(consumableSlot);
-    //            consumableDisplayed.Add(inventory.consumableContainer[i], obj);
-    //            //if (obj.TryGetComponent(out ConsInventoryButton inventoryButton))
-    //            //{
+                //    inventoryButton.FillVariables(inventory, i, this);
+                //}
+            }
 
-    //            //    inventoryButton.FillVariables(inventory, i, this);
-    //            //}
-    //        }
+            //if (slotPrefabList[i].TryGetComponent(out ConsSlotButton slotButton))
+            //{
 
-    //        if (slotPrefabList[i].TryGetComponent(out ConsSlotButton slotButton))
-    //        {
+            //    slotButton.FillVariables(this);
+            //}
 
-    //            slotButton.FillVariables(this);
-    //        }
+            
 
-
-
-    //    }
-    //}
+        }
+    }
 
     public void UpdateConsPanelInfo(ConsSlotButton _consSlotButton)
     {

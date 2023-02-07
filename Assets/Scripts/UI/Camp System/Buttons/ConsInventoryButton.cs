@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class ConsInventoryButton : UIButtons
 {
-    public DisplayConsumableInventory displayconsumableInventory;
+    public DisplayConsumableInventoryBarrack displayconsumableInventory;
     public ConsumableInventory inventory;
     public int consumableID;
     [SerializeField] Image itemImage;
     [SerializeField] Text itemAmountText;
 
-    public void FillVariables(ConsumableInventory _inventory, int i, DisplayConsumableInventory _displayconsumableInventory)
+    public void FillVariables(ConsumableInventory _inventory, int i, DisplayConsumableInventoryBarrack _displayconsumableInventory)
     {
         inventory = _inventory;
         consumableID = i;

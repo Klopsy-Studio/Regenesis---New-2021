@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 public class ConsSlotButton : MonoBehaviour, IPointerClickHandler 
 {
     [SerializeField] Image consumableImage;
-    [SerializeField] TextMeshProUGUI amountText;
+    public TextMeshProUGUI amountText;
     public string consName;
     public string description;
     // Start is called before the first frame update

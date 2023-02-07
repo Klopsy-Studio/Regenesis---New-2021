@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplayConsumableInventory : MonoBehaviour
+public class DisplayConsumableInventoryBarrack : MonoBehaviour
 {
     
     public GameObject slotPrefab;
