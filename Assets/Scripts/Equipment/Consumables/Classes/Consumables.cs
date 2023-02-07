@@ -11,7 +11,7 @@ public enum ConsumableType
 public abstract class Consumables : ScriptableObject
 {
     
-    protected string itemName;
+    public string itemName;
     public Sprite iconSprite;
     public Sprite itemSprite;
     [SerializeField] private ConsumableType consumableType;
@@ -24,7 +24,7 @@ public abstract class Consumables : ScriptableObject
     public ConsumableType ConsumableType { get { return consumableType; } }
 
   
-    public string ItemName { get { return itemName; } }
+   
     public abstract bool ApplyConsumable(Unit unit);
     public abstract bool ApplyConsumable(Tile t, BattleController battleController);
 
