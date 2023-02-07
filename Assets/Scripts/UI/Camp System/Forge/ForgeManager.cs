@@ -116,11 +116,30 @@ public class WeaponPanelInfo
     public TextMeshProUGUI weaponElementalDefense;
     public TextMeshProUGUI weaponElementalAttack;
 
+    public TextMeshProUGUI weaponName;
     public void UpdatePanelInfo(WeaponInfoTemplate _weaponInfoTemplate)
     {
         weaponDamage.SetText("DMG: "+_weaponInfoTemplate.WeaponDamage.ToString());
         weaponRange.SetText("RNG: "+_weaponInfoTemplate.WeaponRange.ToString());
         weaponCritic.SetText("CRT: "+_weaponInfoTemplate.WeaponCritic.ToString()+"%");
         weaponDefense.SetText("DEF: "+_weaponInfoTemplate.WeaponDefense.ToString());
+    }
+
+    public void UpdateInventoryPanelInfo(EquipmentSlotButton slotButton)
+    {
+        weaponName.SetText(slotButton.weaponName);
+        weaponDamage.SetText("DMG: " + slotButton.WeaponDamage.ToString());
+        weaponRange.SetText("RNG: " + slotButton.WeaponRange.ToString());
+        weaponCritic.SetText("CRT: " + slotButton.WeaponCritic.ToString() + "%");
+        weaponDefense.SetText("DEF: " + slotButton.WeaponDefense.ToString());
+    }
+
+    public void ResetInfo() 
+    {
+        weaponName.SetText("Name");
+        weaponDamage.SetText("DMG: ");
+        weaponRange.SetText("RNG: ");
+        weaponCritic.SetText("CRT: ");
+        weaponDefense.SetText("DEF: ");
     }
 }

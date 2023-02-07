@@ -1,24 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplayMaterialInventory : MonoBehaviour
+public class MaterialInventoryMananger : MonoBehaviour
 {
-    public MonsterMaterial a;
-    public MonsterMaterial b;
-   
-    public void AddConsumables()
-    {
-        inventory.AddMonsterMaterial(a, 2);
-        inventory.AddMonsterMaterial(b, 1);
-     
-    }
-    public GameObject slotPrefab;
+    public MaterialSlotButton slotPrefab;
     public MaterialInventory inventory;
 
-    Dictionary<MonsterMaterialSlot, GameObject> materialDisplayed = new Dictionary<MonsterMaterialSlot, GameObject>();
-
+    Dictionary<MonsterMaterialSlot, MaterialSlotButton> materialDisplayed = new Dictionary<MonsterMaterialSlot, MaterialSlotButton>();
+    public MaterialPanelInfo materialPanelInfo;
+    [SerializeField] Transform contentTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +29,11 @@ public class DisplayMaterialInventory : MonoBehaviour
     {
         for (int i = 0; i < inventory.materialContainer.Count; i++)
         {
-            var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, transform);
-            obj.transform.GetChild(0).GetComponentInChildren<Image>().sprite = inventory.materialContainer[i].material.sprite;
+            var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, contentTransform);
+            var materialSlot = inventory.materialContainer[i];
+            //obj.transform.GetChild(0).GetComponentInChildren<Image>().sprite = inventory.materialContainer[i].material.sprite;
+
+            obj.SetSlotButton(materialSlot, this);
             materialDisplayed.Add(inventory.materialContainer[i], obj);
         }
     }
@@ -61,5 +57,30 @@ public class DisplayMaterialInventory : MonoBehaviour
             }
 
         }
+    }
+
+    public void UpdateMaterialPanelInfo(MaterialSlotButton _materialSlotButton)
+    {
+        materialPanelInfo.UpdatePanelInfo(_materialSlotButton);
+    }
+}
+
+[System.Serializable]
+public class MaterialPanelInfo
+{
+    public TextMeshProUGUI materialname;
+    public TextMeshProUGUI materialDescription;
+
+    public void UpdatePanelInfo(MaterialSlotButton _matSlotButton)
+    {
+       
+        materialname.SetText(_matSlotButton.materialName);
+        materialDescription.SetText(_matSlotButton.description);
+    }
+
+    public void ResetInfo()
+    {
+        materialname.SetText("");
+        materialDescription.SetText("");
     }
 }

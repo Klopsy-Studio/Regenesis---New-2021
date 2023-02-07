@@ -36,4 +36,8 @@ public class MonsterMaterial: ScriptableObject
     public Monster monster;
     //public TypeOfMaterial material;
     public Rarity rarity;
+
+    [TextArea]
+    public string materialDescription;
+
 }

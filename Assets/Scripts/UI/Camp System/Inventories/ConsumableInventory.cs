@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,25 +9,70 @@ public class ConsumableInventory : ScriptableObject
     public List<ConsumableSlot> consumableContainer = new List<ConsumableSlot>();
     public virtual void AddConsumable(Consumables _consumable, int _amount)
     {
-        bool hasConsumable = false;
+        bool CheckIfAmountWasAddedToCurrentConsumable = false;
         for (int i = 0; i < consumableContainer.Count; i++)
         {
             if (consumableContainer[i].consumable == _consumable)
             {
-                consumableContainer[i].AddAmount(_amount);
-                hasConsumable = true;
-                break;
+
+
+         
+                if (consumableContainer[i].CheckIfIsMoreThan99Amount(_amount))
+                {
+                    continue;
+                }
+                else
+                {
+                    consumableContainer[i].AddAmount(_amount);
+                    CheckIfAmountWasAddedToCurrentConsumable = true;
+                    break;
+                }
+              
             }
         }
 
-        if (!hasConsumable)
+        if (!CheckIfAmountWasAddedToCurrentConsumable)
         {
-            consumableContainer.Add(new ConsumableSlot(_consumable, _amount));
+           //Ver si hay un consumable compatible Y que no tenga 99 stacks
+            bool hasConsumable = false;
+            for (int i = 0; i < consumableContainer.Count; i++)
+            {
+                var currentConsumableSlot = consumableContainer[i];
+                if (currentConsumableSlot.consumable != _consumable)
+                {
+                    continue;
+                }
+
+                if (currentConsumableSlot.amount < 99)
+                {
+                    int temporalAmount = currentConsumableSlot.amount + _amount;
+                    currentConsumableSlot.amount = 99; //maxStack;
+
+                    int amountForNextConsumable = temporalAmount - 99;
+                    consumableContainer.Add(new ConsumableSlot(currentConsumableSlot.consumable, amountForNextConsumable));
+                    hasConsumable = true;
+                    break;
+                }
+            }
+
+            if (!hasConsumable)
+            {
+                consumableContainer.Add(new ConsumableSlot(_consumable, _amount));
+            }
+
         }
     }
 
-    public void TransferConsumablesToBackPack(ConsumableInventory targetInventory, int consumableID, DisplayConsumableInventory displayconsumableInventory)
+    public void TransferConsumablesToBackPack(ConsumableInventory targetInventory, int consumableID, DisplayConsumableInventoryBarrack displayconsumableInventory)
     {
+        //Check If there is already 4 items
+        if (targetInventory.consumableContainer.Count >= 4)
+        {
+            Debug.Log("there is already 4 items");
+            Debug.Log("target inventory tiene" + targetInventory.consumableContainer.Count + "objetos");
+            return;
+        }
+
         var inventorySlot = consumableContainer[consumableID];
         var amountToTransfer = inventorySlot.AmountToTransfer();
         if(inventorySlot.amount == 0)
@@ -80,14 +126,30 @@ public class ConsumableSlot
         amount = _amount;
     }
 
-    public void AddAmount(int value)
+    public void AddAmount(int _newAmount)
     {
-
-        amount += value;
-        if(amount > 99)
-        {
-            amount = 99;
-            Debug.Log("NO PUEDE SUPERARSE DE 99 stack");
-        }
+ 
+        //-------
+        amount += _newAmount;
+      
     }
+
+    public bool CheckIfIsMoreThan99Amount(int _newAmount)
+    {
+        bool isMoreThan99;
+        if (amount + _newAmount > 99)
+        {
+            isMoreThan99 = true; 
+        }
+        else
+        {
+            isMoreThan99=false;
+        }
+
+        return isMoreThan99;
+    }
+
+
+
+
 }

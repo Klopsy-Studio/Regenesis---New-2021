@@ -18,7 +18,7 @@ public class AbilityDescription : MonoBehaviour
 
     public void AssignData(Consumables consumable)
     {
-        abilityDescription.text = consumable.description;
+        abilityDescription.text = consumable.consumableDescription;
         abilityRange.text = consumable.itemRange.itemRange.ToString();
         cost.text = 2.ToString();
     }

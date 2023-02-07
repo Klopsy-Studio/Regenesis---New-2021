@@ -11,16 +11,20 @@ public enum ConsumableType
 public abstract class Consumables : ScriptableObject
 {
     
+    protected string itemName;
     public Sprite iconSprite;
     public Sprite itemSprite;
     [SerializeField] private ConsumableType consumableType;
     public RangeData itemRange;
     public RangeData effectRange;
     public int maxBackPackAmount;
-    public string description;
+
+    [TextArea]
+    public string consumableDescription;
     public ConsumableType ConsumableType { get { return consumableType; } }
 
-    public string itemName;
+  
+    public string ItemName { get { return itemName; } }
     public abstract bool ApplyConsumable(Unit unit);
     public abstract bool ApplyConsumable(Tile t, BattleController battleController);
 

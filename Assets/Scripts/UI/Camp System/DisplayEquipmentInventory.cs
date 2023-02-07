@@ -5,16 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class DisplayEquipmentInventory : MonoBehaviour
 {
-    public Weapons a;
-    public Weapons b;           
-    public Weapons c;
-
-    public void AddConsumables()
-    {
-        inventory.AddItem(a);
-        inventory.AddItem(b);
-        inventory.AddItem(c);
-    }
 
     public GameObject slotPrefab;
     public EquipmentInventory inventory;
