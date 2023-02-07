@@ -88,6 +88,8 @@ public class BattleController : StateMachine
 
     public CinemachineVirtualCamera cinemachineCamera;
 
+   
+
     [Header("Playtesting")]
     [SerializeField] Playtest playtestingFunctions;
 
@@ -101,8 +103,19 @@ public class BattleController : StateMachine
     public bool pauseTimeline;
     [SerializeField] Text pauseText;
     [SerializeField] Image pauseButton;
+
+    [Header("Zoom Variables")]
+    bool zoomIn = false;
+    bool zoomOut = false;
+    [SerializeField] float zoomSpeed;
+    [SerializeField] float preferedZoomSize;
+    [SerializeField] AnimationCurve zoomInCurve;
+
+    float originalZoomSize;
+    float currentTime;
     public void BeginGame()
     {
+        originalZoomSize = cinemachineCamera.m_Lens.OrthographicSize;
         cinemachineCamera.m_Lens.NearClipPlane = -1f;
         Destroy(placeholderCanvas.gameObject);
         levelData = GameManager.instance.currentMission;
@@ -217,8 +230,41 @@ public class BattleController : StateMachine
                 board.toggleTileActivation = !board.toggleTileActivation;
             }
         }
+
+
+        if (zoomIn && !zoomOut)
+        {
+            currentTime += Time.deltaTime * zoomSpeed;
+            cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
+
+            if(cinemachineCamera.m_Lens.OrthographicSize <= preferedZoomSize)
+            {
+                zoomIn = false;
+                cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
+                currentTime = 0;
+
+            }
+        }
+
+        if(zoomOut && !zoomIn)
+        {
+            currentTime += Time.deltaTime * zoomSpeed;
+
+            cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, originalZoomSize, zoomInCurve.Evaluate(currentTime));
+
+            if (cinemachineCamera.m_Lens.OrthographicSize >= originalZoomSize)
+            {
+                zoomOut = false;
+                cinemachineCamera.m_Lens.OrthographicSize = originalZoomSize;
+                currentTime = 0;
+
+            }
+        }
         //Disable UI 
-       
+
+        Debug.Log("Zoom In: " + zoomIn);
+        Debug.Log("Zoom Out: " + zoomOut);
+
 
     }
 
@@ -291,7 +337,21 @@ public class BattleController : StateMachine
         }
     }
 
+    public void ZoomIn()
+    {
+        if (!zoomOut)
+        {
+            zoomIn = true;
+        }
+    }
 
+    public void ZoomOut()
+    {
+        if (!zoomIn)
+        {
+            zoomOut = true;
+        }
+    }
     public void SetBowExtraAttack()
     {
         bowExtraAttack = !bowExtraAttack;

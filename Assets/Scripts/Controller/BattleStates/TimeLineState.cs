@@ -32,15 +32,15 @@ public class TimeLineState : BattleState
     
     private void Update()
     {
-
         if (selectTiles != null && !owner.timelineUI.CheckMouse())
         {
             Debug.Log("Bruh");
             board.DeSelectDefaultTiles(selectTiles);
             selectTiles.Clear();
+            owner.ZoomOut();
         }
 
-        if (owner.isTimeLineActive && !owner.timelineUI.CheckMouse() && !owner.pauseTimeline)
+        if (owner.isTimeLineActive && !owner.pauseTimeline) 
         {
 
             if (selectedUnit != null)
@@ -65,6 +65,7 @@ public class TimeLineState : BattleState
                     currentElement = t;
                     owner.timelineUI.ShowIconActing(t);
                     owner.timelineUI.HideTimelineIcon(t);
+                    owner.ZoomOut();
                     if (t is PlayerUnit p)
                     {
 
@@ -132,8 +133,10 @@ public class TimeLineState : BattleState
 
         else
         {
-            if (owner.timelineUI.selectedIcon != null && owner.isTimeLineActive)
+            
+            if (owner.timelineUI.CheckMouse() && owner.timelineUI.selectedIcon != null && owner.isTimeLineActive)
             {
+                owner.ZoomIn();
                 if (owner.timelineUI.selectedIcon.element.GetComponent<Unit>() != null)
                 {
                     if (owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>() != null)
@@ -197,7 +200,10 @@ public class TimeLineState : BattleState
 
                 owner.timelineUI.selectedIcon.Grow();
             }
-
+            else
+            {
+                owner.ZoomOut();
+            }
 
         }
 
