@@ -146,7 +146,7 @@ public class TimelineUI : MonoBehaviour
                 temp.downSupport.sprite = upSupport;
                 temp.offset = 70;
 
-                temp.velocityText.gameObject.SetActive(true);
+                //temp.velocityText.gameObject.SetActive(true);
 
                 temp.SetTimelineIconTextVelocity();
                 //var timelineVelocity = (int)temp.element.timelineVelocity;

@@ -88,6 +88,8 @@ public class BattleController : StateMachine
 
     public CinemachineVirtualCamera cinemachineCamera;
 
+   
+
     [Header("Playtesting")]
     [SerializeField] Playtest playtestingFunctions;
 
@@ -99,10 +101,25 @@ public class BattleController : StateMachine
 
     [Header("Timeline Variables")]
     public bool pauseTimeline;
+    public bool canToggleTimeline = false;
+    [SerializeField] KeyCode toggleTimelineKey;
     [SerializeField] Text pauseText;
-    [SerializeField] Image pauseButton;
+    [SerializeField] MenuButton pauseButton;
+    [SerializeField] MenuButton resumeButton;
+
+    [Header("Zoom Variables")]
+    bool zoomIn = false;
+    bool zoomOut = false;
+    [SerializeField] float zoomSpeed;
+    [SerializeField] float preferedZoomSize;
+    [SerializeField] AnimationCurve zoomInCurve;
+
+    float originalZoomSize;
+    float currentTime;
     public void BeginGame()
     {
+        canToggleTimeline = true;
+        originalZoomSize = cinemachineCamera.m_Lens.OrthographicSize;
         cinemachineCamera.m_Lens.NearClipPlane = -1f;
         Destroy(placeholderCanvas.gameObject);
         levelData = GameManager.instance.currentMission;
@@ -217,8 +234,66 @@ public class BattleController : StateMachine
                 board.toggleTileActivation = !board.toggleTileActivation;
             }
         }
-        //Disable UI 
-       
+
+
+        if (zoomIn && !zoomOut)
+        {
+            currentTime += Time.deltaTime * zoomSpeed;
+            cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
+
+            if(cinemachineCamera.m_Lens.OrthographicSize <= preferedZoomSize)
+            {
+                zoomIn = false;
+                cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
+                currentTime = 0;
+
+            }
+        }
+
+        if(zoomOut && !zoomIn)
+        {
+            currentTime += Time.deltaTime * zoomSpeed;
+
+            cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, originalZoomSize, zoomInCurve.Evaluate(currentTime));
+
+            if (cinemachineCamera.m_Lens.OrthographicSize >= originalZoomSize)
+            {
+                zoomOut = false;
+                cinemachineCamera.m_Lens.OrthographicSize = originalZoomSize;
+                currentTime = 0;
+
+            }
+        }
+
+
+        //Pause Timeline With Input
+
+        if (Input.GetKeyDown(toggleTimelineKey) && canToggleTimeline)
+        {
+            if (pauseTimeline)
+            {
+                resumeButton.action.Invoke();
+            }
+            else
+            {
+                pauseButton.action.Invoke();
+            }
+        }
+
+        if (Input.GetKeyUp(toggleTimelineKey) && canToggleTimeline)
+        {
+            if (pauseTimeline)
+            {
+                resumeButton.onUp.Invoke();
+            }
+            else
+            {
+                pauseButton.onUp.Invoke();
+
+            }
+        }
+
+
 
     }
 
@@ -291,7 +366,21 @@ public class BattleController : StateMachine
         }
     }
 
+    public void ZoomIn()
+    {
+        if (!zoomOut)
+        {
+            zoomIn = true;
+        }
+    }
 
+    public void ZoomOut()
+    {
+        if (!zoomIn)
+        {
+            zoomOut = true;
+        }
+    }
     public void SetBowExtraAttack()
     {
         bowExtraAttack = !bowExtraAttack;

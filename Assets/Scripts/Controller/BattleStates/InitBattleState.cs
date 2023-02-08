@@ -84,7 +84,9 @@ public class InitBattleState : BattleState
             owner.timelineElements.Add(unit);
         }
 
-        owner.timelineElements.Add(owner.environmentEvent);
+
+        //Removing the enviroment event for now
+        //owner.timelineElements.Add(owner.environmentEvent);
 
     }
 

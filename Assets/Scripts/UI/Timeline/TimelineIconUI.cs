@@ -38,6 +38,8 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public float minDistance;
     public float maxDistance;
 
+
+    [SerializeField] bool allowExpandUnits;
     public void EnableStun()
     {
         stunnedIndicator.SetActive(true);
@@ -64,17 +66,25 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
 
         //UpdatePreviousIcon();
-        UpdateNextIcon();
-        UpdatePreviousIcon();
+
+        if (allowExpandUnits)
+        {
+            UpdateNextIcon();
+            UpdatePreviousIcon();
+        }
     }
 
   
     public void SetTimelineIconTextVelocity()
     {
-        var timelineVelocity = (int)element.TimelineVelocity;
-        Debug.Log("EL NUMERO DE LA VELOCIDAD ES " + timelineVelocity);
-        velocityText.SetText(timelineVelocity.ToString());
-        //Debug.Log("esta activado");
+        if(velocityText != null)
+        {
+            var timelineVelocity = (int)element.TimelineVelocity;
+            Debug.Log("EL NUMERO DE LA VELOCIDAD ES " + timelineVelocity);
+            velocityText.SetText(timelineVelocity.ToString());
+            //Debug.Log("esta activado");
+        }
+
     }
 
     public void UpdatePreviousIcon()
