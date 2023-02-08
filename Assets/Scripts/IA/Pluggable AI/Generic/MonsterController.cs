@@ -40,7 +40,8 @@ public class MonsterController : MonoBehaviour
     public List<RangeData> minionRangeSpawn;
     public bool hasSpawnedMinionsInLastTurn;
     public bool hasDoneFirstTurn = false;
-
+    public bool hasEvolved;
+    public int turnsAlive;
 
     [Header("Animation Variables")]
     public bool animPlaying;

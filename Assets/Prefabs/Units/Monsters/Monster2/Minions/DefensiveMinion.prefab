@@ -498,6 +498,7 @@ MonoBehaviour:
   monsterControl: {fileID: 4319465372067614749}
   lowHealth: 0
   monsterUI: {fileID: 1001810233096341232}
+  parent: {fileID: 0}
   range:
     range: 9
     lineDir: 0
@@ -529,7 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1387f5090e7122048a4cc3bc65fa3f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 81fb4f40ec3d714489fe8dfe5a4320ca, type: 2}
+  tree: {fileID: 11400000, guid: 928ec02ce7711ea4090cc342ee83fbe8, type: 2}
   test: 0
   behaviourTest: 0
   isUpdatingState: 0
@@ -554,6 +555,8 @@ MonoBehaviour:
   minionRangeSpawn: []
   hasSpawnedMinionsInLastTurn: 0
   hasDoneFirstTurn: 0
+  hasEvolved: 0
+  turnsAlive: 0
   animPlaying: 0
   monsterAnimations: {fileID: 2205082520672670710}
 --- !u!114 &3750714900836069021
