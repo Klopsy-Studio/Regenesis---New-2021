@@ -23,6 +23,7 @@ public class UseAbilityState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.ChangeUIButtons(false);
         CleanSelectTiles();
         owner.currentUnit.WeaponOut();
         owner.isTimeLineActive = false;
@@ -492,6 +493,7 @@ public class UseAbilityState : BattleState
         {
             board.DeSelectDefaultTiles(selectTiles);
         }
+        owner.ChangeUIButtons(true);
 
         attacking = false;
         tiles = null;
