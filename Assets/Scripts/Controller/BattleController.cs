@@ -101,8 +101,11 @@ public class BattleController : StateMachine
 
     [Header("Timeline Variables")]
     public bool pauseTimeline;
+    public bool canToggleTimeline = false;
+    [SerializeField] KeyCode toggleTimelineKey;
     [SerializeField] Text pauseText;
-    [SerializeField] Image pauseButton;
+    [SerializeField] MenuButton pauseButton;
+    [SerializeField] MenuButton resumeButton;
 
     [Header("Zoom Variables")]
     bool zoomIn = false;
@@ -115,6 +118,7 @@ public class BattleController : StateMachine
     float currentTime;
     public void BeginGame()
     {
+        canToggleTimeline = true;
         originalZoomSize = cinemachineCamera.m_Lens.OrthographicSize;
         cinemachineCamera.m_Lens.NearClipPlane = -1f;
         Destroy(placeholderCanvas.gameObject);
@@ -260,10 +264,35 @@ public class BattleController : StateMachine
 
             }
         }
-        //Disable UI 
 
-        Debug.Log("Zoom In: " + zoomIn);
-        Debug.Log("Zoom Out: " + zoomOut);
+
+        //Pause Timeline With Input
+
+        if (Input.GetKeyDown(toggleTimelineKey) && canToggleTimeline)
+        {
+            if (pauseTimeline)
+            {
+                resumeButton.action.Invoke();
+            }
+            else
+            {
+                pauseButton.action.Invoke();
+            }
+        }
+
+        if (Input.GetKeyUp(toggleTimelineKey) && canToggleTimeline)
+        {
+            if (pauseTimeline)
+            {
+                resumeButton.onUp.Invoke();
+            }
+            else
+            {
+                pauseButton.onUp.Invoke();
+
+            }
+        }
+
 
 
     }
