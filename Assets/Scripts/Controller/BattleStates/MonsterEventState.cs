@@ -8,12 +8,20 @@ public class MonsterEventState : BattleState
     {
         base.Enter();
         owner.isTimeLineActive = false;
+
+        owner.board.ActivateTileSelection();
+        owner.turnStatusUI.ActivateTurn(owner.enemyUnits[0].unitName);
         StartCoroutine(ApplyEvent());
     }
 
 
     IEnumerator ApplyEvent()
     {
+        owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.monsterTurn);
+        yield return new WaitForSeconds(1f);
+        owner.turnStatusUI.StopTurnStatus();
+        yield return new WaitForSeconds(1f);
+        
         owner.currentMonsterEvent.Apply();
 
         while (owner.currentMonsterEvent.acting)
