@@ -8,7 +8,7 @@ public class BombTimeline : ItemElements
     public SquareAbilityRange itemRange;
     List<Tile> tiles;
 
-
+    public int damage;
     BattleController battleController;
 
     [SerializeField] Animator bombAnimator;
@@ -48,10 +48,10 @@ public class BombTimeline : ItemElements
             {
                 if (t.content.TryGetComponent(out Unit unit))
                 {
-                    unit.ReceiveDamage(30);
+                    unit.ReceiveDamage(damage);
                     unit.Damage();
 
-                    if(unit.GetComponent<EnemyUnit>() != null)
+                    if(unit.GetComponent<EnemyUnit>() == controller.enemyUnits[0])
                     {
                         monsterDamaged = true;
                     }
@@ -65,6 +65,15 @@ public class BombTimeline : ItemElements
                     monster.DamageEffect();
                     monsterDamaged = true;
                 }
+            }
+
+            if(t.occupied && !monsterDamaged)
+            {
+                Unit monster = controller.enemyUnits[0];
+                monster.ReceiveDamage(30);
+                monster.Damage();
+                monster.DamageEffect();
+                monsterDamaged = true;
             }
             
         }
@@ -112,4 +121,6 @@ public class BombTimeline : ItemElements
      
         currentPoint = tile.pos;
     }
+
+
 }

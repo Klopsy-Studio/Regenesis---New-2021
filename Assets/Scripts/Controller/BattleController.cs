@@ -237,35 +237,38 @@ public class BattleController : StateMachine
             }
         }
 
-
-        if (zoomIn && !zoomOut)
+        if (!ActionEffect.instance.CheckActionEffectState())
         {
-            currentTime += Time.deltaTime * zoomSpeed;
-            cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
-
-            if(cinemachineCamera.m_Lens.OrthographicSize <= preferedZoomSize)
+            if (zoomIn && !zoomOut)
             {
-                zoomIn = false;
-                cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
-                currentTime = 0;
+                currentTime += Time.deltaTime * zoomSpeed;
+                cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
 
+                if (cinemachineCamera.m_Lens.OrthographicSize <= preferedZoomSize)
+                {
+                    zoomIn = false;
+                    cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
+                    currentTime = 0;
+
+                }
+            }
+
+            if (zoomOut && !zoomIn)
+            {
+                currentTime += Time.deltaTime * zoomSpeed;
+
+                cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, originalZoomSize, zoomInCurve.Evaluate(currentTime));
+
+                if (cinemachineCamera.m_Lens.OrthographicSize >= originalZoomSize)
+                {
+                    zoomOut = false;
+                    cinemachineCamera.m_Lens.OrthographicSize = originalZoomSize;
+                    currentTime = 0;
+
+                }
             }
         }
-
-        if(zoomOut && !zoomIn)
-        {
-            currentTime += Time.deltaTime * zoomSpeed;
-
-            cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, originalZoomSize, zoomInCurve.Evaluate(currentTime));
-
-            if (cinemachineCamera.m_Lens.OrthographicSize >= originalZoomSize)
-            {
-                zoomOut = false;
-                cinemachineCamera.m_Lens.OrthographicSize = originalZoomSize;
-                currentTime = 0;
-
-            }
-        }
+        
 
 
         //Pause Timeline With Input
