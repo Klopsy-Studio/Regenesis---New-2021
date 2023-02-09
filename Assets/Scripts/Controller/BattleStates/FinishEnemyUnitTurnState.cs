@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TheKiwiCoder;
 
 public class FinishEnemyUnitTurnState : BattleState
 {
@@ -26,9 +27,10 @@ public class FinishEnemyUnitTurnState : BattleState
         owner.currentEnemyUnit.timelineFill = 0;
        
         yield return null;
-
+        //owner.currentEnemyUnit.monsterControl.tree = null;
         owner.currentEnemyUnit = null;
         owner.currentEnemyController = null;
+
         owner.ChangeState<TimeLineState>();
     }
 }

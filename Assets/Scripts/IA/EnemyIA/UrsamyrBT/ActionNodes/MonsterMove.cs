@@ -7,7 +7,9 @@ using TheKiwiCoder;
 public class MonsterMove : ActionNode
 {
     [SerializeField] MoveType typeOfMove;
-    bool treeRunning;
+    [SerializeField] bool treeRunning;
+
+    int timesStarted;
     protected override void OnStart() {
         treeRunning = true;
         owner.controller.StartCoroutine(MoveAction());
@@ -56,6 +58,7 @@ public class MonsterMove : ActionNode
         }
         else
         {
+            treeRunning = false;
             return State.Success;
         }
     }

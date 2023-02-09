@@ -7,6 +7,7 @@ public class MonsterController : MonoBehaviour
 {
     [Header("Behaviour Tree Variables")]
     public BehaviourTree tree;
+    [SerializeField] BehaviourTreeRunner testRunner;
     BehaviourTree originalTree;
     public bool test = false;
     public bool behaviourTest = false;
@@ -45,18 +46,21 @@ public class MonsterController : MonoBehaviour
     {
         originalTree = tree;
         context = CreateBehaviourTreeContext();
-        tree = tree.Clone();
-        tree.controller = this;
-        tree.Bind(context);
-    }
-    public void StartMonster()
-    {
-        context = CreateBehaviourTreeContext();
         tree = originalTree;
         tree = tree.Clone();
         tree.controller = this;
         tree.Bind(context);
+        testRunner.tree = tree;
+        //context = CreateBehaviourTreeContext();
+        //tree = tree.Clone();
+        //tree.controller = this;
+        //tree.Bind(context);
+    }
+    public void StartMonster()
+    {
         test = true;
+        tree.rootNode.state = Node.State.Running;
+        tree.ResetAllNodes();
         //currentState.UpdateState(this);
     }
 
@@ -65,7 +69,7 @@ public class MonsterController : MonoBehaviour
         return Context.CreateFromGameObject(gameObject);
     }
 
-    Context context;
+    [SerializeField] Context context;
 
     protected void OnDrawGizmos()
     {
@@ -139,4 +143,18 @@ public class MonsterController : MonoBehaviour
         return Instantiate(e);
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        if (!tree)
+        {
+            return;
+        }
+
+        BehaviourTree.Traverse(tree.rootNode, (n) => {
+            if (n.drawGizmos)
+            {
+                n.OnDrawGizmos();
+            }
+        });
+    }
 }

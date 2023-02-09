@@ -83,5 +83,30 @@ namespace TheKiwiCoder {
                 n.owner = this;
             }
         }
+
+
+        public void ActivateAllGizmos()
+        {
+            foreach (Node n in nodes)
+            {
+                n.drawGizmos = true;
+            }
+        }
+
+        public void DeactivateAllGizmos()
+        {
+            foreach (Node n in nodes)
+            {
+                n.drawGizmos = false;
+            }
+        }
+
+        public void ResetAllNodes()
+        {
+            foreach (Node n in nodes)
+            {
+                n.state = Node.State.Running;
+            }
+        }
     }
 }

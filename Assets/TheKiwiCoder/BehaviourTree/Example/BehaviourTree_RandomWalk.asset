@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootNode:
     rid: 4200190926137589867
+  controller: {fileID: 0}
   nodes:
   - rid: 4200190926137589867
   - rid: 4200190926137589870
@@ -24,8 +25,8 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     moveToPosition: {x: 100, y: 0, z: 0}
-  viewPosition: {x: -56, y: 470, z: 0}
-  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
+  viewPosition: {x: -355.2, y: 297.6, z: 0}
+  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
   references:
     version: 2
     RefIds:
@@ -40,6 +41,7 @@ MonoBehaviour:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Where it all begins!
         drawGizmos: 0
+        owner: {fileID: 0}
         child:
           rid: 4200190926137589870
     - rid: 4200190926137589870
@@ -53,6 +55,7 @@ MonoBehaviour:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Repeat forever
         drawGizmos: 0
+        owner: {fileID: 0}
         child:
           rid: 4200190926137589871
         restartOnSuccess: 1
@@ -68,6 +71,7 @@ MonoBehaviour:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Select random position, move to it, then wait
         drawGizmos: 0
+        owner: {fileID: 0}
         children:
         - rid: 4200190926137589874
         - rid: 4200190926137589872
@@ -83,6 +87,7 @@ MonoBehaviour:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Randomly generates a position into the blackboard
         drawGizmos: 0
+        owner: {fileID: 0}
         min: {x: -10, y: -10}
         max: {x: 10, y: 10}
     - rid: 4200190926137589873
@@ -96,6 +101,7 @@ MonoBehaviour:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Move to the random position in the blackboard
         drawGizmos: 0
+        owner: {fileID: 0}
         speed: 5
         stoppingDistance: 0.1
         updateRotation: 1
@@ -112,4 +118,5 @@ MonoBehaviour:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Wait
         drawGizmos: 0
+        owner: {fileID: 0}
         duration: 1

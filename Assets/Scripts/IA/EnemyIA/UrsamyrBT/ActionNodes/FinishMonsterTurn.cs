@@ -7,6 +7,7 @@ using TheKiwiCoder;
 public class FinishMonsterTurn : ActionNode
 {
     protected override void OnStart() {
+        owner.controller.test = false;
     }
 
     protected override void OnStop() {
@@ -14,7 +15,6 @@ public class FinishMonsterTurn : ActionNode
 
     protected override State OnUpdate() {
 
-        owner.controller.test = false;
         owner.controller.battleController.ChangeState<FinishEnemyUnitTurnState>();
         return State.Success;    
     }
