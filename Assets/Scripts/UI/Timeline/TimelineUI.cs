@@ -41,6 +41,14 @@ public class TimelineUI : MonoBehaviour
 
     public bool isActive;
     //The bar size. Dependant on size delta. Only works for a static scale object as delta isn't mesured the same way with different anchors.
+
+
+    [SerializeField] TimelinePreview timelinePreview;
+
+    public void CallTimelinePreview()
+    {
+        timelinePreview.CalculateOrder(battleController.unitsInGame);
+    }
     private void Start()
     {
         barSize = content.sizeDelta.x;

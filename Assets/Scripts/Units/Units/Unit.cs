@@ -21,7 +21,9 @@ public class Unit : TimelineElements
     protected float originalTimeStunned;
     public TimelineVelocity previousVelocity;
     [HideInInspector] public BattleController controller;
-    
+
+
+    public float previewTime;
   
     public override int ActionsPerTurn
     {

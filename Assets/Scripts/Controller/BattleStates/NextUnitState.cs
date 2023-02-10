@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NextUnitState : BattleState
+public class NextUnitState : BattleState //Perhaps deprecated
 {
     public override void Enter()
     {
@@ -12,10 +12,10 @@ public class NextUnitState : BattleState
 
     IEnumerator SetUnit()
     {
-        if(owner.currentUnit.turnEnded)
-        {
-            unitsWithActions.Remove(owner.currentUnit);     
-        }
+        //if(owner.currentUnit.turnEnded)
+        //{
+        //    unitsWithActions.Remove(owner.currentUnit);     
+        //}
         owner.currentUnit = null;
 
         yield return null;
