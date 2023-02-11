@@ -21,6 +21,7 @@ public class UseItemState : BattleState
         itemUsed = false;
         owner.isTimeLineActive = false;
         owner.actionSelectionUI.gameObject.SetActive(false);
+        owner.ChangeUIButtons(false);
 
         currentItem = owner.backpackInventory.consumableContainer[owner.itemChosen].consumable;
 
@@ -246,6 +247,8 @@ public class UseItemState : BattleState
         }
         
         owner.ghostImage.gameObject.SetActive(false);
+
+        owner.ChangeUIButtons(true);
 
         firstClick = false;
     }

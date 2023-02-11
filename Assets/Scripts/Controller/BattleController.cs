@@ -57,6 +57,8 @@ public class BattleController : StateMachine
     public GameObject bowExtraAttackObject;
     public Text bowExtraAttackText;
 
+    public MenuButton pauseButton;
+
     [SerializeField] Animator sceneTransition;
     [Space]
     [Header("Combat Variables")]
@@ -104,8 +106,8 @@ public class BattleController : StateMachine
     public bool canToggleTimeline = false;
     [SerializeField] KeyCode toggleTimelineKey;
     [SerializeField] Text pauseText;
-    [SerializeField] MenuButton pauseButton;
-    [SerializeField] MenuButton resumeButton;
+    [SerializeField] MenuButton pauseTimelineButton;
+    [SerializeField] MenuButton resumeTimelineButton;
 
     [Header("Zoom Variables")]
     bool zoomIn = false;
@@ -235,35 +237,38 @@ public class BattleController : StateMachine
             }
         }
 
-
-        if (zoomIn && !zoomOut)
+        if (!ActionEffect.instance.CheckActionEffectState())
         {
-            currentTime += Time.deltaTime * zoomSpeed;
-            cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
-
-            if(cinemachineCamera.m_Lens.OrthographicSize <= preferedZoomSize)
+            if (zoomIn && !zoomOut)
             {
-                zoomIn = false;
-                cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
-                currentTime = 0;
+                currentTime += Time.deltaTime * zoomSpeed;
+                cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
 
+                if (cinemachineCamera.m_Lens.OrthographicSize <= preferedZoomSize)
+                {
+                    zoomIn = false;
+                    cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
+                    currentTime = 0;
+
+                }
+            }
+
+            if (zoomOut && !zoomIn)
+            {
+                currentTime += Time.deltaTime * zoomSpeed;
+
+                cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, originalZoomSize, zoomInCurve.Evaluate(currentTime));
+
+                if (cinemachineCamera.m_Lens.OrthographicSize >= originalZoomSize)
+                {
+                    zoomOut = false;
+                    cinemachineCamera.m_Lens.OrthographicSize = originalZoomSize;
+                    currentTime = 0;
+
+                }
             }
         }
-
-        if(zoomOut && !zoomIn)
-        {
-            currentTime += Time.deltaTime * zoomSpeed;
-
-            cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, originalZoomSize, zoomInCurve.Evaluate(currentTime));
-
-            if (cinemachineCamera.m_Lens.OrthographicSize >= originalZoomSize)
-            {
-                zoomOut = false;
-                cinemachineCamera.m_Lens.OrthographicSize = originalZoomSize;
-                currentTime = 0;
-
-            }
-        }
+        
 
 
         //Pause Timeline With Input
@@ -272,11 +277,11 @@ public class BattleController : StateMachine
         {
             if (pauseTimeline)
             {
-                resumeButton.action.Invoke();
+                resumeTimelineButton.action.Invoke();
             }
             else
             {
-                pauseButton.action.Invoke();
+                pauseTimelineButton.action.Invoke();
             }
         }
 
@@ -284,11 +289,11 @@ public class BattleController : StateMachine
         {
             if (pauseTimeline)
             {
-                resumeButton.onUp.Invoke();
+                resumeTimelineButton.onUp.Invoke();
             }
             else
             {
-                pauseButton.onUp.Invoke();
+                pauseTimelineButton.onUp.Invoke();
 
             }
         }
@@ -296,7 +301,13 @@ public class BattleController : StateMachine
 
 
     }
-
+    public void ChangeUIButtons(bool value)
+    {
+        pauseTimelineButton.canBeSelected = value;
+        resumeTimelineButton.canBeSelected = value;
+        pauseButton.canBeSelected = value;
+        canToggleTimeline = value;
+    }
     public virtual void SelectTile(Point p)
     {
         if (pos == p || !board.playableTiles.ContainsKey(p))

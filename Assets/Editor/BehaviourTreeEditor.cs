@@ -23,5 +23,15 @@ public class BehaviourTreeEditor : Editor
         {
             current.AssignOwnerOnNodes();
         }
+
+        if (GUILayout.Button("Activate Node Gizmos"))
+        {
+            current.ActivateAllGizmos();
+        }
+
+        if (GUILayout.Button("Deactivate Node Gizmos"))
+        {
+            current.DeactivateAllGizmos();
+        }
     }
 }
