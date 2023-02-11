@@ -55,44 +55,52 @@ public class MonsterAbility : ScriptableObject
 
         foreach (RangeData r in attackRange)
         {
-            switch (r.range)
-            {
-                case TypeOfAbilityRange.LineAbility:
-                    LineAbilityRange lineRange = monster.GetRange<LineAbilityRange>();
-                    lineRange.AssignVariables(r);
-                    if (CheckForUnits(lineRange.GetTilesInRange(monster.battleController.board), monster))
-                    {
-                        return true;
-                    }
-                    break;
-                case TypeOfAbilityRange.Side:
-                    SideAbilityRange sideRange = monster.GetRange<SideAbilityRange>();
-                    sideRange.AssignVariables(r);
-                    if (CheckForUnits(sideRange.GetTilesInRange(monster.battleController.board), monster))
-                    {
-                        return true;
-                    }
-                    break;
-                case TypeOfAbilityRange.Cross:
-                    CrossAbilityRange crossRange = monster.GetRange<CrossAbilityRange>();
-                    crossRange.AssignVariables(r);
-                    if (CheckForUnits(crossRange.GetTilesInRange(monster.battleController.board), monster))
-                    {
-                        return true;
-                    }
-                    break;
-                case TypeOfAbilityRange.AlternateSide:
-                    AlternateSideRange alternateSide = monster.GetRange<AlternateSideRange>();
-                    alternateSide.AssignVariables(r);
-                    if (CheckForUnits(alternateSide.GetTilesInRange(monster.battleController.board), monster))
-                    {
-                        return true;
-                    }
-                    break;
+            AbilityRange range = r.GetOrCreateRange(r.range, monster.gameObject);
+            range.unit = monster.currentEnemy;
 
-                default:
-                    break;
+            if (CheckForUnits(range.GetTilesInRange(monster.battleController.board), monster))
+            {
+                return true;
             }
+
+            //switch (r.range)
+            //{
+            //    case TypeOfAbilityRange.LineAbility:
+            //        LineAbilityRange lineRange = monster.GetRange<LineAbilityRange>();
+            //        lineRange.AssignVariables(r);
+            //        if (CheckForUnits(lineRange.GetTilesInRange(monster.battleController.board), monster))
+            //        {
+            //            return true;
+            //        }
+            //        break;
+            //    case TypeOfAbilityRange.Side:
+            //        SideAbilityRange sideRange = monster.GetRange<SideAbilityRange>();
+            //        sideRange.AssignVariables(r);
+            //        if (CheckForUnits(sideRange.GetTilesInRange(monster.battleController.board), monster))
+            //        {
+            //            return true;
+            //        }
+            //        break;
+            //    case TypeOfAbilityRange.Cross:
+            //        CrossAbilityRange crossRange = monster.GetRange<CrossAbilityRange>();
+            //        crossRange.AssignVariables(r);
+            //        if (CheckForUnits(crossRange.GetTilesInRange(monster.battleController.board), monster))
+            //        {
+            //            return true;
+            //        }
+            //        break;
+            //    case TypeOfAbilityRange.AlternateSide:
+            //        AlternateSideRange alternateSide = monster.GetRange<AlternateSideRange>();
+            //        alternateSide.AssignVariables(r);
+            //        if (CheckForUnits(alternateSide.GetTilesInRange(monster.battleController.board), monster))
+            //        {
+            //            return true;
+            //        }
+            //        break;
+
+            //    default:
+            //        break;
+            //}
         }
 
         return false;

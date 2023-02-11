@@ -498,6 +498,7 @@ MonoBehaviour:
   monsterControl: {fileID: 4319465372067614749}
   lowHealth: 0
   monsterUI: {fileID: 1001810233096341232}
+  parent: {fileID: 0}
   range:
     range: 9
     lineDir: 0
@@ -537,7 +538,7 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: 09a3ec0b0ef00094c8d6ce49d44e611f, type: 2}
   startState: {fileID: 11400000, guid: 09a3ec0b0ef00094c8d6ce49d44e611f, type: 2}
   battleController: {fileID: 0}
-  currentEnemy: {fileID: 0}
+  currentEnemy: {fileID: -1513724830092217078}
   target: {fileID: 0}
   targetsInRange: []
   possibleTargets: []
@@ -554,6 +555,8 @@ MonoBehaviour:
   minionRangeSpawn: []
   hasSpawnedMinionsInLastTurn: 0
   hasDoneFirstTurn: 0
+  hasEvolved: 0
+  turnsAlive: 0
   animPlaying: 0
   monsterAnimations: {fileID: 2205082520672670710}
 --- !u!114 &3750714900836069021
@@ -570,7 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 1
   vertical: 2147483647
-  unit: {fileID: 0}
+  unit: {fileID: -1513724830092217078}
   startPos:
     x: 0
     y: 0
@@ -590,7 +593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 1
   vertical: 2147483647
-  unit: {fileID: 0}
+  unit: {fileID: -1513724830092217078}
   startPos:
     x: 0
     y: 0
@@ -631,7 +634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 1
   vertical: 2147483647
-  unit: {fileID: 0}
+  unit: {fileID: -1513724830092217078}
   startPos:
     x: 0
     y: 0
@@ -680,7 +683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 1
   vertical: 2147483647
-  unit: {fileID: 0}
+  unit: {fileID: -1513724830092217078}
   startPos:
     x: 0
     y: 0
@@ -723,6 +726,6 @@ MonoBehaviour:
     x: 0
     y: 0
   tile: {fileID: 0}
-  range: 2
+  range: 3
   removeContent: 0
   removeOrigin: 1

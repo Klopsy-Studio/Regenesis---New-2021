@@ -68,14 +68,14 @@ public class CanMinionMove : ActionNode
                         return State.Failure;
                     }
 
-                    foreach(Tile tile in validTiles)
-                    {
-                        float closestDistance = 0f;
+                    float closestDistance = 0f;
 
+                    foreach (Tile tile in validTiles)
+                    {
                         if (closestDistance == 0 || Vector3.Distance(tile.transform.position, t.transform.position) <= closestDistance)
                         {
                             controller.tileToMove = tile;
-                            value = Vector3.Distance(controller.currentEnemy.transform.position, t.transform.position);
+                            closestDistance = Vector3.Distance(tile.transform.position, t.transform.position);
                         }
                     }
 
