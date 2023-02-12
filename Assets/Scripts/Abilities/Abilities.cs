@@ -151,10 +151,7 @@ public class Abilities : ScriptableObject
                 target.criticalModifiers.Remove(d);
             }
 
-            if(target.criticalModifiers.Count == 0)
-            {
-                target.DisableCriticalMark();
-            }
+
         }
         else
         {
