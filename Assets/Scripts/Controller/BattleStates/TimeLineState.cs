@@ -132,8 +132,7 @@ public class TimeLineState : BattleState
         }
 
         else
-        {
-            
+        {          
             if (owner.timelineUI.CheckMouse() && owner.timelineUI.selectedIcon != null && owner.isTimeLineActive)
             {
                 owner.ZoomIn();

@@ -144,6 +144,8 @@ public class BattleController : StateMachine
     bool monsterLifeTest = true;
     bool windTest = true;
     public bool playtestToggle = true;
+
+
     private void Update()
     {
         if (playtestToggle)
@@ -160,6 +162,10 @@ public class BattleController : StateMachine
                 }
             }
 
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                MakeAllUnitsDie();
+            }
             if (Input.GetKeyDown(KeyCode.L))
             {
                 if (tilesTest)
@@ -334,6 +340,7 @@ public class BattleController : StateMachine
     {
         if(playerUnits.Count == 0)
         {
+            isTimeLineActive = false;
             ChangeState<DefeatState>();
         }
 
@@ -347,10 +354,20 @@ public class BattleController : StateMachine
                 }
             }
 
+            isTimeLineActive = false;
             ChangeState<DefeatState>();
         }
     }
 
+    public void MakeAllUnitsDie()
+    {
+        foreach (PlayerUnit p in playerUnits)
+        {
+            p.NearDeath();
+        }
+
+        CheckAllUnits();
+    }
     public void FadeUnits()
     {
         foreach (Unit u in unitsInGame)
