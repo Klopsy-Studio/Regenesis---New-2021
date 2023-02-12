@@ -56,7 +56,7 @@ public class BattleController : StateMachine
     public AbilityTargets targets;
     public GameObject bowExtraAttackObject;
     public Text bowExtraAttackText;
-
+    public GameObject defeatScreen;
     public MenuButton pauseButton;
 
     [SerializeField] Animator sceneTransition;
@@ -66,6 +66,9 @@ public class BattleController : StateMachine
     public List<TimelineElements> timelineElements;
     public int moveCost;
     public int itemCost;
+
+    
+
     public Tile currentTile { get { return board.GetTile(pos); } }
     [Space]
     [Header("Events")]
@@ -83,6 +86,7 @@ public class BattleController : StateMachine
     [HideInInspector] public bool moveItemSelector = false;
     [HideInInspector] public bool win;
     [HideInInspector] public bool lose;
+    [HideInInspector] public bool battleEnded;
 
 
     [SerializeField] GameObject placeholderCanvas;

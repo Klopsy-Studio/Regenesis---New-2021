@@ -224,19 +224,34 @@ public class TimelineUI : MonoBehaviour
     }
     public bool CheckMouse()
     {
-        for (int i = 0; i < battleController.timelineElements.Count; i++)
+        if(battleController.timelineElements.Count > 0) 
         {
-            TimelineIconUI temp = content.GetChild(i).GetComponent<TimelineIconUI>();
-
-            if (temp.mouseOver)
+            for (int i = 0; i < battleController.timelineElements.Count; i++)
             {
-                selectedIcon = temp;
-                return true;
+                if(content.childCount >= i)
+                {
+                    if (content.GetChild(i) != null)
+                    {
+                        TimelineIconUI temp = content.GetChild(i).GetComponent<TimelineIconUI>();
+
+                        if (temp.mouseOver)
+                        {
+                            selectedIcon = temp;
+                            return true;
+                        }
+                    }
+                }
             }
+
+            selectedIcon = null;
+            return false;
         }
 
-        selectedIcon = null;
-        return false;
+        else
+        {
+            return false;
+        }
+        
     }
     public void ShowIconActing(TimelineElements element)
     {

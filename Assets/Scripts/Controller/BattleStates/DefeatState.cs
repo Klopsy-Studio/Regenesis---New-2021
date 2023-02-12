@@ -12,7 +12,7 @@ public class DefeatState : BattleState
         owner.turnStatusUI.gameObject.SetActive(false);
         owner.timelineUI.gameObject.SetActive(false);
         tileSelectionIndicator.gameObject.SetActive(false);
-
+        owner.battleEnded = true;
         owner.isTimeLineActive = false;
         StartCoroutine(LoseState());
     }
@@ -25,7 +25,12 @@ public class DefeatState : BattleState
         owner.turnStatusUI.DeactivateTurn();
         yield return new WaitForSeconds(1);
 
-        owner.ChangeState<LootUIState>();
+
+        //Deactivated for now, if we want to show loot screen later on we should define what happens when you lose
+        //owner.ChangeState<LootUIState>();
+
+        owner.pauseButton.canBeSelected = false;
+        owner.defeatScreen.SetActive(true);
     }
 
 }

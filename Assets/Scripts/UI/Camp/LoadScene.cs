@@ -20,4 +20,5 @@ public class LoadScene : MonoBehaviour
     {
         SceneManager.LoadScene("LoadingScreen");
     }
+
 }
