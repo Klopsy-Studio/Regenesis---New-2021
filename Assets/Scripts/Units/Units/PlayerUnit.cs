@@ -110,11 +110,24 @@ public class PlayerUnit : Unit
 
     public bool CanDoAbility()
     {
-        foreach (Abilities a in weapon.Abilities)
+        if(weapon.EquipmentType == KitType.Gunblade)
         {
-            if (actionsPerTurn >= a.actionCost)
+            foreach (Abilities a in weapon.Abilities)
             {
-                return true;
+                if (a.CanDoAbility(actionsPerTurn, this))
+                {
+                    return true;
+                }
+            }
+        }
+        else
+        {
+            foreach (Abilities a in weapon.Abilities)
+            {
+                if (a.CanDoAbility(actionsPerTurn))
+                {
+                    return true;
+                }
             }
         }
 

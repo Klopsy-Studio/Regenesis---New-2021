@@ -399,7 +399,7 @@ public class OptionSelection : MonoBehaviour
                 break;
             case 3:
                 ability4.color = disabledColor;
-                ability4.GetComponent<SelectorMovement>().canBeSelected = true;
+                ability4.GetComponent<SelectorMovement>().canBeSelected = false;
                 break;
         }
     }

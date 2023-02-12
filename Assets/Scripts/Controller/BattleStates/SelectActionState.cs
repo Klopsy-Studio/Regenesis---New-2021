@@ -40,7 +40,6 @@ public class SelectActionState : BattleState
             ActionSelectionUI.EnableSelectOption(typeOfAction.Move);     
         }
 
-     
         if (!owner.currentUnit.CanDoAbility())
         {
             ActionSelectionUI.DisableSelectOption(typeOfAction.Ability);

@@ -70,6 +70,7 @@ public class SelectAbilityState : BattleState
                 e.ClearOption();
                 e.GetPreviewRange();
                 e.GetTargets();
+
             }
         }
 
