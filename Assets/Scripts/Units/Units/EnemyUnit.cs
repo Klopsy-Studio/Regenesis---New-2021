@@ -148,7 +148,7 @@ public class EnemyUnit : Unit
     public override bool ReceiveDamage(float damage)
     {
         health -= (int)damage;
-        DamageEffect();
+        //DamageEffect();
         monsterUI.CreatePopUpText(transform.position, (int)damage);
 
         monsterControl.monsterAnimations.SetTrigger("damage");

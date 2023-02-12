@@ -237,7 +237,7 @@ public class Abilities : ScriptableObject
         {
             case EffectType.Damage:
                 AudioManager.instance.Play(soundString);
-                target.DamageEffect();
+                //target.DamageEffect();
 
                 if (target.GetComponent<EnemyUnit>())
                 {
