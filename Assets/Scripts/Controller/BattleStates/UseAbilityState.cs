@@ -114,11 +114,15 @@ public class UseAbilityState : BattleState
         {
             owner.targets.gameObject.SetActive(true);
 
-
             if (targetTiles != null || targetTiles.Count > 0)
             {
                 owner.targets.CreateTargets(targetTiles);
             }
+        }
+
+        else
+        {
+            owner.targets.gameObject.SetActive(false);
         }
     }
 
@@ -398,7 +402,6 @@ public class UseAbilityState : BattleState
 
                     owner.bowExtraAttackObject.SetActive(false);
                     StartCoroutine(UseAbilitySequence(selectTiles));
-                    owner.ResetUnits();
                     owner.targets.gameObject.SetActive(false);
                     owner.targets.stopSelection = true;
                 }

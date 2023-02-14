@@ -27,6 +27,7 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (!owner.stopSelection)
         {
+            owner.controller.ActivateTileSelector();
             owner.selectedTarget = this;
             controller.SelectTile(targetPosition);
 
@@ -57,6 +58,7 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             owner.selectedTarget = null;
             targetDisplay.color = defaultColor;
             controller.tileSelectionToggle.MakeTileSelectionSmall();
+            owner.controller.DeactivateTileSelector();
 
             controller.SelectTile(controller.currentUnit.tile.pos);
         }

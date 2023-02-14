@@ -5,9 +5,11 @@ using UnityEngine;
 public class UseItemState : BattleState
 {
     public List<Tile> tiles;
+    List<Tile> targetTiles = new List<Tile>();
     public List<Tile> selectTiles;
     Consumables currentItem;
 
+    bool isTargetTile;
     ItemRange range;
     
     bool isTimelineItem = false;
@@ -18,6 +20,7 @@ public class UseItemState : BattleState
     public override void Enter()
     {
         base.Enter();
+        isTargetTile = false;
         itemUsed = false;
         owner.isTimeLineActive = false;
         owner.actionSelectionUI.gameObject.SetActive(false);
@@ -31,6 +34,7 @@ public class UseItemState : BattleState
         {
             StartCoroutine(Init());
         }
+
         else if (currentItem.ConsumableType == ConsumableType.TimelineConsumable || currentItem.ConsumableType == ConsumableType.TargetConsumable)
         {
             isTimelineItem = true;
@@ -44,6 +48,69 @@ public class UseItemState : BattleState
             }
         }
 
+
+        foreach (AbilityTargetType target in currentItem.elementsToTarget)
+        {
+            switch (target)
+            {
+                case AbilityTargetType.Enemies:
+                    foreach (Tile t in tiles)
+                    {
+                        if (t.occupied)
+                        {
+                            targetTiles.Add(t);
+                        }
+                    }
+                    break;
+                case AbilityTargetType.Allies:
+                    foreach (Tile t in tiles)
+                    {
+                        if (t.content != null)
+                        {
+                            if (t.content.GetComponent<PlayerUnit>() != null)
+                            {
+                                targetTiles.Add(t);
+                            }
+                        }
+                    }
+                    break;
+                case AbilityTargetType.Obstacles:
+                    foreach (Tile t in tiles)
+                    {
+                        if (t.content != null)
+                        {
+                            if (t.content.GetComponent<BearObstacleScript>() != null)
+                            {
+                                targetTiles.Add(t);
+                            }
+                        }
+                    }
+                    break;
+                case AbilityTargetType.Self:
+                    targetTiles.Add(owner.currentUnit.tile);
+                    break;
+
+                case AbilityTargetType.Tile:
+                    isTargetTile = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (!isTargetTile)
+        {
+            owner.targets.gameObject.SetActive(true);
+
+            if (targetTiles != null || targetTiles.Count > 0)
+            {
+                owner.targets.CreateTargets(targetTiles);
+            }
+        }
+        else
+        {
+            owner.targets.gameObject.SetActive(false);
+        }
     }
 
     public List<Tile> GetRangeOnItems(RangeData data)
@@ -126,41 +193,44 @@ public class UseItemState : BattleState
 
     protected override void OnMouseSelectEvent(object sender, InfoEventArgs<Point> e)
     {
-        if (!isTimelineItem || itemUsed) return;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100))
+        if (isTargetTile)
         {
-            var a = hit.transform.gameObject;
-            var t = a.GetComponent<Tile>();
-            if (t != null)
+            if (!isTimelineItem || itemUsed) return;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100))
             {
-                if (tiles.Contains(t))
+                var a = hit.transform.gameObject;
+                var t = a.GetComponent<Tile>();
+                if (t != null)
                 {
-                    SelectTile(e.info + t.pos);
-                    owner.ActivateTileSelector();
-                    if (selectTiles != null)
+                    if (tiles.Contains(t))
                     {
-                        board.DeSelectTiles(selectTiles);
-                        selectTiles.Clear();
-                    }
-                    owner.ghostImage.gameObject.SetActive(true);
-                    selectTiles = GetRangeOnItems(currentItem.effectRange);
-                    board.SelectAttackTiles(selectTiles);
-                }
-
-                else
-                {
-                    if (selectTiles != null)
-                    {
-                        board.DeSelectTiles(selectTiles);
-                        selectTiles.Clear();
+                        SelectTile(e.info + t.pos);
+                        owner.ActivateTileSelector();
+                        if (selectTiles != null)
+                        {
+                            board.DeSelectTiles(selectTiles);
+                            selectTiles.Clear();
+                        }
+                        owner.ghostImage.gameObject.SetActive(true);
+                        selectTiles = GetRangeOnItems(currentItem.effectRange);
+                        board.SelectAttackTiles(selectTiles);
                     }
 
-                    owner.DeactivateTileSelector();
+                    else
+                    {
+                        if (selectTiles != null)
+                        {
+                            board.DeSelectTiles(selectTiles);
+                            selectTiles.Clear();
+                        }
+
+                        owner.DeactivateTileSelector();
+                    }
                 }
+
             }
-
         }
     }
 
@@ -174,31 +244,64 @@ public class UseItemState : BattleState
         }
         else
         {
-            switch (currentItem.ConsumableType)
+            if (isTargetTile)
             {
-                case ConsumableType.NormalConsumable:
-                    break;
-                case ConsumableType.TimelineConsumable:
-                    if (owner.currentTile.content == null && tiles.Contains(owner.currentTile))
+                if (!itemUsed)
+                {
+                    owner.currentUnit.playerUI.HideActionPoints();
+                    owner.ResetUnits();
+
+                    board.DeSelectDefaultTiles(tiles);
+
+                    owner.targets.gameObject.SetActive(false);
+                    owner.targets.stopSelection = true;
+
+                    switch (currentItem.ConsumableType)
                     {
-                        StartCoroutine(UseItemSpace());
+                        case ConsumableType.NormalConsumable:
+                            break;
+                        case ConsumableType.TimelineConsumable:
+                            if (owner.currentTile.content == null && tiles.Contains(owner.currentTile))
+                            {
+                                StartCoroutine(UseItemSpace());
+                            }
+                            break;
+                        case ConsumableType.TargetConsumable:
+                            if (owner.currentTile.content != null && tiles.Contains(owner.currentTile))
+                            {
+                                StartCoroutine(UseItemSpace());
+                            }
+                            break;
+                        default:
+                            break;
                     }
-                    break;
-                case ConsumableType.TargetConsumable:
-                    if (owner.currentTile.content != null && tiles.Contains(owner.currentTile))
-                    {
-                        StartCoroutine(UseItemSpace());
-                    }
-                    break;
-                default:
-                    break;
+                }
+                
             }
+            else
+            {
+                if (!itemUsed)
+                {
+                    if(owner.targets.selectedTarget != null)
+                    {
+                        owner.currentUnit.playerUI.HideActionPoints();
+
+                        board.DeSelectTiles(tiles);
+                        owner.ResetUnits();
+                        owner.targets.gameObject.SetActive(false);
+                        owner.targets.stopSelection = true;
+                        StartCoroutine(UseItemSpace());
+
+                    }
+                }
+            }
+            
         }
     }
     IEnumerator UseItemSpace()
     {
         itemUsed = true;
-
+        owner.DeactivateTileSelector();
         owner.backpackInventory.UseConsumable(owner.itemChosen, tileSpawn: owner.currentTile, battleController: owner);
         //Unit item pose
         ActionEffect.instance.Play(3, 0.5f, 0.01f, 0.05f);
@@ -233,7 +336,9 @@ public class UseItemState : BattleState
     {
         base.Exit();
         owner.itemChosen = 0;
-
+        owner.targets.ClearTargets();
+        targetTiles.Clear();
+        owner.targets.gameObject.SetActive(false);
         if (tiles != null)
         {
             board.DeSelectDefaultTiles(tiles);

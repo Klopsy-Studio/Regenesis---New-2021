@@ -18,7 +18,7 @@ public abstract class Consumables : ScriptableObject
     public RangeData itemRange;
     public RangeData effectRange;
     public int maxBackPackAmount;
-
+    public List<AbilityTargetType> elementsToTarget;
     [TextArea]
     public string consumableDescription;
     public ConsumableType ConsumableType { get { return consumableType; } }
