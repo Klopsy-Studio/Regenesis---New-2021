@@ -121,7 +121,7 @@ public class CanMoveToUnit : ActionNode
 
                                 foreach (Tile e in trashTiles)
                                 {
-                                    if (e.CheckSurroundings(controller.battleController.board) != null)
+                                    if (e.CheckSurroundings(controller.battleController.board) != null && e.content == null)
                                     {
                                         validTiles.Add(e);
                                     }
