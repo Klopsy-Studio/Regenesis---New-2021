@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public enum TabType
 {
-    Ability, Item, Action
+    Ability, Item, Move,
 };
 public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -39,41 +39,43 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
             if(abilityDescription!= null)
             {
                 abilityDescription.gameObject.SetActive(true);
+            }
 
-                switch (typeOfOption)
-                {
-                    case TabType.Ability:
-                        controller.board.SelectAbilityTiles(abilityPreviewTiles);
+            switch (typeOfOption)
+            {
+                case TabType.Ability:
+                    controller.board.SelectAbilityTiles(abilityPreviewTiles);
 
-                        controller.currentUnit.playerUI.PreviewActionCost(assignedAbility.actionCost);
+                    controller.currentUnit.playerUI.PreviewActionCost(assignedAbility.actionCost);
 
-                        if(assignedAbility.abilityEquipmentType == KitType.Gunblade)
+                    if (assignedAbility.abilityEquipmentType == KitType.Gunblade)
+                    {
+                        controller.currentUnit.playerUI.PreviewBulletCost(assignedAbility.ammoCost);
+                    }
+
+                    if (targets != null)
+                    {
+                        if (targets.Count > 0)
                         {
-                            controller.currentUnit.playerUI.PreviewBulletCost(assignedAbility.ammoCost);
-                        }
-
-                        if (targets != null)
-                        {
-                            if (targets.Count > 0)
+                            foreach (SpriteRenderer target in targets)
                             {
-                                foreach (SpriteRenderer target in targets)
-                                {
-                                    target.color = new Color(target.color.r, target.color.g, target.color.b, target.color.a + 0.5f);
-                                }
+                                target.color = new Color(target.color.r, target.color.g, target.color.b, target.color.a + 0.5f);
                             }
                         }
-                        break;
-                    case TabType.Item:
-                        //Yet to be implemented 
-                        break;
-                    case TabType.Action:
-                        //Yet to be implemented
-                        break;
-                    default:
-                        break;
-                }
-                
+                    }
+                    break;
+                case TabType.Item:
+                    controller.currentUnit.playerUI.PreviewActionCost(controller.itemCost);
+                    break;
+                case TabType.Move:
+                    controller.currentUnit.playerUI.PreviewActionCost(controller.moveCost);
+                    controller.board.SelectMovementTiles(abilityPreviewTiles);
+                    //Yet to be implemented
+                    break;
+                default:
+                    break;
             }
+
             optionSelection.MouseOverEnter(this);
             optionSelection.currentSelection = selection;
 
@@ -87,45 +89,44 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             if(abilityDescription != null)
             {
+                abilityDescription.gameObject.SetActive(false);           
+            }
 
-                abilityDescription.gameObject.SetActive(false);
+            switch (typeOfOption)
+            {
+                case TabType.Ability:
 
-                switch (typeOfOption)
-                {
-                    case TabType.Ability:
+                    if (abilityPreviewTiles != null)
+                    {
+                        controller.board.DeSelectTiles(abilityPreviewTiles);
+                    }
+                    controller.currentUnit.playerUI.ShowActionPoints();
 
-                        if (abilityPreviewTiles != null)
+                    if (assignedAbility.abilityEquipmentType == KitType.Gunblade)
+                    {
+                        controller.currentUnit.playerUI.ShowBullets();
+                    }
+
+                    if (targets != null)
+                    {
+                        if (targets.Count > 0)
                         {
-                            controller.board.DeSelectTiles(abilityPreviewTiles);
-                        }
-                        controller.currentUnit.playerUI.ShowActionPoints();
-
-                        if (assignedAbility.abilityEquipmentType == KitType.Gunblade)
-                        {
-                            controller.currentUnit.playerUI.ShowBullets();
-                        }
-                        
-                        if (targets != null)
-                        {
-                            if (targets.Count > 0)
+                            foreach (SpriteRenderer target in targets)
                             {
-                                foreach (SpriteRenderer target in targets)
-                                {
-                                    target.color = new Color(target.color.r, target.color.g, target.color.b, target.color.a - 0.5f);
-                                }
+                                target.color = new Color(target.color.r, target.color.g, target.color.b, target.color.a - 0.5f);
                             }
                         }
-                        break;
-                    case TabType.Item:
-                        //Yet to be implemented 
-                        break;
-                    case TabType.Action:
-                        //Yet to be implemented
-                        break;
-                    default:
-                        break;
-                }
-              
+                    }
+                    break;
+                case TabType.Item:
+                    controller.currentUnit.playerUI.ShowActionPoints();
+                    break;
+                case TabType.Move:
+                    controller.currentUnit.playerUI.ShowActionPoints();
+                    controller.board.DeSelectDefaultTiles(abilityPreviewTiles);
+                    break;
+                default:
+                    break;
             }
 
             optionSelection.MouseOverExit(this);
@@ -159,22 +160,35 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
     }
     public void GetPreviewRange()
     {
-        foreach(RangeData r in assignedAbility.abilityRange)
+        switch (typeOfOption)
         {
-            List<Tile> tiles;
-            AbilityRange range = r.GetOrCreateRange(r.range, controller.currentUnit.gameObject);
-            range.unit = controller.currentUnit;
-
-            tiles = range.GetTilesInRange(controller.board);
-
-            foreach(Tile t in tiles)
-            {
-                if (!abilityPreviewTiles.Contains(t))
+            case TabType.Ability:
+                foreach (RangeData r in assignedAbility.abilityRange)
                 {
-                    abilityPreviewTiles.Add(t);
+                    List<Tile> tiles;
+                    AbilityRange range = r.GetOrCreateRange(r.range, controller.currentUnit.gameObject);
+                    range.unit = controller.currentUnit;
+
+                    tiles = range.GetTilesInRange(controller.board);
+
+                    foreach (Tile t in tiles)
+                    {
+                        if (!abilityPreviewTiles.Contains(t))
+                        {
+                            abilityPreviewTiles.Add(t);
+                        }
+                    }
                 }
-            }
+                break;
+            case TabType.Item:
+                break;
+            case TabType.Move:
+                abilityPreviewTiles = controller.currentUnit.GetComponent<MovementRange>().GetTilesInRange(controller.board);
+                break;
+            default:
+                break;
         }
+        
         
     }
     public void GetTargets()

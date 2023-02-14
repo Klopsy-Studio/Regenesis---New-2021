@@ -254,6 +254,11 @@ public class OptionSelection : MonoBehaviour
     }
 
     //Move selector forward/downwards
+
+    public SelectorMovement GetMovementOption()
+    {
+        return buttonMove.GetComponent<SelectorMovement>();
+    }
     public void MoveForward()
     {
         if(currentSelection < options.Length - 1)

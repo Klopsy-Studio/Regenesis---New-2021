@@ -37,7 +37,8 @@ public class SelectActionState : BattleState
         }
         else
         {
-            ActionSelectionUI.EnableSelectOption(typeOfAction.Move);     
+            ActionSelectionUI.EnableSelectOption(typeOfAction.Move);
+            ActionSelectionUI.GetMovementOption().GetPreviewRange();
         }
 
         if (!owner.currentUnit.CanDoAbility())
@@ -57,7 +58,6 @@ public class SelectActionState : BattleState
         {
             ActionSelectionUI.DisableSelectOption(typeOfAction.Item);
         }
-        //COMPROBAR SI SE UTILIZAR LOS ITEMS, SI NO SE PUEDE, QUE ESTE FADED
     }
 
     public override void Exit()
