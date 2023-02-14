@@ -26,14 +26,19 @@ public class MonsterController : MonoBehaviour
     [HideInInspector] public List<MonsterAbility> validAbilities;
     [HideInInspector] public MonsterAbility validAttack;
     [Space]
-    [Header("Special Abilities")]
+    [Header("Special Bear Variables")]
+    [Space]
     //Bear Abilities
     public GameObject obstacle;
     public List<BearObstacleScript> obstaclesInGame;
     public List<BearObstacleScript> validObstacles;
     public int obstacleLimit;
+    [Space]
+    [Space]
 
-    //Spider Abilities
+    [Header("Special Spider Variables")]
+    [Space]
+    public List<RangeData> spiderMonsterMovementRange;
     public List<GameObject> minionsPrefab;
     public List<EnemyUnit> minionsInGame;
     public int maxMinions = 3;
@@ -42,6 +47,7 @@ public class MonsterController : MonoBehaviour
     public bool hasDoneFirstTurn = false;
     public bool hasEvolved;
     public int turnsAlive;
+    [Space]
 
     [Header("Animation Variables")]
     public bool animPlaying;
