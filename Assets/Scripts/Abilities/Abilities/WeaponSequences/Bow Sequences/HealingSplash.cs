@@ -13,7 +13,7 @@ public class HealingSplash : AbilitySequence
         user = controller.currentUnit;
         playing = true;
         yield return null;
-
+        controller.board.SelectHealTiles(tiles);
         ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
         //We spend points here
         int numberOfAttacks = DefaultBowAttack(controller);
@@ -65,6 +65,7 @@ public class HealingSplash : AbilitySequence
             yield return null;
         }
 
+        controller.board.DeSelectDefaultTiles(tiles);
 
         playing = false;
 

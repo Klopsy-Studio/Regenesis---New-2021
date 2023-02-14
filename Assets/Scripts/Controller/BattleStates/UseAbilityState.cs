@@ -394,8 +394,7 @@ public class UseAbilityState : BattleState
                     owner.currentUnit.playerUI.HideActionPoints();
                     owner.currentUnit.playerUI.HideBullets();
 
-                    board.DeSelectTiles(tiles);
-                    board.DeSelectDefaultTiles(selectTiles);
+                    board.DeSelectDefaultTiles(tiles);
 
                     owner.bowExtraAttackObject.SetActive(false);
                     StartCoroutine(UseAbilitySequence(selectTiles));
