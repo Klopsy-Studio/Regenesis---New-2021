@@ -226,7 +226,14 @@ public class Board : MonoBehaviour //Adjust to new level creation system. Exampl
             tiles[i].selected = true;
         }
     }
-
+    public void SelectHealTiles(List<Tile> tiles)
+    {
+        for (int i = tiles.Count - 1; i >= 0; --i)
+        {
+            tiles[i].ChangeTile(tiles[i].healColor);
+            tiles[i].selected = true;
+        }
+    }
     public void SelectAbilityTiles(List<Tile> tiles)
     {
         for (int i = tiles.Count - 1; i >= 0; --i)

@@ -53,7 +53,7 @@ public class Abilities : ScriptableObject
     [Header("Ability Variables")]
  
     public string abilityName;
-    [SerializeField] EffectType abilityEffect;
+    public EffectType abilityEffect;
   
 
     [Header("Damage")]

@@ -194,25 +194,39 @@ public class UseAbilityState : BattleState
 
                                 GetSelectTiles(currentAbility);
 
-                                board.SelectAttackTiles(selectTiles);
+                                switch (currentAbility.abilityEffect)
+                                {
+                                    case EffectType.Damage:
+                                        board.SelectAttackTiles(selectTiles);
+                                        break;
+                                    case EffectType.Heal:
+                                        board.SelectHealTiles(selectTiles);
+                                        break;
+                                    case EffectType.Buff:
+                                        break;
+                                    case EffectType.Debuff:
+                                        break;
+                                    default:
+                                        break;
+                                }
 
                                 foreach(Tile tile in selectTiles)
                                 {
                                     if(tile.content != null)
                                     {
-                                        if (t.content.GetComponent<Unit>())
+                                        if (tile.content.GetComponent<Unit>() != null)
                                         {
-                                            if (!spriteTargets.Contains(t.content.GetComponent<Unit>().unitSprite))
+                                            if (!spriteTargets.Contains(tile.content.GetComponent<Unit>().unitSprite))
                                             {
-                                                spriteTargets.Add(t.content.GetComponent<Unit>().unitSprite);
+                                                spriteTargets.Add(tile.content.GetComponent<Unit>().unitSprite);
                                             }
                                         }
 
-                                        if(t.content.GetComponent<BearObstacleScript>()!= null)
+                                        if(tile.content.GetComponent<BearObstacleScript>()!= null)
                                         {
-                                            if (!spriteTargets.Contains(t.content.GetComponent<SpriteRenderer>()))
+                                            if (!spriteTargets.Contains(tile.content.GetComponent<SpriteRenderer>()))
                                             {
-                                                spriteTargets.Add(t.content.GetComponent<SpriteRenderer>());
+                                                spriteTargets.Add(tile.content.GetComponent<SpriteRenderer>());
                                             }
                                         }
                                     }

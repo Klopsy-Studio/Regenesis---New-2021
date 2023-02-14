@@ -8,48 +8,63 @@ public class HealingSplash : AbilitySequence
 {
     public List<RangeData> dataForRegularUnits;
     public List<RangeData> dataForMonsters;
-    public override IEnumerator Sequence(GameObject target, BattleController controller)
+    public override IEnumerator Sequence(List<Tile> tiles, BattleController controller)
     {
         user = controller.currentUnit;
         playing = true;
         yield return null;
 
         ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-
-        List<Tile> healingSplashArea = GetSplash(target, controller);
-
         //We spend points here
         int numberOfAttacks = DefaultBowAttack(controller);
-        if (target.GetComponent<Unit>() != null)
-        {
-            Unit unitTarget = target.GetComponent<Unit>();
+        playing = true;
+        user = controller.currentUnit;
 
-            for (int i = 0; i < numberOfAttacks; i++)
+        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
+
+        List<GameObject> targets = new List<GameObject>();
+
+        foreach (Tile t in tiles)
+        {
+            if (t.content != null)
             {
-                Attack(unitTarget);
-                controller.board.SelectMovementTiles(healingSplashArea);
-                HealInSplash(healingSplashArea, controller);
-                yield return new WaitForSeconds(0.7f);
-                controller.board.DeSelectDefaultTiles(healingSplashArea);
+                if (!targets.Contains(t.content))
+                {
+                    targets.Add(t.content);
+                }
+            }
+
+            if (t.occupied)
+            {
+                if (!targets.Contains(controller.enemyUnits[0].gameObject))
+                {
+                    targets.Add(controller.enemyUnits[0].gameObject);
+                }
             }
         }
 
-        if (target.GetComponent<BearObstacleScript>() != null)
+        for (int i = 0; i < numberOfAttacks; i++)
         {
-            BearObstacleScript obstacle = target.GetComponent<BearObstacleScript>();
-            user.Attack();
-            controller.board.SelectMovementTiles(healingSplashArea);
-            HealInSplash(healingSplashArea, controller);
-            obstacle.GetDestroyed(controller.board);
-
-            yield return new WaitForSeconds(0.7f);
-            controller.board.DeSelectDefaultTiles(healingSplashArea);
+            if (targets != null)
+            {
+                if (targets.Count > 0)
+                {
+                    foreach (GameObject o in targets)
+                    {
+                        if (o.GetComponent<Unit>())
+                        {
+                            o.GetComponent<Unit>().Heal(20);
+                        }
+                    }
+                }
+            }
         }
         
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
         }
+
 
         playing = false;
 

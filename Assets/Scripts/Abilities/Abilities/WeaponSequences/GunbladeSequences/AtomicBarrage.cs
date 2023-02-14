@@ -36,6 +36,7 @@ public class AtomicBarrage : AbilitySequence
             }
         }
 
+        
         if(targets!= null)
         {
             if(targets.Count > 0)

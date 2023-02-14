@@ -59,6 +59,7 @@ public class Tile : MonoBehaviour
     [Header("Tile Selection")]
     public Color emptyColor;
     public Color movementColor;
+    public Color healColor;
     public Color attackColor;
     public Color abilityColor;
     public GameObject tileIndicator;
