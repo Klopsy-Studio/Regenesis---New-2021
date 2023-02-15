@@ -25,6 +25,10 @@ public class WinState : BattleState
         {
             yield return null;
         }
+        owner.actionSelectionUI.gameObject.SetActive(false);
+        owner.abilitySelectionUI.gameObject.SetActive(false);
+        owner.itemSelectionUI.gameObject.SetActive(false);
+
         yield return new WaitForSeconds(1f);
         owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.winTurn);
         yield return new WaitForSeconds(1);
