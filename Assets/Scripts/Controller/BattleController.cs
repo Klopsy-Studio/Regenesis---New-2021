@@ -93,7 +93,7 @@ public class BattleController : StateMachine
     public GameObject placeholderWinScreen;
 
     public CinemachineVirtualCamera cinemachineCamera;
-
+    public Camera cameraTest;
    
 
     [Header("Playtesting")]
@@ -129,7 +129,8 @@ public class BattleController : StateMachine
         cinemachineCamera.m_Lens.NearClipPlane = -1f;
         Destroy(placeholderCanvas.gameObject);
         levelData = GameManager.instance.currentMission;
-        
+        cameraTest.transparencySortMode = TransparencySortMode.CustomAxis;
+        cameraTest.transparencySortAxis = new Vector3(1, 1, 1);
         ChangeState<InitBattleState>();
     }
     //public bool IsInMenu()
