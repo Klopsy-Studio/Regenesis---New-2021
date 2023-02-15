@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public enum TabType
 {
-    Ability, Item, Move,
+    Ability, Item, Move, Regular
 };
 public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -71,6 +71,8 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     controller.currentUnit.playerUI.PreviewActionCost(controller.moveCost);
                     controller.board.SelectMovementTiles(abilityPreviewTiles);
                     //Yet to be implemented
+                    break;
+                case TabType.Regular:
                     break;
                 default:
                     break;
@@ -183,7 +185,9 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
             case TabType.Item:
                 break;
             case TabType.Move:
-                abilityPreviewTiles = controller.currentUnit.GetComponent<MovementRange>().GetTilesInRange(controller.board);
+                Movement m = controller.currentUnit.GetComponent<Movement>();
+                m.range = controller.currentUnit.weapon.range;
+                abilityPreviewTiles = m.GetTilesInRange(controller.board, true);
                 break;
             default:
                 break;
