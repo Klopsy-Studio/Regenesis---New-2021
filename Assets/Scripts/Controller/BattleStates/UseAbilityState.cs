@@ -22,6 +22,7 @@ public class UseAbilityState : BattleState
     List<SpriteRenderer> spriteTargets = new List<SpriteRenderer>();
     public override void Enter()
     {
+       
         base.Enter();
         CleanSelectTiles();
         owner.currentUnit.WeaponOut();
@@ -30,6 +31,7 @@ public class UseAbilityState : BattleState
         currentAbility = owner.currentUnit.weapon.Abilities[owner.attackChosen];
 
         owner.currentUnit.playerUI.PreviewActionCost(currentAbility.actionCost);
+        owner.timelineUI.Test(owner.currentUnit, currentAbility.actionCost);
         //tiles = PreviewAbility();
         tiles = new List<Tile>();
 
@@ -483,6 +485,7 @@ public class UseAbilityState : BattleState
     {
         base.Exit();
 
+        owner.timelineUI.ExitPreviewTurnOrder();
         if(tiles != null)
         {
             board.DeSelectDefaultTiles(tiles);

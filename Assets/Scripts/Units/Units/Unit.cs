@@ -23,8 +23,7 @@ public class Unit : TimelineElements
     [HideInInspector] public BattleController controller;
 
 
-    public float previewTime;
-  
+ 
     public override int ActionsPerTurn
     {
         get { return actionsPerTurn; }
