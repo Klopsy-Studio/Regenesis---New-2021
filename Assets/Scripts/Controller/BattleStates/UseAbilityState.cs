@@ -71,6 +71,14 @@ public class UseAbilityState : BattleState
                         {
                             targetTiles.Add(t);
                         }
+
+                        if (t.content != null)
+                        {
+                            if (t.content.GetComponent<EnemyUnit>() != null)
+                            {
+                                targetTiles.Add(t);
+                            }
+                        }
                     }
                     break;
                 case AbilityTargetType.Allies:
@@ -112,7 +120,6 @@ public class UseAbilityState : BattleState
         if (!isTargetTile)
         {
             owner.targets.gameObject.SetActive(true);
-
 
             if (targetTiles != null || targetTiles.Count > 0)
             {

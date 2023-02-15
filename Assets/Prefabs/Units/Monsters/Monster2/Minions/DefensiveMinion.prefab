@@ -460,10 +460,10 @@ MonoBehaviour:
   currentPoint:
     x: 0
     y: 0
-  maxHealth: 0
-  health: 0
+  maxHealth: 60
+  health: 60
   hurtAnimation: {fileID: 0}
-  unitName: 
+  unitName: Defensive Minion
   particleHitPrefab: {fileID: 0}
   isInAction: 0
   isDead: 0
@@ -475,9 +475,9 @@ MonoBehaviour:
   stunLimit: 0
   unitSprite: {fileID: 6455163749675579260}
   thisIsMyFuckingTurn: 0
-  power: 0
+  power: 30
   originalPower: 0
-  criticalPercentage: 0
+  criticalPercentage: 10
   originalCriticalPercentage: 0
   attackElement: 0
   defenseElement: 0
@@ -549,6 +549,7 @@ MonoBehaviour:
   obstaclesInGame: []
   validObstacles: []
   obstacleLimit: 4
+  spiderMonsterMovementRange: []
   minionsPrefab: []
   minionsInGame: []
   maxMinions: 3

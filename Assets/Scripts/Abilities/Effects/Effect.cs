@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum TypeOfEffect
 {
-    PushUnit, FallBack, AddStunValue,
+    PushUnit, FallBack, AddStunValue, SlowDown
 };
 
 [System.Serializable]
@@ -23,6 +23,11 @@ public class Effect
         effectPlaying = true;
         Movement m = target.GetComponent<Movement>();
         m.PushUnit(dir, 1, board);
+    }
+
+    public void SlowDown(Unit target)
+    {
+        target.DecreaseTimelineVelocity(1);
     }
 
     public virtual void AddStunValue(Unit target, float value)

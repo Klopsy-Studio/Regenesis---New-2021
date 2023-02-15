@@ -92,6 +92,9 @@ public class MonsterAttack : ActionNode
                         case TypeOfEffect.PushUnit:
                             e.PushUnit(u, dir, controller.battleController.board);
                             break;
+                        case TypeOfEffect.SlowDown:
+                            e.SlowDown(u);
+                            break;
                         default:
                             break;
                     }

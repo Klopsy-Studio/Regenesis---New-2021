@@ -26,9 +26,10 @@ public class MinionUnit : EnemyUnit
     public override void Die()
     {
         controller.timelineElements.Remove(this);
+        controller.unitsInGame.Remove(this);
         parent.minionsInGame.Remove(this);
         controller.enemyUnits.Remove(this);
-
+        elementEnabled = false;
         tile.content = null;
 
         Destroy(gameObject);

@@ -29,7 +29,7 @@ public enum EffectType
 
 public enum AbilityTargetType
 {
-    Enemies, Allies, Obstacles, Self, Tile
+    BigMonster, Enemies, Allies, Obstacles, Self, Tile
 };
 [CreateAssetMenu(menuName = "Ability/New Ability")]
 public class Abilities : ScriptableObject

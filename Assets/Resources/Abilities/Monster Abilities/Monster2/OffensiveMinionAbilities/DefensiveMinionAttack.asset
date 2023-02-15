@@ -15,7 +15,7 @@ MonoBehaviour:
   typeOfAbility: 0
   attackTrigger: 
   attackRange:
-  - range: 7
+  - range: 8
     lineDir: 0
     lineLength: 0
     stopLine: 0
@@ -29,132 +29,6 @@ MonoBehaviour:
     alternateSideDir: 0
     alternateSideReach: 1
     alternateSideLength: 1
-    movementRange: 0
-    removeOrigin: 0
-    itemRange: 0
-    itemRemoveContent: 0
-  - range: 7
-    lineDir: 0
-    lineLength: 0
-    stopLine: 0
-    lineOffset: 0
-    sideDir: 0
-    sideReach: 0
-    sideLength: 0
-    crossLength: 1
-    crossOffset: 0
-    squareReach: 0
-    alternateSideDir: 1
-    alternateSideReach: 1
-    alternateSideLength: 1
-    movementRange: 0
-    removeOrigin: 0
-    itemRange: 0
-    itemRemoveContent: 0
-  - range: 7
-    lineDir: 0
-    lineLength: 0
-    stopLine: 0
-    lineOffset: 0
-    sideDir: 0
-    sideReach: 0
-    sideLength: 0
-    crossLength: 1
-    crossOffset: 0
-    squareReach: 0
-    alternateSideDir: 2
-    alternateSideReach: 1
-    alternateSideLength: 1
-    movementRange: 0
-    removeOrigin: 0
-    itemRange: 0
-    itemRemoveContent: 0
-  - range: 7
-    lineDir: 0
-    lineLength: 0
-    stopLine: 0
-    lineOffset: 0
-    sideDir: 0
-    sideReach: 0
-    sideLength: 0
-    crossLength: 1
-    crossOffset: 0
-    squareReach: 0
-    alternateSideDir: 3
-    alternateSideReach: 1
-    alternateSideLength: 1
-    movementRange: 0
-    removeOrigin: 0
-    itemRange: 0
-    itemRemoveContent: 0
-  - range: 3
-    lineDir: 0
-    lineLength: 2
-    stopLine: 0
-    lineOffset: 1
-    sideDir: 0
-    sideReach: 0
-    sideLength: 0
-    crossLength: 1
-    crossOffset: 0
-    squareReach: 0
-    alternateSideDir: 3
-    alternateSideReach: 1
-    alternateSideLength: 2
-    movementRange: 0
-    removeOrigin: 0
-    itemRange: 0
-    itemRemoveContent: 0
-  - range: 3
-    lineDir: 1
-    lineLength: 2
-    stopLine: 0
-    lineOffset: 1
-    sideDir: 0
-    sideReach: 0
-    sideLength: 0
-    crossLength: 1
-    crossOffset: 0
-    squareReach: 0
-    alternateSideDir: 3
-    alternateSideReach: 1
-    alternateSideLength: 2
-    movementRange: 0
-    removeOrigin: 0
-    itemRange: 0
-    itemRemoveContent: 0
-  - range: 3
-    lineDir: 2
-    lineLength: 2
-    stopLine: 0
-    lineOffset: 1
-    sideDir: 0
-    sideReach: 0
-    sideLength: 0
-    crossLength: 1
-    crossOffset: 0
-    squareReach: 0
-    alternateSideDir: 3
-    alternateSideReach: 1
-    alternateSideLength: 2
-    movementRange: 0
-    removeOrigin: 0
-    itemRange: 0
-    itemRemoveContent: 0
-  - range: 3
-    lineDir: 3
-    lineLength: 2
-    stopLine: 0
-    lineOffset: 1
-    sideDir: 0
-    sideReach: 0
-    sideLength: 0
-    crossLength: 1
-    crossOffset: 0
-    squareReach: 0
-    alternateSideDir: 3
-    alternateSideReach: 1
-    alternateSideLength: 2
     movementRange: 0
     removeOrigin: 0
     itemRange: 0
@@ -184,6 +58,8 @@ MonoBehaviour:
   initialHeal: 0
   initialBuff: 0
   initialDebuff: 0
-  inAbilityEffects: []
+  inAbilityEffects:
+  - effectPlaying: 0
+    effectType: 3
   postAbilityEffect: []
   targetType: 0

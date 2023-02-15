@@ -21,7 +21,7 @@ public class AbilityTargets : MonoBehaviour
         {
             if (t.occupied && !monsterTargetted)
             {
-                SpawnTarget(controller.enemyUnits[0].gameObject, AbilityTargetType.Enemies);
+                SpawnTarget(controller.enemyUnits[0].gameObject, AbilityTargetType.BigMonster);
                 monsterTargetted = true;
             }
 
@@ -32,6 +32,10 @@ public class AbilityTargets : MonoBehaviour
                     SpawnTarget(t.content, AbilityTargetType.Allies);
                 }
 
+                else if (t.content.GetComponent<MinionUnit>())
+                {
+                    SpawnTarget(t.content, AbilityTargetType.Enemies);
+                }
                 else if (t.content.GetComponent<BearObstacleScript>())
                 {
                     SpawnTarget(t.content, AbilityTargetType.Obstacles);
