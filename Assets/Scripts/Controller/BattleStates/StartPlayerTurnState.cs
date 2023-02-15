@@ -19,6 +19,10 @@ public class StartPlayerTurnState : BattleState
     {
         owner.currentUnit.TimelineVelocity = TimelineVelocity.VerySlow;
         owner.currentUnit.ActionsPerTurn = 5;
+        owner.pauseTimelineButton.onUp.Invoke();
+
+        owner.pauseTimelineButton.canBeSelected = false;
+        owner.resumeTimelineButton.canBeSelected = false;
 
         yield return null;
         owner.ChangeState<SelectActionState>();

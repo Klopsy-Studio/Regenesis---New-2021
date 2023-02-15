@@ -110,8 +110,8 @@ public class BattleController : StateMachine
     public bool canToggleTimeline = false;
     [SerializeField] KeyCode toggleTimelineKey;
     [SerializeField] Text pauseText;
-    [SerializeField] MenuButton pauseTimelineButton;
-    [SerializeField] MenuButton resumeTimelineButton;
+    public MenuButton pauseTimelineButton;
+    public MenuButton resumeTimelineButton;
 
     [Header("Zoom Variables")]
     bool zoomIn = false;

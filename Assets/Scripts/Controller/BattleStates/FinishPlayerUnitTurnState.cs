@@ -27,6 +27,10 @@ public class FinishPlayerUnitTurnState : BattleState
         owner.currentUnit.playerUI.HideActionPoints();
         owner.currentUnit.iconTimeline.SetTimelineIconTextVelocity();
         owner.board.DeactivateTileSelection();
+
+        owner.pauseTimelineButton.canBeSelected = true;
+        owner.resumeTimelineButton.canBeSelected = true;
+        owner.resumeTimelineButton.onUp.Invoke();
         //AudioManager.instance.Play("TurnEnd");
         yield return null;
         owner.ChangeState<TimeLineState>();
