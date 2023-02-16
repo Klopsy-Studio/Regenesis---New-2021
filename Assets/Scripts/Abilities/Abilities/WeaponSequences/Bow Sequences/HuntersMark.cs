@@ -19,7 +19,7 @@ public class HuntersMark : AbilitySequence
         if (target.GetComponent<Unit>() != null)
         {
             Unit u = target.GetComponent<Unit>();
-            DamageModifier hunterMark = new DamageModifier();
+            Modifier hunterMark = new Modifier();
 
             u.EnableCriticalMark();
             if (controller.bowExtraAttack)
@@ -33,7 +33,7 @@ public class HuntersMark : AbilitySequence
                 user.SpendActionPoints(ability.actionCost);
             }
 
-            u.criticalModifiers.Add(hunterMark);
+            u.AddDebuff(hunterMark);
         }
 
         while (ActionEffect.instance.CheckActionEffectState())

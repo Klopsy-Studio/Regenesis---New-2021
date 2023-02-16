@@ -11,6 +11,26 @@ public class StartPlayerTurnState : BattleState
         Debug.Log("?");
         owner.turnStatusUI.ActivateTurn(owner.currentUnit.unitName);
         owner.board.ActivateTileSelection();
+
+        if(owner.currentUnit.debuffModifiers != null)
+        {
+            List<Modifier> trash = new List<Modifier>();
+
+            foreach (Modifier m in owner.currentUnit.debuffModifiers)
+            {
+                trash.Add(m);
+            }
+
+
+            foreach (Modifier m in trash)
+            {
+                if (m.modifierType == TypeOfModifier.TimelineSpeed)
+                {
+                    owner.currentUnit.RemoveDebuff(m);
+                }
+            }
+        }
+        
         StartCoroutine(SetStats());
 
     }

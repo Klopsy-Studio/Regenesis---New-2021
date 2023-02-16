@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class DamageModifier
+public class Modifier
 {
+    public TypeOfModifier modifierType;
     public int modifierCount;
 
     public int damageIncrease;
-
+    public int timelineSpeedReduction;
     [Range(0, 1)]
     public float damageReduction;
     public virtual bool SpendModifier()
@@ -19,4 +20,10 @@ public class DamageModifier
         else
             return false;
     }
+}
+
+
+public enum TypeOfModifier
+{
+    Critical, Defense, TimelineSpeed
 }

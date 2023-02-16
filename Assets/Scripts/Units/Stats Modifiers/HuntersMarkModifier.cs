@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HuntersMarkModifier : DamageModifier
+public class HuntersMarkModifier : Modifier
 {
 
 }

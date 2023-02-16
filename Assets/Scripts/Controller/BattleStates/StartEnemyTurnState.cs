@@ -11,10 +11,24 @@ public class StartEnemyTurnState : BattleState
         base.Enter();
         owner.isTimeLineActive = false;
         owner.board.ActivateTileSelection();
-        owner.turnStatusUI.ActivateTurn(owner.enemyUnits[0].unitName);
+        owner.turnStatusUI.ActivateTurn(owner.currentEnemyUnit.unitName);
         //tileSelectionIndicator.gameObject.SetActive(false);
-       
-     
+
+        List<Modifier> trash = new List<Modifier>();
+
+        foreach (Modifier m in owner.currentEnemyUnit.debuffModifiers)
+        {
+            trash.Add(m);
+        }
+
+        foreach (Modifier m in trash)
+        {
+            if (m.modifierType == TypeOfModifier.TimelineSpeed)
+            {
+                owner.currentEnemyUnit.RemoveDebuff(m);
+            }
+        }
+
         //StartCoroutine(StartEnemyTurnCoroutine());
         StartCoroutine(StartEnemyTurnCoroutine());
     }

@@ -133,22 +133,25 @@ public class Abilities : ScriptableObject
         originalAbilityModifier = abilityModifier;
         float criticalDmg = 1f;
 
-        if(target.criticalModifiers != null && target.criticalModifiers.Count > 0)
+        if(target.debuffModifiers != null && target.debuffModifiers.Count > 0)
         {
-            List<DamageModifier> trashModifiers = new List<DamageModifier>();
+            List<Modifier> trashModifiers = new List<Modifier>();
 
-            foreach(DamageModifier d in target.criticalModifiers)
+            foreach(Modifier d in target.debuffModifiers)
             {
-                if (d.SpendModifier())
+                if(d.modifierType == TypeOfModifier.Critical)
                 {
-                    trashModifiers.Add(d);
-                    criticalDmg = 1.5f;
+                    if (d.SpendModifier())
+                    {
+                        trashModifiers.Add(d);
+                        criticalDmg = 1.5f;
+                    }
                 }
             }
 
-            foreach(DamageModifier d in trashModifiers)
+            foreach(Modifier d in trashModifiers)
             {
-                target.criticalModifiers.Remove(d);
+                target.RemoveDebuff(d);
             }
 
 
@@ -163,27 +166,30 @@ public class Abilities : ScriptableObject
 
         float elementEffectivenessNumber = ElementsEffectiveness.GetEffectiveness(user.attackElement, target.defenseElement);
 
-        if(target.defenseModifier!= null)
+        if(target.buffModifiers!= null)
         {
-            if(target.defenseModifier.Count > 0)
+            if(target.buffModifiers.Count > 0)
             {
-                List<DamageModifier> trash = new List<DamageModifier>();
+                List<Modifier> trash = new List<Modifier>();
 
-                foreach(DamageModifier d in target.defenseModifier)
+                foreach(Modifier d in target.buffModifiers)
                 {
-                    abilityModifier -= d.damageReduction;
-
-                    if (d.SpendModifier())
+                    if(d.modifierType == TypeOfModifier.Defense)
                     {
-                        trash.Add(d);
-                    }
+                        abilityModifier -= d.damageReduction;
+
+                        if (d.SpendModifier())
+                        {
+                            trash.Add(d);
+                        }
+                    }  
                 }
 
                 if(trash.Count > 0)
                 {
-                    foreach(DamageModifier d in trash)
+                    foreach(Modifier d in trash)
                     {
-                        target.defenseModifier.Remove(d);
+                        target.RemoveBuff(d);
                     }
                 }
             }
@@ -207,11 +213,7 @@ public class Abilities : ScriptableObject
     void CalculateDmg(PlayerUnit player,PlayerUnit target)
     {
         float criticalDmg = 1f;
-
-        if(target.criticalModifiers!= null)
-        {
-            if (Random.value * 100 <= player.criticalPercentage) criticalDmg = 1.5f;
-        }
+        if (Random.value * 100 <= player.criticalPercentage) criticalDmg = 1.5f;
 
         float elementDmg = ElementsEffectiveness.GetEffectiveness(player.attackElement, target.defenseElement);
         finalDamage = (((player.power * criticalDmg) + (player.power * player.elementPower) * elementDmg) * abilityModifier) - target.defense;

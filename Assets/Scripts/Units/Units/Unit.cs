@@ -80,16 +80,60 @@ public class Unit : TimelineElements
 
 
     [Header("Modifiers")]
-    public List<DamageModifier> criticalModifiers = new List<DamageModifier>();
-    public List<DamageModifier> defenseModifier = new List<DamageModifier>();
+
+    public List<Modifier> buffModifiers;
+    public List<Modifier> debuffModifiers;
+
+
+    [Header("Indicators")]
+    [SerializeField] GameObject buffIndicator;
+    [SerializeField] GameObject debuffIndicator;
     protected virtual void Start()
     {
+        buffModifiers = new List<Modifier>();
+        debuffModifiers = new List<Modifier>();
+
         Match();
         SetInitVelocity();
         originalTimeStunned = timeStunned;
     }
 
+    public void AddBuff(Modifier m)
+    {
+        buffModifiers.Add(m);
+        buffIndicator.SetActive(true);
+    }
 
+    public void RemoveBuff(Modifier m)
+    {
+        if (buffModifiers.Contains(m))
+        {
+            buffModifiers.Remove(m);
+        }
+
+        if(buffModifiers.Count<= 0)
+        {
+            buffIndicator.SetActive(false);
+        }
+    }
+    public void AddDebuff(Modifier m)
+    {
+        debuffModifiers.Add(m);
+        debuffIndicator.SetActive(true);
+    }
+
+    public void RemoveDebuff(Modifier m)
+    {
+        if (debuffModifiers.Contains(m))
+        {
+            debuffModifiers.Remove(m);
+        }
+
+        if (debuffModifiers.Count <= 0)
+        {
+            debuffIndicator.SetActive(false);
+        }
+    }
     public void EnableCriticalMark()
     {
         if (criticalMark != null)

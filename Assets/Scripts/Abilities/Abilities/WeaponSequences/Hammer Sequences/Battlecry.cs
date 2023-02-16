@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Battlecry : AbilitySequence
 {
-    public DamageModifier battlecryData;
+    public Modifier battlecryData;
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         user = controller.currentUnit;
@@ -34,7 +34,7 @@ public class Battlecry : AbilitySequence
 
         foreach(Unit u in units)
         {
-            u.defenseModifier.Add(battlecryData);
+            u.AddBuff(battlecryData);
             u.EnableBattlecry();
         }
 
