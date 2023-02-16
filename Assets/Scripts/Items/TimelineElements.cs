@@ -41,7 +41,7 @@ public abstract class TimelineElements : MonoBehaviour
         set { actionsPerTurn = value; }
     }
 
-
+   
     public TimeLineTypes timelineTypes;
 
     [Header("Timelines variables")]
@@ -65,6 +65,7 @@ public abstract class TimelineElements : MonoBehaviour
 
     public TimelineIconUI iconTimeline;
 
+    public float previewTime;
 
     public float GetActionBarPosition()
     {

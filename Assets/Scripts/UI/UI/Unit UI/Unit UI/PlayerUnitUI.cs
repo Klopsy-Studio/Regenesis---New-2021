@@ -139,6 +139,7 @@ public class PlayerUnitUI : UnitUI
         }
     }
 
+
     public void PreviewBulletCost(int bulletCost)
     {
         index = bullets.Count - 1;

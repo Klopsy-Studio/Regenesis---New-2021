@@ -25,7 +25,7 @@ public class BattleController : StateMachine
     public PlayerUnit currentUnit;
     public EnemyUnit currentEnemyUnit;
     [HideInInspector] public EnemyController currentEnemyController;
-   
+      
 
 
     [HideInInspector] public ItemElements currentItem;
@@ -34,7 +34,7 @@ public class BattleController : StateMachine
     [Space]
     [Header("Units lists")]
     public List<Unit> unitsInGame;
-    public List<Unit> unitsWithActions;
+
 
     public List<Unit> playerUnits;
     public List<Unit> enemyUnits;

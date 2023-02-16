@@ -14,7 +14,7 @@ public abstract class BattleState : State
 
     public List<Unit> unitsInGame { get { return owner.unitsInGame; } set { owner.unitsInGame = value; } }
     public List<Unit> playerUnits { get { return owner.playerUnits; } set { owner.playerUnits = value; } }
-    public List<Unit> unitsWithActions { get { return owner.unitsWithActions; } set { owner.unitsWithActions = value; } }
+   
 
     public OptionSelection ActionSelectionUI { get { return owner.actionSelectionUI; } set { owner.actionSelectionUI = value; } }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using JetBrains.Annotations;
 
 public class TimelineUI : MonoBehaviour
 {
@@ -41,6 +42,28 @@ public class TimelineUI : MonoBehaviour
 
     public bool isActive;
     //The bar size. Dependant on size delta. Only works for a static scale object as delta isn't mesured the same way with different anchors.
+
+
+    [SerializeField] PreviewTurnOrder previewTurnOrder;
+
+    public void CallTimelinePreviewOrder()//Unity button 
+    {
+        previewTurnOrder.CalculateOrder(battleController.timelineElements);
+    }
+
+    public void CallTimelinePreviewOrderOnAbilitySelect(TimelineElements element, int actionCost)
+    {
+        previewTurnOrder.gameObject.SetActive(true);
+        previewTurnOrder.CalculateOrderOnAbilitySelect(battleController.timelineElements, element, actionCost);
+    }
+
+    public void ExitPreviewTurnOrder()
+    {
+
+        previewTurnOrder.ExitChanges();
+    }
+
+   
     private void Start()
     {
         barSize = content.sizeDelta.x;
