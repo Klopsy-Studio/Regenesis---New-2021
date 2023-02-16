@@ -104,8 +104,8 @@ MonoBehaviour:
   originalElementPower: 0
   defense: 0
   originalDefense: 0
-  criticalModifiers: []
-  defenseModifier: []
+  buffModifiers: []
+  debuffModifiers: []
   buffIndicator: {fileID: 270891338116935076}
   debuffIndicator: {fileID: 1921109299985304034}
   abilities:
@@ -711,35 +711,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.114
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.63
+      value: -0.47
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8535535
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.35355338
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.35355338
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.1464466
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 45
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -747,11 +747,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_Size.x
-      value: 1.2857143
+      value: 2.6857142
       objectReference: {fileID: 0}
     - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_Size.y
-      value: 1.2857143
+      value: 2.6857142
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2094067093
       objectReference: {fileID: 0}
     - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -759,12 +767,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6919148779608544400, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_Name
-      value: BuffIndicator
+      value: BigBuffIndicator
       objectReference: {fileID: 0}
     - target: {fileID: 6919148779608544400, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7244599066747147625, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dc5fd0014be30414bae83afc03e1aff1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
 --- !u!1 &270891338116935076 stripped
@@ -841,17 +853,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6349961136163888654, guid: 70555e1671220cc46a805e92619389a5, type: 3}
     - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2094067093
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6919148779608544400, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_Name
-      value: DebuffIndicator
+      value: BigDebuffIndicator
       objectReference: {fileID: 0}
     - target: {fileID: 6919148779608544400, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7244599066747147625, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f7feb87232103a84995abb08a01197f0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
 --- !u!1 &1921109299985304034 stripped
