@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using JetBrains.Annotations;
+using System.Security.Cryptography;
 
 public class TimelineUI : MonoBehaviour
 {
@@ -55,6 +56,11 @@ public class TimelineUI : MonoBehaviour
     {
         previewTurnOrder.gameObject.SetActive(true);
         previewTurnOrder.CalculateOrderOnAbilitySelect(battleController.timelineElements, element, actionCost);
+    }
+
+    public void CallTimelinePreviewOrderOnItemSelect()
+    {
+        Debug.Log("hello there");
     }
 
     public void ExitPreviewTurnOrder()

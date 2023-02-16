@@ -46,6 +46,9 @@ public class UseItemState : BattleState
             {
                 owner.ghostImage.sprite = currentItem.itemSprite;
             }
+
+            owner.timelineUI.CallTimelinePreviewOrderOnItemSelect();
+
         }
 
 

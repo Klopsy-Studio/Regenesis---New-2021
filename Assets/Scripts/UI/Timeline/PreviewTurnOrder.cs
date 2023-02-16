@@ -46,10 +46,10 @@ public class PreviewTurnOrder : MonoBehaviour
         CompareTime comparer = new CompareTime();
         previewTimelineList.Sort(comparer);
 
-        for (int i = 0; i < previewTimelineList.Count; i++)
-        {
-            Debug.Log("orden es " + i + " " + previewTimelineList[i].name);
-        }
+        //for (int i = 0; i < previewTimelineList.Count; i++)
+        //{
+        //    Debug.Log("orden es " + i + " " + previewTimelineList[i].name);
+        //}
 
         ShowIconOrder();
        
