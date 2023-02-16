@@ -31,7 +31,7 @@ public class UseAbilityState : BattleState
         currentAbility = owner.currentUnit.weapon.Abilities[owner.attackChosen];
 
         owner.currentUnit.playerUI.PreviewActionCost(currentAbility.actionCost);
-        owner.timelineUI.Test(owner.currentUnit, currentAbility.actionCost);
+        owner.timelineUI.CallTimelinePreviewOrderOnAbilitySelect(owner.currentUnit, currentAbility.actionCost);
         //tiles = PreviewAbility();
         tiles = new List<Tile>();
 

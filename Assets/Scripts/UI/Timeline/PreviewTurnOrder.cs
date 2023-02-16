@@ -55,7 +55,7 @@ public class PreviewTurnOrder : MonoBehaviour
        
     }
 
-    public void CalculateOrder(List<TimelineElements> _timelineElementsList, TimelineElements _element, int actionCost)
+    public void CalculateOrderOnAbilitySelect(List<TimelineElements> _timelineElementsList, TimelineElements _element, int actionCost)
     {
         previewTimelineList.Clear();
 
@@ -96,6 +96,49 @@ public class PreviewTurnOrder : MonoBehaviour
 
         ShowIconOrder(_element);
     }
+
+    public void CalculateOrderOnItemSelect(List<TimelineElements> _timelineElementsList, TimelineElements _elementUnit, int actionCost, TimelineElements _elementItem)
+    {
+        previewTimelineList.Clear();
+
+        //Reset previewTime just in case
+        foreach (var elements in _timelineElementsList)
+        {
+            elements.previewTime = 0;
+        }
+
+        //Set previewTime
+        foreach (var element in _timelineElementsList)
+        {
+            if (element == _elementUnit)
+            {
+                int previewUnitActionsPerTurn = element.actionsPerTurn - actionCost;
+                float previewVelocity = SetPreviewVelocity(previewUnitActionsPerTurn);
+                element.previewTime = UniformLineaMotion_Time_UnitAction(previewVelocity);
+
+            }
+            else
+            {
+                element.previewTime = UniformLinearMotion_Time(element);
+
+            }
+            previewTimelineList.Add(element);
+
+        }
+
+        CompareTime comparer = new CompareTime();
+        previewTimelineList.Sort(comparer);
+
+        for (int i = 0; i < previewTimelineList.Count; i++)
+        {
+            Debug.Log("orden es " + i + " " + previewTimelineList[i].name);
+        }
+
+
+
+        ShowIconOrder(_elementUnit);
+    }
+
 
     public void ShowIconOrder()
     {
