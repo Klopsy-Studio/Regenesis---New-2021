@@ -37,7 +37,7 @@ public class SmokeBombTimeline : MonoBehaviour
             }
 
             u.DecreaseTimelineVelocity(decreaseAmmount);
-            u.debuffModifiers.Add(new Modifier { modifierType = TypeOfModifier.TimelineSpeed, timelineSpeedReduction = decreaseAmmount });
+            u.AddDebuff(new Modifier { modifierType = TypeOfModifier.TimelineSpeed, timelineSpeedReduction = decreaseAmmount });
         }
     }
 }
