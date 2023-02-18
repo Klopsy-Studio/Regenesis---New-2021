@@ -47,7 +47,18 @@ public class UseItemState : BattleState
                 owner.ghostImage.sprite = currentItem.itemSprite;
             }
 
-            owner.timelineUI.CallTimelinePreviewOrderOnItemSelect();
+            if((Bomb)currentItem!= null)
+            {
+                var bomb = (Bomb)currentItem;
+                var bombTimeline = bomb.bomb;
+                if (bombTimeline != null)
+                {
+                    Debug.Log("NO ES NULL");
+                }
+                owner.timelineUI.CallTimelinePreviewOrderOnItemSelect(owner.currentUnit, bombTimeline);
+            }
+
+         
 
         }
 
@@ -338,6 +349,8 @@ public class UseItemState : BattleState
     public override void Exit()
     {
         base.Exit();
+
+        owner.timelineUI.ExitPreviewTurnOrder();
         owner.itemChosen = 0;
         owner.targets.ClearTargets();
         targetTiles.Clear();

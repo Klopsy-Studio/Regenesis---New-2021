@@ -58,9 +58,9 @@ public class TimelineUI : MonoBehaviour
         previewTurnOrder.CalculateOrderOnAbilitySelect(battleController.timelineElements, element, actionCost);
     }
 
-    public void CallTimelinePreviewOrderOnItemSelect()
+    public void CallTimelinePreviewOrderOnItemSelect(TimelineElements element, TimelineElements _bomb)
     {
-        Debug.Log("hello there");
+        previewTurnOrder.CalculateOrderOnItemSelect(battleController.timelineElements, element, 2, _bomb);
     }
 
     public void ExitPreviewTurnOrder()
