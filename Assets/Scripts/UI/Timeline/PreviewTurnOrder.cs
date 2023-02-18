@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class PreviewTurnOrder : MonoBehaviour
 {
@@ -99,6 +100,13 @@ public class PreviewTurnOrder : MonoBehaviour
 
     public void CalculateOrderOnItemSelect(List<TimelineElements> _timelineElementsList, TimelineElements _elementUnit, int actionCost, TimelineElements _elementItem)
     {
+        Debug.Log("esta llamando");
+        foreach (var icon in iconsList)
+        {
+            var iconImage = icon.GetComponent<Image>();
+            iconImage.color = Color.white;
+            icon.gameObject.SetActive(false);
+        }
         previewTimelineList.Clear();
 
         //Reset previewTime just in case
@@ -117,6 +125,12 @@ public class PreviewTurnOrder : MonoBehaviour
                 element.previewTime = UniformLineaMotion_Time_UnitAction(previewVelocity);
 
             }
+            else if(element == _elementItem)
+            {
+                Debug.Log("AAAAAAA");
+                _elementItem.previewTime = UniformLineaMotion_Time_UnitAction(_elementItem.fTimelineVelocity);
+
+            }
             else
             {
                 element.previewTime = UniformLinearMotion_Time(element);
@@ -126,17 +140,22 @@ public class PreviewTurnOrder : MonoBehaviour
 
         }
 
+        _elementItem.previewTime = UniformLineaMotion_Time_UnitAction(30);
+        previewTimelineList.Add(_elementItem);
         CompareTime comparer = new CompareTime();
         previewTimelineList.Sort(comparer);
 
-        for (int i = 0; i < previewTimelineList.Count; i++)
-        {
-            Debug.Log("orden es " + i + " " + previewTimelineList[i].name);
-        }
+        //for (int i = 0; i < previewTimelineList.Count; i++)
+        //{
+        //    Debug.Log("orden es " + i + " " + previewTimelineList[i].name);
+        //}
 
+        //previewTimelineList.Add(_elementItem);
+        Debug.Log("lista cantidad: " + previewTimelineList.Count);
+        //ShowIconOrder(_elementUnit);
 
-
-        ShowIconOrder(_elementUnit);
+        ShowIconOrder(_elementUnit, _elementItem);
+      
     }
 
 
@@ -150,7 +169,7 @@ public class PreviewTurnOrder : MonoBehaviour
         }
     }
 
-    public void ShowIconOrder(TimelineElements element)
+    public void ShowIconOrder(TimelineElements element, TimelineElements item = null)
     {
         for (int i = 0; i < previewTimelineList.Count; i++)
         {
@@ -161,6 +180,12 @@ public class PreviewTurnOrder : MonoBehaviour
                 var iconImage = iconsList[i].GetComponent<Image>();
                 iconImage.color = Color.red;
                 //iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, 0.5f);
+            }
+            else if (previewTimelineList[i] == item)
+            {
+                Debug.Log("entra a show icon order");
+                var iconImage = iconsList[i].GetComponent<Image>();
+                iconImage.color = Color.blue;
             }
 
         }

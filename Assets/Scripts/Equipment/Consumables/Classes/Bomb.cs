@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Consumables/New Bomb")]
 public class Bomb : Consumables
 {
-    [SerializeField] BombTimeline bomb;
+    public BombTimeline bomb;
     public int range;
 
     public override bool ApplyConsumable(Unit unit)

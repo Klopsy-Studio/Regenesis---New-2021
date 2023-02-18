@@ -12,14 +12,14 @@ public class BombTimeline : ItemElements
     BattleController battleController;
 
     [SerializeField] Animator bombAnimator;
-    float itemTimelineVelocity = 30f;
+   
     bool monsterDamaged;
     public void Init(BattleController bController, Tile t)
     {
         battleController = bController;
         bController.timelineElements.Add(this);
         timelineTypes = TimeLineTypes.Items;
-        fTimelineVelocity = itemTimelineVelocity;
+
         tile = t;
         currentPoint = t.pos;
         tiles = itemRange.GetTilesInRangeWithoutUnit(battleController.board, tile.pos);
