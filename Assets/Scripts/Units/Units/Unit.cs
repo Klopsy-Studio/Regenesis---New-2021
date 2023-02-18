@@ -267,13 +267,13 @@ public class Unit : TimelineElements
                 fTimelineVelocity = 15;
                 break;
             case TimelineVelocity.Quick:
-                fTimelineVelocity = 18;
+                fTimelineVelocity = 17;
                 break;
             case TimelineVelocity.VeryQuick:
-                fTimelineVelocity = 21;
+                fTimelineVelocity = 19;
                 break;
             case TimelineVelocity.TurboFast:
-                fTimelineVelocity = 24;
+                fTimelineVelocity = 20;
                 break;
             default:
                 break;
@@ -318,13 +318,13 @@ public class Unit : TimelineElements
                 fTimelineVelocity = 15;
                 break;
             case TimelineVelocity.Quick:
-                fTimelineVelocity = 18;
+                fTimelineVelocity = 17;
                 break;
             case TimelineVelocity.VeryQuick:
-                fTimelineVelocity = 21;
+                fTimelineVelocity = 19;
                 break;
             case TimelineVelocity.TurboFast:
-                fTimelineVelocity = 24;
+                fTimelineVelocity = 20;
                 break;
             //case TimelineVelocity.Stun:
             //    fTimelineVelocity = 0;
@@ -350,13 +350,13 @@ public class Unit : TimelineElements
                 fTimelineVelocity = 15;
                 break;
             case TimelineVelocity.Quick:
-                fTimelineVelocity = 18f;
+                fTimelineVelocity = 17f;
                 break;
             case TimelineVelocity.VeryQuick:
-                fTimelineVelocity = 21;
+                fTimelineVelocity = 19;
                 break;
             case TimelineVelocity.TurboFast:
-                fTimelineVelocity = 24f;
+                fTimelineVelocity = 20f;
                 break;
             default:
                 break;
@@ -411,13 +411,13 @@ public class Unit : TimelineElements
                 fTimelineVelocity = 15;
                 break;
             case TimelineVelocity.Quick:
-                fTimelineVelocity = 18;
+                fTimelineVelocity = 17;
                 break;
             case TimelineVelocity.VeryQuick:
-                fTimelineVelocity = 21;
+                fTimelineVelocity = 19;
                 break;
             case TimelineVelocity.TurboFast:
-                fTimelineVelocity = 24;
+                fTimelineVelocity = 20;
                 break;
             //case TimelineVelocity.Stun:
             //    fTimelineVelocity = 0;
@@ -441,13 +441,13 @@ public class Unit : TimelineElements
                 fTimelineVelocity = 15;
                 break;
             case TimelineVelocity.Quick:
-                fTimelineVelocity = 18;
+                fTimelineVelocity = 17;
                 break;
             case TimelineVelocity.VeryQuick:
-                fTimelineVelocity = 21;
+                fTimelineVelocity = 19;
                 break;
             case TimelineVelocity.TurboFast:
-                fTimelineVelocity = 24;
+                fTimelineVelocity = 20;
                 break;
             default:
                 break;

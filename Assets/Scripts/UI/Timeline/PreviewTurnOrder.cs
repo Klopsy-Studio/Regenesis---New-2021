@@ -232,13 +232,13 @@ public class PreviewTurnOrder : MonoBehaviour
                 previewVelocity = 15;
                 break;
             case 3:
-                previewVelocity = 18;
+                previewVelocity = 17;
                 break;
             case 4:
-                previewVelocity = 21;
+                previewVelocity = 19;
                 break;
             case 5:
-                previewVelocity = 24;
+                previewVelocity = 20;
                 break;
             default:
                 break;
