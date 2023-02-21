@@ -146,7 +146,6 @@ public class PlayerUnit : Unit
     public override void Attack()
     {
         animations.SetAnimation("attack");
-        Debug.Log("attack");
     }
 
     public override void Default()

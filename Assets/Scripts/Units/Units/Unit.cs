@@ -56,7 +56,7 @@ public class Unit : TimelineElements
     [SerializeField] GameObject healEffect;
     [SerializeField] GameObject hitEffect;
     [SerializeField] Animator criticalMark;
-    [SerializeField] GameObject battlecryMark;
+    [SerializeField] Animator battlecryMark;
     [SerializeField] public float stunThreshold;
     [SerializeField] float stunLimit;
 
@@ -491,12 +491,7 @@ public class Unit : TimelineElements
 
     public void EnableBattlecry()
     {
-        battlecryMark.SetActive(true);
-    }
-
-    public void DisableBattlecry()
-    {
-        battlecryMark.SetActive(false);
+        battlecryMark.SetTrigger("battlecry");
     }
 
     public void PlayActionEffect()
