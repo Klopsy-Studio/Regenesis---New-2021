@@ -225,7 +225,7 @@ public abstract class Movement : MonoBehaviour
     public virtual void PushUnit(Directions pushDir, int pushStrength, Board board)
     {
         LineAbilityRange moveRange = unit.GetComponent<LineAbilityRange>();
-
+        moveRange.SetStartPos(unit.tile.pos);
         moveRange.lineDir = pushDir;
         moveRange.lineLength = pushStrength;
         moveRange.stopLine = true;

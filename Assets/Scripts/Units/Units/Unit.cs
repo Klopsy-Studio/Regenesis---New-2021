@@ -184,8 +184,11 @@ public class Unit : TimelineElements
     }
     public void Match()
     {
-        transform.localPosition = tile.center;
-        currentPoint = tile.pos;
+        if(tile != null)
+        {
+            transform.localPosition = tile.center;
+            currentPoint = tile.pos;
+        }     
     }
 
     public void ApplyStunValue(float value)

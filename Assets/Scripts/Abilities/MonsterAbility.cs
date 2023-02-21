@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum TypeOfTarget
 {
-    SingleTarget, MultipleTarget
+    SingleTarget, MultipleTarget, RandomSingleTarget
 }
 
 [System.Serializable]
@@ -16,8 +16,10 @@ public class MonsterAbility : ScriptableObject
     [Header("Attack Animation Trigger")]
     public string attackTrigger;
     [Header("Attack Range")]
-    [SerializeField] List<RangeData> attackRange;
+    public List<RangeData> attackRange;
+    [SerializeField] List<RangeData> removeRange;
     [SerializeField] List<RangeData> attackRangeShow;
+
     [Header("Damage")]
     //Variables relacionado con daño
     public float initialDamage;
@@ -53,44 +55,52 @@ public class MonsterAbility : ScriptableObject
 
         foreach (RangeData r in attackRange)
         {
-            switch (r.range)
-            {
-                case TypeOfAbilityRange.LineAbility:
-                    LineAbilityRange lineRange = monster.GetRange<LineAbilityRange>();
-                    lineRange.AssignVariables(r);
-                    if (CheckForUnits(lineRange.GetTilesInRange(monster.battleController.board), monster))
-                    {
-                        return true;
-                    }
-                    break;
-                case TypeOfAbilityRange.Side:
-                    SideAbilityRange sideRange = monster.GetRange<SideAbilityRange>();
-                    sideRange.AssignVariables(r);
-                    if (CheckForUnits(sideRange.GetTilesInRange(monster.battleController.board), monster))
-                    {
-                        return true;
-                    }
-                    break;
-                case TypeOfAbilityRange.Cross:
-                    CrossAbilityRange crossRange = monster.GetRange<CrossAbilityRange>();
-                    crossRange.AssignVariables(r);
-                    if (CheckForUnits(crossRange.GetTilesInRange(monster.battleController.board), monster))
-                    {
-                        return true;
-                    }
-                    break;
-                case TypeOfAbilityRange.AlternateSide:
-                    AlternateSideRange alternateSide = monster.GetRange<AlternateSideRange>();
-                    alternateSide.AssignVariables(r);
-                    if (CheckForUnits(alternateSide.GetTilesInRange(monster.battleController.board), monster))
-                    {
-                        return true;
-                    }
-                    break;
+            AbilityRange range = r.GetOrCreateRange(r.range, monster.gameObject);
+            range.unit = monster.currentEnemy;
 
-                default:
-                    break;
+            if (CheckForUnits(range.GetTilesInRange(monster.battleController.board), monster))
+            {
+                return true;
             }
+
+            //switch (r.range)
+            //{
+            //    case TypeOfAbilityRange.LineAbility:
+            //        LineAbilityRange lineRange = monster.GetRange<LineAbilityRange>();
+            //        lineRange.AssignVariables(r);
+            //        if (CheckForUnits(lineRange.GetTilesInRange(monster.battleController.board), monster))
+            //        {
+            //            return true;
+            //        }
+            //        break;
+            //    case TypeOfAbilityRange.Side:
+            //        SideAbilityRange sideRange = monster.GetRange<SideAbilityRange>();
+            //        sideRange.AssignVariables(r);
+            //        if (CheckForUnits(sideRange.GetTilesInRange(monster.battleController.board), monster))
+            //        {
+            //            return true;
+            //        }
+            //        break;
+            //    case TypeOfAbilityRange.Cross:
+            //        CrossAbilityRange crossRange = monster.GetRange<CrossAbilityRange>();
+            //        crossRange.AssignVariables(r);
+            //        if (CheckForUnits(crossRange.GetTilesInRange(monster.battleController.board), monster))
+            //        {
+            //            return true;
+            //        }
+            //        break;
+            //    case TypeOfAbilityRange.AlternateSide:
+            //        AlternateSideRange alternateSide = monster.GetRange<AlternateSideRange>();
+            //        alternateSide.AssignVariables(r);
+            //        if (CheckForUnits(alternateSide.GetTilesInRange(monster.battleController.board), monster))
+            //        {
+            //            return true;
+            //        }
+            //        break;
+
+            //    default:
+            //        break;
+            //}
         }
 
         return false;
@@ -106,12 +116,14 @@ public class MonsterAbility : ScriptableObject
                 case TypeOfAbilityRange.LineAbility:
                     LineAbilityRange lineRange = monster.GetRange<LineAbilityRange>();
                     lineRange.AssignVariables(r);
+                    lineRange.unit = monster.currentEnemy;
                     List<Tile> lineTiles = lineRange.GetTilesInRange(monster.battleController.board);
                     AddTilesToList(retValue, lineTiles);
                     break;
                 case TypeOfAbilityRange.Side:
                     SideAbilityRange sideRange = monster.GetRange<SideAbilityRange>();
                     sideRange.AssignVariables(r);
+                    sideRange.unit = monster.currentEnemy;
                     List<Tile> sideTiles = sideRange.GetTilesInRange(monster.battleController.board);
                     AddTilesToList(retValue, sideTiles);
                     break;
@@ -119,6 +131,7 @@ public class MonsterAbility : ScriptableObject
                 case TypeOfAbilityRange.Cross:
                     CrossAbilityRange crossRange = monster.GetRange<CrossAbilityRange>();
                     crossRange.AssignVariables(r);
+                    crossRange.unit = monster.currentEnemy;
                     List<Tile> crossTiles = crossRange.GetTilesInRange(monster.battleController.board);
                     AddTilesToList(retValue, crossTiles);
                     break;
@@ -126,6 +139,8 @@ public class MonsterAbility : ScriptableObject
                 case TypeOfAbilityRange.AlternateSide:
                     AlternateSideRange altSideRange = monster.GetRange<AlternateSideRange>();
                     altSideRange.AssignVariables(r);
+                    altSideRange.unit = monster.currentEnemy;
+
                     List<Tile> altSideTiles = altSideRange.GetTilesInRange(monster.battleController.board);
                     AddTilesToList(retValue, altSideTiles);
                     break;
@@ -148,7 +163,6 @@ public class MonsterAbility : ScriptableObject
                     {
                         placeholder.target = t.content.GetComponent<PlayerUnit>();
                         return true;
-
                     }
                 }
             }
@@ -198,6 +212,75 @@ public class MonsterAbility : ScriptableObject
             }
         }
 
+        if (removeRange.Count > 0 && removeRange != null)
+        {
+            foreach (RangeData r in attackRange)
+            {
+                switch (r.range)
+                {
+                    case TypeOfAbilityRange.LineAbility:
+                        LineAbilityRange lineRange = monster.GetRange<LineAbilityRange>();
+                        lineRange.AssignVariables(r);
+                        lineRange.lineDir = dir;
+                        List<Tile> lineTiles = lineRange.GetTilesInRange(monster.battleController.board);
+                        
+                        foreach(Tile t in lineTiles)
+                        {
+                            if (retValue.Contains(t))
+                            {
+                                retValue.Remove(t);
+                            }
+                        }
+                        break;
+                    case TypeOfAbilityRange.Side:
+                        SideAbilityRange sideRange = monster.GetRange<SideAbilityRange>();
+                        sideRange.AssignVariables(r);
+                        sideRange.sideDir = dir;
+                        List<Tile> sideTiles = sideRange.GetTilesInRange(monster.battleController.board);
+
+                        foreach (Tile t in sideTiles)
+                        {
+                            if (retValue.Contains(t))
+                            {
+                                retValue.Remove(t);
+                            }
+                        }
+                        break;
+
+                    case TypeOfAbilityRange.Cross:
+                        CrossAbilityRange crossRange = monster.GetRange<CrossAbilityRange>();
+                        crossRange.AssignVariables(r);
+                        List<Tile> crossTiles = crossRange.GetTilesInRange(monster.battleController.board);
+          
+
+                        foreach (Tile t in crossTiles)
+                        {
+                            if (retValue.Contains(t))
+                            {
+                                retValue.Remove(t);
+                            }
+                        }
+                        break;
+
+                    case TypeOfAbilityRange.AlternateSide:
+                        AlternateSideRange altSideRange = monster.GetRange<AlternateSideRange>();
+                        altSideRange.AssignVariables(r);
+                        altSideRange.alternateSideDir = dir;
+                        List<Tile> altSideTiles = altSideRange.GetTilesInRange(monster.battleController.board);
+
+                        foreach (Tile t in altSideTiles)
+                        {
+                            if (retValue.Contains(t))
+                            {
+                                retValue.Remove(t);
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
         return retValue;
     }
     public List<PlayerUnit> ReturnPossibleTargets(MonsterController monster)
@@ -241,7 +324,18 @@ public class MonsterAbility : ScriptableObject
         float criticalDmg = 1f;
         if (Random.value * 100 <= enemy.criticalPercentage) criticalDmg = 1.5f;
         float elementDmg = ElementsEffectiveness.GetEffectiveness(enemy.attackElement, target.defenseElement);
+        int finalPower = enemy.power;
 
-        finalDamage = (((enemy.power * criticalDmg) + (enemy.power * enemy.elementPower) * elementDmg) * abilityModifier) - target.defense;
+        if(target.damageIncrease != null)
+        {
+            foreach(DamageModifier m in target.damageIncrease)
+            {
+                finalPower += m.damageIncrease;
+            }
+
+            target.damageIncrease.Clear();
+            target.marked = false;
+        }
+        finalDamage = (((finalPower * criticalDmg) + (enemy.power * enemy.elementPower) * elementDmg) * abilityModifier) - target.defense;
     }
 }

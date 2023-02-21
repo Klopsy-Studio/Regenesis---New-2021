@@ -12,6 +12,7 @@ namespace TheKiwiCoder {
 
         [SerializeReference]
         public RootNode rootNode;
+        
         public MonsterController controller;
         [SerializeReference]
         public List<Node> nodes = new List<Node>();

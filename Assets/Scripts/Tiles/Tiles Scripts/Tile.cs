@@ -216,7 +216,14 @@ public class Tile : MonoBehaviour
                 }
                 else
                 {
-                    return true;
+                    if(board.GetTile(new Point(pos.x + offsetX, pos.y + offsetY)).content.GetComponent<MinionUnit>() != null)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
             }
         }

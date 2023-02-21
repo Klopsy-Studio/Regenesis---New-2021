@@ -27,16 +27,28 @@ public class MonsterController : MonoBehaviour
     [HideInInspector] public List<MonsterAbility> validAbilities;
     [HideInInspector] public MonsterAbility validAttack;
     [Space]
-    [Header("Special Abilities")]
+    [Header("Special Bear Variables")]
+    [Space]
+    //Bear Abilities
     public GameObject obstacle;
     public List<BearObstacleScript> obstaclesInGame;
     public List<BearObstacleScript> validObstacles;
     public int obstacleLimit;
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    currentState.UpdateState(this);
-    //}
+    [Space]
+    [Space]
+
+    [Header("Special Spider Variables")]
+    [Space]
+    public List<RangeData> spiderMonsterMovementRange;
+    public List<GameObject> minionsPrefab;
+    public List<EnemyUnit> minionsInGame;
+    public int maxMinions = 3;
+    public List<RangeData> minionRangeSpawn;
+    public bool hasSpawnedMinionsInLastTurn;
+    public bool hasDoneFirstTurn = false;
+    public bool hasEvolved;
+    public int turnsAlive;
+    [Space]
 
     [Header("Animation Variables")]
     public bool animPlaying;
@@ -143,18 +155,18 @@ public class MonsterController : MonoBehaviour
         return Instantiate(e);
     }
 
-    private void OnDrawGizmosSelected()
+    public void SpawnMinion(int indexToSpawn, Tile tileToSpawn)
     {
-        if (!tree)
-        {
-            return;
-        }
-
-        BehaviourTree.Traverse(tree.rootNode, (n) => {
-            if (n.drawGizmos)
-            {
-                n.OnDrawGizmos();
-            }
-        });
+        EnemyUnit minion = Instantiate(minionsPrefab[indexToSpawn], new Vector3(tileToSpawn.pos.x, 0.5f, tileToSpawn.pos.y), minionsPrefab[indexToSpawn].transform.rotation).GetComponent<EnemyUnit>();
+        minion.controller = battleController;
+        minionsInGame.Add(minion);
+        battleController.enemyUnits.Add(minion);
+        battleController.timelineElements.Add(minion);
+        battleController.unitsInGame.Add(minion); 
+        minion.GetComponent<MinionUnit>().parent = this;
+        minion.timelineFill = Random.Range(0, 15);
+        minion.Place(tileToSpawn);
+        minion.Match();
     }
+
 }

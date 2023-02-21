@@ -33,8 +33,11 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
             switch (targetType)
             {
-                case AbilityTargetType.Enemies:
+                case AbilityTargetType.BigMonster:
                     controller.tileSelectionToggle.MakeTileSelectionBig();
+                    break;
+                case AbilityTargetType.Enemies:
+                    controller.tileSelectionToggle.MakeTileSelectionSmall();
                     break;
                 case AbilityTargetType.Allies:
                     controller.tileSelectionToggle.MakeTileSelectionSmall();

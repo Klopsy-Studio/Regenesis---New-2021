@@ -21,8 +21,6 @@ public class PlayerUnit : Unit
 
     [Header("Animations")]
     public UnitAnimations animations;
-
-    
     
     [Header("VFX")]
     [SerializeField] Animator movementEffect;
@@ -48,6 +46,11 @@ public class PlayerUnit : Unit
     public int hammerFuryMax;
     public int gunbladeAmmoAmount;
     public int gunbladeAmmoMax;
+
+
+    [Header("Monster Variables")]
+    [HideInInspector] public bool marked;
+
     protected override void Start()
     {
         base.Start();

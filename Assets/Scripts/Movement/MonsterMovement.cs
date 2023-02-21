@@ -35,8 +35,6 @@ public class MonsterMovement : WalkMovement
             }
 
         }
-        
-        
 
         if (desiredTile != null)
         {

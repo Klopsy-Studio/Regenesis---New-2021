@@ -202,14 +202,19 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
             switch (a)
             {
                 case AbilityTargetType.Enemies:
-                    if (!monsterSelected)
+                    foreach (Tile t in abilityPreviewTiles)
                     {
-                        foreach (Tile t in abilityPreviewTiles)
+                        if (t.occupied && !monsterSelected)
                         {
-                            if (t.occupied)
+                            targets.Add(controller.enemyUnits[0].unitSprite);
+                            monsterSelected = true;
+                        }
+
+                        if(t.content!= null)
+                        {
+                            if(t.content.GetComponent<MinionUnit>() != null)
                             {
-                                targets.Add(controller.enemyUnits[0].unitSprite);
-                                monsterSelected = true;
+                                targets.Add(t.content.GetComponent<MinionUnit>().unitSprite);
                             }
                         }
                     }
