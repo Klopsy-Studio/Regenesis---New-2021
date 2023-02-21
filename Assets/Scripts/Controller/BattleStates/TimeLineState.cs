@@ -198,6 +198,39 @@ public class TimeLineState : BattleState
                             }
                         }
                     }
+                    if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.EnemyEvent)
+                    {
+                        selectTiles = owner.timelineUI.selectedIcon.element.GetComponent<MonsterEvent>().GetEventTiles();
+
+                        if (selectTiles != null)
+                        {
+                            board.SelectAttackTiles(selectTiles);
+                        }
+                    }
+
+                    if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.HunterEvent)
+                    {
+                        HunterEvent h = owner.timelineUI.selectedIcon.element.GetComponent<HunterEvent>();
+
+                        if (h.target != null)
+                        {
+                            if (h.target.GetComponent<EnemyUnit>() != null)
+                            {
+                                EnemyUnit e = h.target.GetComponent<EnemyUnit>();
+                                selectTiles = e.GiveMonsterSpace(board);
+                                SelectTile(e.currentPoint);
+                                board.SelectAttackTiles(selectTiles);
+                            }
+                            else
+                            {
+                                Point p = new Point((int)h.target.transform.position.x, (int)h.target.transform.position.z);
+                                selectTiles.Add(board.GetTile(p));
+                                board.SelectAttackTiles(selectTiles);
+                                SelectTile(p);
+                            }
+                        }
+                    }
+
 
                     owner.timelineUI.selectedIcon.Grow();
                 }
@@ -206,40 +239,7 @@ public class TimeLineState : BattleState
                     owner.ZoomOut();
                 }
 
-                if(owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.EnemyEvent)
-                {
-                    selectTiles = owner.timelineUI.selectedIcon.element.GetComponent<MonsterEvent>().GetEventTiles();
-
-                    if(selectTiles != null)
-                    {
-                        board.SelectAttackTiles(selectTiles);
-                    }
-                }
-
-                if(owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.HunterEvent)
-                {
-                    HunterEvent h = owner.timelineUI.selectedIcon.element.GetComponent<HunterEvent>();
-
-                    if(h.target != null)
-                    {
-                        if (h.target.GetComponent<EnemyUnit>() != null)
-                        {
-                            EnemyUnit e = h.target.GetComponent<EnemyUnit>();
-                            selectTiles = e.GiveMonsterSpace(board);
-                            SelectTile(e.currentPoint);
-                            board.SelectAttackTiles(selectTiles);
-                        }
-                        else
-                        {
-                            Point p = new Point((int)h.target.transform.position.x, (int)h.target.transform.position.z);
-                            selectTiles.Add(board.GetTile(p));
-                            board.SelectAttackTiles(selectTiles);
-                            SelectTile(p);
-                        }
-                    }
-                }
-
-                owner.timelineUI.selectedIcon.Grow();
+               
             }
         }
     }

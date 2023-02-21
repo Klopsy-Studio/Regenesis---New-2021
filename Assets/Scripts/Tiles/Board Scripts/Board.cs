@@ -137,7 +137,6 @@ public class Board : MonoBehaviour //Adjust to new level creation system. Exampl
         t.data = data.tileData[i];
         t.tileSprite.sprite = data.sprites[i];
 
-
         if (t.data.isPlayable)
         {
             playableTiles.Add(t.pos, t);

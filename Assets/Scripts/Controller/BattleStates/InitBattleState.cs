@@ -66,6 +66,7 @@ public class InitBattleState : BattleState
             unit.controller = owner;
             unit.Place(board.GetTile(p));
 
+            unit.currentPoint = p;
             unit.Match();
 
             unit.GetComponent<EnemyUnit>().UpdateMonsterSpace(board);
