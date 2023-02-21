@@ -25,5 +25,5 @@ public class Modifier
 
 public enum TypeOfModifier
 {
-    Critical, Defense, TimelineSpeed
+    Critical, Defense, TimelineSpeed, Damage
 }

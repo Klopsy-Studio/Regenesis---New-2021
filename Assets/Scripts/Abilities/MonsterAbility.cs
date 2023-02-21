@@ -326,14 +326,27 @@ public class MonsterAbility : ScriptableObject
         float elementDmg = ElementsEffectiveness.GetEffectiveness(enemy.attackElement, target.defenseElement);
         int finalPower = enemy.power;
 
-        if(target.damageIncrease != null)
+        if(target.debuffModifiers != null)
         {
-            foreach(DamageModifier m in target.damageIncrease)
+            List<Modifier> trash = new List<Modifier>();
+            foreach(Modifier m in target.debuffModifiers)
             {
-                finalPower += m.damageIncrease;
+                if(m.modifierType == TypeOfModifier.Damage)
+                {
+                    finalPower += m.damageIncrease;
+                    trash.Add(m);
+                }
+                
             }
 
-            target.damageIncrease.Clear();
+            if(trash.Count > 0)
+            {
+                foreach (Modifier m in trash)
+                {
+                    target.debuffModifiers.Remove(m);
+                }
+            }
+            
             target.marked = false;
         }
         finalDamage = (((finalPower * criticalDmg) + (enemy.power * enemy.elementPower) * elementDmg) * abilityModifier) - target.defense;

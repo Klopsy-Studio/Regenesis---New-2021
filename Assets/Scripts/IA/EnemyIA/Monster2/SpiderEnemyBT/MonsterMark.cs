@@ -6,7 +6,7 @@ using TheKiwiCoder;
 [System.Serializable]
 public class MonsterMark : ActionNode
 {
-    [SerializeField] DamageModifier monsterMark;
+    [SerializeField] Modifier monsterMark;
 
 
     bool treeUpdate;
@@ -23,7 +23,7 @@ public class MonsterMark : ActionNode
         //First we randomly select the hunter which will receive the mark
         BattleController controller = owner.controller.battleController;
         Unit chosenTarget = controller.playerUnits[Random.Range(0, controller.playerUnits.Count)];
-        chosenTarget.damageIncrease.Add(monsterMark);
+        chosenTarget.debuffModifiers.Add(monsterMark);
         
         if(chosenTarget.GetComponent<PlayerUnit>()!= null)
         {
