@@ -1301,7 +1301,7 @@ MonoBehaviour:
   healEffect: {fileID: 5836840817937991826, guid: f9cca9c5e1f673240a697914a64478cd, type: 3}
   hitEffect: {fileID: 5030025760067142075, guid: 566a92dcb0e06b746880d6fc36f4c4c5, type: 3}
   criticalMark: {fileID: 5526707694040317437}
-  battlecryMark: {fileID: 7306397280908085490}
+  battlecryMark: {fileID: 6457923464401334217}
   stunThreshold: 0
   stunLimit: 0
   unitSprite: {fileID: 4824170015590987729}
@@ -2271,13 +2271,14 @@ GameObject:
   m_Component:
   - component: {fileID: 517548630889305473}
   - component: {fileID: 7694023706127413439}
+  - component: {fileID: 6457923464401334217}
   m_Layer: 6
   m_Name: Battlecry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &517548630889305473
 Transform:
   m_ObjectHideFlags: 0
@@ -2286,8 +2287,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7306397280908085490}
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: 0.277, y: 0.931, z: 0.219}
-  m_LocalScale: {x: 0.12799357, y: 0.12799357, z: 0.12799357}
+  m_LocalPosition: {x: 0.135, y: 0.916, z: 0.119}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6355952590008311557}
@@ -2333,8 +2334,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8b2e9b8e439627344b1a415121afb8df, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2342,9 +2343,29 @@ SpriteRenderer:
   m_Size: {x: 12.8, y: 7.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6457923464401334217
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7306397280908085490}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1deadd62cbfe88947a55024ef540563c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7798481099334856715
 GameObject:
   m_ObjectHideFlags: 0
