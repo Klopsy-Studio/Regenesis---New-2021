@@ -246,7 +246,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                             {
                                 PlayerUnit u = t.content.GetComponent<PlayerUnit>();
 
-                                if (!u.isNearDeath)
+                                if (!u.isNearDeath && !u.isDead)
                                 {
                                     targets.Add(t.content.GetComponent<PlayerUnit>().unitSprite);
                                 }

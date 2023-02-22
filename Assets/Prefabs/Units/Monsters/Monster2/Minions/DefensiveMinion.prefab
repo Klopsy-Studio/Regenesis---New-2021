@@ -369,7 +369,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1681290243
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 330f9481b00810f458f1652d5a7a9a7e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 6506816317216550856}
   - component: {fileID: 1657144206059741189}
   - component: {fileID: 6004166796365510151}
+  - component: {fileID: 4224205881053497297}
   m_Layer: 6
   m_Name: DefensiveMinion
   m_TagString: Untagged
@@ -448,6 +449,7 @@ MonoBehaviour:
   isTimelineActive: 0
   timelineIcon: {fileID: 21300000, guid: 08458008cd1c5194eb4fee92f2c8a4a8, type: 3}
   iconTimeline: {fileID: 0}
+  previewTime: 0
   dir: 0
   unitSpeed: 0
   element: {fileID: 0}
@@ -485,9 +487,10 @@ MonoBehaviour:
   originalElementPower: 0
   defense: 0
   originalDefense: 0
-  criticalModifiers: []
-  defenseModifier: []
-  damageIncrease: []
+  buffModifiers: []
+  debuffModifiers: []
+  buffIndicator: {fileID: 0}
+  debuffIndicator: {fileID: 0}
   abilities: []
   target: {fileID: 0}
   monsterAttackElement: 1
@@ -531,6 +534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 11400000, guid: 928ec02ce7711ea4090cc342ee83fbe8, type: 2}
+  testRunner: {fileID: 4224205881053497297}
   test: 0
   behaviourTest: 0
   isUpdatingState: 0
@@ -730,3 +734,16 @@ MonoBehaviour:
   range: 3
   removeContent: 1
   removeOrigin: 1
+--- !u!114 &4224205881053497297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8324575531128616137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tree: {fileID: 0}

@@ -91,7 +91,12 @@ public class UseAbilityState : BattleState
                         {
                             if (t.content.GetComponent<PlayerUnit>() != null)
                             {
-                                targetTiles.Add(t);
+                                PlayerUnit u = t.content.GetComponent<PlayerUnit>();
+
+                                if(!u.isDead && !u.isNearDeath)
+                                {
+                                    targetTiles.Add(t);
+                                }
                             }
                         }
                     }
