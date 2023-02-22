@@ -65,7 +65,6 @@ public class SelectAbilityState : BattleState
                 AbilitySelectionUI.options[i].GetComponent<Text>().text = abilityList[i].abilityName;
 
                 SelectorMovement e = AbilitySelectionUI.options[i].GetComponent<SelectorMovement>();
-                e.abilityDescription.AssignData(abilityList[i]);
                 e.assignedAbility = abilityList[i];
                 e.ClearOption();
                 e.GetPreviewRange();

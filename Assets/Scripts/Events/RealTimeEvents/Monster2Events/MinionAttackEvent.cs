@@ -8,40 +8,45 @@ public class MinionAttackEvent : MonsterEvent
 
     public override IEnumerator Event()
     {
+        List<Tile> tiles = new List<Tile>();
+        BattleController battleController = controller.battleController;
         acting = true;
 
-        BattleController battleController = controller.battleController;
-        List<Tile> tiles = GetEventTiles();
-        battleController.SelectTile(controller.currentEnemy.tile.pos);
-        //Tile animation:
-        yield return new WaitForSeconds(1);
-        List<PlayerUnit> targets = new List<PlayerUnit>();
-        battleController.board.SelectAttackTiles(tiles);
-
-        foreach (Tile t in tiles)
+        if(controller.minionsInGame.Count > 0)
         {
-            if (t.content != null)
+            tiles = GetEventTiles();
+            battleController.SelectTile(controller.currentEnemy.tile.pos);
+            //Tile animation:
+            yield return new WaitForSeconds(1);
+            List<PlayerUnit> targets = new List<PlayerUnit>();
+            battleController.board.SelectAttackTiles(tiles);
+
+            foreach (Tile t in tiles)
             {
-                if (t.content.GetComponent<PlayerUnit>() != null)
+                if (t.content != null)
                 {
-                    targets.Add(t.content.GetComponent<PlayerUnit>());
+                    if (t.content.GetComponent<PlayerUnit>() != null)
+                    {
+                        targets.Add(t.content.GetComponent<PlayerUnit>());
+                    }
+                }
+            }
+
+            if (targets.Count > 0)
+            {
+                foreach (PlayerUnit p in targets)
+                {
+                    if (!p.isNearDeath)
+                    {
+                        ability.UseAbility(p, controller.currentEnemy, battleController);
+                        p.DamageEffect();
+                        p.animations.SetDamage();
+                    }
+
                 }
             }
         }
-
-        if (targets.Count > 0)
-        {
-            foreach (PlayerUnit p in targets)
-            {
-                if (!p.isNearDeath)
-                {
-                    ability.UseAbility(p, controller.currentEnemy, battleController);
-                    p.DamageEffect();
-                    p.animations.SetDamage();
-                }
-
-            }
-        }
+        
 
         controller.monsterAnimations.SetBool("roar", true);
         controller.monsterAnimations.SetBool("idle", false);

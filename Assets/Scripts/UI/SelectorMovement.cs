@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public enum TabType
 {
-    Ability, Item, Move, Regular
+    Ability, ItemConsumable, Move, Regular, ItemAction
 };
 public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -21,6 +21,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public AbilityDescription abilityDescription;
     public Abilities assignedAbility;
+    public Consumables assignedConsumable;
     public BattleController controller;
 
     public bool canBeSelected;
@@ -32,18 +33,23 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
     List<SpriteRenderer> targets = new List<SpriteRenderer>();
 
     [SerializeField] TabType typeOfOption;
+
+    [TextArea]
+    [SerializeField] string actionDescription;
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (canBeSelected)
         {
             if(abilityDescription!= null)
             {
-                abilityDescription.gameObject.SetActive(true);
+                abilityDescription.gameObject.SetActive(true);          
             }
 
             switch (typeOfOption)
             {
                 case TabType.Ability:
+                    abilityDescription.gameObject.SetActive(true);
+                    abilityDescription.AssignData(assignedAbility);
                     controller.board.SelectAbilityTiles(abilityPreviewTiles);
 
                     controller.currentUnit.playerUI.PreviewActionCost(assignedAbility.actionCost);
@@ -64,15 +70,23 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                         }
                     }
                     break;
-                case TabType.Item:
-                    controller.currentUnit.playerUI.PreviewActionCost(controller.itemCost);
+                case TabType.ItemConsumable:
+                    abilityDescription.AssignData(assignedConsumable);
+                    Debug.Log(assignedConsumable.consumableDescription);
                     break;
                 case TabType.Move:
                     controller.currentUnit.playerUI.PreviewActionCost(controller.moveCost);
                     controller.board.SelectMovementTiles(abilityPreviewTiles);
-                    //Yet to be implemented
+                    abilityDescription.abilityDescription.text = actionDescription;
+
                     break;
                 case TabType.Regular:
+                    abilityDescription.abilityDescription.text = actionDescription;
+
+                    break;
+                case TabType.ItemAction:
+                    controller.currentUnit.playerUI.PreviewActionCost(controller.itemCost);
+                    abilityDescription.abilityDescription.text = actionDescription;
                     break;
                 default:
                     break;
@@ -120,12 +134,16 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                         }
                     }
                     break;
-                case TabType.Item:
-                    controller.currentUnit.playerUI.ShowActionPoints();
+                case TabType.ItemConsumable:
+                    abilityDescription.gameObject.SetActive(false);
                     break;
                 case TabType.Move:
                     controller.currentUnit.playerUI.ShowActionPoints();
                     controller.board.DeSelectDefaultTiles(abilityPreviewTiles);
+                    break;
+                case TabType.ItemAction:
+                    controller.currentUnit.playerUI.ShowActionPoints();
+
                     break;
                 default:
                     break;
@@ -182,7 +200,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     }
                 }
                 break;
-            case TabType.Item:
+            case TabType.ItemConsumable:
                 break;
             case TabType.Move:
                 Movement m = controller.currentUnit.GetComponent<Movement>();
@@ -228,7 +246,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                             {
                                 PlayerUnit u = t.content.GetComponent<PlayerUnit>();
 
-                                if (!u.isNearDeath)
+                                if (!u.isNearDeath && !u.isDead)
                                 {
                                     targets.Add(t.content.GetComponent<PlayerUnit>().unitSprite);
                                 }

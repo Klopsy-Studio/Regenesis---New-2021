@@ -66,6 +66,11 @@ public class BombTimeline : ItemElements
                     monster.DamageEffect();
                     monsterDamaged = true;
                 }
+
+                if(t.content.GetComponent<BearObstacleScript>() != null)
+                {
+                    t.content.GetComponent<BearObstacleScript>().GetDestroyed(controller.board);
+                }
             }
 
             if(t.occupied && !monsterDamaged)

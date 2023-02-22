@@ -91,7 +91,12 @@ public class UseAbilityState : BattleState
                         {
                             if (t.content.GetComponent<PlayerUnit>() != null)
                             {
-                                targetTiles.Add(t);
+                                PlayerUnit u = t.content.GetComponent<PlayerUnit>();
+
+                                if(!u.isDead && !u.isNearDeath)
+                                {
+                                    targetTiles.Add(t);
+                                }
                             }
                         }
                     }
@@ -119,16 +124,19 @@ public class UseAbilityState : BattleState
                     break;
             }
         }
-
-        if (!isTargetTile)
+        if(targetTiles.Count > 0)
         {
-            owner.targets.gameObject.SetActive(true);
-
-            if (targetTiles != null || targetTiles.Count > 0)
+            if (!isTargetTile)
             {
-                owner.targets.CreateTargets(targetTiles);
+                owner.targets.gameObject.SetActive(true);
+
+                if (targetTiles != null || targetTiles.Count > 0)
+                {
+                    owner.targets.CreateTargets(targetTiles);
+                }
             }
         }
+        
 
         else
         {

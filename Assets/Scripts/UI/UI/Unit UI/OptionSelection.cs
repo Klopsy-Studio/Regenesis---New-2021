@@ -28,6 +28,7 @@ public class OptionSelection : MonoBehaviour
     [SerializeField] Text waitText;
     [SerializeField] Text statusText;
 
+    public GameObject actionDescription;
     [Space]
 
     [SerializeField] Button buttonMove;

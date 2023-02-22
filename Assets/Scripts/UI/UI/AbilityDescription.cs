@@ -11,15 +11,10 @@ public class AbilityDescription : MonoBehaviour
     public void AssignData(Abilities ability)
     {
         abilityDescription.text = ability.description;
-        abilityDescription.fontSize = ability.abilityTextFontSize;
-        abilityRange.text = ability.rangeData.movementRange.ToString();
-        cost.text = ability.actionCost.ToString();
     }
 
     public void AssignData(Consumables consumable)
     {
         abilityDescription.text = consumable.consumableDescription;
-        abilityRange.text = consumable.itemRange.itemRange.ToString();
-        cost.text = 2.ToString();
     }
 }
