@@ -58,6 +58,7 @@ public class BattleController : StateMachine
     public Text bowExtraAttackText;
     public GameObject defeatScreen;
     public MenuButton pauseButton;
+    public MiniStatus miniStatus;
 
     [SerializeField] Animator sceneTransition;
     [Space]
@@ -114,8 +115,11 @@ public class BattleController : StateMachine
     public MenuButton resumeTimelineButton;
 
     [Header("Zoom Variables")]
+    public bool zoomed = false;
+
     bool zoomIn = false;
     bool zoomOut = false;
+
     [SerializeField] float zoomSpeed;
     [SerializeField] float preferedZoomSize;
     [SerializeField] AnimationCurve zoomInCurve;
@@ -141,6 +145,7 @@ public class BattleController : StateMachine
 
     private void Start()
     {
+        zoomed = false;
         sceneTransition.SetBool("fadeOut", true);
     }
 
@@ -260,7 +265,7 @@ public class BattleController : StateMachine
                     zoomIn = false;
                     cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
                     currentTime = 0;
-
+                    zoomed = true;
                 }
             }
 
@@ -275,6 +280,7 @@ public class BattleController : StateMachine
                     zoomOut = false;
                     cinemachineCamera.m_Lens.OrthographicSize = originalZoomSize;
                     currentTime = 0;
+                    zoomed = false;
 
                 }
             }

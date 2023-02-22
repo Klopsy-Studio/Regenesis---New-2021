@@ -44,9 +44,9 @@ public class TimeLineState : BattleState
 
             if (owner.isTimeLineActive && !owner.pauseTimeline)
             {
-
                 if (selectedUnit != null)
                 {
+                    owner.miniStatus.DeactivateStatus();
                     selectedUnit.status.ChangeToSmall();
                     selectedUnit = null;
                 }
@@ -137,7 +137,11 @@ public class TimeLineState : BattleState
             {
                 if (owner.timelineUI.CheckMouse() && owner.timelineUI.selectedIcon != null && owner.isTimeLineActive)
                 {
-                    owner.ZoomIn();
+                    if (!owner.zoomed)
+                    {
+                        owner.ZoomIn();
+                    }
+
                     if (owner.timelineUI.selectedIcon.element.GetComponent<Unit>() != null)
                     {
                         if (owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>() != null)
@@ -145,6 +149,7 @@ public class TimeLineState : BattleState
                             if (selectedUnit == null)
                             {
                                 selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>();
+                                Debug.Log("Setting Unit");
                                 selectedUnit.status.ChangeToBig();
                             }
                             else
@@ -154,8 +159,19 @@ public class TimeLineState : BattleState
                                     selectedUnit.status.ChangeToSmall();
                                     selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>();
                                     selectedUnit.status.ChangeToBig();
+                                    Debug.Log("Setting Unit");
                                 }
                             }
+
+                            owner.miniStatus.SetStatus(selectedUnit);
+
+                        }
+
+                        if (owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>() != null)
+                        {
+                            Debug.Log("enemy");
+                            owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>();
+                            owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>());
                         }
 
                         SelectTile(owner.timelineUI.selectedIcon.element.GetComponent<Unit>().tile.pos);
@@ -165,20 +181,16 @@ public class TimeLineState : BattleState
                     {
                         selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnitDeath>().unit;
                         selectedUnit.status.ChangeToBig();
-
+                        owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnitDeath>());
                         SelectTile(selectedUnit.currentPoint);
 
                     }
 
-                    if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.EnemyEvent)
-                    {
-                        selectTiles = owner.timelineUI.selectedIcon.element.GetComponent<MonsterEvent>().GetEventTiles();
-                        board.SelectAttackTiles(selectTiles);
-                    }
 
                     if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.HunterEvent)
                     {
                         HunterEvent h = owner.timelineUI.selectedIcon.element.GetComponent<HunterEvent>();
+                        owner.miniStatus.SetStatus(h);
 
                         if (h.target != null)
                         {
@@ -201,6 +213,7 @@ public class TimeLineState : BattleState
                     if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.EnemyEvent)
                     {
                         selectTiles = owner.timelineUI.selectedIcon.element.GetComponent<MonsterEvent>().GetEventTiles();
+                        owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element.GetComponent<MonsterEvent>());
 
                         if (selectTiles != null)
                         {
@@ -208,35 +221,19 @@ public class TimeLineState : BattleState
                         }
                     }
 
-                    if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.HunterEvent)
+                    if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.Items)
                     {
-                        HunterEvent h = owner.timelineUI.selectedIcon.element.GetComponent<HunterEvent>();
-
-                        if (h.target != null)
-                        {
-                            if (h.target.GetComponent<EnemyUnit>() != null)
-                            {
-                                EnemyUnit e = h.target.GetComponent<EnemyUnit>();
-                                selectTiles = e.GiveMonsterSpace(board);
-                                SelectTile(e.currentPoint);
-                                board.SelectAttackTiles(selectTiles);
-                            }
-                            else
-                            {
-                                Point p = new Point((int)h.target.transform.position.x, (int)h.target.transform.position.z);
-                                selectTiles.Add(board.GetTile(p));
-                                board.SelectAttackTiles(selectTiles);
-                                SelectTile(p);
-                            }
-                        }
+                        owner.SelectTile(owner.timelineUI.selectedIcon.element.GetComponent<BombTimeline>().currentPoint);
+                        owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element);
                     }
-
-
                     owner.timelineUI.selectedIcon.Grow();
                 }
                 else
                 {
-                    owner.ZoomOut();
+                    if (owner.zoomed)
+                    {
+                        owner.ZoomOut();
+                    }
                 }
 
                
