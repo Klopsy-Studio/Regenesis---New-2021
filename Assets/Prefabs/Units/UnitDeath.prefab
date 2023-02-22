@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.121, y: 1, z: 0.288}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,10 +45,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionsPerTurn: 0
+  timelineTypes: 0
+  timelineVelocity: 2
+  elementEnabled: 1
   fTimelineVelocity: 10
   timelineFill: 0
   isTimelineActive: 0
   timelineIcon: {fileID: 21300000, guid: 2398e9de4e8bd984d9dfff2b84d6d9f8, type: 3}
+  eventDescription: When it reaches the end, this unit will die and removed from
+    combat, if you wish to stop this, heal the hunter
   iconTimeline: {fileID: 0}
+  previewTime: 0
   unit: {fileID: 0}
   disabled: 0
