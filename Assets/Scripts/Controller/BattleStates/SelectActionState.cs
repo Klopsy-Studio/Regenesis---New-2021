@@ -138,6 +138,7 @@ public class SelectActionState : BattleState
 
     protected override void OnSelectAction(object sender, InfoEventArgs<int> e)
     {
+        owner.actionSelectionUI.actionDescription.SetActive(false);
         switch (e.info)
         {
             case 0:
@@ -200,36 +201,25 @@ public class SelectActionState : BattleState
                 if (owner.currentUnit.CanMove())
                 {
                     ActionSelectionUI.gameObject.SetActive(false);
+
                     owner.ChangeState<MoveTargetState>();
                 }
-
-                //owner.currentUnit.GetComponent<Movement>().PushUnit(Directions.South, 3, board);
                 break;
 
             case typeOfAction.Ability:
-                //if (owner.currentUnit.CanDoAbility())
-                //{
-                //    owner.ChangeState<SelectAbilityState>();
-                //}
-                owner.ChangeState<SelectAbilityState>();
-                //OpenAbilityMenu
+                owner.ChangeState<SelectAbilityState>();           
                 break;
 
             case typeOfAction.Item:
-                //right now it will change to SelectItemState. That state will select the potion item automatically. 
-                //we should change that in the future
                 owner.ChangeState<SelectItemState>();
-                //OpenItemMenu
                 break;
 
             case typeOfAction.Wait:
-                //Skip turn
                 currentAction = typeOfAction.Move;
                 owner.ChangeState<WaitUnitState>();
                 break;
             case typeOfAction.Status:
                 currentAction = typeOfAction.Status;
-
                 owner.ChangeState<CheckUnitStatusState>();
                 break;
 

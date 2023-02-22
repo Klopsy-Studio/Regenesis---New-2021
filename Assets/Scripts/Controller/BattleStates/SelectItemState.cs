@@ -54,9 +54,8 @@ public class SelectItemState : BattleState
             
             owner.itemSelectionUI.itemImage[i].SetNativeSize();
             SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
+            e.assignedConsumable = itemList[i].consumable;
             e.canBeSelected = true;
-            e.abilityDescription.AssignData(itemList[i].consumable);
-            e.abilityDescription.gameObject.SetActive(false);
         }
 
 

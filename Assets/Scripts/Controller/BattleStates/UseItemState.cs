@@ -47,19 +47,16 @@ public class UseItemState : BattleState
                 owner.ghostImage.sprite = currentItem.itemSprite;
             }
 
-            if((Bomb)currentItem!= null)
+            if(currentItem.itemName == "Bomb")
             {
-                var bomb = (Bomb)currentItem;
-                var bombTimeline = bomb.bomb;
-                if (bombTimeline != null)
+                if ((Bomb)currentItem != null)
                 {
-                    Debug.Log("NO ES NULL");
+                    var bomb = (Bomb)currentItem;
+                    var bombTimeline = bomb.bomb;
+
+                    owner.timelineUI.CallTimelinePreviewOrderOnItemSelect(owner.currentUnit, bombTimeline);
                 }
-                owner.timelineUI.CallTimelinePreviewOrderOnItemSelect(owner.currentUnit, bombTimeline);
             }
-
-         
-
         }
 
 
@@ -191,6 +188,8 @@ public class UseItemState : BattleState
     {
         if (!isTimelineItem) return;
         SelectTile(e.info + pos);
+
+        
     }
 
     protected override void OnFire(object sender, InfoEventArgs<KeyCode> e)
@@ -281,7 +280,7 @@ public class UseItemState : BattleState
                             }
                             break;
                         case ConsumableType.TargetConsumable:
-                            if (owner.currentTile.content != null && tiles.Contains(owner.currentTile))
+                            if (owner.currentTile.content == null && tiles.Contains(owner.currentTile))
                             {
                                 StartCoroutine(UseItemSpace());
                             }

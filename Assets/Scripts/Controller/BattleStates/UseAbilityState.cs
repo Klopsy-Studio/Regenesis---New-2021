@@ -119,7 +119,7 @@ public class UseAbilityState : BattleState
                     break;
             }
         }
-
+        if(targetTiles.Count <= 0)
         if (!isTargetTile)
         {
             owner.targets.gameObject.SetActive(true);
