@@ -124,16 +124,19 @@ public class UseAbilityState : BattleState
                     break;
             }
         }
-        if(targetTiles.Count <= 0)
-        if (!isTargetTile)
+        if(targetTiles.Count > 0)
         {
-            owner.targets.gameObject.SetActive(true);
-
-            if (targetTiles != null || targetTiles.Count > 0)
+            if (!isTargetTile)
             {
-                owner.targets.CreateTargets(targetTiles);
+                owner.targets.gameObject.SetActive(true);
+
+                if (targetTiles != null || targetTiles.Count > 0)
+                {
+                    owner.targets.CreateTargets(targetTiles);
+                }
             }
         }
+        
 
         else
         {
