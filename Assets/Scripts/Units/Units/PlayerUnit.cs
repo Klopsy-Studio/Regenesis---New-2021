@@ -230,11 +230,7 @@ public class PlayerUnit : Unit
     public override void Stun()
     {
         base.Stun();
-     
-        iconTimeline.EnableStun();
-        playerUI.EnableStun();
         Push();
-        Invoke("Default", 1f);
     }
 
     public override bool UpdateTimeLine()

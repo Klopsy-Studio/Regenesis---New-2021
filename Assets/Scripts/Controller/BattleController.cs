@@ -99,6 +99,8 @@ public class BattleController : StateMachine
 
     [Header("Playtesting")]
     [SerializeField] Playtest playtestingFunctions;
+    public bool enablePreview;
+    public bool enableMiniStatus;
 
     [Header("Unit variables")]
     [SerializeField] 
@@ -250,6 +252,11 @@ public class BattleController : StateMachine
             if (Input.GetKeyDown(KeyCode.I))
             {
                 board.toggleTileActivation = !board.toggleTileActivation;
+            }
+
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                playerUnits[0].Stun();
             }
         }
 

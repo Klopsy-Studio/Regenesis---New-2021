@@ -49,24 +49,36 @@ public class TimelineUI : MonoBehaviour
 
     public void CallTimelinePreviewOrder()//Unity button 
     {
-        previewTurnOrder.CalculateOrder(battleController.timelineElements);
+        if (battleController.enablePreview)
+        {
+            previewTurnOrder.CalculateOrder(battleController.timelineElements);
+        }
     }
 
     public void CallTimelinePreviewOrderOnAbilitySelect(TimelineElements element, int actionCost)
     {
-        previewTurnOrder.gameObject.SetActive(true);
-        previewTurnOrder.CalculateOrderOnAbilitySelect(battleController.timelineElements, element, actionCost);
+        if (battleController.enablePreview)
+        {
+            previewTurnOrder.gameObject.SetActive(true);
+            previewTurnOrder.CalculateOrderOnAbilitySelect(battleController.timelineElements, element, actionCost);
+        }
+        
     }
 
     public void CallTimelinePreviewOrderOnItemSelect(TimelineElements element, TimelineElements _bomb)
     {
-        previewTurnOrder.CalculateOrderOnItemSelect(battleController.timelineElements, element, 2, _bomb);
+        if (battleController.enablePreview)
+        {
+            previewTurnOrder.CalculateOrderOnItemSelect(battleController.timelineElements, element, 2, _bomb);
+        }
     }
 
     public void ExitPreviewTurnOrder()
     {
-
-        previewTurnOrder.ExitChanges();
+        if (battleController.enablePreview)
+        {
+            previewTurnOrder.ExitChanges();
+        }
     }
 
    

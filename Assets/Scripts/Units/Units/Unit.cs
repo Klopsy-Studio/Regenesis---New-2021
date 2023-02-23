@@ -57,6 +57,7 @@ public class Unit : TimelineElements
     [SerializeField] GameObject hitEffect;
     [SerializeField] Animator criticalMark;
     [SerializeField] Animator battlecryMark;
+    [SerializeField] Animator stunEffect;
     [SerializeField] public float stunThreshold;
     [SerializeField] float stunLimit;
 
@@ -299,9 +300,11 @@ public class Unit : TimelineElements
         {
             //fTimelineVelocity = 0;
             timelineVelocity = TimelineVelocity.Stun;
+            AddDebuff(new Modifier { modifierType = TypeOfModifier.Stun });
             previousVelocity = timelineVelocity;
             Debug.Log(gameObject.name + "previousVelocity es " + previousVelocity);
             stunned = true;
+            stunEffect.SetTrigger("stun");
             SetCurrentVelocity();
         }
     }
@@ -388,9 +391,25 @@ public class Unit : TimelineElements
             if (timeStunned <= 0)
             {
                 timelineVelocity = previousVelocity;
+                
                 SetCurrentVelocity();
                 stunned = false;
                 timeStunned = originalTimeStunned;
+
+                Modifier stun = new Modifier();
+                foreach(Modifier m in debuffModifiers)
+                {
+                    if(m.modifierType == TypeOfModifier.Stun)
+                    {
+                        stun = m;
+                        break;
+                    }
+                }
+
+                if (debuffModifiers.Contains(stun))
+                {
+                    RemoveDebuff(stun);
+                }
             }
 
             return false;
