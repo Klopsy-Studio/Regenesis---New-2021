@@ -136,13 +136,13 @@ public class MonsterAttack : ActionNode
 
         controller.battleController.board.DeSelectDefaultTiles(tiles);
 
-        foreach (PlayerUnit u in controller.targetsInRange)
-        {
-            if (!u.isNearDeath)
-            {
-                u.Default();
-            }
-        }
+        //foreach (PlayerUnit u in controller.targetsInRange)
+        //{
+        //    if (!u.isNearDeath)
+        //    {
+        //        u.Default();
+        //    }
+        //}
 
         controller.validAbilities.Clear();
         treeRunning = false;
