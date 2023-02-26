@@ -65,6 +65,7 @@ MonoBehaviour:
   timelineFill: 0
   isTimelineActive: 0
   timelineIcon: {fileID: 21300000, guid: ce955d0e51a26ed4ab464f13611a9354, type: 3}
+  eventDescription: 
   iconTimeline: {fileID: 0}
   previewTime: 0
   dir: 0
@@ -79,8 +80,8 @@ MonoBehaviour:
   currentPoint:
     x: 0
     y: 0
-  maxHealth: 300
-  health: 300
+  maxHealth: 350
+  health: 350
   hurtAnimation: {fileID: 0}
   unitName: Ursamyr
   particleHitPrefab: {fileID: 9195261423928058443, guid: db77acff450030546aa4b9db9dbeda8a, type: 3}
@@ -90,11 +91,12 @@ MonoBehaviour:
   hitEffect: {fileID: 5030025760067142075, guid: 566a92dcb0e06b746880d6fc36f4c4c5, type: 3}
   criticalMark: {fileID: 6313380054494222970}
   battlecryMark: {fileID: 3785642855470848860}
+  stunEffect: {fileID: 0}
   stunThreshold: 0
   stunLimit: 30
   unitSprite: {fileID: 1262454043973379550}
   thisIsMyFuckingTurn: 0
-  power: 80
+  power: 60
   originalPower: 0
   criticalPercentage: 10
   originalCriticalPercentage: 0
@@ -151,6 +153,15 @@ MonoBehaviour:
   obstaclesInGame: []
   validObstacles: []
   obstacleLimit: 4
+  spiderMonsterMovementRange: []
+  minionsPrefab: []
+  minionsInGame: []
+  maxMinions: 3
+  minionRangeSpawn: []
+  hasSpawnedMinionsInLastTurn: 0
+  hasDoneFirstTurn: 0
+  hasEvolved: 0
+  turnsAlive: 0
   animPlaying: 0
   monsterAnimations: {fileID: 8065880355718981688}
 --- !u!114 &1131668777620481961

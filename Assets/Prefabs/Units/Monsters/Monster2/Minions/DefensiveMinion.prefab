@@ -448,6 +448,7 @@ MonoBehaviour:
   timelineFill: 0
   isTimelineActive: 0
   timelineIcon: {fileID: 21300000, guid: 08458008cd1c5194eb4fee92f2c8a4a8, type: 3}
+  eventDescription: 
   iconTimeline: {fileID: 0}
   previewTime: 0
   dir: 0
@@ -462,8 +463,8 @@ MonoBehaviour:
   currentPoint:
     x: 0
     y: 0
-  maxHealth: 60
-  health: 60
+  maxHealth: 100
+  health: 100
   hurtAnimation: {fileID: 0}
   unitName: Defensive Minion
   particleHitPrefab: {fileID: 0}
@@ -473,11 +474,12 @@ MonoBehaviour:
   hitEffect: {fileID: 5030025760067142075, guid: 566a92dcb0e06b746880d6fc36f4c4c5, type: 3}
   criticalMark: {fileID: 4275134778538292248}
   battlecryMark: {fileID: 5199714969756058278}
+  stunEffect: {fileID: 0}
   stunThreshold: 0
   stunLimit: 0
   unitSprite: {fileID: 6455163749675579260}
   thisIsMyFuckingTurn: 0
-  power: 30
+  power: 60
   originalPower: 0
   criticalPercentage: 10
   originalCriticalPercentage: 0
@@ -731,7 +733,7 @@ MonoBehaviour:
     x: 0
     y: 0
   tile: {fileID: 0}
-  range: 3
+  range: 4
   removeContent: 1
   removeOrigin: 1
 --- !u!114 &4224205881053497297
