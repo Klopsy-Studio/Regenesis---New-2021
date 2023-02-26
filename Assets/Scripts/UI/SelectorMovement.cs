@@ -163,6 +163,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void ClearOption()
     {
+        monsterSelected = false;
         if(targets != null)
         {
             targets.Clear();
