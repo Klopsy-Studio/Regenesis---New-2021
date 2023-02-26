@@ -11,7 +11,7 @@ public class CloseTab : MonoBehaviour
     public void CloseWindow() //Unity button function
     {
         window.gameObject.SetActive(false);
-        canva.referenceResolution = defaultResolution;
-
+        //canva.referenceResolution = defaultResolution;
+        //No longer changing resolution 
     }
 }

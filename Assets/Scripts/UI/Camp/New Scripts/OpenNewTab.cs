@@ -23,7 +23,7 @@ public class OpenNewTab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if(tabToOpen != null)
         {
             Debug.Log("GOLPEA");
-            canva.referenceResolution = smallWindow;
+            //canva.referenceResolution = smallWindow;
             tabToOpen.SetActive(true);
         }
         else

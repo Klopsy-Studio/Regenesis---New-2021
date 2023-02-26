@@ -45,7 +45,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             if(onUp != null)
             {
                 onUp.Invoke();
-
             }
         }
     }
