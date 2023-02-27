@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TrainBackgroundEffect : MonoBehaviour
 {
+    [SerializeField] TilingDirection direction;
     [SerializeField] SpriteRenderer image;
     Material backgroundMaterial;
 
@@ -19,7 +20,22 @@ public class TrainBackgroundEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        offset += (moveSpeed * Time.deltaTime) / 10f;
+        switch (direction)
+        {
+            case TilingDirection.Left:
+                offset -= (moveSpeed * Time.deltaTime) / 10f;
+                break;
+            case TilingDirection.Right:
+                offset += (moveSpeed * Time.deltaTime) / 10f;
+                break;
+            default:
+                break;
+        }
         backgroundMaterial.SetTextureOffset("_MainTex", new Vector2(offset, 0));
     }
+}
+
+public enum TilingDirection
+{
+    Left, Right,
 }
