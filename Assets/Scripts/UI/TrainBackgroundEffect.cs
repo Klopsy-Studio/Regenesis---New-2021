@@ -1,21 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TrainBackgroundEffect : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer sprite;
+    [SerializeField] SpriteRenderer image;
     Material backgroundMaterial;
+
+    [Range(0f, 5f)]
     [SerializeField] float moveSpeed;
+    float offset;
     void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
-        backgroundMaterial = sprite.material;
+        backgroundMaterial = image.material;
     }
 
     // Update is called once per frame
     void Update()
     {
-        backgroundMaterial.mainTextureOffset += new Vector2(moveSpeed * Time.deltaTime, 0);
+        offset += (moveSpeed * Time.deltaTime) / 10f;
+        backgroundMaterial.SetTextureOffset("_MainTex", new Vector2(offset, 0));
     }
 }

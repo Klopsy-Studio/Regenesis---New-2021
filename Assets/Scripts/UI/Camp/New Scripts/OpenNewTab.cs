@@ -11,12 +11,7 @@ public class OpenNewTab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     Vector2 smallWindow = new Vector2(640, 360);
     [SerializeField] GameObject tabToOpen;
     //[SerializeField] GameObject gameObjectAnimator;
-     public Animator animator;
 
-    //private void Wake()
-    //{
-    //    animator = gameObjectAnimator.GetComponent<Animator>();
-    //}
     public void OpenTab()
     {
      
@@ -34,15 +29,12 @@ public class OpenNewTab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (animator == null) return;
       
-        animator.SetInteger("State", 1);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (animator == null) return;
-        animator.SetInteger("State", 0);
+
     }
 
  
