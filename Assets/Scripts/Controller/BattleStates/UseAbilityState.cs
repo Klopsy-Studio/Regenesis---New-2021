@@ -124,6 +124,7 @@ public class UseAbilityState : BattleState
                     break;
             }
         }
+
         if(targetTiles.Count > 0)
         {
             if (!isTargetTile)

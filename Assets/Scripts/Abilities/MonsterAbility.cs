@@ -349,6 +349,9 @@ public class MonsterAbility : ScriptableObject
             
             target.marked = false;
         }
-        finalDamage = (((finalPower * criticalDmg) + (enemy.power * enemy.elementPower) * elementDmg) * abilityModifier) - target.defense;
+
+        finalDamage = (((finalPower * criticalDmg) + (enemy.power * enemy.elementPower) * elementDmg) * abilityModifier)-target.defense;
+
+        Debug.Log("Target: " + target.unitName + " Damage dealt: " + finalDamage);
     }
 }
