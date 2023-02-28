@@ -7,24 +7,33 @@ using UnityEngine.EventSystems;
 
 public class OpenNewTab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public bool buttonEnabled; 
     [SerializeField] CanvasScaler canva;
     Vector2 smallWindow = new Vector2(640, 360);
     [SerializeField] GameObject tabToOpen;
     //[SerializeField] GameObject gameObjectAnimator;
 
+
+    private void Start()
+    {
+        EnableButton();
+    }
     public void OpenTab()
     {
-     
-        if(tabToOpen != null)
+        if (buttonEnabled)
         {
-            Debug.Log("GOLPEA");
-            //canva.referenceResolution = smallWindow;
-            tabToOpen.SetActive(true);
+            if (tabToOpen != null)
+            {
+                Debug.Log("GOLPEA");
+                //canva.referenceResolution = smallWindow;
+                tabToOpen.SetActive(true);
+            }
+            else
+            {
+                Debug.Log("There's no tab to open");
+            }
         }
-        else
-        {
-            Debug.Log("There's no tab to open");
-        }
+        
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -35,6 +44,16 @@ public class OpenNewTab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerExit(PointerEventData eventData)
     {
 
+    }
+
+    public void EnableButton()
+    {
+        buttonEnabled = true;
+    }
+
+    public void DisableButton()
+    {
+        buttonEnabled = false;
     }
 
  

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ChangeCampModes : MonoBehaviour
 {
+    [SerializeField] List<OpenNewTab> campButtons;
     [SerializeField] CanvasScaler campCanvas;
     [SerializeField] float windowScaleFactor;
     GameObject currentStructure;
@@ -29,5 +30,52 @@ public class ChangeCampModes : MonoBehaviour
         structureToOpen.SetActive(true);
         currentStructure = structureToOpen;
         campCanvas.referenceResolution = new Vector2(windowScaleFactor, 1080f);
+    }
+
+    public void EnableAllButtons()
+    {
+        if(campButtons != null)
+        {
+            if(campButtons.Count > 0)
+            {
+                foreach (OpenNewTab o in campButtons)
+                {
+                    o.EnableButton();
+                }
+            }
+            else
+            {
+                Debug.Log("Camp buttons is count = 0");
+            }
+        }
+        else
+        {
+            Debug.Log("Camp buttons is null");
+        }
+    }
+
+    public void DisableAllButtons()
+    {
+        if (campButtons != null)
+        {
+            if (campButtons.Count > 0)
+            {
+                foreach (OpenNewTab o in campButtons)
+                {
+                    o.DisableButton();
+                }
+            }
+            else
+            {
+                Debug.Log("Camp buttons is count = 0");
+
+            }
+        }
+
+        else
+        {
+            Debug.Log("Camp buttons is null");
+        }
+        
     }
 }

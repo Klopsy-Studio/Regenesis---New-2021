@@ -791,17 +791,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31338298}
   m_CullTransparentMesh: 1
---- !u!114 &31475094 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1759049578, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
-  m_PrefabInstance: {fileID: 6830464551892030694}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5059d96cb28ee8408e767cf40a4b423, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &31475096 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1759049580, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
@@ -1680,6 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5059d96cb28ee8408e767cf40a4b423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEnabled: 0
   canva: {fileID: 1074750478}
   tabToOpen: {fileID: 376822588}
 --- !u!114 &84221134
@@ -1702,6 +1692,18 @@ MonoBehaviour:
         - m_Target: {fileID: 84221133}
           m_TargetAssemblyTypeName: OpenNewTab, Assembly-CSharp
           m_MethodName: OpenTab
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1074750480}
+          m_TargetAssemblyTypeName: ChangeCampModes, Assembly-CSharp
+          m_MethodName: DisableAllButtons
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4529,6 +4531,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312917633}
   m_CullTransparentMesh: 1
+--- !u!114 &313708409 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 633881547, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+  m_PrefabInstance: {fileID: 6830464551892030694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14764f34c6d30314895c50b074215814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &314166484
 GameObject:
   m_ObjectHideFlags: 0
@@ -5080,6 +5093,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &347654484 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1001889841, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+  m_PrefabInstance: {fileID: 6830464551892030694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14764f34c6d30314895c50b074215814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &349715233
 GameObject:
   m_ObjectHideFlags: 0
@@ -5485,9 +5509,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 981475222}
+      - m_Target: {fileID: 375906094}
         m_TargetAssemblyTypeName: OpenNewTab, Assembly-CSharp
         m_MethodName: OpenTab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1074750480}
+        m_TargetAssemblyTypeName: ChangeCampModes, Assembly-CSharp
+        m_MethodName: DisableAllButtons
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5509,6 +5545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5059d96cb28ee8408e767cf40a4b423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEnabled: 1
   canva: {fileID: 1074750478}
   tabToOpen: {fileID: 557417354}
 --- !u!1 &376822588 stripped
@@ -8068,6 +8105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5059d96cb28ee8408e767cf40a4b423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEnabled: 0
   canva: {fileID: 1074750478}
   tabToOpen: {fileID: 1456585324}
 --- !u!1 &639203488
@@ -10730,6 +10768,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0.053985596, y: 0.00025177002}
   m_SizeDelta: {x: 0.10800171, y: 0.00051117}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &889109403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1110829557166765497, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+  m_PrefabInstance: {fileID: 6830464551892030694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14764f34c6d30314895c50b074215814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &893146637
 GameObject:
   m_ObjectHideFlags: 0
@@ -11624,17 +11673,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969778797}
   m_CullTransparentMesh: 1
---- !u!114 &981475222 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1594509958, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
-  m_PrefabInstance: {fileID: 6830464551892030694}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5059d96cb28ee8408e767cf40a4b423, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &981475224 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6830464551751345587, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
@@ -11977,6 +12015,17 @@ RectTransform:
   m_AnchoredPosition: {x: 306.75, y: -70.53015}
   m_SizeDelta: {x: 123.5219, y: 36.1485}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1033553595 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9127676318331829713, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+  m_PrefabInstance: {fileID: 6830464551892030694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14764f34c6d30314895c50b074215814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1039885771
 GameObject:
   m_ObjectHideFlags: 0
@@ -12286,6 +12335,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1074750480 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+  m_PrefabInstance: {fileID: 6830464551892030694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d57ebc476f07b42be66055cda650e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1077070687
@@ -13410,6 +13470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5059d96cb28ee8408e767cf40a4b423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEnabled: 0
   canva: {fileID: 1074750478}
   tabToOpen: {fileID: 557417354}
 --- !u!114 &1172146276
@@ -16401,6 +16462,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406004970}
   m_CullTransparentMesh: 1
+--- !u!114 &1417335815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 615367398, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+  m_PrefabInstance: {fileID: 6830464551892030694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14764f34c6d30314895c50b074215814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1420523384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18040,6 +18112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5059d96cb28ee8408e767cf40a4b423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEnabled: 0
   canva: {fileID: 1074750478}
   tabToOpen: {fileID: 1609088506}
 --- !u!114 &1526633520
@@ -18086,9 +18159,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 31475094}
+      - m_Target: {fileID: 1526633519}
         m_TargetAssemblyTypeName: OpenNewTab, Assembly-CSharp
         m_MethodName: OpenTab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1074750480}
+        m_TargetAssemblyTypeName: ChangeCampModes, Assembly-CSharp
+        m_MethodName: DisableAllButtons
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20704,6 +20789,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1074750480}
+          m_TargetAssemblyTypeName: ChangeCampModes, Assembly-CSharp
+          m_MethodName: DisableAllButtons
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1719413305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20716,7 +20813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5059d96cb28ee8408e767cf40a4b423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canva: {fileID: 0}
+  buttonEnabled: 0
+  canva: {fileID: 1074750478}
   tabToOpen: {fileID: 669213131}
 --- !u!65 &1719413306
 BoxCollider:
@@ -21646,6 +21744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5059d96cb28ee8408e767cf40a4b423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEnabled: 0
   canva: {fileID: 1074750478}
   tabToOpen: {fileID: 1456585324}
 --- !u!114 &1818112089
@@ -21772,6 +21871,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1818112088}
           m_TargetAssemblyTypeName: OpenNewTab, Assembly-CSharp
           m_MethodName: OpenTab
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1074750480}
+          m_TargetAssemblyTypeName: ChangeCampModes, Assembly-CSharp
+          m_MethodName: DisableAllButtons
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -24259,6 +24370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5059d96cb28ee8408e767cf40a4b423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEnabled: 0
   canva: {fileID: 1074750478}
   tabToOpen: {fileID: 669213131}
 --- !u!114 &2086573259
@@ -25036,9 +25148,89 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 23.599998
       objectReference: {fileID: 0}
+    - target: {fileID: 615367399, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 615367399, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615367399, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1074750480}
+    - target: {fileID: 615367399, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1417335815}
+    - target: {fileID: 615367399, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 615367399, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableAllButtons
+      objectReference: {fileID: 0}
+    - target: {fileID: 615367399, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 615367399, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeCampModes, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 615367399, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CloseTab, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 615367399, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 701166968, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001889842, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001889842, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001889842, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1074750480}
+    - target: {fileID: 1001889842, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 347654484}
+    - target: {fileID: 1001889842, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001889842, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableAllButtons
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001889842, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001889842, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeCampModes, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001889842, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CloseTab, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1001889842, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1484980965, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: m_IsActive
@@ -25060,9 +25252,73 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1478846032}
+    - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: campButtons.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: campButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 375906094}
+    - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: campButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1526633519}
+    - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: campButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1818112088}
+    - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: campButtons.Array.data[3]
+      value: 
+      objectReference: {fileID: 1719413305}
+    - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: campButtons.Array.data[4]
+      value: 
+      objectReference: {fileID: 84221133}
     - target: {fileID: 415144551959571689, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222910665648541324, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222910665648541324, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222910665648541324, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1074750480}
+    - target: {fileID: 1222910665648541324, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 313708409}
+    - target: {fileID: 1222910665648541324, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222910665648541324, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableAllButtons
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222910665648541324, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222910665648541324, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeCampModes, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222910665648541324, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CloseTab, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222910665648541324, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2157554838495402243, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -25091,6 +25347,46 @@ PrefabInstance:
     - target: {fileID: 3257685494235734744, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597894372221244234, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597894372221244234, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597894372221244234, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1074750480}
+    - target: {fileID: 3597894372221244234, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1033553595}
+    - target: {fileID: 3597894372221244234, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597894372221244234, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableAllButtons
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597894372221244234, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597894372221244234, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeCampModes, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597894372221244234, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CloseTab, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597894372221244234, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5543389765820355036, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -25431,6 +25727,46 @@ PrefabInstance:
     - target: {fileID: 6830464553488245176, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -32.772995
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415820616684041447, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415820616684041447, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415820616684041447, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1074750480}
+    - target: {fileID: 7415820616684041447, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 889109403}
+    - target: {fileID: 7415820616684041447, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415820616684041447, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableAllButtons
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415820616684041447, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415820616684041447, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ChangeCampModes, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415820616684041447, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CloseTab, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415820616684041447, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8723605977787988689, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: m_SizeDelta.x
