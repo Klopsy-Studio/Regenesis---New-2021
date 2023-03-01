@@ -31,6 +31,9 @@ public class MinionEvolve : ActionNode
         }
 
         owner.controller.hasEvolved = true;
+
+        owner.controller.monsterAnimations.SetBool("evolved", true);
+        owner.controller.monsterAnimations.SetBool("regular", false);
         return State.Success;
     }
 }
