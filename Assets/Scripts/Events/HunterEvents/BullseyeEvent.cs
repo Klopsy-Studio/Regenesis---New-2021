@@ -10,30 +10,39 @@ public class BullseyeEvent : HunterEvent
     public override IEnumerator ApplyEvent(BattleController controller)
     {
         playing = true;
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-
-        if (target.GetComponent<Unit>() != null)
+        if (target != null)
         {
-            Unit u = target.GetComponent<Unit>();
-            for (int i = 0; i < numberOfAttacks; i++)
+            ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
+
+
+            if (target.GetComponent<Unit>() != null)
             {
-                u.ReceiveDamage(ability.CalculateDmg(unit, u));
+                Unit u = target.GetComponent<Unit>();
+                for (int i = 0; i < numberOfAttacks; i++)
+                {
+                    u.ReceiveDamage(ability.CalculateDmg(unit, u));
 
-                //Replace with charge animation
-                unit.Attack();
-                yield return new WaitForSeconds(0.7f);
+                    //Replace with charge animation
+                    unit.Attack();
+                    yield return new WaitForSeconds(0.7f);
+                }
             }
+
+            if(target!= null)
+            {
+                if (target.GetComponent<BearObstacleScript>() != null)
+                {
+                    BearObstacleScript b = target.GetComponent<BearObstacleScript>();
+
+                    b.GetDestroyed(controller.board);
+
+                    //Replace with charge animation
+                    unit.Attack();
+                }
+            }
+            
         }
-
-        if(target.GetComponent<BearObstacleScript>() != null)
-        {
-            BearObstacleScript b = target.GetComponent<BearObstacleScript>();
-
-            b.GetDestroyed(controller.board);
-
-            //Replace with charge animation
-            unit.Attack();
-        }
+        
 
         while (ActionEffect.instance.CheckActionEffectState())
         {
