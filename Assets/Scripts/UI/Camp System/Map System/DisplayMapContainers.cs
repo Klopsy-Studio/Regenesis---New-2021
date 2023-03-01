@@ -32,7 +32,7 @@ public class DisplayMapContainers : MonoBehaviour
                 missionContainer.uncompletedIMG.gameObject.SetActive(true);
             }
 
-            if(missionContainer.isNew)
+            if(missionContainer.levelData.isNew)
             {
                missionContainer.notificationIMG.gameObject.SetActive(true);
             }
