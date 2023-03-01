@@ -89,6 +89,7 @@ public class Unit : TimelineElements
     [Header("Indicators")]
     [SerializeField] GameObject buffIndicator;
     [SerializeField] GameObject debuffIndicator;
+    public GameObject tileIndicator;
     protected virtual void Start()
     {
         buffModifiers = new List<Modifier>();

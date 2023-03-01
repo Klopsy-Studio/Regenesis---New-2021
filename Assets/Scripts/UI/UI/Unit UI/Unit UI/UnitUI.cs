@@ -9,7 +9,7 @@ public class UnitUI : MonoBehaviour
     
     public void CreatePopUpText(Vector3 position, int dmgAmount)
     {
-        var textPopUpGameobject = Instantiate(popUpText, position, Quaternion.identity);
+        var textPopUpGameobject = Instantiate(popUpText, position, popUpText.transform.rotation);
         PopUpText textPopUp = textPopUpGameobject.GetComponentInChildren<PopUpText>();
       
         textPopUp.SetUp(dmgAmount);

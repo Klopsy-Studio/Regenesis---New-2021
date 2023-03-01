@@ -18,23 +18,34 @@ public class TrueShot : AbilitySequence
 
         ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
 
-        if (target.GetComponent<Unit>()!= null)
+        if(target != null)
         {
-            Unit u = target.GetComponent<Unit>();
-
-            for (int i = 0; i < numberOfShots; i++)
+            if (target.GetComponent<Unit>() != null)
             {
-                Attack(u);
-                yield return new WaitForSeconds(0.2f);
+                Unit u = target.GetComponent<Unit>();
+
+                for (int i = 0; i < numberOfShots; i++)
+                {
+                    if (u != null)
+                    {
+                        Attack(u);
+                    }
+                    yield return new WaitForSeconds(0.2f);
+                }
             }
         }
+        
 
-        if (target.GetComponent<BearObstacleScript>() != null)
+        if(target != null)
         {
-            BearObstacleScript b = target.GetComponent<BearObstacleScript>();
-            b.GetDestroyed(controller.board);
-            user.Attack();
+            if (target.GetComponent<BearObstacleScript>() != null)
+            {
+                BearObstacleScript b = target.GetComponent<BearObstacleScript>();
+                b.GetDestroyed(controller.board);
+                user.Attack();
+            }
         }
+        
 
         while (ActionEffect.instance.CheckActionEffectState())
         {
