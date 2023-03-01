@@ -25,7 +25,7 @@ public class ZoneButton : MonoBehaviour, IPointerClickHandler
         foreach (var missions in mapManager.displayMapContainerList[mapID].missionList.missions)
         {
             var missionContainer = mapManager.allMissionsDictionary[missions];
-            if (missionContainer.isNew)
+            if (missionContainer.levelData.isNew)
             {
                 notificationIMG.gameObject.SetActive(true);
             }

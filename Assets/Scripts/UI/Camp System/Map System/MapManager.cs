@@ -75,7 +75,7 @@ public class MapManager : MonoBehaviour
     {
         foreach (var mission in allMisionsList)
         {
-            if (mission.isNew)
+            if (mission.levelData.isNew)
             {
                 mission.notificationIMG.gameObject.SetActive(true);
             }

@@ -17,7 +17,7 @@ public class MissionContainer : MonoBehaviour, IPointerClickHandler
 
     //public MissionContainer[] UnlockableMissions;
 
-    public bool isNew = true;
+    
    
 
     [SerializeField] string zone;
@@ -44,7 +44,7 @@ public class MissionContainer : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        isNew = false;
+        levelData.isNew = false;
         missionInfoPanel.gameObject.SetActive(true);
         mapManager.acceptMissionButton.missionInfoPanel = missionInfoPanel;
         mapManager.acceptMissionButton.mission = levelData;
