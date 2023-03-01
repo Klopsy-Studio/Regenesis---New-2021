@@ -32,7 +32,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if (canBeSelected && selected)
         {
-            if (onUp != null)
+            if (action != null)
             {
                action.Invoke();
             }

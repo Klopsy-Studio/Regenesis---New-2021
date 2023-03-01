@@ -402,6 +402,42 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8538480344624719731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3712303122455723328}
+  m_Layer: 0
+  m_Name: UpPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3712303122455723328
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8538480344624719731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5925223341508035335}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -5.5, y: 61}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8700832473359294234
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +449,7 @@ GameObject:
   - component: {fileID: 5925223341508035335}
   - component: {fileID: 7008552619140192516}
   m_Layer: 0
-  m_Name: UpIcon
+  m_Name: TimelineIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -435,6 +471,7 @@ RectTransform:
   - {fileID: 3147959996331962723}
   - {fileID: 8737267983966212241}
   - {fileID: 5598662518450472187}
+  - {fileID: 3712303122455723328}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -455,6 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c40253bb22b834d82d6920e53ca18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groupPos: {fileID: 3712303122455723328}
   velocityText: {fileID: 0}
   rectTransform: {fileID: 5925223341508035335}
   image: {fileID: 5282224630486868304}
@@ -472,6 +510,9 @@ MonoBehaviour:
   iconTransform: {fileID: 5925223341508035335}
   prevIcon: {fileID: 0}
   nextIcon: {fileID: 0}
-  minDistance: 2
+  minDistance: 3
+  previousPosition: {x: 0, y: 0}
   maxDistance: 4
+  timelineEnabled: 1
   allowExpandUnits: 0
+  enableUpdate: 0

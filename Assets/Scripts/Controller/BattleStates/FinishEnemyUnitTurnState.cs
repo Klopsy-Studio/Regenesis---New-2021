@@ -9,6 +9,7 @@ public class FinishEnemyUnitTurnState : BattleState
     {
         base.Enter();
         owner.monsterController.currentEnemy.GetComponent<Movement>().isTraverseCalled = false;
+        owner.FinishAction();
         owner.board.DeactivateTileSelection();
         owner.monsterController.currentState = owner.monsterController.startState;
         owner.monsterController.isUpdatingState = false;

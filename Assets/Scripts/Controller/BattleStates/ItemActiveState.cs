@@ -7,6 +7,7 @@ public class ItemActiveState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.StartAction();
         owner.isTimeLineActive = false;
         StartCoroutine(ItemCoroutine());
     }
@@ -22,6 +23,8 @@ public class ItemActiveState : BattleState
         owner.currentItem.Apply(owner);
 
         yield return new WaitForSeconds(2);
+        owner.FinishAction();
+
         owner.ChangeState<TimeLineState>();
     }
 

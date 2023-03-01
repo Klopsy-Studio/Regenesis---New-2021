@@ -8,7 +8,7 @@ public class MonsterEventState : BattleState
     {
         base.Enter();
         owner.isTimeLineActive = false;
-
+        owner.StartAction();
         owner.board.ActivateTileSelection();
         owner.turnStatusUI.ActivateTurn(owner.enemyUnits[0].unitName);
         StartCoroutine(ApplyEvent());
@@ -33,6 +33,8 @@ public class MonsterEventState : BattleState
 
         owner.timelineElements.Remove(owner.currentMonsterEvent);
         owner.currentMonsterEvent = null;
+        owner.FinishAction();
+
         owner.ChangeState<TimeLineState>();
     }
 }

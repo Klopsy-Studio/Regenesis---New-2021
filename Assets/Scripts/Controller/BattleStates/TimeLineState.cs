@@ -8,7 +8,6 @@ public class TimeLineState : BattleState
     [SerializeField] PlayerUnit selectedUnit;
 
     TimelineElements currentElement;
-
     float timer = 2f;
     bool timerCheck;
     bool pause = false;
@@ -39,6 +38,7 @@ public class TimeLineState : BattleState
                 Debug.Log("Bruh");
                 board.DeSelectDefaultTiles(selectTiles);
                 selectTiles.Clear();
+                
                 owner.ZoomOut();
             }
 
@@ -135,6 +135,8 @@ public class TimeLineState : BattleState
 
             else
             {
+                
+                
                 if (owner.timelineUI.CheckMouse() && owner.timelineUI.selectedIcon != null && owner.isTimeLineActive)
                 {
                     if (!owner.zoomed)

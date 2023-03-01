@@ -10,6 +10,7 @@ public class StartEnemyTurnState : BattleState
     {
         base.Enter();
         owner.isTimeLineActive = false;
+        owner.StartAction();
         owner.board.ActivateTileSelection();
         owner.turnStatusUI.ActivateTurn(owner.currentEnemyUnit.unitName);
         //tileSelectionIndicator.gameObject.SetActive(false);
@@ -43,6 +44,7 @@ public class StartEnemyTurnState : BattleState
     IEnumerator StartEnemyTurnCoroutine()
     {
         owner.isTimeLineActive = false;
+
         owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.monsterTurn);
         yield return new WaitForSeconds(1f);
         owner.turnStatusUI.StopTurnStatus();

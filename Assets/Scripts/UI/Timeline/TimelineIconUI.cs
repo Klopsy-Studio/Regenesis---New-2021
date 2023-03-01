@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 using TMPro;
 public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public TimelineLane lane;
+    public RectTransform groupPos;
     public TextMeshProUGUI velocityText;
     public RectTransform rectTransform;
     public Image image;
@@ -36,10 +38,14 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public TimelineIconUI prevIcon;
     public TimelineIconUI nextIcon;
     public float minDistance;
+    public Vector2 previousPosition;
     public float maxDistance;
 
-
+    public bool timelineEnabled = true;
     [SerializeField] bool allowExpandUnits;
+
+    public bool isActing;
+
     public bool enableUpdate;
     public void EnableStun()
     {
@@ -60,7 +66,10 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     void Update()
     {
-        iconTransform.anchoredPosition = new Vector2(-barSize / 2 + element.GetActionBarPosition() * barSize, offset);
+        if (timelineEnabled)
+        {
+            iconTransform.anchoredPosition = new Vector2(-barSize / 2 + element.GetActionBarPosition() * barSize, offset);
+        }
 
         //Change the timeline type comparison for each timeline type, kai example
         //Has dicho que de esto te vas a acordar en dos meses jodete
@@ -74,6 +83,58 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
        
     }
 
+    public void SavePosition()
+    {
+        previousPosition = iconTransform.anchoredPosition = new Vector2(-barSize / 2 + element.GetActionBarPosition() * barSize, offset);
+    }
+    public void PutPreviousOnTop()
+    {
+        if (!isActing)
+        {
+            if (prevIcon != null)
+            {
+                if (element.timelineFill - prevIcon.element.timelineFill <= minDistance)
+                {
+                    prevIcon.SavePosition();
+                    prevIcon.iconTransform.position = new Vector2(groupPos.position.x, groupPos.position.y);
+
+                    switch (prevIcon.lane)
+                    {
+                        case TimelineLane.Top:
+                            prevIcon.downSupport.gameObject.SetActive(false);
+                            break;
+                        case TimelineLane.Bottom:
+                            prevIcon.upSupport.gameObject.SetActive(false);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+       
+    }
+
+    public void ResetPrevious()
+    {
+        if(prevIcon != null)
+        {
+            prevIcon.iconTransform.anchoredPosition = prevIcon.previousPosition;
+
+            switch (prevIcon.lane)
+            {
+                case TimelineLane.Top:
+                    downSupport.gameObject.SetActive(true);
+                    break;
+                case TimelineLane.Bottom:
+                    upSupport.gameObject.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+    }
   
     public void SetTimelineIconTextVelocity()
     {
@@ -139,4 +200,9 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         iconAnimations.SetBool("isGrow", false);
     }
+}
+
+public enum TimelineLane
+{
+    Top, Center, Bottom
 }

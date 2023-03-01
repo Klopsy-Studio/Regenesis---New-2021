@@ -47,6 +47,15 @@ public class TimelineUI : MonoBehaviour
 
     [SerializeField] PreviewTurnOrder previewTurnOrder;
 
+    [SerializeField] List<TimelineIconUI> topLane = new List<TimelineIconUI>();
+    List<TimelineIconUI> _topLane = new List<TimelineIconUI>();
+    [SerializeField] List<TimelineIconUI> midLane = new List<TimelineIconUI>();
+    List<TimelineIconUI> _midLane = new List<TimelineIconUI>();
+
+    [SerializeField] List<TimelineIconUI> bottomLane = new List<TimelineIconUI>();
+    List<TimelineIconUI> _bottomLane = new List<TimelineIconUI>();
+
+
     public void CallTimelinePreviewOrder()//Unity button 
     {
         if (battleController.enablePreview)
@@ -89,16 +98,25 @@ public class TimelineUI : MonoBehaviour
 
     //Not Ideal. Would be better to avoid GetComponent entirely. Simplest solution for a 45 minutes project
     private void Update()
-    {
-       
+    { 
         if (isActive) 
         {
             BalanceAmountOf(iconPrefab, content, battleController.timelineElements.Count);
             SortList();
 
-            foreach (TimelineIconUI icon in iconsInTimeline)
+            foreach (TimelineIconUI icon in topLane)
             {
-                AssignIcons(icon);
+                AssignIcons(icon, topLane);
+            }
+
+            foreach (TimelineIconUI icon in midLane)
+            {
+                AssignIcons(icon, midLane);
+            }
+
+            foreach (TimelineIconUI icon in bottomLane)
+            {
+                AssignIcons(icon, bottomLane);
             }
         }
     }
@@ -106,15 +124,19 @@ public class TimelineUI : MonoBehaviour
     public void SortList()
     {
         orderedIconsInTimeline = iconsInTimeline.OrderByDescending(x => x.element.timelineFill).ToList();
+        topLane = _topLane.OrderByDescending(a => a.element.timelineFill).ToList();
+        midLane = _midLane.OrderByDescending(b => b.element.timelineFill).ToList();
+        bottomLane = _bottomLane.OrderByDescending(c => c.element.timelineFill).ToList();
+
     }
 
-    public void AssignIcons(TimelineIconUI icon)
+    public void AssignIcons(TimelineIconUI icon, List<TimelineIconUI> iconList)
     {
-        int index = orderedIconsInTimeline.IndexOf(icon);
+        int index = iconList.IndexOf(icon);
 
-        if(index+1 < orderedIconsInTimeline.Count)
+        if(index+1 < iconList.Count)
         {
-            icon.prevIcon = orderedIconsInTimeline[index + 1];
+            icon.prevIcon = iconList[index + 1];
         }
         else
         {
@@ -123,7 +145,7 @@ public class TimelineUI : MonoBehaviour
 
         if(index-1 >= 0)
         {
-            icon.nextIcon = orderedIconsInTimeline[index - 1];
+            icon.nextIcon = iconList[index - 1];
         }
         else
         {
@@ -145,6 +167,20 @@ public class TimelineUI : MonoBehaviour
                 {
                     a.transform.parent = removedChildren;
                     a.gameObject.SetActive(false);
+                    switch (a.lane)
+                    {
+                        case TimelineLane.Top:
+                            topLane.Remove(a);
+                            break;
+                        case TimelineLane.Center:
+                            midLane.Remove(a);
+                            break;
+                        case TimelineLane.Bottom:
+                            bottomLane.Remove(a);
+                            break;
+                        default:
+                            break;
+                    }
                     iconsInTimeline.Remove(a);
                 }
             }
@@ -177,7 +213,12 @@ public class TimelineUI : MonoBehaviour
 
             if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.PlayerUnit)
             {
-               
+                temp.lane = TimelineLane.Top;
+                if (!_topLane.Contains(temp))
+                {
+                    _topLane.Add(temp);
+                }
+
                 temp.image.sprite = playerFrame;
                 temp.element.iconTimeline = temp;
                 temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
@@ -195,6 +236,13 @@ public class TimelineUI : MonoBehaviour
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.EnemyUnit)
             {
+                temp.lane = TimelineLane.Bottom;
+
+                if (!_bottomLane.Contains(temp))
+                {
+                    _bottomLane.Add(temp);
+                }
+
                 temp.element.iconTimeline = temp;
 
                 temp.image.sprite = enemyFrame;
@@ -209,6 +257,13 @@ public class TimelineUI : MonoBehaviour
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.RealtimeEvents)
             {
+                temp.lane = TimelineLane.Center;
+
+                if (!_midLane.Contains(temp))
+                {
+                    _midLane.Add(temp);
+                }
+
                 temp.element.iconTimeline = temp;
 
                 temp.image.sprite = eventFrame;
@@ -218,6 +273,13 @@ public class TimelineUI : MonoBehaviour
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.Items)
             {
+                temp.lane = TimelineLane.Center;
+
+                if (!_bottomLane.Contains(temp))
+                {
+                    _bottomLane.Add(temp);
+                }
+
                 temp.element.iconTimeline = temp;
 
                 temp.image.sprite = itemFrame;
@@ -228,6 +290,11 @@ public class TimelineUI : MonoBehaviour
 
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.PlayerDeath)
             {
+                temp.lane = TimelineLane.Center;
+                if (!_midLane.Contains(temp))
+                {
+                    _midLane.Add(temp);
+                }
                 temp.element.iconTimeline = temp;
                 temp.upSupport.sprite = downSupport;
                 temp.offset = 0;
@@ -235,6 +302,13 @@ public class TimelineUI : MonoBehaviour
 
             else if(battleController.timelineElements[i].timelineTypes == TimeLineTypes.EnemyEvent)
             {
+                temp.lane = TimelineLane.Center;
+
+                if (!_bottomLane.Contains(temp))
+                {
+                    _bottomLane.Add(temp);
+                }
+
                 temp.element.iconTimeline = temp;
                 temp.upSupport.GetComponent<Image>().enabled = true;
 
@@ -248,6 +322,13 @@ public class TimelineUI : MonoBehaviour
 
             else if(battleController.timelineElements[i].timelineTypes == TimeLineTypes.HunterEvent)
             {
+                temp.lane = TimelineLane.Top;
+
+                if (!_topLane.Contains(temp))
+                {
+                    _topLane.Add(temp);
+                }
+
                 temp.image.sprite = playerFrame;
                 temp.element.iconTimeline = temp;
                 temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
@@ -298,11 +379,8 @@ public class TimelineUI : MonoBehaviour
     {
         currentActorFrame.enabled = true;
         currentActorIcon.enabled = true;
+        element.iconTimeline.isActing = true;
 
-        if(element.iconTimeline.prevIcon != null)
-        {
-            element.iconTimeline.ReturnIcon(element.iconTimeline.prevIcon);
-        }
         switch (element.timelineTypes)
         {
             case TimeLineTypes.Null:
@@ -342,5 +420,6 @@ public class TimelineUI : MonoBehaviour
     public void ShowTimelineIcon(TimelineElements element)
     {
         element.iconTimeline.gameObject.SetActive(true);
+        element.iconTimeline.isActing = false;
     }
 }

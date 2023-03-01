@@ -7,6 +7,7 @@ public class EventActiveState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.StartAction();
         owner.isTimeLineActive = false;
         owner.turnStatusUI.ActivateTurn("Event");
         StartCoroutine(EventCoroutine());
@@ -22,6 +23,8 @@ public class EventActiveState : BattleState
 
         owner.environmentEvent.ApplyEffect();
         yield return new WaitForSeconds(1);
+
+        owner.FinishAction();
         owner.ChangeState<TimeLineState>();
 
     }

@@ -266,7 +266,9 @@ public class PlayerUnit : Unit
                     iconTimeline.velocityText.gameObject.SetActive(true);
                     Debug.Log("HA DEJADO DE STUNEARSE");
                     iconTimeline.SetTimelineIconTextVelocity();
-                    iconTimeline.DisableStun();
+
+                    //Disabling Stun icon for now
+                    //iconTimeline.DisableStun();
                 }
 
                 return false;
