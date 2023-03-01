@@ -7,6 +7,7 @@ public class PlayerUnitDeathState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.StartAction();
         owner.isTimeLineActive = false;
         StartCoroutine(DeathSequence());
     }
@@ -23,6 +24,8 @@ public class PlayerUnitDeathState : BattleState
         yield return null;
         
         owner.isTimeLineActive = true;
+        owner.FinishAction();
+
         owner.ChangeState<TimeLineState>();
     }
 }

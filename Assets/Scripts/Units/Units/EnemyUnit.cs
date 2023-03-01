@@ -149,7 +149,7 @@ public class EnemyUnit : Unit
     {
         health -= (int)damage;
         //DamageEffect();
-        monsterUI.CreatePopUpText(transform.position, (int)damage);
+        monsterUI.CreatePopUpText(transform.position+ new Vector3(0, 1, 0), (int)damage);
 
         monsterControl.monsterAnimations.SetTrigger("damage");
 

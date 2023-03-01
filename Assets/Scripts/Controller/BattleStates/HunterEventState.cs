@@ -9,6 +9,8 @@ public class HunterEventState : BattleState
         base.Enter();
         Debug.Log("Bruh");
         owner.isTimeLineActive = false;
+
+        owner.StartAction();
         StartCoroutine(ApplyEvent());
     }
 
@@ -24,6 +26,9 @@ public class HunterEventState : BattleState
 
         owner.currentHunterEvent.elementEnabled = false;
         owner.timelineElements.Remove(owner.currentHunterEvent);
+        owner.FinishAction();
+
+
         owner.currentHunterEvent = null;
         owner.ChangeState<TimeLineState>();
     }

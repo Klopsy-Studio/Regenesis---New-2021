@@ -67,7 +67,6 @@ public abstract class TimelineElements : MonoBehaviour
 
     public float previewTime;
 
-
     public float GetActionBarPosition()
     {
         return Mathf.Clamp01(timelineFill / timelineFull);

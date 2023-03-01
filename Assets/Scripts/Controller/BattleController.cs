@@ -397,6 +397,26 @@ public class BattleController : StateMachine
         }
     }
 
+    public void ReorganizeIcons()
+    {
+        foreach(TimelineElements e in timelineElements)
+        {
+            e.iconTimeline.timelineEnabled = false;
+            e.iconTimeline.PutPreviousOnTop();
+        }
+    }
+
+    public void ResetIcons()
+    {
+        foreach (TimelineElements e in timelineElements)
+        {
+            if(e.iconTimeline.previousPosition != null)
+            {
+                e.iconTimeline.timelineEnabled = true;
+                e.iconTimeline.ResetPrevious();
+            }
+        }
+    }
     public void ToggleTimeline()
     {
         pauseTimeline = !pauseTimeline;
@@ -465,5 +485,19 @@ public class BattleController : StateMachine
     public void LoadingScreen()
     {
         SceneManager.LoadScene("LoadingScreen");
+    }
+
+    public void StartAction()
+    {
+        pauseTimelineButton.canBeSelected = false;
+        resumeTimelineButton.canBeSelected = false;
+        pauseTimelineButton.onUp.Invoke();
+    }
+
+    public void FinishAction()
+    {
+        pauseTimelineButton.canBeSelected = true;
+        resumeTimelineButton.canBeSelected = true;
+        resumeTimelineButton.onUp.Invoke();
     }
 }

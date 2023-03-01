@@ -7,6 +7,7 @@ public class SelectUnitState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.StartAction();
         //StartCoroutine(CanAct());
         StartCoroutine(SelectUnitCoroutine());
     }

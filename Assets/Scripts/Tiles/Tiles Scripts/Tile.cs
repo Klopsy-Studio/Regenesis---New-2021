@@ -86,9 +86,23 @@ public class Tile : MonoBehaviour
 
     public void ActivateTileSelection()
     {
+        if(content != null)
+        {
+            if (!occupied && !content.GetComponent<Unit>())
+            {
+                tileIndicator.SetActive(true);
+            }
+            else
+            {
+                content.GetComponent<Unit>().tileIndicator.gameObject.SetActive(true);
+            }
+        }
         if (tileIndicator != null)
         {
-            tileIndicator.SetActive(true);
+            if (!occupied)
+            {
+                tileIndicator.SetActive(true);
+            }
         }
     }
 
@@ -97,6 +111,14 @@ public class Tile : MonoBehaviour
         if (tileIndicator != null)
         {
             tileIndicator.SetActive(false);
+        }
+
+        if(content!=null)
+        {
+            if(content.GetComponent<Unit>() != null)
+            {
+                content.GetComponent<Unit>().tileIndicator.SetActive(false);
+            }
         }
     }
     public void Match() //Matches the values of the variables with the gameObjects transforms values
