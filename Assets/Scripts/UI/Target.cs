@@ -31,19 +31,27 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             owner.selectedTarget = this;
             controller.SelectTile(targetPosition);
 
+
             switch (targetType)
             {
                 case AbilityTargetType.BigMonster:
                     controller.tileSelectionToggle.MakeTileSelectionBig();
+                    owner.indicator.SetTarget(targetPosition, 3);
                     break;
                 case AbilityTargetType.Enemies:
                     controller.tileSelectionToggle.MakeTileSelectionSmall();
+                    owner.indicator.SetTarget(targetPosition, 2.5f);
+
                     break;
                 case AbilityTargetType.Allies:
                     controller.tileSelectionToggle.MakeTileSelectionSmall();
+                    owner.indicator.SetTarget(targetPosition, 2.5f);
+
                     break;
                 case AbilityTargetType.Obstacles:
                     controller.tileSelectionToggle.MakeTileSelectionSmall();
+                    owner.indicator.SetTarget(targetPosition, 2.5f);
+
                     break;
                 default:
                     break;
@@ -58,6 +66,7 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (!owner.stopSelection)
         {
+            owner.indicator.DeactivateTarget();
             owner.selectedTarget = null;
             targetDisplay.color = defaultColor;
             controller.tileSelectionToggle.MakeTileSelectionSmall();

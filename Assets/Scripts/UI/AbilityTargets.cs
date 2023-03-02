@@ -8,7 +8,7 @@ public class AbilityTargets : MonoBehaviour
     public GameObject parent;
     public BattleController controller;
     public Target selectedTarget;
-
+    public TargetIndicator indicator;
     public List<Target> currentTargets;
 
     bool monsterTargetted;
