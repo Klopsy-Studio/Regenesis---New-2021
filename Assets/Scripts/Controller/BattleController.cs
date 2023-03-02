@@ -59,7 +59,7 @@ public class BattleController : StateMachine
     public GameObject defeatScreen;
     public MenuButton pauseButton;
     public MiniStatus miniStatus;
-
+    [HideInInspector] public TimelineIconUI currentSelectedIcon;
     [SerializeField] Animator sceneTransition;
     [Space]
     [Header("Combat Variables")]

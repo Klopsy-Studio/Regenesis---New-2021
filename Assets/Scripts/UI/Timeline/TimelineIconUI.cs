@@ -199,7 +199,6 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 if (owner.selectedIcon.selected)
                 {
                     owner.selectedIcon.selected = false;
-                    owner.selectedIcon.Return();
                 }
             }
             
