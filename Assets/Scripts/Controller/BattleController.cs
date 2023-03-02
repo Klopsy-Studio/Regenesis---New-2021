@@ -410,11 +410,15 @@ public class BattleController : StateMachine
     {
         foreach (TimelineElements e in timelineElements)
         {
-            if(e.iconTimeline.previousPosition != null)
+            if(e.iconTimeline != null)
             {
-                e.iconTimeline.timelineEnabled = true;
-                e.iconTimeline.ResetPrevious();
+                if (e.iconTimeline.previousPosition != null)
+                {
+                    e.iconTimeline.timelineEnabled = true;
+                    e.iconTimeline.ResetPrevious();
+                }
             }
+
         }
     }
     public void ToggleTimeline()
