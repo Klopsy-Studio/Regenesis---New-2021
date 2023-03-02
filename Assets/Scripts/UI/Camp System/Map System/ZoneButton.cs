@@ -15,7 +15,6 @@ public class ZoneButton : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-       
         mapManager.OpenMapPanelList(mapID);
         mapManager.missionInfoPanel.gameObject.SetActive(false);
     }

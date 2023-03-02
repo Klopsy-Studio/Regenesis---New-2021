@@ -209,6 +209,7 @@ public class TimelineUI : MonoBehaviour
         for (int i = 0; i < battleController.timelineElements.Count; i++)
         {
             temp = iconsInTimeline[i];
+            temp.owner = this;
             temp.element = battleController.timelineElements[i];
 
             if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.PlayerUnit)
@@ -346,34 +347,55 @@ public class TimelineUI : MonoBehaviour
     }
     public bool CheckMouse()
     {
-        if(battleController.timelineElements.Count > 0) 
+        if (battleController.isTimeLineActive)
         {
-            for (int i = 0; i < battleController.timelineElements.Count; i++)
+            if (battleController.timelineElements.Count > 0)
             {
-                if(content.childCount >= i)
+                for (int i = 0; i < battleController.timelineElements.Count; i++)
                 {
-                    if (content.GetChild(i) != null)
+                    if (content.childCount >= i)
                     {
-                        TimelineIconUI temp = content.GetChild(i).GetComponent<TimelineIconUI>();
-
-                        if (temp.mouseOver)
+                        if (content.GetChild(i) != null)
                         {
-                            selectedIcon = temp;
-                            return true;
+                            TimelineIconUI temp = content.GetChild(i).GetComponent<TimelineIconUI>();
+
+                            if (temp.selected)
+                            {
+                                if (selectedIcon != null)
+                                {
+                                    if (selectedIcon == temp)
+                                    {
+                                        selectedIcon.Return();
+                                        selectedIcon.selected = false;
+                                        selectedIcon = null;
+                                        return false;
+                                    }
+                                }
+                                else
+                                {
+                                    selectedIcon = temp;
+                                    selectedIcon.Grow();
+                                    selectedIcon.selected = true;
+                                    return true;
+                                }
+                            }
                         }
                     }
                 }
+
+                return false;
             }
 
-            selectedIcon = null;
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
         else
         {
             return false;
         }
-        
     }
     public void ShowIconActing(TimelineElements element)
     {

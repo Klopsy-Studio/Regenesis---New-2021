@@ -18,6 +18,7 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public Image downSupport;
 
     public bool mouseOver;
+    public bool selected;
 
     public Animator iconAnimations;
 
@@ -37,6 +38,7 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public TimelineIconUI prevIcon;
     public TimelineIconUI nextIcon;
+    public TimelineUI owner;
     public float minDistance;
     public Vector2 previousPosition;
     public float maxDistance;
@@ -59,10 +61,7 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         stunnedIndicator.SetActive(false);
     }
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        mouseOver = true;
-    }
+   
 
     void Update()
     {
@@ -189,8 +188,26 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerExit(PointerEventData eventData)
     {
         mouseOver = false;
-        Return();
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(owner.selectedIcon != null)
+        {
+            if(owner.selectedIcon != this)
+            {
+                if (owner.selectedIcon.selected)
+                {
+                    owner.selectedIcon.selected = false;
+                    owner.selectedIcon.Return();
+                }
+            }
+            
+        }
+        owner.selectedIcon = this;
+        mouseOver = true;
+    }
+
     public void Grow()
     {
         iconAnimations.SetBool("isGrow", true);
