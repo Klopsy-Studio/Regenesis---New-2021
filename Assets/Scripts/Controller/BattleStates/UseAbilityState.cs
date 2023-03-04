@@ -470,6 +470,8 @@ public class UseAbilityState : BattleState
 
     IEnumerator UseAbilitySequence(GameObject target)
     {
+        owner.targets.indicator.DeactivateTarget();
+
         attacking = true;
 
         StartCoroutine(currentAbility.sequence.Sequence(target, owner));
@@ -495,7 +497,7 @@ public class UseAbilityState : BattleState
     public IEnumerator UseAbilitySequence(List<Tile> target)
     {
         attacking = true;
-
+        owner.targets.indicator.DeactivateTarget();
         StartCoroutine(currentAbility.sequence.Sequence(target, owner));
 
         while (currentAbility.sequence.playing)

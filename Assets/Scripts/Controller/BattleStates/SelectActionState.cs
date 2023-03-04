@@ -16,6 +16,8 @@ public class SelectActionState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.turnArrow.SetTarget(owner.currentUnit.currentPoint, 3);
+        
         owner.SelectTile(owner.currentUnit.currentPoint);
         owner.tileSelectionToggle.MakeTileSelectionSmall();
         owner.DeactivateTileSelector();

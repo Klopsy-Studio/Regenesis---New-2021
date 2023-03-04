@@ -20,6 +20,7 @@ public class FinishPlayerUnitTurnState : BattleState
     {
        
         owner.currentUnit.SetVelocityWhenTurnIsFinished();
+        owner.turnArrow.DeactivateTarget();
         //Debug.Log("CURRENT VELOCITY ES " + owner.currentUnit.TimelineVelocity + " CURRENT UNIT ACTIONS " + owner.currentUnit.ActionsPerTurn);
         owner.currentUnit.didNotMove = true;
         owner.currentUnit.timelineFill = 0;
