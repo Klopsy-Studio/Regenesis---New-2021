@@ -47,5 +47,6 @@ public class MovementRange : AbilityRange
     {
         range = rangeData.movementRange;
         removeOrigin = rangeData.removeOrigin;
+        removeContent = rangeData.removeContent;
     }
 }

@@ -23,6 +23,7 @@ public class CanMinionMove : ActionNode
         List<Tile> validTiles = new List<Tile>();
         List<PlayerUnit> invalidUnits = new List<PlayerUnit>();
         MovementRange m = owner.controller.GetComponent<MovementRange>();
+        m.AssignVariables(owner.controller.currentEnemy.GetComponent<MinionUnit>().movementRange);
         MonsterController controller = owner.controller;
 
         controller.tileToMove = null;

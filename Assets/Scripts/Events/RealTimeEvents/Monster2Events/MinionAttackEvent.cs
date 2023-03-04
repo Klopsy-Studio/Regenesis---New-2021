@@ -16,7 +16,7 @@ public class MinionAttackEvent : MonsterEvent
         {
             tiles = GetEventTiles();
             battleController.SelectTile(controller.currentEnemy.tile.pos);
-            //Tile animation:
+
             yield return new WaitForSeconds(1);
             List<PlayerUnit> targets = new List<PlayerUnit>();
             battleController.board.SelectAttackTiles(tiles);
@@ -46,13 +46,11 @@ public class MinionAttackEvent : MonsterEvent
                 }
             }
         }
-        
 
         controller.monsterAnimations.SetBool("roar", true);
         controller.monsterAnimations.SetBool("idle", false);
 
         ActionEffect.instance.Play(6, 0.5f, 0.01f, 0.05f);
-
 
         while (ActionEffect.instance.play || ActionEffect.instance.recovery)
         {
@@ -69,7 +67,6 @@ public class MinionAttackEvent : MonsterEvent
 
     public override List<Tile> GetEventTiles()
     {
-
         if(controller.minionsInGame.Count > 0)
         {
             List<Tile> eventTiles = new List<Tile>();

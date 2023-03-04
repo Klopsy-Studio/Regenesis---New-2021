@@ -38,7 +38,7 @@ public class CheckAttackRangeDecisionDrawer : PropertyDrawer
                 return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 4;
 
             case TypeOfAbilityRange.Normal:
-                return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 4;
+                return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 5;
 
             case TypeOfAbilityRange.Item:
                 return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 5;
@@ -111,6 +111,7 @@ public class CheckAttackRangeDecisionDrawer : PropertyDrawer
             case TypeOfAbilityRange.Normal:
                 DisplayVariable("movementRange", ref position, property);
                 DisplayVariable("removeOrigin", ref position, property);
+                DisplayVariable("removeContent", ref position, property);
 
                 break;
             case TypeOfAbilityRange.Item:

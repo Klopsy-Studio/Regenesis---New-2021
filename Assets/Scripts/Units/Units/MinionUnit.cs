@@ -5,7 +5,8 @@ using UnityEngine;
 public class MinionUnit : EnemyUnit
 {
     public MonsterController parent;
-    [SerializeField] RangeData range;
+    public RangeData movementRange;
+    [SerializeField] List<RangeData> eventAttackRange;
 
 
     protected override void Start()
@@ -36,18 +37,26 @@ public class MinionUnit : EnemyUnit
     }
     public List<Tile> GetMinionAttackArea(Board board)
     {
-        AbilityRange ability = range.GetOrCreateRange(range.range, this.gameObject);
-        ability.unit = this;
-        List<Tile> dirtyTiles = ability.GetTilesInRange(board);
         List<Tile> validTiles = new List<Tile>();
-
-        foreach(Tile t in dirtyTiles)
+        foreach (RangeData range in eventAttackRange)
         {
-            if (!t.occupied)
+            AbilityRange ability = range.GetOrCreateRange(range.range, this.gameObject);
+            ability.unit = this;
+            List<Tile> dirtyTiles = ability.GetTilesInRange(board);
+
+
+            foreach (Tile t in dirtyTiles)
             {
-                validTiles.Add(t);
+                if (!t.occupied && !validTiles.Contains(t))
+                {
+                    validTiles.Add(t);
+                }
             }
+
         }
+
+
+
 
         return validTiles;
     }
