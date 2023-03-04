@@ -145,15 +145,15 @@ public class EnemyUnit : Unit
         }
     }
 
-    public override bool ReceiveDamage(float damage)
+    public override bool ReceiveDamage(int damage, bool isCritical)
     {
         health -= (int)damage;
         //DamageEffect();
-        monsterUI.CreatePopUpText(transform.position+ new Vector3(0, 1, 0), (int)damage);
+        monsterUI.CreatePopUpText(transform.position + new Vector3(0, 1, 0), (int)damage, isCritical);
 
         monsterControl.monsterAnimations.SetTrigger("damage");
 
-        if(health <= lowHealth)
+        if (health <= lowHealth)
         {
             monsterControl.monsterAnimations.SetTrigger("lowHealth");
         }
@@ -170,4 +170,5 @@ public class EnemyUnit : Unit
             return false;
         }
     }
+   
 }

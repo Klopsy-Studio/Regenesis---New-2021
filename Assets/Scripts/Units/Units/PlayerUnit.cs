@@ -316,8 +316,7 @@ public class PlayerUnit : Unit
         return range.GetTilesInRange(board);
     }
 
-
-    public override bool ReceiveDamage(float damage)
+    public override bool ReceiveDamage(int damage, bool isCritical)
     {
         health -= (int)damage;
 

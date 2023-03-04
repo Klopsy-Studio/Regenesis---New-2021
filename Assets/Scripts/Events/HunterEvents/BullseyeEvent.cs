@@ -20,7 +20,7 @@ public class BullseyeEvent : HunterEvent
                 Unit u = target.GetComponent<Unit>();
                 for (int i = 0; i < numberOfAttacks; i++)
                 {
-                    u.ReceiveDamage(ability.CalculateDmg(unit, u));
+                    u.ReceiveDamage(ability.CalculateDmg(unit, u), ability.isCritical);
 
                     //Replace with charge animation
                     unit.Attack();

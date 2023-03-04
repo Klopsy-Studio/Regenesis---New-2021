@@ -65,8 +65,8 @@ public class BattleController : StateMachine
     [Header("Combat Variables")]
     [HideInInspector] public int attackChosen;
     public List<TimelineElements> timelineElements;
-    public int moveCost;
-    public int itemCost;
+    [Range(0,5)]public int moveCost;
+    [Range(0,5)] public int itemCost;
 
     
 

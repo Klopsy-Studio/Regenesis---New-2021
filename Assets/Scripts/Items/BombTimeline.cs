@@ -49,7 +49,7 @@ public class BombTimeline : ItemElements
             {
                 if (t.content.TryGetComponent(out Unit unit))
                 {
-                    unit.ReceiveDamage(damage);
+                    unit.ReceiveDamage(damage, false);
                     unit.Damage();
 
                     if(unit.GetComponent<EnemyUnit>() == controller.enemyUnits[0])
@@ -61,7 +61,7 @@ public class BombTimeline : ItemElements
                 if(t.occupied && !monsterDamaged)
                 {
                     Unit monster = controller.enemyUnits[0];
-                    monster.ReceiveDamage(30);
+                    monster.ReceiveDamage(30, false);
                     monster.Damage();
                     monster.DamageEffect();
                     monsterDamaged = true;
@@ -76,7 +76,7 @@ public class BombTimeline : ItemElements
             if(t.occupied && !monsterDamaged)
             {
                 Unit monster = controller.enemyUnits[0];
-                monster.ReceiveDamage(30);
+                monster.ReceiveDamage(30, false);
                 monster.Damage();
                 monster.DamageEffect();
                 monsterDamaged = true;

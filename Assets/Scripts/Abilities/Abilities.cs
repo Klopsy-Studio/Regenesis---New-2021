@@ -58,7 +58,7 @@ public class Abilities : ScriptableObject
 
     [Header("Damage")]
     //Variables relacionado con daño
-    float finalDamage;
+    int finalDamage;
     
     [Range(0f, 1f)]
     [SerializeField] public float abilityModifier;
@@ -99,6 +99,8 @@ public class Abilities : ScriptableObject
 
     public List<AbilityTargetType> elementsToTarget;
 
+    [HideInInspector] public bool isCritical;
+
     public bool CanDoAbility(int actionPoints)
     {
         if(actionPoints < actionCost)
@@ -110,7 +112,9 @@ public class Abilities : ScriptableObject
             return true;
         }
     }
-  
+
+
+
     public bool CanDoAbility(int actionPoints, PlayerUnit user)
     {
         if (actionPoints < actionCost || user.gunbladeAmmoAmount < ammoCost)
@@ -132,19 +136,21 @@ public class Abilities : ScriptableObject
     {
         originalAbilityModifier = abilityModifier;
         float criticalDmg = 1f;
-
+        bool criticalModifier = false;
         if(target.debuffModifiers != null && target.debuffModifiers.Count > 0)
         {
             List<Modifier> trashModifiers = new List<Modifier>();
 
             foreach(Modifier d in target.debuffModifiers)
             {
-                if(d.modifierType == TypeOfModifier.Critical)
+                if(d.modifierType == TypeOfModifier.Critical && !criticalModifier)
                 {
+                    criticalDmg = 1.5f;
+                    criticalModifier = true;
+
                     if (d.SpendModifier())
                     {
                         trashModifiers.Add(d);
-                        criticalDmg = 1.5f;
                     }
                 }
             }
@@ -195,7 +201,7 @@ public class Abilities : ScriptableObject
             }
         }
 
-        finalDamage = (((user.power * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier) - target.defense;
+        finalDamage = (int)((((user.power * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier) - target.defense);
 
         if(finalDamage <= 0)
         {
@@ -203,9 +209,19 @@ public class Abilities : ScriptableObject
         }
 
         abilityModifier = originalAbilityModifier;
+
+        if(criticalDmg > 1)
+        {
+            isCritical = true;
+        }
+        else
+        {
+            isCritical = false;
+        }
         target.ResetValues();
 
-        return (int)finalDamage;
+        return finalDamage;
+
     }
 
 
@@ -216,72 +232,12 @@ public class Abilities : ScriptableObject
         if (Random.value * 100 <= player.criticalPercentage) criticalDmg = 1.5f;
 
         float elementDmg = ElementsEffectiveness.GetEffectiveness(player.attackElement, target.defenseElement);
-        finalDamage = (((player.power * criticalDmg) + (player.power * player.elementPower) * elementDmg) * abilityModifier) - target.defense;
+        finalDamage = (int)(((player.power * criticalDmg) + (player.power * player.elementPower) * elementDmg) * abilityModifier) - target.defense;
     }
     void CalculateHeal()
     {
         //Fill with calculate heal code
         finalHeal = initialHeal;
     }
-
-
-  
-    public void UseAbility(Unit target, BattleController controller)
-    {
-        //AQUI YA NO SE HACE EL ACTION COST
-        //target.ActionsPerTurn -= ActionCost;
-        //controller.currentUnit.actionsPerTurn -= actionCost;
-
-        switch (abilityEffect)
-        {
-            case EffectType.Damage:
-                AudioManager.instance.Play(soundString);
-                //target.DamageEffect();
-
-                if (target.GetComponent<EnemyUnit>())
-                {
-                    CalculateDmg(controller.currentUnit,target.GetComponent<EnemyUnit>());
-                    if (target.ReceiveDamage(finalDamage))
-                    {
-                        ActionEffect.instance.Play(cameraSize, effectDuration, shakeIntensity, shakeDuration);
-                        target.GetComponent<EnemyUnit>().Die();
-                    }
-                    else
-                    {
-                        ActionEffect.instance.Play(cameraSize, effectDuration, shakeIntensity, shakeDuration);
-                    }
-
-                    target.GetComponent<UnitUI>().CreatePopUpText(target.transform.position, (int)finalDamage);
-
-                }
-                else
-                {
-                    PlayerUnit u = target.GetComponent<PlayerUnit>();
-                    ActionEffect.instance.Play(cameraSize, effectDuration, shakeIntensity, shakeDuration);
-
-                    CalculateDmg(controller.currentUnit,u);
-                    u.ReceiveDamage(finalDamage);
-                }
-
-                break;
-                
-            case EffectType.Heal:
-                CalculateHeal();
-                target.Heal(finalHeal);
-                ActionEffect.instance.Play(cameraSize, effectDuration, shakeIntensity, shakeDuration);
-
-                break;
-            case EffectType.Buff:
-                //Fill with buff code
-                break;
-            case EffectType.Debuff:
-                //Fill with debuff code
-                break;
-            default:
-                break;
-        }
-    }
-
-
 
 }

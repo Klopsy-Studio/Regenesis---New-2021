@@ -74,43 +74,10 @@ public class ThunderEvent : RealTimeEvents
             particleEffect1.Add(i);
            
         }
-
-
-
     }
 
 
-    IEnumerator AttackOnTile()
-    {
-        yield return new WaitForSeconds(timeUntilHit);
-        //RECOGER LAS TILES SELECCIONADAS DE FORMA ALEATORIA
-        CameraShake.instance.Shake(0.1f, 0.3f);
-
-        foreach (var x in randomTile)
-        {
-            GameObject i = Instantiate(particleEffects.explosionEffect, x.transform.position, x.transform.rotation) as GameObject;
-            particleEffect1.Add(i);
-            if (x.content == null) continue;
-            if (x.content.TryGetComponent(out Unit unit))
-            {
-                Debug.Log("YEEEEEEEEEEEEEEEEEEEEEEEEE");
-             
-                unit.ReceiveDamage(5);
-            }
-            else
-            {
-                Debug.Log("NOOOOOOOOO");
-            }
-        }
-        yield return new WaitForSeconds(0.2f);
-        foreach (var x in particleEffect1)
-        {
-            Destroy(x);
-        }
-        //CHECKEAR SI LA TILE TIENE UN GAMEOBJECT. SI TIENE, CHECKEAR QUE ES UNA UNIDAD. SI ES UNA UNIDAD, HACERLE DAÑO
-        //HACER ANIMACIÓN
-
-    }
+   
 
 
 

@@ -213,7 +213,7 @@ public class Unit : TimelineElements
             timelineFill = 0;
         }
     }
-    public virtual bool ReceiveDamage(float damage)
+    public virtual bool ReceiveDamage(int damage, bool isCritical)
     {
 
         health -= (int)damage;

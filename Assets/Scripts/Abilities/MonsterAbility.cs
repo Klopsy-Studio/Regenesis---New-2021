@@ -315,8 +315,9 @@ public class MonsterAbility : ScriptableObject
 
     public void UseAbility(PlayerUnit target, EnemyUnit enemy, BattleController controller)
     {
+        //It's always true since we don't show critcial hits from monsters to units
         CalculateDmg(enemy, target);
-        target.ReceiveDamage(finalDamage);
+        target.ReceiveDamage((int)finalDamage, true);
     }
 
     void CalculateDmg(EnemyUnit enemy, PlayerUnit target)
