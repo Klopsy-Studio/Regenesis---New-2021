@@ -14,6 +14,7 @@ public class SmokeBombTimeline : MonoBehaviour
 
         foreach(Tile t in tiles)
         {
+            t.SetSmokeBomb();
             if(t.content != null)
             {
                 if(t.content.GetComponent<Unit>() != null)

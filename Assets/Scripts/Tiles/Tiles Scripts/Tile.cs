@@ -25,7 +25,12 @@ public class Tile : MonoBehaviour
     
     public string displayName;
 
+    
+
     public List<TileModifier> modifiers = new List<TileModifier>();
+    
+
+    
     public GameObject content
     {
         get
@@ -72,8 +77,9 @@ public class Tile : MonoBehaviour
     [HideInInspector] public GameObject previousObject;
     public Color previousColor;
     Color currentColor;
-
-
+    [Space]
+    [Header("VFX")]
+    [SerializeField] Animator smokeBombVfx;
 
     private void Start()
     {
@@ -139,6 +145,17 @@ public class Tile : MonoBehaviour
         Match();
     }
     
+    public void SetSmokeBomb()
+    {
+        if(smokeBombVfx != null)
+        {
+            smokeBombVfx.SetTrigger("smoke");
+        }
+        else
+        {
+            Debug.Log("Smoke Bomb VFX animator component is missing");
+        }
+    }
     public void Load (Point p, int h)
     {
         pos = p;
