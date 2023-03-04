@@ -14,17 +14,19 @@ public class BullseyeEvent : HunterEvent
         {
             ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
 
-
+            
             if (target.GetComponent<Unit>() != null)
             {
                 Unit u = target.GetComponent<Unit>();
                 for (int i = 0; i < numberOfAttacks; i++)
                 {
-                    u.ReceiveDamage(ability.CalculateDmg(unit, u), ability.isCritical);
-
-                    //Replace with charge animation
-                    unit.Attack();
-                    yield return new WaitForSeconds(0.7f);
+                    if(target != null)
+                    {
+                        u.ReceiveDamage(ability.CalculateDmg(unit, u), ability.isCritical);
+                        //Replace with charge animation
+                        unit.Attack();
+                        yield return new WaitForSeconds(0.7f);
+                    }
                 }
             }
 

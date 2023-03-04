@@ -17,7 +17,6 @@ public class PopUpText : MonoBehaviour
     {
         textMesh.SetText(damageAmount.ToString());
         textAnim.SetTrigger("dmg");
-
     }
 
     public void SetUpCritical(int damageAmount)
