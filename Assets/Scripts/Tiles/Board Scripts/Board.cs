@@ -22,6 +22,7 @@ public class Board : MonoBehaviour //Adjust to new level creation system. Exampl
     [SerializeField] GameObject regularObstaclePrefab;
     [SerializeField] Transform battleController;
 
+    public List<Tile> tiles = new List<Tile>();
     public Dictionary<Point, Tile> playableTiles = new Dictionary<Point, Tile>();
     public Dictionary<Point, Tile> nonPlayableTiles = new Dictionary<Point, Tile>();
 
@@ -140,6 +141,7 @@ public class Board : MonoBehaviour //Adjust to new level creation system. Exampl
         if (t.data.isPlayable)
         {
             playableTiles.Add(t.pos, t);
+            tiles.Add(t);
         }
         else
         {

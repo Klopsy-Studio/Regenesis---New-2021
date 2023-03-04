@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5214656392928235094}
   - component: {fileID: 3337661619173391376}
   - component: {fileID: 7487466861869081861}
+  - component: {fileID: 450038919569406928}
   m_Layer: 0
   m_Name: TILE_Prefab
   m_TagString: Untagged
@@ -76,7 +77,6 @@ MonoBehaviour:
   model: {fileID: 246012959341213872}
   tileSprite: {fileID: 5503985753933667106}
   displayName: 'Choose Non Playable Tile '
-  smokeBombVfx: {fileID: 1799459421924279037}
   occupied: 0
   m_content: {fileID: 0}
   prev: {fileID: 0}
@@ -94,6 +94,27 @@ MonoBehaviour:
   selectAttackObject: {fileID: 7036329381875763367}
   previousObject: {fileID: 0}
   previousColor: {r: 0, g: 0, b: 0, a: 0}
+  smokeBombVfx: {fileID: 1799459421924279037}
+--- !u!114 &450038919569406928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45075749238876833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827fad8a48ca0824bb79f7a6b00193ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontal: 1
+  vertical: 2147483647
+  unit: {fileID: 0}
+  startPos:
+    x: 0
+    y: 0
+  squareReach: 2
+  removeOrigin: 0
 --- !u!1 &97587546778222318
 GameObject:
   m_ObjectHideFlags: 0

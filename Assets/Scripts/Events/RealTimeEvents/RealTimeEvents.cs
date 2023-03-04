@@ -11,18 +11,19 @@ public abstract class RealTimeEvents : TimelineElements
 
     Board board;
     public Board Board { get { return board; } set { board = value; } }
-    [SerializeField] protected BattleController battleController;
+    public BattleController battleController;
 
     protected virtual void Start()
+    {
+       
+    }
+
+    public virtual void InitialSettings()
     {
         timelineTypes = TimeLineTypes.RealtimeEvents;
         //fTimelineVelocity = 0;
         board = battleController.board;
     }
-
-
-   
-
     public override bool UpdateTimeLine()
     {
         timelineFill += fTimelineVelocity * Time.deltaTime;
