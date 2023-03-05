@@ -4,24 +4,20 @@ using UnityEngine;
 
 public class MonsterMovement : WalkMovement
 {
-
     public bool allowStun = false;
 
     public override void PushUnit(Directions pushDir, int pushStrength, Board board)
     {
+        List<Tile> tiles = new List<Tile>();
         LineAbilityRange lineRange = GetComponent<LineAbilityRange>();
         lineRange.lineDir = pushDir;
         lineRange.lineLength = pushStrength;
-        //lineRange.lineOffset = pushStrength - 1;
-        lineRange.stopLine = true; 
+        lineRange.lineOffset = pushStrength-1;
+        lineRange.stopLine = true;
+        tiles = lineRange.GetTilesInRange(board);
 
-        CrossAbilityRange crossRange = GetComponent<CrossAbilityRange>();
-        crossRange.offset = pushStrength - 1;
-        crossRange.crossLength = pushStrength;
-        range = pushStrength;
-        List<Tile> tiles = lineRange.GetTilesInRange(board);
+        board.SelectAttackTiles(tiles);
         Tile desiredTile = null;
-
 
         for (int i = 0; i < tiles.Count; i++)
         {
@@ -38,7 +34,6 @@ public class MonsterMovement : WalkMovement
 
         if (desiredTile != null)
         {
-            desiredTile.prev = unit.tile;
             StartCoroutine(Traverse(desiredTile, board));
         }
         else

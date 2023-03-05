@@ -94,6 +94,7 @@ public class MonsterAttack : ActionNode
                             break;
                         case TypeOfEffect.SlowDown:
                             e.SlowDown(u);
+                            u.AddDebuff(new Modifier { modifierType = TypeOfModifier.TimelineSpeed });
                             break;
                         default:
                             break;

@@ -49,7 +49,10 @@ public class WalkMovement : Movement
 
         if (unit.GetComponent<EnemyUnit>() != null)
         {
-            unit.GetComponent<EnemyUnit>().UpdateMonsterSpace(board);
+            if(unit.GetComponent<EnemyUnit>().enemyType == TypeOfEnemy.Big)
+            {
+                unit.GetComponent<EnemyUnit>().UpdateMonsterSpace(board);
+            }
         }
 
         if(unit.GetComponent<PlayerUnit>()!= null)

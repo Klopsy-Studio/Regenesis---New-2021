@@ -212,11 +212,17 @@ MonoBehaviour:
   - rid: 2618830315170824198
   - rid: 2618830315170824199
   - rid: 2618830315170824200
+  - rid: 6380324262534447104
+  - rid: 6380324262534447105
+  - rid: 6380324262534447106
+  - rid: 6380324262534447107
+  - rid: 6380324262534447109
+  - rid: 6380324262534447110
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: -1556, y: -266.4, z: 0}
-  viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
+  viewPosition: {x: 441.6, y: 148.8, z: 0}
+  viewScale: {x: 0.25, y: 0.25, z: 1}
   references:
     version: 2
     RefIds:
@@ -273,7 +279,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 10dbd4d6b486cbb4387e7c49780aed5c
-        position: {x: -1701.4861, y: 469.80862}
+        position: {x: -1708.596, y: 482.39996}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -1228,14 +1234,14 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 59e39dd54f8f1bc4087556bc15ef9592
-        position: {x: 3369.511, y: 816.81805}
+        position: {x: 3363.9768, y: 816.79987}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        checkType: 0
-        numberToCheck: 0
+        checkType: 4
+        numberToCheck: 1
     - rid: 2618830156117311586
       type: {class: Selector, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -1481,7 +1487,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        value: 1
+        value: 0
     - rid: 2618830156117311607
       type: {class: SpawnEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -2618,7 +2624,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 97e1d61222552b645b9bd9470aca1191
-        position: {x: 8502.259, y: 1252.7296}
+        position: {x: 8502.4, y: 1236}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -2626,6 +2632,7 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         children:
         - rid: 2618830156117311693
+        - rid: 6380324262534447105
         - rid: 2618830156117311694
     - rid: 2618830156117311693
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
@@ -2647,7 +2654,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: cffee5f911f27b44bbe6268e00d72602
-        position: {x: 8774.259, y: 1426.7296}
+        position: {x: 8921.199, y: 1426.4}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -2683,6 +2690,7 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         children:
         - rid: 2618830156117311697
+        - rid: 6380324262534447104
         - rid: 2618830156117311698
     - rid: 2618830156117311697
       type: {class: SpawnEvent, ns: , asm: Assembly-CSharp}
@@ -2690,7 +2698,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 39974bff02a78a94fa3e008a48eddf30
-        position: {x: 7582.7603, y: 1730.9996}
+        position: {x: 7503.3145, y: 1731.2001}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Minion Attack
@@ -2704,7 +2712,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 51354dbdd8ba804449562e970695bde8
-        position: {x: 7805.851, y: 1730.9998}
+        position: {x: 7900, y: 1731.2001}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -2768,6 +2776,7 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         children:
         - rid: 2618830156117311703
+        - rid: 6380324262534447106
         - rid: 2618830156117311704
     - rid: 2618830156117311703
       type: {class: MonsterMark, ns: , asm: Assembly-CSharp}
@@ -2793,7 +2802,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 6b9129ccd79084641a6de2e1a2c91e96
-        position: {x: 9146, y: 2027.9998}
+        position: {x: 9373.6, y: 2027.9999}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -2859,6 +2868,7 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         children:
         - rid: 2618830156117311709
+        - rid: 6380324262534447107
         - rid: 2618830156117311710
     - rid: 2618830156117311709
       type: {class: MonsterAttack, ns: , asm: Assembly-CSharp}
@@ -2866,7 +2876,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: d4113c4150d57dd4dba347100047acee
-        position: {x: 7864.897, y: 2440.2383}
+        position: {x: 7688.8, y: 2440}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -2900,6 +2910,7 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         children:
         - rid: 2618830156117311712
+        - rid: 6380324262534447109
         - rid: 2618830156117311713
     - rid: 2618830156117311712
       type: {class: SpawnEvent, ns: , asm: Assembly-CSharp}
@@ -2921,7 +2932,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 6fb50385783f538479e0c4173acdc24b
-        position: {x: 8576.998, y: 2440}
+        position: {x: 8845.6, y: 2440}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -3024,6 +3035,7 @@ MonoBehaviour:
         drawGizmos: 0
         owner: {fileID: 11400000}
         children:
+        - rid: 6380324262534447110
         - rid: 2618830315170824199
     - rid: 2618830315170824199
       type: {class: FinishMonsterTurn, ns: , asm: Assembly-CSharp}
@@ -3031,7 +3043,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: d8f5b3226d34a5c489b2acad4c8e04d5
-        position: {x: 5589.999, y: 1943.9994}
+        position: {x: 5814.799, y: 1939.9998}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -3051,3 +3063,81 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         moveToCheck: 2
         monsterToCheck: 0
+    - rid: 6380324262534447104
+      type: {class: SetLastTurnMinionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 5a4098810f125b04b8d9f162e6f92c46
+        position: {x: 7697.591, y: 1730.4}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 11400000}
+        value: 1
+    - rid: 6380324262534447105
+      type: {class: SetLastTurnMinionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 041389f3a874a374baec5061e3d777a5
+        position: {x: 8685.878, y: 1426.4}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 11400000}
+        value: 1
+    - rid: 6380324262534447106
+      type: {class: SetLastTurnMinionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: e48dabbdc2a118743a7b43384311797d
+        position: {x: 9120.44, y: 2027.9999}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 11400000}
+        value: 1
+    - rid: 6380324262534447107
+      type: {class: SetLastTurnMinionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 65cf2222940199f4db61bb6c58fe114b
+        position: {x: 7863.2, y: 2440}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 11400000}
+        value: 1
+    - rid: 6380324262534447109
+      type: {class: SetLastTurnMinionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: af14c614cebad994181e85a465c6ae27
+        position: {x: 8600, y: 2440}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 11400000}
+        value: 1
+    - rid: 6380324262534447110
+      type: {class: SetLastTurnMinionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 2697594eb0d68834093c82d26a53dbbb
+        position: {x: 5552.799, y: 1944.7997}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 11400000}
+        value: 1

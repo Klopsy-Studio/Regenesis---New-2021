@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyUnit : Unit
 {
+    [Header("Enemy Type")]
+    public TypeOfEnemy enemyType;
+    [Space]
     [Header("Abilities")]
     public Abilities[] abilities;
     public Unit target;
@@ -171,4 +174,9 @@ public class EnemyUnit : Unit
         }
     }
    
+}
+
+public enum TypeOfEnemy
+{
+    Big, Small
 }

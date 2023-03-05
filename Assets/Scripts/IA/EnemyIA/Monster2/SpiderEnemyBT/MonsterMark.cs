@@ -27,7 +27,10 @@ public class MonsterMark : ActionNode
         
         if(chosenTarget.GetComponent<PlayerUnit>()!= null)
         {
-            chosenTarget.GetComponent<PlayerUnit>().marked = true;
+            PlayerUnit u = chosenTarget.GetComponent<PlayerUnit>();
+            u.marked = true;
+            u.EnableCriticalMark();
+            u.AddDebuff(monsterMark);
         }
 
         //Action Effect

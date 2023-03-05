@@ -14,7 +14,6 @@ public class LineAbilityRange : AbilityRange
         Point startPos = unit.tile.pos;
         List<Tile> retValue  = new List<Tile>();
 
-
         switch (lineDir)
         {
             case Directions.North:
@@ -67,11 +66,6 @@ public class LineAbilityRange : AbilityRange
                                     break;
                                 }
                             }
-
-                            else
-                            {
-                                retValue.Add(board.GetTile(startPos + new Point(-i, 0)));
-                            }
                         }
                         else
                         {
@@ -95,9 +89,12 @@ public class LineAbilityRange : AbilityRange
 
                             retValue.Add(t);
 
-                            if (t.content != null || t.occupied)
+                            if (stopLine)
                             {
-                                break;
+                                if (t.content != null || t.occupied)
+                                {
+                                    break;
+                                }
                             }
                         }
                         else
@@ -110,7 +107,6 @@ public class LineAbilityRange : AbilityRange
             case Directions.West:
                 for (int i = 1; i < lineLength+1; i++)
                 {
-
                     if (lineOffset >= i)
                     {
                         continue;
