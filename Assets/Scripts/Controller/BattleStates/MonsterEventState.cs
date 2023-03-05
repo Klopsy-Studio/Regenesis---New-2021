@@ -30,7 +30,6 @@ public class MonsterEventState : BattleState
         }
 
         owner.currentMonsterEvent.elementEnabled = false;
-
         owner.timelineElements.Remove(owner.currentMonsterEvent);
         owner.currentMonsterEvent = null;
         owner.FinishAction();

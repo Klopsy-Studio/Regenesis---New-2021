@@ -14,7 +14,6 @@ public class BullseyeEvent : HunterEvent
         {
             ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
 
-            
             if (target.GetComponent<Unit>() != null)
             {
                 Unit u = target.GetComponent<Unit>();
@@ -50,6 +49,8 @@ public class BullseyeEvent : HunterEvent
         {
             yield return null;
         }
+
+
         unit.animations.SetAnimation("idle");
         playing = false;
     }

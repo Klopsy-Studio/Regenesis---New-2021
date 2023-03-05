@@ -17,6 +17,11 @@ public class HunterEventState : BattleState
 
     IEnumerator ApplyEvent()
     {
+        owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.playerTurn);
+        yield return new WaitForSeconds(1f);
+        owner.turnStatusUI.StopTurnStatus();
+        yield return new WaitForSeconds(1f);
+
         owner.currentHunterEvent.Apply(owner);
 
         while (owner.currentHunterEvent.playing)
@@ -26,10 +31,8 @@ public class HunterEventState : BattleState
 
         owner.currentHunterEvent.elementEnabled = false;
         owner.timelineElements.Remove(owner.currentHunterEvent);
-        owner.FinishAction();
-
-
         owner.currentHunterEvent = null;
+        owner.FinishAction();
         owner.ChangeState<TimeLineState>();
     }
 }
