@@ -401,8 +401,12 @@ public class BattleController : StateMachine
     {
         foreach(TimelineElements e in timelineElements)
         {
-            e.iconTimeline.timelineEnabled = false;
-            e.iconTimeline.PutPreviousOnTop();
+            if(e.iconTimeline != null)
+            {
+                e.iconTimeline.timelineEnabled = false;
+                e.iconTimeline.PutPreviousOnTop();
+            }
+            
         }
     }
 
