@@ -16,27 +16,6 @@ public class Disengage : AbilitySequence
         user.SpendActionPoints(ability.actionCost);
         user.IncreaseBullets(ammoGain);
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-
-        if (target.GetComponent<Unit>())
-        {
-            Unit u = target.GetComponent<Unit>();
-
-            Attack(u);
-        }
-
-        if (target.GetComponent<BearObstacleScript>())
-        {
-            BearObstacleScript b = target.GetComponent<BearObstacleScript>();
-            b.GetDestroyed(controller.board);
-            user.Attack();
-        }
-
-        while (ActionEffect.instance.CheckActionEffectState())
-        {
-            yield return null;
-        }
-
         Tile t;
 
         if (target.GetComponent<Unit>())
@@ -52,6 +31,35 @@ public class Disengage : AbilitySequence
         {
             t = null;
         }
+
+        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
+
+        if(target != null)
+        {
+            if (target.GetComponent<Unit>())
+            {
+                Unit u = target.GetComponent<Unit>();
+
+                Attack(u);
+            }
+
+            else if (target.GetComponent<BearObstacleScript>())
+            {
+                BearObstacleScript b = target.GetComponent<BearObstacleScript>();
+                b.GetDestroyed(controller.board);
+                user.Attack();
+            }
+
+        }
+        
+        
+
+        while (ActionEffect.instance.CheckActionEffectState())
+        {
+            yield return null;
+        }
+
+        
 
         if(t != null)
         {
