@@ -19,6 +19,7 @@ public class RootsEvent : MonsterEvent
 
         foreach (Tile t in tiles)
         {
+            t.SetRootVfx();
             if(t.content != null)
             {
                 if(t.content.GetComponent<PlayerUnit>() != null)

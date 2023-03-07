@@ -79,7 +79,7 @@ public class Tile : MonoBehaviour
     Color currentColor;
     [Space]
     [Header("VFX")]
-    [SerializeField] Animator smokeBombVfx;
+    [SerializeField] Animator tileVfx;
 
     private void Start()
     {
@@ -147,13 +147,26 @@ public class Tile : MonoBehaviour
     
     public void SetSmokeBomb()
     {
-        if(smokeBombVfx != null)
+        if(tileVfx != null)
         {
-            smokeBombVfx.SetTrigger("smoke");
+            tileVfx.SetTrigger("smoke");
         }
         else
         {
-            Debug.Log("Smoke Bomb VFX animator component is missing");
+            Debug.Log("Sprite VFX animator component is missing");
+        }
+    }
+
+
+    public void SetRootVfx()
+    {
+        if (tileVfx != null)
+        {
+            tileVfx.SetTrigger("roots");
+        }
+        else
+        {
+            Debug.Log("Sprite VFX animator component is missing");
         }
     }
     public void Load (Point p, int h)
