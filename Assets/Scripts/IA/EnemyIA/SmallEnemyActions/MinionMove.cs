@@ -27,6 +27,7 @@ public class MinionMove : ActionNode
         monster.battleController.tileSelectionToggle.MakeTileSelectionBig();
         monster.CallCoroutine(m.SimpleTraverse(monster.tileToMove));
         monster.battleController.SelectTile(monster.tileToMove.pos);
+        monster.currentEnemy.MovementEffect();
 
         yield return new WaitForSeconds(1f);
 

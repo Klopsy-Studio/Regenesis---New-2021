@@ -60,6 +60,7 @@ public class Unit : TimelineElements
     [SerializeField] Animator stunEffect;
     [SerializeField] public float stunThreshold;
     [SerializeField] float stunLimit;
+    [SerializeField] Animator movementEffect;
 
     public SpriteRenderer unitSprite;
 
@@ -148,7 +149,10 @@ public class Unit : TimelineElements
         }
     }
 
-
+    public virtual void MovementEffect()
+    {
+        movementEffect.SetTrigger("move");
+    }
     private void Update()
     {
         if (thisIsMyFuckingTurn)
