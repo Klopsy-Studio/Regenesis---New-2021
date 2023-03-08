@@ -292,7 +292,8 @@ public class Unit : TimelineElements
     public virtual void Die()
     {
         controller.unitsInGame.Remove(this);
-        
+        buffIndicator.SetActive(false);
+        debuffIndicator.SetActive(false);
     }
 
     public virtual void Stun()

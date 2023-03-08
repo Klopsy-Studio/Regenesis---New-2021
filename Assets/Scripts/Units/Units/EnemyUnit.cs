@@ -111,6 +111,7 @@ public class EnemyUnit : Unit
 
     public override void Die()
     {
+        base.Die();
         monsterControl.monsterAnimations.SetBool("death", true);
         
         isDead = true;

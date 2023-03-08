@@ -218,6 +218,7 @@ public class PlayerUnit : Unit
     }
     public override void Die()
     {
+        base.Die();
         controller.playerUnits.Remove(this);
         controller.timelineElements.Remove(this);
         elementEnabled = false;
