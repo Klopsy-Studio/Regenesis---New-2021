@@ -329,28 +329,62 @@ public class MonsterAbility : ScriptableObject
 
         if(target.debuffModifiers != null)
         {
-            List<Modifier> trash = new List<Modifier>();
-            foreach(Modifier m in target.debuffModifiers)
+            if(target.debuffModifiers.Count > 0)
             {
-                if(m.modifierType == TypeOfModifier.Damage)
+                List<Modifier> trash = new List<Modifier>();
+                foreach (Modifier m in target.debuffModifiers)
                 {
-                    finalPower += m.damageIncrease;
-                    trash.Add(m);
-                }
-                
-            }
+                    if (m.modifierType == TypeOfModifier.Damage)
+                    {
+                        finalPower += m.damageIncrease;
+                        trash.Add(m);
+                    }
 
-            if(trash.Count > 0)
-            {
-                foreach (Modifier m in trash)
-                {
-                    target.RemoveDebuff(m);
                 }
+
+                if (trash.Count > 0)
+                {
+                    foreach (Modifier m in trash)
+                    {
+                        target.RemoveDebuff(m);
+                    }
+                }
+
+                target.marked = false;
             }
             
-            target.marked = false;
         }
 
+        if (target.buffModifiers != null)
+        {
+            if (target.buffModifiers.Count > 0)
+            {
+                List<Modifier> trash = new List<Modifier>();
+
+                foreach (Modifier d in target.buffModifiers)
+                {
+                    if (d.modifierType == TypeOfModifier.Defense)
+                    {
+                        abilityModifier -= d.damageReduction;
+
+                        if (d.SpendModifier())
+                        {
+                            trash.Add(d);
+                        }
+
+                        break;
+                    }
+                }
+
+                if (trash.Count > 0)
+                {
+                    foreach (Modifier d in trash)
+                    {
+                        target.RemoveBuff(d);
+                    }
+                }
+            }
+        }
         finalDamage = (((finalPower * criticalDmg) + (enemy.power * enemy.elementPower) * elementDmg) * abilityModifier)-target.defense;
 
         Debug.Log("Target: " + target.unitName + " Damage dealt: " + finalDamage);
