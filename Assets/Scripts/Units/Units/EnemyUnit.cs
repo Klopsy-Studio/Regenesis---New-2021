@@ -158,7 +158,7 @@ public class EnemyUnit : Unit
 
         if (health <= lowHealth)
         {
-            monsterControl.monsterAnimations.SetTrigger("lowHealth");
+            monsterControl.monsterAnimations.SetFloat("health", 1);
         }
 
         if (health <= 0)

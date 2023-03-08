@@ -34,6 +34,10 @@ public class MonsterMark : ActionNode
         }
 
         //Action Effect
+        owner.controller.monsterAnimations.SetBool("mark", true);
+        owner.controller.monsterAnimations.SetBool("idle", false);
+
+        yield return new WaitForSeconds(0.5f);
         controller.SelectTile(chosenTarget.tile.pos);
         ActionEffect.instance.Play(3, 0.5f, 0.01f, 0.05f);
 
@@ -43,7 +47,9 @@ public class MonsterMark : ActionNode
         }
 
         controller.SelectTile(owner.controller.currentEnemy.tile.pos);
+        owner.controller.monsterAnimations.SetBool("mark", false);
 
+        owner.controller.monsterAnimations.SetBool("idle", true);
         yield return new WaitForSeconds(0.5f);
 
         treeUpdate = false;
