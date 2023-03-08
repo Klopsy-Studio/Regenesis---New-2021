@@ -47,12 +47,18 @@ public class MonsterSpawnMinion : ActionNode
 
         int numberToSpawn = owner.controller.maxMinions - owner.controller.minionsInGame.Count;
 
-        if(numberToSpawn > 0)
+        if (numberToSpawn > 0)
         {
+            ActionEffect.instance.Play(5, 2f, 0.01f, 0.05f);
+            owner.controller.monsterAnimations.SetBool("idle", false);
+
             for (int i = 0; i < numberToSpawn; i++)
             {
+                owner.controller.monsterAnimations.SetBool("spawn"+i, true);
+
                 Tile t = areaTiles[Random.Range(0, areaTiles.Count)];
                 areaTiles.Remove(t);
+                yield return new WaitForSeconds(0.4f);
 
                 if (i > owner.controller.minionsPrefab.Count - 1)
                 {
@@ -63,21 +69,27 @@ public class MonsterSpawnMinion : ActionNode
                 {
                     owner.controller.SpawnMinion(i, t);
                 }
+
+                yield return new WaitForSeconds(0.6f);
             }
 
             //Action Effect
+            for (int i = 0; i < 3; i++)
+            {
+                owner.controller.monsterAnimations.SetBool("spawn" + i, false);
+            }
+            owner.controller.monsterAnimations.SetBool("idle", true);
 
-            ActionEffect.instance.Play(3, 0.5f, 0.01f, 0.05f);
-            owner.controller.monsterAnimations.SetBool("roar", true);
-            owner.controller.monsterAnimations.SetBool("idle", false);
-
+            yield return new WaitForSeconds(1f);
             while (ActionEffect.instance.CheckActionEffectState())
             {
                 yield return null;
             }
 
-            owner.controller.monsterAnimations.SetBool("roar", false);
+            owner.controller.monsterAnimations.SetBool("spawn", false);
             owner.controller.monsterAnimations.SetBool("idle", true);
+
+            
         }
 
         treeUpdate = false;
