@@ -344,7 +344,7 @@ public class MonsterAbility : ScriptableObject
             {
                 foreach (Modifier m in trash)
                 {
-                    target.debuffModifiers.Remove(m);
+                    target.RemoveDebuff(m);
                 }
             }
             

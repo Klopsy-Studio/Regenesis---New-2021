@@ -188,6 +188,8 @@ public class Abilities : ScriptableObject
                         {
                             trash.Add(d);
                         }
+
+                        break;
                     }  
                 }
 
