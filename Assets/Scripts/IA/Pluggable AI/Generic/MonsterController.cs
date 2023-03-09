@@ -157,7 +157,7 @@ public class MonsterController : MonoBehaviour
 
     public void SpawnMinion(int indexToSpawn, Tile tileToSpawn)
     {
-        EnemyUnit minion = Instantiate(minionsPrefab[indexToSpawn], new Vector3(tileToSpawn.pos.x, 0.5f, tileToSpawn.pos.y), minionsPrefab[indexToSpawn].transform.rotation).GetComponent<EnemyUnit>();
+        EnemyUnit minion = Instantiate(minionsPrefab[indexToSpawn], new Vector3(tileToSpawn.pos.x, minionsPrefab[indexToSpawn].transform.position.y, tileToSpawn.pos.y), minionsPrefab[indexToSpawn].transform.rotation).GetComponent<EnemyUnit>();
         minion.controller = battleController;
         minionsInGame.Add(minion);
         battleController.enemyUnits.Add(minion);

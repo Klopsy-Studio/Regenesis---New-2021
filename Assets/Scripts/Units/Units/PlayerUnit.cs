@@ -22,8 +22,6 @@ public class PlayerUnit : Unit
     [Header("Animations")]
     public UnitAnimations animations;
     
-    [Header("VFX")]
-    [SerializeField] Animator movementEffect;
 
     [Header("Unit Death")]
     [HideInInspector] public Sprite deathTimelineSprite;
@@ -161,10 +159,7 @@ public class PlayerUnit : Unit
         animations.SetPush();
     }
 
-    public void MovementEffect()
-    {
-        movementEffect.SetTrigger("move");
-    }
+
     public void WeaponOut()
     {
         animations.SetCombatIdle();
