@@ -6,12 +6,15 @@ public class SquareAbilityRange : AbilityRange
 {
     public int squareReach = 1;
     public bool removeOrigin;
+    Point initialPosition;
     public override List<Tile> GetTilesInRange(Board board)
     {
         List<Tile> retValue = new List<Tile>();
 
-
-        retValue.Add(GetTileInPosition(new Point(0, 0), board));
+        if (!removeOrigin)
+        {
+            retValue.Add(GetTileInPosition(new Point(0, 0), board));
+        }
 
         for (int x = -squareReach; x < squareReach + 1; x++)
         {
@@ -31,6 +34,13 @@ public class SquareAbilityRange : AbilityRange
     {
         List<Tile> retValue = new List<Tile>();
 
+        initialPosition = initialPos;
+
+        if (!removeOrigin)
+        {
+            retValue.Add(board.GetTile(new Point(initialPos.x, initialPos.y)));
+        }
+
         for (int x = -squareReach; x < squareReach + 1; x++)
         {
             for (int y = -squareReach; y < squareReach + 1; y++)
@@ -45,16 +55,32 @@ public class SquareAbilityRange : AbilityRange
         return retValue;
     }
 
-    protected Tile GetTileInPosition(Point pos, Board board)
+    public new Tile GetTileInPosition(Point pos, Board board)
     {
-        if (board.GetTile(unit.currentPoint + pos) != null)
+        if(unit != null)
         {
-            return board.GetTile(unit.currentPoint + pos);
+            if (board.GetTile(unit.currentPoint + pos) != null)
+            {
+                return board.GetTile(unit.currentPoint + pos);
+            }
+            else
+            {
+                return null;
+            }
         }
+
         else
         {
-            return null;
+            if (board.GetTile(initialPosition+pos) != null)
+            {
+                return board.GetTile(initialPosition + pos);
+            }
+            else
+            {
+                return null;
+            }
         }
+        
     }
 
     public bool IsTileValidWithOutUnit(Point initialPos, Board board, int offsetX, int offsetY)
@@ -84,5 +110,6 @@ public class SquareAbilityRange : AbilityRange
     public override void AssignVariables(RangeData rangeData)
     {
         squareReach = rangeData.squareReach;
+        removeOrigin = rangeData.removeOrigin;
     }
 }

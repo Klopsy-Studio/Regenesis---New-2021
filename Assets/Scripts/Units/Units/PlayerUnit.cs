@@ -51,10 +51,17 @@ public class PlayerUnit : Unit
 
     [Header("Animation Parameters")]
     [SerializeField] ActionEffectParameters trueShotShakeParameters;
+    [SerializeField] float trueShotShakeTime;
 
+    [SerializeField] ActionEffectParameters atomicBarrageShakeParameters;
+    [SerializeField] float atomicBarrageShakeTime;
 
+    
     public Unit currentTarget;
+    public List<GameObject> currentTargets;
     public Abilities currentAbility;
+
+    public List<Tile> abilityTiles;
     protected override void Start()
     {
         base.Start();
@@ -165,7 +172,13 @@ public class PlayerUnit : Unit
         animations.SetPush();
     }
 
-
+    public void PlaySmokeVFXAbilityTiles()
+    {
+        foreach(Tile t in abilityTiles)
+        {
+            t.SetSmokeBomb();
+        }
+    }
     public void WeaponOut()
     {
         animations.SetCombatIdle();
@@ -194,11 +207,53 @@ public class PlayerUnit : Unit
             currentTarget.ReceiveDamage(currentAbility.CalculateDmg(this, currentTarget), currentAbility.isCritical);
         }
     }
-    public void TrueShotShake()
+    public void Attack(Unit u)
     {
-        ActionEffect.instance.Shake(trueShotShakeParameters, 0.1f);
+        if (u != null)
+        {
+            u.ReceiveDamage(currentAbility.CalculateDmg(this, u), currentAbility.isCritical);
+        }
+    }
+    public void AbilityAttackGroup()
+    {
+        if (currentTargets != null)
+        {
+            if (currentTargets.Count > 0)
+            {
+                foreach (GameObject o in currentTargets)
+                {
+                    if (o.GetComponent<Unit>())
+                    {
+                        Attack(o.GetComponent<Unit>());
+                    }
+                    else if (o.GetComponent<BearObstacleScript>())
+                    {
+                        o.GetComponent<BearObstacleScript>().GetDestroyed(controller.board);
+                    }
+                }
+            }
+        }
     }
 
+    public void CurrentAbilityZoom()
+    {
+        ActionEffect.instance.Play(currentAbility.shakeParameters);
+    }
+
+    public void PlayAbilityShake()
+    {
+        ActionEffect.instance.Shake(currentAbility.shakeParameters, currentAbility.shakeTime);
+    }
+
+    public void TrueShotShake()
+    {
+        ActivateShake(trueShotShakeParameters, trueShotShakeTime);
+    }
+
+    void ActivateShake(ActionEffectParameters parameters, float time)
+    {
+        ActionEffect.instance.Shake(parameters, time);
+    }
     public void PlayActionEffectAbility()
     {
         ActionEffect.instance.Play(currentAbility.cameraSize, currentAbility.effectDuration, currentAbility.shakeIntensity, currentAbility.shakeDuration);

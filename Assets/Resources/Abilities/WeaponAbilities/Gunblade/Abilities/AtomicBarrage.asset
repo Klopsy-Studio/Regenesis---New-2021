@@ -32,6 +32,7 @@ MonoBehaviour:
     alternateSideLength: 0
     movementRange: 1
     removeOrigin: 1
+    removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
   tileTargetAbilityRange:
@@ -51,6 +52,7 @@ MonoBehaviour:
     alternateSideLength: 0
     movementRange: 0
     removeOrigin: 0
+    removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
   rangeData:
@@ -70,12 +72,24 @@ MonoBehaviour:
     alternateSideLength: 0
     movementRange: 0
     removeOrigin: 0
+    removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
   cameraSize: 3
   effectDuration: 0.5
   shakeIntensity: 0.01
   shakeDuration: 0.05
+  zoomParameters:
+    cameraSize: 3
+    effectDuration: 0.5
+    shakeIntensity: 0
+    shakeDuration: 0
+  shakeParameters:
+    cameraSize: 0
+    effectDuration: 0
+    shakeIntensity: 8.3
+    shakeDuration: 0.78
+  shakeTime: 0.2
   abilityName: Atomic Barrage
   abilityEffect: 0
   abilityModifier: 0.7
@@ -94,3 +108,4 @@ MonoBehaviour:
   sequence: {fileID: 11400000, guid: 63a4a9225ef82e54fad75e4a7edf026d, type: 2}
   soundString: 
   elementsToTarget: 05000000
+  isCritical: 0

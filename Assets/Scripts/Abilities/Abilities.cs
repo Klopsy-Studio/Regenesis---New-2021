@@ -49,6 +49,10 @@ public class Abilities : ScriptableObject
     [SerializeField] public float shakeIntensity = 0.01f;
     [SerializeField] public float shakeDuration = 0.05f;
 
+    public ActionEffectParameters zoomParameters;
+    public ActionEffectParameters shakeParameters;
+    public float shakeTime;
+
    
     [Header("Ability Variables")]
  

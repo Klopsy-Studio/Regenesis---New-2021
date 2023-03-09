@@ -54,7 +54,6 @@ public class TrueShot : AbilitySequence
             {
                 BearObstacleScript b = target.GetComponent<BearObstacleScript>();
                 b.GetDestroyed(controller.board);
-                user.Attack();
             }
         }
         

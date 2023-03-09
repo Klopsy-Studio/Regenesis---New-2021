@@ -10,13 +10,15 @@ public class AtomicBarrage : AbilitySequence
     {
         playing = true;
         user = controller.currentUnit;
+        user.currentTargets.Clear();
+        user.abilityTiles.Clear();
+        user.abilityTiles = tiles;
+        user.currentAbility = ability;
         user.SpendActionPoints(ability.actionCost);
         user.SpendBullets(ability.ammoCost);
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-
         List<GameObject> targets = new List<GameObject>();
-
+        
         foreach(Tile t in tiles)
         {
             if(t.content != null)
@@ -36,24 +38,29 @@ public class AtomicBarrage : AbilitySequence
             }
         }
 
-        
-        if(targets!= null)
-        {
-            if(targets.Count > 0)
-            {
-                foreach(GameObject o in targets)
-                {
-                    if (o.GetComponent<Unit>())
-                    {
-                        Attack(o.GetComponent<Unit>());
-                    }
-                    else if (o.GetComponent<BearObstacleScript>())
-                    {
-                        o.GetComponent<BearObstacleScript>().GetDestroyed(controller.board);
-                    }
-                }
-            }
-        }
+        user.currentTargets = targets;
+        user.animations.unitAnimator.SetFloat("attackIndex", 0.2f);
+        user.animations.unitAnimator.SetTrigger("attack");
+
+        yield return new WaitForSeconds(2f);
+
+        //if(targets!= null)
+        //{
+        //    if(targets.Count > 0)
+        //    {
+        //        foreach(GameObject o in targets)
+        //        {
+        //            if (o.GetComponent<Unit>())
+        //            {
+        //                Attack(o.GetComponent<Unit>());
+        //            }
+        //            else if (o.GetComponent<BearObstacleScript>())
+        //            {
+        //                o.GetComponent<BearObstacleScript>().GetDestroyed(controller.board);
+        //            }
+        //        }
+        //    }
+        //}
 
 
         while (ActionEffect.instance.CheckActionEffectState())
