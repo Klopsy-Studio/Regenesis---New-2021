@@ -39,8 +39,10 @@ public class AbilitySequence : ScriptableObject
 
     public void Attack(Unit unitTarget)
     {
-        unitTarget.ReceiveDamage(ability.CalculateDmg(user, unitTarget), ability.isCritical);
-        user.Attack();
+        if(unitTarget != null)
+        {
+            unitTarget.ReceiveDamage(ability.CalculateDmg(user, unitTarget), ability.isCritical);
+        }
     }
 
 

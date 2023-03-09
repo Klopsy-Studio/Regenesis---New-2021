@@ -10,7 +10,9 @@ public class ActionEffect : MonoBehaviour
     public static ActionEffect instance;
 
     [HideInInspector] public bool play = false;
+    bool shakePlay = false;
     public bool recovery;
+    bool shakeRecovery = false;
 
     [Header("References")]
     [SerializeField] private CinemachineVirtualCamera cinemachineCamera;
@@ -26,6 +28,8 @@ public class ActionEffect : MonoBehaviour
     private float cameraSize = 3f;
     [SerializeField] [Range(0f, 1f)] private float zoomDuration = 0.5f;
     private float _currentTime = 0f;
+    float _shakeTime;
+    float _shakeDuration;
     [SerializeField] private AnimationCurve zoomInCurve;
     [SerializeField] private AnimationCurve zoomOutCurve;
 
@@ -83,6 +87,7 @@ public class ActionEffect : MonoBehaviour
         originalVignetteIntensity = vignette.intensity.value;
         originalChromaticAberrationIntensity = chromaticAberration.intensity.value;
         originalColorAdjustmentsSaturation = colorAdjustments.saturation.value;
+        shakeChannel = cinemachineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     private void Update()
@@ -99,6 +104,11 @@ public class ActionEffect : MonoBehaviour
         // Same thing with the "recovery" effect of the effect itself
         if (recovery)
             Recovery();
+
+        if (shakePlay)
+            UpdateShake();
+
+
     }
 
 
@@ -108,9 +118,9 @@ public class ActionEffect : MonoBehaviour
         // Set effect parameters as arguments
         cameraSize = _cameraSize;
         effectDuration = _effectDuration;
-        shakeIntensity = _shakeIntensity;
-        shakeDuration = _shakeDuration;
-        shakeChannel = cinemachineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        //shakeIntensity = _shakeIntensity;
+        //shakeDuration = _shakeDuration;
+        //shakeChannel = cinemachineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
 
         play = true; // Sets the variable to true
@@ -145,20 +155,47 @@ public class ActionEffect : MonoBehaviour
         colorAdjustments.saturation.value = Mathf.Lerp(originalColorAdjustmentsSaturation, colorAdjustmentsSaturation, zoomInCurve.Evaluate(_currentTime));
         #endregion
 
-        shakeChannel.m_AmplitudeGain = shakeIntensity;
-        shakeChannel.m_FrequencyGain = shakeDuration;
+        //shakeChannel.m_AmplitudeGain = shakeIntensity;
+        //shakeChannel.m_FrequencyGain = shakeDuration;
         // Condition on the effect "play" duration (the recovery duration is not included in this time interval)
         if (_currentTime >= effectDuration)
         {
             _currentTime = 0f;
-            shakeChannel.m_AmplitudeGain = 0f;
-            shakeChannel.m_FrequencyGain = 1f;
+            //shakeChannel.m_AmplitudeGain = 0f;
+            //shakeChannel.m_FrequencyGain = 1f;
 
             play = false;
             recovery = true;
         }
     }
+    public void Shake(ActionEffectParameters shakeParameters, float time)
+    {
+        shakeChannel.m_AmplitudeGain = shakeParameters.shakeIntensity;
+        shakeChannel.m_FrequencyGain = shakeParameters.shakeDuration;
+        shakeDuration = time;
+        Debug.Log("Shake");
+        // Condition on the effect "play" duration (the recovery duration is not included in this time interval)
+        shakePlay = true;
+    }
 
+    public void UpdateShake()
+    {
+        _shakeTime += Time.deltaTime;
+
+        if(_shakeTime >= shakeDuration)
+        {
+            shakeChannel.m_AmplitudeGain = 0;
+            shakeChannel.m_FrequencyGain = 0;
+            shakePlay = false;
+            _shakeTime = 0;
+            shakeDuration = 0;
+        }
+    }
+    public void StopShake()
+    {
+        shakeChannel.m_AmplitudeGain = 0;
+        shakeChannel.m_FrequencyGain = 0;
+    }
     private void Recovery()
     {
         _currentTime += zoomDuration * Time.deltaTime;
@@ -187,7 +224,10 @@ public class ActionEffect : MonoBehaviour
         }
     }
 
+    public void Shake()
+    {
 
+    }
     public bool CheckActionEffectState()
     {
         if(play || recovery)

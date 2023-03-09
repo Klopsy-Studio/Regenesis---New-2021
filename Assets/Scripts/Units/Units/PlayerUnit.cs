@@ -49,6 +49,12 @@ public class PlayerUnit : Unit
     [Header("Monster Variables")]
     [HideInInspector] public bool marked;
 
+    [Header("Animation Parameters")]
+    [SerializeField] ActionEffectParameters trueShotShakeParameters;
+
+
+    public Unit currentTarget;
+    public Abilities currentAbility;
     protected override void Start()
     {
         base.Start();
@@ -181,8 +187,22 @@ public class PlayerUnit : Unit
         //}
     }
 
+    public void AbilityAttack()
+    {
+        if (currentTarget != null)
+        {
+            currentTarget.ReceiveDamage(currentAbility.CalculateDmg(this, currentTarget), currentAbility.isCritical);
+        }
+    }
+    public void TrueShotShake()
+    {
+        ActionEffect.instance.Shake(trueShotShakeParameters, 0.1f);
+    }
 
-
+    public void PlayActionEffectAbility()
+    {
+        ActionEffect.instance.Play(currentAbility.cameraSize, currentAbility.effectDuration, currentAbility.shakeIntensity, currentAbility.shakeDuration);
+    }
     public override void NearDeath()
     {
         NearDeathSprite();

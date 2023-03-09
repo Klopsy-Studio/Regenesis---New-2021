@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnitAnimations : MonoBehaviour
 {
-    [SerializeField] Animator unitAnimator;
+    public Animator unitAnimator;
 
     public void SetCharacter(float value)
     {
