@@ -13,10 +13,11 @@ public class ActionEffect : MonoBehaviour
     bool shakePlay = false;
     public bool recovery;
     bool shakeRecovery = false;
-
+    float shakeTime;
     [Header("References")]
     [SerializeField] private CinemachineVirtualCamera cinemachineCamera;
     [SerializeField] CinemachineBasicMultiChannelPerlin shakeChannel;
+    [SerializeField] CinemachineImpulseSource impulseSource;
     [SerializeField] private Volume volume;
     [SerializeField] private Vignette vignette;
     [SerializeField] private ChromaticAberration chromaticAberration;
@@ -51,6 +52,10 @@ public class ActionEffect : MonoBehaviour
     private float originalVignetteIntensity;
     private float originalChromaticAberrationIntensity;
     private float originalColorAdjustmentsSaturation;
+
+
+    float chosenIntensity;
+    float chosenDuration;
 
 
 
@@ -108,10 +113,26 @@ public class ActionEffect : MonoBehaviour
         if (shakePlay)
             UpdateShake();
 
+        if (shakeRecovery)
+            RecoverShake();
+
 
     }
 
+    public void RecoverShake()
+    {
+        shakeTime += Time.deltaTime *2;
+        shakeChannel.m_AmplitudeGain = Mathf.Lerp(shakeChannel.m_AmplitudeGain, 0, shakeTime);
+        shakeChannel.m_FrequencyGain = Mathf.Lerp(shakeChannel.m_FrequencyGain, 1, shakeTime);
 
+        if(shakeChannel.m_AmplitudeGain <= 0 && shakeChannel.m_FrequencyGain <= 1)
+        {
+            shakeRecovery = false;
+            Debug.Log("done");
+            shakeChannel.m_AmplitudeGain = 0;
+            shakeChannel.m_FrequencyGain = 1;
+        }
+    }
 
     public void Play(float _cameraSize, float _effectDuration, float _shakeIntensity, float _shakeDuration)
     {
@@ -130,8 +151,7 @@ public class ActionEffect : MonoBehaviour
         // Set effect parameters as arguments
         cameraSize = parameters.cameraSize;
         effectDuration = parameters.effectDuration;
-        shakeIntensity = parameters.shakeIntensity;
-        shakeDuration = parameters.shakeDuration;
+
 
         play = true; // Sets the variable to true
     }
@@ -170,22 +190,23 @@ public class ActionEffect : MonoBehaviour
     }
     public void Shake(ActionEffectParameters shakeParameters, float time)
     {
-        shakeChannel.m_AmplitudeGain = shakeParameters.shakeIntensity;
-        shakeChannel.m_FrequencyGain = shakeParameters.shakeDuration;
-        shakeDuration = time;
-        Debug.Log("Shake");
-        // Condition on the effect "play" duration (the recovery duration is not included in this time interval)
-        shakePlay = true;
+        impulseSource.m_ImpulseDefinition = shakeParameters.shakeDefinition;
+        impulseSource.GenerateImpulseWithForce(shakeParameters.shakeForce);
+        //shakeDuration = time;
+        //Debug.Log("Shake");
+        //shakePlay = true;
     }
 
     public void UpdateShake()
     {
         _shakeTime += Time.deltaTime;
 
-        if(_shakeTime >= shakeDuration)
+        shakeChannel.m_AmplitudeGain = chosenIntensity;
+        shakeChannel.m_FrequencyGain = chosenDuration;
+
+        if (_shakeTime >= shakeDuration)
         {
-            shakeChannel.m_AmplitudeGain = 0;
-            shakeChannel.m_FrequencyGain = 0;
+            shakeRecovery = true;
             shakePlay = false;
             _shakeTime = 0;
             shakeDuration = 0;
@@ -222,11 +243,6 @@ public class ActionEffect : MonoBehaviour
             _currentTime = 0f;
             recovery = false;
         }
-    }
-
-    public void Shake()
-    {
-
     }
     public bool CheckActionEffectState()
     {
