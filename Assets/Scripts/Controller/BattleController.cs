@@ -90,7 +90,7 @@ public class BattleController : StateMachine
     [HideInInspector] public bool battleEnded;
 
 
-    [SerializeField] GameObject placeholderCanvas;
+    [SerializeField] protected GameObject placeholderCanvas;
     public GameObject placeholderWinScreen;
 
     public CinemachineVirtualCamera cinemachineCamera;
@@ -126,10 +126,11 @@ public class BattleController : StateMachine
     [SerializeField] float preferedZoomSize;
     [SerializeField] AnimationCurve zoomInCurve;
 
-    float originalZoomSize;
+    protected float originalZoomSize;
     float currentTime;
-    public void BeginGame()
+    public virtual void BeginGame()
     {
+        Debug.Log("IS NOT WORKING");
         canToggleTimeline = true;
         originalZoomSize = cinemachineCamera.m_Lens.OrthographicSize;
         cinemachineCamera.m_Lens.NearClipPlane = -1f;
