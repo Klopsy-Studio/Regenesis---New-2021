@@ -233,6 +233,15 @@ public class PlayerUnit : Unit
     {
         base.Die();
         controller.playerUnits.Remove(this);
+
+        foreach(PlayerUnit u in controller.playerUnits)
+        {
+            if(u.droneUnit == this)
+            {
+                u.droneUnit = null;
+                //DeactivateSprite
+            }
+        }
         controller.timelineElements.Remove(this);
         elementEnabled = false;
         animations.SetDeath();
