@@ -543,6 +543,7 @@ public class UseAbilityState : BattleState
                             tiles.Remove(t);
                         }
                     }
+
                     board.DeSelectDefaultTiles(tiles);
 
                     owner.bowExtraAttackObject.SetActive(false);
