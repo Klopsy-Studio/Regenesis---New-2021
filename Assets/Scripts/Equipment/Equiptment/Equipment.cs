@@ -6,7 +6,8 @@ public enum KitType
 {
     Hammer,
     Bow,
-    Gunblade
+    Gunblade,
+    Drone,
 }
 
 
