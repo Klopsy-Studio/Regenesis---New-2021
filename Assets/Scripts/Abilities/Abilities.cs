@@ -203,9 +203,39 @@ public class Abilities : ScriptableObject
             }
         }
 
-        finalDamage = (int)((((user.power * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier) - target.defense);
+        if(user.buffModifiers.Count > 0)
+        {
+            List<Modifier> trash = new List<Modifier>();
+            foreach(Modifier m in user.buffModifiers)
+            {
+                if(m.modifierType == TypeOfModifier.Damage)
+                {
+                    finalDamage = (int)(((((user.power+(user.power*0.25) * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier) - target.defense));
 
-        if(finalDamage <= 0)
+                    if (m.SpendModifier())
+                    {
+                        trash.Add(m);
+                    }
+                    break;
+                }
+            }
+
+            if(trash.Count > 0)
+            {
+                foreach(Modifier m in trash)
+                {
+                    user.RemoveBuff(m);
+                }
+            }
+        }
+
+        else
+        {
+            finalDamage = (int)((((user.power * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier) - target.defense);
+
+        }
+
+        if (finalDamage <= 0)
         {
             finalDamage = 0;
         }

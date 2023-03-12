@@ -374,6 +374,35 @@ public class Unit : TimelineElements
                 break;
         }
     }
+
+    public void IncreaseTimelineVelocity(int increase)
+    {
+        timelineVelocity += increase;
+
+        switch (timelineVelocity)
+        {
+            case TimelineVelocity.VerySlow:
+                fTimelineVelocity = 9;
+                break;
+            case TimelineVelocity.Slow:
+                fTimelineVelocity = 12f;
+                break;
+            case TimelineVelocity.Normal:
+                fTimelineVelocity = 15;
+                break;
+            case TimelineVelocity.Quick:
+                fTimelineVelocity = 17f;
+                break;
+            case TimelineVelocity.VeryQuick:
+                fTimelineVelocity = 19;
+                break;
+            case TimelineVelocity.TurboFast:
+                fTimelineVelocity = 20f;
+                break;
+            default:
+                break;
+        }
+    }
     public override bool UpdateTimeLine()
     {
         if (!stunned)

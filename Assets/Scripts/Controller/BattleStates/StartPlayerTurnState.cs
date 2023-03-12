@@ -16,23 +16,51 @@ public class StartPlayerTurnState : BattleState
 
         if(owner.currentUnit.debuffModifiers != null)
         {
-            List<Modifier> trash = new List<Modifier>();
-
-            foreach (Modifier m in owner.currentUnit.debuffModifiers)
+            if(owner.currentUnit.debuffModifiers.Count > 0)
             {
-                trash.Add(m);
-            }
+                List<Modifier> trash = new List<Modifier>();
+
+                foreach (Modifier m in owner.currentUnit.debuffModifiers)
+                {
+                    if (m.modifierType == TypeOfModifier.TimelineSpeed)
+                    {
+                        trash.Add(m);
+                    }
+                }
 
 
-            foreach (Modifier m in trash)
-            {
-                if (m.modifierType == TypeOfModifier.TimelineSpeed)
+                foreach (Modifier m in trash)
                 {
                     owner.currentUnit.RemoveDebuff(m);
                 }
             }
+            
         }
-        
+
+
+        if (owner.currentUnit.buffModifiers != null)
+        {
+            if (owner.currentUnit.buffModifiers.Count > 0)
+            {
+                List<Modifier> trash = new List<Modifier>();
+
+                foreach (Modifier m in owner.currentUnit.buffModifiers)
+                {
+                    if (m.modifierType == TypeOfModifier.TimelineSpeed)
+                    {
+                        trash.Add(m);
+                    }
+                }
+
+
+                foreach (Modifier m in trash)
+                {
+                    owner.currentUnit.RemoveBuff(m);
+                }
+            }
+
+        }
+
         StartCoroutine(SetStats());
 
     }
