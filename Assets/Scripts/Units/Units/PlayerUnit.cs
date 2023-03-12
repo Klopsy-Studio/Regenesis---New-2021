@@ -45,7 +45,7 @@ public class PlayerUnit : Unit
     public int gunbladeAmmoAmount;
     public int gunbladeAmmoMax;
     public PlayerUnit droneUnit;
-
+    [SerializeField] GameObject droneIndicator;
 
     [Header("Monster Variables")]
     [HideInInspector] public bool marked;
@@ -89,6 +89,15 @@ public class PlayerUnit : Unit
         }
     }
 
+    public void EnableDrone()
+    {
+        droneIndicator.SetActive(true);
+    }
+
+    public void DisableDrone()
+    {
+        droneIndicator.SetActive(false);
+    }
     //ESTA FUNCION HAY QUE REVISARLA
     public void EquipAllItems()
     {
@@ -238,6 +247,7 @@ public class PlayerUnit : Unit
         {
             if(u.droneUnit == this)
             {
+                DisableDrone();
                 u.droneUnit = null;
                 //DeactivateSprite
             }

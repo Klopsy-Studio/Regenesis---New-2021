@@ -7,7 +7,7 @@ public class DroneTarget : MenuButton
 {
     public Image targetImage;
     public GameObject targetSetCheck;
-    [SerializeField] PlayerUnit currentTarget;
+    public PlayerUnit currentTarget;
     public PlayerUnit user;
 
     [SerializeField] int setTargetCost;
@@ -53,6 +53,7 @@ public class DroneTarget : MenuButton
         if(user.actionsPerTurn >= owner.droneCost && user.droneUnit != currentTarget)
         {
             user.SetDrone(currentTarget, setTargetCost);
+            
             owner.controller.CheckAbilities();
             owner.SetCurrentTarget(this);
             owner.CanChangeDroneTarget();

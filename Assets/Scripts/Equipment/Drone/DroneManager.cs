@@ -51,12 +51,15 @@ public class DroneManager : MonoBehaviour
         if(currentTarget != null)
         {
             currentTarget.targetSetCheck.SetActive(false);
+            currentTarget.currentTarget.DisableDrone();
             currentTarget = null;
         }
 
         currentTarget = target;
         currentTarget.targetSetCheck.SetActive(true);
+        currentTarget.currentTarget.EnableDrone();
+
     }
 
-    
+
 }
