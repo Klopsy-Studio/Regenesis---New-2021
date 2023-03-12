@@ -44,6 +44,7 @@ public class PlayerUnit : Unit
     public int hammerFuryMax;
     public int gunbladeAmmoAmount;
     public int gunbladeAmmoMax;
+    public PlayerUnit droneUnit;
 
 
     [Header("Monster Variables")]
@@ -108,7 +109,24 @@ public class PlayerUnit : Unit
         }        
     }
 
+    public void SetDrone(PlayerUnit newUnit, int cost)
+    {
+        if(newUnit != droneUnit)
+        {
+            if(droneUnit != null)
+            {
+                //Update sprite to removeDrone
+            }
 
+            droneUnit = newUnit;
+
+            SpendActionPoints(cost);
+            playerUI.ShowActionPoints();
+            //Update with drone sprite on new unit;
+        }
+
+
+    }
     public bool CanDoAbility()
     {
         if(weapon.EquipmentType == KitType.Gunblade)

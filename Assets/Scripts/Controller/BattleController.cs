@@ -61,6 +61,7 @@ public class BattleController : StateMachine
     public MiniStatus miniStatus;
     public TargetIndicator turnArrow;
     [SerializeField] Animator sceneTransition;
+    public DroneManager droneController;
     [Space]
     [Header("Combat Variables")]
     [HideInInspector] public int attackChosen;
@@ -321,9 +322,6 @@ public class BattleController : StateMachine
 
             }
         }
-
-
-
     }
     public void ChangeUIButtons(bool value)
     {
@@ -396,6 +394,7 @@ public class BattleController : StateMachine
             u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.g, u.unitSprite.color.b, unitFadeValue);
         }
     }
+
 
     public void ReorganizeIcons()
     {
@@ -507,5 +506,39 @@ public class BattleController : StateMachine
         pauseTimelineButton.canBeSelected = true;
         resumeTimelineButton.canBeSelected = true;
         resumeTimelineButton.onUp.Invoke();
+    }
+
+
+    public void CheckAbilities()
+    {
+        for (int i = 0; i < currentUnit.weapon.Abilities.Length; i++)
+        {
+            if (currentUnit.weapon.Abilities[i] != null)
+            {
+                if (currentUnit.weapon.EquipmentType == KitType.Gunblade)
+                {
+                    if (currentUnit.weapon.Abilities[i].CanDoAbility(currentUnit.actionsPerTurn, currentUnit))
+                    {
+                        abilitySelectionUI.EnableSelectAbilty(i);
+                    }
+                    else
+                    {
+                        abilitySelectionUI.DisableSelectAbilty(i);
+                    }
+                }
+                else
+                {
+                    if (currentUnit.weapon.Abilities[i].CanDoAbility(currentUnit.actionsPerTurn))
+                    {
+                        abilitySelectionUI.EnableSelectAbilty(i);
+
+                    }
+                    else
+                    {
+                        abilitySelectionUI.DisableSelectAbilty(i);
+                    }
+                }
+            }
+        }
     }
 }

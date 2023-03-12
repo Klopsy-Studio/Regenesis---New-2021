@@ -24,10 +24,28 @@ public class SelectAbilityState : BattleState
         AbilitySelectionUI.ChangeAllAbilitiesToDefault();
         AbilitySelectionUI.DeactivateAllAbilitySelection();
 
-        if(owner.currentUnit.weapon.EquipmentType == KitType.Gunblade)
+        switch (owner.currentUnit.weapon.EquipmentType)
         {
-            owner.currentUnit.playerUI.ShowBullets();
+            case KitType.Hammer:
+                break;
+            case KitType.Bow:
+                break;
+            case KitType.Gunblade:
+                owner.currentUnit.playerUI.ShowBullets();
+                break;
+            case KitType.Drone:
+                foreach (PlayerUnit u in playerUnits)
+                {
+                    if(u != owner.currentUnit)
+                    {
+                        owner.droneController.CreateTargets(u);
+                    }
+                }
+                break;
+            default:
+                break;
         }
+
 
         owner.FadeUnits();
 
@@ -79,6 +97,7 @@ public class SelectAbilityState : BattleState
         //Meter ActivarUI
     }
 
+    
     protected override void OnEscape(object sender, InfoEventArgs<KeyCode> e)
     {
         owner.ChangeState<SelectActionState>();
@@ -206,6 +225,7 @@ public class SelectAbilityState : BattleState
         base.Exit();
         owner.abilitySelectionUI.DisableAbilitySelection();
 
+        owner.droneController.ClearTargets();
         owner.moveAbilitySelector = false;
         currentActionIndex = 0;
         AbilitySelectionUI.ResetSelector();

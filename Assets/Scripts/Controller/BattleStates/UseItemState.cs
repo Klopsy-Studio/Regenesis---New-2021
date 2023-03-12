@@ -135,31 +135,31 @@ public class UseItemState : BattleState
             case TypeOfAbilityRange.Infinite:
                 return null;
             case TypeOfAbilityRange.LineAbility:
-                LineAbilityRange line = GetRange<LineAbilityRange>();
+                LineAbilityRange line = GetRange<LineAbilityRange>(owner.currentUnit.gameObject);
                 line.AssignVariables(data);
                 return line.GetTilesInRange(board);
             case TypeOfAbilityRange.SelfAbility:
                 return null;
             case TypeOfAbilityRange.SquareAbility:
-                SquareAbilityRange square = GetRange<SquareAbilityRange>();
+                SquareAbilityRange square = GetRange<SquareAbilityRange>(owner.currentUnit.gameObject);
                 square.AssignVariables(data);
                 return square.GetTilesInRangeWithoutUnit(board, owner.currentTile.pos);
             case TypeOfAbilityRange.Side:
-                SideAbilityRange side = GetRange<SideAbilityRange>();
+                SideAbilityRange side = GetRange<SideAbilityRange>(owner.currentUnit.gameObject);
                 side.AssignVariables(data);
                 return side.GetTilesInRange(board);
             case TypeOfAbilityRange.AlternateSide:
-                AlternateSideRange altSide = GetRange<AlternateSideRange>();
+                AlternateSideRange altSide = GetRange<AlternateSideRange>(owner.currentUnit.gameObject);
                 altSide.AssignVariables(data);
                 return altSide.GetTilesInRange(board);
             case TypeOfAbilityRange.Cross:
-                CrossAbilityRange cross = GetRange<CrossAbilityRange>();
+                CrossAbilityRange cross = GetRange<CrossAbilityRange>(owner.currentUnit.gameObject);
                 cross.AssignVariables(data);
                 return cross.GetTilesInRange(board);
             case TypeOfAbilityRange.Normal:
                 return null;
             case TypeOfAbilityRange.Item:
-                ItemRange item = GetRange<ItemRange>();
+                ItemRange item = GetRange<ItemRange>(owner.currentUnit.gameObject);
                 item.AssignVariables(data);
                 item.tile = owner.currentTile;
                 return item.GetTilesInRange(board);

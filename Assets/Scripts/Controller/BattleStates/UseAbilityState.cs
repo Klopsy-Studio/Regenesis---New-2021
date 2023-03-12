@@ -216,7 +216,12 @@ public class UseAbilityState : BattleState
                                 }
 
                                 GetSelectTiles(currentAbility);
-
+                                
+                                if(owner.currentUnit.weapon.EquipmentType == KitType.Drone)
+                                {
+                                    GetDroneSelectTiles(currentAbility);
+                                }
+                                
                                 switch (currentAbility.abilityEffect)
                                 {
                                     case EffectType.Damage:
@@ -311,12 +316,13 @@ public class UseAbilityState : BattleState
 
     public void GetSelectTiles(Abilities ability)
     {
-        List<Tile> tiles;
+        List<Tile> tiles = new List<Tile>();
 
         foreach(RangeData r in ability.tileTargetAbilityRange)
         {
-            tiles = GetTiles(r);
+            tiles = GetTiles(r, owner.currentUnit.gameObject);
 
+            
             foreach(Tile t in tiles)
             {
                 if (!selectTiles.Contains(t))
@@ -326,7 +332,31 @@ public class UseAbilityState : BattleState
             }
         }
     }
-    public List<Tile> GetTiles (RangeData data)
+
+    public void GetDroneSelectTiles(Abilities ability)
+    {
+        List<Tile> tiles = new List<Tile>();
+
+        if(owner.currentUnit.droneUnit != null)
+        {
+            PlayerUnit droneUnit = owner.currentUnit.droneUnit;
+
+            foreach(RangeData r in ability.tileTargetAbilityRange)
+            {
+                tiles = GetOppositeTiles(r, owner.currentUnit.droneUnit.gameObject);
+
+
+                foreach (Tile t in tiles)
+                {
+                    if (!selectTiles.Contains(t))
+                    {
+                        selectTiles.Add(t);
+                    }
+                }
+            }
+        }
+    }
+    public List<Tile> GetTiles (RangeData data, GameObject user)
     {
         switch (data.range)
         {
@@ -337,31 +367,35 @@ public class UseAbilityState : BattleState
             case TypeOfAbilityRange.Infinite:
                 return null;
             case TypeOfAbilityRange.LineAbility:
-                LineAbilityRange line = GetRange<LineAbilityRange>();
-                line.AssignVariables(data);
+                LineAbilityRange line = GetRange<LineAbilityRange>(user);
+                line.AssignVariables(data);                
+                line.lineDir = owner.currentUnit.tile.GetDirections(owner.currentTile);
                 return line.GetTilesInRange(board);
             case TypeOfAbilityRange.SelfAbility:
                 return null;
             case TypeOfAbilityRange.SquareAbility:
-                SquareAbilityRange square = GetRange<SquareAbilityRange>();
+                SquareAbilityRange square = GetRange<SquareAbilityRange>(user);
                 square.AssignVariables(data);
                 return square.GetTilesInRangeWithoutUnit(board, owner.currentTile.pos);
             case TypeOfAbilityRange.Side:
-                SideAbilityRange side = GetRange<SideAbilityRange>();
+                SideAbilityRange side = GetRange<SideAbilityRange>(user);
                 side.AssignVariables(data);
+                side.unit = owner.currentUnit;
+                side.sideDir = owner.currentUnit.tile.GetDirections(owner.currentTile);
+                
                 return side.GetTilesInRange(board);
             case TypeOfAbilityRange.AlternateSide:
-                AlternateSideRange altSide = GetRange<AlternateSideRange>();
+                AlternateSideRange altSide = GetRange<AlternateSideRange>(user);
                 altSide.AssignVariables(data);
                 return altSide.GetTilesInRange(board);
             case TypeOfAbilityRange.Cross:
-                CrossAbilityRange cross = GetRange<CrossAbilityRange>();
+                CrossAbilityRange cross = GetRange<CrossAbilityRange>(user);
                 cross.AssignVariables(data);
                 return cross.GetTilesInRange(board);
             case TypeOfAbilityRange.Normal:
                 return null;
             case TypeOfAbilityRange.Item:
-                ItemRange item = GetRange<ItemRange>();
+                ItemRange item = GetRange<ItemRange>(user);
                 item.AssignVariables(data);
                 item.tile = owner.currentTile;
                 return item.GetTilesInRange(board);
@@ -369,6 +403,91 @@ public class UseAbilityState : BattleState
                 return null;
         }
     }
+    public List<Tile> GetOppositeTiles(RangeData data, GameObject user)
+    {
+
+        switch (data.range)
+        {
+            case TypeOfAbilityRange.Cone:
+                return null;
+            case TypeOfAbilityRange.Constant:
+                return null;
+            case TypeOfAbilityRange.Infinite:
+                return null;
+            case TypeOfAbilityRange.LineAbility:
+                LineAbilityRange line = GetRange<LineAbilityRange>(user);
+                line.AssignVariables(data);
+                line.unit = user.GetComponent<PlayerUnit>();
+
+                switch (owner.currentUnit.tile.GetDirections(owner.currentTile))
+                {
+                    case Directions.North:
+                        line.lineDir = Directions.South;
+                        break;
+                    case Directions.East:
+                        line.lineDir = Directions.West;
+                        break;
+                    case Directions.West:
+                        line.lineDir = Directions.East;
+                        break;
+                    case Directions.South:
+                        line.lineDir = Directions.North;
+                        break;
+                    default:
+                        break;
+                }
+
+                return line.GetTilesInRange(board);
+            case TypeOfAbilityRange.SelfAbility:
+                return null;
+            case TypeOfAbilityRange.SquareAbility:
+                SquareAbilityRange square = GetRange<SquareAbilityRange>(user);
+                square.AssignVariables(data);
+                return square.GetTilesInRangeWithoutUnit(board, owner.currentTile.pos);
+            case TypeOfAbilityRange.Side:
+                SideAbilityRange side = GetRange<SideAbilityRange>(user);
+                side.AssignVariables(data);
+                side.unit = user.GetComponent<PlayerUnit>();
+
+                switch (owner.currentUnit.tile.GetDirections(owner.currentTile))
+                {
+                    case Directions.North:
+                        side.sideDir = Directions.South;
+                        break;
+                    case Directions.East:
+                        side.sideDir = Directions.West;
+                        break;
+                    case Directions.West:
+                        side.sideDir = Directions.East;
+                        break;
+                    case Directions.South:
+                        side.sideDir = Directions.North;
+                        break;
+                    default:
+                        break;
+                }
+
+                return side.GetTilesInRange(board);
+            case TypeOfAbilityRange.AlternateSide:
+                AlternateSideRange altSide = GetRange<AlternateSideRange>(user);
+                altSide.AssignVariables(data);
+                return altSide.GetTilesInRange(board);
+            case TypeOfAbilityRange.Cross:
+                CrossAbilityRange cross = GetRange<CrossAbilityRange>(user);
+                cross.AssignVariables(data);
+                return cross.GetTilesInRange(board);
+            case TypeOfAbilityRange.Normal:
+                return null;
+            case TypeOfAbilityRange.Item:
+                ItemRange item = GetRange<ItemRange>(user);
+                item.AssignVariables(data);
+                item.tile = owner.currentTile;
+                return item.GetTilesInRange(board);
+            default:
+                return null;
+        }
+    }
+
     public void SelectMonster(EnemyUnit enemy, Tile t)
     {
         CleanSelectTiles();

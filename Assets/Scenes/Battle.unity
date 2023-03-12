@@ -869,6 +869,87 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &505234758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 505234759}
+  - component: {fileID: 505234761}
+  - component: {fileID: 505234760}
+  m_Layer: 0
+  m_Name: DroneUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &505234759
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505234758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1596354854}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 403.5, y: 38}
+  m_SizeDelta: {x: 213, y: 119.6893}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &505234760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505234758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a7eb663bef9ce4b8db5997d4f1e159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droneTargetPrefab: {fileID: 1392213803238124252, guid: 4ba029454e84a804b8f92ca1d2e90cb1, type: 3}
+  controller: {fileID: 218782144}
+  currentTarget: {fileID: 0}
+  unselectedColor: {r: 1, g: 1, b: 1, a: 0.6509804}
+  droneCost: 1
+--- !u!114 &505234761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505234758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &549855808
 GameObject:
   m_ObjectHideFlags: 0
@@ -2947,6 +3028,26 @@ PrefabInstance:
       propertyPath: abilityDescription
       value: 
       objectReference: {fileID: 166152768}
+    - target: {fileID: 1525571477339689821, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525571477339689821, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525571477339689821, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525571477339689821, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525571477339689821, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2060267313615297656, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2995,6 +3096,10 @@ PrefabInstance:
       propertyPath: miniStatus
       value: 
       objectReference: {fileID: 945258836}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: droneController
+      value: 
+      objectReference: {fileID: 505234760}
     - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
       propertyPath: sceneTransition
       value: 
@@ -3069,6 +3174,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3099776044273738176, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044916343897, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3099776044948691994, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
@@ -3163,6 +3272,14 @@ PrefabInstance:
       propertyPath: indicator
       value: 
       objectReference: {fileID: 56315021}
+    - target: {fileID: 5236397250127606196, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236397250127606196, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5346912491614679323, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
       propertyPath: onUp.m_PersistentCalls.m_Calls.Array.size
       value: 7

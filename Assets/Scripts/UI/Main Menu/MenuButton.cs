@@ -28,7 +28,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public UnityEvent onUp;
 
 
-    public void OnPointerDown(PointerEventData eventData)
+    public virtual void OnPointerDown(PointerEventData eventData)
     {
         if (canBeSelected && selected)
         {
@@ -38,7 +38,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             }
         }
     }
-    public void OnPointerUp(PointerEventData eventData)
+    public virtual void OnPointerUp(PointerEventData eventData)
     {
         if (canBeSelected && selected)
         {
@@ -48,7 +48,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             }
         }
     }
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         //if (canBeSelected && selected)
         //{
@@ -59,7 +59,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         //}
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (canBeSelected)
         {
@@ -67,7 +67,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         if (canBeSelected)
         {
@@ -75,17 +75,17 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
-    public void HighlightText()
+    public virtual void HighlightText()
     {
         buttonText.color = highlightTextColor;
     }
 
-    public void DefaultText()
+    public virtual void DefaultText()
     {
         buttonText.color = defaultTextColor;
     }
 
-    public void ChangeButtonImage(Sprite newSprite)
+    public virtual void ChangeButtonImage(Sprite newSprite)
     {
         buttonImage.sprite = newSprite;
     }

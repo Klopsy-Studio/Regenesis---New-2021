@@ -123,9 +123,9 @@ public abstract class BattleState : State
         }
     }
 
-    public virtual T GetRange<T>() where T : AbilityRange
+    public virtual T GetRange<T>(GameObject user) where T : AbilityRange
     {
-        T target = owner.currentUnit.GetComponent<T>();
+        T target = user.GetComponent<T>();
 
         if (target == null)
         {
