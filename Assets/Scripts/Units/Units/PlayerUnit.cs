@@ -25,6 +25,7 @@ public class PlayerUnit : Unit
 
     [Header("Unit Death")]
     [HideInInspector] public Sprite deathTimelineSprite;
+    bool diedOnce;
     public PlayerUnitDeath nearDeathElement;
     public PlayerUnitDeath deathElement;
 
@@ -213,6 +214,7 @@ public class PlayerUnit : Unit
     public override void NearDeath()
     {
         NearDeathSprite();
+        diedOnce = true;
         PlayerUnitDeath element = Instantiate(nearDeathElement);
         element.timelineIcon = deathTimelineSprite;
         status.unitPortrait.sprite = deathTimelineSprite;
@@ -358,10 +360,20 @@ public class PlayerUnit : Unit
         Debug.Log("Damaged");
         if (health <= 0)
         {
-            NearDeath();
-            NearDeathSprite();
-            health = 0;
-            return true;
+            if (!diedOnce)
+            {
+                NearDeath();
+                NearDeathSprite();
+                health = 0;
+                return true;
+            }
+            else
+            {
+                Die();
+                NearDeathSprite();
+                return true;
+            }
+            
         }
         else
         {
