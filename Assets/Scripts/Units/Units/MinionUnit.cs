@@ -26,15 +26,14 @@ public class MinionUnit : EnemyUnit
 
     public override void Die()
     {
-        base.Die();
         controller.timelineElements.Remove(this);
         controller.unitsInGame.Remove(this);
         parent.minionsInGame.Remove(this);
         controller.enemyUnits.Remove(this);
         elementEnabled = false;
         tile.content = null;
-
-        Destroy(gameObject);
+        monsterControl.monsterAnimations.SetBool("death", true);
+        Destroy(gameObject, 3f);
     }
     public List<Tile> GetMinionAttackArea(Board board)
     {

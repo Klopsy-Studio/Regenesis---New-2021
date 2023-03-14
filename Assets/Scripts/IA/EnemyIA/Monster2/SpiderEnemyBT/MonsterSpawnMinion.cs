@@ -58,7 +58,7 @@ public class MonsterSpawnMinion : ActionNode
 
                 Tile t = areaTiles[Random.Range(0, areaTiles.Count)];
                 areaTiles.Remove(t);
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.8f);
 
                 if (i > owner.controller.minionsPrefab.Count - 1)
                 {
