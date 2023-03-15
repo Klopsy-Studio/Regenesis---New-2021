@@ -8,10 +8,10 @@ public class StraightShot : AbilitySequence
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         user = controller.currentUnit;
+        user.currentAbility = ability;
         playing = true;
         yield return null; 
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
         int numberOfAttacks = DefaultBowAttack(controller);
 
         if(target != null)
@@ -19,25 +19,33 @@ public class StraightShot : AbilitySequence
             if (target.GetComponent<Unit>() != null)
             {
                 Unit unitTarget = target.GetComponent<Unit>();
-                for (int i = 0; i < numberOfAttacks; i++)
-                {
-                    if(unitTarget != null)
-                    {
-                        AudioManager.instance.Play("SlingshotAttack");
-                        Attack(unitTarget);
-                        yield return new WaitForSeconds(0.7f);
-                    }
-                    
-                }
+                user.currentTarget = unitTarget;
             }
         }
-        
+
+        switch (numberOfAttacks)
+        {
+            case 1:
+                user.animations.unitAnimator.SetTrigger("attack");
+                user.animations.unitAnimator.SetFloat("attackIndex", 0f);
+                Debug.Log("One Attack");
+                break;
+            case 2:
+                user.animations.unitAnimator.SetTrigger("doubleAttack");
+                user.animations.unitAnimator.SetFloat("attackIndex", 0f);
+                Debug.Log("Two Attack");
+                break;       
+            default:
+                break;
+        }
+
+        yield return new WaitForSeconds(1f);
+
         if(target != null)
         {
             if (target.GetComponent<BearObstacleScript>() != null)
             {
                 BearObstacleScript obstacle = target.GetComponent<BearObstacleScript>();
-                user.Attack();
                 obstacle.GetDestroyed(controller.board);
             }
         }
@@ -47,6 +55,7 @@ public class StraightShot : AbilitySequence
         {
             yield return null;
         }
+
 
         playing = false;
     }

@@ -53,14 +53,13 @@ public class AbilitySequence : ScriptableObject
         if (controller.bowExtraAttack)
         {
             numberOfAttacks++;
-            user.animations.SetAnimation("extraAttack");
             controller.currentUnit.SpendActionPoints(ability.actionCost + 1);
         }
         else
         {
             controller.currentUnit.SpendActionPoints(ability.actionCost);
         }
-
+        controller.bowExtraAttack = false;
         return numberOfAttacks;
     }
 

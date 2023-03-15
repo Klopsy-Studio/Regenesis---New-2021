@@ -179,6 +179,16 @@ public class PlayerUnit : Unit
             t.SetSmokeBomb();
         }
     }
+
+    public void PlayHealthVFXAbilityTiles()
+    {
+        foreach (Tile t in abilityTiles)
+        {
+            t.SetHealthGas();
+        }
+    }
+
+   
     public void WeaponOut()
     {
         animations.SetCombatIdle();
@@ -205,6 +215,7 @@ public class PlayerUnit : Unit
         if (currentTarget != null)
         {
             currentTarget.ReceiveDamage(currentAbility.CalculateDmg(this, currentTarget), currentAbility.isCritical);
+            Debug.Log("Attacked");
         }
     }
     public void Attack(Unit u)
@@ -234,7 +245,26 @@ public class PlayerUnit : Unit
             }
         }
     }
-
+    public void AbilityHealGroup()
+    {
+        if (currentTargets != null)
+        {
+            if (currentTargets.Count > 0)
+            {
+                foreach (GameObject o in currentTargets)
+                {
+                    if (o.GetComponent<Unit>())
+                    {
+                        o.GetComponent<Unit>().Heal(currentAbility.initialHeal);
+                    }
+                }
+            }
+        }
+    }
+    public void AnimationLog()
+    {
+        Debug.Log("This animation is played");
+    }
     public void CurrentAbilityZoom()
     {
         ActionEffect.instance.Play(currentAbility.shakeParameters);
