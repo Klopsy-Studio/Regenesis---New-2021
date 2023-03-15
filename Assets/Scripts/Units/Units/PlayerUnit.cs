@@ -261,6 +261,11 @@ public class PlayerUnit : Unit
             }
         }
     }
+
+    public void SetMarkOnTarget()
+    {
+        currentTarget.EnableCriticalMark();
+    }
     public void AnimationLog()
     {
         Debug.Log("This animation is played");

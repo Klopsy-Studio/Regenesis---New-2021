@@ -8,34 +8,49 @@ public class HuntersMark : AbilitySequence
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         user = controller.currentUnit;
+        user.currentTarget = target.GetComponent<Unit>();
+        user.currentAbility = ability;
         playing = true;
         yield return null;
 
         //Change to point or hunter's mark animation
-        user.Attack();
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-        AudioManager.instance.Play("SlingshotAttack");
+        Modifier hunterMark = new Modifier();
 
         if (target.GetComponent<Unit>() != null)
         {
             Unit u = target.GetComponent<Unit>();
-            Modifier hunterMark = new Modifier();
             hunterMark.modifierType = TypeOfModifier.Critical;
 
-            u.EnableCriticalMark();
             if (controller.bowExtraAttack)
             {
                 hunterMark.modifierCount = 2;
-                user.SpendActionPoints(ability.actionCost + 1);
             }
             else
             {
                 hunterMark.modifierCount = 1;
-                user.SpendActionPoints(ability.actionCost);
             }
 
-            u.AddDebuff(hunterMark);
         }
+        int numberOfAttacks = DefaultBowAttack(controller);
+
+
+        switch (numberOfAttacks)
+        {
+            case 1:
+                user.animations.unitAnimator.SetTrigger("attack");
+                user.animations.unitAnimator.SetFloat("attackIndex", 0.4f);
+
+                break;
+            case 2:
+                user.animations.unitAnimator.SetTrigger("doubleAttack");
+                user.animations.unitAnimator.SetFloat("attackIndex", 0.4f);
+                break;
+            default:
+                break;
+        }
+
+        yield return new WaitForSeconds(2f);
+        target.GetComponent<Unit>().AddDebuff(hunterMark);
 
         while (ActionEffect.instance.CheckActionEffectState())
         {
