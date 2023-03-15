@@ -48,7 +48,7 @@ public class HealingSplash : AbilitySequence
                 break;
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         while (ActionEffect.instance.CheckActionEffectState())
         {
