@@ -10,7 +10,7 @@ public class AbilityTargets : MonoBehaviour
     public Target selectedTarget;
     public TargetIndicator indicator;
     public List<Target> currentTargets;
-
+    public GameObject noTargetText;
     bool monsterTargetted;
 
     public bool stopSelection;
@@ -43,7 +43,12 @@ public class AbilityTargets : MonoBehaviour
             }
         }
     }
-
+    
+    public void CreateNoTarget()
+    {
+        GameObject a = Instantiate(noTargetText, parent.transform);
+        a.SetActive(true);
+    }
     public void SpawnTarget(GameObject targetAssigned, AbilityTargetType type)
     {
         Target t = Instantiate(abilityTargetPrefab, parent.transform).GetComponent<Target>();

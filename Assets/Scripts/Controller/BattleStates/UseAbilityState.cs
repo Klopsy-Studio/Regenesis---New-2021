@@ -22,19 +22,21 @@ public class UseAbilityState : BattleState
     List<SpriteRenderer> spriteTargets = new List<SpriteRenderer>();
     public override void Enter()
     {
-       
         base.Enter();
+        
         owner.ChangeUIButtons(false);
         CleanSelectTiles();
         owner.currentUnit.WeaponOut();
         owner.isTimeLineActive = false;
         owner.ActivateTileSelector();
         currentAbility = owner.currentUnit.weapon.Abilities[owner.attackChosen];
-
+        owner.targets.noTargetText.SetActive(false);
         owner.currentUnit.playerUI.PreviewActionCost(currentAbility.actionCost);
         owner.timelineUI.CallTimelinePreviewOrderOnAbilitySelect(owner.currentUnit, currentAbility.actionCost);
         //tiles = PreviewAbility();
         tiles = new List<Tile>();
+        owner.actionSelectionUI.ThirdWindow();
+        owner.abilitySelectionUI.SecondWindow();
 
         foreach(RangeData r in currentAbility.abilityRange)
         {
@@ -125,9 +127,9 @@ public class UseAbilityState : BattleState
             }
         }
 
-        if(targetTiles.Count > 0)
+        if (!isTargetTile)
         {
-            if (!isTargetTile)
+            if (targetTiles.Count > 0)
             {
                 owner.targets.gameObject.SetActive(true);
 
@@ -136,13 +138,21 @@ public class UseAbilityState : BattleState
                     owner.targets.CreateTargets(targetTiles);
                 }
             }
-        }
-        
 
+            else
+            {
+                owner.targets.gameObject.SetActive(true);
+                owner.targets.CreateNoTarget();
+            }
+
+        }
         else
         {
+            owner.actionSelectionUI.gameObject.SetActive(false);
+            owner.abilitySelectionUI.gameObject.SetActive(false);
             owner.targets.gameObject.SetActive(false);
         }
+        
     }
 
 

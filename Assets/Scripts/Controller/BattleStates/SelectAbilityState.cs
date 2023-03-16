@@ -23,7 +23,8 @@ public class SelectAbilityState : BattleState
         abilityList = owner.currentUnit.weapon.Abilities;
         AbilitySelectionUI.ChangeAllAbilitiesToDefault();
         AbilitySelectionUI.DeactivateAllAbilitySelection();
-
+        owner.actionSelectionUI.SecondWindow();
+        owner.abilitySelectionUI.OriginalColor();
         switch (owner.currentUnit.weapon.EquipmentType)
         {
             case KitType.Hammer:
@@ -106,6 +107,7 @@ public class SelectAbilityState : BattleState
     protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
     {
         owner.ResetUnits();
+        AbilitySelectionUI.gameObject.SetActive(false);
         owner.currentUnit.playerUI.HideBullets();
         owner.ChangeState<SelectActionState>();
     }
@@ -151,7 +153,8 @@ public class SelectAbilityState : BattleState
         {
             if (abilityList[owner.attackChosen].CanDoAbility(owner.currentUnit.actionsPerTurn, owner.currentUnit))
             {
-                ActionSelectionUI.gameObject.SetActive(false);
+                //ActionSelectionUI.gameObject.SetActive(false);
+
                 owner.ChangeState<UseAbilityState>();
             }
         }
@@ -159,7 +162,7 @@ public class SelectAbilityState : BattleState
         {
             if (abilityList[owner.attackChosen].CanDoAbility(owner.currentUnit.actionsPerTurn))
             {
-                ActionSelectionUI.gameObject.SetActive(false);
+                //ActionSelectionUI.gameObject.SetActive(false);
                 owner.ChangeState<UseAbilityState>();
             }
         }
@@ -229,7 +232,8 @@ public class SelectAbilityState : BattleState
         owner.moveAbilitySelector = false;
         currentActionIndex = 0;
         AbilitySelectionUI.ResetSelector();
-        AbilitySelectionUI.gameObject.SetActive(false);
+
+        AbilitySelectionUI.DisableAbilitySelection();
         AbilitySelectionUI.onOption = false;
         onPreview = false;
 

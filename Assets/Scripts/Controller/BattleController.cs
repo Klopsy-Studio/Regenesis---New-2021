@@ -150,6 +150,7 @@ public class BattleController : StateMachine
     {
         zoomed = false;
         sceneTransition.SetBool("fadeOut", true);
+        BeginGame();
     }
 
     bool tilesTest = true;

@@ -18,7 +18,7 @@ public class PlayerUnitUI : UnitUI
 
     List<Image> previewActionPoints = new List<Image>();
 
-
+    [SerializeField] Slider healthBar;
     [Header("Sprites")]
     [SerializeField] Sprite regularActionPointsSprite;
     [SerializeField] Sprite previewActionPointsSprite;
@@ -222,7 +222,14 @@ public class PlayerUnitUI : UnitUI
         }
     }
 
-
+    public void EnableHealthBar()
+    {
+        healthBar.gameObject.SetActive(true);
+    }
+    public void DisableHealthBar()
+    {
+        healthBar.gameObject.SetActive(true);
+    }
     IEnumerator SliderValueAnimation(Slider s, int targetValue)
     {
         s.gameObject.SetActive(true);

@@ -103,10 +103,10 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (canBeSelected)
         {
-            if(abilityDescription != null)
-            {
-                abilityDescription.gameObject.SetActive(false);           
-            }
+            //if(abilityDescription != null)
+            //{
+            //    abilityDescription.gameObject.SetActive(false);           
+            //}
 
             switch (typeOfOption)
             {
@@ -135,7 +135,6 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     }
                     break;
                 case TabType.ItemConsumable:
-                    abilityDescription.gameObject.SetActive(false);
                     break;
                 case TabType.Move:
                     controller.currentUnit.playerUI.ShowActionPoints();

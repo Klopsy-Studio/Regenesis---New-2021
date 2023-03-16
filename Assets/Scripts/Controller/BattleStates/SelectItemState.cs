@@ -16,7 +16,9 @@ public class SelectItemState : BattleState
             ActionSelectionUI.gameObject.SetActive(true);
         }
 
+        owner.actionSelectionUI.SecondWindow();
         owner.itemSelectionUI.gameObject.SetActive(true);
+        owner.itemSelectionUI.OriginalColor();
         ItemSelectionUI.ChangeAllItemsToDefault();
         //Abilities[] a = owner.currentUnit.weapon.Abilities;
         List<ConsumableSlot> itemList = owner.backpackInventory.consumableContainer;
@@ -31,7 +33,7 @@ public class SelectItemState : BattleState
             var item = itemList[i];
             owner.itemSelectionUI.options[i].gameObject.SetActive(true);
             owner.itemSelectionUI.options[i].GetComponent<Text>().text = itemList[i].consumable.itemName;
-            owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = itemList[i].amount.ToString();
+            owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = "x"+itemList[i].amount.ToString();
             owner.itemSelectionUI.itemImage[i].GetComponent<Image>().sprite = itemList[i].consumable.iconSprite;
 
             //Only for testing purposes
@@ -70,6 +72,7 @@ public class SelectItemState : BattleState
     }
     protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
     {
+        owner.itemSelectionUI.gameObject.SetActive(false);
         owner.ChangeState<SelectActionState>();
     }
     protected override void OnMove(object sender, InfoEventArgs<Point> e)
@@ -139,7 +142,6 @@ public class SelectItemState : BattleState
         owner.moveItemSelector = false;
         currentItemIndex = 0;
         owner.itemSelectionUI.ResetSelector();
-        owner.itemSelectionUI.gameObject.SetActive(false);
     }
 
    

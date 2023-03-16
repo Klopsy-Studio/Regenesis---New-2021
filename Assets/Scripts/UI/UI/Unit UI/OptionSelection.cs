@@ -16,7 +16,13 @@ public class OptionSelection : MonoBehaviour
     public RectTransform[] itemAmountText;
     public Image[] itemImage;
     public RectTransform selector;
-
+    public Image background;
+    [Space]
+    [Header("Background Colors")]
+    [SerializeField] Color originalColor;
+    [SerializeField] Color secondWindowColor;
+    [SerializeField] Color thirdWindowColor;
+    [Space]
     [SerializeField] Color defaultColor;
     [SerializeField] Color disabledColor;
     [Space]
@@ -71,6 +77,19 @@ public class OptionSelection : MonoBehaviour
 
 
     public bool onOption;
+
+    public void OriginalColor()
+    {
+        background.color = originalColor;
+    }
+    public void SecondWindow()
+    {
+        background.color = secondWindowColor;
+    }
+    public void ThirdWindow()
+    {
+        background.color = thirdWindowColor;
+    }
     private void Start()
     {
         //ACTION BUTTON
