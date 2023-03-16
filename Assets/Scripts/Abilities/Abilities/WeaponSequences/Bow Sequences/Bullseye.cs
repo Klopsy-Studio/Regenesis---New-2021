@@ -13,16 +13,19 @@ public class Bullseye : AbilitySequence
         user = controller.currentUnit;
         playing = true;
         yield return null;
-
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
+        controller.tileSelectionToggle.MakeTileSelectionSmall();
+        controller.SelectTile(controller.currentUnit.tile.pos);
+        yield return new WaitForSeconds(0.3f);
         BullseyeEvent e = Instantiate(bullseyeEvent);
 
         e.unit = user;
         e.target = target;
         e.ability = ability;
 
-        //Change to charge animation in the future
-        user.animations.SetAnimation("attack");
+        user.currentAbility = ability;
+        user.animations.unitAnimator.SetBool("bullseye", true);
+
+        yield return new WaitForSeconds(1.5f);
 
         if (controller.bowExtraAttack)
         {

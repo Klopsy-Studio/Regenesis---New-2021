@@ -12,20 +12,27 @@ public class BullseyeEvent : HunterEvent
         playing = true;
         if (target != null)
         {
-            ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
 
             if (target.GetComponent<Unit>() != null)
             {
                 Unit u = target.GetComponent<Unit>();
-                for (int i = 0; i < numberOfAttacks; i++)
+                unit.currentTarget = u;
+                unit.currentAbility = ability;
+
+                switch (numberOfAttacks)
                 {
-                    if(target != null)
-                    {
-                        u.ReceiveDamage(ability.CalculateDmg(unit, u), ability.isCritical);
-                        //Replace with charge animation
-                        unit.Attack();
-                        yield return new WaitForSeconds(0.7f);
-                    }
+                    case 1:
+                        unit.animations.unitAnimator.SetBool("bullseye", false);
+                        unit.animations.unitAnimator.SetTrigger("bullseyeRelease");
+
+                        break;
+                    case 2:
+                        unit.animations.unitAnimator.SetBool("bullseye", false);
+                        unit.animations.unitAnimator.SetTrigger("doubleAttack");
+                        break;
+
+                    default:
+                        break;
                 }
             }
 
@@ -43,15 +50,16 @@ public class BullseyeEvent : HunterEvent
             }
             
         }
-        
+
+        yield return new WaitForSeconds(1f);
 
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
         }
 
-
-        unit.animations.SetAnimation("idle");
+        unit.animations.unitAnimator.SetBool("bullseye", false);
+        unit.animations.unitAnimator.SetTrigger("idle");
         playing = false;
     }
 
