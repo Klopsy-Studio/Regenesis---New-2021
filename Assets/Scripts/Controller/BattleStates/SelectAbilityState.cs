@@ -24,6 +24,8 @@ public class SelectAbilityState : BattleState
         AbilitySelectionUI.ChangeAllAbilitiesToDefault();
         AbilitySelectionUI.DeactivateAllAbilitySelection();
         owner.actionSelectionUI.SecondWindow();
+        owner.actionSelectionUI.title.SetActive(false);
+        owner.abilitySelectionUI.title.SetActive(true);
         owner.abilitySelectionUI.OriginalColor();
         switch (owner.currentUnit.weapon.EquipmentType)
         {

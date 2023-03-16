@@ -75,7 +75,7 @@ public class OptionSelection : MonoBehaviour
 
 
 
-
+    public GameObject title;
     public bool onOption;
 
     public void OriginalColor()

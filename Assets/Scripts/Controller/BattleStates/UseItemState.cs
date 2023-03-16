@@ -25,6 +25,7 @@ public class UseItemState : BattleState
         owner.isTimeLineActive = false;
         owner.actionSelectionUI.ThirdWindow();
         owner.itemSelectionUI.SecondWindow();
+        owner.itemSelectionUI.title.SetActive(false);
         owner.ChangeUIButtons(false);
 
         currentItem = owner.backpackInventory.consumableContainer[owner.itemChosen].consumable;

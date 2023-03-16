@@ -37,6 +37,7 @@ public class UseAbilityState : BattleState
         tiles = new List<Tile>();
         owner.actionSelectionUI.ThirdWindow();
         owner.abilitySelectionUI.SecondWindow();
+        owner.abilitySelectionUI.title.SetActive(false);
 
         foreach(RangeData r in currentAbility.abilityRange)
         {

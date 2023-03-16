@@ -17,6 +17,8 @@ public class SelectItemState : BattleState
         }
 
         owner.actionSelectionUI.SecondWindow();
+        owner.actionSelectionUI.title.SetActive(false);
+        owner.itemSelectionUI.title.SetActive(true);
         owner.itemSelectionUI.gameObject.SetActive(true);
         owner.itemSelectionUI.OriginalColor();
         ItemSelectionUI.ChangeAllItemsToDefault();
