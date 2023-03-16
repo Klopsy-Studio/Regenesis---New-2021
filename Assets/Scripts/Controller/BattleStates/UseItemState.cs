@@ -23,7 +23,8 @@ public class UseItemState : BattleState
         isTargetTile = false;
         itemUsed = false;
         owner.isTimeLineActive = false;
-        owner.actionSelectionUI.gameObject.SetActive(false);
+        owner.actionSelectionUI.ThirdWindow();
+        owner.itemSelectionUI.SecondWindow();
         owner.ChangeUIButtons(false);
 
         currentItem = owner.backpackInventory.consumableContainer[owner.itemChosen].consumable;
@@ -121,6 +122,9 @@ public class UseItemState : BattleState
         else
         {
             owner.targets.gameObject.SetActive(false);
+            owner.actionSelectionUI.gameObject.SetActive(false);
+            owner.itemSelectionUI.gameObject.SetActive(false);
+
         }
     }
 
