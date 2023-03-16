@@ -24,7 +24,8 @@ public class FinishPlayerUnitTurnState : BattleState
         //Debug.Log("CURRENT VELOCITY ES " + owner.currentUnit.TimelineVelocity + " CURRENT UNIT ACTIONS " + owner.currentUnit.ActionsPerTurn);
         owner.currentUnit.didNotMove = true;
         owner.currentUnit.timelineFill = 0;
-        owner.currentUnit.status.ChangeToSmall();
+        //owner.currentUnit.status.ChangeToSmall();
+        owner.miniStatus.DeactivateStatus();
         owner.currentUnit.playerUI.HideActionPoints();
         owner.currentUnit.iconTimeline.SetTimelineIconTextVelocity();
         owner.board.DeactivateTileSelection();

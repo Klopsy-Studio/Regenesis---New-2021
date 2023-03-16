@@ -14,7 +14,7 @@ public class StartEnemyTurnState : BattleState
         owner.board.ActivateTileSelection();
         owner.turnStatusUI.ActivateTurn(owner.currentEnemyUnit.unitName);
         //tileSelectionIndicator.gameObject.SetActive(false);
-
+        owner.miniStatus.SetStatus(owner.currentEnemyUnit);
         List<Modifier> trash = new List<Modifier>();
 
         foreach (Modifier m in owner.currentEnemyUnit.debuffModifiers)

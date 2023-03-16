@@ -25,7 +25,7 @@ public class PlayerUnit : Unit
 
     [Header("Unit Death")]
     [HideInInspector] public Sprite deathTimelineSprite;
-    bool diedOnce;
+    bool diedOnce = false;
     public PlayerUnitDeath nearDeathElement;
     public PlayerUnitDeath deathElement;
 
@@ -355,23 +355,36 @@ public class PlayerUnit : Unit
     {
         health -= (int)damage;
 
-        status.HealthAnimation(health);
+        //status.HealthAnimation(health);
+        playerUI.HealthAnimation(health);
         DamageEffect();
         Debug.Log("Damaged");
         if (health <= 0)
         {
             if (!diedOnce)
             {
+                diedOnce = true;
                 NearDeath();
-                NearDeathSprite();
+                Debug.Log("Near Death");
+                //NearDeathSprite();
                 health = 0;
                 return true;
             }
             else
             {
-                Die();
-                NearDeathSprite();
-                return true;
+                if (!isNearDeath)
+                {
+                    Die();
+                    Debug.Log("Dead");
+
+                    NearDeathSprite();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+               
             }
             
         }
@@ -387,7 +400,10 @@ public class PlayerUnit : Unit
         AudioManager.instance.Play("HunterHeal");
 
         health += (int)heal;
-        status.HealthAnimation(health);
+
+        playerUI.HealthAnimation(health);
+
+        //status.HealthAnimation(health);
         HealEffect();
 
         if (isNearDeath)

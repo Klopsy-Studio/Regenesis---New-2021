@@ -230,6 +230,13 @@ public class PlayerUnitUI : UnitUI
     {
         healthBar.gameObject.SetActive(true);
     }
+
+
+    public void HealthAnimation(int healthTarget)
+    {
+        EnableHealthBar();
+        StartCoroutine(SliderValueAnimation(healthBar, healthTarget));
+    }
     IEnumerator SliderValueAnimation(Slider s, int targetValue)
     {
         s.gameObject.SetActive(true);

@@ -33,6 +33,7 @@ public class SelectActionState : BattleState
         owner.actionSelectionUI.EnableActionSelection();
         owner.actionSelectionUI.OriginalColor();
         owner.actionSelectionUI.title.SetActive(true);
+        owner.abilitySelectionUI.gameObject.SetActive(false);
 
         owner.currentUnit.GetComponent<Movement>().ResetRange();
       

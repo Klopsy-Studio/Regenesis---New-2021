@@ -9,12 +9,15 @@ public class StartPlayerTurnState : BattleState
         base.Enter();
 
 
-        owner.currentUnit.status.ChangeToBig();
+        //Disabling Mini Staus
+        //owner.currentUnit.status.ChangeToBig();
         Debug.Log("?");
         owner.turnStatusUI.ActivateTurn(owner.currentUnit.unitName);
         owner.board.ActivateTileSelection();
 
-        if(owner.currentUnit.debuffModifiers != null)
+        owner.miniStatus.SetStatus(owner.currentUnit);
+
+        if (owner.currentUnit.debuffModifiers != null)
         {
             if(owner.currentUnit.debuffModifiers.Count > 0)
             {

@@ -18,7 +18,7 @@ public class InitBattleState : BattleState
         //owner.ChangeState<StartPlayerTurnState>();
         SelectTile(new Point(1, 5));
         owner.timelineUI.gameObject.SetActive(false);
-        owner.unitStatusUI.gameObject.SetActive(false);
+        //owner.unitStatusUI.gameObject.SetActive(false);
         owner.ChangeState<MonsterRoarState>();
     }
 
@@ -53,7 +53,8 @@ public class InitBattleState : BattleState
             owner.playerUnits.Add(unit);
         }
 
-        owner.unitStatusUI.SpawnUnitStatus(playerUnits);
+        //Disabling it for new mini Status
+        //owner.unitStatusUI.SpawnUnitStatus(playerUnits);
 
         for (int i = 0; i < levelData.enemySpawnPoints.Count; i++)
         {
