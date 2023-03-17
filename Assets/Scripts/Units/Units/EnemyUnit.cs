@@ -18,9 +18,7 @@ public class EnemyUnit : Unit
 
     //Enemy Stats
 
-    [SerializeField] SpriteRenderer sprite;
-    [SerializeField] Sprite defaultSprite;
-    [SerializeField] Sprite reactSprite;
+    public Sprite unitPortrait;
     public MonsterController monsterControl;
 
     public int lowHealth;
@@ -63,17 +61,7 @@ public class EnemyUnit : Unit
         return base.ReceiveDamageStun(damage, StunDMG);     
     }
 
-    public override void Damage()
-    {
-        base.Damage();
-        sprite.sprite = reactSprite;
-    }
-
-    public override void Default()
-    {
-        base.Default();
-        sprite.sprite = defaultSprite;
-    }
+    
  
   
     public virtual void UpdateMonsterSpace(Board board)

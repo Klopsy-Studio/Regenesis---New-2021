@@ -47,7 +47,6 @@ public class TimeLineState : BattleState
                 if (selectedUnit != null)
                 {
                     owner.miniStatus.DeactivateStatus();
-                    selectedUnit.status.ChangeToSmall();
                     selectedUnit = null;
                 }
                 //Timeline del evento real
@@ -158,9 +157,7 @@ public class TimeLineState : BattleState
                             {
                                 if (selectedUnit != owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>())
                                 {
-                                    selectedUnit.status.ChangeToSmall();
                                     selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>();
-                                    selectedUnit.status.ChangeToBig();
                                     Debug.Log("Setting Unit");
                                 }
                             }

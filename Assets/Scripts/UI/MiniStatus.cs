@@ -10,21 +10,19 @@ public class MiniStatus : MonoBehaviour
     [SerializeField] BattleController controller;
     [Space(3)]
     [Header("Player Status References")]
+    [SerializeField] TextMeshProUGUI playerName;
+    [SerializeField] Image playerWeapon;
     [SerializeField] GameObject playerStatus;
     [SerializeField] GameObject playerBuffsAndDebuffs;
-    [SerializeField] TextMeshProUGUI playerPower;
-    [SerializeField] TextMeshProUGUI playerCrit;
-    [SerializeField] TextMeshProUGUI playerElement;
-    [SerializeField] TextMeshProUGUI playerDef;
-    [SerializeField] TextMeshProUGUI playerRes;
-    [SerializeField] TextMeshProUGUI playerDeb;
     [SerializeField] Image playerPortrait;
+    [SerializeField] Slider playerHealth;
     [Space(2)]
     [Header("Monster Status References")]
 
     [SerializeField] GameObject monsterStatus;
     [SerializeField] GameObject monsterBuffsAndDebuffs;
     [SerializeField] Image monsterPortrait;
+    [SerializeField] TextMeshProUGUI monsterName;
 
     [Space(2)]
     [Header("Any event Status")]
@@ -39,10 +37,16 @@ public class MiniStatus : MonoBehaviour
     [SerializeField] GameObject battlecryIcon;
     [SerializeField] GameObject hunterMarkIcon;
     [SerializeField] GameObject damageMarkIcon;
-
     [SerializeField] GameObject slowedIcon;
     [SerializeField] GameObject stunnedIcon;
+    [SerializeField] GameObject spiderMarkIcon;
 
+    [Space]
+    [Header("Weapon sprites")]
+    [SerializeField] Sprite hammerSprite;
+    [SerializeField] Sprite bowSprite;
+    [SerializeField] Sprite gunbladeSprite;
+    [SerializeField] Sprite droneSprite;
 
     GameObject currentStatus;
 
@@ -68,22 +72,14 @@ public class MiniStatus : MonoBehaviour
                 if (currentStatus != playerStatus)
                 {
                     DeactivateStatus();
-
                 }
             }
             parent.SetActive(true);
-
             playerStatus.SetActive(true);
             currentStatus = playerStatus;
 
-            playerPortrait.sprite = element.timelineIcon;
-            playerPower.SetText(element.power.ToString());
-            playerCrit.SetText(element.criticalPercentage.ToString());
-            playerElement.SetText(element.elementPower.ToString());
-            playerDef.SetText(element.defense.ToString());
-            playerRes.SetText(element.defenseElement.ToString());
-            playerDeb.SetText("???");
-
+            playerPortrait.sprite = element.unitPortrait;
+            playerName.SetText(element.unitName);
 
             if (element.debuffModifiers.Count > 0)
             {
@@ -136,6 +132,24 @@ public class MiniStatus : MonoBehaviour
                     }
                 }
             }
+
+            switch (element.weapon.EquipmentType)
+            {
+                case KitType.Hammer:
+                    playerWeapon.sprite = hammerSprite;
+                    break;
+                case KitType.Bow:
+                    playerWeapon.sprite = bowSprite;
+                    break;
+                case KitType.Gunblade:
+                    playerWeapon.sprite = gunbladeSprite;
+                    break;
+                case KitType.Drone:
+                    playerWeapon.sprite = droneSprite;
+                    break;
+                default:
+                    break;
+            }
         }
         
     }
@@ -154,10 +168,11 @@ public class MiniStatus : MonoBehaviour
             }
             parent.SetActive(true);
 
+            monsterName.SetText(element.unitName);
             monsterStatus.SetActive(true);
             currentStatus = monsterStatus;
 
-            monsterPortrait.sprite = element.timelineIcon;
+            monsterPortrait.sprite = element.unitPortrait;
 
             if (element.debuffModifiers.Count > 0)
             {
