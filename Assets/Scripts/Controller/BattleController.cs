@@ -159,7 +159,17 @@ public class BattleController : StateMachine
     bool windTest = true;
     public bool playtestToggle = true;
 
-
+    public bool indicatingTurn;
+    public IEnumerator IndicateTurn(Sprite sprite)
+    {
+        indicatingTurn = true;
+        isTimeLineActive = false;
+        turnStatusUI.IndicateTurnStatus(sprite);
+        yield return new WaitForSeconds(0.8f);
+        turnStatusUI.StopTurnStatus();
+        yield return new WaitForSeconds(0.8f);
+        indicatingTurn = false;
+    }
     private void Update()
     {
         if (playtestToggle)

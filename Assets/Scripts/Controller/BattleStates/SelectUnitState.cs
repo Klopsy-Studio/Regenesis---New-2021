@@ -14,11 +14,12 @@ public class SelectUnitState : BattleState
 
     IEnumerator SelectUnitCoroutine()
     {
-        owner.isTimeLineActive = false;
-        owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.playerTurn);
-        yield return new WaitForSeconds(1f);
-        owner.turnStatusUI.StopTurnStatus();
-        yield return new WaitForSeconds(1f);
+        StartCoroutine(owner.IndicateTurn(owner.turnStatusUI.playerTurn));
+
+        while (owner.indicatingTurn)
+        {
+            yield return null;
+        }
 
         SelectTile(owner.currentUnit.currentPoint);
         yield return null;

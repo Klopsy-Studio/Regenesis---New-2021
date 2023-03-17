@@ -17,11 +17,12 @@ public class MonsterEventState : BattleState
 
     IEnumerator ApplyEvent()
     {
-        owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.monsterTurn);
-        yield return new WaitForSeconds(1f);
-        owner.turnStatusUI.StopTurnStatus();
-        yield return new WaitForSeconds(1f);
-        
+        StartCoroutine(owner.IndicateTurn(owner.turnStatusUI.monsterTurn));
+        while (owner.indicatingTurn)
+        {
+            yield return null;
+        }
+
         owner.currentMonsterEvent.Apply();
 
         while (owner.currentMonsterEvent.acting)

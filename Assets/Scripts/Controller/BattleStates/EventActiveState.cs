@@ -16,10 +16,12 @@ public class EventActiveState : BattleState
     IEnumerator EventCoroutine()
     {
         owner.isTimeLineActive = false;
-        owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.eventTurn);
-        yield return new WaitForSeconds(1f);
-        owner.turnStatusUI.StopTurnStatus();
-        yield return new WaitForSeconds(1f);
+
+        StartCoroutine(owner.IndicateTurn(owner.turnStatusUI.eventTurn));
+        while (owner.indicatingTurn)
+        {
+            yield return null;
+        }
 
         owner.environmentEvent.ApplyEffect();
         yield return new WaitForSeconds(1);

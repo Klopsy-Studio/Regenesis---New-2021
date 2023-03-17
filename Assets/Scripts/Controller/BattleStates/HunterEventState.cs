@@ -17,10 +17,11 @@ public class HunterEventState : BattleState
 
     IEnumerator ApplyEvent()
     {
-        owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.playerTurn);
-        yield return new WaitForSeconds(1f);
-        owner.turnStatusUI.StopTurnStatus();
-        yield return new WaitForSeconds(1f);
+        StartCoroutine(owner.IndicateTurn(owner.turnStatusUI.playerTurn));
+        while (owner.indicatingTurn)
+        {
+            yield return null;
+        }
 
         owner.currentHunterEvent.Apply(owner);
 

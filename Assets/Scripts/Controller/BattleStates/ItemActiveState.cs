@@ -15,10 +15,12 @@ public class ItemActiveState : BattleState
     IEnumerator ItemCoroutine()
     {
         owner.isTimeLineActive = false;
-        owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.eventTurn);
-        yield return new WaitForSeconds(1f);
-        owner.turnStatusUI.StopTurnStatus();
-        yield return new WaitForSeconds(1f);
+
+        StartCoroutine(owner.IndicateTurn(owner.turnStatusUI.eventTurn));
+        while (owner.indicatingTurn)
+        {
+            yield return null;
+        }
 
         owner.currentItem.Apply(owner);
 
