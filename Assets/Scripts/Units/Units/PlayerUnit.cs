@@ -217,7 +217,7 @@ public class PlayerUnit : Unit
         diedOnce = true;
         PlayerUnitDeath element = Instantiate(nearDeathElement);
         element.timelineIcon = deathTimelineSprite;
-        status.unitPortrait.sprite = deathTimelineSprite;
+        //status.unitPortrait.sprite = deathTimelineSprite;
         isNearDeath = true;
         deathElement = element;
         deathElement.unit = this;
