@@ -26,7 +26,7 @@ public class EnemyUnit : Unit
 
     [Header("UI")]
     [SerializeField] UnitUI monsterUI;
-
+    public Sprite evolvedPortrait;
     public void BeginAnimation()
     {
         monsterControl.animPlaying = true;
