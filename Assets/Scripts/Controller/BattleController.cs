@@ -60,6 +60,7 @@ public class BattleController : StateMachine
     public MenuButton pauseButton;
     public MiniStatus miniStatus;
     public TargetIndicator turnArrow;
+    [HideInInspector] public TimelineIconUI currentSelectedIcon;
     [SerializeField] Animator sceneTransition;
     public DroneManager droneController;
     [Space]

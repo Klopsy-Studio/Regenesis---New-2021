@@ -28,26 +28,166 @@ public class TimeLineState : BattleState
         owner.isTimeLineActive = true;
     }
 
-    
+    public void CheckIcon()
+    {
+        owner.currentSelectedIcon.Grow();
+        if (owner.timelineUI.selectedIcon.element.GetComponent<Unit>() != null)
+        {
+            if (owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>() != null)
+            {
+                owner.ZoomIn();
+
+                if (selectedUnit == null)
+                {
+                    selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>();
+                    Debug.Log("Setting Unit");
+                    selectedUnit.status.ChangeToBig();
+                }
+                else
+                {
+                    if (selectedUnit != owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>())
+                    {
+                        selectedUnit.status.ChangeToSmall();
+                        selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>();
+                        selectedUnit.status.ChangeToBig();
+                        Debug.Log("Setting Unit");
+                    }
+                }
+                owner.SelectTile(selectedUnit.tile.pos);
+                owner.miniStatus.SetStatus(selectedUnit);
+
+            }
+
+            if (owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>() != null)
+            {
+                Debug.Log("enemy");
+                owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>();
+                owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>());
+            }
+
+            SelectTile(owner.timelineUI.selectedIcon.element.GetComponent<Unit>().tile.pos);
+        }
+
+        if (owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnitDeath>() != null)
+        {
+            selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnitDeath>().unit;
+            selectedUnit.status.ChangeToBig();
+            owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnitDeath>());
+            SelectTile(selectedUnit.currentPoint);
+
+        }
+
+
+        if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.HunterEvent)
+        {
+            HunterEvent h = owner.timelineUI.selectedIcon.element.GetComponent<HunterEvent>();
+            owner.miniStatus.SetStatus(h);
+
+            if (h.target != null)
+            {
+                if (h.target.GetComponent<EnemyUnit>() != null)
+                {
+                    EnemyUnit a = h.target.GetComponent<EnemyUnit>();
+                    selectTiles = a.GiveMonsterSpace(board);
+                    SelectTile(a.currentPoint);
+                    board.SelectAttackTiles(selectTiles);
+                }
+                else
+                {
+                    Point p = new Point((int)h.target.transform.position.x, (int)h.target.transform.position.z);
+                    selectTiles.Add(board.GetTile(p));
+                    board.SelectAttackTiles(selectTiles);
+                    SelectTile(p);
+                }
+            }
+        }
+        if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.EnemyEvent)
+        {
+            selectTiles = owner.timelineUI.selectedIcon.element.GetComponent<MonsterEvent>().GetEventTiles();
+            owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element.GetComponent<MonsterEvent>());
+
+            if (selectTiles != null)
+            {
+                board.SelectAttackTiles(selectTiles);
+            }
+        }
+
+        if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.Items)
+        {
+            owner.SelectTile(owner.timelineUI.selectedIcon.element.GetComponent<BombTimeline>().currentPoint);
+            owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element);
+        }
+    }
+    protected override void OnMouseConfirm(object sender, InfoEventArgs<KeyCode> e)
+    {
+        if (owner.timelineUI.selectedIcon != null && owner.isTimeLineActive)
+        {
+            if (owner.timelineUI.selectedIcon.mouseOver)
+            {
+                if(owner.currentSelectedIcon != null)
+                {
+                    if (owner.currentSelectedIcon != owner.timelineUI.selectedIcon)
+                    {
+                        owner.currentSelectedIcon.Return();
+                        owner.timelineUI.selectedIcon.selected = true;
+                        owner.currentSelectedIcon = owner.timelineUI.selectedIcon;
+                        CheckIcon();             
+                    }
+                    else
+                    {
+                        owner.currentSelectedIcon.Return();
+                        owner.currentSelectedIcon = null;
+                        CleanPause();
+                    }
+                }
+                else
+                {
+                    owner.currentSelectedIcon = owner.timelineUI.selectedIcon;
+                    CheckIcon();
+                }
+            }
+            else
+            {
+                CleanPause();
+                owner.timelineUI.selectedIcon.selected = false;
+
+                owner.timelineUI.selectedIcon.Return();
+                owner.timelineUI.selectedIcon = null;
+            }
+        }
+       
+    }
+
+    public void CleanPause()
+    {
+        if (selectTiles != null)
+        {
+            board.DeSelectDefaultTiles(selectTiles);
+            selectTiles.Clear();
+        }
+        
+        if (owner.zoomed)
+        {
+            owner.ZoomOut();
+        }
+    }
     private void Update()
     {
         if (!owner.battleEnded)
         {
-            if (selectTiles != null && !owner.timelineUI.CheckMouse())
-            {
-                Debug.Log("Bruh");
-                board.DeSelectDefaultTiles(selectTiles);
-                selectTiles.Clear();
-                
-                owner.ZoomOut();
-            }
-
             if (owner.isTimeLineActive && !owner.pauseTimeline)
             {
                 if (selectedUnit != null)
                 {
                     owner.miniStatus.DeactivateStatus();
                     selectedUnit = null;
+                }
+
+                if(owner.timelineUI.selectedIcon != null)
+                {
+                    owner.timelineUI.selectedIcon.Return();
+                    owner.timelineUI.selectedIcon.selected = false;
+
                 }
                 //Timeline del evento real
                 //owner.realTimeEvent.UpdateTimeLine();
@@ -128,114 +268,6 @@ public class TimeLineState : BattleState
                     }
 
                 }
-
-
-            }
-
-            else
-            {
-                
-                
-                if (owner.timelineUI.CheckMouse() && owner.timelineUI.selectedIcon != null && owner.isTimeLineActive)
-                {
-                    if (!owner.zoomed)
-                    {
-                        owner.ZoomIn();
-                    }
-
-                    if (owner.timelineUI.selectedIcon.element.GetComponent<Unit>() != null)
-                    {
-                        if (owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>() != null)
-                        {
-                            if (selectedUnit == null)
-                            {
-                                selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>();
-                                Debug.Log("Setting Unit");
-                                selectedUnit.status.ChangeToBig();
-                            }
-                            else
-                            {
-                                if (selectedUnit != owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>())
-                                {
-                                    selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>();
-                                    Debug.Log("Setting Unit");
-                                }
-                            }
-
-                            owner.miniStatus.SetStatus(selectedUnit);
-
-                        }
-
-                        if (owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>() != null)
-                        {
-                            Debug.Log("enemy");
-                            owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>();
-                            owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>());
-                        }
-
-                        SelectTile(owner.timelineUI.selectedIcon.element.GetComponent<Unit>().tile.pos);
-                    }
-
-                    if (owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnitDeath>() != null)
-                    {
-                        selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnitDeath>().unit;
-                        selectedUnit.status.ChangeToBig();
-                        owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnitDeath>());
-                        SelectTile(selectedUnit.currentPoint);
-
-                    }
-
-
-                    if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.HunterEvent)
-                    {
-                        HunterEvent h = owner.timelineUI.selectedIcon.element.GetComponent<HunterEvent>();
-                        owner.miniStatus.SetStatus(h);
-
-                        if (h.target != null)
-                        {
-                            if (h.target.GetComponent<EnemyUnit>() != null)
-                            {
-                                EnemyUnit e = h.target.GetComponent<EnemyUnit>();
-                                selectTiles = e.GiveMonsterSpace(board);
-                                SelectTile(e.currentPoint);
-                                board.SelectAttackTiles(selectTiles);
-                            }
-                            else
-                            {
-                                Point p = new Point((int)h.target.transform.position.x, (int)h.target.transform.position.z);
-                                selectTiles.Add(board.GetTile(p));
-                                board.SelectAttackTiles(selectTiles);
-                                SelectTile(p);
-                            }
-                        }
-                    }
-                    if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.EnemyEvent)
-                    {
-                        selectTiles = owner.timelineUI.selectedIcon.element.GetComponent<MonsterEvent>().GetEventTiles();
-                        owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element.GetComponent<MonsterEvent>());
-
-                        if (selectTiles != null)
-                        {
-                            board.SelectAttackTiles(selectTiles);
-                        }
-                    }
-
-                    if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.Items)
-                    {
-                        owner.SelectTile(owner.timelineUI.selectedIcon.element.GetComponent<BombTimeline>().currentPoint);
-                        owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element);
-                    }
-                    owner.timelineUI.selectedIcon.Grow();
-                }
-                else
-                {
-                    if (owner.zoomed)
-                    {
-                        owner.ZoomOut();
-                    }
-                }
-
-               
             }
         }
     }
