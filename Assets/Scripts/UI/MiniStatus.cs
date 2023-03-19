@@ -71,7 +71,6 @@ public class MiniStatus : MonoBehaviour
     {
         if (controller.enableMiniStatus)
         {
-            Debug.Log("Setting");
             if (currentStatus != null)
             {
                 if (currentStatus != playerStatus)
@@ -85,7 +84,7 @@ public class MiniStatus : MonoBehaviour
 
             playerPortrait.sprite = element.unitPortrait;
             playerName.SetText(element.unitName);
-
+            ResetChilds(playerBuffsAndDebuffs);
             SetAlteredEffects(element, playerBuffsAndDebuffs.transform);
 
             switch (element.weapon.EquipmentType)
@@ -121,6 +120,9 @@ public class MiniStatus : MonoBehaviour
                     DeactivateStatus();
                 }
             }
+
+            ResetChilds(monsterBuffsAndDebuffs);
+
             parent.SetActive(true);
 
             monsterName.SetText(element.unitName);
@@ -164,6 +166,7 @@ public class MiniStatus : MonoBehaviour
         Image i = Instantiate(iconPrefab, parent).GetComponent<Image>();
         i.sprite = icon;
     }
+
 
     public void SetAlteredEffects(Unit target, Transform targetParent)
     {
@@ -236,9 +239,11 @@ public class MiniStatus : MonoBehaviour
     {
         if(item.transform.childCount > 0)
         {
-            foreach (GameObject icon in item.transform)
+            Transform parent = item.transform;
+
+            foreach (Transform icon in parent)
             {
-                icon.SetActive(false);
+                icon.gameObject.SetActive(false);
             }
             item.transform.DetachChildren();
         }

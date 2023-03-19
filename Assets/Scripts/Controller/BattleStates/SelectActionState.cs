@@ -17,7 +17,8 @@ public class SelectActionState : BattleState
     {
         base.Enter();
         owner.turnArrow.SetTarget(owner.currentUnit.currentPoint, 3.5f);
-        
+        owner.miniStatus.SetStatus(owner.currentUnit);
+
         owner.SelectTile(owner.currentUnit.currentPoint);
         owner.tileSelectionToggle.MakeTileSelectionSmall();
         owner.DeactivateTileSelector();

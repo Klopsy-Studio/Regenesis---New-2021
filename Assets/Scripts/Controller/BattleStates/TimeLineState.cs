@@ -41,15 +41,15 @@ public class TimeLineState : BattleState
                 {
                     selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>();
                     Debug.Log("Setting Unit");
-                    selectedUnit.status.ChangeToBig();
+                    //selectedUnit.status.ChangeToBig();
                 }
                 else
                 {
                     if (selectedUnit != owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>())
                     {
-                        selectedUnit.status.ChangeToSmall();
+                        //selectedUnit.status.ChangeToSmall();
                         selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>();
-                        selectedUnit.status.ChangeToBig();
+                        //selectedUnit.status.ChangeToBig();
                         Debug.Log("Setting Unit");
                     }
                 }
