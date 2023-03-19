@@ -61,6 +61,8 @@ public class Unit : TimelineElements
     [SerializeField] public float stunThreshold;
     [SerializeField] float stunLimit;
     [SerializeField] Animator movementEffect;
+    [SerializeField] Animator slowEffect;
+    [SerializeField] Animator hasteEffect;
 
     public SpriteRenderer unitSprite;
 
@@ -101,6 +103,14 @@ public class Unit : TimelineElements
         originalTimeStunned = timeStunned;
     }
 
+    public void EnableSlow()
+    {
+        slowEffect.SetTrigger("slow");
+    }
+    public void EnableHaste()
+    {
+        hasteEffect.SetTrigger("haste");
+    }
     public void AddBuff(Modifier m)
     {
         buffModifiers.Add(m);
