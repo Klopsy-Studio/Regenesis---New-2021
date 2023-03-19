@@ -44,6 +44,8 @@ public class PlayerUnit : Unit
     public int hammerFuryMax;
     public int gunbladeAmmoAmount;
     public int gunbladeAmmoMax;
+    public int pushAmount;
+    public Directions pushDirections;
 
 
     [Header("Monster Variables")]
@@ -60,8 +62,11 @@ public class PlayerUnit : Unit
     public Unit currentTarget;
     public List<GameObject> currentTargets;
     public Abilities currentAbility;
-
+    public Modifier currentModifier;
     public List<Tile> abilityTiles;
+
+
+    
     protected override void Start()
     {
         base.Start();
@@ -121,7 +126,22 @@ public class PlayerUnit : Unit
         }        
     }
 
-
+    public void PushTarget()
+    {
+        currentTarget.GetComponent<Movement>().PushUnit(pushDirections, pushAmount, controller.board);
+    }
+    public void AddBattlecryToUnits()
+    {
+        foreach(GameObject u in currentTargets)
+        {
+            if (u.GetComponent<Unit>() != null)
+            {
+                Unit e = u.GetComponent<Unit>();
+                e.AddBuff(currentModifier);
+                e.EnableBattlecry();
+            }
+        }
+    }
     public bool CanDoAbility()
     {
         if(weapon.EquipmentType == KitType.Gunblade)

@@ -11,9 +11,11 @@ public class Stampede : AbilitySequence
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         user = controller.currentUnit;
+        user.currentAbility = ability;
         playing = true;
-        yield return null;
         Tile t;
+        user.SpendActionPoints(ability.actionCost);
+
         if (target.GetComponent<Unit>())
         {
             t = target.GetComponent<Unit>().tile;
@@ -96,7 +98,7 @@ public class Stampede : AbilitySequence
 
         }
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
+        //ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
 
         if (tiles != null)
         {
@@ -120,16 +122,17 @@ public class Stampede : AbilitySequence
             }
         }
 
-        Debug.Log(ability.abilityModifier);
+        //Debug.Log(ability.abilityModifier);
 
         if(target.GetComponent<Unit>() != null)
         {
             Unit u = target.GetComponent<Unit>();
-            Attack(u);
+            user.currentTarget = u;
 
             if (CheckFury())
             {
-                HammerFurySequence(5, u, controller, user.tile.GetDirections(u.tile));
+                //Replace with special animation for fury
+                //HammerFurySequence(5, u, controller, user.tile.GetDirections(u.tile));
                 ResetFury();
             }
 
@@ -141,7 +144,6 @@ public class Stampede : AbilitySequence
 
         if(target.GetComponent<BearObstacleScript>()!= null)
         {
-            user.Attack();
             target.GetComponent<BearObstacleScript>().GetDestroyed(controller.board);
 
             if (CheckFury())
@@ -155,8 +157,10 @@ public class Stampede : AbilitySequence
             }
         }
 
-        user.SpendActionPoints(ability.actionCost);
+        user.animations.unitAnimator.SetTrigger("attack");
+        user.animations.unitAnimator.SetFloat("attackIndex", 0.4f);
 
+        yield return new WaitForSeconds(0.5f);
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
