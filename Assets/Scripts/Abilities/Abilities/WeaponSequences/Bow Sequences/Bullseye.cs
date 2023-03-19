@@ -41,6 +41,7 @@ public class Bullseye : AbilitySequence
             yield return null;
         }
 
+        user.AddBuff(new Modifier { modifierType = TypeOfModifier.Bullseye });
         controller.endTurnInstantly = true;
         playing = false;
     }

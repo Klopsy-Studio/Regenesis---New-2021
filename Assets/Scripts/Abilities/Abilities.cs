@@ -143,7 +143,7 @@ public class Abilities : ScriptableObject
 
             foreach(Modifier d in target.debuffModifiers)
             {
-                if(d.modifierType == TypeOfModifier.Critical && !criticalModifier)
+                if(d.modifierType == TypeOfModifier.HunterMark && !criticalModifier)
                 {
                     criticalDmg = 1.5f;
                     criticalModifier = true;

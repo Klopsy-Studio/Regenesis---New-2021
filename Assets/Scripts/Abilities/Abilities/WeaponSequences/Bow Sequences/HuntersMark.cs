@@ -20,7 +20,7 @@ public class HuntersMark : AbilitySequence
         {
             Unit u = target.GetComponent<Unit>();
             Modifier hunterMark = new Modifier();
-            hunterMark.modifierType = TypeOfModifier.Critical;
+            hunterMark.modifierType = TypeOfModifier.HunterMark;
 
             u.EnableCriticalMark();
             if (controller.bowExtraAttack)

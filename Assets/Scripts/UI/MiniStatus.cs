@@ -34,12 +34,17 @@ public class MiniStatus : MonoBehaviour
 
 
     [Header("Buffs and Debuffs Prefabs")]
-    [SerializeField] GameObject battlecryIcon;
-    [SerializeField] GameObject hunterMarkIcon;
-    [SerializeField] GameObject damageMarkIcon;
-    [SerializeField] GameObject slowedIcon;
-    [SerializeField] GameObject stunnedIcon;
-    [SerializeField] GameObject spiderMarkIcon;
+    [SerializeField] GameObject iconPrefab;
+    [SerializeField] Sprite defenseBuff;
+    [SerializeField] Sprite defenseDebuff;
+    [SerializeField] Sprite slowedIcon;
+    [SerializeField] Sprite hastedIcon;
+    [SerializeField] Sprite damageBuff;
+    [SerializeField] Sprite damageDebuff;
+    [SerializeField] Sprite spiderMarkIcon;
+    [SerializeField] Sprite hunterMarkIcon;
+    [SerializeField] Sprite bullseyeIcon;
+    [SerializeField] Sprite stunnedIcon;
 
     [Space]
     [Header("Weapon sprites")]
@@ -66,7 +71,7 @@ public class MiniStatus : MonoBehaviour
     {
         if (controller.enableMiniStatus)
         {
-            Debug.Log("Setting Unit");
+            Debug.Log("Setting");
             if (currentStatus != null)
             {
                 if (currentStatus != playerStatus)
@@ -81,57 +86,7 @@ public class MiniStatus : MonoBehaviour
             playerPortrait.sprite = element.unitPortrait;
             playerName.SetText(element.unitName);
 
-            if (element.debuffModifiers.Count > 0)
-            {
-                foreach (Modifier m in element.debuffModifiers)
-                {
-                    switch (m.modifierType)
-                    {
-                        case TypeOfModifier.Critical:
-                            Instantiate(hunterMarkIcon, playerBuffsAndDebuffs.transform);
-                            break;
-                        case TypeOfModifier.Defense:
-                            Instantiate(battlecryIcon, playerBuffsAndDebuffs.transform);
-
-                            break;
-                        case TypeOfModifier.TimelineSpeed:
-                            Instantiate(slowedIcon, playerBuffsAndDebuffs.transform);
-
-                            break;
-                        case TypeOfModifier.Damage:
-                            Instantiate(damageMarkIcon, playerBuffsAndDebuffs.transform);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-
-            if (element.buffModifiers.Count > 0)
-            {
-                foreach (Modifier m in element.buffModifiers)
-                {
-                    switch (m.modifierType)
-                    {
-                        case TypeOfModifier.Critical:
-                            Instantiate(hunterMarkIcon, playerBuffsAndDebuffs.transform);
-                            break;
-                        case TypeOfModifier.Defense:
-                            Instantiate(battlecryIcon, playerBuffsAndDebuffs.transform);
-
-                            break;
-                        case TypeOfModifier.TimelineSpeed:
-                            Instantiate(slowedIcon, playerBuffsAndDebuffs.transform);
-
-                            break;
-                        case TypeOfModifier.Damage:
-                            Instantiate(damageMarkIcon, playerBuffsAndDebuffs.transform);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
+            SetAlteredEffects(element, playerBuffsAndDebuffs.transform);
 
             switch (element.weapon.EquipmentType)
             {
@@ -174,58 +129,10 @@ public class MiniStatus : MonoBehaviour
 
             monsterPortrait.sprite = element.unitPortrait;
 
-            if (element.debuffModifiers.Count > 0)
-            {
-                foreach (Modifier m in element.debuffModifiers)
-                {
-                    switch (m.modifierType)
-                    {
-                        case TypeOfModifier.Critical:
-                            Instantiate(hunterMarkIcon, monsterBuffsAndDebuffs.transform);
-                            break;
-                        case TypeOfModifier.Defense:
-                            Instantiate(battlecryIcon, monsterBuffsAndDebuffs.transform);
+            SetAlteredEffects(element, monsterBuffsAndDebuffs.transform);
 
-                            break;
-                        case TypeOfModifier.TimelineSpeed:
-                            Instantiate(slowedIcon, monsterBuffsAndDebuffs.transform);
-                            break;
-                        case TypeOfModifier.Damage:
-                            Instantiate(damageMarkIcon, monsterBuffsAndDebuffs.transform);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-
-            if (element.buffModifiers.Count > 0)
-            {
-                foreach (Modifier m in element.buffModifiers)
-                {
-                    switch (m.modifierType)
-                    {
-                        case TypeOfModifier.Critical:
-                            Instantiate(hunterMarkIcon, monsterBuffsAndDebuffs.transform);
-                            break;
-                        case TypeOfModifier.Defense:
-                            Instantiate(battlecryIcon, monsterBuffsAndDebuffs.transform);
-
-                            break;
-                        case TypeOfModifier.TimelineSpeed:
-                            Instantiate(slowedIcon, monsterBuffsAndDebuffs.transform);
-
-                            break;
-                        case TypeOfModifier.Damage:
-                            Instantiate(damageMarkIcon, monsterBuffsAndDebuffs.transform);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
         }
-        
+
     }
     public void SetStatus(TimelineElements element)
     {
@@ -250,6 +157,80 @@ public class MiniStatus : MonoBehaviour
         }
         
 
+    }
+
+    public void SpawnIcon(Sprite icon, Transform parent)
+    {
+        Image i = Instantiate(iconPrefab, parent).GetComponent<Image>();
+        i.sprite = icon;
+    }
+
+    public void SetAlteredEffects(Unit target, Transform targetParent)
+    {
+        if (target.debuffModifiers.Count > 0)
+        {
+            foreach (Modifier m in target.debuffModifiers)
+            {
+                switch (m.modifierType)
+                {
+                    case TypeOfModifier.HunterMark:
+                        SpawnIcon(hunterMarkIcon, targetParent);
+                        break;
+                    case TypeOfModifier.Defense:
+                        SpawnIcon(defenseDebuff, targetParent);
+                        break;
+                    case TypeOfModifier.TimelineSpeed:
+                        SpawnIcon(slowedIcon, targetParent);
+
+                        break;
+                    case TypeOfModifier.Damage:
+                        SpawnIcon(damageDebuff, targetParent);
+                        break;
+                    case TypeOfModifier.Stun:
+                        SpawnIcon(stunnedIcon, targetParent);
+                        break;
+                    case TypeOfModifier.SpiderMark:
+                        SpawnIcon(spiderMarkIcon, targetParent);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        if (target.buffModifiers.Count > 0)
+        {
+            foreach (Modifier m in target.buffModifiers)
+            {
+                switch (m.modifierType)
+                {
+                    case TypeOfModifier.HunterMark:
+                        SpawnIcon(hunterMarkIcon, targetParent);
+                        break;
+                    case TypeOfModifier.Defense:
+                        SpawnIcon(defenseBuff, targetParent);
+                        break;
+                    case TypeOfModifier.TimelineSpeed:
+                        SpawnIcon(hastedIcon, targetParent);
+
+                        break;
+                    case TypeOfModifier.Damage:
+                        SpawnIcon(damageBuff, targetParent);
+                        break;
+                    case TypeOfModifier.Stun:
+                        SpawnIcon(stunnedIcon, targetParent);
+                        break;
+                    case TypeOfModifier.SpiderMark:
+                        SpawnIcon(spiderMarkIcon, targetParent);
+                        break;
+                    case TypeOfModifier.Bullseye:
+                        SpawnIcon(bullseyeIcon, targetParent);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
     public void ResetChilds(GameObject item)
     {

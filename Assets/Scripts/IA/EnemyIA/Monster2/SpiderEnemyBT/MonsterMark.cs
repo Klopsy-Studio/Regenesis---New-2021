@@ -6,7 +6,7 @@ using TheKiwiCoder;
 [System.Serializable]
 public class MonsterMark : ActionNode
 {
-    [SerializeField] Modifier monsterMark;
+    [SerializeField] Modifier monsterMark = new Modifier { modifierType = TypeOfModifier.SpiderMark};
 
 
     bool treeUpdate;

@@ -25,5 +25,5 @@ public class Modifier
 
 public enum TypeOfModifier
 {
-    Critical, Defense, TimelineSpeed, Damage, Stun
+    HunterMark, Defense, TimelineSpeed, Damage, Stun, SpiderMark, Bullseye, 
 }

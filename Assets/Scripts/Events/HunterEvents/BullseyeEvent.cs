@@ -50,7 +50,14 @@ public class BullseyeEvent : HunterEvent
             yield return null;
         }
 
-
+        foreach(Modifier m in unit.buffModifiers)
+        {
+            if(m.modifierType == TypeOfModifier.Bullseye)
+            {
+                unit.RemoveBuff(m);
+                break;
+            }
+        }
         unit.animations.SetAnimation("idle");
         playing = false;
     }
