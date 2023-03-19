@@ -20,6 +20,7 @@ public class MinionEvolve : ActionNode
         owner.controller.currentEnemy.power = evolvedPower;
         owner.controller.currentEnemy.criticalPercentage = evolvedCrt;
 
+        owner.controller.currentEnemy.unitPortrait = owner.controller.currentEnemy.evolvedPortrait;
         int healthToGive = evolvedHealth - owner.controller.currentEnemy.maxHealth;
         owner.controller.currentEnemy.maxHealth = evolvedHealth;
 
