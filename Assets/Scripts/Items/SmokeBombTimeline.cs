@@ -7,7 +7,13 @@ public class SmokeBombTimeline : MonoBehaviour
     public ItemRange range;
     [SerializeField] int decreaseAmmount;
     bool monsterAdded;
+
     public void ApplyEffect(BattleController controller)
+    {
+        gameObject.SetActive(true);
+        StartCoroutine(ApplyEffectSequence(controller));
+    }
+    public IEnumerator ApplyEffectSequence(BattleController controller)
     {
         List<Tile> tiles = range.GetTilesInRange(controller.board);
         List<Unit> units = new List<Unit>();
@@ -19,25 +25,20 @@ public class SmokeBombTimeline : MonoBehaviour
             {
                 if(t.content.GetComponent<Unit>() != null)
                 {
-                    units.Add(t.content.GetComponent<Unit>());
+                    if (!units.Contains(t.content.GetComponent<Unit>()))
+                    {
+                        units.Add(t.content.GetComponent<Unit>());
+                    }
                 }
-            }
-
-            if (t.occupied && !monsterAdded)
-            {
-                units.Add(controller.enemyUnits[0]);
-                monsterAdded = true;
             }
         }
 
+        yield return new WaitForSeconds(0.5f);
+
         foreach(Unit u in units)
         {
-            if(u.TimelineVelocity == 0)
-            {
-                continue;
-            }
-
             u.DecreaseTimelineVelocity(decreaseAmmount);
+            u.EnableSlow();
             u.AddDebuff(new Modifier { modifierType = TypeOfModifier.TimelineSpeed, timelineSpeedReduction = decreaseAmmount });
         }
     }

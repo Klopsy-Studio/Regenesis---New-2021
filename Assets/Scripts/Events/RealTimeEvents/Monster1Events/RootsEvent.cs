@@ -40,6 +40,7 @@ public class RootsEvent : MonsterEvent
                     p.DamageEffect();
                     p.animations.SetDamage();
                     p.DecreaseTimelineVelocity(1);
+                    p.EnableSlow();
                     p.AddDebuff(new Modifier { timelineSpeedReduction = 1, modifierType = TypeOfModifier.TimelineSpeed });
                 }
                 

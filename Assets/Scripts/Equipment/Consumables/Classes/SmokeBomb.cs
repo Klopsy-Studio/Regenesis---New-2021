@@ -9,10 +9,12 @@ public class SmokeBomb : Consumables
     [SerializeField] SmokeBombTimeline smokeBomb;
     public override bool ApplyConsumable(Tile t, BattleController battleController)
     {
-        Instantiate(smokeBomb);
+        SmokeBombTimeline bomb = Instantiate(smokeBomb);
+        bomb.gameObject.SetActive(true);
         battleController.currentUnit.animations.SetThrow();
-        smokeBomb.range.tile = t;
-        smokeBomb.ApplyEffect(battleController);
+        bomb.range.tile = t;
+
+        bomb.ApplyEffect(battleController);
         return true;
     }
 
