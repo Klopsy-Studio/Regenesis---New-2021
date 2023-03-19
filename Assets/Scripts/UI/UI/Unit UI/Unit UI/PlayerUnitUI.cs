@@ -231,6 +231,7 @@ public class PlayerUnitUI : UnitUI
         healthBar.gameObject.SetActive(true);
     }
 
+    float currentTime;
 
     public void HealthAnimation(int healthTarget)
     {
@@ -244,11 +245,11 @@ public class PlayerUnitUI : UnitUI
 
         if (s.value >= targetValue)
         {
-            while (s.value >= targetValue)
+            while (s.value > targetValue)
             {
-                s.value -= Time.deltaTime * speed;
+                s.value = Mathf.Lerp(s.value, targetValue, currentTime);
+                currentTime += Time.deltaTime * speed;
                 yield return null;
-
                 if (s.value <= 0)
                 {
                     break;
@@ -257,9 +258,10 @@ public class PlayerUnitUI : UnitUI
         }
         else
         {
-            while (s.value <= targetValue)
+            while (s.value < targetValue)
             {
-                s.value += Time.deltaTime * speed;
+                s.value = Mathf.Lerp(s.value, targetValue, currentTime);
+                currentTime += Time.deltaTime * speed;
                 yield return null;
 
                 if (s.value >= s.maxValue)
@@ -270,7 +272,7 @@ public class PlayerUnitUI : UnitUI
         }
 
         s.value = targetValue;
-
+        currentTime = 0;
         yield return new WaitForSeconds(0.5f);
         s.gameObject.SetActive(false);
         updatingValue = false;
