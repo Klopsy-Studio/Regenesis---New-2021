@@ -75,13 +75,14 @@ public class MapManager : MonoBehaviour
     {
         foreach (var mission in allMisionsList)
         {
-            if (mission.levelData.isNew)
+            if (mission.levelData.isOld)
             {
-                mission.notificationIMG.gameObject.SetActive(true);
+                mission.notificationIMG.gameObject.SetActive(false);
             }
             else
             {
-                mission.notificationIMG.gameObject.SetActive(false);
+                mission.notificationIMG.gameObject.SetActive(true);
+                
             }
         }
 

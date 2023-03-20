@@ -24,13 +24,14 @@ public class ZoneButton : MonoBehaviour, IPointerClickHandler
         foreach (var missions in mapManager.displayMapContainerList[mapID].missionList.missions)
         {
             var missionContainer = mapManager.allMissionsDictionary[missions];
-            if (missionContainer.levelData.isNew)
+            if (missionContainer.levelData.isOld)
             {
-                notificationIMG.gameObject.SetActive(true);
+                notificationIMG.gameObject.SetActive(false);
             }
             else
             {
-                notificationIMG.gameObject.SetActive(false);
+                notificationIMG.gameObject.SetActive(true);
+                
             }
         }   
     }

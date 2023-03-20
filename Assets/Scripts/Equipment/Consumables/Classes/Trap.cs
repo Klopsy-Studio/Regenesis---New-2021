@@ -8,7 +8,7 @@ public class Trap : Consumables
     [SerializeField] TrapTimeline trap;
 
 
-  
+
     public override bool ApplyConsumable(Unit unit)
     {
         throw new System.NotImplementedException();
