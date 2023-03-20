@@ -22,7 +22,7 @@ public class DisplayMapContainers : MonoBehaviour
 
             if (missionContainer.levelData.hasBeenCompleted)
             {
-                Debug.Log("HAS BEEN COMPLETED");
+              
                 missionContainer.completedIMG.gameObject.SetActive(true);
                 missionContainer.uncompletedIMG.gameObject.SetActive(false);
             }
@@ -32,13 +32,14 @@ public class DisplayMapContainers : MonoBehaviour
                 missionContainer.uncompletedIMG.gameObject.SetActive(true);
             }
 
-            if(missionContainer.levelData.isNew)
+            if(missionContainer.levelData.isOld)
             {
-               missionContainer.notificationIMG.gameObject.SetActive(true);
+                missionContainer.notificationIMG.gameObject.SetActive(false);
             }
             else
             {
-                missionContainer.notificationIMG.gameObject.SetActive(false);
+                missionContainer.notificationIMG.gameObject.SetActive(true);
+              
             }
             //missionContainerList.Add(missionContainer);
         }

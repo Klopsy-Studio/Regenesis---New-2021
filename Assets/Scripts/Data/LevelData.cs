@@ -36,9 +36,9 @@ public class LevelData : ScriptableObject
     public GameObject enemyInLevel;
     public GameObject levelModel;
     //Variables to unlock new missions
-    public bool isNew= true;
-   
-    public bool hasBeenCompleted;
+    public bool isOld = false;
+
+    public bool hasBeenCompleted = false;
     public LevelData[] UnlockableMissions;
 
     //Mission Description
@@ -53,8 +53,9 @@ public class LevelData : ScriptableObject
         return id;
     }
 
+  
     #region Board parameters
-     public List<Vector3> tiles;
+    public List<Vector3> tiles;
      public List<DataTile> tileData;
     public List<Sprite> sprites;
      public List<Vector3> props;

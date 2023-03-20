@@ -98,7 +98,7 @@ public class ConsumableSlot
 {
     public Consumables consumable;
     public int amount;
-
+    
 
     public int AmountToTransfer()
     {

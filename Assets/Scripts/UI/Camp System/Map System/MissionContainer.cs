@@ -44,7 +44,7 @@ public class MissionContainer : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        levelData.isNew = false;
+        levelData.isOld = true;
         missionInfoPanel.gameObject.SetActive(true);
         mapManager.acceptMissionButton.missionInfoPanel = missionInfoPanel;
         mapManager.acceptMissionButton.mission = levelData;
