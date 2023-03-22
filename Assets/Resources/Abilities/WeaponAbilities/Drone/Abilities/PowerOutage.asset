@@ -10,15 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66192f0bed27c03439ddef84929ca1a2, type: 3}
-  m_Name: PiercingSharpness
+  m_Name: PowerOutage
   m_EditorClassIdentifier: 
-  abilityEquipmentType: 1
-  actionCost: 2
+  abilityEquipmentType: 3
+  actionCost: 3
   ammoCost: 0
   abilityRange:
-  - range: 9
+  - range: 8
     lineDir: 0
     lineLength: 0
+    stopLine: 0
+    lineOffset: 0
+    sideDir: 0
+    sideReach: 0
+    sideLength: 0
+    crossLength: 1
+    crossOffset: 0
+    squareReach: 0
+    alternateSideDir: 0
+    alternateSideReach: 0
+    alternateSideLength: 0
+    movementRange: 0
+    removeOrigin: 0
+    removeContent: 0
+    itemRange: 0
+    itemRemoveContent: 0
+  tileTargetAbilityRange:
+  - range: 3
+    lineDir: 0
+    lineLength: 2
     stopLine: 0
     lineOffset: 0
     sideDir: 0
@@ -30,12 +50,11 @@ MonoBehaviour:
     alternateSideDir: 0
     alternateSideReach: 0
     alternateSideLength: 0
-    movementRange: 2
+    movementRange: 0
     removeOrigin: 0
     removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
-  tileTargetAbilityRange: []
   rangeData:
     range: 0
     lineDir: 0
@@ -60,7 +79,7 @@ MonoBehaviour:
   effectDuration: 0.5
   shakeIntensity: 0.01
   shakeDuration: 0.05
-  abilityName: Piercing Sharpness
+  abilityName: Power Outage
   abilityEffect: 0
   abilityModifier: 0
   initialHeal: 0
@@ -69,13 +88,14 @@ MonoBehaviour:
   stunDamage: 0
   animationName: 
   lastTarget: {fileID: 0}
-  weapon: {fileID: 11400000, guid: d150b137ecacc264dac67d37faec0a05, type: 2}
-  description: Sharpen you and your allies weapons, granting a CRT buff and raising
-    the damage of critical hits until the end of the turn.
+  weapon: {fileID: 11400000, guid: ffb03c95eaf87804cb3dad7f92191eba, type: 2}
+  description: Emit a wave in an area giving an POW debuff until their next attack
+    and a DEF debuff until they receive damage. If Zip has been deployed, it will
+    copy the ability in the opposite direction.
   abilityTextFontSize: 0
   inAbilityEffects: []
   postAbilityEffect: []
-  sequence: {fileID: 11400000, guid: 8cb4413beacef5a45b0fd42cc0943d77, type: 2}
+  sequence: {fileID: 11400000, guid: 68e64497d014fe24ba963cbbaa7dbff6, type: 2}
   soundString: 
-  elementsToTarget: 04000000
+  elementsToTarget: 05000000
   isCritical: 0

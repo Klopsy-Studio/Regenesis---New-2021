@@ -246,7 +246,6 @@ public class Abilities : ScriptableObject
         else
         {
             finalDamage = (int)((((user.power * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier) - target.defense);
-
         }
 
         if (finalDamage <= 0)
@@ -263,6 +262,31 @@ public class Abilities : ScriptableObject
         else
         {
             isCritical = false;
+        }
+
+
+        if (target.debuffModifiers != null && target.debuffModifiers.Count > 0)
+        {
+            List<Modifier> trashModifiers = new List<Modifier>();
+
+            foreach (Modifier d in target.debuffModifiers)
+            {
+                if (d.modifierType == TypeOfModifier.Damage)
+                {
+                    user.power = user.originalPower;
+
+                    if (d.SpendModifier())
+                    {
+                        trashModifiers.Add(d);
+                    }
+                }
+            }
+
+            foreach (Modifier d in trashModifiers)
+            {
+                target.RemoveDebuff(d);
+            }
+
         }
         target.ResetValues();
 
