@@ -383,6 +383,8 @@ public class Unit : TimelineElements
             default:
                 break;
         }
+
+        EnableSlow();
     }
 
     public void IncreaseTimelineVelocity(int increase)
@@ -412,6 +414,8 @@ public class Unit : TimelineElements
             default:
                 break;
         }
+
+        EnableHaste();
     }
     public override bool UpdateTimeLine()
     {
