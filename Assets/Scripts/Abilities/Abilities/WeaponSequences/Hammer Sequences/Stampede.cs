@@ -8,6 +8,8 @@ public class Stampede : AbilitySequence
     [SerializeField] int furyAmount;
 
     public float[] stampedeValueRange;
+
+    [SerializeField] ActionEffectParameters rampageTravelEffects;
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         user = controller.currentUnit;
@@ -19,6 +21,7 @@ public class Stampede : AbilitySequence
         if (target.GetComponent<Unit>())
         {
             t = target.GetComponent<Unit>().tile;
+            user.currentTarget = target.GetComponent<Unit>();
         }
         
         else if (target.GetComponent<BearObstacleScript>())
@@ -90,7 +93,9 @@ public class Stampede : AbilitySequence
         {
             Movement m = user.GetComponent<Movement>();
             tileToMove.prev = user.tile;
+            user.currentParameters = rampageTravelEffects;
             m.StartTraverse(tileToMove, controller.board);
+            user.animations.unitAnimator.SetTrigger("rampage");
             while (m.moving)
             {
                 yield return null;
@@ -106,18 +111,23 @@ public class Stampede : AbilitySequence
             {
                 case 1:
                     ability.abilityModifier = stampedeValueRange[0];
+                    user.animations.unitAnimator.SetFloat("attackPower", 0f);
                     break;
                 case 2:
                     ability.abilityModifier = stampedeValueRange[1];
+                    user.animations.unitAnimator.SetFloat("attackPower", 0.2f);
                     break;
                 case 3:
                     ability.abilityModifier = stampedeValueRange[2];
+                    user.animations.unitAnimator.SetFloat("attackPower", 0.4f);
                     break;
                 case 4:
                     ability.abilityModifier = stampedeValueRange[3];
+                    user.animations.unitAnimator.SetFloat("attackPower", 1f);
                     break;
                 default:
                     ability.abilityModifier = stampedeValueRange[0];
+                    user.animations.unitAnimator.SetFloat("attackPower", 0f);
                     break;
             }
         }

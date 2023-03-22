@@ -188,8 +188,9 @@ public class ActionEffect : MonoBehaviour
             recovery = true;
         }
     }
-    public void Shake(ActionEffectParameters shakeParameters, float time)
+    public void Shake(ActionEffectParameters shakeParameters)
     {
+        Debug.Log("Shake");
         impulseSource.m_ImpulseDefinition = shakeParameters.shakeDefinition;
         impulseSource.GenerateImpulseWithForce(shakeParameters.shakeForce);
         //shakeDuration = time;

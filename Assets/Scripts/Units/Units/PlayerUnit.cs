@@ -297,7 +297,7 @@ public class PlayerUnit : Unit
 
     public void PlayAbilityShake()
     {
-        ActionEffect.instance.Shake(currentAbility.shakeParameters, currentAbility.shakeTime);
+        ActionEffect.instance.Shake(currentAbility.shakeParameters);
     }
 
     public void TrueShotShake()
@@ -307,7 +307,7 @@ public class PlayerUnit : Unit
 
     void ActivateShake(ActionEffectParameters parameters, float time)
     {
-        ActionEffect.instance.Shake(parameters, time);
+        ActionEffect.instance.Shake(parameters);
     }
     public void PlayActionEffectAbility()
     {
