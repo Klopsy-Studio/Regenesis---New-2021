@@ -37,8 +37,23 @@ public class SmokeBombTimeline : MonoBehaviour
 
         foreach(Unit u in units)
         {
-            u.DecreaseTimelineVelocity(decreaseAmmount);
-            u.AddDebuff(new Modifier { modifierType = TypeOfModifier.TimelineSpeed, timelineSpeedReduction = decreaseAmmount });
+            if (u.buffModifiers.Count > 0)
+            {
+                foreach (Modifier m in u.buffModifiers)
+                {
+                    if (m.modifierType == TypeOfModifier.Antivirus)
+                    {
+                        u.RemoveBuff(m);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                u.DecreaseTimelineVelocity(decreaseAmmount);
+                u.AddDebuff(new Modifier { modifierType = TypeOfModifier.TimelineSpeed, timelineSpeedReduction = decreaseAmmount });
+            }
+            
         }
     }
 }

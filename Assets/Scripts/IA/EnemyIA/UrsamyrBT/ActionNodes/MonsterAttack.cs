@@ -93,8 +93,23 @@ public class MonsterAttack : ActionNode
                             e.PushUnit(u, dir, controller.battleController.board);
                             break;
                         case TypeOfEffect.SlowDown:
-                            e.SlowDown(u);
-                            u.AddDebuff(new Modifier { modifierType = TypeOfModifier.TimelineSpeed });
+
+                            if (u.buffModifiers.Count > 0)
+                            {
+                                foreach (Modifier m in u.buffModifiers)
+                                {
+                                    if (m.modifierType == TypeOfModifier.Antivirus)
+                                    {
+                                        u.RemoveBuff(m);
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                e.SlowDown(u);
+                                u.AddDebuff(new Modifier { modifierType = TypeOfModifier.TimelineSpeed });
+                            }                           
                             break;
                         default:
                             break;

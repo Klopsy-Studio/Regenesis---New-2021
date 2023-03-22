@@ -234,6 +234,9 @@ public class MiniStatus : MonoBehaviour
                     case TypeOfModifier.PiercingSharpness:
                         SpawnIcon(piercingIcon, targetParent);
                         break;
+                    case TypeOfModifier.Antivirus:
+                        SpawnIcon(defenseBuff, targetParent);
+                        break;
                     default:
                         break;
                 }

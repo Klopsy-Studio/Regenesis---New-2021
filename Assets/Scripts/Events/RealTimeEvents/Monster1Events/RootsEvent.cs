@@ -39,8 +39,24 @@ public class RootsEvent : MonsterEvent
                     rootsAbility.UseAbility(p, controller.currentEnemy, battleController);
                     p.DamageEffect();
                     p.animations.SetDamage();
-                    p.DecreaseTimelineVelocity(1);
-                    p.AddDebuff(new Modifier { timelineSpeedReduction = 1, modifierType = TypeOfModifier.TimelineSpeed });
+
+                    if(p.buffModifiers.Count > 0)
+                    {
+                        foreach(Modifier m in p.buffModifiers)
+                        {
+                            if(m.modifierType == TypeOfModifier.Antivirus)
+                            {
+                                p.RemoveBuff(m);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        p.DecreaseTimelineVelocity(1);
+                        p.AddDebuff(new Modifier { timelineSpeedReduction = 1, modifierType = TypeOfModifier.TimelineSpeed });
+                    }
+                    
                 }
                 
             }
