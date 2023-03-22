@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class BulletParty : AbilitySequence
 {
+    [SerializeField] int[] criticalPercentage;
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         playing = true;
@@ -27,6 +28,8 @@ public class BulletParty : AbilitySequence
                 {
                     if (u != null)
                     {
+                        user.criticalPercentage += 10;
+                        Debug.Log(user.criticalPercentage);
                         Attack(u);
                     }
                     yield return new WaitForSeconds(0.2f);
@@ -46,6 +49,7 @@ public class BulletParty : AbilitySequence
         }
 
 
+        user.criticalPercentage = user.weapon.criticalPercentage;
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
