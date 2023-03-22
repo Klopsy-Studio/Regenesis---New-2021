@@ -144,11 +144,26 @@ public class PlayerUnitUI : UnitUI
     {
         index = bullets.Count - 1;
 
-        for (int i = bulletCost; i >0; i--)
+        if(bulletCost > 0)
         {
-            bullets[index].color = previewColor;
-            previewBullets.Add(bullets[index]);
-            index--;
+            if(bulletCost == 6)
+            {
+                for (int i = bullets.Count; i > 0; i--)
+                {
+                    bullets[index].color = previewColor;
+                    previewBullets.Add(bullets[index]);
+                    index--;
+                }
+            }
+            else
+            {
+                for (int i = bulletCost; i > 0; i--)
+                {
+                    bullets[index].color = previewColor;
+                    previewBullets.Add(bullets[index]);
+                    index--;
+                }
+            }
         }
     }
 

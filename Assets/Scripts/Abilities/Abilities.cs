@@ -37,7 +37,7 @@ public class Abilities : ScriptableObject
     public KitType abilityEquipmentType;
     [Range(1,5)]
     public int actionCost;
-    [Range(0, 5)]
+    [Range(0, 6)]
     public int ammoCost;
 
     public List<RangeData> abilityRange;
@@ -117,14 +117,28 @@ public class Abilities : ScriptableObject
 
     public bool CanDoAbility(int actionPoints, PlayerUnit user)
     {
-        if (actionPoints < actionCost || user.gunbladeAmmoAmount < ammoCost)
+        if(ammoCost == 6)
         {
-            return false;
+            if (actionPoints < actionCost || user.gunbladeAmmoAmount <= 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         else
         {
-            return true;
-        }
+            if (actionPoints < actionCost || user.gunbladeAmmoAmount < ammoCost)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        } 
     }
     //public void UseAbilityAgainstPlayerUnit(Unit target)
     //{
@@ -232,7 +246,6 @@ public class Abilities : ScriptableObject
         else
         {
             finalDamage = (int)((((user.power * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier) - target.defense);
-
         }
 
         if (finalDamage <= 0)
@@ -250,12 +263,152 @@ public class Abilities : ScriptableObject
         {
             isCritical = false;
         }
+
+
+        if (target.debuffModifiers != null && target.debuffModifiers.Count > 0)
+        {
+            List<Modifier> trashModifiers = new List<Modifier>();
+
+            foreach (Modifier d in target.debuffModifiers)
+            {
+                if (d.modifierType == TypeOfModifier.Damage)
+                {
+                    user.power = user.originalPower;
+
+                    if (d.SpendModifier())
+                    {
+                        trashModifiers.Add(d);
+                    }
+                }
+            }
+
+            foreach (Modifier d in trashModifiers)
+            {
+                target.RemoveDebuff(d);
+            }
+
+        }
         target.ResetValues();
 
         return finalDamage;
-
     }
 
+    public int CalculateDamageWithCrit(Unit user, Unit target)
+    {
+        originalAbilityModifier = abilityModifier;
+        float criticalDmg = 1f;
+        bool criticalModifier = false;
+        if (target.debuffModifiers != null && target.debuffModifiers.Count > 0)
+        {
+            List<Modifier> trashModifiers = new List<Modifier>();
+
+            foreach (Modifier d in target.debuffModifiers)
+            {
+                if (d.modifierType == TypeOfModifier.HunterMark && !criticalModifier)
+                {
+                    criticalDmg = 1.5f;
+                    criticalModifier = true;
+
+                    if (d.SpendModifier())
+                    {
+                        trashModifiers.Add(d);
+                    }
+                }
+            }
+
+            foreach (Modifier d in trashModifiers)
+            {
+                target.RemoveDebuff(d);
+            }
+
+
+        }
+
+        criticalDmg = 1.5f;
+        float elementEffectivenessNumber = ElementsEffectiveness.GetEffectiveness(user.attackElement, target.defenseElement);
+
+        if (target.buffModifiers != null)
+        {
+            if (target.buffModifiers.Count > 0)
+            {
+                List<Modifier> trash = new List<Modifier>();
+
+                foreach (Modifier d in target.buffModifiers)
+                {
+                    if (d.modifierType == TypeOfModifier.Defense)
+                    {
+                        abilityModifier -= d.damageReduction;
+
+                        if (d.SpendModifier())
+                        {
+                            trash.Add(d);
+                        }
+
+                        break;
+                    }
+                }
+
+                if (trash.Count > 0)
+                {
+                    foreach (Modifier d in trash)
+                    {
+                        target.RemoveBuff(d);
+                    }
+                }
+            }
+        }
+
+        if (user.buffModifiers.Count > 0)
+        {
+            List<Modifier> trash = new List<Modifier>();
+            foreach (Modifier m in user.buffModifiers)
+            {
+                if (m.modifierType == TypeOfModifier.Damage)
+                {
+                    finalDamage = (int)(((((user.power + (user.power * 0.25) * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier) - target.defense));
+
+                    if (m.SpendModifier())
+                    {
+                        trash.Add(m);
+                    }
+                    break;
+                }
+            }
+
+            if (trash.Count > 0)
+            {
+                foreach (Modifier m in trash)
+                {
+                    user.RemoveBuff(m);
+                }
+            }
+        }
+
+        else
+        {
+            finalDamage = (int)((((user.power * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier) - target.defense);
+
+        }
+
+        if (finalDamage <= 0)
+        {
+            finalDamage = 0;
+        }
+
+        abilityModifier = originalAbilityModifier;
+
+        if (criticalDmg > 1)
+        {
+            isCritical = true;
+        }
+        else
+        {
+            isCritical = false;
+        }
+        target.ResetValues();
+
+        return finalDamage;
+    }
 
     //When playerUnit does dmg to another playerUnit
     void CalculateDmg(PlayerUnit player,PlayerUnit target)

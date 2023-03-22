@@ -28,9 +28,24 @@ public class MonsterMark : ActionNode
         if(chosenTarget.GetComponent<PlayerUnit>()!= null)
         {
             PlayerUnit u = chosenTarget.GetComponent<PlayerUnit>();
-            u.marked = true;
-            u.EnableCriticalMark();
-            u.AddDebuff(monsterMark);
+            if (u.buffModifiers.Count > 0)
+            {
+                foreach (Modifier m in u.buffModifiers)
+                {
+                    if (m.modifierType == TypeOfModifier.Antivirus)
+                    {
+                        u.RemoveBuff(m);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                u.marked = true;
+                u.EnableCriticalMark();
+                u.AddDebuff(monsterMark);
+            }
+            
         }
 
         //Action Effect

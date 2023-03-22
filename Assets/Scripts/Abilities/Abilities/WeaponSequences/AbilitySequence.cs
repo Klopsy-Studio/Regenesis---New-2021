@@ -43,7 +43,11 @@ public class AbilitySequence : ScriptableObject
         user.Attack();
     }
 
-
+    public void AttackWithCrit(Unit unitTarget)
+    {
+        unitTarget.ReceiveDamage(ability.CalculateDamageWithCrit(user, unitTarget), true);
+        user.Attack();
+    }
     public int DefaultBowAttack(BattleController controller)
     {
         int numberOfAttacks = 1;

@@ -140,6 +140,28 @@ public class EnemyUnit : Unit
     public override bool ReceiveDamage(int damage, bool isCritical)
     {
         health -= (int)damage;
+
+        List<Modifier> trashModifiers = new List<Modifier>();
+        if (debuffModifiers.Count > 0)
+        {
+            foreach(Modifier m in debuffModifiers)
+            {
+                if (m.modifierType == TypeOfModifier.Defense)
+                {
+                    defense = originalDefense;
+                    trashModifiers.Add(m);
+                }
+            }
+        }
+        
+
+        if(trashModifiers.Count > 0)
+        {
+            foreach (Modifier m in trashModifiers)
+            {
+                RemoveDebuff(m);
+            }
+        }
         //DamageEffect();
         monsterUI.CreatePopUpText(transform.position + new Vector3(0, 1, 0), (int)damage, isCritical);
 

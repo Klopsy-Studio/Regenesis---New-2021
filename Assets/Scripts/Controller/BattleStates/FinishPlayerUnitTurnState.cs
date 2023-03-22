@@ -18,7 +18,28 @@ public class FinishPlayerUnitTurnState : BattleState
 
     IEnumerator FinishTurnCoroutine()
     {
-       
+        List<Modifier> trashModifier = new List<Modifier>();
+
+        if (owner.currentUnit.buffModifiers.Count > 0)
+        {
+            foreach(Modifier m in owner.currentUnit.buffModifiers)
+            {
+                if(m.modifierType == TypeOfModifier.PiercingSharpness)
+                {
+                    owner.currentUnit.criticalDamage = 1.5f;
+                    owner.currentUnit.criticalPercentage = owner.currentUnit.weapon.criticalPercentage;
+                    trashModifier.Add(m);
+                }
+            }
+        }
+
+        if (trashModifier.Count > 0)
+        {
+            foreach (Modifier m in trashModifier)
+            {
+                owner.currentUnit.RemoveBuff(m);
+            }
+        }
         owner.currentUnit.SetVelocityWhenTurnIsFinished();
         owner.turnArrow.DeactivateTarget();
         //Debug.Log("CURRENT VELOCITY ES " + owner.currentUnit.TimelineVelocity + " CURRENT UNIT ACTIONS " + owner.currentUnit.ActionsPerTurn);
@@ -33,6 +54,8 @@ public class FinishPlayerUnitTurnState : BattleState
         owner.pauseTimelineButton.canBeSelected = true;
         owner.resumeTimelineButton.canBeSelected = true;
         owner.resumeTimelineButton.onUp.Invoke();
+
+
         //AudioManager.instance.Play("TurnEnd");
         yield return null;
         owner.ChangeState<TimeLineState>();

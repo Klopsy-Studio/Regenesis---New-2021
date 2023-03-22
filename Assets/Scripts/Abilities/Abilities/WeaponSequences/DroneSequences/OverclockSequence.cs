@@ -16,7 +16,6 @@ public class OverclockSequence : AbilitySequence
         user.SpendActionPoints(ability.actionCost);
 
         user.AddBuff(overclockBuff);
-        user.EnableHaste();
         user.IncreaseTimelineVelocity(1);
 
         ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeDuration, ability.shakeDuration);
@@ -25,8 +24,6 @@ public class OverclockSequence : AbilitySequence
         {
             user.droneUnit.IncreaseTimelineVelocity(1);
             user.droneUnit.AddBuff(overclockBuff);
-            user.EnableHaste();
-
         }
 
         List<PlayerUnit> targets = new List<PlayerUnit>();
@@ -46,7 +43,6 @@ public class OverclockSequence : AbilitySequence
         foreach (PlayerUnit p in targets)
         {
             p.IncreaseTimelineVelocity(1);
-            p.EnableHaste();
             p.AddBuff(overclockBuff);
         }
 

@@ -82,6 +82,8 @@ public class Unit : TimelineElements
     public int defense;
     [HideInInspector] public int originalDefense;
 
+    public float criticalDamage = 1.5f;
+    [HideInInspector] public float originalCriticalDamage;
 
     [Header("Modifiers")]
 
@@ -189,6 +191,7 @@ public class Unit : TimelineElements
         originalCriticalPercentage = criticalPercentage;
         originalElementPower = elementPower;
         originalDefense = defense;
+        originalCriticalDamage = criticalDamage;
     }
 
     public void ResetValues()
@@ -383,6 +386,8 @@ public class Unit : TimelineElements
             default:
                 break;
         }
+
+        EnableSlow();
     }
 
     public void IncreaseTimelineVelocity(int increase)
@@ -412,6 +417,8 @@ public class Unit : TimelineElements
             default:
                 break;
         }
+
+        EnableHaste();
     }
     public override bool UpdateTimeLine()
     {
