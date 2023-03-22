@@ -16,6 +16,7 @@ public class MoveTargetState : BattleState
         base.Enter();
         owner.ActivateTileSelector();
         owner.tileSelectionToggle.MakeTileSelectionSmall();
+        owner.tileSelectionToggle.SelectionMovement();
 
         owner.isTimeLineActive = false;
 

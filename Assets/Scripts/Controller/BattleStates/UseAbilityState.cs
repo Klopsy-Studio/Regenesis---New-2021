@@ -28,7 +28,6 @@ public class UseAbilityState : BattleState
         CleanSelectTiles();
         owner.currentUnit.WeaponOut();
         owner.isTimeLineActive = false;
-        owner.ActivateTileSelector();
         currentAbility = owner.currentUnit.weapon.Abilities[owner.attackChosen];
         owner.targets.noTargetText.SetActive(false);
         owner.currentUnit.playerUI.PreviewActionCost(currentAbility.actionCost);
@@ -38,8 +37,9 @@ public class UseAbilityState : BattleState
         owner.actionSelectionUI.ThirdWindow();
         owner.abilitySelectionUI.SecondWindow();
         owner.abilitySelectionUI.title.SetActive(false);
+        owner.tileSelectionToggle.SelectionTarget();
 
-        foreach(RangeData r in currentAbility.abilityRange)
+        foreach (RangeData r in currentAbility.abilityRange)
         {
             List<Tile> dirtyTiles = PreviewAbility(r);
             foreach(Tile t in dirtyTiles)
