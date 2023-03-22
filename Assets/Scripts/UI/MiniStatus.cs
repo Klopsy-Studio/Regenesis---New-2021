@@ -35,16 +35,19 @@ public class MiniStatus : MonoBehaviour
 
     [Header("Buffs and Debuffs Prefabs")]
     [SerializeField] GameObject iconPrefab;
-    [SerializeField] Sprite defenseBuff;
-    [SerializeField] Sprite defenseDebuff;
-    [SerializeField] Sprite slowedIcon;
-    [SerializeField] Sprite hastedIcon;
-    [SerializeField] Sprite damageBuff;
-    [SerializeField] Sprite damageDebuff;
-    [SerializeField] Sprite spiderMarkIcon;
-    [SerializeField] Sprite hunterMarkIcon;
-    [SerializeField] Sprite bullseyeIcon;
-    [SerializeField] Sprite stunnedIcon;
+
+    [SerializeField] GameObject defenseBuff;
+    [SerializeField] GameObject defenseDebuff;
+    [SerializeField] GameObject slowedIcon;
+    [SerializeField] GameObject hastedIcon;
+    [SerializeField] GameObject damageBuff;
+    [SerializeField] GameObject damageDebuff;
+    [SerializeField] GameObject spiderMarkIcon;
+    [SerializeField] GameObject hunterMarkIcon;
+    [SerializeField] GameObject bullseyeIcon;
+    [SerializeField] GameObject stunnedIcon;
+    [SerializeField] GameObject piercingIcon;
+
 
     [Space]
     [Header("Weapon sprites")]
@@ -161,10 +164,9 @@ public class MiniStatus : MonoBehaviour
 
     }
 
-    public void SpawnIcon(Sprite icon, Transform parent)
+    public void SpawnIcon(GameObject o, Transform parent)
     {
-        Image i = Instantiate(iconPrefab, parent).GetComponent<Image>();
-        i.sprite = icon;
+        Instantiate(o, parent);
     }
 
 
@@ -228,6 +230,9 @@ public class MiniStatus : MonoBehaviour
                         break;
                     case TypeOfModifier.Bullseye:
                         SpawnIcon(bullseyeIcon, targetParent);
+                        break;
+                    case TypeOfModifier.PiercingSharpness:
+                        SpawnIcon(piercingIcon, targetParent);
                         break;
                     default:
                         break;
