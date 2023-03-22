@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BattleController : StateMachine
 {
+    public ActionEffectParameters monsterRoar;
     [HideInInspector] public MonsterController monsterController;
 
     [HideInInspector] public bool isTimeLineActive = true;
@@ -358,11 +359,14 @@ public class BattleController : StateMachine
     public void ActivateTileSelector()
     {
         tileSelectionIndicator.gameObject.SetActive(true);
+        Debug.Log("Selector on");
     }
 
     public void DeactivateTileSelector()
     {
         tileSelectionIndicator.gameObject.SetActive(false);
+        Debug.Log("Selector off");
+
     }
 
     public void CheckAllUnits()

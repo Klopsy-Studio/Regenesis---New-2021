@@ -33,4 +33,5 @@ public class TileSelectionToggle : MonoBehaviour
             tileSelectionState = TileSelectionState.Small;
         }
     }
+
 }
