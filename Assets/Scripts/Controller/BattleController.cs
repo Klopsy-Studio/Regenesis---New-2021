@@ -104,6 +104,7 @@ public class BattleController : StateMachine
     [SerializeField] Playtest playtestingFunctions;
     public bool enablePreview;
     public bool enableMiniStatus;
+    public bool enableZoom;
 
     [Header("Unit variables")]
     [SerializeField] 
@@ -335,7 +336,32 @@ public class BattleController : StateMachine
 
         //Pause Timeline With Input
 
-        
+        if (Input.GetKeyDown(toggleTimelineKey) && canToggleTimeline)
+        {
+            if (pauseTimeline)
+            {
+                resumeTimelineButton.action.Invoke();
+            }
+            else
+            {
+                pauseTimelineButton.action.Invoke();
+            }
+        }
+
+        if (Input.GetKeyUp(toggleTimelineKey) && canToggleTimeline)
+        {
+            if (pauseTimeline)
+            {
+                resumeTimelineButton.onUp.Invoke();
+            }
+            else
+            {
+                pauseTimelineButton.onUp.Invoke();
+
+            }
+        }
+
+
     }
     public void ChangeUIButtons(bool value)
     {

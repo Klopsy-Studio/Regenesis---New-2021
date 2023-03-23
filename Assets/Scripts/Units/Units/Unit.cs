@@ -95,6 +95,9 @@ public class Unit : TimelineElements
     [SerializeField] GameObject buffIndicator;
     [SerializeField] GameObject debuffIndicator;
     public GameObject tileIndicator;
+
+    [Header("Effects")]
+    [HideInInspector] public ActionEffectParameters currentParameters;
     protected virtual void Start()
     {
         buffModifiers = new List<Modifier>();
@@ -136,6 +139,7 @@ public class Unit : TimelineElements
         debuffModifiers.Add(m);
         debuffIndicator.SetActive(true);
     }
+
 
     public void RemoveDebuff(Modifier m)
     {
@@ -469,6 +473,10 @@ public class Unit : TimelineElements
 
     }
 
+    public void ShakeWithCurrent()
+    {
+        ActionEffect.instance.Shake(currentParameters);
+    }
     public void SetVelocityWhenTurnIsFinished()
     {
         timelineVelocity += (int)actionsPerTurn;

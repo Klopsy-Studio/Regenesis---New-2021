@@ -14,7 +14,10 @@ public class AdvancingSlash : AbilitySequence
         user = controller.currentUnit;
         playing = true;
 
-        //Bullet Increase
+        user.currentTargets.Clear();
+        user.abilityTiles.Clear();
+
+        user.currentAbility = ability;
         user.SpendActionPoints(ability.actionCost);
         user.IncreaseBullets(ammoGain);
 
@@ -44,14 +47,18 @@ public class AdvancingSlash : AbilitySequence
             yield return null;
         }
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
+        //ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
 
         if (target.GetComponent<Unit>() != null)
         {
             u = target.GetComponent<Unit>();
-            Attack(u);
+            user.currentTarget = u;
         }
 
+        user.animations.unitAnimator.SetTrigger("attack");
+        user.animations.unitAnimator.SetFloat("attackIndex", 0f);
+
+        yield return new WaitForSeconds(1f);
         if(target.GetComponent<BearObstacleScript>()!= null)
         {
             b = target.GetComponent<BearObstacleScript>();

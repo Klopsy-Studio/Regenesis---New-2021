@@ -47,10 +47,29 @@ public class PlayerUnit : Unit
     public int gunbladeAmmoMax;
     public PlayerUnit droneUnit;
     [SerializeField] GameObject droneIndicator;
+    public int pushAmount;
+    public Directions pushDirections;
+
 
     [Header("Monster Variables")]
     [HideInInspector] public bool marked;
 
+    [Header("Animation Parameters")]
+    [SerializeField] ActionEffectParameters trueShotShakeParameters;
+    [SerializeField] float trueShotShakeTime;
+
+    [SerializeField] ActionEffectParameters atomicBarrageShakeParameters;
+    [SerializeField] float atomicBarrageShakeTime;
+
+    
+    public Unit currentTarget;
+    public List<GameObject> currentTargets;
+    public Abilities currentAbility;
+    public Modifier currentModifier;
+    public List<Tile> abilityTiles;
+
+
+    
     protected override void Start()
     {
         base.Start();
@@ -60,7 +79,7 @@ public class PlayerUnit : Unit
 
         didNotMove = true;
         timelineFill = Random.Range(50, 90);
-        //ESTO DEBERÍA DE ESTAR EN UNIT
+        //ESTO DEBERï¿½A DE ESTAR EN UNIT
 
         timelineTypes = TimeLineTypes.PlayerUnit;
 
@@ -136,6 +155,21 @@ public class PlayerUnit : Unit
         }
 
 
+    public void PushTarget()
+    {
+        currentTarget.GetComponent<Movement>().PushUnit(pushDirections, pushAmount, controller.board);
+    }
+    public void AddBattlecryToUnits()
+    {
+        foreach(GameObject u in currentTargets)
+        {
+            if (u.GetComponent<Unit>() != null)
+            {
+                Unit e = u.GetComponent<Unit>();
+                e.AddBuff(currentModifier);
+                e.EnableBattlecry();
+            }
+        }
     }
     public bool CanDoAbility()
     {
@@ -188,6 +222,23 @@ public class PlayerUnit : Unit
     }
 
 
+    public void PlaySmokeVFXAbilityTiles()
+    {
+        foreach(Tile t in abilityTiles)
+        {
+            t.SetSmokeBomb();
+        }
+    }
+
+    public void PlayHealthVFXAbilityTiles()
+    {
+        foreach (Tile t in abilityTiles)
+        {
+            t.SetHealthGas();
+        }
+    }
+
+   
     public void WeaponOut()
     {
         animations.SetCombatIdle();
@@ -209,8 +260,89 @@ public class PlayerUnit : Unit
         //}
     }
 
+    public void AbilityAttack()
+    {
+        if (currentTarget != null)
+        {
+            currentTarget.ReceiveDamage(currentAbility.CalculateDmg(this, currentTarget), currentAbility.isCritical);
+            Debug.Log("Attacked");
+        }
+    }
+    public void Attack(Unit u)
+    {
+        if (u != null)
+        {
+            u.ReceiveDamage(currentAbility.CalculateDmg(this, u), currentAbility.isCritical);
+        }
+    }
+    public void AbilityAttackGroup()
+    {
+        if (currentTargets != null)
+        {
+            if (currentTargets.Count > 0)
+            {
+                foreach (GameObject o in currentTargets)
+                {
+                    if (o.GetComponent<Unit>())
+                    {
+                        Attack(o.GetComponent<Unit>());
+                    }
+                    else if (o.GetComponent<BearObstacleScript>())
+                    {
+                        o.GetComponent<BearObstacleScript>().GetDestroyed(controller.board);
+                    }
+                }
+            }
+        }
+    }
+    public void AbilityHealGroup()
+    {
+        if (currentTargets != null)
+        {
+            if (currentTargets.Count > 0)
+            {
+                foreach (GameObject o in currentTargets)
+                {
+                    if (o.GetComponent<Unit>())
+                    {
+                        o.GetComponent<Unit>().Heal(currentAbility.initialHeal);
+                    }
+                }
+            }
+        }
+    }
 
+    public void SetMarkOnTarget()
+    {
+        currentTarget.EnableCriticalMark();
+    }
+    public void AnimationLog()
+    {
+        Debug.Log("This animation is played");
+    }
+    public void CurrentAbilityZoom()
+    {
+        ActionEffect.instance.Play(currentAbility.shakeParameters);
+    }
 
+    public void PlayAbilityShake()
+    {
+        ActionEffect.instance.Shake(currentAbility.shakeParameters);
+    }
+
+    public void TrueShotShake()
+    {
+        ActivateShake(trueShotShakeParameters, trueShotShakeTime);
+    }
+
+    void ActivateShake(ActionEffectParameters parameters, float time)
+    {
+        ActionEffect.instance.Shake(parameters);
+    }
+    public void PlayActionEffectAbility()
+    {
+        ActionEffect.instance.Play(currentAbility.cameraSize, currentAbility.effectDuration, currentAbility.shakeIntensity, currentAbility.shakeDuration);
+    }
     public override void NearDeath()
     {
         NearDeathSprite();

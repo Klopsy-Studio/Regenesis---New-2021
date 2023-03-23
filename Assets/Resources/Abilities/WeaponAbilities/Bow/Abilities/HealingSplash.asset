@@ -27,11 +27,13 @@ MonoBehaviour:
     crossLength: 2
     crossOffset: 1
     squareReach: 0
+    squareRemoveOrigin: 0
     alternateSideDir: 0
     alternateSideReach: 0
     alternateSideLength: 0
     movementRange: 0
     removeOrigin: 0
+    removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
   tileTargetAbilityRange:
@@ -46,11 +48,13 @@ MonoBehaviour:
     crossLength: 0
     crossOffset: 0
     squareReach: 1
+    squareRemoveOrigin: 0
     alternateSideDir: 0
     alternateSideReach: 0
     alternateSideLength: 0
     movementRange: 0
     removeOrigin: 0
+    removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
   rangeData:
@@ -65,17 +69,110 @@ MonoBehaviour:
     crossLength: 0
     crossOffset: 0
     squareReach: 0
+    squareRemoveOrigin: 0
     alternateSideDir: 0
     alternateSideReach: 0
     alternateSideLength: 0
     movementRange: 3
     removeOrigin: 1
+    removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
   cameraSize: 3
   effectDuration: 0.5
   shakeIntensity: 0.01
   shakeDuration: 0.05
+  zoomParameters:
+    cameraSize: 3
+    effectDuration: 0.5
+    shakeDefinition:
+      m_ImpulseChannel: 1
+      m_ImpulseShape: 0
+      m_CustomImpulseShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_ImpulseDuration: 0.2
+      m_ImpulseType: 3
+      m_DissipationRate: 0
+      m_RawSignal: {fileID: 0}
+      m_AmplitudeGain: 1
+      m_FrequencyGain: 1
+      m_RepeatMode: 0
+      m_Randomize: 1
+      m_TimeEnvelope:
+        m_AttackShape:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_DecayShape:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_AttackTime: 0
+        m_SustainTime: 0.2
+        m_DecayTime: 0.7
+        m_ScaleWithImpact: 1
+        m_HoldForever: 0
+      m_ImpactRadius: 100
+      m_DirectionMode: 0
+      m_DissipationMode: 2
+      m_DissipationDistance: 100
+      m_PropagationSpeed: 343
+    shakeVelocity: {x: 0, y: 0, z: 0}
+    shakeForce: 0
+  shakeParameters:
+    cameraSize: 3
+    effectDuration: 0.5
+    shakeDefinition:
+      m_ImpulseChannel: 1
+      m_ImpulseShape: 2
+      m_CustomImpulseShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_ImpulseDuration: 0.2
+      m_ImpulseType: 0
+      m_DissipationRate: 0
+      m_RawSignal: {fileID: 0}
+      m_AmplitudeGain: 1
+      m_FrequencyGain: 1
+      m_RepeatMode: 0
+      m_Randomize: 1
+      m_TimeEnvelope:
+        m_AttackShape:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_DecayShape:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_AttackTime: 0
+        m_SustainTime: 0.2
+        m_DecayTime: 0.7
+        m_ScaleWithImpact: 1
+        m_HoldForever: 0
+      m_ImpactRadius: 100
+      m_DirectionMode: 0
+      m_DissipationMode: 2
+      m_DissipationDistance: 100
+      m_PropagationSpeed: 343
+    shakeVelocity: {x: 0.2, y: 0.2, z: 0.2}
+    shakeForce: 0.1
+  shakeTime: 0
   abilityName: Healing Splash
   abilityEffect: 1
   abilityModifier: 0.1
@@ -94,3 +191,4 @@ MonoBehaviour:
   sequence: {fileID: 11400000, guid: ef623fbeedd44e3468a69344766ef5c2, type: 2}
   soundString: 
   elementsToTarget: 05000000
+  isCritical: 0

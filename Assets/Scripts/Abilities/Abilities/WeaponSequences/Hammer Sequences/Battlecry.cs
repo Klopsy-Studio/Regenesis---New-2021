@@ -12,14 +12,16 @@ public class Battlecry : AbilitySequence
     {
         user = controller.currentUnit;
         playing = true;
+        user.SpendActionPoints(ability.actionCost);
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
+        user.currentAbility = ability;
+        //ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
 
         AbilityRange r = ability.abilityRange[0].GetOrCreateRange(ability.abilityRange[0].range, user.gameObject);
         r.unit = user;
 
         List<Tile> tiles = r.GetTilesInRange(controller.board);
-        List<PlayerUnit> units = new List<PlayerUnit>();
+        List<GameObject> units = new List<GameObject>();
 
         foreach(Tile t in tiles)
         {
@@ -27,23 +29,24 @@ public class Battlecry : AbilitySequence
             {
                 if(t.content.GetComponent<PlayerUnit>() != null)
                 {
-                    units.Add(t.content.GetComponent<PlayerUnit>());
+                    units.Add(t.content);
                 }
             }
         }
 
-        foreach(Unit u in units)
-        {
-            u.AddBuff(battlecryData);
-            u.EnableBattlecry();
-        }
+        user.currentTargets = units;
+        user.currentModifier = battlecryData;
+
+        user.animations.unitAnimator.SetTrigger("attack");
+        user.animations.unitAnimator.SetFloat("attackIndex", 1f);
+
+        yield return new WaitForSeconds(0.5f);
 
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
         }
 
-        user.SpendActionPoints(ability.actionCost);
         playing = false;
     }
 }

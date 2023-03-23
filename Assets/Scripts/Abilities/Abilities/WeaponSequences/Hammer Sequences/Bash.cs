@@ -13,42 +13,46 @@ public class Bash : AbilitySequence
         user = controller.currentUnit;
         playing = true;
         user.SpendActionPoints(ability.actionCost);
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
+        user.currentAbility = ability;
 
         if(target.GetComponent<Unit>()!= null)
         {
             Unit u = target.GetComponent<Unit>();
-            Attack(u);
-            Movement m = u.GetComponent<Movement>();
 
-            if(CheckFury())
+            user.currentTarget = u;
+            user.pushDirections = user.tile.GetDirections(u.tile);
+
+            if (CheckFury())
             {
+                user.pushAmount = 5;
                 HammerFurySequence(5, u, controller, user.tile.GetDirections(u.tile));
                 ResetFury();
             }
             else
             {
-                m.PushUnit(user.tile.GetDirections(u.tile), bashStrenght, controller.board);
+                user.pushAmount = 1;
                 IncreaseFury(furyAmount);
-            }
-
-            while (m.moving)
-            {
-                yield return null;
             }
         }
 
-        if(target.GetComponent<BearObstacleScript>() != null)
+        else if(target.GetComponent<BearObstacleScript>() != null)
         {
-            user.Attack();
             target.GetComponent<BearObstacleScript>().GetDestroyed(controller.board);
 
             if (CheckFury())
             {
                 ResetFury();
             }
+            else
+            {
+                IncreaseFury(furyAmount);
+            }
         }
 
+        user.animations.unitAnimator.SetTrigger("attack");
+        user.animations.unitAnimator.SetFloat("attackIndex", 0.2f);
+
+        yield return new WaitForSeconds(0.5f);
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;

@@ -13,6 +13,9 @@ public class Disengage : AbilitySequence
     {
         playing = true;
         user = controller.currentUnit;
+        user.currentTargets.Clear();
+        user.abilityTiles.Clear();
+        user.currentAbility = ability;
         user.SpendActionPoints(ability.actionCost);
         user.IncreaseBullets(ammoGain);
 
@@ -32,27 +35,27 @@ public class Disengage : AbilitySequence
             t = null;
         }
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
 
         if(target != null)
         {
             if (target.GetComponent<Unit>())
             {
                 Unit u = target.GetComponent<Unit>();
-
-                Attack(u);
+                user.currentTarget = u;
             }
 
             else if (target.GetComponent<BearObstacleScript>())
             {
                 BearObstacleScript b = target.GetComponent<BearObstacleScript>();
                 b.GetDestroyed(controller.board);
-                user.Attack();
             }
 
         }
-        
-        
+
+        user.animations.unitAnimator.SetTrigger("attack");
+        user.animations.unitAnimator.SetFloat("attackIndex", 1f);
+
+        yield return new WaitForSeconds(1f);
 
         while (ActionEffect.instance.CheckActionEffectState())
         {

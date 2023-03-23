@@ -30,6 +30,8 @@ public class UnitProfile : ScriptableObject
 
     [Header("Equipment")]
     public Weapons unitWeapon;
+
+    public float characterIndex;
     //public WeaponOffset hammerOffset;
     //public WeaponOffset slingShotOffset;
 }

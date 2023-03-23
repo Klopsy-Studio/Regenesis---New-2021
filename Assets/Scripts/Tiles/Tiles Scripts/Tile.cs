@@ -156,6 +156,17 @@ public class Tile : MonoBehaviour
             Debug.Log("Sprite VFX animator component is missing");
         }
     }
+    public void SetHealthGas()
+    {
+        if (tileVfx != null)
+        {
+            tileVfx.SetTrigger("health");
+        }
+        else
+        {
+            Debug.Log("Sprite VFX animator component is missing");
+        }
+    }
 
 
     public void SetRootVfx()

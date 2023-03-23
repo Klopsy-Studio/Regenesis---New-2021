@@ -107,7 +107,7 @@ public class MoveTargetState : BattleState
                 }
                 else
                 {
-                    owner.ghostImage.gameObject.SetActive(false);
+                    //owner.ghostImage.gameObject.SetActive(false);
                 }
             }
         }

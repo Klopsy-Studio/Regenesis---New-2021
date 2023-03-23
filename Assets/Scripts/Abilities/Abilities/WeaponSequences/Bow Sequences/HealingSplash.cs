@@ -13,53 +13,43 @@ public class HealingSplash : AbilitySequence
         user = controller.currentUnit;
         playing = true;
         yield return null;
+        user.currentAbility = ability;
         controller.board.SelectHealTiles(tiles);
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-        //We spend points here
+
         int numberOfAttacks = DefaultBowAttack(controller);
-        playing = true;
-        user = controller.currentUnit;
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-
+        user.abilityTiles = tiles;
         List<GameObject> targets = new List<GameObject>();
 
         foreach (Tile t in tiles)
         {
             if (t.content != null)
             {
-                if (!targets.Contains(t.content))
+                if (t.content.GetComponent<PlayerUnit>() != null)
                 {
                     targets.Add(t.content);
                 }
             }
-
-            if (t.occupied)
-            {
-                if (!targets.Contains(controller.enemyUnits[0].gameObject))
-                {
-                    targets.Add(controller.enemyUnits[0].gameObject);
-                }
-            }
         }
 
-        for (int i = 0; i < numberOfAttacks; i++)
+        user.currentTargets = targets;
+
+        switch (numberOfAttacks)
         {
-            if (targets != null)
-            {
-                if (targets.Count > 0)
-                {
-                    foreach (GameObject o in targets)
-                    {
-                        if (o.GetComponent<Unit>())
-                        {
-                            o.GetComponent<Unit>().Heal(20);
-                        }
-                    }
-                }
-            }
+            case 1:
+                user.animations.unitAnimator.SetTrigger("attack");
+                user.animations.unitAnimator.SetFloat("attackIndex", 0.2f);
+                break;
+            case 2:
+                user.animations.unitAnimator.SetTrigger("doubleAttack");
+                user.animations.unitAnimator.SetFloat("attackIndex", 0.2f);
+                break;
+            default:
+                break;
         }
-        
+
+        yield return new WaitForSeconds(3f);
+
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
