@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BattleController : StateMachine
 {
+    public ActionEffectParameters monsterRoar;
     [HideInInspector] public MonsterController monsterController;
 
     [HideInInspector] public bool isTimeLineActive = true;
@@ -101,6 +102,7 @@ public class BattleController : StateMachine
     [SerializeField] Playtest playtestingFunctions;
     public bool enablePreview;
     public bool enableMiniStatus;
+    public bool enableZoom;
 
     [Header("Unit variables")]
     [SerializeField] 
@@ -321,7 +323,6 @@ public class BattleController : StateMachine
 
             }
         }
-
 
 
     }

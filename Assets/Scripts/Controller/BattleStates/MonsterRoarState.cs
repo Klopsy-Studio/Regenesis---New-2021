@@ -22,6 +22,7 @@ public class MonsterRoarState : BattleState
 
         ActionEffect.instance.Play(3, 0.5f, 0.01f, 0.05f);
 
+        ActionEffect.instance.Shake(owner.monsterRoar);
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;

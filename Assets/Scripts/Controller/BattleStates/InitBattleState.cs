@@ -26,7 +26,6 @@ public class InitBattleState : BattleState
     {
         System.Type[] components = new System.Type[] { typeof(WalkMovement) };
 
-        float index = 0f;
         for (int i = 0; i < GameManager.instance.unitProfilesList.Length; i++)
         {
             GameObject instance = Instantiate(GameManager.instance.unitsPrefab);
@@ -37,14 +36,14 @@ public class InitBattleState : BattleState
             player.profile = GameManager.instance.unitProfilesList[i];
             Point p = levelData.playerSpawnPoints.ToArray()[i];
 
-            player.animations.SetCharacter(index);
-            index += 0.5f;
+            player.animations.SetCharacter(GameManager.instance.unitProfilesList[i].characterIndex);
             Unit unit = instance.GetComponent<Unit>();
             unit.controller = owner;
             unit.Place(board.GetTile(p));
             unit.Match();
 
-            
+            unit.unitSprite.color = GameManager.instance.unitProfilesList[i].unitColor;
+
             Movement m = instance.AddComponent(components[0]) as Movement;
             m.jumpHeight = 1;
 

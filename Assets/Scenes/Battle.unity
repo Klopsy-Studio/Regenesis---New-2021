@@ -2986,7 +2986,7 @@ PrefabInstance:
     - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
       propertyPath: currentMission
       value: 
-      objectReference: {fileID: 11400000, guid: 74dcd35f7a3adfb4980046cb49e97365, type: 2}
+      objectReference: {fileID: 11400000, guid: b90eaef850f44a14781502a4bdce162b, type: 2}
     - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
       propertyPath: unitsPrefab.Array.size
       value: 3
@@ -3003,6 +3003,18 @@ PrefabInstance:
       propertyPath: unitsPrefab.Array.data[2]
       value: 
       objectReference: {fileID: 3783648232820829175, guid: a30a800811cef7344a96c8a7263bb9e8, type: 3}
+    - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
+      propertyPath: unitProfilesList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: bdf2f419ed9883641978a87198ace31a, type: 2}
+    - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
+      propertyPath: unitProfilesList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: c416acdc6c546db42a9e1d2627e47d6b, type: 2}
+    - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
+      propertyPath: unitProfilesList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f6cb7c7d5a14a249b0c7b9399f74542, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
 --- !u!1001 &85011357939115778
@@ -3197,6 +3209,58 @@ PrefabInstance:
       propertyPath: playtestingFunctions
       value: 
       objectReference: {fileID: 1978384202}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeForce
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeVelocity.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeVelocity.y
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeVelocity.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeDefinition.m_ImpulseType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeDefinition.m_ImpulseShape
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeDefinition.m_ImpulseDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeDefinition.m_CustomImpulseShape.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeDefinition.m_CustomImpulseShape.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeDefinition.m_CustomImpulseShape.m_Curve.Array.data[0].value
+      value: 0.9937439
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeDefinition.m_CustomImpulseShape.m_Curve.Array.data[1].value
+      value: 0.9124985
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeDefinition.m_CustomImpulseShape.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099776044107931976, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: monsterRoar.shakeDefinition.m_CustomImpulseShape.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3099776044107931977, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
       propertyPath: m_RootOrder
       value: 8
