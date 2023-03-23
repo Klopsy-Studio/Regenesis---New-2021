@@ -15,6 +15,7 @@ public class ActionEffect : MonoBehaviour
     bool shakeRecovery = false;
     float shakeTime;
     [Header("References")]
+    [SerializeField] BattleController controller;
     [SerializeField] private CinemachineVirtualCamera cinemachineCamera;
     [SerializeField] CinemachineBasicMultiChannelPerlin shakeChannel;
     [SerializeField] CinemachineImpulseSource impulseSource;
@@ -157,6 +158,7 @@ public class ActionEffect : MonoBehaviour
     }
     private void Effect()
     {
+        controller.DisableZoom();
         _currentTime += zoomDuration * Time.deltaTime; // A variable that adds over time
 
         #region Zoom
@@ -242,6 +244,7 @@ public class ActionEffect : MonoBehaviour
         if (_currentTime >= recoveryDuration)
         {
             _currentTime = 0f;
+            controller.EnableZoom();
             recovery = false;
         }
     }

@@ -121,17 +121,42 @@ public class BattleController : StateMachine
     public MenuButton resumeTimelineButton;
 
     [Header("Zoom Variables")]
+    [SerializeField] Animator zoomAnimations;
+    [SerializeField] float minCameraZoom = 4f;
+    [SerializeField] float maxCameraZoom = 8.5f;
+
+
+    float currentZoomSize;
+    
+    int cameraInput
+    {
+        get
+        {
+            return _cameraInput;
+        }
+
+        set
+        {
+            _cameraInput = Mathf.Clamp(value, 1, -1);
+        }
+    }
+
+    int _cameraInput;
+
     public bool zoomed = false;
 
     bool zoomIn = false;
     bool zoomOut = false;
-
+    bool zoomVeryOut = false;
     [SerializeField] float zoomSpeed;
     [SerializeField] float preferedZoomSize;
     [SerializeField] AnimationCurve zoomInCurve;
 
     float originalZoomSize;
     float currentTime;
+
+    float fov;
+    [SerializeField] [Range(0, 1000)]float sensitivity = 10f;
     public void BeginGame()
     {
         canToggleTimeline = true;
@@ -173,32 +198,19 @@ public class BattleController : StateMachine
         yield return new WaitForSeconds(0.8f);
         indicatingTurn = false;
     }
+
+    public void EnableZoom()
+    {
+        enableZoom = true;
+    }
+
+    public void DisableZoom()
+    {
+        enableZoom = false;
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(toggleTimelineKey) && canToggleTimeline)
-        {
-            if (pauseTimeline)
-            {
-                resumeTimelineButton.action.Invoke();
-            }
-            else
-            {
-                pauseTimelineButton.action.Invoke();
-            }
-        }
-
-        if (Input.GetKeyUp(toggleTimelineKey) && canToggleTimeline)
-        {
-            if (pauseTimeline)
-            {
-                resumeTimelineButton.onUp.Invoke();
-            }
-            else
-            {
-                pauseTimelineButton.onUp.Invoke();
-
-            }
-        }
         if (playtestToggle)
         {
             if (Input.GetKeyDown(KeyCode.K))
@@ -299,43 +311,7 @@ public class BattleController : StateMachine
             }
         }
 
-        if (!ActionEffect.instance.CheckActionEffectState())
-        {
-            if (zoomIn && !zoomOut)
-            {
-                currentTime += Time.deltaTime * zoomSpeed;
-                cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
-
-                if (cinemachineCamera.m_Lens.OrthographicSize <= preferedZoomSize)
-                {
-                    zoomIn = false;
-                    cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
-                    currentTime = 0;
-                    zoomed = true;
-                }
-            }
-
-            if (zoomOut && !zoomIn)
-            {
-                currentTime += Time.deltaTime * zoomSpeed;
-
-                cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, originalZoomSize, zoomInCurve.Evaluate(currentTime));
-
-                if (cinemachineCamera.m_Lens.OrthographicSize >= originalZoomSize)
-                {
-                    zoomOut = false;
-                    cinemachineCamera.m_Lens.OrthographicSize = originalZoomSize;
-                    currentTime = 0;
-                    zoomed = false;
-
-                }
-            }
-        }
-        
-
-
         //Pause Timeline With Input
-
         if (Input.GetKeyDown(toggleTimelineKey) && canToggleTimeline)
         {
             if (pauseTimeline)
@@ -362,6 +338,19 @@ public class BattleController : StateMachine
         }
 
 
+        if (enableZoom)
+        {
+            fov = cinemachineCamera.m_Lens.OrthographicSize;
+            fov -= Input.GetAxis("Mouse ScrollWheel") * sensitivity*Time.deltaTime;
+            fov = Mathf.Clamp(fov, minCameraZoom, maxCameraZoom);
+            cinemachineCamera.m_Lens.OrthographicSize = fov;
+        }
+
+    }
+
+    public void ActivateZoom()
+    {
+        zoomIn = true;
     }
     public void ChangeUIButtons(bool value)
     {
@@ -486,6 +475,7 @@ public class BattleController : StateMachine
     {
         if (!zoomOut)
         {
+            preferedZoomSize = 4;
             zoomIn = true;
         }
     }
@@ -496,6 +486,13 @@ public class BattleController : StateMachine
         {
             zoomOut = true;
         }
+    }
+
+    public void ZoomVeryOut()
+    {
+        zoomVeryOut = true;
+        preferedZoomSize = 9;
+    
     }
     public void SetBowExtraAttack()
     {

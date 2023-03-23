@@ -559,6 +559,9 @@ public class UseAbilityState : BattleState
 
                     owner.bowExtraAttackObject.SetActive(false);
                     StartCoroutine(UseAbilitySequence(selectTiles));
+                    owner.actionSelectionUI.gameObject.SetActive(false);
+                    owner.abilitySelectionUI.gameObject.SetActive(false);
+                    owner.targets.gameObject.SetActive(false);
                     owner.targets.gameObject.SetActive(false);
                     owner.targets.stopSelection = true;
                 }
@@ -571,7 +574,9 @@ public class UseAbilityState : BattleState
                     owner.currentUnit.playerUI.HideActionPoints();
                     owner.currentUnit.playerUI.HideBullets();
                     GameObject objectTarget = owner.targets.selectedTarget.targetAssigned;
-
+                    owner.actionSelectionUI.gameObject.SetActive(false);
+                    owner.abilitySelectionUI.gameObject.SetActive(false);
+                    owner.targets.gameObject.SetActive(false);
                     board.DeSelectTiles(tiles);
                     owner.bowExtraAttackObject.SetActive(false);
                     StartCoroutine(UseAbilitySequence(objectTarget));
