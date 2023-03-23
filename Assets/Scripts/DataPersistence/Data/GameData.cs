@@ -6,15 +6,15 @@ using UnityEngine;
 public class GameData
 {
     public int clickCount;
-    public SerializableDictionary<string, bool> coinsCollected;
+    public NewSerializableDictionary<string, bool> coinsCollected;
     public List<ItemData> consumableInventory;
     public List<ItemData> materialInventory;
     public List<ItemData> weaponInventory;
     public List<ItemData> consumableBackpack; 
-    public SerializableDictionary<string, bool> isMissionNew;
-    public SerializableDictionary<string, bool> isMissionCompleted;
+    public NewSerializableDictionary<string, bool> isMissionNew;
+    public NewSerializableDictionary<string, bool> isMissionCompleted;
     //key -> unit name --- value -> unitWeapons
-    public SerializableDictionary<string, string> unitsProfiles;
+    public NewSerializableDictionary<string, string> unitsProfiles;
 
     string[] unitsName = { "Isak", "Kaeo", "Ola" };
     string[] unitsWeapons = { "ScrapBow_3", "ScrapGunBlade_3", "ScrapHammer_3" };
@@ -23,15 +23,15 @@ public class GameData
     public GameData()
     {
         this.clickCount = 0;
-        coinsCollected = new SerializableDictionary<string, bool>();
+        coinsCollected = new NewSerializableDictionary<string, bool>();
         consumableInventory = new List<ItemData>();
         materialInventory = new List<ItemData>();
         weaponInventory = new List<ItemData>();
-        isMissionNew = new SerializableDictionary<string, bool>();
-        isMissionCompleted = new SerializableDictionary<string, bool>();
+        isMissionNew = new NewSerializableDictionary<string, bool>();
+        isMissionCompleted = new NewSerializableDictionary<string, bool>();
 
         //AL INICIAR QUE OBTENGAN ARMAS POR DEFECTOS
-        unitsProfiles = new SerializableDictionary<string, string>();
+        unitsProfiles = new NewSerializableDictionary<string, string>();
         UnitsProfileDefaultSetting();
         //unitsProfiles = new SerializableDictionary<string, string>();
         consumableBackpack = new List<ItemData>();
