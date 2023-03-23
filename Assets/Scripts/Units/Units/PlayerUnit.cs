@@ -140,9 +140,9 @@ public class PlayerUnit : Unit
 
     public void SetDrone(PlayerUnit newUnit, int cost)
     {
-        if(newUnit != droneUnit)
+        if (newUnit != droneUnit)
         {
-            if(droneUnit != null)
+            if (droneUnit != null)
             {
                 //Update sprite to removeDrone
             }
@@ -154,6 +154,7 @@ public class PlayerUnit : Unit
             //Update with drone sprite on new unit;
         }
 
+    }
 
     public void PushTarget()
     {
