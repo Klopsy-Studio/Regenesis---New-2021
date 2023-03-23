@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Playtest : MonoBehaviour
 {
@@ -28,9 +29,10 @@ public class ActionEffectParameters
 {
     [Range(0, 100)] public float cameraSize = 3f;
     [Range(0, 10)] public float effectDuration = 0.5f;
-    [Range(0, 100)] public float shakeIntensity = 0.01f;
-    [Range(0, 10)] public float shakeDuration = 0.05f;
 
+    public CinemachineImpulseDefinition shakeDefinition;
+    public Vector3 shakeVelocity;
+    public float shakeForce;
 }
 
 

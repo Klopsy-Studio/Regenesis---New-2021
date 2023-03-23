@@ -19,7 +19,6 @@ public class HuntersMark : AbilitySequence
         if (target.GetComponent<Unit>() != null)
         {
             Unit u = target.GetComponent<Unit>();
-            Modifier hunterMark = new Modifier();
             hunterMark.modifierType = TypeOfModifier.HunterMark;
 
             if (controller.bowExtraAttack)
