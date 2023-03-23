@@ -103,7 +103,7 @@ public class MoveTargetState : BattleState
                 {
                     SelectTile(e.info + t.pos);
                     owner.ghostImage.gameObject.SetActive(true);
-
+                    owner.UpdateUnitSprite();
                 }
                 else
                 {

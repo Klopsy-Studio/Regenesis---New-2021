@@ -199,6 +199,7 @@ public class UseAbilityState : BattleState
         }
     }
 
+    
     protected override void OnMouseSelectEvent(object sender, InfoEventArgs<Point> e)
     {
         if (isTargetTile)
@@ -219,6 +220,7 @@ public class UseAbilityState : BattleState
                             if (tiles.Contains(board.GetTile(e.info + t.pos)))
                             {
                                 SelectTile(e.info + t.pos);
+                                owner.UpdateUnitSprite();
                                 selectedTile = board.GetTile(e.info + t.pos);
 
                                 if (selectTiles != null)

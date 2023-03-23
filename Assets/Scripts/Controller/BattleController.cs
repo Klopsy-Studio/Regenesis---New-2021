@@ -416,6 +416,23 @@ public class BattleController : StateMachine
 
         CheckAllUnits();
     }
+
+    public void UpdateUnitSprite()
+    {
+        Debug.Log("Updating");
+        if (currentUnit.tile.CheckSpecificDirection(currentTile, Directions.East) || currentUnit.tile.CheckSpecificDirection(currentTile, Directions.South))
+        {
+            Debug.Log("It's east");
+            currentUnit.unitSprite.flipX = true;
+        }
+
+        if (currentUnit.tile.CheckSpecificDirection(currentTile, Directions.West) || currentUnit.tile.CheckSpecificDirection(currentTile, Directions.North))
+        {
+            Debug.Log("It's west");
+
+            currentUnit.unitSprite.flipX = false;
+        }
+    }
     public void FadeUnits()
     {
         foreach (Unit u in unitsInGame)

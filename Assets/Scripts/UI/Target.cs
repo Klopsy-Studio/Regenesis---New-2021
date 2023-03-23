@@ -30,7 +30,7 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             owner.controller.ActivateTileSelector();
             owner.selectedTarget = this;
             controller.SelectTile(targetPosition);
-
+            controller.UpdateUnitSprite();
 
             switch (targetType)
             {
