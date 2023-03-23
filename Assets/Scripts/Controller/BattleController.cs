@@ -121,17 +121,41 @@ public class BattleController : StateMachine
     public MenuButton resumeTimelineButton;
 
     [Header("Zoom Variables")]
+    [SerializeField] Animator zoomAnimations;
+    [SerializeField] float minCameraZoom = 4f;
+    [SerializeField] float maxCameraZoom = 8.5f;
+
+
+    float currentZoomSize;
+    
+    int cameraInput
+    {
+        get
+        {
+            return _cameraInput;
+        }
+
+        set
+        {
+            _cameraInput = Mathf.Clamp(value, 1, -1);
+        }
+    }
+
+    int _cameraInput;
+
     public bool zoomed = false;
 
     bool zoomIn = false;
     bool zoomOut = false;
-
+    bool zoomVeryOut = false;
     [SerializeField] float zoomSpeed;
     [SerializeField] float preferedZoomSize;
     [SerializeField] AnimationCurve zoomInCurve;
 
     float originalZoomSize;
     float currentTime;
+
+
     public void BeginGame()
     {
         canToggleTimeline = true;
@@ -175,30 +199,6 @@ public class BattleController : StateMachine
     }
     private void Update()
     {
-        if (Input.GetKeyDown(toggleTimelineKey) && canToggleTimeline)
-        {
-            if (pauseTimeline)
-            {
-                resumeTimelineButton.action.Invoke();
-            }
-            else
-            {
-                pauseTimelineButton.action.Invoke();
-            }
-        }
-
-        if (Input.GetKeyUp(toggleTimelineKey) && canToggleTimeline)
-        {
-            if (pauseTimeline)
-            {
-                resumeTimelineButton.onUp.Invoke();
-            }
-            else
-            {
-                pauseTimelineButton.onUp.Invoke();
-
-            }
-        }
         if (playtestToggle)
         {
             if (Input.GetKeyDown(KeyCode.K))
@@ -299,43 +299,88 @@ public class BattleController : StateMachine
             }
         }
 
-        if (!ActionEffect.instance.CheckActionEffectState())
-        {
-            if (zoomIn && !zoomOut)
-            {
-                currentTime += Time.deltaTime * zoomSpeed;
-                cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
+        //if (!ActionEffect.instance.CheckActionEffectState())
+        //{
+        //    if (zoomIn && !zoomOut && !zoomVeryOut)
+        //    {
+        //        currentTime += Time.deltaTime * zoomSpeed;
+        //        cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
 
-                if (cinemachineCamera.m_Lens.OrthographicSize <= preferedZoomSize)
-                {
-                    zoomIn = false;
-                    cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
-                    currentTime = 0;
-                    zoomed = true;
-                }
-            }
+        //        if (cinemachineCamera.m_Lens.OrthographicSize <= preferedZoomSize)
+        //        {
+        //            zoomIn = false;
+        //            cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
+        //            currentTime = 0;
+        //            zoomed = true;
+        //        }
 
-            if (zoomOut && !zoomIn)
-            {
-                currentTime += Time.deltaTime * zoomSpeed;
+        //        else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
+        //        {
+        //            zoomIn = false;
+        //            currentTime = 0;
+        //            zoomed = false;
+        //            ZoomOut();
+        //        }
+        //    }
+  
+        //    if (zoomOut && !zoomIn && !zoomVeryOut)
+        //    {
+        //        currentTime += Time.deltaTime * zoomSpeed;
 
-                cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, originalZoomSize, zoomInCurve.Evaluate(currentTime));
+        //        cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, originalZoomSize, zoomInCurve.Evaluate(currentTime));
 
-                if (cinemachineCamera.m_Lens.OrthographicSize >= originalZoomSize)
-                {
-                    zoomOut = false;
-                    cinemachineCamera.m_Lens.OrthographicSize = originalZoomSize;
-                    currentTime = 0;
-                    zoomed = false;
+        //        if (cinemachineCamera.m_Lens.OrthographicSize >= originalZoomSize)
+        //        {
+        //            zoomOut = false;
+        //            cinemachineCamera.m_Lens.OrthographicSize = originalZoomSize;
+        //            currentTime = 0;
+        //            zoomed = false;
 
-                }
-            }
-        }
-        
+        //        }
 
+        //        else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        //        {
+        //            zoomOut = false;
+        //            currentTime = 0;
+        //            zoomed = false;
+        //            ZoomIn();
+        //        }
+
+        //        else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
+        //        {
+        //            zoomOut = false;
+        //            currentTime = 0;
+        //            zoomed = false;
+        //            ZoomVeryOut();
+        //        }
+        //    }
+
+        //    if (!zoomOut && !zoomIn && zoomVeryOut)
+        //    {
+        //        currentTime += Time.deltaTime * zoomSpeed;
+
+        //        cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
+
+        //        if (cinemachineCamera.m_Lens.OrthographicSize >= preferedZoomSize)
+        //        {
+        //            zoomVeryOut = false;
+        //            cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
+        //            currentTime = 0;
+        //            zoomed = false;
+
+        //        }
+
+        //        else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        //        {
+        //            zoomVeryOut = false;
+        //            currentTime = 0;
+        //            zoomed = false;
+        //            ZoomOut();
+        //        }
+        //    }
+        //}
 
         //Pause Timeline With Input
-
         if (Input.GetKeyDown(toggleTimelineKey) && canToggleTimeline)
         {
             if (pauseTimeline)
@@ -362,6 +407,112 @@ public class BattleController : StateMachine
         }
 
 
+        if (zoomed)
+        {
+            currentTime += Time.deltaTime * zoomSpeed;
+            Debug.Log("zooming");
+            cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, currentZoomSize, zoomInCurve.Evaluate(currentTime));
+
+            if (zoomOut)
+            {
+                if (cinemachineCamera.m_Lens.OrthographicSize >= currentZoomSize)
+                {
+                    zoomOut = false;
+                    cinemachineCamera.m_Lens.OrthographicSize = currentZoomSize;
+                    currentTime = 0;
+                    zoomed = false;
+                }
+            }
+
+            if (zoomIn)
+            {
+                if (cinemachineCamera.m_Lens.OrthographicSize <= currentZoomSize)
+                {
+                    zoomIn = false;
+                    cinemachineCamera.m_Lens.OrthographicSize = currentZoomSize;
+                    currentTime = 0;
+                    zoomed = false;
+                }
+            }
+
+            if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+            {
+                if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+                {
+                    currentZoomSize -= 0.5f;
+
+                    if (currentZoomSize <= minCameraZoom)
+                    {
+                        currentZoomSize = minCameraZoom;
+                    }
+                    else
+                    {
+                        zoomIn = true;
+                        zoomed = true;
+                    }
+
+                }
+
+                if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+                {
+                    currentZoomSize += 0.5f;
+
+                    if (currentZoomSize >= maxCameraZoom)
+                    {
+                        currentZoomSize = maxCameraZoom;
+                    }
+                    else
+                    {
+                        zoomOut = true;
+                        zoomed = true;
+
+                    }
+                }
+
+            }
+
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+        {
+            if(Input.GetAxis("Mouse ScrollWheel") > 0f)
+            {
+                currentZoomSize -= 0.5f;
+
+                if (currentZoomSize <= minCameraZoom)
+                {
+                    currentZoomSize = minCameraZoom;
+                }
+                else
+                {
+                    zoomIn = true;
+                    zoomed = true;
+                }
+
+            }
+
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+            {
+                currentZoomSize += 0.5f;
+
+                if (currentZoomSize >= maxCameraZoom)
+                {
+                    currentZoomSize = maxCameraZoom;
+                }
+                else
+                {
+                    zoomOut = true;
+                    zoomed = true;
+
+                }
+            }
+
+        }
+
+    }
+
+    public void ActivateZoom()
+    {
+        zoomIn = true;
     }
     public void ChangeUIButtons(bool value)
     {
@@ -486,6 +637,7 @@ public class BattleController : StateMachine
     {
         if (!zoomOut)
         {
+            preferedZoomSize = 4;
             zoomIn = true;
         }
     }
@@ -496,6 +648,13 @@ public class BattleController : StateMachine
         {
             zoomOut = true;
         }
+    }
+
+    public void ZoomVeryOut()
+    {
+        zoomVeryOut = true;
+        preferedZoomSize = 9;
+    
     }
     public void SetBowExtraAttack()
     {
