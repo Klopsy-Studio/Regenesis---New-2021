@@ -155,7 +155,8 @@ public class BattleController : StateMachine
     float originalZoomSize;
     float currentTime;
 
-
+    float fov;
+    [SerializeField] [Range(0, 1000)]float sensitivity = 10f;
     public void BeginGame()
     {
         canToggleTimeline = true;
@@ -197,6 +198,17 @@ public class BattleController : StateMachine
         yield return new WaitForSeconds(0.8f);
         indicatingTurn = false;
     }
+
+    public void EnableZoom()
+    {
+        enableZoom = true;
+    }
+
+    public void DisableZoom()
+    {
+        enableZoom = false;
+    }
+
     private void Update()
     {
         if (playtestToggle)
@@ -299,87 +311,6 @@ public class BattleController : StateMachine
             }
         }
 
-        //if (!ActionEffect.instance.CheckActionEffectState())
-        //{
-        //    if (zoomIn && !zoomOut && !zoomVeryOut)
-        //    {
-        //        currentTime += Time.deltaTime * zoomSpeed;
-        //        cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
-
-        //        if (cinemachineCamera.m_Lens.OrthographicSize <= preferedZoomSize)
-        //        {
-        //            zoomIn = false;
-        //            cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
-        //            currentTime = 0;
-        //            zoomed = true;
-        //        }
-
-        //        else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
-        //        {
-        //            zoomIn = false;
-        //            currentTime = 0;
-        //            zoomed = false;
-        //            ZoomOut();
-        //        }
-        //    }
-  
-        //    if (zoomOut && !zoomIn && !zoomVeryOut)
-        //    {
-        //        currentTime += Time.deltaTime * zoomSpeed;
-
-        //        cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, originalZoomSize, zoomInCurve.Evaluate(currentTime));
-
-        //        if (cinemachineCamera.m_Lens.OrthographicSize >= originalZoomSize)
-        //        {
-        //            zoomOut = false;
-        //            cinemachineCamera.m_Lens.OrthographicSize = originalZoomSize;
-        //            currentTime = 0;
-        //            zoomed = false;
-
-        //        }
-
-        //        else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-        //        {
-        //            zoomOut = false;
-        //            currentTime = 0;
-        //            zoomed = false;
-        //            ZoomIn();
-        //        }
-
-        //        else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
-        //        {
-        //            zoomOut = false;
-        //            currentTime = 0;
-        //            zoomed = false;
-        //            ZoomVeryOut();
-        //        }
-        //    }
-
-        //    if (!zoomOut && !zoomIn && zoomVeryOut)
-        //    {
-        //        currentTime += Time.deltaTime * zoomSpeed;
-
-        //        cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, preferedZoomSize, zoomInCurve.Evaluate(currentTime));
-
-        //        if (cinemachineCamera.m_Lens.OrthographicSize >= preferedZoomSize)
-        //        {
-        //            zoomVeryOut = false;
-        //            cinemachineCamera.m_Lens.OrthographicSize = preferedZoomSize;
-        //            currentTime = 0;
-        //            zoomed = false;
-
-        //        }
-
-        //        else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-        //        {
-        //            zoomVeryOut = false;
-        //            currentTime = 0;
-        //            zoomed = false;
-        //            ZoomOut();
-        //        }
-        //    }
-        //}
-
         //Pause Timeline With Input
         if (Input.GetKeyDown(toggleTimelineKey) && canToggleTimeline)
         {
@@ -407,105 +338,12 @@ public class BattleController : StateMachine
         }
 
 
-        if (zoomed)
+        if (enableZoom)
         {
-            currentTime += Time.deltaTime * zoomSpeed;
-            Debug.Log("zooming");
-            cinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, currentZoomSize, zoomInCurve.Evaluate(currentTime));
-
-            if (zoomOut)
-            {
-                if (cinemachineCamera.m_Lens.OrthographicSize >= currentZoomSize)
-                {
-                    zoomOut = false;
-                    cinemachineCamera.m_Lens.OrthographicSize = currentZoomSize;
-                    currentTime = 0;
-                    zoomed = false;
-                }
-            }
-
-            if (zoomIn)
-            {
-                if (cinemachineCamera.m_Lens.OrthographicSize <= currentZoomSize)
-                {
-                    zoomIn = false;
-                    cinemachineCamera.m_Lens.OrthographicSize = currentZoomSize;
-                    currentTime = 0;
-                    zoomed = false;
-                }
-            }
-
-            if (Input.GetAxis("Mouse ScrollWheel") != 0f)
-            {
-                if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-                {
-                    currentZoomSize -= 0.5f;
-
-                    if (currentZoomSize <= minCameraZoom)
-                    {
-                        currentZoomSize = minCameraZoom;
-                    }
-                    else
-                    {
-                        zoomIn = true;
-                        zoomed = true;
-                    }
-
-                }
-
-                if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-                {
-                    currentZoomSize += 0.5f;
-
-                    if (currentZoomSize >= maxCameraZoom)
-                    {
-                        currentZoomSize = maxCameraZoom;
-                    }
-                    else
-                    {
-                        zoomOut = true;
-                        zoomed = true;
-
-                    }
-                }
-
-            }
-
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") != 0f)
-        {
-            if(Input.GetAxis("Mouse ScrollWheel") > 0f)
-            {
-                currentZoomSize -= 0.5f;
-
-                if (currentZoomSize <= minCameraZoom)
-                {
-                    currentZoomSize = minCameraZoom;
-                }
-                else
-                {
-                    zoomIn = true;
-                    zoomed = true;
-                }
-
-            }
-
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-            {
-                currentZoomSize += 0.5f;
-
-                if (currentZoomSize >= maxCameraZoom)
-                {
-                    currentZoomSize = maxCameraZoom;
-                }
-                else
-                {
-                    zoomOut = true;
-                    zoomed = true;
-
-                }
-            }
-
+            fov = cinemachineCamera.m_Lens.OrthographicSize;
+            fov -= Input.GetAxis("Mouse ScrollWheel") * sensitivity*Time.deltaTime;
+            fov = Mathf.Clamp(fov, minCameraZoom, maxCameraZoom);
+            cinemachineCamera.m_Lens.OrthographicSize = fov;
         }
 
     }

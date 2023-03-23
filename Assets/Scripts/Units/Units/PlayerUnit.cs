@@ -239,7 +239,7 @@ public class PlayerUnit : Unit
         }
     }
 
-   
+    
     public void WeaponOut()
     {
         animations.SetCombatIdle();
