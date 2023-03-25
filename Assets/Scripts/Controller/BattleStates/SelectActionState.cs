@@ -65,6 +65,12 @@ public class SelectActionState : BattleState
         {
             ActionSelectionUI.DisableSelectOption(typeOfAction.Item);
         }
+
+
+        if(owner.currentUnit.hammerFuryAmount >= owner.currentUnit.hammerFuryMax)
+        {
+            owner.currentUnit.EnableHammerTrait();
+        }
     }
 
     public override void Exit()

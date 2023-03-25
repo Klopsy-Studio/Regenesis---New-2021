@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Weasel.Utils;
 
-public class PlayerUnit : Unit  
+public class PlayerUnit : Unit
 {
     public UnitProfile profile;
     [HideInInspector] public Sprite unitPortrait;
@@ -21,7 +21,7 @@ public class PlayerUnit : Unit
 
     [Header("Animations")]
     public UnitAnimations animations;
-    
+    [SerializeField] Animator weaponTraitsAnimations;
 
     [Header("Unit Death")]
     [HideInInspector] public Sprite deathTimelineSprite;
@@ -61,7 +61,7 @@ public class PlayerUnit : Unit
     [SerializeField] ActionEffectParameters atomicBarrageShakeParameters;
     [SerializeField] float atomicBarrageShakeTime;
 
-    
+
     public Unit currentTarget;
     public List<GameObject> currentTargets;
     public Abilities currentAbility;
@@ -69,7 +69,7 @@ public class PlayerUnit : Unit
     public List<Tile> abilityTiles;
 
 
-    
+
     protected override void Start()
     {
         base.Start();
@@ -83,7 +83,7 @@ public class PlayerUnit : Unit
 
         timelineTypes = TimeLineTypes.PlayerUnit;
 
-       
+
         EquipAllItems();
         SetOriginalValues();
         switch (weapon.EquipmentType)
@@ -128,14 +128,14 @@ public class PlayerUnit : Unit
 
     public bool CanMove()
     {
-        if(actionsPerTurn >= 2)
+        if (actionsPerTurn >= 2)
         {
             return true;
         }
         else
         {
             return false;
-        }        
+        }
     }
 
     public void SetDrone(PlayerUnit newUnit, int cost)
@@ -162,7 +162,7 @@ public class PlayerUnit : Unit
     }
     public void AddBattlecryToUnits()
     {
-        foreach(GameObject u in currentTargets)
+        foreach (GameObject u in currentTargets)
         {
             if (u.GetComponent<Unit>() != null)
             {
@@ -174,7 +174,7 @@ public class PlayerUnit : Unit
     }
     public bool CanDoAbility()
     {
-        if(weapon.EquipmentType == KitType.Gunblade)
+        if (weapon.EquipmentType == KitType.Gunblade)
         {
             foreach (Abilities a in weapon.Abilities)
             {
@@ -225,7 +225,7 @@ public class PlayerUnit : Unit
 
     public void PlaySmokeVFXAbilityTiles()
     {
-        foreach(Tile t in abilityTiles)
+        foreach (Tile t in abilityTiles)
         {
             t.SetSmokeBomb();
         }
@@ -239,7 +239,7 @@ public class PlayerUnit : Unit
         }
     }
 
-    
+
     public void WeaponOut()
     {
         animations.SetCombatIdle();
@@ -378,9 +378,9 @@ public class PlayerUnit : Unit
         base.Die();
         controller.playerUnits.Remove(this);
 
-        foreach(PlayerUnit u in controller.playerUnits)
+        foreach (PlayerUnit u in controller.playerUnits)
         {
-            if(u.droneUnit == this)
+            if (u.droneUnit == this)
             {
                 DisableDrone();
                 u.droneUnit = null;
@@ -423,7 +423,7 @@ public class PlayerUnit : Unit
 
                 if (timeStunned <= 0)
                 {
-                    
+
                     timelineVelocity = previousVelocity;
                     Debug.Log("new timeline velocity aaa" + timelineVelocity);
                     UpdateCurrentVelocity();
@@ -448,7 +448,7 @@ public class PlayerUnit : Unit
             Debug.Log("Near Death");
             return false;
         }
-        
+
 
     }
 
@@ -459,7 +459,7 @@ public class PlayerUnit : Unit
 
         gunbladeAmmoAmount += ammount;
         playerUI.GainBullets(ammount);
-        if(gunbladeAmmoAmount > gunbladeAmmoMax)
+        if (gunbladeAmmoAmount > gunbladeAmmoMax)
         {
             gunbladeAmmoAmount = gunbladeAmmoMax;
         }
@@ -468,7 +468,7 @@ public class PlayerUnit : Unit
     {
         gunbladeAmmoAmount -= ammount;
         playerUI.SpendBullets(ammount);
-        if(gunbladeAmmoAmount <= 0)
+        if (gunbladeAmmoAmount <= 0)
         {
             gunbladeAmmoAmount = 0;
         }
@@ -517,9 +517,9 @@ public class PlayerUnit : Unit
                 {
                     return false;
                 }
-               
+
             }
-            
+
         }
         else
         {
@@ -554,6 +554,25 @@ public class PlayerUnit : Unit
     {
         actionsPerTurn -= actionPoints;
         playerUI.SpendActionPoints(actionPoints);
+    }
+
+
+    public void EnableBowTrait()
+    {
+        weaponTraitsAnimations.SetBool("idle", false);
+
+        weaponTraitsAnimations.SetTrigger("bow");
+    }
+
+    public void ResetWeaponTraits()
+    {
+        weaponTraitsAnimations.SetBool("idle", true);
+    }
+
+    public void EnableHammerTrait()
+    {
+        weaponTraitsAnimations.SetBool("idle", false);
+        weaponTraitsAnimations.SetTrigger("hammer");
     }
 }
 

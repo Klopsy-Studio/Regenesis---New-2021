@@ -79,12 +79,15 @@ public class AbilitySequence : ScriptableObject
         if(user.hammerFuryAmount >= user.hammerFuryMax)
         {
             user.hammerFuryAmount = user.hammerFuryMax;
+            user.EnableHammerTrait();
         }
     }
     public void ResetFury()
     {
         user.hammerFuryAmount = 0;
         user.playerUI.ChangeFuryValue(user.hammerFuryAmount);
+        user.ResetWeaponTraits();
+
     }
 
     public bool CheckFury()

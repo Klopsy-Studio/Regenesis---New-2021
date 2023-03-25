@@ -518,11 +518,14 @@ public class BattleController : StateMachine
         if (bowExtraAttack)
         {
             bowExtraAttackText.text = "Remove Extra Attack";
+            currentUnit.EnableBowTrait();
         }
 
         else
         {
             bowExtraAttackText.text = "Set Extra Attack";
+            currentUnit.ResetWeaponTraits();
+
         }
     }
 
