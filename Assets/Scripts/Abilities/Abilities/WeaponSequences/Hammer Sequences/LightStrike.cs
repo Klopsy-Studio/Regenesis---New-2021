@@ -31,7 +31,7 @@ public class LightStrike : AbilitySequence
             }
             else
             {
-                IncreaseFury(furyAmount);
+                IncreaseFury();
             }
         }
 
@@ -47,7 +47,7 @@ public class LightStrike : AbilitySequence
             }
             else
             {
-                IncreaseFury(furyAmount);
+                IncreaseFury();
             }
         }
 

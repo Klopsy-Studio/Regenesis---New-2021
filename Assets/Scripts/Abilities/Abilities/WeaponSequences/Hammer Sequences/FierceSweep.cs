@@ -75,7 +75,7 @@ public class FierceSweep : AbilitySequence
                 }
             }
 
-            IncreaseFury(furyAmmount);
+            IncreaseFury();
         }
 
         else

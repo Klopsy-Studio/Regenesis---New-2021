@@ -77,9 +77,10 @@ public class Abilities : ScriptableObject
     //Si la habilidad es de debuffo, se usará esto
     public float initialDebuff;
 
-    
+
     [Space]
     [Header("Others")]
+    public int furyGain;
  
     public int stunDamage;
     public string animationName;

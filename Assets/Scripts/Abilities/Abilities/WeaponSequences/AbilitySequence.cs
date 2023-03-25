@@ -72,9 +72,9 @@ public class AbilitySequence : ScriptableObject
         target.ApplyStunValue(100);
     }
 
-    public void IncreaseFury(int fury)
+    public void IncreaseFury()
     {
-        user.hammerFuryAmount += fury;
+        user.hammerFuryAmount += ability.furyGain;
         user.playerUI.ChangeFuryValue(user.hammerFuryAmount);
         if(user.hammerFuryAmount >= user.hammerFuryMax)
         {

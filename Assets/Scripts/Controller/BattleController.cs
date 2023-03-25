@@ -55,8 +55,15 @@ public class BattleController : StateMachine
     public UIController uiController;
     public LootUIManager lootUIManager;
     public AbilityTargets targets;
+
+    [Space]
+    [Header("Weapon trait references")]
+
     public GameObject bowExtraAttackObject;
     public MenuButton bowExtraAttackMenuButton;
+    public GameObject hammerTraitObject;
+    public Slider hammerCurrentFury;
+    public Slider hammerPreviewFury;
     public Text bowExtraAttackText;
     public GameObject defeatScreen;
     public MenuButton pauseButton;
