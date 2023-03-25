@@ -56,6 +56,7 @@ public class BattleController : StateMachine
     public LootUIManager lootUIManager;
     public AbilityTargets targets;
     public GameObject bowExtraAttackObject;
+    public MenuButton bowExtraAttackMenuButton;
     public Text bowExtraAttackText;
     public GameObject defeatScreen;
     public MenuButton pauseButton;
@@ -517,13 +518,11 @@ public class BattleController : StateMachine
 
         if (bowExtraAttack)
         {
-            bowExtraAttackText.text = "Remove Extra Attack";
             currentUnit.EnableBowTrait();
         }
 
         else
         {
-            bowExtraAttackText.text = "Set Extra Attack";
             currentUnit.ResetWeaponTraits();
 
         }
@@ -532,8 +531,8 @@ public class BattleController : StateMachine
     public void ResetBowExtraAttack()
     {
         bowExtraAttack = false;
-        bowExtraAttackText.text = "Set Extra Attack";
-
+        bowExtraAttackMenuButton.SetDefaultSprite();
+        currentUnit.ResetWeaponTraits();
     }
 
     public void PlayCorotuine(IEnumerator coroutine)

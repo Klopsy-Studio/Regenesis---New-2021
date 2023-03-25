@@ -17,17 +17,71 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [Header("Variables")]
     [SerializeField] Color defaultTextColor;
     [SerializeField] Color highlightTextColor;
+    [SerializeField] float appearPosition;
+    [SerializeField] float buttonSpeed = 2;
+
+
+    [Header("Toggle Images")]
+    [SerializeField] Sprite defaultSprite;
+    [SerializeField] Sprite toggledSprite;
+    bool toggleIndex = false;
+
+    float originalPosition;
     [Space]
     [Header("References")]
     [SerializeField] Text buttonText;
     [SerializeField] Image buttonImage;
+    [SerializeField] Animator buttonAnimations;
+    [SerializeField] RectTransform buttonRect;
 
     public UnityEvent action;
     public UnityEvent onHover;
     public UnityEvent onExit;
     public UnityEvent onUp;
 
+    bool appear = false;
+    bool hide = false;
 
+
+
+    float currentTime;
+
+    void Start()
+    {
+        if(buttonRect != null)
+        {
+            originalPosition = buttonRect.localPosition.x;
+        }
+    }
+    void Update()
+    {
+        if (appear)
+        {
+            buttonRect.localPosition = new Vector3(Mathf.Lerp(buttonRect.localPosition.x, appearPosition, currentTime), buttonRect.localPosition.y, buttonRect.localPosition.z);
+            currentTime += Time.deltaTime * buttonSpeed;
+
+            if (buttonRect.localPosition.x >= appearPosition)
+            {
+                buttonRect.localPosition = new Vector3(appearPosition, buttonRect.localPosition.y, buttonRect.localPosition.z);
+                currentTime = 0;
+                appear = false;
+            }
+        }
+
+        if (hide)
+        {
+            
+            buttonRect.localPosition = new Vector3(Mathf.Lerp(buttonRect.localPosition.x, originalPosition, currentTime), buttonRect.localPosition.y, buttonRect.localPosition.z);
+            currentTime += Time.deltaTime * buttonSpeed;
+
+            if (buttonRect.localPosition.x <= originalPosition)
+            {
+                buttonRect.localPosition = new Vector3(originalPosition, buttonRect.localPosition.y, buttonRect.localPosition.z);
+                currentTime = 0;
+                hide = false;
+            }
+        }
+    }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         if (canBeSelected && selected)
@@ -112,5 +166,55 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void Log(string message)
     {
         Debug.Log(message);
+    }
+
+
+    public void PlayAnimation(string trigger)
+    {
+        if(buttonAnimations != null)
+        {
+            buttonAnimations.SetTrigger(trigger);
+        }
+    }
+
+
+    public void MakeButtonAppear()
+    {
+        appear = true;
+        hide = false;
+        currentTime = 0;
+    }
+
+    public void MakeButtonHide()
+    {
+        hide = true;
+
+        appear = false;
+        currentTime = 0;
+    }
+
+
+    public void SetButtonPosition(Vector3 newPosition)
+    {
+        buttonRect.localPosition = newPosition;
+    }
+
+    public void ToggleSprite()
+    {
+        toggleIndex = !toggleIndex;
+
+        if (toggleIndex)
+        {
+            buttonImage.sprite = toggledSprite;
+        }
+        else
+        {
+            buttonImage.sprite = defaultSprite;
+        }
+    }
+    public void SetDefaultSprite()
+    {
+        buttonImage.sprite = defaultSprite;
+        toggleIndex = false;
     }
 }

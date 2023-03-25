@@ -143,7 +143,7 @@ public class UseAbilityState : BattleState
             else
             {
                 owner.targets.gameObject.SetActive(true);
-                owner.targets.CreateNoTarget();
+                owner.targets.CreateCustomMessage("No targets!");
             }
 
         }
@@ -151,7 +151,9 @@ public class UseAbilityState : BattleState
         {
             owner.actionSelectionUI.gameObject.SetActive(false);
             owner.abilitySelectionUI.gameObject.SetActive(false);
-            owner.targets.gameObject.SetActive(false);
+
+            owner.targets.gameObject.SetActive(true);
+            owner.targets.CreateCustomMessage("Choose a tile");
         }
         
     }
