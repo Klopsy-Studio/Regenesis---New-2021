@@ -323,16 +323,23 @@ public class PlayerUnit : Unit
     }
     public void CurrentAbilityZoom()
     {
-        ActionEffect.instance.Play(currentAbility.shakeParameters);
+        if (currentAbility != null)
+        {
+            ActionEffect.instance.Play(currentAbility.shakeParameters);
+        }
     }
 
     public void PlayAbilityShake()
     {
-        ActionEffect.instance.Shake(currentAbility.shakeParameters);
+        if (currentAbility != null)
+        {
+            ActionEffect.instance.Shake(currentAbility.shakeParameters);
+        }
     }
 
     public void TrueShotShake()
     {
+
         ActivateShake(trueShotShakeParameters, trueShotShakeTime);
     }
 
@@ -342,7 +349,10 @@ public class PlayerUnit : Unit
     }
     public void PlayActionEffectAbility()
     {
-        ActionEffect.instance.Play(currentAbility.cameraSize, currentAbility.effectDuration, currentAbility.shakeIntensity, currentAbility.shakeDuration);
+        if(currentAbility != null)
+        {
+            ActionEffect.instance.Play(currentAbility.cameraSize, currentAbility.effectDuration, currentAbility.shakeIntensity, currentAbility.shakeDuration);
+        }
     }
     public override void NearDeath()
     {
