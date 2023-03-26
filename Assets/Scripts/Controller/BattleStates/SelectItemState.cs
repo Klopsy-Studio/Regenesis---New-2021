@@ -28,12 +28,12 @@ public class SelectItemState : BattleState
 
         for (int i = 0; i < owner.itemSelectionUI.options.Length; i++)
         {
-            owner.itemSelectionUI.options[i].gameObject.SetActive(false);
+            owner.itemSelectionUI.parent[i].gameObject.SetActive(false);
         }
         for (int i = 0; i < itemList.Count; i++)
         {
             var item = itemList[i];
-            owner.itemSelectionUI.options[i].gameObject.SetActive(true);
+            owner.itemSelectionUI.parent[i].gameObject.SetActive(true);
             owner.itemSelectionUI.options[i].GetComponent<Text>().text = itemList[i].consumable.itemName;
             owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = "x"+itemList[i].amount.ToString();
             owner.itemSelectionUI.itemImage[i].GetComponent<Image>().sprite = itemList[i].consumable.iconSprite;

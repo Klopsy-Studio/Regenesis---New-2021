@@ -9,9 +9,10 @@ public class OptionSelection : MonoBehaviour
   
     //Offset to set the image in the right place
     public float offset = 20f;
-    
-    
+
+
     //Reference to children in scene
+    public RectTransform[] parent;
     public RectTransform[] options;
     public RectTransform[] itemAmountText;
     public Image[] itemImage;
