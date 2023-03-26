@@ -322,6 +322,9 @@ public class UseItemState : BattleState
     IEnumerator UseItemSpace()
     {
         itemUsed = true;
+        owner.actionSelectionUI.gameObject.SetActive(false);
+        owner.itemSelectionUI.gameObject.SetActive(false);
+        owner.targets.gameObject.SetActive(false);
         owner.DeactivateTileSelector();
         owner.backpackInventory.UseConsumable(owner.itemChosen, tileSpawn: owner.currentTile, battleController: owner);
         //Unit item pose

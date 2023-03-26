@@ -38,7 +38,7 @@ public class UseAbilityState : BattleState
         owner.abilitySelectionUI.SecondWindow();
         owner.abilitySelectionUI.title.SetActive(false);
         owner.tileSelectionToggle.SelectionTarget();
-
+        owner.targets.stopSelection = false;
         foreach (RangeData r in currentAbility.abilityRange)
         {
             List<Tile> dirtyTiles = PreviewAbility(r);

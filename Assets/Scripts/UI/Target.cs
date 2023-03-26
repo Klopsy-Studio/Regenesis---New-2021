@@ -23,6 +23,10 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         defaultColor = targetDisplay.color;
     }
 
+    private void OnEnable()
+    {
+
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!owner.stopSelection)
@@ -63,6 +67,11 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
 
     public void OnPointerExit(PointerEventData eventData)
+    {
+        MoveCursorAway();
+    }
+
+    public void MoveCursorAway()
     {
         if (!owner.stopSelection)
         {
