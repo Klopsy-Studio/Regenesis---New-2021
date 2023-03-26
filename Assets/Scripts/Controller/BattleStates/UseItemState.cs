@@ -82,7 +82,10 @@ public class UseItemState : BattleState
                         {
                             if (t.content.GetComponent<PlayerUnit>() != null)
                             {
-                                targetTiles.Add(t);
+                                if (!t.content.GetComponent<PlayerUnit>().isDead)
+                                {
+                                    targetTiles.Add(t);
+                                }
                             }
                         }
                     }

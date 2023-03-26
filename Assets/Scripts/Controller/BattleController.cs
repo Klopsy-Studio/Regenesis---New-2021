@@ -263,11 +263,7 @@ public class BattleController : StateMachine
 
             if (Input.GetKeyDown(KeyCode.D))
             {
-                foreach (PlayerUnit u in playerUnits)
-                {
-                    isTimeLineActive = false;
-                    u.animations.SetNearDeath();
-                }
+                playerUnits[0].ReceiveDamage(100, true);
             }
 
             if (Input.GetKeyDown(KeyCode.F))

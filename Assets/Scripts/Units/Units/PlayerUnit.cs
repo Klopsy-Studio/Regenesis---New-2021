@@ -358,7 +358,6 @@ public class PlayerUnit : Unit
         iconTimeline.gameObject.SetActive(false);
         timelineTypes = TimeLineTypes.Null;
         controller.CheckAllUnits();
-
     }
 
     public void Revive()
@@ -377,7 +376,7 @@ public class PlayerUnit : Unit
     {
         base.Die();
         controller.playerUnits.Remove(this);
-
+        isNearDeath = true;
         foreach(PlayerUnit u in controller.playerUnits)
         {
             if(u.droneUnit == this)
@@ -393,6 +392,8 @@ public class PlayerUnit : Unit
         AudioManager.instance.Play("HunterDeath");
         isDead = true;
         controller.CheckAllUnits();
+        Destroy(this);
+
     }
 
     public override void Stun()
@@ -509,7 +510,6 @@ public class PlayerUnit : Unit
                 {
                     Die();
                     Debug.Log("Dead");
-
                     NearDeathSprite();
                     return true;
                 }
@@ -521,6 +521,8 @@ public class PlayerUnit : Unit
             }
             
         }
+
+
         else
         {
             Damage();
