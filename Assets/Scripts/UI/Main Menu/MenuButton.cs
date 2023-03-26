@@ -53,7 +53,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if(buttonRect != null)
         {
             originalPosition = buttonRect.localPosition.x;
-            Debug.Log(gameObject.name+originalPosition);
         }
     }
     void Update()
@@ -61,7 +60,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (appear)
         {
             buttonRect.localPosition = new Vector3(Mathf.Lerp(buttonRect.localPosition.x, appearPosition, currentTime), buttonRect.localPosition.y, buttonRect.localPosition.z);
-            Debug.Log(buttonRect.localPosition);
             currentTime += Time.deltaTime * buttonSpeed;
 
             if(originalPosition < appearPosition)

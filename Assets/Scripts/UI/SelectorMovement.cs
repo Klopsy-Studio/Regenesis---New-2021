@@ -58,12 +58,24 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     switch (assignedAbility.abilityEquipmentType)
                     {
                         case KitType.Hammer:
-                            controller.hammerPreviewFury.value = controller.currentUnit.hammerFuryAmount +assignedAbility.furyGain;
+
+                            controller.hammerCurrentFury.value = controller.currentUnit.hammerFuryAmount;
+                            if (controller.currentUnit.hammerFuryAmount >= controller.currentUnit.hammerFuryMax)
+                            {
+                                controller.hammerCurrentFury.gameObject.SetActive(false);
+                                controller.hammerPreviewFury.value = controller.currentUnit.hammerFuryMax;
+                            }
+                            else
+                            {
+                                controller.hammerCurrentFury.gameObject.SetActive(true);
+                                controller.hammerPreviewFury.value = controller.currentUnit.hammerFuryAmount + assignedAbility.furyGain;
+
+                            }
                             break;
                         case KitType.Bow:
                             break;
                         case KitType.Gunblade:
-                            controller.currentUnit.playerUI.PreviewBulletCost(assignedAbility.ammoCost);
+                            controller.gunbladeUI.PreviewBulletCost(assignedAbility.ammoCost);
                             break;
                         case KitType.Drone:
                             break;
@@ -139,7 +151,8 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                         case KitType.Bow:
                             break;
                         case KitType.Gunblade:
-                            controller.currentUnit.playerUI.ShowBullets();
+                            controller.gunbladeUI.ShowBullets();
+                            //controller.currentUnit.playerUI.ShowBullets();
                             break;
                         case KitType.Drone:
                             break;
