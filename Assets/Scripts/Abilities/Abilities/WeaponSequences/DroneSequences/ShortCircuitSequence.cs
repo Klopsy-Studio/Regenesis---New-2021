@@ -11,7 +11,7 @@ public class ShortCircuitSequence : AbilitySequence
         //Assign variables
         playing = true;
         user = controller.currentUnit;
-
+        user.currentAbility = ability;
         List<Unit> units = new List<Unit>();
         List<BearObstacleScript> obstacles = new List<BearObstacleScript>();
 
@@ -44,6 +44,14 @@ public class ShortCircuitSequence : AbilitySequence
                     {
                         obstacles.Add(o);
                     }
+                }
+            }
+
+            if(t.occupied)
+            {
+                if (!units.Contains(controller.enemyUnits[0]))
+                {
+                    units.Add(controller.enemyUnits[0]);
                 }
             }
         }

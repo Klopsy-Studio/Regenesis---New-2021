@@ -15,8 +15,8 @@ public class TrueShot : AbilitySequence
         user = controller.currentUnit;
         user.SpendActionPoints(ability.actionCost);
         user.SpendBullets(ability.ammoCost);
+        user.currentAbility = ability;
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
 
         if(target != null)
         {
@@ -24,14 +24,7 @@ public class TrueShot : AbilitySequence
             {
                 Unit u = target.GetComponent<Unit>();
 
-                for (int i = 0; i < numberOfShots; i++)
-                {
-                    if (u != null)
-                    {
-                        Attack(u);
-                    }
-                    yield return new WaitForSeconds(0.2f);
-                }
+                user.currentTarget = u;
             }
         }
         
@@ -45,7 +38,11 @@ public class TrueShot : AbilitySequence
                 user.Attack();
             }
         }
-        
+
+        user.animations.unitAnimator.SetTrigger("attack");
+        user.animations.unitAnimator.SetFloat("attackIndex", 0.4f);
+
+        yield return new WaitForSeconds(1f);
 
         while (ActionEffect.instance.CheckActionEffectState())
         {
