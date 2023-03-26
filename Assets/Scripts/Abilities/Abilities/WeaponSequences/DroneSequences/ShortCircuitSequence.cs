@@ -6,14 +6,17 @@ using UnityEngine;
 
 public class ShortCircuitSequence : AbilitySequence
 {
-    public override IEnumerator Sequence(List<Tile> tiles, BattleController controller)
+
+    public override IEnumerator Sequence(List<Tile> tiles, List<Tile> droneTiles, BattleController controller)
     {
         //Assign variables
         playing = true;
         user = controller.currentUnit;
         user.currentAbility = ability;
-        List<Unit> units = new List<Unit>();
-        List<BearObstacleScript> obstacles = new List<BearObstacleScript>();
+        List<Unit> units1 = new List<Unit>();
+        List<Unit> units2 = new List<Unit>();
+
+        List<BearObstacleScript> obstacles1 = new List<BearObstacleScript>();
 
         //Spend Points
         user.SpendActionPoints(ability.actionCost);
@@ -24,49 +27,96 @@ public class ShortCircuitSequence : AbilitySequence
         //Search for targets
         foreach (Tile t in tiles)
         {
-            if(t.content != null)
+            if (t.content != null)
             {
                 if (t.content.GetComponent<Unit>() != null)
                 {
                     Unit u = t.content.GetComponent<Unit>();
 
-                    if (!units.Contains(u))
+                    if (!units1.Contains(u))
                     {
-                        units.Add(u);
+                        units1.Add(u);
                     }
                 }
 
-                if (t.content.GetComponent<BearObstacleScript>()!= null)
+                if (t.content.GetComponent<BearObstacleScript>() != null)
                 {
                     BearObstacleScript o = t.content.GetComponent<BearObstacleScript>();
 
-                    if (!obstacles.Contains(o))
+                    if (!obstacles1.Contains(o))
                     {
-                        obstacles.Add(o);
+                        obstacles1.Add(o);
                     }
                 }
             }
 
-            if(t.occupied)
+            if (t.occupied)
             {
-                if (!units.Contains(controller.enemyUnits[0]))
+                if (!units1.Contains(controller.enemyUnits[0]))
                 {
-                    units.Add(controller.enemyUnits[0]);
+                    units1.Add(controller.enemyUnits[0]);
                 }
             }
         }
 
-        if (units.Count > 0)
+        if(droneTiles.Count > 0)
         {
-            foreach(Unit u in units)
+            foreach (Tile t in droneTiles)
+            {
+                if (t.content != null)
+                {
+                    if (t.content.GetComponent<Unit>() != null)
+                    {
+                        Unit u = t.content.GetComponent<Unit>();
+
+                        if (!units2.Contains(u))
+                        {
+                            units2.Add(u);
+                        }
+                    }
+
+                    if (t.content.GetComponent<BearObstacleScript>() != null)
+                    {
+                        BearObstacleScript o = t.content.GetComponent<BearObstacleScript>();
+
+                        if (!obstacles1.Contains(o))
+                        {
+                            obstacles1.Add(o);
+                        }
+                    }
+                }
+
+                if (t.occupied)
+                {
+                    if (!units2.Contains(controller.enemyUnits[0]))
+                    {
+                        units2.Add(controller.enemyUnits[0]);
+                    }
+                }
+            }
+        }
+
+
+        if (units1.Count > 0)
+        {
+            foreach (Unit u in units1)
             {
                 Attack(u);
             }
         }
 
-        if(obstacles.Count > 0)
+        if (units2.Count > 0)
         {
-            foreach(BearObstacleScript b in obstacles)
+            foreach (Unit u in units1)
+            {
+                Attack(u);
+            }
+        }
+
+
+        if (obstacles1.Count > 0)
+        {
+            foreach (BearObstacleScript b in obstacles1)
             {
                 b.GetDestroyed(controller.board);
             }
@@ -79,4 +129,6 @@ public class ShortCircuitSequence : AbilitySequence
 
         playing = false;
     }
+   
+    
 }

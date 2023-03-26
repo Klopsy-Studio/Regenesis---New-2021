@@ -30,6 +30,13 @@ public class AbilitySequence : ScriptableObject
         playing = false;
     }
 
+    public virtual IEnumerator Sequence(List<Tile> tiles, List<Tile> droneTiles, BattleController controller)
+    {
+        playing = true;
+        yield return null;
+        playing = false;
+    }
+
     private void OnEnable()
     {
         extraAttack = false;

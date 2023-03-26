@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HealConnectionSequence : AbilitySequence
 {
-    public override IEnumerator Sequence(List<Tile> tiles, BattleController controller)
+    public override IEnumerator Sequence(List<Tile> tiles, List<Tile> droneTiles, BattleController controller)
     {
         //Assigning variables
         playing = true;
@@ -28,11 +28,22 @@ public class HealConnectionSequence : AbilitySequence
 
         List<PlayerUnit> targets = new List<PlayerUnit>();
 
-        foreach(Tile t in tiles)
+        foreach (Tile t in tiles)
         {
-            if(t.content!= null)
+            if (t.content != null)
             {
-                if(t.content.GetComponent<PlayerUnit>() != null)
+                if (t.content.GetComponent<PlayerUnit>() != null)
+                {
+                    targets.Add(t.content.GetComponent<PlayerUnit>());
+                }
+            }
+        }
+
+        foreach (Tile t in droneTiles)
+        {
+            if (t.content != null)
+            {
+                if (t.content.GetComponent<PlayerUnit>() != null)
                 {
                     targets.Add(t.content.GetComponent<PlayerUnit>());
                 }
@@ -40,9 +51,10 @@ public class HealConnectionSequence : AbilitySequence
         }
 
 
-        foreach(PlayerUnit p in targets)
+        foreach (PlayerUnit p in targets)
         {
             p.Heal(ability.initialHeal);
+            Debug.Log("Healed: "+ p.unitName);
         }
 
 

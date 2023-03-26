@@ -335,7 +335,6 @@ public class UseAbilityState : BattleState
         {
             tiles = GetTiles(r, owner.currentUnit.gameObject);
 
-            
             foreach(Tile t in tiles)
             {
                 if (!selectTiles.Contains(t))
@@ -368,6 +367,35 @@ public class UseAbilityState : BattleState
                 }
             }
         }
+    }
+
+    public List<Tile> ReturnSelectTiles(Abilities ability)
+    {
+        List<Tile> tiles = new List<Tile>();
+
+        foreach (RangeData r in ability.tileTargetAbilityRange)
+        {
+            tiles = GetTiles(r, owner.currentUnit.gameObject);
+        }
+
+        return tiles;
+    }
+     
+    public List<Tile> ReturnDroneTiles(Abilities ability)
+    {
+        List<Tile> tiles = new List<Tile>();
+
+        if (owner.currentUnit.droneUnit != null)
+        {
+            PlayerUnit droneUnit = owner.currentUnit.droneUnit;
+
+            foreach (RangeData r in ability.tileTargetAbilityRange)
+            {
+                tiles = GetOppositeTiles(r, owner.currentUnit.droneUnit.gameObject);
+            }
+        }
+
+        return tiles;
     }
     public List<Tile> GetTiles (RangeData data, GameObject user)
     {
@@ -560,7 +588,16 @@ public class UseAbilityState : BattleState
                     board.DeSelectDefaultTiles(tiles);
 
                     owner.bowExtraAttackObject.SetActive(false);
-                    StartCoroutine(UseAbilitySequence(selectTiles));
+
+                    if(owner.currentUnit.weapon.EquipmentType == KitType.Drone)
+                    {
+                        StartCoroutine(UseAbilitySequence(ReturnSelectTiles(currentAbility), ReturnDroneTiles(currentAbility)));
+                    }
+                    else
+                    {
+                        StartCoroutine(UseAbilitySequence(selectTiles));
+                    }
+
                     owner.actionSelectionUI.gameObject.SetActive(false);
                     owner.abilitySelectionUI.gameObject.SetActive(false);
                     owner.targets.gameObject.SetActive(false);
@@ -644,6 +681,30 @@ public class UseAbilityState : BattleState
         attacking = true;
         owner.targets.indicator.DeactivateTarget();
         StartCoroutine(currentAbility.sequence.Sequence(target, owner));
+
+        while (currentAbility.sequence.playing)
+        {
+            yield return null;
+        }
+
+        if (!owner.endTurnInstantly)
+        {
+            owner.currentUnit.animations.SetIdle();
+            owner.ChangeState<SelectActionState>();
+        }
+
+        else
+        {
+            owner.endTurnInstantly = false;
+            owner.ChangeState<FinishPlayerUnitTurnState>();
+        }
+    }
+
+    public IEnumerator UseAbilitySequence(List<Tile> target, List<Tile> droneTiles)
+    {
+        attacking = true;
+        owner.targets.indicator.DeactivateTarget();
+        StartCoroutine(currentAbility.sequence.Sequence(target, droneTiles, owner));
 
         while (currentAbility.sequence.playing)
         {
