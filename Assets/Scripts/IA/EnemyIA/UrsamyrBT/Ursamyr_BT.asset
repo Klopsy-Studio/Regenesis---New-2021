@@ -119,8 +119,8 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 589.6, y: -32.8, z: 0}
-  viewScale: {x: 0.25, y: 0.25, z: 1}
+  viewPosition: {x: -114, y: -34, z: 0}
+  viewScale: {x: 0.32690176, y: 0.32690176, z: 1}
   references:
     version: 2
     RefIds:
@@ -200,6 +200,7 @@ MonoBehaviour:
         drawGizmos: 1
         owner: {fileID: 11400000}
         moveToCheck: 1
+        monsterToCheck: 0
     - rid: 2618830019680010258
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
       data:
@@ -723,7 +724,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 6bc42658368addd4598c342628387808
-        position: {x: 1374.4, y: 1568.8002}
+        position: {x: 1372.251, y: 1569}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -737,7 +738,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: b399f285e70f1b54299d60b438da77b0
-        position: {x: 1567.2001, y: 1568.0001}
+        position: {x: 1570.7489, y: 1569}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -779,7 +780,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 06f9216415f7dab418bc93a00eee3f82
-        position: {x: 1902.525, y: 1954.0001}
+        position: {x: 1887, y: 1952.9998}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -830,6 +831,7 @@ MonoBehaviour:
         drawGizmos: 1
         owner: {fileID: 11400000}
         moveToCheck: 0
+        monsterToCheck: 0
     - rid: 2618830019680010304
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
       data:
@@ -1200,6 +1202,7 @@ MonoBehaviour:
         drawGizmos: 1
         owner: {fileID: 11400000}
         moveToCheck: 3
+        monsterToCheck: 0
     - rid: 2618830179553247235
       type: {class: Selector, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -1221,13 +1224,14 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: ed25c19caa8ebb746959d360205e6bf4
-        position: {x: 1496.9252, y: 1954.0001}
+        position: {x: 1495.9999, y: 1952.9998}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 1
         owner: {fileID: 11400000}
         moveToCheck: 0
+        monsterToCheck: 0
     - rid: 2618830179553247239
       type: {class: CanMoveToUnit, ns: , asm: Assembly-CSharp}
       data:
@@ -1241,6 +1245,7 @@ MonoBehaviour:
         drawGizmos: 1
         owner: {fileID: 11400000}
         moveToCheck: 3
+        monsterToCheck: 0
     - rid: 2618830179553247241
       type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
