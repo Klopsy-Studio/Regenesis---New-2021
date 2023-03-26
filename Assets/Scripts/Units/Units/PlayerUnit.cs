@@ -377,15 +377,29 @@ public class PlayerUnit : Unit
         base.Die();
         controller.playerUnits.Remove(this);
         isNearDeath = true;
-        foreach(PlayerUnit u in controller.playerUnits)
+
+        if(weapon.EquipmentType == KitType.Drone)
         {
-            if(u.droneUnit == this)
+            if(droneUnit != null)
             {
-                DisableDrone();
-                u.droneUnit = null;
-                //DeactivateSprite
+                droneUnit.DisableDrone();
+            }
+            droneUnit = null;
+        }
+
+        else
+        {
+            foreach (PlayerUnit u in controller.playerUnits)
+            {
+                if (u.droneUnit == this)
+                {
+                    DisableDrone();
+                    u.droneUnit = null;
+                    //DeactivateSprite
+                }
             }
         }
+        
         controller.timelineElements.Remove(this);
         elementEnabled = false;
         animations.SetDeath();
