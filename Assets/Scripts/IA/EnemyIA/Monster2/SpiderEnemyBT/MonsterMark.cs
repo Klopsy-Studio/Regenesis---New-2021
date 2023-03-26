@@ -8,7 +8,7 @@ public class MonsterMark : ActionNode
 {
     [SerializeField] Modifier monsterMark = new Modifier { modifierType = TypeOfModifier.SpiderMark};
 
-
+    bool canGetMarked;
     bool treeUpdate;
     protected override void OnStart() {
         treeUpdate = true;
@@ -21,9 +21,9 @@ public class MonsterMark : ActionNode
     IEnumerator MarkHunter()
     {
         //First we randomly select the hunter which will receive the mark
+        canGetMarked = true;
         BattleController controller = owner.controller.battleController;
         Unit chosenTarget = controller.playerUnits[Random.Range(0, controller.playerUnits.Count)];
-        chosenTarget.debuffModifiers.Add(monsterMark);
         
         if(chosenTarget.GetComponent<PlayerUnit>()!= null)
         {
@@ -35,14 +35,18 @@ public class MonsterMark : ActionNode
                     if (m.modifierType == TypeOfModifier.Antivirus)
                     {
                         u.RemoveBuff(m);
+                        canGetMarked = false;
                         break;
                     }
                 }
             }
-            else
+
+
+            if (canGetMarked)
             {
                 u.marked = true;
                 u.EnableCriticalMark();
+                monsterMark.modifierType = TypeOfModifier.SpiderMark;
                 u.AddDebuff(monsterMark);
             }
             
