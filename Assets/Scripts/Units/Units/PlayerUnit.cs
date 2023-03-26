@@ -364,7 +364,7 @@ public class PlayerUnit : Unit
     {
         deathElement.DisableDeath(controller);
         elementEnabled = true;
-        status.unitPortrait.sprite = timelineIcon;
+        //status.unitPortrait.sprite = timelineIcon;
         Default();
         playerUI.gameObject.SetActive(true);
         timelineFill = 0;
@@ -495,6 +495,7 @@ public class PlayerUnit : Unit
         Debug.Log("Damaged");
         if (health <= 0)
         {
+            health = 0;
             if (!diedOnce)
             {
                 diedOnce = true;
