@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4268591937304835192}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -22}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -467,11 +467,58 @@ MonoBehaviour:
   originalElementPower: 0
   defense: 0
   originalDefense: 0
+  criticalDamage: 1.5
+  originalCriticalDamage: 0
   buffModifiers: []
   debuffModifiers: []
   buffIndicator: {fileID: 1026202169103550603}
   debuffIndicator: {fileID: 3692543576106226320}
   tileIndicator: {fileID: 5637990454179936260}
+  currentParameters:
+    cameraSize: 3
+    effectDuration: 0.5
+    shakeDefinition:
+      m_ImpulseChannel: 1
+      m_ImpulseShape: 0
+      m_CustomImpulseShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_ImpulseDuration: 0.2
+      m_ImpulseType: 3
+      m_DissipationRate: 0
+      m_RawSignal: {fileID: 0}
+      m_AmplitudeGain: 1
+      m_FrequencyGain: 1
+      m_RepeatMode: 0
+      m_Randomize: 1
+      m_TimeEnvelope:
+        m_AttackShape:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_DecayShape:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_AttackTime: 0
+        m_SustainTime: 0.2
+        m_DecayTime: 0.7
+        m_ScaleWithImpact: 1
+        m_HoldForever: 0
+      m_ImpactRadius: 100
+      m_DirectionMode: 0
+      m_DissipationMode: 2
+      m_DissipationDistance: 100
+      m_PropagationSpeed: 343
+    shakeVelocity: {x: 0, y: 0, z: 0}
+    shakeForce: 0
   enemyType: 1
   abilities: []
   target: {fileID: 0}
@@ -1132,7 +1179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.119
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1140,7 +1187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.069
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1322,7 +1369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.119
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1330,7 +1377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.069
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
       propertyPath: m_LocalRotation.w
