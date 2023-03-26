@@ -54,10 +54,23 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
                     controller.currentUnit.playerUI.PreviewActionCost(assignedAbility.actionCost);
 
-                    if (assignedAbility.abilityEquipmentType == KitType.Gunblade)
+
+                    switch (assignedAbility.abilityEquipmentType)
                     {
-                        controller.currentUnit.playerUI.PreviewBulletCost(assignedAbility.ammoCost);
+                        case KitType.Hammer:
+                            controller.hammerPreviewFury.value = controller.currentUnit.hammerFuryAmount +assignedAbility.furyGain;
+                            break;
+                        case KitType.Bow:
+                            break;
+                        case KitType.Gunblade:
+                            controller.currentUnit.playerUI.PreviewBulletCost(assignedAbility.ammoCost);
+                            break;
+                        case KitType.Drone:
+                            break;
+                        default:
+                            break;
                     }
+
 
                     if (targets != null)
                     {
@@ -118,9 +131,20 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     }
                     controller.currentUnit.playerUI.ShowActionPoints();
 
-                    if (assignedAbility.abilityEquipmentType == KitType.Gunblade)
+                    switch (assignedAbility.abilityEquipmentType)
                     {
-                        controller.currentUnit.playerUI.ShowBullets();
+                        case KitType.Hammer:
+                            controller.hammerPreviewFury.value = 0;
+                            break;
+                        case KitType.Bow:
+                            break;
+                        case KitType.Gunblade:
+                            controller.currentUnit.playerUI.ShowBullets();
+                            break;
+                        case KitType.Drone:
+                            break;
+                        default:
+                            break;
                     }
 
                     if (targets != null)

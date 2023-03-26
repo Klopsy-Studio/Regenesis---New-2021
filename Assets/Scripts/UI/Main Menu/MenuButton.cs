@@ -43,6 +43,8 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     bool hide = false;
 
 
+    bool toggledPosition = true; //By default is opened
+
 
     float currentTime;
 
@@ -51,6 +53,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if(buttonRect != null)
         {
             originalPosition = buttonRect.localPosition.x;
+            Debug.Log(gameObject.name+originalPosition);
         }
     }
     void Update()
@@ -58,14 +61,29 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         if (appear)
         {
             buttonRect.localPosition = new Vector3(Mathf.Lerp(buttonRect.localPosition.x, appearPosition, currentTime), buttonRect.localPosition.y, buttonRect.localPosition.z);
+            Debug.Log(buttonRect.localPosition);
             currentTime += Time.deltaTime * buttonSpeed;
 
-            if (buttonRect.localPosition.x >= appearPosition)
+            if(originalPosition < appearPosition)
             {
-                buttonRect.localPosition = new Vector3(appearPosition, buttonRect.localPosition.y, buttonRect.localPosition.z);
-                currentTime = 0;
-                appear = false;
+                if (buttonRect.localPosition.x >= appearPosition)
+                {
+                    buttonRect.localPosition = new Vector3(appearPosition, buttonRect.localPosition.y, buttonRect.localPosition.z);
+                    currentTime = 0;
+                    appear = false;
+                }
             }
+
+            else
+            {
+                if (buttonRect.localPosition.x <= appearPosition)
+                {
+                    buttonRect.localPosition = new Vector3(appearPosition, buttonRect.localPosition.y, buttonRect.localPosition.z);
+                    currentTime = 0;
+                    appear = false;
+                }
+            }
+            
         }
 
         if (hide)
@@ -74,12 +92,27 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             buttonRect.localPosition = new Vector3(Mathf.Lerp(buttonRect.localPosition.x, originalPosition, currentTime), buttonRect.localPosition.y, buttonRect.localPosition.z);
             currentTime += Time.deltaTime * buttonSpeed;
 
-            if (buttonRect.localPosition.x <= originalPosition)
+
+            if(appearPosition < originalPosition)
             {
-                buttonRect.localPosition = new Vector3(originalPosition, buttonRect.localPosition.y, buttonRect.localPosition.z);
-                currentTime = 0;
-                hide = false;
+                if (buttonRect.localPosition.x >= originalPosition)
+                {
+                    buttonRect.localPosition = new Vector3(originalPosition, buttonRect.localPosition.y, buttonRect.localPosition.z);
+                    currentTime = 0;
+                    hide = false;
+                }
             }
+
+            else
+            {
+                if (buttonRect.localPosition.x <= originalPosition)
+                {
+                    buttonRect.localPosition = new Vector3(originalPosition, buttonRect.localPosition.y, buttonRect.localPosition.z);
+                    currentTime = 0;
+                    hide = false;
+                }
+            }
+            
         }
     }
     public virtual void OnPointerDown(PointerEventData eventData)
@@ -199,6 +232,11 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         buttonRect.localPosition = newPosition;
     }
 
+    public void SetDefaultPosition()
+    {
+        buttonRect.localPosition = new Vector3(originalPosition, buttonRect.localPosition.y, buttonRect.localPosition.z);
+    }
+
     public void ToggleSprite()
     {
         toggleIndex = !toggleIndex;
@@ -216,5 +254,20 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         buttonImage.sprite = defaultSprite;
         toggleIndex = false;
+    }
+
+
+    public void TogglePosition()
+    {
+        toggledPosition = !toggledPosition;
+
+        if (toggledPosition)
+        {
+            MakeButtonAppear();
+        }
+        else
+        {
+            MakeButtonHide();
+        }
     }
 }

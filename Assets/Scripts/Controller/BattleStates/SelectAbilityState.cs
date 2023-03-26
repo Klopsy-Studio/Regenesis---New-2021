@@ -11,6 +11,20 @@ public class SelectAbilityState : BattleState
     List<Tile> tiles = new List<Tile>();
 
     bool onPreview;
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.O))
+        {
+            owner.hammerTraitObject.GetComponent<MenuButton>().MakeButtonAppear();
+        }
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            owner.hammerTraitObject.GetComponent<MenuButton>().MakeButtonHide();
+        }
+
+    }
     public override void Enter()
     {
         base.Enter();
@@ -30,6 +44,12 @@ public class SelectAbilityState : BattleState
         switch (owner.currentUnit.weapon.EquipmentType)
         {
             case KitType.Hammer:
+                owner.hammerTraitObject.gameObject.SetActive(true);
+                owner.hammerCurrentFury.value = owner.currentUnit.hammerFuryAmount;
+                owner.hammerTraitObject.GetComponent<MenuButton>().SetDefaultPosition();
+
+                owner.hammerTraitObject.GetComponent<MenuButton>().MakeButtonAppear();
+                owner.hammerPreviewFury.value = 0;
                 break;
             case KitType.Bow:
                 break;

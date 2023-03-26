@@ -56,9 +56,9 @@ public class UseAbilityState : BattleState
         switch (owner.currentUnit.weapon.EquipmentType)
         {
             case KitType.Hammer:
-                owner.hammerTraitObject.SetActive(true);
-                owner.hammerCurrentFury.value = owner.currentUnit.hammerFuryAmount;
-                owner.hammerPreviewFury.value = owner.currentUnit.hammerFuryAmount+currentAbility.furyGain;
+                //owner.hammerTraitObject.SetActive(true);
+                //owner.hammerCurrentFury.value = owner.currentUnit.hammerFuryAmount;
+                //owner.hammerPreviewFury.value = owner.currentUnit.hammerFuryAmount+currentAbility.furyGain;
                 break;
             case KitType.Bow:
                 owner.bowExtraAttackObject.SetActive(true);
