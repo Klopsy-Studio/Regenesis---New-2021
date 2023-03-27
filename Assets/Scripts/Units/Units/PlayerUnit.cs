@@ -458,7 +458,7 @@ public class PlayerUnit : Unit
             return;
 
         gunbladeAmmoAmount += ammount;
-        playerUI.GainBullets(ammount);
+        //playerUI.GainBullets(ammount);
         if (gunbladeAmmoAmount > gunbladeAmmoMax)
         {
             gunbladeAmmoAmount = gunbladeAmmoMax;
@@ -467,7 +467,7 @@ public class PlayerUnit : Unit
     public void SpendBullets(int ammount)
     {
         gunbladeAmmoAmount -= ammount;
-        playerUI.SpendBullets(ammount);
+        //playerUI.SpendBullets(ammount);
         if (gunbladeAmmoAmount <= 0)
         {
             gunbladeAmmoAmount = 0;

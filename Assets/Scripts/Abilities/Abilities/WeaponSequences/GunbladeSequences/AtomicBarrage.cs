@@ -13,8 +13,8 @@ public class AtomicBarrage : AbilitySequence
         user.SpendActionPoints(ability.actionCost);
         user.SpendBullets(ability.ammoCost);
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-
+        user.currentAbility = ability;
+        user.abilityTiles = tiles;
         List<GameObject> targets = new List<GameObject>();
 
         foreach(Tile t in tiles)
@@ -36,25 +36,28 @@ public class AtomicBarrage : AbilitySequence
             }
         }
 
+
+        user.currentTargets = targets;
         
-        if(targets!= null)
+
+        user.animations.unitAnimator.SetTrigger("attack");
+        user.animations.unitAnimator.SetFloat("attackIndex", 0.2f);
+
+        yield return new WaitForSeconds(1f);
+
+        if (targets != null)
         {
-            if(targets.Count > 0)
+            if (targets.Count > 0)
             {
-                foreach(GameObject o in targets)
+                foreach (GameObject o in targets)
                 {
-                    if (o.GetComponent<Unit>())
-                    {
-                        Attack(o.GetComponent<Unit>());
-                    }
-                    else if (o.GetComponent<BearObstacleScript>())
+                    if (o.GetComponent<BearObstacleScript>())
                     {
                         o.GetComponent<BearObstacleScript>().GetDestroyed(controller.board);
                     }
                 }
             }
         }
-
 
         while (ActionEffect.instance.CheckActionEffectState())
         {

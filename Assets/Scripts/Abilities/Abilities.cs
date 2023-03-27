@@ -39,7 +39,7 @@ public class Abilities : ScriptableObject
     public int actionCost;
     [Range(0, 6)]
     public int ammoCost;
-
+    public int ammoGain;
     public List<RangeData> abilityRange;
     public List<RangeData> tileTargetAbilityRange;
     public RangeData rangeData;

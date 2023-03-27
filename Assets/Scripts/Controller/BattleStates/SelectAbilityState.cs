@@ -56,9 +56,9 @@ public class SelectAbilityState : BattleState
             case KitType.Gunblade:
                 owner.gunbladeUI.bulletParent.SetActive(true);
                 owner.gunbladeUI.button.SetDefaultPosition();
-
                 owner.gunbladeUI.button.MakeButtonAppear();
-                owner.gunbladeUI.ShowBullets();
+                owner.gunbladeUI.ResetBullets();
+                owner.gunbladeUI.ShowBullets(owner.currentUnit.gunbladeAmmoAmount);
                 break;
             case KitType.Drone:
                 foreach (PlayerUnit u in playerUnits)

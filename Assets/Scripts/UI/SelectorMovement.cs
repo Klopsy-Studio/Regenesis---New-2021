@@ -75,7 +75,15 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                         case KitType.Bow:
                             break;
                         case KitType.Gunblade:
-                            controller.gunbladeUI.PreviewBulletCost(assignedAbility.ammoCost);
+                            if(assignedAbility.ammoGain > 0)
+                            {
+                                controller.gunbladeUI.PreviewBulletGain(assignedAbility.ammoGain);
+
+                            }
+                            else
+                            {
+                                controller.gunbladeUI.PreviewBulletCost(assignedAbility.ammoCost);
+                            }
                             break;
                         case KitType.Drone:
                             break;
@@ -151,7 +159,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                         case KitType.Bow:
                             break;
                         case KitType.Gunblade:
-                            controller.gunbladeUI.ShowBullets();
+                            controller.gunbladeUI.ShowBullets(controller.currentUnit.gunbladeAmmoAmount);
                             //controller.currentUnit.playerUI.ShowBullets();
                             break;
                         case KitType.Drone:

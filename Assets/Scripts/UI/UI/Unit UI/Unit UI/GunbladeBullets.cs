@@ -7,8 +7,8 @@ public class GunbladeBullets : MonoBehaviour
 {
     public GameObject bulletParent;
 
-    [SerializeField] List<Animator> bullets;
     [SerializeField] List<Animator> originalBullets;
+    [SerializeField] List<Animator> currentBullets;
     [SerializeField] List<Animator> usedBullets;
     public MenuButton button;
     List<Animator> previewBullets = new List<Animator>();
@@ -18,23 +18,37 @@ public class GunbladeBullets : MonoBehaviour
 
     private void Start()
     {
-        foreach (Animator i in bullets)
+        foreach (Animator i in currentBullets)
         {
             originalBullets.Add(i);
         }
     }
 
-    public void ShowBullets()
+    public void ShowBullets(int currentBulletNumber)
     {
         previewBullets.Clear();
+        usedBullets.Clear();
+        currentBullets.Clear();
         bulletParent.SetActive(true);
 
-        if (bullets != null)
+
+        for (int i = 0; i < 5; i++)
         {
-            foreach (Animator i in bullets)
+            if(i >= currentBulletNumber)
             {
-                i.SetBool("preview", false);
-                i.SetBool("used", false);
+                originalBullets[i].SetBool("used", true);
+                usedBullets.Add(originalBullets[i]);
+                originalBullets[i].SetBool("preview", false);
+                originalBullets[i].SetBool("gain", false);
+
+            }
+            else
+            {
+                originalBullets[i].SetBool("used", false);
+                originalBullets[i].SetBool("preview", false);
+                originalBullets[i].SetBool("gain", false);
+
+                currentBullets.Add(originalBullets[i]);
             }
         }
 
@@ -49,34 +63,46 @@ public class GunbladeBullets : MonoBehaviour
     }
     public void PreviewBulletCost(int bulletCost)
     {
-        index = bullets.Count - 1;
+        index = currentBullets.Count - 1;
 
         if (bulletCost > 0)
         {
             if (bulletCost == 6)
             {
-                for (int i = bullets.Count; i > 0; i--)
+                foreach(Animator anim in currentBullets)
                 {
-                    bullets[index].SetBool("preview", true);
-                    previewBullets.Add(bullets[index]);
-                    index--;
+                    anim.SetBool("preview", true);
+                    previewBullets.Add(anim);
                 }
             }
             else
             {
                 for (int i = bulletCost; i > 0; i--)
                 {
-                    bullets[index].SetBool("preview", true);
-                    previewBullets.Add(bullets[index]);
+                    currentBullets[index].SetBool("preview", true);
+                    previewBullets.Add(currentBullets[index]);
                     index--;
                 }
             }
         }
     }
 
+
+    public void PreviewBulletGain(int bulletGain)
+    {
+        if (bulletGain > 0 && currentBullets.Count<5)
+        {
+            for (int i = 0; i < bulletGain; i++)
+            {
+                usedBullets[i].SetBool("gain", true);
+                previewBullets.Add(usedBullets[i]);
+            }
+        }
+    }
+
     public void GainBullets(int bulletGain)
     {
-        while (bulletGain + bullets.Count > originalBullets.Count)
+        while (bulletGain + currentBullets.Count > originalBullets.Count)
         {
             bulletGain--;
         }
@@ -84,7 +110,7 @@ public class GunbladeBullets : MonoBehaviour
 
         for (int i = bulletGain; i > 0; i--)
         {
-            bullets.Add(usedBullets[index]);
+            currentBullets.Add(usedBullets[index]);
             usedBullets.RemoveAt(index);
             index--;
         }
@@ -94,10 +120,10 @@ public class GunbladeBullets : MonoBehaviour
 
     public void SpendBullets(int bulletCost)
     {
-        index = bullets.Count - 1;
+        index = currentBullets.Count - 1;
         for (int i = bulletCost; i > 0; i--)
         {
-            bullets.RemoveAt(index);
+            currentBullets.RemoveAt(index);
             index--;
         }
 
@@ -109,14 +135,9 @@ public class GunbladeBullets : MonoBehaviour
 
     public void ResetBullets()
     {
-        bullets.Clear();
+        currentBullets.Clear();
         usedBullets.Clear();
         previewBullets.Clear();
-
-        foreach (Animator i in originalBullets)
-        {
-            bullets.Add(i);
-        }
     }
   
 }
