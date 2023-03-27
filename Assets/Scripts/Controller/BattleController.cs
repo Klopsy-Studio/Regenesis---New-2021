@@ -184,6 +184,7 @@ public class BattleController : StateMachine
 
     private void Start()
     {
+        Debug.Log("se ha llamado start en battleController");
         zoomed = false;
         sceneTransition.SetBool("fadeOut", true);
         BeginGame();
