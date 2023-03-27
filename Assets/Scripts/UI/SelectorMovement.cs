@@ -105,12 +105,11 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     break;
                 case TabType.ItemConsumable:
                     abilityDescription.AssignData(assignedConsumable);
-                    Debug.Log(assignedConsumable.consumableDescription);
                     break;
                 case TabType.Move:
                     controller.currentUnit.playerUI.PreviewActionCost(controller.moveCost);
                     controller.board.SelectMovementTiles(abilityPreviewTiles);
-                    abilityDescription.abilityDescription.text = actionDescription;
+                    abilityDescription.abilityDescription.SetText(actionDescription);
 
                     break;
                 case TabType.Regular:
@@ -119,7 +118,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     break;
                 case TabType.ItemAction:
                     controller.currentUnit.playerUI.PreviewActionCost(controller.itemCost);
-                    abilityDescription.abilityDescription.text = actionDescription;
+                    abilityDescription.abilityDescription.SetText(actionDescription);
                     break;
                 default:
                     break;

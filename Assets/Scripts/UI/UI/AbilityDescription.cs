@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class AbilityDescription : MonoBehaviour
 {
-    public Text abilityDescription;
+    public TextMeshProUGUI abilityDescription;
     public Text abilityRange;
     public Text cost;
     public void AssignData(Abilities ability)
     {
-        abilityDescription.text = ability.description;
+        abilityDescription.SetText(ability.description);
     }
 
     public void AssignData(Consumables consumable)
     {
-        abilityDescription.text = consumable.consumableDescription;
+        abilityDescription.SetText(consumable.consumableDescription);
     }
 }
