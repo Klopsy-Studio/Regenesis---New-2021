@@ -6,6 +6,7 @@ using TheKiwiCoder;
 [System.Serializable]
 public class FinishMonsterTurn : ActionNode
 {
+    [SerializeField] TimelineVelocity finishVelocity = TimelineVelocity.Normal;
     protected override void OnStart() {
         owner.controller.test = false;
     }
@@ -14,7 +15,8 @@ public class FinishMonsterTurn : ActionNode
     }
 
     protected override State OnUpdate() {
-
+        owner.controller.currentEnemy.timelineVelocity = finishVelocity;
+        owner.controller.currentEnemy.SetCurrentVelocity();
         owner.controller.battleController.ChangeState<FinishEnemyUnitTurnState>();
         return State.Success;    
     }
