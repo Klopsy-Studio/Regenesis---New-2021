@@ -6,6 +6,7 @@ public class MonsterMovement : WalkMovement
 {
     public bool allowStun = true;
 
+    public bool willStun = false;
     public int currentStunBuildUp = 0;
     public int stunlimit = 1;
     public int maxStunBuildUp = 3;
@@ -15,11 +16,10 @@ public class MonsterMovement : WalkMovement
         LineAbilityRange lineRange = GetComponent<LineAbilityRange>();
         lineRange.lineDir = pushDir;
         lineRange.lineLength = pushStrength;
-        lineRange.lineOffset = pushStrength-1;
+        lineRange.lineOffset = 0;
         lineRange.stopLine = true;
         tiles = lineRange.GetTilesInRange(board);
 
-        board.SelectAttackTiles(tiles);
         Tile desiredTile = null;
 
         for (int i = 0; i < tiles.Count; i++)
@@ -34,20 +34,22 @@ public class MonsterMovement : WalkMovement
             }
 
         }
+        
         if(tiles.Count < pushStrength)
         {
-            Stun();
+            willStun = true;
         }
+
         if (desiredTile != null)
         {
             StartCoroutine(Traverse(desiredTile, board));
-        }
-
-        
+        }        
         else
         {
             Stun();
         }
+
+
     }
 
     public void Stun()
@@ -74,9 +76,9 @@ public class MonsterMovement : WalkMovement
                 allowStun = true;
 
             }
-
-
         }
+
+        willStun = false;
     }
     public void EnableMonsterStun()
     {

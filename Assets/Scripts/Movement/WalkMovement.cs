@@ -52,6 +52,16 @@ public class WalkMovement : Movement
             if(unit.GetComponent<EnemyUnit>().enemyType == TypeOfEnemy.Big)
             {
                 unit.GetComponent<EnemyUnit>().UpdateMonsterSpace(board);
+
+                if(unit.GetComponent<MonsterMovement>()!= null)
+                {
+                    MonsterMovement m = unit.GetComponent<MonsterMovement>();
+
+                    if (m.willStun)
+                    {
+                        m.Stun();
+                    }
+                }
             }
         }
 

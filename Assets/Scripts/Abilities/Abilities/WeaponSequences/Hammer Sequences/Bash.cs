@@ -30,7 +30,7 @@ public class Bash : AbilitySequence
             }
             else
             {
-                user.pushAmount = 1;
+                user.pushAmount = bashStrenght;
                 IncreaseFury();
             }
         }
