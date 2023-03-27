@@ -67,9 +67,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                             }
                             else
                             {
-                                controller.hammerCurrentFury.gameObject.SetActive(true);
                                 controller.hammerPreviewFury.value = controller.currentUnit.hammerFuryAmount + assignedAbility.furyGain;
-
                             }
                             break;
                         case KitType.Bow:
@@ -105,12 +103,11 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     break;
                 case TabType.ItemConsumable:
                     abilityDescription.AssignData(assignedConsumable);
-                    Debug.Log(assignedConsumable.consumableDescription);
                     break;
                 case TabType.Move:
                     controller.currentUnit.playerUI.PreviewActionCost(controller.moveCost);
                     controller.board.SelectMovementTiles(abilityPreviewTiles);
-                    abilityDescription.abilityDescription.text = actionDescription;
+                    abilityDescription.abilityDescription.SetText(actionDescription);
 
                     break;
                 case TabType.Regular:
@@ -119,7 +116,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     break;
                 case TabType.ItemAction:
                     controller.currentUnit.playerUI.PreviewActionCost(controller.itemCost);
-                    abilityDescription.abilityDescription.text = actionDescription;
+                    abilityDescription.abilityDescription.SetText(actionDescription);
                     break;
                 default:
                     break;
@@ -154,6 +151,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     switch (assignedAbility.abilityEquipmentType)
                     {
                         case KitType.Hammer:
+                            controller.hammerCurrentFury.gameObject.SetActive(true);
                             controller.hammerPreviewFury.value = 0;
                             break;
                         case KitType.Bow:

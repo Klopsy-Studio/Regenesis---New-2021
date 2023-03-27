@@ -158,7 +158,13 @@ public class PlayerUnit : Unit
 
     public void PushTarget()
     {
-        currentTarget.GetComponent<Movement>().PushUnit(pushDirections, pushAmount, controller.board);
+        if(pushAmount > 0)
+        {
+            if (currentTarget != null)
+            {
+                currentTarget.GetComponent<Movement>().PushUnit(pushDirections, pushAmount, controller.board);
+            }
+        }
     }
     public void AddBattlecryToUnits()
     {
@@ -450,15 +456,21 @@ public class PlayerUnit : Unit
                 {
 
                     timelineVelocity = previousVelocity;
-                    Debug.Log("new timeline velocity aaa" + timelineVelocity);
                     UpdateCurrentVelocity();
-                    Debug.Log("new timeline velocity bbb" + timelineVelocity);
                     stunned = false;
                     timeStunned = originalTimeStunned;
-                    playerUI.DisableStun();
-                    iconTimeline.velocityText.gameObject.SetActive(true);
-                    Debug.Log("HA DEJADO DE STUNEARSE");
-                    iconTimeline.SetTimelineIconTextVelocity();
+
+                    foreach (Modifier m in debuffModifiers)
+                    {
+                        if (m.modifierType == TypeOfModifier.Stun)
+                        {
+                            RemoveDebuff(m);
+                            break;
+                        }
+                    }
+                    //playerUI.DisableStun();
+                    //iconTimeline.velocityText.gameObject.SetActive(true);
+                    //iconTimeline.SetTimelineIconTextVelocity();
 
                     //Disabling Stun icon for now
                     //iconTimeline.DisableStun();

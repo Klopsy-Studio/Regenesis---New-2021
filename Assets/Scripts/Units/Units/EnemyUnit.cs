@@ -130,6 +130,16 @@ public class EnemyUnit : Unit
                 UpdateCurrentVelocity();
                 stunned = false;
                 timeStunned = originalTimeStunned;
+
+                foreach (Modifier m in debuffModifiers)
+                {
+                    if(m.modifierType == TypeOfModifier.Stun)
+                    {
+                        RemoveDebuff(m);
+                        break;
+                    }
+                }
+
                
             }
 

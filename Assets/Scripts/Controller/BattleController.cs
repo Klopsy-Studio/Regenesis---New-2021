@@ -187,7 +187,11 @@ public class BattleController : StateMachine
         Debug.Log("se ha llamado start en battleController");
         zoomed = false;
         sceneTransition.SetBool("fadeOut", true);
-        BeginGame();
+        //BeginGame();
+    }
+    public void SetMission(LevelData level)
+    {
+        GameManager.instance.currentMission = level;
     }
 
     bool tilesTest = true;

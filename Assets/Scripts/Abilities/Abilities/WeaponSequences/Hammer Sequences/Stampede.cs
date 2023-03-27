@@ -141,13 +141,15 @@ public class Stampede : AbilitySequence
 
             if (CheckFury())
             {
-                //Replace with special animation for fury
-                //HammerFurySequence(5, u, controller, user.tile.GetDirections(u.tile));
+                user.pushAmount = 5;
+                user.pushDirections = user.tile.GetDirections(u.tile);
+
+                u.ApplyStunValue(100);
                 ResetFury();
             }
-
             else
             {
+                user.pushAmount = 0;
                 IncreaseFury();
             }
         }

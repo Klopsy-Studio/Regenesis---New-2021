@@ -253,37 +253,51 @@ public abstract class Movement : MonoBehaviour
             {
                 unit.GetComponent<PlayerUnit>().Push();
             }
-        }
 
-        else
-        {
-            if(desiredTile != null)
-            {
-                if (desiredTile.content.GetComponent<PlayerUnit>() == null)
-                {
-                    unit.Stun();
-                }
-                else
-                {
-                    if(desiredTile.content.GetComponent<Movement>().CanBePushed(pushDir, pushStrength, board))
-                    {
-                        StartCoroutine(Traverse(desiredTile, board));
-
-                        if (unit.GetComponent<PlayerUnit>() != null)
-                        {
-                            unit.GetComponent<PlayerUnit>().Push();
-                        }
-                    }
-                }
-
-            }
-
-            else
+            if(tiles.Count < pushStrength)
             {
                 unit.Stun();
             }
-            
         }
+        else
+        {
+            unit.Stun();
+        }
+
+        //else
+        //{
+        //    if(desiredTile != null)
+        //    {
+        //        if (desiredTile.content.GetComponent<PlayerUnit>() == null)
+        //        {
+        //            unit.Stun();
+        //        }
+        //        else
+        //        {
+        //            if(desiredTile.content.GetComponent<Movement>().CanBePushed(pushDir, pushStrength, board))
+        //            {
+        //                StartCoroutine(Traverse(desiredTile, board));
+
+        //                if (unit.GetComponent<PlayerUnit>() != null)
+        //                {
+        //                    unit.GetComponent<PlayerUnit>().Push();
+        //                }
+        //            }
+        //        }
+
+        //        if(tiles.Count < pushStrength)
+        //        {
+
+        //        }
+
+        //    }
+
+        //    else
+        //    {
+        //        unit.Stun();
+        //    }
+            
+        
         
     }
 

@@ -453,19 +453,16 @@ public class Unit : TimelineElements
                 timeStunned = originalTimeStunned;
 
                 Modifier stun = new Modifier();
+
                 foreach(Modifier m in debuffModifiers)
                 {
                     if(m.modifierType == TypeOfModifier.Stun)
                     {
-                        stun = m;
+                        RemoveDebuff(m);
                         break;
                     }
                 }
 
-                if (debuffModifiers.Contains(stun))
-                {
-                    RemoveDebuff(stun);
-                }
             }
 
             return false;

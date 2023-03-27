@@ -23,14 +23,14 @@ public class LightStrike : AbilitySequence
 
             if (CheckFury())
             {
-                user.pushDirections = user.tile.GetDirections(u.tile);
                 user.pushAmount = 5;
-
-                //Set different Animation for fury release
+                user.pushDirections = user.tile.GetDirections(u.tile);
+                u.ApplyStunValue(100);
                 ResetFury();
             }
             else
             {
+                user.pushAmount = 0;
                 IncreaseFury();
             }
         }
