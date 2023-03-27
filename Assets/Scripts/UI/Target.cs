@@ -31,7 +31,7 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (!owner.stopSelection)
         {
-            owner.controller.ActivateTileSelector();
+            owner.controller.ActivateTileSelector();    
             owner.selectedTarget = this;
             controller.SelectTile(targetPosition);
             controller.UpdateUnitSprite();

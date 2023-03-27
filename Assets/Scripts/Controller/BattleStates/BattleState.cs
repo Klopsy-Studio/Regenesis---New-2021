@@ -38,6 +38,7 @@ public abstract class BattleState : State
 
         UIController.buttonClick += OnSelectAction;
         UIController.buttonCancel += OnSelectCancelEvent;
+        TutorialManager.buttonClick += OnSelectAction;
     }
 
     protected virtual void OnSelectAction(object sender, InfoEventArgs<int> e)
@@ -81,6 +82,7 @@ public abstract class BattleState : State
 
         UIController.buttonClick -= OnSelectAction;
         UIController.buttonCancel -= OnSelectCancelEvent;
+        TutorialManager.buttonClick -= OnSelectAction;
     }
 
     protected virtual void OnSelectCancelEvent(object sender, InfoEventArgs<int> e)
