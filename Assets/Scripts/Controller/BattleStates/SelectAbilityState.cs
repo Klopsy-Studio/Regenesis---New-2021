@@ -11,6 +11,20 @@ public class SelectAbilityState : BattleState
     List<Tile> tiles = new List<Tile>();
 
     bool onPreview;
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.O))
+        {
+            owner.hammerTraitObject.GetComponent<MenuButton>().MakeButtonAppear();
+        }
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            owner.hammerTraitObject.GetComponent<MenuButton>().MakeButtonHide();
+        }
+
+    }
     public override void Enter()
     {
         base.Enter();
@@ -27,14 +41,27 @@ public class SelectAbilityState : BattleState
         owner.actionSelectionUI.title.SetActive(false);
         owner.abilitySelectionUI.title.SetActive(true);
         owner.abilitySelectionUI.OriginalColor();
+        owner.hammerTraitObject.gameObject.SetActive(false);
+        owner.gunbladeUI.bulletParent.SetActive(false);
+
         switch (owner.currentUnit.weapon.EquipmentType)
         {
             case KitType.Hammer:
+                owner.hammerTraitObject.gameObject.SetActive(true);
+                owner.hammerCurrentFury.value = owner.currentUnit.hammerFuryAmount;
+                owner.hammerTraitObject.GetComponent<MenuButton>().SetDefaultPosition();
+
+                owner.hammerTraitObject.GetComponent<MenuButton>().MakeButtonAppear();
+                owner.hammerPreviewFury.value = 0;
                 break;
             case KitType.Bow:
                 break;
             case KitType.Gunblade:
-                owner.currentUnit.playerUI.ShowBullets();
+                owner.gunbladeUI.bulletParent.SetActive(true);
+                owner.gunbladeUI.button.SetDefaultPosition();
+                owner.gunbladeUI.button.MakeButtonAppear();
+                owner.gunbladeUI.ResetBullets();
+                owner.gunbladeUI.ShowBullets(owner.currentUnit.gunbladeAmmoAmount);
                 break;
             case KitType.Drone:
                 foreach (PlayerUnit u in playerUnits)

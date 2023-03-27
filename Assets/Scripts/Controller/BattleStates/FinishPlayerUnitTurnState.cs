@@ -40,6 +40,8 @@ public class FinishPlayerUnitTurnState : BattleState
                 owner.currentUnit.RemoveBuff(m);
             }
         }
+
+        owner.currentUnit.ResetWeaponTraits();
         owner.currentUnit.SetVelocityWhenTurnIsFinished();
         owner.turnArrow.DeactivateTarget();
         //Debug.Log("CURRENT VELOCITY ES " + owner.currentUnit.TimelineVelocity + " CURRENT UNIT ACTIONS " + owner.currentUnit.ActionsPerTurn);

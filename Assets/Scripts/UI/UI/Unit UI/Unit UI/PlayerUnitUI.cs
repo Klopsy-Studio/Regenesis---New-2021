@@ -23,7 +23,7 @@ public class PlayerUnitUI : UnitUI
     [SerializeField] Sprite regularActionPointsSprite;
     [SerializeField] Sprite previewActionPointsSprite;
     [SerializeField] Sprite spentActionPointsSprite;
-
+    [SerializeField] Animator bulletAnimations;
     [Header("Hammer")]
     [SerializeField] Slider unitFury;
 

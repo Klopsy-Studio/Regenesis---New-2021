@@ -31,7 +31,7 @@ public class Bash : AbilitySequence
             else
             {
                 user.pushAmount = 1;
-                IncreaseFury(furyAmount);
+                IncreaseFury();
             }
         }
 
@@ -45,7 +45,7 @@ public class Bash : AbilitySequence
             }
             else
             {
-                IncreaseFury(furyAmount);
+                IncreaseFury();
             }
         }
 

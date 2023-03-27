@@ -148,7 +148,7 @@ public class Stampede : AbilitySequence
 
             else
             {
-                IncreaseFury(furyAmount);
+                IncreaseFury();
             }
         }
 
@@ -163,7 +163,7 @@ public class Stampede : AbilitySequence
 
             else
             {
-                IncreaseFury(furyAmount);
+                IncreaseFury();
             }
         }
 

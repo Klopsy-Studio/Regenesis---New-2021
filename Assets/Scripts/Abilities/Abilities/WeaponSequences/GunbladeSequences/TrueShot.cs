@@ -16,7 +16,7 @@ public class TrueShot : AbilitySequence
         user.SpendActionPoints(ability.actionCost);
         user.SpendBullets(ability.ammoCost);
         user.currentAbility = ability;
-
+        //ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
 
         if(target != null)
         {
@@ -35,14 +35,15 @@ public class TrueShot : AbilitySequence
             {
                 BearObstacleScript b = target.GetComponent<BearObstacleScript>();
                 b.GetDestroyed(controller.board);
-                user.Attack();
             }
         }
 
         user.animations.unitAnimator.SetTrigger("attack");
+
         user.animations.unitAnimator.SetFloat("attackIndex", 0.4f);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+
 
         while (ActionEffect.instance.CheckActionEffectState())
         {

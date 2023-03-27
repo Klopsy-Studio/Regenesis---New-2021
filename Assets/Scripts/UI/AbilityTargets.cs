@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AbilityTargets : MonoBehaviour
 {
@@ -48,6 +49,13 @@ public class AbilityTargets : MonoBehaviour
     {
         GameObject a = Instantiate(noTargetText, parent.transform);
         a.SetActive(true);
+    }
+
+    public void CreateCustomMessage(string message)
+    {
+        Text text = Instantiate(noTargetText, parent.transform).GetComponent<Text>();
+        text.text = message;
+        text.gameObject.SetActive(true);
     }
     public void SpawnTarget(GameObject targetAssigned, AbilityTargetType type)
     {

@@ -55,7 +55,15 @@ public class BattleController : StateMachine
     public UIController uiController;
     public LootUIManager lootUIManager;
     public AbilityTargets targets;
+    public GunbladeBullets gunbladeUI;
+    [Space]
+    [Header("Weapon trait references")]
+
     public GameObject bowExtraAttackObject;
+    public MenuButton bowExtraAttackMenuButton;
+    public GameObject hammerTraitObject;
+    public Slider hammerCurrentFury;
+    public Slider hammerPreviewFury;
     public Text bowExtraAttackText;
     public GameObject defeatScreen;
     public MenuButton pauseButton;
@@ -513,20 +521,21 @@ public class BattleController : StateMachine
 
         if (bowExtraAttack)
         {
-            bowExtraAttackText.text = "Remove Extra Attack";
+            currentUnit.EnableBowTrait();
         }
 
         else
         {
-            bowExtraAttackText.text = "Set Extra Attack";
+            currentUnit.ResetWeaponTraits();
+
         }
     }
 
     public void ResetBowExtraAttack()
     {
         bowExtraAttack = false;
-        bowExtraAttackText.text = "Set Extra Attack";
-
+        bowExtraAttackMenuButton.SetDefaultSprite();
+        currentUnit.ResetWeaponTraits();
     }
 
     public void PlayCorotuine(IEnumerator coroutine)

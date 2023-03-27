@@ -56,6 +56,9 @@ public class UseAbilityState : BattleState
         switch (owner.currentUnit.weapon.EquipmentType)
         {
             case KitType.Hammer:
+                //owner.hammerTraitObject.SetActive(true);
+                //owner.hammerCurrentFury.value = owner.currentUnit.hammerFuryAmount;
+                //owner.hammerPreviewFury.value = owner.currentUnit.hammerFuryAmount+currentAbility.furyGain;
                 break;
             case KitType.Bow:
                 owner.bowExtraAttackObject.SetActive(true);
@@ -143,7 +146,7 @@ public class UseAbilityState : BattleState
             else
             {
                 owner.targets.gameObject.SetActive(true);
-                owner.targets.CreateNoTarget();
+                owner.targets.CreateCustomMessage("No targets!");
             }
 
         }
@@ -151,7 +154,9 @@ public class UseAbilityState : BattleState
         {
             owner.actionSelectionUI.gameObject.SetActive(false);
             owner.abilitySelectionUI.gameObject.SetActive(false);
-            owner.targets.gameObject.SetActive(false);
+
+            owner.targets.gameObject.SetActive(true);
+            owner.targets.CreateCustomMessage("Choose a tile");
         }
         
     }

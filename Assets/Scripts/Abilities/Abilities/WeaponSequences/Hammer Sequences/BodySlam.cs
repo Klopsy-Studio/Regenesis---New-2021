@@ -11,7 +11,7 @@ public class BodySlam : AbilitySequence
     [SerializeField] [Range(0, 1)] float abilityScalingWithHealth3;
     [SerializeField] [Range(0, 1)] float abilityScalingWithHealth4;
 
-    [SerializeField] int furyAmount;
+    public int furyAmount;
 
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
@@ -57,7 +57,7 @@ public class BodySlam : AbilitySequence
             }
             else
             {
-                IncreaseFury(furyAmount);
+                IncreaseFury();
             }
         }
 
@@ -72,7 +72,7 @@ public class BodySlam : AbilitySequence
             }
             else
             {
-                IncreaseFury(furyAmount);
+                IncreaseFury();
             }
         }
 

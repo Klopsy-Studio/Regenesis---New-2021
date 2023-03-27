@@ -15,6 +15,7 @@ MonoBehaviour:
   abilityEquipmentType: 2
   actionCost: 3
   ammoCost: 0
+  ammoGain: 2
   abilityRange:
   - range: 3
     lineDir: 0
@@ -122,7 +123,7 @@ MonoBehaviour:
     effectDuration: 0.5
     shakeDefinition:
       m_ImpulseChannel: 1
-      m_ImpulseShape: 3
+      m_ImpulseShape: 0
       m_CustomImpulseShape:
         serializedVersion: 2
         m_Curve: []
@@ -161,13 +162,14 @@ MonoBehaviour:
       m_DissipationDistance: 100
       m_PropagationSpeed: 343
     shakeVelocity: {x: 0.1, y: 0.1, z: 0.1}
-    shakeForce: 0.2
+    shakeForce: 0.3
   abilityName: Advancing Slash
   abilityEffect: 0
   abilityModifier: 0.3
   initialHeal: 0
   initialBuff: 0
   initialDebuff: 0
+  furyGain: 0
   stunDamage: 0
   animationName: 
   lastTarget: {fileID: 0}
