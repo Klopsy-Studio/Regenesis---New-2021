@@ -186,7 +186,11 @@ public class BattleController : StateMachine
     {
         zoomed = false;
         sceneTransition.SetBool("fadeOut", true);
-        BeginGame();
+        //BeginGame();
+    }
+    public void SetMission(LevelData level)
+    {
+        GameManager.instance.currentMission = level;
     }
 
     bool tilesTest = true;
