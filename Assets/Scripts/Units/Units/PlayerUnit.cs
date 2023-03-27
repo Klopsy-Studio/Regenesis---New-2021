@@ -469,8 +469,8 @@ public class PlayerUnit : Unit
                         }
                     }
                     //playerUI.DisableStun();
-                    //iconTimeline.velocityText.gameObject.SetActive(true);
-                    //iconTimeline.SetTimelineIconTextVelocity();
+                    iconTimeline.velocityText.gameObject.SetActive(true);
+                    iconTimeline.SetTimelineIconTextVelocity();
 
                     //Disabling Stun icon for now
                     //iconTimeline.DisableStun();

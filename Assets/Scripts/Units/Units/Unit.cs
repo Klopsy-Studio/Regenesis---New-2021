@@ -280,7 +280,10 @@ public class Unit : TimelineElements
 
     public void SetInitVelocity()
     {
-        //SetTimelineVelocityText();
+        if(iconTimeline != null)
+        {
+            iconTimeline.SetTimelineIconTextVelocity();
+        }
         switch (timelineVelocity)
         {
             case TimelineVelocity.VerySlow:
@@ -334,7 +337,7 @@ public class Unit : TimelineElements
     public void SetCurrentVelocity()
     {
         timelineVelocity += (int)actionsPerTurn;
-
+        
         switch (timelineVelocity)
         {
             case TimelineVelocity.VerySlow:
@@ -360,6 +363,11 @@ public class Unit : TimelineElements
             //break;
             default:
                 break;
+        }
+
+        if (iconTimeline != null)
+        {
+            iconTimeline.SetTimelineIconTextVelocity();
         }
     }
 
@@ -392,6 +400,11 @@ public class Unit : TimelineElements
         }
 
         EnableSlow();
+
+        if (iconTimeline != null)
+        {
+            iconTimeline.SetTimelineIconTextVelocity();
+        }
     }
 
     public void IncreaseTimelineVelocity(int increase)
@@ -423,6 +436,11 @@ public class Unit : TimelineElements
         }
 
         EnableHaste();
+
+        if (iconTimeline != null)
+        {
+            iconTimeline.SetTimelineIconTextVelocity();
+        }
     }
     public override bool UpdateTimeLine()
     {
@@ -434,7 +452,6 @@ public class Unit : TimelineElements
             }
 
             timelineFill += fTimelineVelocity * Time.deltaTime;
-            //Debug.Log(gameObject.name + "timelineFill " + timelineFill);
 
             return false;
         }
@@ -504,6 +521,11 @@ public class Unit : TimelineElements
             default:
                 break;
         }
+
+        if (iconTimeline != null)
+        {
+            iconTimeline.SetTimelineIconTextVelocity();
+        }
     }
 
     public void UpdateCurrentVelocity()
@@ -531,6 +553,9 @@ public class Unit : TimelineElements
             default:
                 break;
         }
+
+        iconTimeline.SetTimelineIconTextVelocity();
+
     }
     //public void DebugThings()
     //{

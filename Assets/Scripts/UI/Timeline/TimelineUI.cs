@@ -229,11 +229,11 @@ public class TimelineUI : MonoBehaviour
                 temp.downSupport.sprite = upSupport;
                 temp.offset = 70;
 
-                //temp.velocityText.gameObject.SetActive(true);
+                temp.velocityText.gameObject.SetActive(true);
 
                 temp.SetTimelineIconTextVelocity();
-                //var timelineVelocity = (int)temp.element.timelineVelocity;
-                //temp.velocityText.SetText(timelineVelocity.ToString());
+                var timelineVelocity = (int)temp.element.timelineVelocity;
+                temp.velocityText.SetText(timelineVelocity.ToString());
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.EnemyUnit)
             {
@@ -253,6 +253,7 @@ public class TimelineUI : MonoBehaviour
                 temp.upSupport.GetComponent<Image>().enabled = true;
                 temp.upSupport.sprite = downSupport;
 
+                temp.velocityText.gameObject.SetActive(false);
                 temp.offset = -70;
 
             }

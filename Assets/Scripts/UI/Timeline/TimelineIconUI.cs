@@ -70,9 +70,6 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             iconTransform.anchoredPosition = new Vector2(-barSize / 2 + element.GetActionBarPosition() * barSize, offset);
         }
 
-        //Change the timeline type comparison for each timeline type, kai example
-        //Has dicho que de esto te vas a acordar en dos meses jodete
-
         if (enableUpdate)
         {
             //UpdatePreviousIcon();
@@ -140,9 +137,17 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if(velocityText != null)
         {
             var timelineVelocity = (int)element.TimelineVelocity;
-            Debug.Log("EL NUMERO DE LA VELOCIDAD ES " + timelineVelocity);
-            velocityText.SetText(timelineVelocity.ToString());
-            //Debug.Log("esta activado");
+
+            if(timelineVelocity == 6)
+            {
+                velocityText.SetText("");
+            }
+
+            else
+            {
+                velocityText.SetText(timelineVelocity.ToString());
+            }
+
         }
 
     }
