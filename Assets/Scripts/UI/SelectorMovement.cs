@@ -67,9 +67,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                             }
                             else
                             {
-                                controller.hammerCurrentFury.gameObject.SetActive(true);
                                 controller.hammerPreviewFury.value = controller.currentUnit.hammerFuryAmount + assignedAbility.furyGain;
-
                             }
                             break;
                         case KitType.Bow:
@@ -153,6 +151,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     switch (assignedAbility.abilityEquipmentType)
                     {
                         case KitType.Hammer:
+                            controller.hammerCurrentFury.gameObject.SetActive(true);
                             controller.hammerPreviewFury.value = 0;
                             break;
                         case KitType.Bow:

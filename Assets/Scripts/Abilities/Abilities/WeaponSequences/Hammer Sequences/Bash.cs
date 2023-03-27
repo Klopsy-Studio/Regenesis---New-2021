@@ -25,7 +25,7 @@ public class Bash : AbilitySequence
             if (CheckFury())
             {
                 user.pushAmount = 5;
-                HammerFurySequence(5, u, controller, user.tile.GetDirections(u.tile));
+                u.ApplyStunValue(100);
                 ResetFury();
             }
             else
