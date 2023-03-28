@@ -28,6 +28,8 @@ public class UseItemState : BattleState
         owner.itemSelectionUI.title.SetActive(false);
         owner.ChangeUIButtons(false);
 
+        owner.targets.stopSelection = false;
+
         currentItem = owner.backpackInventory.consumableContainer[owner.itemChosen].consumable;
 
         owner.currentUnit.playerUI.PreviewActionCost(2);
@@ -322,6 +324,8 @@ public class UseItemState : BattleState
     IEnumerator UseItemSpace()
     {
         itemUsed = true;
+        owner.turnArrow.DeactivateTarget();
+        owner.targets.indicator.DeactivateTarget();
         owner.actionSelectionUI.gameObject.SetActive(false);
         owner.itemSelectionUI.gameObject.SetActive(false);
         owner.targets.gameObject.SetActive(false);
@@ -359,7 +363,7 @@ public class UseItemState : BattleState
     public override void Exit()
     {
         base.Exit();
-
+        owner.targets.indicator.DeactivateTarget();
         owner.timelineUI.ExitPreviewTurnOrder();
         owner.itemChosen = 0;
         owner.targets.ClearTargets();

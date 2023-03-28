@@ -608,6 +608,9 @@ public class UseAbilityState : BattleState
                     owner.targets.gameObject.SetActive(false);
                     owner.targets.gameObject.SetActive(false);
                     owner.targets.stopSelection = true;
+
+                    owner.turnArrow.DeactivateTarget();
+
                 }
             }
 
@@ -731,6 +734,8 @@ public class UseAbilityState : BattleState
     public override void Exit()
     {
         base.Exit();
+
+        owner.targets.indicator.DeactivateTarget();
 
         owner.timelineUI.ExitPreviewTurnOrder();
         if(tiles != null)
