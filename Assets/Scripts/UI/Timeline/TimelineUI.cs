@@ -299,6 +299,7 @@ public class TimelineUI : MonoBehaviour
                 }
                 temp.element.iconTimeline = temp;
                 temp.upSupport.sprite = downSupport;
+                temp.velocityText.gameObject.SetActive(false);
                 temp.offset = 0;
             }
 

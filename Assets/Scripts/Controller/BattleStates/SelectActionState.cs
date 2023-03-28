@@ -84,11 +84,11 @@ public class SelectActionState : BattleState
 
     protected override void OnEscape(object sender, InfoEventArgs<KeyCode> e)
     {
-        owner.currentUnit = null;
-        ActionSelectionUI.ResetSelector();
-        ActionSelectionUI.gameObject.SetActive(false);
-        currentAction = typeOfAction.Move;
-        owner.ChangeState<SelectUnitState>();
+        //owner.currentUnit = null;
+        //ActionSelectionUI.ResetSelector();
+        //ActionSelectionUI.gameObject.SetActive(false);
+        //currentAction = typeOfAction.Move;
+        //owner.ChangeState<SelectUnitState>();
     }
 
     

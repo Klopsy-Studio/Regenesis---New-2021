@@ -138,7 +138,7 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             var timelineVelocity = (int)element.TimelineVelocity;
 
-            if(timelineVelocity == 6)
+            if(element.timelineVelocity == TimelineVelocity.Stun)
             {
                 velocityText.SetText("");
             }

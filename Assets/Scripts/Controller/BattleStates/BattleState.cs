@@ -30,7 +30,7 @@ public abstract class BattleState : State
     {
         InputController.moveEvent += OnMove;
         InputController.selectEvent += OnFire;
-        InputController.escapeEvent += OnEscape;
+        //InputController.escapeEvent += OnEscape;
         InputController.mouseConfirmEvent += OnMouseConfirm;
         InputController.mouseSelectEvent += OnMouseSelectEvent;
         InputController.mouseCancelEvent += OnMouseCancelEvent;
@@ -74,7 +74,7 @@ public abstract class BattleState : State
 	{
 		InputController.moveEvent -= OnMove;
 		InputController.selectEvent -= OnFire;
-        InputController.escapeEvent -= OnEscape;
+        //InputController.escapeEvent -= OnEscape;
         InputController.mouseConfirmEvent -= OnMouseConfirm;
         InputController.mouseSelectEvent -= OnMouseSelectEvent;
         InputController.mouseCancelEvent -= OnMouseCancelEvent;
