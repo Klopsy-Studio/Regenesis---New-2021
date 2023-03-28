@@ -35,6 +35,7 @@ public class LevelData : ScriptableObject
 
     public GameObject enemyInLevel;
     public GameObject levelModel;
+    public GameObject enviromentEvent;
     //Variables to unlock new missions
     public bool isOld = false;
 

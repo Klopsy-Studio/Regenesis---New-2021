@@ -270,7 +270,7 @@ public class TimelineUI : MonoBehaviour
 
                 temp.image.sprite = eventFrame;
                 temp.icon.sprite = eventIcon;
-
+                temp.velocityText.gameObject.SetActive(false);
                 temp.offset = 0;
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.Items)

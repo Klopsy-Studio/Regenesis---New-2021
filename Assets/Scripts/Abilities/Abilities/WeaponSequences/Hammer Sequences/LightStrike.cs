@@ -54,7 +54,7 @@ public class LightStrike : AbilitySequence
         user.animations.unitAnimator.SetTrigger("attack");
         user.animations.unitAnimator.SetFloat("attackIndex", 0f);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;

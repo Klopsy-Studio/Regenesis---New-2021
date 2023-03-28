@@ -58,6 +58,8 @@ public class WindEvent : RealTimeEvents
         fTimelineVelocity = 24;
       
         Invoke("DeactivateWindEffect", 1);
+
+        playing = false;
     }
 
     void DeactivateWindEffect()

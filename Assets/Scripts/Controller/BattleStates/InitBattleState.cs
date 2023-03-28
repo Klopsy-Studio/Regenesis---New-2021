@@ -89,6 +89,14 @@ public class InitBattleState : BattleState
         //Removing the enviroment event for now
         //owner.timelineElements.Add(owner.environmentEvent);
 
+        if (owner.levelData.enviromentEvent != null)
+        {
+            owner.environmentEvent = Instantiate(levelData.enviromentEvent, transform).GetComponent<RealTimeEvents>();
+            owner.environmentEvent.battleController = owner;
+            owner.environmentEvent.InitialSettings();
+            owner.timelineElements.Add(owner.environmentEvent);
+        }
+
     }
 
     public void AssignUnitData(UnitProfile data, PlayerUnit unit)

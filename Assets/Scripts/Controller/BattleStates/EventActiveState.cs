@@ -24,8 +24,14 @@ public class EventActiveState : BattleState
         }
 
         owner.environmentEvent.ApplyEffect();
-        yield return new WaitForSeconds(1);
 
+        while (owner.environmentEvent.playing)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.6f);
+
+        owner.environmentEvent.StartRestartTimer();
         owner.FinishAction();
         owner.ChangeState<TimeLineState>();
 
