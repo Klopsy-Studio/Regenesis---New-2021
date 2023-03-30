@@ -101,7 +101,7 @@ public class BattleController : StateMachine
     [HideInInspector] public bool battleEnded;
 
 
-    [SerializeField] GameObject placeholderCanvas;
+    [SerializeField] protected GameObject placeholderCanvas;
     public GameObject placeholderWinScreen;
 
     public CinemachineVirtualCamera cinemachineCamera;
@@ -160,12 +160,12 @@ public class BattleController : StateMachine
     [SerializeField] float preferedZoomSize;
     [SerializeField] AnimationCurve zoomInCurve;
 
-    float originalZoomSize;
+    protected float originalZoomSize;
     float currentTime;
 
     float fov;
     [SerializeField] [Range(0, 1000)]float sensitivity = 10f;
-    public void BeginGame()
+    public virtual void BeginGame()
     {
         canToggleTimeline = true;
         originalZoomSize = cinemachineCamera.m_Lens.OrthographicSize;

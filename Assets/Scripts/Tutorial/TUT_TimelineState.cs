@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class TimeLineState : BattleState
+public class TUT_TimelineState : BattleState
 {
     [SerializeField] PlayerUnit selectedUnit;
 
@@ -15,7 +14,7 @@ public class TimeLineState : BattleState
     public override void Enter()
     {
         base.Enter();
-        if(currentElement != null)
+        if (currentElement != null)
         {
             if (currentElement.elementEnabled)
             {
@@ -124,14 +123,14 @@ public class TimeLineState : BattleState
         {
             if (owner.timelineUI.selectedIcon.mouseOver)
             {
-                if(owner.currentSelectedIcon != null)
+                if (owner.currentSelectedIcon != null)
                 {
                     if (owner.currentSelectedIcon != owner.timelineUI.selectedIcon)
                     {
                         owner.currentSelectedIcon.Return();
                         owner.timelineUI.selectedIcon.selected = true;
                         owner.currentSelectedIcon = owner.timelineUI.selectedIcon;
-                        CheckIcon();             
+                        CheckIcon();
                     }
                     else
                     {
@@ -155,7 +154,7 @@ public class TimeLineState : BattleState
                 owner.timelineUI.selectedIcon = null;
             }
         }
-       
+
     }
 
     public void CleanPause()
@@ -165,7 +164,7 @@ public class TimeLineState : BattleState
             board.DeSelectDefaultTiles(selectTiles);
             selectTiles.Clear();
         }
-        
+
         if (owner.zoomed)
         {
             owner.ZoomOut();
@@ -183,7 +182,7 @@ public class TimeLineState : BattleState
                     selectedUnit = null;
                 }
 
-                if(owner.timelineUI.selectedIcon != null)
+                if (owner.timelineUI.selectedIcon != null)
                 {
                     owner.timelineUI.selectedIcon.Return();
                     owner.timelineUI.selectedIcon.selected = false;
@@ -212,7 +211,8 @@ public class TimeLineState : BattleState
 
                             owner.currentUnit = p;
                             owner.currentUnit.playerUI.ResetActionPoints();
-                            owner.ChangeState<SelectUnitState>();
+                            owner.ChangeState<TutShowslideState>();
+                            //owner.ChangeState<SelectUnitState>();
                             break;
                         }
 
@@ -272,7 +272,8 @@ public class TimeLineState : BattleState
         }
     }
 
-    
+    protected override void OnMouseSelectEvent(object sender, InfoEventArgs<Point> e)
+    {
 
-
+    }
 }

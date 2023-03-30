@@ -10,6 +10,11 @@ public class ToolTipHandlerHover : MonoBehaviour
     [SerializeField] private GameObject tooltipContainer;
     [SerializeField] private TMP_Text _tooltipDescriptionTMP;
 
+    RectTransform panelRectTransform;
+    private void Start()
+    {
+        panelRectTransform = tooltipContainer.GetComponent<RectTransform>();
+    }
     private void OnEnable()
     {
         LinkHandlerForTMPTextOnHover.OnHoverOnLinkEvent += GetToolTipInfo;
@@ -51,5 +56,44 @@ public class ToolTipHandlerHover : MonoBehaviour
         {
             tooltipContainer.SetActive(false);
         }
+    }
+
+    private void Update()
+    {
+
+        Vector2 mousePosition = Input.mousePosition;
+        //float pivotX = mousePosition.x / Screen.width;
+        //float pivotY = mousePosition.y / Screen.height;
+
+        //float finalPivotX = 0f;
+        //float finalPivotY = 0f;
+
+        //if (pivotX < 0.5) //If mouse on left of screen move tooltip to right of cursor and vice vera
+        //{
+        //    finalPivotX = -0.1f;
+        //}
+
+        //else
+        //{
+        //    finalPivotX = 1.01f;
+        //}
+
+
+
+        //if (pivotY < 0.5) //If mouse on lower half of screen move tooltip above cursor and vice versa
+        //{
+        //    finalPivotY = 0;
+        //}
+
+        //else
+        //{
+        //    finalPivotY = 1;
+        //}
+
+
+        //toolTipContainerRectTransform.pivot = new Vector2(finalPivotX, finalPivotY);
+
+
+        transform.position = mousePosition;
     }
 }

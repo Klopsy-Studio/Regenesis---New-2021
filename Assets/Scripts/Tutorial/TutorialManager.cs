@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
+    [SerializeField] TUT_BattleController battleController;
     public static TutorialManager instance;
     public GameObject[] slidesArray;
     public static event EventHandler<InfoEventArgs<int>> buttonClick;
