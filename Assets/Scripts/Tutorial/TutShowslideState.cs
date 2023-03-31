@@ -5,11 +5,14 @@ using UnityEngine;
 public class TutShowslideState : BattleState
 {
     TUT_BattleController tutOwner;
-  
+    bool isNextState = false;
     public override void Enter()
     {
         base.Enter();
+        isNextState = false;
+        owner.isTimeLineActive = false;
         tutOwner = owner as TUT_BattleController;
+        Debug.Log("Entra a tutshowSlideState");
         tutOwner.tutorialManager.slidesArray[tutOwner.tutorialSlidesIndex].SetActive(true);
     }
     // Start is called before the first frame update
@@ -27,20 +30,23 @@ public class TutShowslideState : BattleState
                 Debug.Log("el valor es 1");
                 
                 UpdateNextState();
-               
+                
                 break;
 
 
 
         }
     }
+
     public override void Exit()
     {
         base.Exit();
-        tutOwner.tutorialManager.slidesArray[tutOwner.tutorialSlidesIndex].SetActive(false);
+        if (isNextState)
+        {
+            tutOwner.stateIndex++;
+        }
+
     }
-
-
     void UpdateTutorialSlide()
     {
  
@@ -53,12 +59,16 @@ public class TutShowslideState : BattleState
     {
         tutOwner.tutorialManager.slidesArray[tutOwner.tutorialSlidesIndex].SetActive(false);
         tutOwner.tutorialSlidesIndex++;
-
-        int nextState = tutOwner.stateIndex; 
-       
+        isNextState = true;
+        int nextState = tutOwner.stateIndex;
+      
         if(nextState == 0)
         {
-            owner.ChangeState<TUT_TimelineState>();
+            owner.ChangeState<TUT_TimelineStateFirstHunter>();
+        }
+        else if(nextState == 1)
+        {
+            owner.ChangeState<TUT_SelectUnitState>();
         }
     }
 }

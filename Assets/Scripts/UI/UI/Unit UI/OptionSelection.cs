@@ -352,6 +352,9 @@ public class OptionSelection : MonoBehaviour
             case typeOfAction.Wait:
                 DisableOption(waitText);
                 break;
+            case typeOfAction.Status:
+                DisableOption(statusText);
+                break;
             default:
                 break;
         }

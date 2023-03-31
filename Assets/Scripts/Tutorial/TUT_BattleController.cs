@@ -16,17 +16,17 @@ public class TUT_BattleController : BattleController
         levelData = GameManager.instance.currentMission;
         cameraTest.transparencySortMode = TransparencySortMode.CustomAxis;
         cameraTest.transparencySortAxis = new Vector3(1, 1, 1);
-        Debug.Log("IsWorking");
+
         ChangeState<TutInitState>();
     }
 
-    public void ChangeStateIndex(int index)
-    {
-        stateIndex = index;
-    }
-    public void SumTutorialSlideIndex()
-    {
-        tutorialSlidesIndex++;
-    }
+    //public void ChangeStateIndex(int index)
+    //{
+    //    stateIndex = index;
+    //}
+    //public void SumTutorialSlideIndex()
+    //{
+    //    tutorialSlidesIndex++;
+    //}
 
 }

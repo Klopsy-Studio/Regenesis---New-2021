@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TUT_TimelineState : BattleState
+public class TUT_TimelineStateFirstHunter : BattleState
 {
     [SerializeField] PlayerUnit selectedUnit;
 
