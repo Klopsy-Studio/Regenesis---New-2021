@@ -23,6 +23,6 @@ public class LootUIState : BattleState
       
 
         owner.lootUIManager.gameObject.SetActive(true);
-        owner.lootUIManager.UpdateLootUI(materialsDropped);
+        StartCoroutine(owner.lootUIManager.LootSequence(materialsDropped));
     }
 }
