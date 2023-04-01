@@ -17,7 +17,7 @@ public class LootUIManager : MonoBehaviour
     [SerializeField] Image monsterImage;
 
     [SerializeField] GameObject returnToCampButton;
-    
+
 
     public IEnumerator LootSequence(DroppedMaterials dropped)
     {
@@ -62,7 +62,12 @@ public class LootUIManager : MonoBehaviour
         //Set the monster image
 
         monsterImage.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        returnToCampButton.gameObject.SetActive(true);
     }
+
 
     public void UpdateLootUI(/*DropsContainer dropContainer*/DroppedMaterials dropped)
     {

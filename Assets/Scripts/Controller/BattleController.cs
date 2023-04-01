@@ -56,6 +56,7 @@ public class BattleController : StateMachine
     public LootUIManager lootUIManager;
     public AbilityTargets targets;
     public GunbladeBullets gunbladeUI;
+    public GameObject questComplete;
     [Space]
     [Header("Weapon trait references")]
 
