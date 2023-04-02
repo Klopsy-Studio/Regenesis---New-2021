@@ -11,12 +11,12 @@ public class PlayerUnitUI : UnitUI
     public Canvas unitUI;
     public GameObject actionPointsObject;
     [SerializeField] GameObject stunIndicator;
-    [SerializeField] List<Image> actionPoints;
+    [SerializeField] List<ActionPoint> actionPoints;
 
-    [SerializeField] List<Image> originalActionPoints;
-    [SerializeField] List<Image> usedActionPoints = new List<Image>();
+    [SerializeField] List<ActionPoint> originalActionPoints;
+    [SerializeField] List<ActionPoint> usedActionPoints = new List<ActionPoint>();
 
-    List<Image> previewActionPoints = new List<Image>();
+    List<ActionPoint> previewActionPoints = new List<ActionPoint>();
 
     [SerializeField] Slider healthBar;
     [Header("Sprites")]
@@ -45,7 +45,7 @@ public class PlayerUnitUI : UnitUI
 
     private void Start()
     {
-        foreach(Image i in actionPoints)
+        foreach(ActionPoint i in actionPoints)
         {
             originalActionPoints.Add(i);
         }
@@ -58,7 +58,10 @@ public class PlayerUnitUI : UnitUI
 
     public void HideBullets()
     {
-        bulletsObject.SetActive(false);
+        if (bulletsObject != null)
+        {
+            bulletsObject.SetActive(false);
+        }
     }
     public void HideActionPoints()
     {
@@ -97,18 +100,18 @@ public class PlayerUnitUI : UnitUI
 
         if (actionPoints != null)
         {
-            foreach (Image i in actionPoints)
+            foreach (ActionPoint i in actionPoints)
             {
-                i.sprite = regularActionPointsSprite;
+                i.ResetPoint();
             }
         }
         
 
         if(usedActionPoints != null)
         {
-            foreach (Image i in usedActionPoints)
+            foreach (ActionPoint i in usedActionPoints)
             {
-                i.sprite = spentActionPointsSprite;
+                i.SpendPoint();
             }
         }
     }
@@ -133,7 +136,7 @@ public class PlayerUnitUI : UnitUI
         index = actionPoints.Count - 1;
         for (int i = actionCost; i >0; i--)
         {
-            actionPoints[index].sprite = previewActionPointsSprite;
+            actionPoints[index].PreviewPoint();
             previewActionPoints.Add(actionPoints[index]);
             index--;
         }
@@ -192,7 +195,7 @@ public class PlayerUnitUI : UnitUI
             index--;
         }
 
-        foreach(Image i in previewActionPoints)
+        foreach(ActionPoint i in previewActionPoints)
         {
             usedActionPoints.Add(i);
         }
@@ -231,7 +234,7 @@ public class PlayerUnitUI : UnitUI
         usedActionPoints.Clear();
         previewActionPoints.Clear();
 
-        foreach(Image i in originalActionPoints)
+        foreach(ActionPoint i in originalActionPoints)
         {
             actionPoints.Add(i);
         }
@@ -292,4 +295,35 @@ public class PlayerUnitUI : UnitUI
         s.gameObject.SetActive(false);
         updatingValue = false;
     }
+}
+
+[System.Serializable]
+public class ActionPoint
+{
+    public GameObject parent;
+    public SpriteRenderer regular;
+    public SpriteRenderer preview;
+
+    public void ResetPoint()
+    {
+        SetImageAlpha(preview, 0);
+        SetImageAlpha(regular, 1);
+    }
+
+    public void SpendPoint()
+    {
+        SetImageAlpha(preview, 0);
+        SetImageAlpha(regular, 0);
+    }
+    public void PreviewPoint()
+    {
+        SetImageAlpha(preview, 1);
+        SetImageAlpha(regular, 0);
+    }
+    public void SetImageAlpha(SpriteRenderer image, int alpha)
+    {
+        image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
+    }
+
+    
 }
