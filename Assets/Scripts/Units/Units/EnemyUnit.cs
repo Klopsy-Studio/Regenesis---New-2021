@@ -106,7 +106,28 @@ public class EnemyUnit : Unit
         AudioManager.instance.Play("MonsterDeath");
         controller.ChangeState<WinState>();
     }
+    public void UpdateEnemyUnitSprite()
+    {
+        if(monsterControl.target != null)
+        {
+            Debug.Log("Direction is West: " + tile.CheckSpecificDirection(monsterControl.target.tile, Directions.West));
+            Debug.Log("Direction is South: " + tile.CheckSpecificDirection(monsterControl.target.tile, Directions.South));
+            Debug.Log("Direction is North: " + tile.CheckSpecificDirection(monsterControl.target.tile, Directions.North));
 
+            Debug.Log("Direction is East: " + tile.CheckSpecificDirection(monsterControl.target.tile, Directions.East));
+
+            if (tile.CheckSpecificDirection(monsterControl.target.tile, Directions.East) || tile.CheckSpecificDirection(monsterControl.target.tile, Directions.South))
+            {
+
+                unitSprite.flipX = false;
+            }
+
+            if (tile.CheckSpecificDirection(monsterControl.target.tile, Directions.West) || tile.CheckSpecificDirection(monsterControl.target.tile, Directions.North))
+            {
+                unitSprite.flipX = true;
+            }
+        } 
+    }
     public override bool UpdateTimeLine()
     {
         if (!stunned)

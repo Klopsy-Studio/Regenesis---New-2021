@@ -27,12 +27,17 @@ public class MonsterAttack : ActionNode
             tiles = ability.ShowAttackRange(dir, controller);
         }
         
+
+
         controller.targetsInRange.Clear();
 
         switch (ability.targetType)
         {
             case TypeOfTarget.SingleTarget:
                 controller.targetsInRange.Add(controller.target);
+                owner.controller.currentEnemy.UpdateEnemyUnitSprite();
+
+
                 break;
             case TypeOfTarget.MultipleTarget:
 
