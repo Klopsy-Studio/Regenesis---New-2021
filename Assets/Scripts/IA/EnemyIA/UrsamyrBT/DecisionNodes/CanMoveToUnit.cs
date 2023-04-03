@@ -8,6 +8,8 @@ public class CanMoveToUnit : ActionNode
 {
     [SerializeField] MoveType moveToCheck;
     [SerializeField] WhichMonster monsterToCheck = WhichMonster.BearMonster;
+
+    [SerializeField] bool differentUnit;
     protected override void OnStart() {
     }
 
@@ -41,6 +43,7 @@ public class CanMoveToUnit : ActionNode
         Movement m = owner.controller.GetComponent<Movement>();
         MonsterController controller = owner.controller;
 
+
         controller.tileToMove = null;
 
         switch (moveToCheck)
@@ -63,8 +66,25 @@ public class CanMoveToUnit : ActionNode
 
                             if (Vector3.Distance(controller.currentEnemy.transform.position, p.transform.position) <= value || value == 0f)
                             {
-                                t = p;
-                                value = Vector3.Distance(controller.currentEnemy.transform.position, p.transform.position);
+                                if (differentUnit)
+                                {
+                                    if(owner.controller.previousTarget != null)
+                                    {
+                                        if (owner.controller.previousTarget != p)
+                                        {
+                                            t = p;
+                                            value = Vector3.Distance(controller.currentEnemy.transform.position, p.transform.position);
+                                        }
+                                    }
+                                    
+                                }
+                                else
+                                {
+                                    t = p;
+                                    value = Vector3.Distance(controller.currentEnemy.transform.position, p.transform.position);
+                                }
+                                
+                                
                             }
                         }
 
@@ -75,19 +95,32 @@ public class CanMoveToUnit : ActionNode
 
                         else
                         {
+                            owner.controller.previousTarget = t;
+                            
                             List<Tile> surroundings = t.GetSurroundings(controller.battleController.board);
 
                             foreach (Tile e in surroundings)
                             {
-                                if (e.CheckSurroundings(controller.battleController.board) != null)
+                                if (e.CheckSurroundings(controller.battleController.board) != null && e != owner.controller.currentEnemy.tile)
                                 {
                                     validTiles.Add(e);
                                 }
                             }
+                            
 
-                            controller.tileToMove = validTiles[Random.Range(0, validTiles.Count)];
-                            controller.target = t;
-                            return State.Success;
+                            if(validTiles.Count > 0)
+                            {
+                                controller.tileToMove = validTiles[Random.Range(0, validTiles.Count)];
+                                controller.target = t;
+                                return State.Success;
+                            }
+                            else
+                            {
+
+                                Debug.Log("No valid tiles avaible");
+                                return State.Failure;
+
+                            }
                         }
                     case WhichMonster.SpiderMonster:
 
@@ -121,7 +154,7 @@ public class CanMoveToUnit : ActionNode
 
                                 foreach (Tile e in trashTiles)
                                 {
-                                    if (e.CheckSurroundings(controller.battleController.board) != null && e.content == null)
+                                    if (e.CheckSurroundings(controller.battleController.board) != null && e.content == null && e != owner.controller.currentEnemy.tile)
                                     {
                                         validTiles.Add(e);
                                     }
@@ -163,8 +196,23 @@ public class CanMoveToUnit : ActionNode
                     
                     if (p.health < value || value == 0)
                     {
-                        t = p;
-                        value = t.health;
+                        if (differentUnit)
+                        {
+                            if(owner.controller.previousTarget != null)
+                            {
+                                if(owner.controller.previousTarget != p)
+                                {
+                                    t = p;
+                                    value = t.health;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            t = p;
+                            value = t.health;
+                        }
+
                     }
                 }
 
@@ -179,16 +227,24 @@ public class CanMoveToUnit : ActionNode
 
                     foreach (Tile e in surroundings)
                     {
-                        if (e.CheckSurroundings(controller.battleController.board) != null)
+                        if (e.CheckSurroundings(controller.battleController.board) != null && e != owner.controller.currentEnemy.tile)
                         {
                             validTiles.Add(e);
                         }
                     }
 
-                    controller.tileToMove = validTiles[Random.Range(0, validTiles.Count)];
+                    if(validTiles.Count > 0)
+                    {
+                        controller.tileToMove = validTiles[Random.Range(0, validTiles.Count)];
 
-                    controller.target = t;
-                    return State.Success;
+                        controller.target = t;
+                        return State.Success;
+                    }
+                    else
+                    {
+                        return State.Failure;
+                    }
+                   
                 }
 
             case MoveType.GetAway:

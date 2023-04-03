@@ -30,7 +30,10 @@ public class MonsterEvent : TimelineElements
     }
 
 
+    public virtual void AssignVariables()
+    {
 
+    }
     public virtual List<Tile> GetEventTiles()
     {
         List<Tile> tiles = new List<Tile>();

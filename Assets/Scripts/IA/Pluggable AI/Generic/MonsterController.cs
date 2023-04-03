@@ -20,6 +20,7 @@ public class MonsterController : MonoBehaviour
     public BattleController battleController;
     public EnemyUnit currentEnemy;
     public PlayerUnit target;
+    public PlayerUnit previousTarget;
     public List<PlayerUnit> targetsInRange;
     public List<PlayerUnit> possibleTargets;
     public EnemyActions lastAction = EnemyActions.None;
