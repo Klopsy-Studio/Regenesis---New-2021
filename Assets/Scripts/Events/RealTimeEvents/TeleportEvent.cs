@@ -5,31 +5,29 @@ using UnityEngine;
 public class TeleportEvent : RealTimeEvents
 {
     [SerializeField] Tile tileToPlace;
-    void Start()
-    {
-        
-    }
+
 
     public override void InitialSettings()
     {
         base.InitialSettings();
         GetRandomTile();
-        Board.SelectAttackTiles(tileToPlace.GetEvent2Area(Board));
+        GetEventTiles();
     }
 
     public void GetRandomTile()
     {
-        tileToPlace = Board.tiles[Random.Range(0, Board.tiles.Count)];
+        tileToPlace = board.tiles[Random.Range(0, board.tiles.Count)];
     }
 
     public List<Tile> GetEventTiles()
     {
-        return tileToPlace.GetEvent2Area(Board);
+        return tileToPlace.GetEvent2Area(board);
     }
 
     public void ResetEvent()
     {
         GetRandomTile();
+        tileToPlace.GetEvent2Area(board);
         timelineFill = 0;
     }
     public override void ApplyEffect()
@@ -68,7 +66,7 @@ public class TeleportEvent : RealTimeEvents
                 }
             }
         }
-        List<Tile> allTiles = Board.tiles;
+        List<Tile> allTiles = board.tiles;
 
         foreach(Tile t in eventTiles)
         {
@@ -88,7 +86,7 @@ public class TeleportEvent : RealTimeEvents
 
                     foreach(Tile t in allTiles)
                     {
-                        if (t.CheckSurroundings(Board))
+                        if (t.CheckSurroundings(board))
                         {
                             validTilesForMonster.Add(t);
                         }
@@ -97,7 +95,7 @@ public class TeleportEvent : RealTimeEvents
                     if (validTilesForMonster.Count > 0)
                     {
                         StartCoroutine(u.GetComponent<Movement>().SimpleTraverse(validTilesForMonster[Random.Range(0, validTilesForMonster.Count)]));
-                        u.GetComponent<EnemyUnit>().UpdateMonsterSpace(Board);
+                        u.GetComponent<EnemyUnit>().UpdateMonsterSpace(board);
                     }
                 }
                 else
@@ -117,6 +115,14 @@ public class TeleportEvent : RealTimeEvents
                         StartCoroutine(u.GetComponent<Movement>().SimpleTraverse(validTilesForUnits[Random.Range(0, validTilesForUnits.Count)]));
                     }
                 }
+            }
+
+
+            List<Tile> tiles = GetEventTiles();
+
+            foreach(Tile t in tiles)
+            {
+                t.DisableCracks();
             }
         }
 

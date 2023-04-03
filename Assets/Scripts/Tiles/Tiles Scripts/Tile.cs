@@ -80,6 +80,7 @@ public class Tile : MonoBehaviour
     [Space]
     [Header("VFX")]
     [SerializeField] Animator tileVfx;
+    [SerializeField] Animator eventVfx;
 
     private void Start()
     {
@@ -90,6 +91,16 @@ public class Tile : MonoBehaviour
         currentObject = emptySelection;
     }
 
+    public void SetCracks()
+    {
+        eventVfx.SetBool("cracks", true);
+    }
+
+    public void DisableCracks()
+    {
+        eventVfx.SetBool("cracks", false);
+
+    }
     public void ActivateTileSelection()
     {
         if(content != null)
@@ -302,6 +313,11 @@ public class Tile : MonoBehaviour
         SquareAbilityRange range = GetComponent<SquareAbilityRange>();
         range.SetStartPos(pos);
         tiles = range.GetTilesInRangeWithoutUnit(board, pos);
+
+        foreach(Tile t in tiles)
+        {
+            t.SetCracks();
+        }
         return tiles;
     }
     public bool CheckNextTile(Directions dir, Board board)

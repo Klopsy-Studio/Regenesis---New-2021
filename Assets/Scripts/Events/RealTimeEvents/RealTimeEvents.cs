@@ -9,7 +9,7 @@ public abstract class RealTimeEvents : TimelineElements
     [SerializeField] protected string name;
 
     public bool playing;
-    Board board;
+    [HideInInspector] public Board board;
     public Board Board { get { return board; } set { board = value; } }
     public BattleController battleController;
 
@@ -35,6 +35,7 @@ public abstract class RealTimeEvents : TimelineElements
                 restartTime = 0;
                 fTimelineVelocity = 12f;
                 iconTimeline.gameObject.SetActive(true);
+                InitialSettings();
             }
         }
 

@@ -18,6 +18,7 @@ public class JumpEvent : MonsterEvent
         List<Tile> tiles = GetEventTiles();
         battleController.SelectTile(controller.currentEnemy.tile.pos);
 
+
         controller.monsterAnimations.SetBool("hide", true);
 
         //Tile animation:
