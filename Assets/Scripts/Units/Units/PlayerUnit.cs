@@ -429,7 +429,7 @@ public class PlayerUnit : Unit
     public override void Stun()
     {
         base.Stun();
-        Push();
+        animations.unitAnimator.SetTrigger("stun");
     }
 
     public override bool UpdateTimeLine()
