@@ -122,13 +122,13 @@ public abstract class Movement : MonoBehaviour
     {
         StartCoroutine(SimpleTraverse(tile));
     }
-    public void StartTraverse(Tile tile, Board board)
+    public void StartTraverse(Tile tile, Board board, List<Tile> path)
     {
-        StartCoroutine(Traverse(tile, board));
+        StartCoroutine(Traverse(tile, board,path));
     }
     public abstract IEnumerator SimpleTraverse(Tile tile); //Unit just teleports.
 
-    public abstract IEnumerator Traverse(Tile tile, Board board); //Traverse animation
+    public abstract IEnumerator Traverse(Tile tile, Board board, List<Tile> path); //Traverse animation
 
     //public void StartTraverse(Tile tile)
     //{
@@ -229,8 +229,16 @@ public abstract class Movement : MonoBehaviour
         moveRange.lineDir = pushDir;
         moveRange.lineLength = pushStrength;
         moveRange.stopLine = true;
+        List<Tile> tiles = new List<Tile>();
 
-        List<Tile> tiles = moveRange.GetTilesInRange(board);
+        tiles.Add(unit.tile);
+        List<Tile> rangeTiles = moveRange.GetTilesInRange(board);
+
+        foreach (Tile t in rangeTiles)
+        {
+            tiles.Add(t);
+        }
+
         Tile desiredTile = null;
 
         for (int i = 0; i < tiles.Count; i++)
@@ -241,13 +249,16 @@ public abstract class Movement : MonoBehaviour
             }
             else
             {
-                break;
+                if(tiles[i] != unit.tile)
+                {
+                    break;
+                }
             }
         }
 
         if(desiredTile != null)
         {
-            StartCoroutine(Traverse(desiredTile, board));
+            StartCoroutine(Traverse(desiredTile, board, tiles));
 
             if (unit.GetComponent<PlayerUnit>() != null)
             {
@@ -262,43 +273,7 @@ public abstract class Movement : MonoBehaviour
         else
         {
             unit.Stun();
-        }
-
-        //else
-        //{
-        //    if(desiredTile != null)
-        //    {
-        //        if (desiredTile.content.GetComponent<PlayerUnit>() == null)
-        //        {
-        //            unit.Stun();
-        //        }
-        //        else
-        //        {
-        //            if(desiredTile.content.GetComponent<Movement>().CanBePushed(pushDir, pushStrength, board))
-        //            {
-        //                StartCoroutine(Traverse(desiredTile, board));
-
-        //                if (unit.GetComponent<PlayerUnit>() != null)
-        //                {
-        //                    unit.GetComponent<PlayerUnit>().Push();
-        //                }
-        //            }
-        //        }
-
-        //        if(tiles.Count < pushStrength)
-        //        {
-
-        //        }
-
-        //    }
-
-        //    else
-        //    {
-        //        unit.Stun();
-        //    }
-            
-        
-        
+        }             
     }
 
     public void ChangeRange(int newRange)

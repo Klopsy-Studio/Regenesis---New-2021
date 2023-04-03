@@ -16,25 +16,27 @@ public class WalkMovement : Movement
         yield return null;
     }
 
-    public override IEnumerator Traverse(Tile tile, Board board)
+    public override IEnumerator Traverse(Tile tile, Board board, List<Tile> path)
     {
-        tile.prev = unit.tile;
         unit.currentPoint = tile.pos;
         moving = true;
         unit.Place(tile);
 
         List<Tile> targets = new List<Tile>();
+
         while (tile != null)
         {
             targets.Insert(0, tile);
             tile = tile.prev;
         }
 
+        Debug.Log(gameObject.name + " target count: " + targets.Count);
+
         // Move to each way point in succession
-        for (int i = 1; i < targets.Count; ++i)
+        for (int i = 1; i < path.Count; ++i)
         {
-            Tile from = targets[i - 1];
-            Tile to = targets[i];
+            Tile from = path[i - 1];
+            Tile to = path[i];
             Directions dir = from.GetDirections(to);
             yield return StartCoroutine(Walk(to));
 

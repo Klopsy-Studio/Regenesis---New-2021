@@ -170,7 +170,8 @@ public class AbilitySequence : ScriptableObject
         {
             Movement m = user.GetComponent<Movement>();
             tileToMove.prev = user.tile;
-            m.StartTraverse(tileToMove, controller.board);
+            m.StartTraverse(tileToMove, controller.board, tiles);
+
             while (m.moving)
             {
                 yield return null;

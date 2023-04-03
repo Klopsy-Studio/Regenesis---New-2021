@@ -94,7 +94,7 @@ public class Stampede : AbilitySequence
             Movement m = user.GetComponent<Movement>();
             tileToMove.prev = user.tile;
             user.currentParameters = rampageTravelEffects;
-            m.StartTraverse(tileToMove, controller.board);
+            m.StartTraverse(tileToMove, controller.board, tiles);
             user.animations.unitAnimator.SetTrigger("rampage");
             while (m.moving)
             {
