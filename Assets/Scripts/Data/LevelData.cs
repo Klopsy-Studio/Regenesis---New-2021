@@ -23,6 +23,7 @@ public class LevelData : ScriptableObject
     [SerializeField] private Sprite backgroundImage;
 
     [Header("Environment information")]
+    public GameObject enviromentEvent;
     [SerializeField] public Zone zone;
     [SerializeField] public Hazard hazard;
     [SerializeField] public List<string> otherCreatures;

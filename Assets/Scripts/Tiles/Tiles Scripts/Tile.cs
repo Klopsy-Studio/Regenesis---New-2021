@@ -296,7 +296,14 @@ public class Tile : MonoBehaviour
         }
     }
 
-
+    public List<Tile> GetEvent2Area(Board board)
+    {
+        List<Tile> tiles = new List<Tile>();
+        SquareAbilityRange range = GetComponent<SquareAbilityRange>();
+        range.SetStartPos(pos);
+        tiles = range.GetTilesInRangeWithoutUnit(board, pos);
+        return tiles;
+    }
     public bool CheckNextTile(Directions dir, Board board)
     {
         switch (dir)
