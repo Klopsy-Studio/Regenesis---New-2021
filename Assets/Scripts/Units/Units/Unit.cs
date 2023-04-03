@@ -57,7 +57,7 @@ public class Unit : TimelineElements
     [SerializeField] GameObject hitEffect;
     [SerializeField] Animator criticalMark;
     [SerializeField] Animator battlecryMark;
-    [SerializeField] Animator stunEffect;
+    public Animator stunEffect;
     [SerializeField] public float stunThreshold;
     [SerializeField] float stunLimit;
     [SerializeField] Animator movementEffect;

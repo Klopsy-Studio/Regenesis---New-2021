@@ -168,6 +168,21 @@ public class EnemyUnit : Unit
         }
     }
 
+    public override void Stun()
+    {
+        if (!stunned)
+        {
+            //fTimelineVelocity = 0;
+            timelineVelocity = TimelineVelocity.Stun;
+            AddDebuff(new Modifier { modifierType = TypeOfModifier.Stun });
+            previousVelocity = timelineVelocity;
+            Debug.Log(gameObject.name + "previousVelocity es " + previousVelocity);
+            stunned = true;
+            stunEffect.SetTrigger("stun");
+            monsterControl.monsterAnimations.SetTrigger("stun");
+            SetCurrentVelocity();
+        }
+    }
     public override bool ReceiveDamage(int damage, bool isCritical)
     {
         health -= (int)damage;
