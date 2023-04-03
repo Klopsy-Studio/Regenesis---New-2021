@@ -16,27 +16,29 @@ public class TutShowslideState : BattleState
         tutOwner.tutorialManager.slidesArray[tutOwner.tutorialSlidesIndex].SetActive(true);
     }
     // Start is called before the first frame update
-    protected override void OnSelectAction(object sender, InfoEventArgs<int> e)
-    {
+    //protected override void OnSelectAction(object sender, InfoEventArgs<int> e)
+    //{
        
-        switch (e.info)
-        {
-            case 0:
-                Debug.Log("el valor es 0");
-                UpdateTutorialSlide();
-                break;
+    //    switch (e.info)
+    //    {
+    //        case 0:
+    //            Debug.Log("el valor es 0");
+    //            UpdateTutorialSlide();
+    //            break;
 
-            case 1:
-                Debug.Log("el valor es 1");
+    //        case 1:
+    //            Debug.Log("el valor es 1");
                 
-                UpdateNextState();
+    //            UpdateNextState();
                 
-                break;
+    //            break;
 
 
 
-        }
-    }
+    //    }
+    //}
+
+
 
     public override void Exit()
     {
@@ -47,7 +49,7 @@ public class TutShowslideState : BattleState
         }
 
     }
-    void UpdateTutorialSlide()
+    public void UpdateTutorialSlide() //UNITY BUTTONS
     {
  
         tutOwner.tutorialManager.slidesArray[tutOwner.tutorialSlidesIndex].SetActive(false);
@@ -55,7 +57,7 @@ public class TutShowslideState : BattleState
         tutOwner.tutorialManager.slidesArray[tutOwner.tutorialSlidesIndex].SetActive(true);
     }
 
-    void UpdateNextState()
+    public void UpdateNextState() //UNITY BUTTONS
     {
         tutOwner.tutorialManager.slidesArray[tutOwner.tutorialSlidesIndex].SetActive(false);
         tutOwner.tutorialSlidesIndex++;
@@ -69,6 +71,19 @@ public class TutShowslideState : BattleState
         else if(nextState == 1)
         {
             owner.ChangeState<TUT_SelectUnitState>();
+        }
+        else if(nextState == 2)
+        {
+            owner.ChangeState<TUT_MoveTargeStateOne>();
+        }
+        else if (nextState == 3)
+        {
+
+             owner.ChangeState<TUT_UseAbilityStateOne>();
+        }
+        else if(nextState == 4)
+        {
+            owner.ChangeState<TUT_SelectActionState_Finish>();
         }
     }
 }

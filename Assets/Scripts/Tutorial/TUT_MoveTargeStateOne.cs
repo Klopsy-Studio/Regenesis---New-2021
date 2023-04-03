@@ -108,7 +108,7 @@ public class TUT_MoveTargeStateOne : BattleState
             owner.currentUnit.didNotMove = false;
             owner.currentUnit.SpendActionPoints(owner.moveCost);
             owner.currentUnit.actionDone = true;
-            owner.ChangeState<MoveSequenceState>();
+            owner.ChangeState<TUT_MoveSequenceStateOne>();
         }
     }
 
@@ -121,7 +121,7 @@ public class TUT_MoveTargeStateOne : BattleState
             owner.currentUnit.didNotMove = false;
             owner.currentUnit.ActionsPerTurn -= 1;
             owner.currentUnit.actionDone = true;
-            owner.ChangeState<MoveSequenceState>();
+            owner.ChangeState<TUT_MoveSequenceStateOne>();
         }
     }
 }

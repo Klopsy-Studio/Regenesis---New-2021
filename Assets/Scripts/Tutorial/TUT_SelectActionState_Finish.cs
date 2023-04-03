@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TUT_SelectActionState_Move : BattleState
+public class TUT_SelectActionState_Finish : BattleState
 {
     public typeOfAction currentAction = typeOfAction.Move;
     public override void Enter()
@@ -32,20 +32,11 @@ public class TUT_SelectActionState_Move : BattleState
 
         owner.currentUnit.GetComponent<Movement>().ResetRange();
 
-        if (!owner.currentUnit.CanMove())
-        {
-            ActionSelectionUI.DisableSelectOption(typeOfAction.Move);
-        }
-        else
-        {
-            ActionSelectionUI.EnableSelectOption(typeOfAction.Move);
 
-        }
 
-     
-        ActionSelectionUI.DisableSelectOption(typeOfAction.Ability);
+        ActionSelectionUI.DisableSelectOption(typeOfAction.Move);
         ActionSelectionUI.DisableSelectOption(typeOfAction.Item);
-        ActionSelectionUI.DisableSelectOption(typeOfAction.Wait);
+      
         ActionSelectionUI.DisableSelectOption(typeOfAction.Status);
         //if (!owner.currentUnit.CanDoAbility())
         //{
@@ -149,12 +140,12 @@ public class TUT_SelectActionState_Move : BattleState
         switch (e.info)
         {
             case 0:
-                if (owner.currentUnit.CanMove())
-                {
-                    Debug.Log("CASE 0");
-                    ActionSelectionUI.gameObject.SetActive(false);
-                    owner.ChangeState<TutShowslideState>();
-                }
+                //if (owner.currentUnit.CanMove())
+                //{
+                //    Debug.Log("CASE 0");
+                //    ActionSelectionUI.gameObject.SetActive(false);
+                //    owner.ChangeState<TUT_MoveTargeStateOne>();
+                //}
 
                 //owner.currentUnit.GetComponent<Movement>().PushUnit(Directions.South, 3, board);
                 break;
@@ -162,10 +153,7 @@ public class TUT_SelectActionState_Move : BattleState
             case 1:
                 Debug.Log("CASE 1");
 
-                //if (owner.currentUnit.CanDoAbility())
-                //{
-                //    owner.ChangeState<SelectAbilityState>();
-                //}
+              
                 break;
 
             case 2:
@@ -180,12 +168,12 @@ public class TUT_SelectActionState_Move : BattleState
                 break;
 
             case 3:
-                //Recover stamina and end turn
-                //if (!owner.currentUnit.actionDone)
-                //{
-                //    currentAction = typeOfAction.Move;
-                //    owner.ChangeState<RestUnitState>();
-                //}
+               // Recover stamina and end turn
+                if (!owner.currentUnit.actionDone)
+                {
+                    currentAction = typeOfAction.Move;
+                    owner.ChangeState<RestUnitState>();
+                }
                 break;
             case 4:
                 //Skip turn
