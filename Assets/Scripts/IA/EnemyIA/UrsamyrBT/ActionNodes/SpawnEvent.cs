@@ -17,6 +17,7 @@ public class SpawnEvent : ActionNode
         {
             MonsterEvent eventToSpawn = events[Random.Range(0, events.Count)];
             MonsterEvent e = owner.controller.SpawnEvent(eventToSpawn);
+            e.AssignVariables();
             e.transform.parent = null;
             owner.controller.battleController.timelineElements.Add(e);
         }
