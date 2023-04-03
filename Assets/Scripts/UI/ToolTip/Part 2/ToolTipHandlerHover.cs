@@ -10,6 +10,7 @@ public class ToolTipHandlerHover : MonoBehaviour
     [SerializeField] private GameObject tooltipContainer;
     [SerializeField] private TMP_Text _tooltipDescriptionTMP;
 
+<<<<<<< HEAD
     RectTransform tooltipRectTransform;
 
 
@@ -19,6 +20,10 @@ public class ToolTipHandlerHover : MonoBehaviour
         tooltipRectTransform = tooltipContainer.GetComponent<RectTransform>();
     }
 
+=======
+  
+   
+>>>>>>> task/newTutorial
     private void OnEnable()
     {
         LinkHandlerForTMPTextOnHover.OnHoverOnLinkEvent += GetToolTipInfo;
@@ -62,6 +67,7 @@ public class ToolTipHandlerHover : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     private void Update()
     {
 
@@ -100,4 +106,7 @@ public class ToolTipHandlerHover : MonoBehaviour
 
         tooltipContainer.transform.position = mousePosition;
     }
+=======
+  
+>>>>>>> task/newTutorial
 }

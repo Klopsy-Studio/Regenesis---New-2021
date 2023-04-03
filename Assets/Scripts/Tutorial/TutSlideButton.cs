@@ -10,13 +10,13 @@ public class TutSlideButton : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("TUT SLIDE BUTTON INICIALIZA");
+     
         if(buttonToNextSlide != null)
         {
-            Debug.Log("TUT SLIDE BUTTON AAAAAAAAA");
+           
             buttonToNextSlide.onClick.AddListener(() =>
             {
-                Debug.Log("TUT SLIDE BUTTON bbbbbb");
+               
                 TutorialManager.instance.ClickConfirm(0);
             });
         
