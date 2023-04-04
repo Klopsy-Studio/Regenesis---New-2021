@@ -91,5 +91,17 @@ public class TutShowslideState : BattleState
         {
             owner.ChangeState<TUT_TimelineStateFirstHunter>();
         }
+        else if(nextState == 6)
+        {
+            owner.ChangeState<TUT_SelectActionState_Abilities>();
+        }
+        else if(nextState == 7)
+        {
+            owner.ChangeState<TUT_UseAbilityStateOne>();
+        }
+        //else if(nextState == 8)
+        //{
+
+        //}
     }
 }

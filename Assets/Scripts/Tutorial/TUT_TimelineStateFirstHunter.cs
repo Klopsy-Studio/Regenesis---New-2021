@@ -14,6 +14,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("HA ENTRADO A TUT_TIMELINESTATE FIRST HUNTER");
         if (currentElement != null)
         {
             if (currentElement.elementEnabled)
@@ -25,6 +26,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
         owner.timelineUI.HideIconActing();
         owner.turnStatusUI.DeactivateTurn();
         owner.isTimeLineActive = true;
+        Debug.Log("is timelineactive " + owner.isTimeLineActive);
     }
 
     public void CheckIcon()
@@ -217,7 +219,8 @@ public class TUT_TimelineStateFirstHunter : BattleState
                             }
                             else if(p.profile.name== "TUT_Isak")
                             {
-                                owner.ChangeState<TUT_StartPlayerTurnState>();
+                                Debug.Log("Eha entrado a tut_Isak en timelineState");
+                                owner.ChangeState<TUT_SelectUnitState>();
                             }
                             else
                             {
@@ -230,6 +233,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
 
                         if (t is EnemyUnit e)
                         {
+                            Debug.Log("ha entado a enemyUnit");
                             owner.currentEnemyUnit = e;
                             SelectTile(owner.currentEnemyUnit.tile.pos);
                             //owner.currentEnemyController = e.GetComponent<EnemyController>();

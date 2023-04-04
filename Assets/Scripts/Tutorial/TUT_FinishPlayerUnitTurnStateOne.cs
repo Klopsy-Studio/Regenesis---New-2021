@@ -7,6 +7,7 @@ public class TUT_FinishPlayerUnitTurnStateOne : BattleState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("ha entrado a tut_finishplayerunitturn state");
         StartCoroutine(FinishTurnCoroutine());
     }
 

@@ -8,6 +8,7 @@ public class TUT_RestUnitStateOne : BattleState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Ha entrado a tut rest unitstate one");
         StartCoroutine(RestSequence());
     }
 

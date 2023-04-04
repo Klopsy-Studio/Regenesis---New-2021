@@ -83,7 +83,8 @@ public class TUT_StartPlayerTurnState : BattleState
         else if(stateIndex == 2)
         {
             Debug.Log("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-            owner.ChangeState<TUT_SelectActionState_Abilities>();
+            owner.ChangeState<TutShowslideState>();
+          
         }
        
     }
