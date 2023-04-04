@@ -78,11 +78,17 @@ MonoBehaviour:
   - rid: 513517070685044800
   - rid: 513517070685044801
   - rid: 513517070685044802
+  - rid: 513517115567767553
+  - rid: 513517115567767554
+  - rid: 513517115567767555
+  - rid: 513517115567767556
+  - rid: 513517115567767557
+  - rid: 513517115567767558
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 499, y: 193, z: 0}
-  viewScale: {x: 0.2842624, y: 0.2842624, z: 1}
+  viewPosition: {x: 1746, y: 456, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
   references:
     version: 2
     RefIds:
@@ -92,14 +98,14 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 9408c2aa-86f9-44ce-b2ef-7f61449c486d
-        position: {x: -0.000015258789, y: 64.77173}
+        position: {x: -2016, y: -626.68}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
         child:
-          rid: 513517070685044738
+          rid: 513517115567767553
     - rid: 513517070685044738
       type: {class: Selector, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -983,4 +989,92 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
+        finishVelocity: 2
+    - rid: 513517115567767553
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 1d0f2e8e8cd85c74c8e51d4f1adf41b9
+        position: {x: -2016, y: -360.4941}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        children:
+        - rid: 513517115567767555
+        - rid: 513517115567767554
+        - rid: 513517115567767556
+        - rid: 513517115567767557
+        - rid: 513517115567767558
+    - rid: 513517115567767554
+      type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: cad50dd003d17ed4f9c094fe87a71d12
+        position: {x: -2228.263, y: -147.00002}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        typeOfMove: 0
+        treeRunning: 0
+    - rid: 513517115567767555
+      type: {class: CanMoveToUnit, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: eb265a2240646ad49b71d2d8d5ea53f6
+        position: {x: -2481.8086, y: -146.68141}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        moveToCheck: 0
+        monsterToCheck: 0
+        differentUnit: 0
+    - rid: 513517115567767556
+      type: {class: CheckIfUnitsInRange, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 077ff29048ddfb64a979ec440960166a
+        position: {x: -2021, y: -147.00002}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        abilities:
+        - {fileID: 11400000, guid: 9bd54169d27d9ca438adf02a64186ae1, type: 2}
+    - rid: 513517115567767557
+      type: {class: MonsterAttack, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 7ba8b5120902fc14d9d851bc24a98414
+        position: {x: -1806.7526, y: -147.00002}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        abilities:
+        - {fileID: 11400000, guid: 9bd54169d27d9ca438adf02a64186ae1, type: 2}
+    - rid: 513517115567767558
+      type: {class: FinishMonsterTurn, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: dc00f25b3da9011418183935c49e075f
+        position: {x: -1595.2467, y: -147.00002}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
         finishVelocity: 2
