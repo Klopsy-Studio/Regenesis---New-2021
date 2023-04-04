@@ -49,7 +49,11 @@ public class TUT_SelectAbilityStateOne : BattleState
         {
             case KitType.Hammer:
                 owner.hammerTraitObject.gameObject.SetActive(true);
-                owner.hammerCurrentFury.value = owner.currentUnit.hammerFuryAmount;
+                if (owner.hammerCurrentFury != null)
+                {
+                    owner.hammerCurrentFury.value = owner.currentUnit.hammerFuryAmount;
+                }
+              
                 owner.hammerTraitObject.GetComponent<MenuButton>().SetDefaultPosition();
 
                 owner.hammerTraitObject.GetComponent<MenuButton>().MakeButtonAppear();

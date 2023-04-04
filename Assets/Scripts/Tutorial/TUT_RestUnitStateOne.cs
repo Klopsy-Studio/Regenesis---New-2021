@@ -20,6 +20,6 @@ public class TUT_RestUnitStateOne : BattleState
         owner.actionSelectionUI.gameObject.SetActive(false);
 
         yield return null;
-        owner.ChangeState<FinishPlayerUnitTurnState>();
+        owner.ChangeState<TUT_FinishPlayerUnitTurnStateOne>();
     }
 }

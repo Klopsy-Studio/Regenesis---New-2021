@@ -665,13 +665,13 @@ public class TUT_UseAbilityStateOne : BattleState
         if (!owner.endTurnInstantly)
         {
             owner.currentUnit.animations.SetIdle();
-            owner.ChangeState<SelectActionState>();
+            owner.ChangeState<TutShowslideState>();
         }
 
         else
         {
             owner.endTurnInstantly = false;
-            owner.ChangeState<FinishPlayerUnitTurnState>();
+            owner.ChangeState<TutShowslideState>();
         }
     }
 
@@ -691,12 +691,11 @@ public class TUT_UseAbilityStateOne : BattleState
             owner.currentUnit.animations.SetIdle();
             owner.ChangeState<TutShowslideState>();
         }
-
-        //else
-        //{
-        //    owner.endTurnInstantly = false;
-        //    owner.ChangeState<FinishPlayerUnitTurnState>();
-        //}
+        else
+        {
+            owner.endTurnInstantly = false;
+            owner.ChangeState<TutShowslideState>();
+        }
     }
 
     

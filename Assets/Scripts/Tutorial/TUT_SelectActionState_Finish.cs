@@ -8,7 +8,7 @@ public class TUT_SelectActionState_Finish : BattleState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("ESTAS EN TUT_SELECT ACTION MOVE");
+        Debug.Log("ESTAS EN TUT_SelectActionState_Finish");
         owner.turnArrow.SetTarget(owner.currentUnit.currentPoint, 3.5f);
         owner.miniStatus.SetStatus(owner.currentUnit);
 
@@ -33,11 +33,11 @@ public class TUT_SelectActionState_Finish : BattleState
         owner.currentUnit.GetComponent<Movement>().ResetRange();
 
 
-
+        ActionSelectionUI.EnableActionSelection();
         ActionSelectionUI.DisableSelectOption(typeOfAction.Move);
         ActionSelectionUI.DisableSelectOption(typeOfAction.Item);
-      
-        ActionSelectionUI.DisableSelectOption(typeOfAction.Status);
+        ActionSelectionUI.DisableSelectOption(typeOfAction.Ability);
+       
         //if (!owner.currentUnit.CanDoAbility())
         //{
         //    ActionSelectionUI.DisableSelectOption(typeOfAction.Ability);
@@ -169,15 +169,15 @@ public class TUT_SelectActionState_Finish : BattleState
 
             case 3:
                // Recover stamina and end turn
-                if (!owner.currentUnit.actionDone)
-                {
-                    currentAction = typeOfAction.Move;
-                    owner.ChangeState<RestUnitState>();
-                }
-                break;
+                //if (!owner.currentUnit.actionDone)
+                //{
+                //    currentAction = typeOfAction.Move;
+                //    owner.ChangeState<TUT_RestUnitStateOne>();
+                //}
+                //break;
             case 4:
                 //Skip turn
-
+                owner.ChangeState<TUT_RestUnitStateOne>();
                 //owner.ChangeState<WaitUnitState>();
                 break;
 
@@ -211,7 +211,7 @@ public class TUT_SelectActionState_Finish : BattleState
 
             case typeOfAction.Wait:
                 currentAction = typeOfAction.Move;
-                owner.ChangeState<WaitUnitState>();
+                owner.ChangeState<TUT_RestUnitStateOne>();
                 break;
             case typeOfAction.Status:
                 currentAction = typeOfAction.Status;

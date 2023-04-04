@@ -211,7 +211,19 @@ public class TUT_TimelineStateFirstHunter : BattleState
 
                             owner.currentUnit = p;
                             owner.currentUnit.playerUI.ResetActionPoints();
-                            owner.ChangeState<TutShowslideState>();
+                            if(p.profile.name == "TUT_Kaeo")
+                            {
+                                owner.ChangeState<TutShowslideState>();
+                            }
+                            else if(p.profile.name== "TUT_Isak")
+                            {
+                                owner.ChangeState<TUT_StartPlayerTurnState>();
+                            }
+                            else
+                            {
+                                Debug.Log("En tut timelinestate, no ha salido ninguno de los tres cazadores");
+                            }
+                          
                             //owner.ChangeState<SelectUnitState>();
                             break;
                         }
@@ -231,7 +243,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
 
                         if (t is RealTimeEvents)
                         {
-                            owner.ChangeState<EventActiveState>();
+                            owner.ChangeState<TUT_EventActiveState>();
                             break;
                         }
 

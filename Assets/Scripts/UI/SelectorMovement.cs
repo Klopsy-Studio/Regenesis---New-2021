@@ -58,8 +58,11 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     switch (assignedAbility.abilityEquipmentType)
                     {
                         case KitType.Hammer:
-
-                            controller.hammerCurrentFury.value = controller.currentUnit.hammerFuryAmount;
+                            if (controller.hammerCurrentFury != null)
+                            {
+                                controller.hammerCurrentFury.value = controller.currentUnit.hammerFuryAmount;
+                            }
+                        
                             if (controller.currentUnit.hammerFuryAmount >= controller.currentUnit.hammerFuryMax)
                             {
                                 controller.hammerCurrentFury.gameObject.SetActive(false);

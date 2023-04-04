@@ -78,7 +78,8 @@ public class PlayerUnit : Unit
         playerUI.unitUI.planeDistance = 0.01f;
 
         didNotMove = true;
-        timelineFill = Random.Range(50, 90);
+        //timelineFill = Random.Range(50, 90);
+        SetUpTimelineFill();
         //ESTO DEBER�A DE ESTAR EN UNIT
 
         timelineTypes = TimeLineTypes.PlayerUnit;
@@ -109,6 +110,17 @@ public class PlayerUnit : Unit
         }
     }
 
+    void SetUpTimelineFill()
+    {
+        if (this.name == "TUT_Kaeo" || this.name == "TUT_Isak" || this.name == "TUT_Ola")
+        {
+            timelineFill = profile.tutTimelinePos;
+        }
+        else
+        {
+            timelineFill = Random.Range(50, 90);
+        }
+    }
     public void EnableDrone()
     {
         droneIndicator.SetActive(true);
