@@ -14,6 +14,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("HA ENTRADO A TUT_TIMELINESTATE FIRST HUNTER");
         if (currentElement != null)
         {
             if (currentElement.elementEnabled)
@@ -25,6 +26,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
         owner.timelineUI.HideIconActing();
         owner.turnStatusUI.DeactivateTurn();
         owner.isTimeLineActive = true;
+        Debug.Log("is timelineactive " + owner.isTimeLineActive);
     }
 
     public void CheckIcon()
@@ -211,13 +213,27 @@ public class TUT_TimelineStateFirstHunter : BattleState
 
                             owner.currentUnit = p;
                             owner.currentUnit.playerUI.ResetActionPoints();
-                            owner.ChangeState<TutShowslideState>();
+                            if(p.profile.name == "TUT_Kaeo")
+                            {
+                                owner.ChangeState<TutShowslideState>();
+                            }
+                            else if(p.profile.name== "TUT_Isak")
+                            {
+                                Debug.Log("Eha entrado a tut_Isak en timelineState");
+                                owner.ChangeState<TUT_SelectUnitState>();
+                            }
+                            else
+                            {
+                                Debug.Log("En tut timelinestate, no ha salido ninguno de los tres cazadores");
+                            }
+                          
                             //owner.ChangeState<SelectUnitState>();
                             break;
                         }
 
                         if (t is EnemyUnit e)
                         {
+                            Debug.Log("ha entado a enemyUnit");
                             owner.currentEnemyUnit = e;
                             SelectTile(owner.currentEnemyUnit.tile.pos);
                             //owner.currentEnemyController = e.GetComponent<EnemyController>();
@@ -231,7 +247,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
 
                         if (t is RealTimeEvents)
                         {
-                            owner.ChangeState<EventActiveState>();
+                            owner.ChangeState<TUT_EventActiveState>();
                             break;
                         }
 

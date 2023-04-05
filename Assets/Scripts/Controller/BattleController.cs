@@ -383,13 +383,13 @@ public class BattleController : StateMachine
     public void ActivateTileSelector()
     {
         tileSelectionIndicator.gameObject.SetActive(true);
-        Debug.Log("Selector on");
+   
     }
 
     public void DeactivateTileSelector()
     {
         tileSelectionIndicator.gameObject.SetActive(false);
-        Debug.Log("Selector off");
+  
 
     }
 

@@ -74,16 +74,34 @@ public class TutShowslideState : BattleState
         }
         else if(nextState == 2)
         {
+            Debug.Log("next state 2");
             owner.ChangeState<TUT_MoveTargeStateOne>();
         }
         else if (nextState == 3)
         {
-
+            Debug.Log("next state 3");
              owner.ChangeState<TUT_UseAbilityStateOne>();
         }
         else if(nextState == 4)
         {
+            Debug.Log("next state 4");
             owner.ChangeState<TUT_SelectActionState_Finish>();
         }
+        else if(nextState == 5)
+        {
+            owner.ChangeState<TUT_TimelineStateFirstHunter>();
+        }
+        else if(nextState == 6)
+        {
+            owner.ChangeState<TUT_SelectActionState_Abilities>();
+        }
+        else if(nextState == 7)
+        {
+            owner.ChangeState<TUT_UseAbilityStateOne>();
+        }
+        //else if(nextState == 8)
+        //{
+
+        //}
     }
 }

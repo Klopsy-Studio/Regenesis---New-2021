@@ -34,6 +34,8 @@ public class UnitProfile : ScriptableObject
     public float characterIndex;
     //public WeaponOffset hammerOffset;
     //public WeaponOffset slingShotOffset;
+
+    public float tutTimelinePos;
 }
 
 [System.Serializable]

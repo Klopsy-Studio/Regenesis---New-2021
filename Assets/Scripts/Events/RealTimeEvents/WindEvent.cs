@@ -14,6 +14,7 @@ public class WindEvent : RealTimeEvents
     {
         base.Start();
         windEffect.SetActive(false);
+       
     }
 
     public override void ApplyEffect()

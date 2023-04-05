@@ -649,8 +649,10 @@ public class TUT_UseAbilityStateOne : BattleState
     //    }
     //}
 
+    int index = 0;
     IEnumerator UseAbilitySequence(GameObject target)
     {
+        index++;
         owner.targets.indicator.DeactivateTarget();
 
         attacking = true;
@@ -661,22 +663,40 @@ public class TUT_UseAbilityStateOne : BattleState
         {
             yield return null;
         }
-
-        if (!owner.endTurnInstantly)
+        if(index == 1)
         {
-            owner.currentUnit.animations.SetIdle();
-            owner.ChangeState<SelectActionState>();
-        }
+            if (!owner.endTurnInstantly)
+            {
+                owner.currentUnit.animations.SetIdle();
+                owner.ChangeState<TutShowslideState>();
+            }
 
-        else
-        {
-            owner.endTurnInstantly = false;
-            owner.ChangeState<FinishPlayerUnitTurnState>();
+            else
+            {
+                owner.endTurnInstantly = false;
+                owner.ChangeState<TutShowslideState>();
+            }
         }
+        else if (index == 2)
+        {
+            if (!owner.endTurnInstantly)
+            {
+                owner.currentUnit.animations.SetIdle();
+                owner.ChangeState<TUT_SelectActionState_Finish>();
+            }
+
+            else
+            {
+                owner.endTurnInstantly = false;
+                owner.ChangeState<TUT_SelectActionState_Finish>();
+            }
+        }
+       
     }
 
     public IEnumerator UseAbilitySequence(List<Tile> target)
     {
+        index++;
         attacking = true;
         owner.targets.indicator.DeactivateTarget();
         StartCoroutine(currentAbility.sequence.Sequence(target, owner));
@@ -686,16 +706,44 @@ public class TUT_UseAbilityStateOne : BattleState
             yield return null;
         }
 
-        if (!owner.endTurnInstantly)
+        if (index == 1)
         {
-            owner.currentUnit.animations.SetIdle();
-            owner.ChangeState<TutShowslideState>();
+            if (!owner.endTurnInstantly)
+            {
+                owner.currentUnit.animations.SetIdle();
+                owner.ChangeState<TutShowslideState>();
+            }
+
+            else
+            {
+                owner.endTurnInstantly = false;
+                owner.ChangeState<TutShowslideState>();
+            }
+        }
+        else if (index == 2)
+        {
+            if (!owner.endTurnInstantly)
+            {
+                owner.currentUnit.animations.SetIdle();
+                owner.ChangeState<TUT_SelectActionState_Finish>();
+            }
+
+            else
+            {
+                owner.endTurnInstantly = false;
+                owner.ChangeState<TUT_SelectActionState_Finish>();
+            }
         }
 
+        //if (!owner.endTurnInstantly)
+        //{
+        //    owner.currentUnit.animations.SetIdle();
+        //    owner.ChangeState<TutShowslideState>();
+        //}
         //else
         //{
         //    owner.endTurnInstantly = false;
-        //    owner.ChangeState<FinishPlayerUnitTurnState>();
+        //    owner.ChangeState<TutShowslideState>();
         //}
     }
 

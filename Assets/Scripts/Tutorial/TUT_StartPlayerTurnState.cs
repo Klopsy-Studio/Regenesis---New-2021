@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class TUT_StartPlayerTurnState : BattleState
 {
+    int stateIndex = 0;
     public override void Enter()
     {
         base.Enter();
@@ -73,6 +75,17 @@ public class TUT_StartPlayerTurnState : BattleState
         owner.currentUnit.TimelineVelocity = TimelineVelocity.VerySlow;
         owner.currentUnit.ActionsPerTurn = 5;
         yield return null;
-        owner.ChangeState<TUT_SelectActionState_Move>();
+        stateIndex++;
+        if (stateIndex == 1)
+        {
+            owner.ChangeState<TUT_SelectActionState_Move>();
+        }
+        else if(stateIndex == 2)
+        {
+            Debug.Log("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+            owner.ChangeState<TutShowslideState>();
+          
+        }
+       
     }
 }
