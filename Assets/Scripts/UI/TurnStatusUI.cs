@@ -12,7 +12,8 @@ public class TurnStatusUI : MonoBehaviour
 
     [SerializeField] Animator turnStatusAnim;
 
-    [SerializeField] Image turn;
+    public Image turn;
+    public GameObject gear;
     [SerializeField] Animator turnTypeAnim;
 
     [Header("Turn Images")]

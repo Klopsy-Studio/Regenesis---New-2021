@@ -185,6 +185,11 @@ public class EnemyUnit : Unit
     }
     public override bool ReceiveDamage(int damage, bool isCritical)
     {
+        if(health-damage <= 0)
+        {
+            Time.timeScale = 0.3f;
+            Invoke("ResetTimeScale", 1f);
+        }
         health -= (int)damage;
 
         List<Modifier> trashModifiers = new List<Modifier>();
@@ -229,6 +234,12 @@ public class EnemyUnit : Unit
         {
             return false;
         }
+    }
+
+
+    public void ResetTimeScale()
+    {
+        Time.timeScale = 1f;
     }
    
 }

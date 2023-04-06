@@ -56,6 +56,7 @@ public class BattleController : StateMachine
     public LootUIManager lootUIManager;
     public AbilityTargets targets;
     public GunbladeBullets gunbladeUI;
+    public GameObject questComplete;
     [Space]
     [Header("Weapon trait references")]
 
@@ -127,7 +128,7 @@ public class BattleController : StateMachine
     [SerializeField] Text pauseText;
     public MenuButton pauseTimelineButton;
     public MenuButton resumeTimelineButton;
-
+    public float huntTime;
     [Header("Zoom Variables")]
     [SerializeField] Animator zoomAnimations;
     [SerializeField] float minCameraZoom = 4f;
@@ -224,6 +225,8 @@ public class BattleController : StateMachine
 
     private void Update()
     {
+        huntTime += Time.deltaTime;
+
         if (playtestToggle)
         {
             if (Input.GetKeyDown(KeyCode.K))

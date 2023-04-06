@@ -47,7 +47,7 @@ public class ActionEffect : MonoBehaviour
 
     [Header("Color adjustments")]
     [SerializeField] private float colorAdjustmentsSaturation = 50f;
-
+    [SerializeField] float blackAndWhiteSpeed;
     // Original parameter values
     private float originalCameraSize;
     private float originalVignetteIntensity;
@@ -58,6 +58,7 @@ public class ActionEffect : MonoBehaviour
     float chosenIntensity;
     float chosenDuration;
 
+    bool blackAndWhite;
 
 
     [SerializeField] Camera secondCamera;
@@ -66,7 +67,7 @@ public class ActionEffect : MonoBehaviour
     {
         instance = this;
     }
-
+    
     private void Start()
     {
         // Get references
@@ -96,6 +97,20 @@ public class ActionEffect : MonoBehaviour
         shakeChannel = cinemachineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
+    public void BlackAndWhite()
+    {
+        blackAndWhite = true;
+    }
+
+    void SetBlackAndWhite()
+    {
+        colorAdjustments.saturation.value -= Time.deltaTime * blackAndWhiteSpeed;
+
+        if(colorAdjustments.saturation.value <= -100)
+        {
+            blackAndWhite = false;
+        }
+    }
     private void Update()
     {
         /// FOR DEBUG /// FOR DEBUG /// FOR DEBUG /// FOR DEBUG /// FOR DEBUG /// FOR DEBUG /// FOR DEBUG ///
@@ -116,6 +131,9 @@ public class ActionEffect : MonoBehaviour
 
         if (shakeRecovery)
             RecoverShake();
+
+        if (blackAndWhite)
+            SetBlackAndWhite();
 
 
     }

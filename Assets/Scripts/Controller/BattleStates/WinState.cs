@@ -11,6 +11,10 @@ public class WinState : BattleState
         owner.unitStatusUI.gameObject.SetActive(false);
         owner.turnStatusUI.gameObject.SetActive(false);
         owner.timelineUI.gameObject.SetActive(false);
+        owner.actionSelectionUI.gameObject.SetActive(false);
+        owner.miniStatus.gameObject.SetActive(false);
+        owner.turnArrow.gameObject.SetActive(false);
+        owner.canToggleTimeline = false;
         tileSelectionIndicator.gameObject.SetActive(false);
         owner.isTimeLineActive = false;
         owner.battleEnded = true;
@@ -29,11 +33,15 @@ public class WinState : BattleState
         owner.abilitySelectionUI.gameObject.SetActive(false);
         owner.itemSelectionUI.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
         owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.winTurn);
-        yield return new WaitForSeconds(1);
+        owner.actionSelectionUI.gameObject.SetActive(false);
+        owner.abilitySelectionUI.gameObject.SetActive(false);
+        owner.itemSelectionUI.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(0.3f);
         owner.turnStatusUI.DeactivateTurn();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         owner.levelData.hasBeenCompleted = true;
 
         //Switch later to show Loot load camp scene 

@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class LootUIState : BattleState
 {
-
     public override void Enter()
     {
         base.Enter();
@@ -23,6 +23,25 @@ public class LootUIState : BattleState
       
 
         owner.lootUIManager.gameObject.SetActive(true);
-        owner.lootUIManager.UpdateLootUI(materialsDropped);
+        StartCoroutine(owner.lootUIManager.LootSequence(materialsDropped));
+    }
+
+    public void StartReturn()
+    {
+        StartCoroutine(ReturnToCampSequence());
+    }
+
+    public IEnumerator ReturnToCampSequence()
+    {
+        owner.turnStatusUI.gear.gameObject.SetActive(false);
+        ActionEffect.instance.BlackAndWhite();
+
+        yield return new WaitForSeconds(1f);
+
+        owner.questComplete.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        owner.ReturnToCamp();
     }
 }

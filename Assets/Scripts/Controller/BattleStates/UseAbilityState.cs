@@ -658,6 +658,7 @@ public class UseAbilityState : BattleState
         }
     }
 
+    
     IEnumerator UseAbilitySequence(GameObject target)
     {
         owner.targets.indicator.DeactivateTarget();

@@ -16,63 +16,67 @@ public class SelectActionState : BattleState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Ha entrado en SELECT ACTION STATE");
-        owner.turnArrow.SetTarget(owner.currentUnit.currentPoint, 3.5f);
-        owner.miniStatus.SetStatus(owner.currentUnit);
 
-        owner.SelectTile(owner.currentUnit.currentPoint);
-        owner.tileSelectionToggle.MakeTileSelectionSmall();
-        owner.DeactivateTileSelector();
-
-        owner.currentUnit.playerUI.unitUI.gameObject.SetActive(true);
-        owner.currentUnit.playerUI.ShowActionPoints();
-
-        owner.currentUnit.unitSprite.gameObject.GetComponent<Renderer>().material.SetFloat("_OutlineThickness", 1);
-        owner.isTimeLineActive = false;
-        owner.moveActionSelector = true;
-        owner.actionSelectionUI.gameObject.SetActive(true);
-        owner.actionSelectionUI.ChangeAllActionsToDefault();
-        owner.actionSelectionUI.EnableActionSelection();
-        owner.actionSelectionUI.OriginalColor();
-        owner.actionSelectionUI.title.SetActive(true);
-        owner.abilitySelectionUI.gameObject.SetActive(false);
-        owner.itemSelectionUI.gameObject.SetActive(false);
-
-        owner.currentUnit.GetComponent<Movement>().ResetRange();
-      
-        if (!owner.currentUnit.CanMove())
+        if (!owner.battleEnded)
         {
-            ActionSelectionUI.DisableSelectOption(typeOfAction.Move);
-        }
-        else
-        {
-            ActionSelectionUI.EnableSelectOption(typeOfAction.Move);
-            ActionSelectionUI.GetMovementOption().GetPreviewRange();
-        }
+            owner.turnArrow.SetTarget(owner.currentUnit.currentPoint, 3.5f);
+            owner.miniStatus.SetStatus(owner.currentUnit);
 
-        if (!owner.currentUnit.CanDoAbility())
-        {
-            ActionSelectionUI.DisableSelectOption(typeOfAction.Ability);
-        }
-        else
-        {
-            ActionSelectionUI.EnableSelectOption(typeOfAction.Ability);
-        }
+            owner.SelectTile(owner.currentUnit.currentPoint);
+            owner.tileSelectionToggle.MakeTileSelectionSmall();
+            owner.DeactivateTileSelector();
 
-        if(owner.currentUnit.actionsPerTurn >= 2)
-        {
-            ActionSelectionUI.EnableSelectOption(typeOfAction.Item);
-        }
-        else
-        {
-            ActionSelectionUI.DisableSelectOption(typeOfAction.Item);
-        }
+            owner.currentUnit.playerUI.unitUI.gameObject.SetActive(true);
+            owner.currentUnit.playerUI.ShowActionPoints();
+
+            owner.currentUnit.unitSprite.gameObject.GetComponent<Renderer>().material.SetFloat("_OutlineThickness", 1);
+            owner.isTimeLineActive = false;
+            owner.moveActionSelector = true;
+            owner.actionSelectionUI.gameObject.SetActive(true);
+            owner.actionSelectionUI.ChangeAllActionsToDefault();
+            owner.actionSelectionUI.EnableActionSelection();
+            owner.actionSelectionUI.OriginalColor();
+            owner.actionSelectionUI.title.SetActive(true);
+            owner.abilitySelectionUI.gameObject.SetActive(false);
+            owner.itemSelectionUI.gameObject.SetActive(false);
+
+            owner.currentUnit.GetComponent<Movement>().ResetRange();
+
+            if (!owner.currentUnit.CanMove())
+            {
+                ActionSelectionUI.DisableSelectOption(typeOfAction.Move);
+            }
+            else
+            {
+                ActionSelectionUI.EnableSelectOption(typeOfAction.Move);
+                ActionSelectionUI.GetMovementOption().GetPreviewRange();
+            }
+
+            if (!owner.currentUnit.CanDoAbility())
+            {
+                ActionSelectionUI.DisableSelectOption(typeOfAction.Ability);
+            }
+            else
+            {
+                ActionSelectionUI.EnableSelectOption(typeOfAction.Ability);
+            }
+
+            if (owner.currentUnit.actionsPerTurn >= 2)
+            {
+                ActionSelectionUI.EnableSelectOption(typeOfAction.Item);
+            }
+            else
+            {
+                ActionSelectionUI.DisableSelectOption(typeOfAction.Item);
+            }
 
 
-        if(owner.currentUnit.hammerFuryAmount >= owner.currentUnit.hammerFuryMax)
-        {
-            owner.currentUnit.EnableHammerTrait();
+            if (owner.currentUnit.hammerFuryAmount >= owner.currentUnit.hammerFuryMax)
+            {
+                owner.currentUnit.EnableHammerTrait();
+            }
         }
+        
     }
 
     public override void Exit()

@@ -51,8 +51,6 @@ public class LootSystem : MonoBehaviour
                 var random =  Random.value * 100;
                 bool isDropSuccessful = random <= drop.dropProbabilty;
                 testInt++;
-                Debug.Log("valor random " + random);
-                //Debug.Log("valor aleatorio" + random + "testInt: " + testInt);
                 if (isDropSuccessful)
                 {
                     monsterMaterials.Add(drop.monsterMaterial);
