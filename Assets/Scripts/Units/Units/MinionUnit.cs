@@ -44,7 +44,6 @@ public class MinionUnit : EnemyUnit
             ability.unit = this;
             List<Tile> dirtyTiles = ability.GetTilesInRange(board);
 
-
             foreach (Tile t in dirtyTiles)
             {
                 if (!t.occupied && !validTiles.Contains(t))
@@ -54,9 +53,6 @@ public class MinionUnit : EnemyUnit
             }
 
         }
-
-
-
 
         return validTiles;
     }

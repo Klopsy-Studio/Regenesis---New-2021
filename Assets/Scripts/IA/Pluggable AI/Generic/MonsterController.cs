@@ -11,6 +11,7 @@ public class MonsterController : MonoBehaviour
 
     //0 stands for no last sequence
     public int lastSequence = 0;
+    public int currentSequence;
     BehaviourTree originalTree;
     public bool test = false;
     public bool behaviourTest = false;
