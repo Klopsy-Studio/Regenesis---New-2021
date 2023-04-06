@@ -20,8 +20,9 @@ public class TUT_FinishMonsterTurn : ActionNode
     {
         owner.controller.currentEnemy.timelineVelocity = finishVelocity;
         owner.controller.currentEnemy.SetCurrentVelocity();
-        //owner.controller.battleController.ChangeState<FinishEnemyUnitTurnState>();
-        Debug.Log("PONER ESTADO TUTSHOWSLIDESTATE");
+        owner.controller.battleController.ChangeState<TUT_FinishEnemyUnitTurnState>();
+    
+        //owner.controller.battleController.ChangeState<>
         return State.Success;
     }
 }

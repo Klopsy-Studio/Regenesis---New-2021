@@ -99,9 +99,24 @@ public class TutShowslideState : BattleState
         {
             owner.ChangeState<TUT_UseAbilityStateOne>();
         }
-        //else if(nextState == 8)
-        //{
-
-        //}
+        else if (nextState == 8)
+        {
+            owner.ChangeState<TUT_StartMonsterController>();
+        }
+        else if(nextState == 9)
+        {
+            owner.ChangeState<TUT_SelectActionState_Item>();
+           
+        }
+        else if(nextState == 10)
+        {
+            owner.ChangeState<TUT_SelectActionState_Item>();
+        }
+        else if(nextState == 11)
+        {
+            Debug.Log("Ha entrado en NEXT STATE 11");
+            owner.currentUnit.ActionsPerTurn = 3;
+            owner.ChangeState<SelectActionState>();
+        }
     }
 }

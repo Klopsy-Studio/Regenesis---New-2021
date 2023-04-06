@@ -2,21 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum typeOfAction
-{
-    Move,
-    Ability,
-    Item,
-    Wait,
-    Status,
-};
-public class SelectActionState : BattleState
+public class TUT_SelectActionState_Item : BattleState
 {
     public typeOfAction currentAction = typeOfAction.Move;
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Ha entrado en SELECT ACTION STATE");
         owner.turnArrow.SetTarget(owner.currentUnit.currentPoint, 3.5f);
         owner.miniStatus.SetStatus(owner.currentUnit);
 
@@ -39,40 +30,24 @@ public class SelectActionState : BattleState
         owner.itemSelectionUI.gameObject.SetActive(false);
 
         owner.currentUnit.GetComponent<Movement>().ResetRange();
-      
-        if (!owner.currentUnit.CanMove())
-        {
-            ActionSelectionUI.DisableSelectOption(typeOfAction.Move);
-        }
-        else
-        {
-            ActionSelectionUI.EnableSelectOption(typeOfAction.Move);
-            ActionSelectionUI.GetMovementOption().GetPreviewRange();
-        }
-
-        if (!owner.currentUnit.CanDoAbility())
-        {
-            ActionSelectionUI.DisableSelectOption(typeOfAction.Ability);
-        }
-        else
-        {
-            ActionSelectionUI.EnableSelectOption(typeOfAction.Ability);
-        }
-
-        if(owner.currentUnit.actionsPerTurn >= 2)
-        {
-            ActionSelectionUI.EnableSelectOption(typeOfAction.Item);
-        }
-        else
-        {
-            ActionSelectionUI.DisableSelectOption(typeOfAction.Item);
-        }
 
 
-        if(owner.currentUnit.hammerFuryAmount >= owner.currentUnit.hammerFuryMax)
+       
+
+
+
+        if (owner.currentUnit.hammerFuryAmount >= owner.currentUnit.hammerFuryMax)
         {
             owner.currentUnit.EnableHammerTrait();
         }
+
+        ActionSelectionUI.DisableSelectOption(typeOfAction.Move);
+
+        ActionSelectionUI.DisableSelectOption(typeOfAction.Ability);
+
+        ActionSelectionUI.EnableSelectOption(typeOfAction.Item);
+
+        ActionSelectionUI.DisableSelectOption(typeOfAction.Wait);
     }
 
     public override void Exit()
@@ -92,13 +67,13 @@ public class SelectActionState : BattleState
         //owner.ChangeState<SelectUnitState>();
     }
 
-    
 
-   
+
+
 
     protected override void OnMove(object sender, InfoEventArgs<Point> e)
     {
-        if(e.info.y >= 1)
+        if (e.info.y >= 1)
         {
             ActionSelectionUI.MoveBackwards();
 
@@ -124,7 +99,7 @@ public class SelectActionState : BattleState
             }
         }
 
-        if(e.info.y <= -1)
+        if (e.info.y <= -1)
         {
             ActionSelectionUI.MoveForward();
             switch (currentAction)
@@ -150,6 +125,7 @@ public class SelectActionState : BattleState
         }
     }
 
+    int stateIndex = 0;
 
     protected override void OnSelectAction(object sender, InfoEventArgs<int> e)
     {
@@ -157,12 +133,12 @@ public class SelectActionState : BattleState
         switch (e.info)
         {
             case 0:
-                if (owner.currentUnit.CanMove())
-                {
-                    Debug.Log("CASE 0");
-                    ActionSelectionUI.gameObject.SetActive(false);
-                    owner.ChangeState<MoveTargetState>();
-                }
+                //if (owner.currentUnit.CanMove())
+                //{
+                //    Debug.Log("CASE 0");
+                //    ActionSelectionUI.gameObject.SetActive(false);
+                //    owner.ChangeState<MoveTargetState>();
+                //}
 
                 //owner.currentUnit.GetComponent<Movement>().PushUnit(Directions.South, 3, board);
                 break;
@@ -170,35 +146,44 @@ public class SelectActionState : BattleState
             case 1:
                 Debug.Log("CASE 1");
 
-                if (owner.currentUnit.CanDoAbility())
-                {
-                    owner.ChangeState<SelectAbilityState>();
-                }
+                //if (owner.currentUnit.CanDoAbility())
+                //{
+                //    owner.ChangeState<SelectAbilityState>();
+                //}
                 break;
 
             case 2:
                 Debug.Log("CASE 2");
                 //right now it will change to SelectItemState. That state will select the potion item automatically. 
                 //we should change that in the future
-                if(owner.currentUnit.actionsPerTurn >= 2)
+                if (owner.currentUnit.actionsPerTurn >= 2)
                 {
-                    owner.ChangeState<SelectItemState>();
+                    stateIndex++;
+                    if(stateIndex == 1)
+                    {
+                        owner.ChangeState<TUT_SelectItemState>();
+                    }
+                    else
+                    {
+                        owner.ChangeState<TUT_SelectItemState_SelectPotion>();
+                    }
+                   
                 }
                 //OpenItemMenu
                 break;
 
             case 3:
                 //Recover stamina and end turn
-                if (!owner.currentUnit.actionDone)
-                {
-                    currentAction = typeOfAction.Move;
-                    owner.ChangeState<RestUnitState>();
-                }
+                //if (!owner.currentUnit.actionDone)
+                //{
+                //    currentAction = typeOfAction.Move;
+                //    owner.ChangeState<RestUnitState>();
+                //}
                 break;
             case 4:
                 //Skip turn
 
-                owner.ChangeState<WaitUnitState>();
+                //owner.ChangeState<WaitUnitState>();
                 break;
 
             case 5:
@@ -209,7 +194,7 @@ public class SelectActionState : BattleState
     }
     protected override void OnFire(object sender, InfoEventArgs<KeyCode> e)
     {
-        
+
         switch (currentAction)
         {
             case typeOfAction.Move:
@@ -222,7 +207,7 @@ public class SelectActionState : BattleState
                 break;
 
             case typeOfAction.Ability:
-                owner.ChangeState<SelectAbilityState>();           
+                owner.ChangeState<SelectAbilityState>();
                 break;
 
             case typeOfAction.Item:
@@ -240,5 +225,4 @@ public class SelectActionState : BattleState
 
         }
     }
-
 }

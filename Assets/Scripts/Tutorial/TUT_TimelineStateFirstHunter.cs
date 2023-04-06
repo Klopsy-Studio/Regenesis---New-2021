@@ -176,8 +176,10 @@ public class TUT_TimelineStateFirstHunter : BattleState
     {
         if (!owner.battleEnded)
         {
+         
             if (owner.isTimeLineActive && !owner.pauseTimeline)
             {
+               
                 if (selectedUnit != null)
                 {
                     owner.miniStatus.DeactivateStatus();
@@ -195,7 +197,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
 
                 foreach (var t in owner.timelineElements)
                 {
-                    if (t == null) { return; }
+                    if (t == null) {  return; }
                     //if (owner.IsInMenu()) continue;
 
                     bool isTimeline = t.UpdateTimeLine();
@@ -222,11 +224,15 @@ public class TUT_TimelineStateFirstHunter : BattleState
                                 Debug.Log("Eha entrado a tut_Isak en timelineState");
                                 owner.ChangeState<TUT_SelectUnitState>();
                             }
+                            else if(p.profile.name == "TUT_Ola")
+                            {
+                                owner.ChangeState<TUT_SelectUnitState>();
+                            }
                             else
                             {
                                 Debug.Log("En tut timelinestate, no ha salido ninguno de los tres cazadores");
                             }
-                          
+
                             //owner.ChangeState<SelectUnitState>();
                             break;
                         }
@@ -241,7 +247,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
 
                             owner.monsterController = e.GetComponent<MonsterController>();
                             owner.monsterController.battleController = owner;
-                            owner.ChangeState<StartEnemyTurnState>();
+                            owner.ChangeState<TUT_StartEnemyTurnState>();
                             break;
                         }
 
@@ -256,7 +262,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
                             owner.currentItem = w;
                             owner.turnStatusUI.ActivateTurn("Item");
                             SelectTile(owner.currentItem.tile.pos);
-                            owner.ChangeState<ItemActiveState>();
+                            owner.ChangeState<TUT_ItemActiveState>();
                             break;
                         }
 

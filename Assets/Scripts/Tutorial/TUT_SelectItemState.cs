@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class SelectItemState : BattleState
+public class TUT_SelectItemState : BattleState
 {
     int currentItemIndex;
     public override void Enter()
@@ -35,7 +34,7 @@ public class SelectItemState : BattleState
             var item = itemList[i];
             owner.itemSelectionUI.parent[i].gameObject.SetActive(true);
             owner.itemSelectionUI.options[i].GetComponent<Text>().text = itemList[i].consumable.itemName;
-            owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = "x"+itemList[i].amount.ToString();
+            owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = "x" + itemList[i].amount.ToString();
             owner.itemSelectionUI.itemImage[i].GetComponent<Image>().sprite = itemList[i].consumable.iconSprite;
 
             //Only for testing purposes
@@ -55,88 +54,42 @@ public class SelectItemState : BattleState
             owner.itemSelectionUI.options[i].GetComponent<Text>().text = item.consumable.itemName;
             owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = item.amount.ToString();
             owner.itemSelectionUI.itemImage[i].sprite = item.consumable.iconSprite;
-            
+
             owner.itemSelectionUI.itemImage[i].SetNativeSize();
-           
-            SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
-            e.assignedConsumable = itemList[i].consumable;
-            e.canBeSelected = true;
+            if (i != 0)
+            {
+                SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
+                e.assignedConsumable = itemList[i].consumable;
+                e.canBeSelected = false;
+                
+            }
+            else
+            {
+                SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
+                e.assignedConsumable = itemList[i].consumable;
+                e.canBeSelected = true;
+            }
 
         }
-
+        Debug.Log("Ha entrado a TUT SELECTITEMSTATE");
 
         owner.itemSelectionUI.ResetSelector();
         //Meter ActivarUI
     }
 
-    protected override void OnEscape(object sender, InfoEventArgs<KeyCode> e)
-    {
-
-        owner.ChangeState<SelectActionState>();
-    }
-    protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
-    {
-        owner.itemSelectionUI.gameObject.SetActive(false);
-        owner.ChangeState<SelectActionState>();
-    }
-    protected override void OnMove(object sender, InfoEventArgs<Point> e)
-    {
-        if (e.info.y >= 1)
-        {
-            owner.itemSelectionUI.MoveBackwards();
-
-            if (currentItemIndex > 0)
-            {
-                currentItemIndex--;
-            }
-            else
-            {
-                //???
-                //currentActionIndex = owner.currentUnit.weapon.Abilities.Length - 1;
-                currentItemIndex = owner.backpackInventory.consumableContainer.Count - 1;
-            }
-
-        }
-
-        if (e.info.y <= -1)
-        {
-            owner.itemSelectionUI.MoveForward();
-
-            if (currentItemIndex < owner.backpackInventory.consumableContainer.Count - 1)
-            {
-                currentItemIndex++;
-            }
-            else
-            {
-                currentItemIndex = 0;
-            }
-        }
-    }
-
-    protected override void OnFire(object sender, InfoEventArgs<KeyCode> e)
-    {
-        //if (owner.currentUnit.weapon.Abilities[currentActionIndex].CanBeUsed(owner.currentUnit.stamina))
-        //{
-        //    owner.attackChosen = currentActionIndex;
-        //    ActionSelectionUI.gameObject.SetActive(false);
-        //    owner.ChangeState<UseAbilityState>();
-        //}
-
-
-        //owner.inventory.UseConsumable(currentActionIndex, owner.currentUnit);
-        //owner.ChangeState<FinishPlayerUnitTurnState>();
-
-        owner.itemChosen = currentItemIndex;
-        owner.ChangeState<UseItemState>();
-    }
+ 
 
     protected override void OnSelectAction(object sender, InfoEventArgs<int> e)
     {
         //owner.inventory.UseConsumable(e.info, owner.currentUnit);
         //owner.ChangeState<FinishPlayerUnitTurnState>();
-
-        owner.itemChosen = e.info;
-        owner.ChangeState<UseItemState>();
+        if (ItemSelectionUI.options[e.info].GetComponent<SelectorMovement>().canBeSelected)
+        {
+            owner.itemChosen = e.info;
+            owner.ChangeState<TUT_UseItemState>(); 
+        }
+        //owner.itemChosen = e.info;
+        //owner.ChangeState<TUT_UseItemState>();
     }
 
 
@@ -148,18 +101,4 @@ public class SelectItemState : BattleState
         owner.itemSelectionUI.ResetSelector();
     }
 
-   
-
-    //IEnumerator Init()
-    //{
-    //    Debug.Log("se ha utilizado Potion");
-    //    yield return null;
-    //    owner.inventory.UseConsumable(0, owner.currentUnit);
-    //    owner.ChangeState<SelectActionState>();
-
-    //}
-
-
 }
-
-

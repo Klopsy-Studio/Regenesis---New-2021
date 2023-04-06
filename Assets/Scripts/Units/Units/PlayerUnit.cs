@@ -115,6 +115,10 @@ public class PlayerUnit : Unit
         if (this.name == "TUT_Kaeo" || this.name == "TUT_Isak" || this.name == "TUT_Ola")
         {
             timelineFill = profile.tutTimelinePos;
+            if(this.name == "TUT_Ola")
+            {
+                health = 20;
+            }
         }
         else
         {
@@ -134,7 +138,7 @@ public class PlayerUnit : Unit
     public void EquipAllItems()
     {
         if (weapon == null) { Debug.Log("No hay weapon"); return; }
-        health = 100;
+
         weapon.EquipItem(this);
     }
 
