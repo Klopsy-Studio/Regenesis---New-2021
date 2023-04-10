@@ -13,13 +13,13 @@ public class BaseMusicManager : MonoBehaviour
 
     [SerializeField] float targetVolume;
 
-    bool updatingMusic;
+    bool turningMusicOn;
+    bool turningMusicOff;
     [SerializeField] float time;
     [SerializeField] float changeSpeed;
     void Start()
     {
         baseMusic.volume = targetVolume;
-        currentMusic = baseMusic;
 
         forgeMusic.volume = 0;
         barracksMusic.volume = 0;
@@ -28,30 +28,56 @@ public class BaseMusicManager : MonoBehaviour
 
     void Update()
     {
-        if (updatingMusic)
+        if (turningMusicOn)
         {
             time += Time.deltaTime;
-
-            currentMusic.volume = Mathf.Lerp(currentMusic.volume, 0, time/changeSpeed);
-
             musicToChange.volume = Mathf.Lerp(musicToChange.volume, targetVolume, time/changeSpeed);
 
             if(time >= changeSpeed)
             {
                 Debug.Log("Finished");
 
-                currentMusic.volume = 0;
                 musicToChange.volume = targetVolume;
 
-                currentMusic = musicToChange;
-                updatingMusic = false;
+                turningMusicOn = false;
+                time = 0;
+            }
+        }
+
+        if (turningMusicOff)
+        {
+            time += Time.deltaTime;
+            musicToChange.volume = Mathf.Lerp(musicToChange.volume, 0, time / changeSpeed);
+
+            if (time >= changeSpeed)
+            {
+                Debug.Log("Finished");
+
+                musicToChange.volume = 0f;
+
+                turningMusicOff = false;
                 time = 0;
             }
         }
     }
-    public void ChangeMusic(AudioSource newMusic)
+    public void TurnOnMusic(AudioSource newMusic)
     {
-        updatingMusic = true;
+        if (turningMusicOff)
+        {
+            turningMusicOff = false;
+        }
+        turningMusicOn = true;
+        musicToChange = newMusic;
+        time = 0;
+    }
+
+    public void TurnOffMusic(AudioSource newMusic)
+    {
+        if (turningMusicOn)
+        {
+            turningMusicOn = false;
+        }
+        turningMusicOff = true;
         musicToChange = newMusic;
         time = 0;
     }
