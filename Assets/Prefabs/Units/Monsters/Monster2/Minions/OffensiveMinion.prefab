@@ -438,8 +438,8 @@ MonoBehaviour:
   currentPoint:
     x: 0
     y: 0
-  maxHealth: 100
-  health: 100
+  maxHealth: 60
+  health: 60
   hurtAnimation: {fileID: 0}
   unitName: Blossomfiend
   particleHitPrefab: {fileID: 0}
@@ -717,6 +717,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tree: {fileID: 11400000, guid: 928ec02ce7711ea4090cc342ee83fbe8, type: 2}
   testRunner: {fileID: 4224205881053497297}
+  lastSequence: 0
+  currentSequence: 0
   test: 0
   behaviourTest: 0
   isUpdatingState: 0
@@ -726,6 +728,7 @@ MonoBehaviour:
   battleController: {fileID: 0}
   currentEnemy: {fileID: -1513724830092217078}
   target: {fileID: 0}
+  previousTarget: {fileID: 0}
   targetsInRange: []
   possibleTargets: []
   lastAction: 0

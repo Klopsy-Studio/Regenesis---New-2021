@@ -58,8 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1387f5090e7122048a4cc3bc65fa3f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: b07b37bfe9be94c4da6652518effae67, type: 2}
+  tree: {fileID: 11400000, guid: 58c6c2268d3da6d4ea4cc709b8abdcdc, type: 2}
   testRunner: {fileID: 5977670217988991083}
+  lastSequence: 0
+  currentSequence: 0
   test: 0
   behaviourTest: 0
   isUpdatingState: 0
@@ -69,6 +71,7 @@ MonoBehaviour:
   battleController: {fileID: 0}
   currentEnemy: {fileID: 131185405536904068}
   target: {fileID: 0}
+  previousTarget: {fileID: 0}
   targetsInRange: []
   possibleTargets: []
   lastAction: 0
@@ -768,6 +771,7 @@ MonoBehaviour:
   jumpHeight: 0
   moving: 0
   allowStun: 1
+  willStun: 0
   currentStunBuildUp: 0
   stunlimit: 1
   maxStunBuildUp: 3

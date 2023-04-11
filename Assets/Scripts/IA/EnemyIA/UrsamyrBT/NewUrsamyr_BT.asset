@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: NewUrsamyr_BT
+  m_EditorClassIdentifier: 
+  rootNode:
+    rid: 513517228830752768
+  controller: {fileID: 0}
+  nodes:
+  - rid: 513517228830752768
+  - rid: 513517228830752769
+  - rid: 513517228830752770
+  - rid: 513517228830752771
+  treeState: 0
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  viewPosition: {x: 872, y: -272, z: 0}
+  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 513517228830752768
+      type: {class: RootNode, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 09e5951b-0f89-4f5b-b37f-3ec879cf9130
+        position: {x: 0, y: 0}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        child:
+          rid: 513517228830752769
+    - rid: 513517228830752769
+      type: {class: Selector, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 43b62cd83b912f642a31a5d0ecd46bfc
+        position: {x: 0, y: 215}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        children:
+        - rid: 513517228830752770
+    - rid: 513517228830752770
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: df89d66257fa4f449b96f16e957fa22d
+        position: {x: -801, y: 436}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        children:
+        - rid: 513517228830752771
+    - rid: 513517228830752771
+      type: {class: CheckSequenceNumber, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 74bffbb1de76ce84e8140627b260b912
+        position: {x: -1293, y: 621}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        sequenceCheck: 1

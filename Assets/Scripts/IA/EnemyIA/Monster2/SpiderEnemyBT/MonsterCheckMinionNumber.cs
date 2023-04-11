@@ -28,7 +28,7 @@ public class MonsterCheckMinionNumber : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.Greater:
-                if (numberToCheck > owner.controller.minionsInGame.Count)
+                if (owner.controller.minionsInGame.Count > numberToCheck)
                 {
                     return State.Success;
                 }
@@ -37,7 +37,7 @@ public class MonsterCheckMinionNumber : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.Lower:
-                if (numberToCheck < owner.controller.minionsInGame.Count)
+                if (owner.controller.minionsInGame.Count < numberToCheck)
                 {
                     return State.Success;
                 }
@@ -56,7 +56,7 @@ public class MonsterCheckMinionNumber : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.LowerAndEqual:
-                if (numberToCheck <= owner.controller.minionsInGame.Count)
+                if (owner.controller.minionsInGame.Count <= numberToCheck  )
                 {
                     return State.Success;
                 }

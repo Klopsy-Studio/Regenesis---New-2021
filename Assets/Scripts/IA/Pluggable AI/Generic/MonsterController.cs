@@ -8,6 +8,10 @@ public class MonsterController : MonoBehaviour
     [Header("Behaviour Tree Variables")]
     public BehaviourTree tree;
     [SerializeField] BehaviourTreeRunner testRunner;
+
+    //0 stands for no last sequence
+    public int lastSequence = 0;
+    public int currentSequence;
     BehaviourTree originalTree;
     public bool test = false;
     public bool behaviourTest = false;
