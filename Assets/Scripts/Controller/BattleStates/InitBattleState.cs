@@ -18,6 +18,13 @@ public class InitBattleState : BattleState
         //owner.ChangeState<StartPlayerTurnState>();
         SelectTile(new Point(1, 5));
         owner.timelineUI.gameObject.SetActive(false);
+
+        //Ambient foreach level
+        if(levelData.ambientPrefab != null)
+        {
+            Instantiate(levelData.ambientPrefab);
+        }
+        //AudioManager.instance.Play("Music");
         //owner.unitStatusUI.gameObject.SetActive(false);
         owner.ChangeState<MonsterRoarState>();
     }

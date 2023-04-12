@@ -24,7 +24,6 @@ public class MonsterMove : ActionNode
 
 
         monster.monsterAnimations.SetBool("hide", true);
-        AudioManager.instance.Play("MonsterMovement");
         yield return new WaitForSeconds(1f);
 
         monster.monsterAnimations.SetBool("hide", false);

@@ -18,7 +18,6 @@ public class MonsterRoarState : BattleState
 
         controller.monsterAnimations.SetBool("idle", false);
         controller.monsterAnimations.SetBool("roar", true);
-        AudioManager.instance.Play("MonsterRoar");
 
         ActionEffect.instance.Play(3, 0.5f, 0.01f, 0.05f);
 

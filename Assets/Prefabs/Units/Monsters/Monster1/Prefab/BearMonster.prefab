@@ -39,10 +39,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6838285401788664050}
   - {fileID: 3175006816751247493}
   - {fileID: 8084882255898059098}
   - {fileID: 2515965763252624576}
+  - {fileID: 5600788882639924411}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -171,6 +171,8 @@ MonoBehaviour:
   unitPortrait: {fileID: -6589948277758688617, guid: 8bec534dda6f82c42ae5477e730eac43, type: 3}
   monsterControl: {fileID: 3600112416777368949}
   lowHealth: 100
+  originalSpritePosition: {x: 0, y: 0, z: 0}
+  flippedSpritePosition: {x: -0.45, y: 0, z: 0.26}
   monsterUI: {fileID: 8579801364242190014}
   evolvedPortrait: {fileID: 0}
 --- !u!114 &3600112416777368949
@@ -187,6 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tree: {fileID: 11400000, guid: 9b32bed3e9f7f35498b2aa9c42ee46ff, type: 2}
   testRunner: {fileID: 5373130050032218996}
+  lastSequence: 0
+  currentSequence: 0
   test: 0
   behaviourTest: 0
   isUpdatingState: 0
@@ -196,6 +200,7 @@ MonoBehaviour:
   battleController: {fileID: 0}
   currentEnemy: {fileID: 131185405536904068}
   target: {fileID: 0}
+  previousTarget: {fileID: 0}
   targetsInRange: []
   possibleTargets: []
   lastAction: 0
@@ -253,6 +258,7 @@ MonoBehaviour:
   jumpHeight: 0
   moving: 0
   allowStun: 1
+  willStun: 0
   currentStunBuildUp: 0
   stunlimit: 1
   maxStunBuildUp: 3
@@ -407,11 +413,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2516664840645378107}
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: -1.09, y: 0, z: -1.209}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2512748260298187115}
+  m_Father: {fileID: 5600788882639924411}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
 --- !u!212 &1262454043973379550
@@ -562,6 +568,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3921593152412368826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5600788882639924411}
+  m_Layer: 6
+  m_Name: SpriteParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5600788882639924411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3921593152412368826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.09, y: 0, z: -1.209}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6838285401788664050}
+  m_Father: {fileID: 2512748260298187115}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4206414613544060832
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,7 +636,7 @@ Transform:
   - {fileID: 2419933478948115902}
   - {fileID: 232046738062812986}
   m_Father: {fileID: 2512748260298187115}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8677347259580475711
 GameObject:
@@ -630,7 +668,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2512748260298187115}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 45, z: 0}
 --- !u!212 &2745340739981358134
 SpriteRenderer:
@@ -714,7 +752,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2512748260298187115}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &225906433562168852
 SpriteRenderer:

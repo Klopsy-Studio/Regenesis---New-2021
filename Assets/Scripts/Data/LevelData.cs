@@ -32,6 +32,9 @@ public class LevelData : ScriptableObject
     [SerializeField] public int money;
     [SerializeField] public List<string> items;
 
+    [Header("Sound")]
+    public GameObject ambientPrefab;
+
     //Units in game
 
     public GameObject enemyInLevel;

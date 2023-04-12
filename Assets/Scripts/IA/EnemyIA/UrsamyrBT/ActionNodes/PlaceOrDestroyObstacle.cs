@@ -99,7 +99,7 @@ public class PlaceOrDestroyObstacle : ActionNode
 
             controller.monsterAnimations.SetBool("idle", false);
             controller.monsterAnimations.SetBool("roar", true);
-            AudioManager.instance.Play("MonsterRoar");
+            AudioManager.instance.Play("BearRoar");
             ActionEffect.instance.Play(4, 0.5f, 0.01f, 0.05f);
 
             while (ActionEffect.instance.CheckActionEffectState())

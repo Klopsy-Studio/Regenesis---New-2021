@@ -25,6 +25,8 @@ public class EnemyUnit : Unit
     List<Tile> monsterSpace;
 
     [Header("UI")]
+    [SerializeField] Vector3 originalSpritePosition;
+    [SerializeField] Vector3 flippedSpritePosition;
     [SerializeField] UnitUI monsterUI;
     public Sprite evolvedPortrait;
     public void BeginAnimation()
@@ -45,7 +47,7 @@ public class EnemyUnit : Unit
         timelineFill = 30;
         timelineTypes = TimeLineTypes.EnemyUnit;
         health = maxHealth;
-
+        originalSpritePosition = unitSprite.transform.position;
         SetOriginalValues();
     }
 
@@ -103,27 +105,23 @@ public class EnemyUnit : Unit
         monsterControl.monsterAnimations.SetBool("death", true);
         
         isDead = true;
-        AudioManager.instance.Play("MonsterDeath");
         controller.ChangeState<WinState>();
     }
     public void UpdateEnemyUnitSprite()
     {
         if(monsterControl.target != null)
         {
-            Debug.Log("Direction is West: " + tile.CheckSpecificDirection(monsterControl.target.tile, Directions.West));
-            Debug.Log("Direction is South: " + tile.CheckSpecificDirection(monsterControl.target.tile, Directions.South));
-            Debug.Log("Direction is North: " + tile.CheckSpecificDirection(monsterControl.target.tile, Directions.North));
 
-            Debug.Log("Direction is East: " + tile.CheckSpecificDirection(monsterControl.target.tile, Directions.East));
 
             if (tile.CheckSpecificDirection(monsterControl.target.tile, Directions.East) || tile.CheckSpecificDirection(monsterControl.target.tile, Directions.South))
             {
-
+                unitSprite.transform.position = originalSpritePosition;
                 unitSprite.flipX = false;
             }
 
             if (tile.CheckSpecificDirection(monsterControl.target.tile, Directions.West) || tile.CheckSpecificDirection(monsterControl.target.tile, Directions.North))
             {
+                unitSprite.transform.position = flippedSpritePosition;
                 unitSprite.flipX = true;
             }
         } 

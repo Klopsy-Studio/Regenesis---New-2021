@@ -175,7 +175,6 @@ public class Unit : TimelineElements
         {
             fTimelineVelocity = 100000f;
         }
-
     }
     public void Place(Tile target)
     {
@@ -225,6 +224,10 @@ public class Unit : TimelineElements
         }
     }
 
+    public void PlayAudio(string audioName)
+    {
+        AudioManager.instance.Play(audioName);
+    }
     public void FallBackOnTimeline()
     {
         timelineFill -= 50;

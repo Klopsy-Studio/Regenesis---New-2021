@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.974177, y: 7.2564383, z: -4.57517}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,94 +44,110 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8b955347f623d46acc849cbac6e3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixer: {fileID: 24300002, guid: ab110cfe914c66c409bf58ac0aaaf973, type: 2}
   sounds:
   - name: HunterAttack
     clip: {fileID: 8300000, guid: e58e60041cf37f94c9246303d21673b3, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: HunterDeath
     clip: {fileID: 8300000, guid: 5b72987a8190f1c4e8f6ba3605f6da9d, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: HunterHeal
     clip: {fileID: 8300000, guid: d3e8e8053241a6843b6c4dab168429c6, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: HunterMovement
     clip: {fileID: 8300000, guid: 56c632052c965f4418ac81eb9b8041d2, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: MonsterAttack
     clip: {fileID: 8300000, guid: 614dce57d6241294b8fd73a49b22f24a, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: MonsterMovement
     clip: {fileID: 8300000, guid: d263cafe8da1cbf45ab7cf91e607300d, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: MonsterObstacle
     clip: {fileID: 8300000, guid: 5f643833f6d55dd4884e1d2732cc3fcf, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 0.8
     pitch: 1
     source: {fileID: 0}
   - name: WindEvent
     clip: {fileID: 8300000, guid: 817b4800694a4f04181bdbfffe0ba20f, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: Music
     clip: {fileID: 8300000, guid: 0d799d28c32998b4d8a76d544c6f117b, type: 3}
     loop: 1
-    volume: 0.3
+    playOnAwake: 0
+    volume: 0
     pitch: 1
     source: {fileID: 0}
   - name: MonsterRoar
     clip: {fileID: 8300000, guid: a27915f00773f5d40b2bba754d5e4bda, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 0.799
     pitch: 1
     source: {fileID: 0}
   - name: MonsterDeath
     clip: {fileID: 8300000, guid: 8703e8430fba93d4da683f885b1cfb71, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 0.799
     pitch: 1
     source: {fileID: 0}
   - name: TurnTransition
     clip: {fileID: 8300000, guid: ba5d90c82061a224591ba298afa03793, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 0.799
     pitch: 1
     source: {fileID: 0}
   - name: HammerAttack
     clip: {fileID: 8300000, guid: 9065859054a67014d8c3d00f4a2059ea, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 0.799
     pitch: 1
     source: {fileID: 0}
   - name: SlingshotAttack
     clip: {fileID: 8300000, guid: 99e04ebb555010d44a5860f5b2936379, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 0.799
     pitch: 1
     source: {fileID: 0}
   - name: ObstacleExplosion
     clip: {fileID: 8300000, guid: e7c60d6031522894fa011d45e545e8e7, type: 3}
     loop: 0
+    playOnAwake: 0
     volume: 0.799
     pitch: 1
     source: {fileID: 0}
