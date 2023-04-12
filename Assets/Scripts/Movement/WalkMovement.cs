@@ -33,18 +33,9 @@ public class WalkMovement : Movement
         Debug.Log(gameObject.name + " target count: " + targets.Count);
 
         // Move to each way point in succession
-        for (int i = 1; i < path.Count; ++i)
+        for (int i = 0; i < path.Count; i++)
         {
-            Tile from = path[i - 1];
-            Tile to = path[i];
-            Directions dir = from.GetDirections(to);
-            yield return StartCoroutine(Walk(to));
-
-            //if (unit.dir != dir)
-            //    yield return StartCoroutine(Turn(dir));
-            //if (from.height == to.height)
-            //else
-            //    yield return StartCoroutine(Jump(to));
+            yield return StartCoroutine(Walk(path[i]));
         }
 
         moving = false;
