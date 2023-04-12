@@ -605,4 +605,10 @@ public class Unit : TimelineElements
     {
         ActionEffect.instance.Play(3, 0.5f, 0.01f, 0.05f);
     }
+
+    public void PlayActionEffectWithParammeters(float size, float duration)
+    {
+        ActionEffect.instance.Play(size, duration, 0.01f, 0.05f);
+
+    }
 }
