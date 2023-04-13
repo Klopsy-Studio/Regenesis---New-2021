@@ -120,7 +120,7 @@ public class TeleportEvent : RealTimeEvents
                         u.GetComponent<EnemyUnit>().monsterControl.monsterAnimations.SetTrigger("drop");
                     }
 
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(1.5f);
                 }
             }
 
