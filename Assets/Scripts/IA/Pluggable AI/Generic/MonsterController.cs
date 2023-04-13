@@ -38,6 +38,7 @@ public class MonsterController : MonoBehaviour
     public GameObject obstacle;
     public List<BearObstacleScript> obstaclesInGame;
     public List<BearObstacleScript> validObstacles;
+    public BearObstacleScript chosenObstacle;
     public int obstacleLimit;
     [Space]
     [Space]

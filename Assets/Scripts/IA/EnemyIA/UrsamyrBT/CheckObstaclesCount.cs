@@ -4,17 +4,11 @@ using UnityEngine;
 using TheKiwiCoder;
 
 [System.Serializable]
-public class CheckMonsterLife : ActionNode
+public class CheckObstaclesCount : ActionNode
 {
-    [SerializeField] float lifePercentage;
-
+    [SerializeField] int numberOfObstacles;
     [SerializeField] ComparisonType comparison;
-
-
-    float currentLifePercentage;
     protected override void OnStart() {
-
-        currentLifePercentage = (owner.controller.currentEnemy.health / owner.controller.currentEnemy.maxHealth) * 100;
     }
 
     protected override void OnStop() {
@@ -25,7 +19,7 @@ public class CheckMonsterLife : ActionNode
         switch (comparison)
         {
             case ComparisonType.Equals:
-                if(lifePercentage == currentLifePercentage)
+                if(numberOfObstacles == owner.controller.obstaclesInGame.Count)
                 {
                     return State.Success;
                 }
@@ -33,8 +27,9 @@ public class CheckMonsterLife : ActionNode
                 {
                     return State.Failure;
                 }
+
             case ComparisonType.Greater:
-                if (lifePercentage > currentLifePercentage)
+                if (numberOfObstacles > owner.controller.obstaclesInGame.Count)
                 {
                     return State.Success;
                 }
@@ -43,7 +38,7 @@ public class CheckMonsterLife : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.GreaterAndEqual:
-                if (lifePercentage >= currentLifePercentage)
+                if (numberOfObstacles >= owner.controller.obstaclesInGame.Count)
                 {
                     return State.Success;
                 }
@@ -52,7 +47,7 @@ public class CheckMonsterLife : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.Lower:
-                if (lifePercentage < currentLifePercentage)
+                if (numberOfObstacles < owner.controller.obstaclesInGame.Count)
                 {
                     return State.Success;
                 }
@@ -61,7 +56,7 @@ public class CheckMonsterLife : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.LowerAndEqual:
-                if (lifePercentage <= currentLifePercentage)
+                if (numberOfObstacles <= owner.controller.obstaclesInGame.Count)
                 {
                     return State.Success;
                 }
@@ -69,10 +64,10 @@ public class CheckMonsterLife : ActionNode
                 {
                     return State.Failure;
                 }
+                break;
             default:
-                return State.Failure;
                 break;
         }
-
+        return State.Success;
     }
 }
