@@ -26,6 +26,8 @@ public class InitBattleState : BattleState
         }
         //AudioManager.instance.Play("Music");
         //owner.unitStatusUI.gameObject.SetActive(false);
+
+        owner.cinemachineCamera.m_Lens.NearClipPlane = -5f;
         owner.ChangeState<MonsterRoarState>();
     }
 
