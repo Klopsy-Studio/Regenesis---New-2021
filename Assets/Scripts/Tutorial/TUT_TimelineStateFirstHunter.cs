@@ -215,16 +215,16 @@ public class TUT_TimelineStateFirstHunter : BattleState
 
                             owner.currentUnit = p;
                             owner.currentUnit.playerUI.ResetActionPoints();
-                            if(p.profile.name == "TUT_Kaeo")
+                            if(p.profile.name == "TUT_KaeoProfile")
                             {
                                 owner.ChangeState<TutShowslideState>();
                             }
-                            else if(p.profile.name== "TUT_Isak")
+                            else if(p.profile.name== "TUT_IsakProfile")
                             {
                                 Debug.Log("Eha entrado a tut_Isak en timelineState");
                                 owner.ChangeState<TUT_SelectUnitState>();
                             }
-                            else if(p.profile.name == "TUT_Ola")
+                            else if(p.profile.name == "TUT_OlaProfile")
                             {
                                 owner.ChangeState<TUT_SelectUnitState>();
                             }

@@ -112,8 +112,10 @@ public class PlayerUnit : Unit
 
     void SetUpTimelineFill()
     {
-        if (this.name == "TUT_Kaeo" || this.name == "TUT_Isak" || this.name == "TUT_Ola")
+        Debug.Log("SET UP TIMELINE FILL 1");
+        if (this.name == "TUT_KaeoProfile" || this.name == "TUT_IsakProfile" || this.name == "TUT_OlaProfile")
         {
+            Debug.Log("SET UP TIMELINE FILL 2");
             timelineFill = profile.tutTimelinePos;
             if(this.name == "TUT_Ola")
             {

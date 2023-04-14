@@ -21,7 +21,9 @@ public class WindEvent : RealTimeEvents
     {
         windEffect.SetActive(true);
 
-        int i = new System.Random().Next(0, 4);
+        //int i = new System.Random().Next(0, 4);
+
+        int i = 2;
 
         if (i == 0)
         {
