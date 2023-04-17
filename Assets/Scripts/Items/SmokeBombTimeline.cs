@@ -33,6 +33,7 @@ public class SmokeBombTimeline : MonoBehaviour
             }
         }
 
+        AudioManager.instance.Play("SmokeGrenade");
         yield return new WaitForSeconds(0.5f);
 
         foreach(Unit u in units)
