@@ -40,6 +40,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (canBeSelected)
         {
+            GameCursor.instance.SetHandCursor();
             if(abilityDescription!= null)
             {
                 abilityDescription.gameObject.SetActive(true);          
@@ -134,6 +135,8 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
   
     public void OnPointerExit(PointerEventData eventData)
     {
+        GameCursor.instance.SetRegularCursor();
+
         if (canBeSelected)
         {
             //if(abilityDescription != null)
