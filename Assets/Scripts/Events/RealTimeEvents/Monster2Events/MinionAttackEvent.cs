@@ -46,9 +46,14 @@ public class MinionAttackEvent : MonsterEvent
                 }
             }
         }
-
+        
         controller.monsterAnimations.SetBool("roar", true);
         controller.monsterAnimations.SetBool("idle", false);
+
+        foreach(MinionUnit m in controller.minionsInGame)
+        {
+            m.monsterControl.monsterAnimations.SetTrigger("minionAttack");
+        }
 
         ActionEffect.instance.Play(6, 0.5f, 0.01f, 0.05f);
 
