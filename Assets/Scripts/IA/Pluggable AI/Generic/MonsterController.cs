@@ -182,11 +182,20 @@ public class MonsterController : MonoBehaviour
         PlayerUnit closestHunter = new PlayerUnit();
         foreach (PlayerUnit unit in battleController.playerUnits)
         {
-            if (Vector3.Distance(closestHunter.transform.position, transform.position) <= maxDistance || maxDistance == 0)
+            if(closestHunter == null)
             {
-                maxDistance = Vector3.Distance(closestHunter.transform.position, transform.position);
+                maxDistance = Vector3.Distance(unit.transform.position, transform.position);
                 closestHunter = unit;
             }
+            else
+            {
+                if (Vector3.Distance(unit.transform.position, transform.position) <= maxDistance || maxDistance == 0)
+                {
+                    maxDistance = Vector3.Distance(closestHunter.transform.position, transform.position);
+                    closestHunter = unit;
+                }
+            }
+            
         }
 
 

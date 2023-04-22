@@ -19,7 +19,7 @@ public class CheckObstaclesCount : ActionNode
         switch (comparison)
         {
             case ComparisonType.Equals:
-                if(numberOfObstacles == owner.controller.obstaclesInGame.Count)
+                if(owner.controller.obstaclesInGame.Count == numberOfObstacles)
                 {
                     return State.Success;
                 }
@@ -29,7 +29,7 @@ public class CheckObstaclesCount : ActionNode
                 }
 
             case ComparisonType.Greater:
-                if (numberOfObstacles > owner.controller.obstaclesInGame.Count)
+                if (owner.controller.obstaclesInGame.Count > numberOfObstacles)
                 {
                     return State.Success;
                 }
@@ -38,7 +38,7 @@ public class CheckObstaclesCount : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.GreaterAndEqual:
-                if (numberOfObstacles >= owner.controller.obstaclesInGame.Count)
+                if (owner.controller.obstaclesInGame.Count >= numberOfObstacles)
                 {
                     return State.Success;
                 }
@@ -47,7 +47,7 @@ public class CheckObstaclesCount : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.Lower:
-                if (numberOfObstacles < owner.controller.obstaclesInGame.Count)
+                if (owner.controller.obstaclesInGame.Count < numberOfObstacles  )
                 {
                     return State.Success;
                 }
@@ -56,7 +56,7 @@ public class CheckObstaclesCount : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.LowerAndEqual:
-                if (numberOfObstacles <= owner.controller.obstaclesInGame.Count)
+                if (owner.controller.obstaclesInGame.Count <= numberOfObstacles)
                 {
                     return State.Success;
                 }
@@ -64,7 +64,6 @@ public class CheckObstaclesCount : ActionNode
                 {
                     return State.Failure;
                 }
-                break;
             default:
                 break;
         }
