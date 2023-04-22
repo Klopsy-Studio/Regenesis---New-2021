@@ -629,5 +629,44 @@ public class PlayerUnit : Unit
         weaponTraitsAnimations.SetBool("idle", false);
         weaponTraitsAnimations.SetTrigger("hammer");
     }
+
+
+    public Tile GetNearestAvaibleTile(RangeData tileRange)
+    {
+        AbilityRange range = tileRange.GetOrCreateRange(tileRange.range, this.gameObject);
+        List<Tile> tiles = range.GetTilesInRange(controller.board);
+        List<Tile> validTiles = new List<Tile>();
+
+        foreach(Tile t in tiles)
+        {
+            if(t.CheckSurroundings(controller.board) != null)
+            {
+                validTiles.Add(t);
+            }
+        }
+
+        if(validTiles.Count == 0)
+        {
+            return null;
+        }
+
+        else
+        {
+            float distance = 0;
+            Tile nearestTile = new Tile();
+            
+            foreach(Tile t in validTiles)
+            {
+                if(Vector3.Distance(t.transform.position, transform.position) <= distance || distance == 0)
+                {
+                    nearestTile = t;
+                    distance = Vector3.Distance(t.transform.position, transform.position);
+                }
+            }
+
+            return nearestTile;
+        }
+       
+    }
 }
 

@@ -71,7 +71,6 @@ public class CheckMonsterLife : ActionNode
                 }
             default:
                 return State.Failure;
-                break;
         }
 
     }

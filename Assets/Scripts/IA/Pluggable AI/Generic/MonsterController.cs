@@ -175,4 +175,22 @@ public class MonsterController : MonoBehaviour
         minion.Match();
     }
 
+
+    public PlayerUnit GetClosestHunter()
+    {
+        float maxDistance = 0;
+        PlayerUnit closestHunter = new PlayerUnit();
+        foreach (PlayerUnit unit in battleController.playerUnits)
+        {
+            if (Vector3.Distance(closestHunter.transform.position, transform.position) <= maxDistance || maxDistance == 0)
+            {
+                maxDistance = Vector3.Distance(closestHunter.transform.position, transform.position);
+                closestHunter = unit;
+            }
+        }
+
+
+        return closestHunter;
+    }
+
 }
