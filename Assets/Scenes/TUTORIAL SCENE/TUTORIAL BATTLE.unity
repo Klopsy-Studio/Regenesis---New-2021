@@ -1900,6 +1900,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dacb711c70890604dbe4f803451d40a2, type: 3}
   - {fileID: 21300000, guid: 2eb0ce5722755aa4ab466ef4f53d7032, type: 3}
   imageComponent: {fileID: 1511480294}
+  nextButton: {fileID: 0}
+  buttons: []
 --- !u!1 &1047317994
 GameObject:
   m_ObjectHideFlags: 0
@@ -2307,6 +2309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Action Effect
       objectReference: {fileID: 0}
+    - target: {fileID: 137132376550216511, guid: 35887d8fac8d16040b3301868163d814, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 3038408585538438732}
     - target: {fileID: 137132376550216511, guid: 35887d8fac8d16040b3301868163d814, type: 3}
       propertyPath: cinemachineCamera
       value: 
@@ -3887,7 +3893,7 @@ PrefabInstance:
     - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
       propertyPath: currentMission
       value: 
-      objectReference: {fileID: 11400000, guid: b90eaef850f44a14781502a4bdce162b, type: 2}
+      objectReference: {fileID: 11400000, guid: c72fd92d5ba528b438e1709d79e27f84, type: 2}
     - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
       propertyPath: unitsPrefab.Array.size
       value: 3
@@ -3904,6 +3910,18 @@ PrefabInstance:
       propertyPath: unitsPrefab.Array.data[2]
       value: 
       objectReference: {fileID: 3783648232820829175, guid: a30a800811cef7344a96c8a7263bb9e8, type: 3}
+    - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
+      propertyPath: unitProfilesList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 564a65363e0e43a498f944d9cc2a3b88, type: 2}
+    - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
+      propertyPath: unitProfilesList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3609f0e1a50e98047b59b4bde7eb0835, type: 2}
+    - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
+      propertyPath: unitProfilesList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: e84bdaad6072ea64cba429acd3baa4c0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
 --- !u!1 &21257071390129974
@@ -6573,6 +6591,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dacb711c70890604dbe4f803451d40a2, type: 3}
   - {fileID: 21300000, guid: 2eb0ce5722755aa4ab466ef4f53d7032, type: 3}
   imageComponent: {fileID: 85011357555401600}
+  nextButton: {fileID: 0}
+  buttons: []
 --- !u!225 &85011357558222871
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8070,7 +8090,12 @@ MonoBehaviour:
   previewTime: 0
   particleEffects: {fileID: 1960364178}
   name: Wind Event
+  playing: 0
+  board: {fileID: 0}
   battleController: {fileID: 3038408585538438732}
+  restartTime: 0
+  minRestartTime: 0
+  maxRestartTime: 0
   windEffect: {fileID: 70313179}
   pushStrength: 1
   direction: 0
@@ -9433,6 +9458,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootDropSlot: {fileID: 343348381000071786, guid: aa6573861e338734896d9f23351cda82, type: 3}
   parentTransform: {fileID: 85011357151674574}
+  controller: {fileID: 0}
+  huntName: {fileID: 0}
+  objectiveName: {fileID: 0}
+  huntTime: {fileID: 0}
+  monsterImage: {fileID: 0}
+  returnToCampButton: {fileID: 0}
 --- !u!224 &85011358013363142
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23538,6 +23569,7 @@ MonoBehaviour:
   lootUIManager: {fileID: 85011358013363141}
   targets: {fileID: 4284267428889872508}
   gunbladeUI: {fileID: 0}
+  questComplete: {fileID: 0}
   bowExtraAttackObject: {fileID: 85011357937258482}
   bowExtraAttackMenuButton: {fileID: 0}
   hammerTraitObject: {fileID: 0}
@@ -23582,6 +23614,7 @@ MonoBehaviour:
   pauseText: {fileID: 0}
   pauseTimelineButton: {fileID: 5411648853669516825}
   resumeTimelineButton: {fileID: 2595983989075543937}
+  huntTime: 0
   zoomAnimations: {fileID: 0}
   minCameraZoom: 4
   maxCameraZoom: 8.5
@@ -23616,6 +23649,8 @@ MonoBehaviour:
   playtestToggle: 1
   indicatingTurn: 0
   tutorialManager: {fileID: 1891116506}
+  tutorialSlidesIndex: 0
+  stateIndex: 0
 --- !u!114 &3038408585589272088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24045,6 +24080,7 @@ MonoBehaviour:
   parkPropsPrefabs: []
   regularObstaclePrefab: {fileID: 986858306413133845, guid: cbac4e8694a7aa94abe420c9ab34a28e, type: 3}
   battleController: {fileID: 1352406127}
+  tiles: []
   obstacles: []
   selectedTileColor: {r: 0, g: 1, b: 1, a: 1}
   toggleTileActivation: 1
@@ -24497,6 +24533,7 @@ MonoBehaviour:
   turnUser: {fileID: 85011357354252146}
   turnStatusAnim: {fileID: 85011359281782931}
   turn: {fileID: 1163757275}
+  gear: {fileID: 0}
   turnTypeAnim: {fileID: 77383839}
   playerTurn: {fileID: 21300000, guid: 817093847b4c8884fa18f09cd9f847e9, type: 3}
   eventTurn: {fileID: 21300000, guid: 1fcf2f7188d6e1c43aa14c1c1b51559d, type: 3}
@@ -30387,6 +30424,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4325543351843001532, guid: 176241b89cf00fb4e932217d143f37d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778004859010828185, guid: 176241b89cf00fb4e932217d143f37d1, type: 3}
+      propertyPath: battleController
+      value: 
+      objectReference: {fileID: 3038408585538438732}
     - target: {fileID: 6778004859010828186, guid: 176241b89cf00fb4e932217d143f37d1, type: 3}
       propertyPath: m_Name
       value: TutorialManagerCanvas
@@ -30848,6 +30893,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dacb711c70890604dbe4f803451d40a2, type: 3}
   - {fileID: 21300000, guid: 2eb0ce5722755aa4ab466ef4f53d7032, type: 3}
   imageComponent: {fileID: 4635749919395655598}
+  nextButton: {fileID: 0}
+  buttons: []
 --- !u!224 &7045103271765150105
 RectTransform:
   m_ObjectHideFlags: 0

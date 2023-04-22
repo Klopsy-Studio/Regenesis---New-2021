@@ -14,8 +14,11 @@ public class WeaponInfoTemplate : MonoBehaviour, IPointerClickHandler
 
     ForgeManager forgeManager;
     public TextMeshProUGUI weaponName;
+    public Image weaponImage;
     public WeaponUpgrade WeaponUpgrade { get; private set; }
 
+    public List<string> abilitiesDescription;
+    public List<string> abilitiesName;
     public void OnPointerClick(PointerEventData eventData)
     {
 
@@ -26,6 +29,11 @@ public class WeaponInfoTemplate : MonoBehaviour, IPointerClickHandler
         //{
         //    Debug.Log("El material requerido es " + material.monsterMaterial.materialName);
         //}
+     
+        for (int i = 0; i < abilitiesDescription.Count; i++)
+        {
+            forgeManager.abilityTooltipList[i].SetAbilityTooltip(abilitiesName[i], abilitiesDescription[i]);
+        }
 
     }
 
@@ -34,12 +42,22 @@ public class WeaponInfoTemplate : MonoBehaviour, IPointerClickHandler
         WeaponUpgrade = _weaponUpgrade;
         var weapon = _weaponUpgrade.weapon;
         weaponName.SetText(_weaponUpgrade.itemName);
+        weaponImage.sprite = _weaponUpgrade.weapon.Sprite;
         forgeManager = _forgeManager;
         WeaponDamage = weapon.Power;
         WeaponRange = weapon.range;
         WeaponCritic = weapon.criticalPercentage;
         WeaponDefense = weapon.Defense;
 
+        for (int i = 0; i < _weaponUpgrade.weapon.Abilities.Length; i++)
+        {
+            var description =_weaponUpgrade.weapon.Abilities[i].description;
+            var name = _weaponUpgrade.weapon.Abilities[i].abilityName;
+            abilitiesDescription.Add(description);
+            abilitiesName.Add(name);
+          
+            
+        }
 
     }
 

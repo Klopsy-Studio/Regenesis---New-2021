@@ -11,7 +11,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] ShopItemContainer shopItemContainer;
     [SerializeField] GameObject slotPrefab;
     [SerializeField] Transform transformContent;
-
+    public int currentPoints;
+    [SerializeField] TextMeshProUGUI currentPointsTxT;
    /* [HideInInspector]*/ public ShopItemTemplate shopItemSelected;
     public SetShopItemInfoPanelText itemPanelInfo;
    
@@ -21,7 +22,8 @@ public class ShopManager : MonoBehaviour
 
     private void Start()
     {
-    
+
+        currentPointsTxT.SetText(currentPoints.ToString());
         itemPanelInfo.GO.SetActive(false);
         buyItemPanel.GO.SetActive(false);
         CreateDisplay();
@@ -52,8 +54,16 @@ public class ShopManager : MonoBehaviour
     {
         if (itemPanelInfo.itemAmount <= 0) return;
         buyItemPanel.GO.SetActive(true);
-        buyItemPanel.SetBuyPanelInfo(itemPanelInfo);
+        buyItemPanel.SetBuyPanelInfo(itemPanelInfo, this);
         buyItemPanel.SetUpButtons();
+        currentPointsTxT.gameObject.SetActive(false);
+    }
+
+    public void CloseBuyItemPanel() //UnityButton calls this method
+    {
+        currentPointsTxT.gameObject.SetActive(true);
+        currentPointsTxT.SetText(currentPoints.ToString());
+        buyItemPanel.GO.SetActive(false);
     }
 
     public void BuyItem()//UnityButton function calls this method
@@ -125,9 +135,10 @@ public class BuyItemPanel
     [SerializeField] TextMeshProUGUI itemAmountTxT;
     [SerializeField] Image itemImage;
     [SerializeField] TextMeshProUGUI itemTotalCostTxT;
-    [SerializeField] TextMeshProUGUI currentPointsTxT;
+    [SerializeField] TextMeshProUGUI currentPointsTxTBuyPanel;
+  
     int itemTotalCost;
-    int currentPoints;
+    
     int itemAmount;
 
     [SerializeField] MaterialInventory materialInventory;
@@ -137,7 +148,9 @@ public class BuyItemPanel
     [SerializeField] MaterialPointsShopButton button2;
     ShopItemInfo itemInfo;
 
-    public void SetBuyPanelInfo(SetShopItemInfoPanelText _itemInfoPanel)
+    ShopManager shopManager;
+
+    public void SetBuyPanelInfo(SetShopItemInfoPanelText _itemInfoPanel, ShopManager _shopManager)
     {
        
         itemName.SetText(_itemInfoPanel.ItemName.text);
@@ -146,9 +159,9 @@ public class BuyItemPanel
         itemTotalCostTxT.SetText(itemTotalCost.ToString());
         itemAmount = _itemInfoPanel.itemAmount;
         itemAmountTxT.SetText("x "+_itemInfoPanel.itemAmount.ToString());
-
-        currentPoints = 0;
-        currentPointsTxT.SetText(currentPoints.ToString());
+        shopManager = _shopManager;
+        //currentPoints = 0;
+        currentPointsTxTBuyPanel.SetText(shopManager.currentPoints.ToString());
 
         itemInfo = _itemInfoPanel.itemInfo;
     }
@@ -176,14 +189,14 @@ public class BuyItemPanel
 
     public void UpdateCurrentPoints(int _points)
     {
-        currentPoints += _points;
-        currentPointsTxT.SetText(currentPoints.ToString());
+        shopManager.currentPoints += _points;
+        currentPointsTxTBuyPanel.SetText(shopManager.currentPoints.ToString());
     }
 
     public void BuyItem()
     {
      
-        if (currentPoints < itemTotalCost) return;
+        if (shopManager.currentPoints < itemTotalCost) return;
         UpdateCurrentPoints(-itemTotalCost);
         GameManager.instance.consumableInventory.AddConsumable(itemInfo.consumable, itemAmount);
         GameManager.instance.materialInventory.SubstractMaterial(material1);

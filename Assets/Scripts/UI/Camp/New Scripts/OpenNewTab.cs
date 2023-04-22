@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class OpenNewTab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class OpenNewTab : MonoBehaviour, IPointerClickHandler
 {
     public bool buttonEnabled; 
     [SerializeField] CanvasScaler canva;
@@ -13,6 +13,9 @@ public class OpenNewTab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] GameObject tabToOpen;
     //[SerializeField] GameObject gameObjectAnimator;
 
+
+    [Header("Close buttons ")]
+    [SerializeField] GameObject[] closeButtons;
 
     private void Start()
     {
@@ -36,15 +39,9 @@ public class OpenNewTab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-      
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-
-    }
+  
+    
+   
 
     public void EnableButton()
     {
@@ -56,5 +53,12 @@ public class OpenNewTab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         buttonEnabled = false;
     }
 
- 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OpenTab();
+        foreach (var item in closeButtons)
+        {
+            item.SetActive(false);
+        }
+    }
 }

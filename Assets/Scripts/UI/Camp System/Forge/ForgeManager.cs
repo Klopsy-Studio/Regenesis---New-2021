@@ -16,7 +16,7 @@ public class ForgeManager : MonoBehaviour
 
     //Ponerlo en privado cuando se termine el testeo
     public WeaponInfoTemplate currentWeaponInfoTemplate;
-
+    public AbilityTooltip[] abilityTooltipList;
     private void Start()
     {
         CreateDisplay();
@@ -113,9 +113,7 @@ public class WeaponPanelInfo
     public TextMeshProUGUI weaponRange;
     public TextMeshProUGUI weaponCritic;
     public TextMeshProUGUI weaponDefense;
-    public TextMeshProUGUI weaponElementalDefense;
-    public TextMeshProUGUI weaponElementalAttack;
-
+  
     public TextMeshProUGUI weaponName;
     public void UpdatePanelInfo(WeaponInfoTemplate _weaponInfoTemplate)
     {
