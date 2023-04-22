@@ -50,7 +50,7 @@ public class DisplayConsumableInventoryShop : MonoBehaviour
             
              
                 consumableDisplayed.Add(inventory.consumableContainer[i], obj);
-                consumableDisplayed.Add(inventory.consumableContainer[i], obj);
+              
 
             }
 
