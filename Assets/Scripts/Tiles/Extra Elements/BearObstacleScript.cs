@@ -65,7 +65,10 @@ public class BearObstacleScript : MonoBehaviour
         return false;
     }
 
-
+    public List<Tile> GetAreaTiles(Board board)
+    {
+        return squareRange.GetTilesInRangeWithoutUnit(board, pos);
+    }
     public List<Tile> GetValidTiles(Board board)
     {
         List<Tile> tiles = crossRange.GetTilesOnRangeWithoutUnit(pos, board);
