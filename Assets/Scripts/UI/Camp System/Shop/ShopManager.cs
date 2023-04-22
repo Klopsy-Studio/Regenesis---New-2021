@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 
 
-public class ShopManager : MonoBehaviour
+public class ShopManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] ShopItemContainer shopItemContainer;
     [SerializeField] GameObject slotPrefab;
@@ -69,6 +69,16 @@ public class ShopManager : MonoBehaviour
     public void BuyItem()//UnityButton function calls this method
     {
         buyItemPanel.BuyItem();
+    }
+
+    public void LoadData(GameData data)
+    {
+        currentPoints = data.shopCurrentPoints;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.shopCurrentPoints = currentPoints;
     }
 }
 

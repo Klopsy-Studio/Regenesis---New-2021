@@ -174,6 +174,7 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
         data.consumableBackpack.Clear();
         for (int i = 0; i < consumableBackpack.consumableContainer.Count; i++)
         {
+            Debug.Log("saving consumableBackpack");
             data.consumableBackpack.Add(new ItemData(consumableBackpack.consumableContainer[i].consumable.itemName, consumableBackpack.consumableContainer[i].amount));
         }
     }

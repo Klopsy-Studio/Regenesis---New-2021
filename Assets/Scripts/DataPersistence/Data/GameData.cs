@@ -15,6 +15,7 @@ public class GameData
     public NewSerializableDictionary<string, bool> isMissionCompleted;
     //key -> unit name --- value -> unitWeapons
     public NewSerializableDictionary<string, string> unitsProfiles;
+    public int shopCurrentPoints;
 
     string[] unitsName = { "Isak", "Kaeo", "Ola" };
     string[] unitsWeapons = { "ScrapBow_3", "ScrapGunBlade_3", "ScrapHammer_3" };
@@ -35,6 +36,7 @@ public class GameData
         UnitsProfileDefaultSetting();
         //unitsProfiles = new SerializableDictionary<string, string>();
         consumableBackpack = new List<ItemData>();
+        shopCurrentPoints = 0;
     }
 
     private void UnitsProfileDefaultSetting()

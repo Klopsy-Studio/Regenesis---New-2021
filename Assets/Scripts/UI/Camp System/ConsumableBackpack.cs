@@ -5,22 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "InventorySystem/ConsumableBackpack")]
 public class ConsumableBackpack : ConsumableInventory
 {
-    public List<ConsumableSlot> placeholderList;
-    public void OnEnable()
-    {
-        RefillBackpack();
-    }
-    public void RefillBackpack()
-    {
-        consumableContainer.Clear();
-        consumableContainer = new List<ConsumableSlot>();
-
-        foreach (ConsumableSlot s in placeholderList)
-        {
-            consumableContainer.Add(new ConsumableSlot(s.consumable, s.amount));
-        }
-    }
-
+     
+     
     public void UseConsumable(int indexItem, Unit targetUnit = null, Tile tileSpawn = null, BattleController battleController = null)
     {
         bool consumableUsed = false;

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler, IPointerDownHandler
@@ -55,6 +56,15 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             originalPosition = buttonRect.localPosition.x;
         }
     }
+
+    public void OnNewGameClicked()
+    {
+        //create a new game - initialize game data
+        DataPersistenceManager.instance.NewGame();
+        //load the gameplay scene - whick will in turn save the game because of 
+        //OnSceneUnloaded() in the DataPersistenceManager
+    }
+
     void Update()
     {
         if (appear)

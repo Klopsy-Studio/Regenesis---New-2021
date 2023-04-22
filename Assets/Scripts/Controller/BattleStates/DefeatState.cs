@@ -35,6 +35,7 @@ public class DefeatState : BattleState
 
         owner.pauseButton.canBeSelected = false;
         owner.defeatScreen.SetActive(true);
+        owner.ChangeState<DefeatUIState>();
     }
 
 }

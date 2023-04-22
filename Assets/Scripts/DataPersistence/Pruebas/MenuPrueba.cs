@@ -17,7 +17,7 @@ public class MenuPrueba : MonoBehaviour
         //create a new game - initialize game data
         DataPersistenceManager.instance.NewGame();
         //load the gameplay scene - whick will in turn save the game because of 
-        //OnSceneUnloaded() in the DataPersistenceManager
+     
         SceneManager.LoadSceneAsync("SaveSystemScene");
     }
 

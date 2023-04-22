@@ -53,7 +53,8 @@ public class BattleController : StateMachine
     public TimelineUI timelineUI;
     public ExpandedUnitStatus expandedUnitStatus;
     public UIController uiController;
-    public LootUIManager lootUIManager;
+    public LootUIManager VictoryLootUIManager;
+    public LootUIManager DefeatLootUIManager;
     public AbilityTargets targets;
     public GunbladeBullets gunbladeUI;
     public GameObject questComplete;
@@ -243,7 +244,12 @@ public class BattleController : StateMachine
 
             if (Input.GetKeyDown(KeyCode.C))
             {
-                MakeAllUnitsDie();
+                ChangeState<DefeatState>();
+            }
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                ChangeState<WinState>();
             }
             if (Input.GetKeyDown(KeyCode.L))
             {

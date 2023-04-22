@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 
-public class LootUIState : BattleState
+public class DefeatUIState : BattleState
 {
     public override void Enter()
     {
@@ -20,18 +19,20 @@ public class LootUIState : BattleState
         var monsterDrops = owner.lootSystem;
         monsterDrops.DropMaterials();
         var materialsDropped = monsterDrops.droppedMaterials;
-      
 
-        owner.VictoryLootUIManager.gameObject.SetActive(true);
-        StartCoroutine(owner.VictoryLootUIManager.LootSequence(materialsDropped));
+
+        owner.DefeatLootUIManager.gameObject.SetActive(true);
+        StartCoroutine(owner.DefeatLootUIManager.LootSequence(materialsDropped));
     }
 
-    public void VictoryReturnToCamp() //Unity button
+  
+
+    public void DefeatReturnToCamp() //Unity button
     {
-        StartCoroutine(VictoryReturnToCampSequence());
+        StartCoroutine(DefeatReturnToCampSequence());
     }
 
-    public IEnumerator VictoryReturnToCampSequence()
+    public IEnumerator DefeatReturnToCampSequence()
     {
         owner.turnStatusUI.gear.gameObject.SetActive(false);
         ActionEffect.instance.BlackAndWhite();
@@ -42,11 +43,8 @@ public class LootUIState : BattleState
 
         yield return new WaitForSeconds(2f);
 
-        DataPersistenceManager.instance.SaveGame();
+
 
         owner.ReturnToCamp();
     }
-
-   
-
 }
