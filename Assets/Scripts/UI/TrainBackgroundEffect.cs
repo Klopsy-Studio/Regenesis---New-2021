@@ -13,6 +13,7 @@ public class TrainBackgroundEffect : MonoBehaviour
     [Range(0f, 5f)]
     [SerializeField] float moveSpeed;
     float offset;
+
     void Start()
     {
         backgroundMaterial = image.material;

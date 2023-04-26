@@ -192,6 +192,17 @@ public class PlayerUnit : Unit
             {
                 Unit e = u.GetComponent<Unit>();
                 e.AddBuff(currentModifier);
+            }
+        }
+    }
+
+    public void EnableBattleCryForUnits()
+    {
+        foreach (GameObject u in currentTargets)
+        {
+            if (u.GetComponent<Unit>() != null)
+            {
+                Unit e = u.GetComponent<Unit>();
                 e.EnableBattlecry();
             }
         }

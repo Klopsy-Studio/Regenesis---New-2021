@@ -95,9 +95,12 @@ public class Unit : TimelineElements
     [SerializeField] GameObject buffIndicator;
     [SerializeField] GameObject debuffIndicator;
     public GameObject tileIndicator;
+    public UnitUI popUps;
 
     [Header("Effects")]
     [HideInInspector] public ActionEffectParameters currentParameters;
+
+   
     protected virtual void Start()
     {
         buffModifiers = new List<Modifier>();
@@ -106,6 +109,7 @@ public class Unit : TimelineElements
         Match();
         SetInitVelocity();
         originalTimeStunned = timeStunned;
+        popUps = GetComponent<UnitUI>();
     }
 
     public void EnableSlow()
@@ -119,11 +123,13 @@ public class Unit : TimelineElements
     public void AddBuff(Modifier m)
     {
         buffModifiers.Add(m);
+        popUps.CreatePopUpBuffIndicator(m);
         buffIndicator.SetActive(true);
     }
 
     public void RemoveBuff(Modifier m)
     {
+        popUps.CreateRemoveBuffIndicator(m);
         if (buffModifiers.Contains(m))
         {
             buffModifiers.Remove(m);
@@ -138,11 +144,15 @@ public class Unit : TimelineElements
     {
         debuffModifiers.Add(m);
         debuffIndicator.SetActive(true);
+        popUps.CreatePopUpDebuffIndicator(m);
+
     }
 
 
     public void RemoveDebuff(Modifier m)
     {
+        popUps.CreateRemoveDebuffIndicator(m);
+
         if (debuffModifiers.Contains(m))
         {
             debuffModifiers.Remove(m);
