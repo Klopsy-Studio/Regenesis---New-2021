@@ -47,6 +47,12 @@ public class Battlecry : AbilitySequence
             yield return null;
         }
 
+        foreach(GameObject o in units)
+        {
+            o.GetComponent<Unit>().AddBuff(battlecryData);
+        }
+
+        yield return new WaitForSeconds(1f);
         playing = false;
     }
 }
