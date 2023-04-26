@@ -70,7 +70,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         Debug.Log("se ha llamado a new game");
         this.gameData = new GameData();
-        SaveGame();
+        SaveFirstGame();
     }
 
     public void LoadGame()
@@ -117,6 +117,22 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
       
+        // save that data to a file using the data handler
+        dataHandler.Save(gameData);
+    }
+
+    public void SaveFirstGame()
+    {
+        //if we dont have any data to save, log a warning here 
+        if (this.gameData == null)
+        {
+            Debug.LogWarning("No data was found. A NEW GAME needs to be started before data can be saved");
+            return;
+        }
+
+        //pass the data to other scripts so they can update it
+
+
         // save that data to a file using the data handler
         dataHandler.Save(gameData);
     }

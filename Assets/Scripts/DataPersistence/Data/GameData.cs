@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,8 +26,14 @@ public class GameData
     {
         this.clickCount = 0;
         coinsCollected = new NewSerializableDictionary<string, bool>();
+    
         consumableInventory = new List<ItemData>();
+
         materialInventory = new List<ItemData>();
+ 
+        materialInventory.Clear();
+        
+     
         weaponInventory = new List<ItemData>();
         isMissionNew = new NewSerializableDictionary<string, bool>();
         isMissionCompleted = new NewSerializableDictionary<string, bool>();
@@ -37,6 +44,8 @@ public class GameData
         //unitsProfiles = new SerializableDictionary<string, string>();
         consumableBackpack = new List<ItemData>();
         shopCurrentPoints = 0;
+
+      
     }
 
     private void UnitsProfileDefaultSetting()

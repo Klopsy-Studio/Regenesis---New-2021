@@ -59,7 +59,7 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
                         {
                             Debug.Log("weapon name " + weapon.name + " unit key " + unit.Value);
                             unitProfile.unitWeapon = weapon;
-                            continue;
+                            break;
                         }
                     }
                 }
@@ -90,7 +90,7 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
                 if (itemData.itemId == allConsumableItems[w].itemName)
                 {
                     consumableInventory.AddConsumable(allConsumableItems[w], itemData.itemAmount);
-                    continue;
+                    break;
                 }
             }
         }
@@ -108,7 +108,7 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
                 if(itemData.itemId == allConsumableItems[w].itemName)
                 {
                     consumableBackpack.AddConsumable(allConsumableItems[w], itemData.itemAmount);
-                    continue;
+                    break;
                 }
             }
         }
@@ -116,17 +116,20 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
 
     private void LoadMaterialData(GameData data)
     {
+        Debug.Log("BBBBBBBBBB");
         materialInventory.materialContainer.Clear();
         for (int i = 0; i < data.materialInventory.Count; i++)
         {
+            Debug.Log("suma " + i);
             var itemData = data.materialInventory[i];
             for (int w = 0; w < allMaterialItems.Count; w++)
             {
-                if(itemData.itemId == allMaterialItems[w].materialName)
+                if (itemData.itemId == allMaterialItems[w].materialName)
                 {
                     materialInventory.AddMonsterMaterial(allMaterialItems[w], itemData.itemAmount);
-                    continue;
+                    break;
                 }
+
             }
         }
     }
@@ -142,7 +145,7 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
                 if(itemData.itemId == allWeaponItems[w].name)
                 {
                     weaponInventory.AddItem(allWeaponItems[w]);
-                    continue;
+                    break;
                 }
             }
         }
