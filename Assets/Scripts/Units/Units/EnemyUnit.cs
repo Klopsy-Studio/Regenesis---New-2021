@@ -27,7 +27,7 @@ public class EnemyUnit : Unit
     [Header("UI")]
     [SerializeField] Vector3 originalSpritePosition;
     [SerializeField] Vector3 flippedSpritePosition;
-    [SerializeField] UnitUI monsterUI;
+
     public Sprite evolvedPortrait;
     public void BeginAnimation()
     {
@@ -212,7 +212,7 @@ public class EnemyUnit : Unit
             }
         }
         //DamageEffect();
-        monsterUI.CreatePopUpText(transform.position + new Vector3(0, 1, 0), (int)damage, isCritical);
+        popUps.CreatePopUpText(transform.position + new Vector3(0, 1, 0), (int)damage, isCritical);
 
         monsterControl.monsterAnimations.SetTrigger("damage");
 
