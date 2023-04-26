@@ -7,6 +7,7 @@ public class TrainBackgroundEffect : MonoBehaviour
 {
     [SerializeField] TilingDirection direction;
     [SerializeField] SpriteRenderer image;
+    [SerializeField] Image imageUi;
     Material backgroundMaterial;
 
     [Range(0f, 5f)]
