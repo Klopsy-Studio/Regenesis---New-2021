@@ -52,7 +52,7 @@ public class Battlecry : AbilitySequence
             o.GetComponent<Unit>().AddBuff(battlecryData);
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);        
         playing = false;
     }
 }
