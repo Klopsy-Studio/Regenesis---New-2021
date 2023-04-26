@@ -15,13 +15,33 @@ public class WeaponInfoTemplate : MonoBehaviour, IPointerClickHandler
     ForgeManager forgeManager;
     public TextMeshProUGUI weaponName;
     public Image weaponImage;
+    [SerializeField] Image weaponFrame;
     public WeaponUpgrade WeaponUpgrade { get; private set; }
+
 
     public List<string> abilitiesDescription;
     public List<string> abilitiesName;
+
+
+    private void OnEnable()
+    {
+        ForgeManager.buttonClicked += DeactivateFrame;
+    }
+
+    private void DeactivateFrame()
+    {
+        weaponFrame.gameObject.SetActive(false);
+    }
+    private void OnDisable()
+    {
+        weaponFrame.gameObject.SetActive(false);
+        ForgeManager.buttonClicked -= DeactivateFrame;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
 
+        forgeManager.ButtonClicked();
         forgeManager.weaponPanelInfo.UpdatePanelInfo(this);
         forgeManager.UpdateMaterialRequiredPanel(WeaponUpgrade);
         forgeManager.SelectCurrentWeaponPanelInfo(this);
@@ -34,6 +54,8 @@ public class WeaponInfoTemplate : MonoBehaviour, IPointerClickHandler
         {
             forgeManager.abilityTooltipList[i].SetAbilityTooltip(abilitiesName[i], abilitiesDescription[i]);
         }
+
+        weaponFrame.gameObject.SetActive(true);
 
     }
 

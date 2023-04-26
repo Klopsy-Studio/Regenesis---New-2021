@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
+
 
 public class ForgeManager : MonoBehaviour
 {
@@ -17,10 +19,19 @@ public class ForgeManager : MonoBehaviour
     //Ponerlo en privado cuando se termine el testeo
     public WeaponInfoTemplate currentWeaponInfoTemplate;
     public AbilityTooltip[] abilityTooltipList;
+
+    public delegate void weaponSlotClicked();
+    public static event weaponSlotClicked buttonClicked;
     private void Start()
     {
         CreateDisplay();
     }
+
+    public void ButtonClicked()
+    {
+        buttonClicked?.Invoke();
+    }
+
     void CreateDisplay()
     {
         //The first FOR is used to create each weapon tree
