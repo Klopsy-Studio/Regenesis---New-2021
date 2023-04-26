@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Security.Cryptography;
 
 [System.Serializable]
 public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerUpHandler, IPointerDownHandler
@@ -13,11 +14,13 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public bool test;
     public bool canBeSelected;
     public bool selected;
+    [SerializeField] bool isContinueButton;
     [Space]
 
     [Header("Variables")]
     [SerializeField] Color defaultTextColor;
     [SerializeField] Color highlightTextColor;
+    [SerializeField] Color deactivatedTextColor;
     [SerializeField] float appearPosition;
     [SerializeField] float buttonSpeed = 2;
 
@@ -49,20 +52,35 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     float currentTime;
 
+
+   
+
     void Start()
     {
         if(buttonRect != null)
         {
             originalPosition = buttonRect.localPosition.x;
         }
+
+        if (!DataPersistenceManager.instance.HasGameData() && isContinueButton)
+        {
+            canBeSelected = false;
+            buttonText.color = deactivatedTextColor;
+        }
     }
 
-    public void OnNewGameClicked()
+    public void OnNewGameClicked() //Unity Button
     {
+        Debug.Log("onnewgameclicked");
         //create a new game - initialize game data
         DataPersistenceManager.instance.NewGame();
         //load the gameplay scene - whick will in turn save the game because of 
         //OnSceneUnloaded() in the DataPersistenceManager
+    }
+
+    public void OnContinueClicked()
+    {
+        DataPersistenceManager.instance.SaveGame();
     }
 
     void Update()

@@ -7,7 +7,7 @@ public class MenuPrueba : MonoBehaviour
 {
     private void Start()
     {
-        if (!DataPersistenceManager.instance.HasData())
+        if (!DataPersistenceManager.instance.HasGameData())
         {
             //DESACTIVAR EL BOTÓN DE CONTINUAR
         }
@@ -16,6 +16,8 @@ public class MenuPrueba : MonoBehaviour
     {
         //create a new game - initialize game data
         DataPersistenceManager.instance.NewGame();
+      
+        Debug.Log("has new game data " + DataPersistenceManager.instance.HasGameData());
         //load the gameplay scene - whick will in turn save the game because of 
      
         SceneManager.LoadSceneAsync("SaveSystemScene");

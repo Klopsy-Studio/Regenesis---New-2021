@@ -15,6 +15,7 @@ public class AcceptMissionButton : MonoBehaviour, IPointerClickHandler
     {
         if(mission != null)
         {
+            DataPersistenceManager.instance.SaveGame();
             GameManager.instance.currentMission = mission;
             missionInfoPanel.gameObject.SetActive(false);
             GameManager.instance.sceneToLoad = "Battle";

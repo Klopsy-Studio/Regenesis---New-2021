@@ -21,7 +21,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogError("Found more than one Data Persistence Manager in the scene. Destroyed the newest one");
+            Debug.LogWarning("Found more than one Data Persistence Manager in the scene. Destroyed the newest one");
             Destroy(this.gameObject);
             return;
 
@@ -68,7 +68,9 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void NewGame()
     {
+        Debug.Log("se ha llamado a new game");
         this.gameData = new GameData();
+        SaveGame();
     }
 
     public void LoadGame()
@@ -79,12 +81,13 @@ public class DataPersistenceManager : MonoBehaviour
         //Start a new game if the data is null and we have configured to initialize data for debugging
         if(this.gameData == null && initializeDataifNull)
         {
+            Debug.Log("En el método LoadGame se ha creado New Game Data");
             NewGame(); 
         }
-        //If no data can be loaded, initializa to a new game
+        //If no data can be loaded, dont continue
         if(this.gameData == null)
         {
-            Debug.Log("no data was found. A NEW GAME needs to be started before data can be loaded");
+            Debug.Log("no data was found. A NEW GAME needs to be started before data can be loaded " + HasGameData());
             return;
         }
 
@@ -98,8 +101,9 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void SaveGame()
     {
+      
         //if we dont have any data to save, log a warning here 
-        if(this.gameData == null)
+        if (this.gameData == null)
         {
             Debug.LogWarning("No data was found. A NEW GAME needs to be started before data can be saved");
             return;
@@ -112,9 +116,14 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.SaveData(gameData);
         }
 
-
+      
         // save that data to a file using the data handler
         dataHandler.Save(gameData);
+    }
+
+    public void Prueba()
+    {
+        Debug.Log("aaaaaaaa"); 
     }
 
     private void OnApplicationQuit()
@@ -122,7 +131,7 @@ public class DataPersistenceManager : MonoBehaviour
         SaveGame();
     }
 
-    public bool HasData()
+    public bool HasGameData()
     {
         return gameData != null; 
     }

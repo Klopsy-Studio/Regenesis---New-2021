@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
 {
@@ -25,6 +26,7 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
     [Header("Unit profile list")]
     [SerializeField] List<UnitProfile> allUnitProfile;
 
+   
     public void LoadData(GameData data)
     {
 

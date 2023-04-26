@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ToolTipSystem : MonoBehaviour
 {
@@ -18,5 +19,10 @@ public class ToolTipSystem : MonoBehaviour
     public static void Hide()
     {
         instance.toolTip.gameObject.SetActive(false);
+    }
+
+    public void Prueba()
+    {
+        DataPersistenceManager.instance.SaveGame();
     }
 }
