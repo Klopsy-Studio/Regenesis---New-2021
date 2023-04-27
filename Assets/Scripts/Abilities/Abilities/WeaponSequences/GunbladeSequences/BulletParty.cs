@@ -7,36 +7,32 @@ using UnityEngine;
 public class BulletParty : AbilitySequence
 {
     [SerializeField] int[] criticalPercentage;
+    [SerializeField] ActionEffectParameters[] effectParameters;
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         playing = true;
         user = controller.currentUnit;
+        user.currentAbility = ability;
         user.SpendActionPoints(ability.actionCost);
-
         int numberOfBullets = user.gunbladeAmmoAmount;
         user.SpendBullets(user.gunbladeAmmoAmount);
+        ability.effectDuration = effectParameters[numberOfBullets - 1].effectDuration;
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-
-        if (target != null)
+        if (target.GetComponent<Unit>()!= null)
         {
-            if (target.GetComponent<Unit>() != null)
-            {
-                Unit u = target.GetComponent<Unit>();
-
-                for (int i = 0; i < numberOfBullets; i++)
-                {
-                    if (u != null)
-                    {
-                        user.criticalPercentage += 10;
-                        Debug.Log(user.criticalPercentage);
-                        Attack(u);
-                    }
-                    yield return new WaitForSeconds(0.2f);
-                }
-            }
+            user.currentTarget = target.GetComponent<Unit>();
         }
 
+        user.animations.unitAnimator.SetFloat("attackIndex", 1f);
+        user.animations.unitAnimator.SetFloat("attackPower", numberOfBullets);
+        user.animations.unitAnimator.SetTrigger("attack");
+
+        yield return new WaitForSeconds(1f);
+
+        while (ActionEffect.instance.CheckActionEffectState())
+        {
+            yield return null;
+        }
 
         if (target != null)
         {
@@ -49,11 +45,12 @@ public class BulletParty : AbilitySequence
         }
 
 
-        user.criticalPercentage = user.weapon.criticalPercentage;
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
         }
+
+        user.criticalPercentage = user.weapon.criticalPercentage;
 
         playing = false;
 

@@ -132,6 +132,10 @@ public class PlayerUnit : Unit
         droneIndicator.SetActive(true);
     }
 
+    public void IncreaseCriticalPercentage()
+    {
+        criticalPercentage += 10;
+    }
     public void DisableDrone()
     {
         droneIndicator.SetActive(false);
