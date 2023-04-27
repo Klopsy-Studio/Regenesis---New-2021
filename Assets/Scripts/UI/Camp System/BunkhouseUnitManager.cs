@@ -53,11 +53,10 @@ public class BunkhouseUnitManager : MonoBehaviour
         weaponIMG.sprite = unitProfile.unitWeapon.Sprite;
         movimiento.text = unitProfile.unitWeapon.range.ToString();
         defensa.text = unitProfile.unitWeapon.Defense.ToString();
-        defElemental.text = unitProfile.unitWeapon.WeaponDefenseElement.ToString();
+      
         poder.text = unitProfile.unitWeapon.Power.ToString();
         critico.text = unitProfile.unitWeapon.CriticalPercentage.ToString();
-        ataqElemental.text = unitProfile.unitWeapon.ElementPower.ToString();
-
+       
     }
 
     public void UpdateWeaponIMG(int unitID)
@@ -93,18 +92,18 @@ public class SetWeaponInfoText
     public Image weaponIMG;
     public TextMeshProUGUI range;
     public TextMeshProUGUI def;
-    public TextMeshProUGUI eleDef;
+
     public TextMeshProUGUI power;
     public TextMeshProUGUI crit;
-    public TextMeshProUGUI elePower;
+
     public void SetWeaponText(Weapons weapon)
     {
         weaponIMG.sprite = weapon.Sprite;
         range.SetText(weapon.range.ToString());
         def.SetText(weapon.Defense.ToString());
-        eleDef.SetText(weapon.WeaponDefenseElement.ToString());
+      
         power.SetText(weapon.Power.ToString());
         crit.SetText(weapon.CriticalPercentage.ToString());
-        elePower.SetText(weapon.WeaponDefenseElement.ToString());
+  
     }
 }
