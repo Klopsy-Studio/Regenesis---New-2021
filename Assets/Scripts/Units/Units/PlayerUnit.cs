@@ -351,7 +351,10 @@ public class PlayerUnit : Unit
             }
         }
     }
-
+    public void DecreaseTimelineVelocityTarget()
+    {
+        currentTarget.DecreaseTimelineVelocity(1);
+    }
     public void SetMarkOnTarget()
     {
         currentTarget.EnableCriticalMark();
