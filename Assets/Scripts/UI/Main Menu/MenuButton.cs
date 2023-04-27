@@ -69,8 +69,16 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+    public void DeleteSaveFile()
+    {
+        DataPersistenceManager.instance.DeleteSave();
+    }
     public void OnNewGameClicked() //Unity Button
     {
+        if (DataPersistenceManager.instance.HasGameData())
+        {
+            DeleteSaveFile();
+        }
         Debug.Log("onnewgameclicked");
         //create a new game - initialize game data
         DataPersistenceManager.instance.NewGame();

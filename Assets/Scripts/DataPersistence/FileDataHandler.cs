@@ -51,6 +51,29 @@ public class FileDataHandler
         return loadedData;
     }
 
+    public void Delete()
+    {
+        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        try
+        {
+            if (File.Exists(fullPath))
+            {
+                Debug.Log("ha entrado ha exist, el path es " + fullPath);
+                
+                Directory.Delete(Path.GetDirectoryName(fullPath), true);
+            }
+            else
+            {
+                Debug.LogWarning("Tried to deleye data, but data was not found ath path_ " + fullPath);
+            }
+
+        }
+        catch(Exception e)
+        {
+            Debug.LogError("Failed to delete profile data at path: " + fullPath + "\n" + e);
+        }
+    }
+
     public void Save(GameData data)
     {
 

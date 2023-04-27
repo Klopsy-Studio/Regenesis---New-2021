@@ -17,6 +17,7 @@ public class DataPersistenceManager : MonoBehaviour
     private List<IDataPersistence> dataPersistenceObjects;
     public static DataPersistenceManager instance { get; private set; }
 
+ 
     private void Awake()
     {
         if (instance != null)
@@ -46,6 +47,10 @@ public class DataPersistenceManager : MonoBehaviour
        
     }
 
+    public void DeleteSave()
+    {
+        dataHandler.Delete();
+    }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
