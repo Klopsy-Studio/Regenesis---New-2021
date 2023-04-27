@@ -12,16 +12,15 @@ public class PiercingSharpness : AbilitySequence
     {
         user = controller.currentUnit;
         playing = true;
-
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-
+        user.currentAbility = ability;
+    
         AbilityRange r = ability.abilityRange[0].GetOrCreateRange(ability.abilityRange[0].range, user.gameObject);
         r.unit = user;
 
         int numberOfAttacks = DefaultBowAttack(controller);
 
         List<Tile> tiles = r.GetTilesInRange(controller.board);
-        List<PlayerUnit> units = new List<PlayerUnit>();
+        List<GameObject> unitsObjects = new List<GameObject>();
 
         foreach (Tile t in tiles)
         {
@@ -29,28 +28,42 @@ public class PiercingSharpness : AbilitySequence
             {
                 if (t.content.GetComponent<PlayerUnit>() != null)
                 {
-                    units.Add(t.content.GetComponent<PlayerUnit>());
+                    unitsObjects.Add(t.content);
                 }
             }
         }
 
-        foreach (Unit u in units)
-        {          
-            u.AddBuff(piercingSharpnessModifer);
-            u.criticalDamage = 2f;
-            u.criticalPercentage += 25;
-
-            if(numberOfAttacks > 1)
-            {
-                u.criticalPercentage += 25;
-                u.AddBuff(piercingSharpnessModifer);
-            }
-        }
-
+        user.currentTargets = unitsObjects;
+        user.animations.unitAnimator.SetFloat("attackIndex", 0.6f);
+        user.animations.unitAnimator.SetTrigger("attack");
+        yield return new WaitForSeconds(1f);
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
         }
+
+
+        foreach (GameObject o in unitsObjects)
+        {
+            Unit u = o.GetComponent<Unit>();
+            u.AddBuff(piercingSharpnessModifer);
+            u.criticalDamage = 2f;
+            u.criticalPercentage += 25;
+        }
+
+        yield return new WaitForSeconds(0.4f);
+        if (numberOfAttacks > 1)
+        {
+            foreach (GameObject o in unitsObjects)
+            {
+                Unit u = o.GetComponent<Unit>();
+                u.AddBuff(piercingSharpnessModifer);
+                u.criticalDamage = 2f;
+                u.criticalPercentage += 25;
+            }
+        }
+
+        yield return new WaitForSeconds(0.5f);
 
         playing = false;
     }
