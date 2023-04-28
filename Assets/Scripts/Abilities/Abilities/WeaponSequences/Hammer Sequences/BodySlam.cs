@@ -17,10 +17,8 @@ public class BodySlam : AbilitySequence
     {
         user = controller.currentUnit;
         playing = true;
+        user.currentAbility = ability;
         user.SpendActionPoints(ability.actionCost);
-
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-
 
         if (target.GetComponent<Unit>() != null)
         {
@@ -48,22 +46,24 @@ public class BodySlam : AbilitySequence
                 ability.abilityModifier = abilityScalingWithHealth4;
             }
 
-            Attack(u);
+            user.currentTarget = u;
 
             if (CheckFury())
             {
-                HammerFurySequence(5, u, controller, user.tile.GetDirections(u.tile));
+                user.pushAmount = 5;
+                user.pushDirections = user.tile.GetDirections(u.tile);
+                u.ApplyStunValue(100);
                 ResetFury();
             }
             else
             {
+                user.pushAmount = 0;
                 IncreaseFury();
             }
         }
 
-        if (target.GetComponent<BearObstacleScript>() != null)
+        else if (target.GetComponent<BearObstacleScript>() != null)
         {
-            user.Attack();
             target.GetComponent<BearObstacleScript>().GetDestroyed(controller.board);
 
             if (CheckFury())
@@ -75,6 +75,10 @@ public class BodySlam : AbilitySequence
                 IncreaseFury();
             }
         }
+        user.animations.unitAnimator.SetTrigger("attack");
+        user.animations.unitAnimator.SetFloat("attackIndex", 0f);
+
+        yield return new WaitForSeconds(1f);
 
         while (ActionEffect.instance.CheckActionEffectState())
         {

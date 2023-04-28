@@ -9,10 +9,10 @@ public class KeenShot : AbilitySequence
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         user = controller.currentUnit;
+        user.currentAbility = ability;
         playing = true;
         yield return null;
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
         int numberOfAttacks = DefaultBowAttack(controller);
 
         if (target != null)
@@ -20,27 +20,31 @@ public class KeenShot : AbilitySequence
             if (target.GetComponent<Unit>() != null)
             {
                 Unit unitTarget = target.GetComponent<Unit>();
-                for (int i = 0; i < numberOfAttacks; i++)
-                {
-                    if (unitTarget != null)
-                    {
-                        unitTarget.DecreaseTimelineVelocity(1);
-                        unitTarget.AddDebuff(new Modifier { modifierType = TypeOfModifier.TimelineSpeed });
-                        AudioManager.instance.Play("SlingshotAttack");
-                        Attack(unitTarget);
-                        yield return new WaitForSeconds(0.7f);
-                    }
-
-                }
+                user.currentTarget = unitTarget;
             }
         }
+
+        switch (numberOfAttacks)
+        {
+            case 1:
+                user.animations.unitAnimator.SetTrigger("attack");
+                user.animations.unitAnimator.SetFloat("attackIndex", 1f);
+                break;
+            case 2:
+                user.animations.unitAnimator.SetTrigger("doubleAttack");
+                user.animations.unitAnimator.SetFloat("attackIndex", 1f);
+                break;
+            default:
+                break;
+        }
+
+        yield return new WaitForSeconds(1f);
 
         if (target != null)
         {
             if (target.GetComponent<BearObstacleScript>() != null)
             {
                 BearObstacleScript obstacle = target.GetComponent<BearObstacleScript>();
-                user.Attack();
                 obstacle.GetDestroyed(controller.board);
             }
         }
@@ -51,6 +55,22 @@ public class KeenShot : AbilitySequence
             yield return null;
         }
 
+        if (target != null)
+        {
+            if (target.GetComponent<Unit>() != null)
+            {
+                Unit unitTarget = target.GetComponent<Unit>();
+                unitTarget.AddDebuff(new Modifier { modifierType = TypeOfModifier.TimelineSpeed });
+
+                if(numberOfAttacks > 1)
+                {
+                    yield return new WaitForSeconds(0.3f);
+                    unitTarget.AddDebuff(new Modifier { modifierType = TypeOfModifier.TimelineSpeed });
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(0.4f);
         playing = false;
     }
 }

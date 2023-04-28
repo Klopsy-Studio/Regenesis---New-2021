@@ -15,72 +15,16 @@ MonoBehaviour:
   abilityEquipmentType: 0
   actionCost: 4
   ammoCost: 0
+  ammoGain: 0
   abilityRange:
-  - range: 6
+  - range: 5
     lineDir: 0
     lineLength: 0
     stopLine: 0
     lineOffset: 0
     sideDir: 0
-    sideReach: 1
-    sideLength: 1
-    crossLength: 0
-    crossOffset: 0
-    squareReach: 1
-    alternateSideDir: 0
-    alternateSideReach: 0
-    alternateSideLength: 0
-    movementRange: 0
-    removeOrigin: 0
-    removeContent: 0
-    itemRange: 0
-    itemRemoveContent: 0
-  - range: 6
-    lineDir: 0
-    lineLength: 0
-    stopLine: 0
-    lineOffset: 0
-    sideDir: 1
-    sideReach: 1
-    sideLength: 1
-    crossLength: 0
-    crossOffset: 0
-    squareReach: 1
-    alternateSideDir: 0
-    alternateSideReach: 0
-    alternateSideLength: 0
-    movementRange: 0
-    removeOrigin: 0
-    removeContent: 0
-    itemRange: 0
-    itemRemoveContent: 0
-  - range: 6
-    lineDir: 0
-    lineLength: 0
-    stopLine: 0
-    lineOffset: 0
-    sideDir: 2
-    sideReach: 1
-    sideLength: 1
-    crossLength: 0
-    crossOffset: 0
-    squareReach: 1
-    alternateSideDir: 0
-    alternateSideReach: 0
-    alternateSideLength: 0
-    movementRange: 0
-    removeOrigin: 0
-    removeContent: 0
-    itemRange: 0
-    itemRemoveContent: 0
-  - range: 6
-    lineDir: 0
-    lineLength: 0
-    stopLine: 0
-    lineOffset: 0
-    sideDir: 3
-    sideReach: 1
-    sideLength: 1
+    sideReach: 0
+    sideLength: 0
     crossLength: 0
     crossOffset: 0
     squareReach: 1
@@ -122,7 +66,7 @@ MonoBehaviour:
     effectDuration: 0.5
     shakeDefinition:
       m_ImpulseChannel: 1
-      m_ImpulseShape: 0
+      m_ImpulseShape: 3
       m_CustomImpulseShape:
         serializedVersion: 2
         m_Curve: []
@@ -130,7 +74,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       m_ImpulseDuration: 0.2
-      m_ImpulseType: 3
+      m_ImpulseType: 0
       m_DissipationRate: 0
       m_RawSignal: {fileID: 0}
       m_AmplitudeGain: 1
@@ -160,8 +104,8 @@ MonoBehaviour:
       m_DissipationMode: 2
       m_DissipationDistance: 100
       m_PropagationSpeed: 343
-    shakeVelocity: {x: 0, y: 0, z: 0}
-    shakeForce: 0
+    shakeVelocity: {x: 0.1, y: 0.1, z: 0.1}
+    shakeForce: 0.2
   abilityName: Fierce Sweep
   abilityEffect: 0
   abilityModifier: 0.6
@@ -180,5 +124,5 @@ MonoBehaviour:
   postAbilityEffect: []
   sequence: {fileID: 11400000, guid: cf3e11a6e1f1a6d458712b74e431d23d, type: 2}
   soundString: 
-  elementsToTarget: 00000000010000000200000003000000
+  elementsToTarget: 04000000
   isCritical: 0

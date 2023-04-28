@@ -132,6 +132,10 @@ public class PlayerUnit : Unit
         droneIndicator.SetActive(true);
     }
 
+    public void IncreaseCriticalPercentage()
+    {
+        criticalPercentage += 10;
+    }
     public void DisableDrone()
     {
         droneIndicator.SetActive(false);
@@ -348,6 +352,21 @@ public class PlayerUnit : Unit
         }
     }
 
+    public void PushTargets()
+    {
+        foreach(GameObject o in currentTargets)
+        {
+            if(o.GetComponent<Unit>()!= null)
+            {
+                Directions targetDir = tile.GetDirections(o.GetComponent<Unit>().tile);
+                o.GetComponent<Movement>().PushUnit(targetDir, pushAmount, controller.board);
+            }
+        }
+    }
+    public void DecreaseTimelineVelocityTarget()
+    {
+        currentTarget.DecreaseTimelineVelocity(1);
+    }
     public void SetMarkOnTarget()
     {
         currentTarget.EnableCriticalMark();

@@ -11,12 +11,14 @@ public class ReloadChamber : AbilitySequence
     {
         playing = true;
         user = controller.currentUnit;
+        user.currentAbility = ability;
         user.SpendActionPoints(ability.actionCost);
         user.IncreaseBullets(5);
 
+        user.animations.unitAnimator.SetFloat("attackIndex", 0.8f);
+        user.animations.unitAnimator.SetTrigger("attack");
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-
+        yield return new WaitForSeconds(1.5f);
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
