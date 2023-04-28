@@ -42,7 +42,7 @@ public class TrueShot : AbilitySequence
 
         user.animations.unitAnimator.SetFloat("attackIndex", 0.4f);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
 
 
         while (ActionEffect.instance.CheckActionEffectState())

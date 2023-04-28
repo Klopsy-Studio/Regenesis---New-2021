@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveTargetState : BattleState
 {
     public List<Tile> tiles;
-
+    [SerializeField] int buttonTest = 1;
     Tile originPoint;
     int staminaPreview;
     MovementRange range;
@@ -101,13 +101,14 @@ public class MoveTargetState : BattleState
             {
                 if (tiles.Contains(t))
                 {
-                    SelectTile(e.info + t.pos);
-                    owner.ghostImage.gameObject.SetActive(true);
-                    owner.UpdateUnitSprite();
-                }
-                else
-                {
-                    //owner.ghostImage.gameObject.SetActive(false);
+                    if(owner.currentTile != t)
+                    {
+                        SelectTile(e.info + t.pos);
+                        owner.ghostImage.gameObject.SetActive(true);
+                        AudioManager.instance.Play("Boton" + buttonTest);
+                        owner.UpdateUnitSprite();
+                    }
+                    
                 }
             }
         }

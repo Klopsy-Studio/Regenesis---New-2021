@@ -36,6 +36,12 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     [TextArea]
     [SerializeField] string actionDescription;
+
+    [SerializeField] int actionButtonSound = 3;
+    [SerializeField] int abilityButtonSound = 4;
+    [SerializeField] int itemButtonSound = 5;
+
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (canBeSelected)
@@ -55,7 +61,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
                     controller.currentUnit.playerUI.PreviewActionCost(assignedAbility.actionCost);
 
-
+                    AudioManager.instance.Play("Boton" + abilityButtonSound);
                     switch (assignedAbility.abilityEquipmentType)
                     {
                         case KitType.Hammer:
@@ -106,19 +112,27 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     }
                     break;
                 case TabType.ItemConsumable:
+                    AudioManager.instance.Play("Boton" + itemButtonSound);
+
                     abilityDescription.AssignData(assignedConsumable);
                     break;
                 case TabType.Move:
+                    AudioManager.instance.Play("Boton" + actionButtonSound);
+
                     controller.currentUnit.playerUI.PreviewActionCost(controller.moveCost);
                     controller.board.SelectMovementTiles(abilityPreviewTiles);
                     abilityDescription.abilityDescription.SetText(actionDescription);
 
                     break;
                 case TabType.Regular:
+                    AudioManager.instance.Play("Boton" + actionButtonSound);
+
                     abilityDescription.abilityDescription.text = actionDescription;
 
                     break;
                 case TabType.ItemAction:
+                    AudioManager.instance.Play("Boton" + actionButtonSound);
+
                     controller.currentUnit.playerUI.PreviewActionCost(controller.itemCost);
                     abilityDescription.abilityDescription.SetText(actionDescription);
                     break;
