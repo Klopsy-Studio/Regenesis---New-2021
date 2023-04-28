@@ -43,7 +43,10 @@ public class DataPersistenceManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;   
     }
-
+    public void DeleteSave()
+    {
+        dataHandler.Delete();
+    }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
