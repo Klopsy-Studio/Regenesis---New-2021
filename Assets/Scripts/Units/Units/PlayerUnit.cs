@@ -351,6 +351,18 @@ public class PlayerUnit : Unit
             }
         }
     }
+
+    public void PushTargets()
+    {
+        foreach(GameObject o in currentTargets)
+        {
+            if(o.GetComponent<Unit>()!= null)
+            {
+                Directions targetDir = tile.GetDirections(o.GetComponent<Unit>().tile);
+                o.GetComponent<Movement>().PushUnit(targetDir, pushAmount, controller.board);
+            }
+        }
+    }
     public void DecreaseTimelineVelocityTarget()
     {
         currentTarget.DecreaseTimelineVelocity(1);

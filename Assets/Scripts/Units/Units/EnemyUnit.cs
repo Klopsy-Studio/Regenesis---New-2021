@@ -112,7 +112,6 @@ public class EnemyUnit : Unit
         if(monsterControl.target != null)
         {
 
-
             if (tile.CheckSpecificDirection(monsterControl.target.tile, Directions.East) || tile.CheckSpecificDirection(monsterControl.target.tile, Directions.South))
             {
                 unitSprite.transform.position = originalSpritePosition;

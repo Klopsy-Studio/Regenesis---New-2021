@@ -17,6 +17,7 @@ public class DataPersistenceManager : MonoBehaviour
     private List<IDataPersistence> dataPersistenceObjects;
     public static DataPersistenceManager instance { get; private set; }
 
+    [SerializeField] bool enableLoading;
     private void Awake()
     {
         if (instance != null)
@@ -36,22 +37,21 @@ public class DataPersistenceManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-      
-
     }
 
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-       
+        SceneManager.sceneLoaded -= OnSceneLoaded;   
     }
 
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-       
-        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        LoadGame();
+        if (enableLoading)
+        {
+            this.dataPersistenceObjects = FindAllDataPersistenceObjects();
+            LoadGame();
+        }
     }
 
    

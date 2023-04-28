@@ -14,8 +14,7 @@ public class FierceSweep : AbilitySequence
         playing = true;
         List<Tile> tiles = new List<Tile>();
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
-
+        user.currentAbility = ability;
 
         foreach(RangeData r in ability.abilityRange)
         {
@@ -39,72 +38,57 @@ public class FierceSweep : AbilitySequence
             {
                 if (t.content.GetComponent<Unit>() != null)
                 {
-                    if (!units.Contains(t.content.GetComponent<Unit>()))
+                    if (!user.currentTargets.Contains(t.content) && user.gameObject != t.content)
                     {
-                        units.Add(t.content.GetComponent<Unit>());
-
-                    }
-                }
-
-                if (t.occupied)
-                {
-                    if (!units.Contains(controller.enemyUnits[0]))
-                    {
-                        units.Add(controller.enemyUnits[0]);
+                        user.currentTargets.Add(t.content);
                     }
                 }
 
                 if (t.content.GetComponent<BearObstacleScript>() != null)
                 {
-                    obstacles.Add(t.content.GetComponent<BearObstacleScript>());
+                    if (!user.currentTargets.Contains(t.content))
+                    {
+                        user.currentTargets.Add(t.content);
+                    }
+                }
+            }
+
+            if (t.occupied)
+            {
+                if (!user.currentTargets.Contains(controller.enemyUnits[0].gameObject))
+                {
+                    user.currentTargets.Add(controller.enemyUnits[0].gameObject);
                 }
             }
         }
 
-        user.Attack();
-
-        if (!CheckFury())
+        if (CheckFury())
         {
-            if (units.Count > 0)
-            {
-                foreach (Unit u in units)
-                {
-                    Directions targetDir = user.tile.GetDirections(u.tile);
-                    Attack(u);
-                    u.GetComponent<Movement>().PushUnit(targetDir, pushAmmount, controller.board);
-                }
-            }
+            user.pushAmount = 5;
 
-            IncreaseFury();
-        }
-
-        else
-        {
-            if (units.Count > 0)
+            foreach(GameObject o in user.currentTargets)
             {
-                foreach (Unit u in units)
-                {
-                    Directions targetDir = user.tile.GetDirections(u.tile);
-                    Attack(u);
-                    u.GetComponent<Movement>().PushUnit(targetDir, 5, controller.board);
-                }
+                o.GetComponent<Unit>().ApplyStunValue(100);
             }
 
             ResetFury();
         }
-
-        if(obstacles.Count > 0)
+        else
         {
-            foreach(BearObstacleScript o in obstacles)
-            {
-                o.GetDestroyed(controller.board);
-            }
+            user.pushAmount = 1;
+            IncreaseFury();
         }
+
+        user.animations.unitAnimator.SetFloat("attackIndex", 0.8f);
+        user.animations.unitAnimator.SetTrigger("attack");
+
+        yield return new WaitForSeconds(2f);
 
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
         }
+
 
         user.SpendActionPoints(ability.actionCost);
         playing = false;
