@@ -50,6 +50,7 @@ public class AnimationEventCopier : EditorWindow
 
             if (sourceAnimClip != targetAnimClip)
             {
+                
                 AnimationUtility.SetAnimationEvents(targetAnimClip, clearEvents);
                 AnimationUtility.SetAnimationEvents(targetAnimClip, AnimationUtility.GetAnimationEvents(sourceAnimClip));
             }

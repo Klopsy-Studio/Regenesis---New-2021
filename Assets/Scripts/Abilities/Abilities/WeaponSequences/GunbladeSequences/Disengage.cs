@@ -53,7 +53,7 @@ public class Disengage : AbilitySequence
         }
 
         user.animations.unitAnimator.SetTrigger("attack");
-        user.animations.unitAnimator.SetFloat("attackIndex", 1f);
+        user.animations.unitAnimator.SetFloat("attackIndex", 0.6f);
 
         yield return new WaitForSeconds(1f);
 
