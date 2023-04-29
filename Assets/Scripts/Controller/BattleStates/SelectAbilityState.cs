@@ -137,6 +137,8 @@ public class SelectAbilityState : BattleState
     {
         owner.ResetUnits();
         AbilitySelectionUI.gameObject.SetActive(false);
+        AudioManager.instance.Play("Boton" + owner.exitWindow);
+
         owner.currentUnit.playerUI.HideBullets();
         owner.ChangeState<SelectActionState>();
     }
@@ -198,42 +200,6 @@ public class SelectAbilityState : BattleState
         
     }
 
-    //protected override void OnMouseSelectEvent(object sender, InfoEventArgs<Point> e)
-    //{
-    //    if (owner.abilitySelectionUI.onOption)
-    //    {
-    //        if (onPreview)
-    //        {
-    //            board.DeSelectTiles(tiles);
-    //            tiles.Clear();
-    //            onPreview = false;
-    //        }
-
-    //        Abilities currentAbility = AbilitySelectionUI.options[AbilitySelectionUI.currentSelection].GetComponent<SelectorMovement>().assignedAbility;
-    //        AbilityRange range = currentAbility.rangeData.GetOrCreateRange(currentAbility.rangeData.range, owner.currentUnit.gameObject);
-    //        range.unit = owner.currentUnit;
-
-    //        tiles = range.GetTilesInRange(board);
-
-    //        board.SelectAbilityTiles(tiles);
-
-    //        owner.currentUnit.playerUI.PreviewActionCost(currentAbility.actionCost);
-
-    //        onPreview = true;
-    //    }
-
-    //    else
-    //    {
-    //        if(tiles != null || tiles.Count > 0)
-    //        {
-    //            board.DeSelectTiles(tiles);
-    //            tiles.Clear();
-    //            onPreview = false;
-    //        }
-
-    //        owner.currentUnit.playerUI.ShowActionPoints();
-    //    }
-    //}
     protected override void OnSelectCancelEvent(object sender, InfoEventArgs<int> e)
     {
         owner.currentUnit.playerUI.ShowActionPoints();

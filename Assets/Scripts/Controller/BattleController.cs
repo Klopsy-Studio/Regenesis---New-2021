@@ -167,6 +167,21 @@ public class BattleController : StateMachine
 
     float fov;
     [SerializeField] [Range(0, 1000)]float sensitivity = 10f;
+
+
+    [Header("UI button sounds")]
+    public int actionWindowButton;
+    public int enterAbilityWindowButton;
+    public int abilityWindowButton;
+    public int enterTargetWindowButton;
+    public int targetWindowButton;
+    public int enterItemWindowButton;
+    public int itemWindowButton;
+    public int moveTargetSound;
+    public int selectTargetTileSound;
+    public int exitWindow;
+
+
     public virtual void BeginGame()
     {
         canToggleTimeline = true;

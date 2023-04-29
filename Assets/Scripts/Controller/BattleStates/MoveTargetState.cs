@@ -105,7 +105,7 @@ public class MoveTargetState : BattleState
                     {
                         SelectTile(e.info + t.pos);
                         owner.ghostImage.gameObject.SetActive(true);
-                        AudioManager.instance.Play("Boton" + buttonTest);
+                        AudioManager.instance.Play("Boton" + owner.moveTargetSound);
                         owner.UpdateUnitSprite();
                     }
                     
