@@ -98,6 +98,15 @@ public class AudioManager : MonoBehaviour
     public void Stop(string name)
     {
         Sound newSound = Array.Find(sounds, sound => sound.name == name);
-        newSound.source.Stop();
+
+        if(newSound != null)
+        {
+            newSound.source.Stop();
+        }
+
+        else
+        {
+            Debug.Log("Sound: " + name + " not found");
+        }
     }
 }

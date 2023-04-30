@@ -352,6 +352,10 @@ public class PlayerUnit : Unit
         }
     }
 
+    public void StopAudio(string audioName)
+    {
+        AudioManager.instance.Stop(audioName);
+    }
     public void PushTargets()
     {
         foreach(GameObject o in currentTargets)
