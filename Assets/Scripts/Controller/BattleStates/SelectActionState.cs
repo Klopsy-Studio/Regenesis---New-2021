@@ -166,7 +166,7 @@ public class SelectActionState : BattleState
                     Debug.Log("CASE 0");
                     ActionSelectionUI.gameObject.SetActive(false);
                     owner.ChangeState<MoveTargetState>();
-                    AudioManager.instance.Play("Boton" + owner.enterTargetWindowButton);
+                    AudioManager.instance.Play("Boton" + owner.enterMenu);
                 }
 
                 //owner.currentUnit.GetComponent<Movement>().PushUnit(Directions.South, 3, board);
@@ -178,7 +178,7 @@ public class SelectActionState : BattleState
                 if (owner.currentUnit.CanDoAbility())
                 {
                     owner.ChangeState<SelectAbilityState>();
-                    AudioManager.instance.Play("Boton" + owner.enterAbilityWindowButton);
+                    AudioManager.instance.Play("Boton" + owner.enterMenu);
 
                 }
                 break;
@@ -190,7 +190,7 @@ public class SelectActionState : BattleState
                 if(owner.currentUnit.actionsPerTurn >= 2)
                 {
                     owner.ChangeState<SelectItemState>();
-                    AudioManager.instance.Play("Boton" + owner.enterItemWindowButton);
+                    AudioManager.instance.Play("Boton" + owner.enterMenu);
 
                 }
                 //OpenItemMenu
@@ -208,7 +208,7 @@ public class SelectActionState : BattleState
                 //Skip turn
 
                 owner.ChangeState<WaitUnitState>();
-                AudioManager.instance.Play("Boton" + owner.enterTargetWindowButton);
+                AudioManager.instance.Play("Boton" + owner.enterMenu);
 
                 break;
 

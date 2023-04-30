@@ -75,6 +75,8 @@ public class MoveTargetState : BattleState
     protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
     {
         SelectTile(owner.currentUnit.currentPoint);
+        AudioManager.instance.Play("Boton" + owner.exitMenu);
+
         owner.DeactivateTileSelector();
         owner.ChangeState<SelectActionState>();
     }
@@ -105,7 +107,7 @@ public class MoveTargetState : BattleState
                     {
                         SelectTile(e.info + t.pos);
                         owner.ghostImage.gameObject.SetActive(true);
-                        AudioManager.instance.Play("Boton" + owner.moveTargetSound);
+                        AudioManager.instance.Play("Boton" + owner.hoverTile);
                         owner.UpdateUnitSprite();
                     }
                     

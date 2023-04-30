@@ -61,7 +61,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
                     controller.currentUnit.playerUI.PreviewActionCost(assignedAbility.actionCost);
 
-                    AudioManager.instance.Play("Boton" + controller.actionWindowButton);
+                    AudioManager.instance.Play("Boton" + controller.hoverOption);
                     switch (assignedAbility.abilityEquipmentType)
                     {
                         case KitType.Hammer:
@@ -112,12 +112,12 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     }
                     break;
                 case TabType.ItemConsumable:
-                    AudioManager.instance.Play("Boton" + controller.itemWindowButton);
+                    AudioManager.instance.Play("Boton" + controller.hoverOption);
 
                     abilityDescription.AssignData(assignedConsumable);
                     break;
                 case TabType.Move:
-                    AudioManager.instance.Play("Boton" + controller.actionWindowButton);
+                    AudioManager.instance.Play("Boton" + controller.hoverOption);
 
                     controller.currentUnit.playerUI.PreviewActionCost(controller.moveCost);
                     controller.board.SelectMovementTiles(abilityPreviewTiles);
@@ -125,13 +125,13 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
                     break;
                 case TabType.Regular:
-                    AudioManager.instance.Play("Boton" + controller.actionWindowButton);
+                    AudioManager.instance.Play("Boton" + controller.hoverOption);
 
                     abilityDescription.abilityDescription.text = actionDescription;
 
                     break;
                 case TabType.ItemAction:
-                    AudioManager.instance.Play("Boton" + controller.actionWindowButton);
+                    AudioManager.instance.Play("Boton" + controller.hoverOption);
 
                     controller.currentUnit.playerUI.PreviewActionCost(controller.itemCost);
                     abilityDescription.abilityDescription.SetText(actionDescription);

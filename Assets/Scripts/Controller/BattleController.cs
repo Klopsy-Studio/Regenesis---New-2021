@@ -170,16 +170,11 @@ public class BattleController : StateMachine
 
 
     [Header("UI button sounds")]
-    public int actionWindowButton;
-    public int enterAbilityWindowButton;
-    public int abilityWindowButton;
-    public int enterTargetWindowButton;
-    public int targetWindowButton;
-    public int enterItemWindowButton;
-    public int itemWindowButton;
-    public int moveTargetSound;
-    public int selectTargetTileSound;
-    public int exitWindow;
+    public int hoverOption;
+    public int enterMenu;
+    public int exitMenu;
+    public int hoverTile;
+
 
 
     public virtual void BeginGame()

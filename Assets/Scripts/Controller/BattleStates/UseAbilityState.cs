@@ -224,80 +224,89 @@ public class UseAbilityState : BattleState
                         {
                             if (tiles.Contains(board.GetTile(e.info + t.pos)))
                             {
-                                SelectTile(e.info + t.pos);
-                                owner.UpdateUnitSprite();
-                                selectedTile = board.GetTile(e.info + t.pos);
-
-                                if (selectTiles != null)
+                                if(owner.currentTile != t)
                                 {
-                                    board.DeSelectTiles(selectTiles);
+                                    SelectTile(e.info + t.pos);
                                 }
 
-                                GetSelectTiles(currentAbility);
-                                
-                                if(owner.currentUnit.weapon.EquipmentType == KitType.Drone)
+                                if (selectedTile != t)
                                 {
-                                    GetDroneSelectTiles(currentAbility);
-                                }
-                                
-                                switch (currentAbility.abilityEffect)
-                                {
-                                    case EffectType.Damage:
-                                        board.SelectAttackTiles(selectTiles);
-                                        break;
-                                    case EffectType.Heal:
-                                        board.SelectHealTiles(selectTiles);
-                                        break;
-                                    case EffectType.Buff:
-                                        break;
-                                    case EffectType.Debuff:
-                                        break;
-                                    default:
-                                        break;
-                                }
+                                    Debug.Log("SelectingTile");
+                                    AudioManager.instance.Play("Boton" + owner.hoverTile);
 
-                                foreach(Tile tile in selectTiles)
-                                {
-                                    if(tile.content != null)
+                                    owner.UpdateUnitSprite();
+                                    selectedTile = board.GetTile(e.info + t.pos);
+
+                                    if (selectTiles != null)
                                     {
-                                        if (tile.content.GetComponent<Unit>() != null)
+                                        board.DeSelectTiles(selectTiles);
+                                    }
+
+                                    GetSelectTiles(currentAbility);
+
+                                    if (owner.currentUnit.weapon.EquipmentType == KitType.Drone)
+                                    {
+                                        GetDroneSelectTiles(currentAbility);
+                                    }
+
+                                    switch (currentAbility.abilityEffect)
+                                    {
+                                        case EffectType.Damage:
+                                            board.SelectAttackTiles(selectTiles);
+                                            break;
+                                        case EffectType.Heal:
+                                            board.SelectHealTiles(selectTiles);
+                                            break;
+                                        case EffectType.Buff:
+                                            break;
+                                        case EffectType.Debuff:
+                                            break;
+                                        default:
+                                            break;
+                                    }
+
+                                    foreach (Tile tile in selectTiles)
+                                    {
+                                        if (tile.content != null)
                                         {
-                                            if (!spriteTargets.Contains(tile.content.GetComponent<Unit>().unitSprite))
+                                            if (tile.content.GetComponent<Unit>() != null)
                                             {
-                                                spriteTargets.Add(tile.content.GetComponent<Unit>().unitSprite);
+                                                if (!spriteTargets.Contains(tile.content.GetComponent<Unit>().unitSprite))
+                                                {
+                                                    spriteTargets.Add(tile.content.GetComponent<Unit>().unitSprite);
+                                                }
+                                            }
+
+                                            if (tile.content.GetComponent<BearObstacleScript>() != null)
+                                            {
+                                                if (!spriteTargets.Contains(tile.content.GetComponent<SpriteRenderer>()))
+                                                {
+                                                    spriteTargets.Add(tile.content.GetComponent<SpriteRenderer>());
+                                                }
                                             }
                                         }
 
-                                        if(tile.content.GetComponent<BearObstacleScript>()!= null)
+                                        if (tile.occupied)
                                         {
-                                            if (!spriteTargets.Contains(tile.content.GetComponent<SpriteRenderer>()))
+                                            if (!spriteTargets.Contains(owner.enemyUnits[0].unitSprite))
                                             {
-                                                spriteTargets.Add(tile.content.GetComponent<SpriteRenderer>());
+                                                spriteTargets.Add(owner.enemyUnits[0].unitSprite);
                                             }
                                         }
                                     }
 
-                                    if (tile.occupied)
+
+                                    if (spriteTargets != null)
                                     {
-                                        if (!spriteTargets.Contains(owner.enemyUnits[0].unitSprite))
+                                        if (spriteTargets.Count > 0)
                                         {
-                                            spriteTargets.Add(owner.enemyUnits[0].unitSprite);
+                                            foreach (SpriteRenderer s in spriteTargets)
+                                            {
+                                                s.color = new Color(s.color.r, s.color.g, s.color.b, 1f);
+                                            }
                                         }
                                     }
                                 }
-
-
-                                if(spriteTargets != null)
-                                {
-                                    if (spriteTargets.Count > 0)
-                                    {
-                                        foreach(SpriteRenderer s in spriteTargets)
-                                        {
-                                            s.color = new Color(s.color.r, s.color.g, s.color.b, 1f);
-                                        }
-                                    }
-                                }
-                                
                             }
                             else
                             {
@@ -315,8 +324,9 @@ public class UseAbilityState : BattleState
                                     }
 
                                     spriteTargets.Clear();
-                                    selectedTile = null;
                                 }
+
+                                selectedTile = null;
 
                             }
                         }
@@ -654,6 +664,8 @@ public class UseAbilityState : BattleState
             owner.currentUnit.playerUI.ShowActionPoints();
             owner.DeactivateTileSelector();
             SelectTile(owner.currentUnit.currentPoint);
+            AudioManager.instance.Play("Boton" + owner.exitMenu);
+
             owner.ChangeState<SelectAbilityState>();
         }
     }

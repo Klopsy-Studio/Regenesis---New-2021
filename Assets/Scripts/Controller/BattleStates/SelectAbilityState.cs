@@ -137,7 +137,7 @@ public class SelectAbilityState : BattleState
     {
         owner.ResetUnits();
         AbilitySelectionUI.gameObject.SetActive(false);
-        AudioManager.instance.Play("Boton" + owner.exitWindow);
+        AudioManager.instance.Play("Boton" + owner.exitMenu);
 
         owner.currentUnit.playerUI.HideBullets();
         owner.ChangeState<SelectActionState>();
@@ -179,8 +179,9 @@ public class SelectAbilityState : BattleState
     protected override void OnSelectAction(object sender, InfoEventArgs<int> e)
     {
         owner.attackChosen = e.info;
+        AudioManager.instance.Play("Boton" + owner.enterMenu);
 
-        if(owner.currentUnit.weapon.EquipmentType == KitType.Gunblade)
+        if (owner.currentUnit.weapon.EquipmentType == KitType.Gunblade)
         {
             if (abilityList[owner.attackChosen].CanDoAbility(owner.currentUnit.actionsPerTurn, owner.currentUnit))
             {

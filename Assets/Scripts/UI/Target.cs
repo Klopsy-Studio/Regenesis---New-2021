@@ -31,6 +31,7 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (!owner.stopSelection)
         {
+            AudioManager.instance.Play("Boton" + owner.controller.hoverOption);
             owner.controller.ActivateTileSelector();    
             owner.selectedTarget = this;
             controller.SelectTile(targetPosition);

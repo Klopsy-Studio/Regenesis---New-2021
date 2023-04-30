@@ -93,8 +93,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 0
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
   highlightTextColor: {r: 0, g: 0, b: 0, a: 0}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -1915,8 +1917,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -2154,8 +2158,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -3705,8 +3711,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -4046,7 +4054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &462894276
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4968,8 +4976,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 1, g: 0.51841265, b: 0, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -5957,6 +5967,9 @@ MonoBehaviour:
   canBeSelected: 0
   typeOfOption: 0
   actionDescription: 
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &674369387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6282,8 +6295,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -6891,7 +6906,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hunt Report
+  m_text: "Hunt Report \nVictory"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -7343,8 +7358,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
   highlightTextColor: {r: 0, g: 0, b: 0, a: 0}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -9664,6 +9681,9 @@ MonoBehaviour:
   canBeSelected: 0
   typeOfOption: 1
   actionDescription: 
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &1169296838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9903,8 +9923,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -11670,6 +11692,9 @@ MonoBehaviour:
   canBeSelected: 0
   typeOfOption: 0
   actionDescription: 
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &1435599198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11810,8 +11835,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 1, g: 0.51841265, b: 0, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -12887,8 +12914,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -14033,8 +14062,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -14262,8 +14293,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -15948,6 +15981,9 @@ MonoBehaviour:
   canBeSelected: 0
   typeOfOption: 1
   actionDescription: 
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &1984303921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16618,8 +16654,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -17554,8 +17592,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -18433,8 +18473,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 0
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
   highlightTextColor: {r: 0, g: 0, b: 0, a: 0}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: -63.94
   buttonSpeed: 0.5
   defaultSprite: {fileID: 0}
@@ -18789,7 +18831,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hunt Report
+  m_text: 'Hunt Report
+
+    Defeat'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -19772,8 +19816,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1086445966}
-        m_TargetAssemblyTypeName: LootUIState, Assembly-CSharp
+      - m_Target: {fileID: 1086445967}
+        m_TargetAssemblyTypeName: DefeatUIState, Assembly-CSharp
         m_MethodName: DefeatReturnToCamp
         m_Mode: 1
         m_Arguments:
@@ -19895,7 +19939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7791566168982337493
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20595,8 +20639,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -21496,8 +21542,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -23138,8 +23186,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -23496,6 +23546,7 @@ GameObject:
   - component: {fileID: 1646368858}
   - component: {fileID: 1255951506}
   - component: {fileID: 1086445966}
+  - component: {fileID: 1086445967}
   m_Layer: 0
   m_Name: BattleController 2
   m_TagString: Untagged
@@ -23717,6 +23768,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   sensitivity: 1000
+  hoverOption: 10
+  enterMenu: 1
+  exitMenu: 7
+  hoverTile: 5
   playtestToggle: 1
   indicatingTurn: 0
 --- !u!114 &1646368858
@@ -23765,6 +23820,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bea871d59674cf4ea0014fbb26a262a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1086445967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3099776044107931979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7dfa31ae9791549b6976b0e3732ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3099776044160166961
@@ -23994,10 +24061,13 @@ MonoBehaviour:
   abilityDescription: {fileID: 6614401847308011999}
   assignedAbility: {fileID: 0}
   assignedConsumable: {fileID: 0}
-  controller: {fileID: 0}
+  controller: {fileID: 3099776044107931976}
   canBeSelected: 1
   typeOfOption: 3
   actionDescription: Finish the turn and return to the beginning of the timeline.
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &85011358210370040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24717,6 +24787,9 @@ MonoBehaviour:
   canBeSelected: 0
   typeOfOption: 0
   actionDescription: 
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &85011357505504280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24867,6 +24940,9 @@ MonoBehaviour:
   canBeSelected: 0
   typeOfOption: 0
   actionDescription: 
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &85011359021256530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25020,6 +25096,9 @@ MonoBehaviour:
   canBeSelected: 1
   typeOfOption: 4
   actionDescription: Use an item to support your allies or damage the monster.
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &85011358550320532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25265,10 +25344,13 @@ MonoBehaviour:
   abilityDescription: {fileID: 6614401847308011999}
   assignedAbility: {fileID: 0}
   assignedConsumable: {fileID: 0}
-  controller: {fileID: 0}
+  controller: {fileID: 3099776044107931976}
   canBeSelected: 1
   typeOfOption: 3
   actionDescription: Use abilities to support your allies or damage the monster.
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &85011357357876112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25891,6 +25973,9 @@ MonoBehaviour:
   typeOfOption: 2
   actionDescription: Move your hunter to another tile to reposition and attack the
     monster or support your allies.
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!1 &3138176881483904075
 GameObject:
   m_ObjectHideFlags: 0
@@ -26216,8 +26301,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
   highlightTextColor: {r: 0, g: 0, b: 0, a: 0}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -26445,8 +26532,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -26905,6 +26994,9 @@ MonoBehaviour:
   canBeSelected: 0
   typeOfOption: 1
   actionDescription: 
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &5792167440995798771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27070,8 +27162,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -28324,8 +28418,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -28561,8 +28657,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
   highlightTextColor: {r: 0, g: 0, b: 0, a: 0}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 86.17
   buttonSpeed: 2
   defaultSprite: {fileID: 1256323325402365843, guid: 34ec0ca1439e30b48bd67474ecab7d1b, type: 3}
@@ -29386,8 +29484,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
   highlightTextColor: {r: 0, g: 0, b: 0, a: 0}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: -115.01
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -30229,6 +30329,9 @@ MonoBehaviour:
   canBeSelected: 0
   typeOfOption: 1
   actionDescription: 
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &3975942645193188890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32263,6 +32366,9 @@ MonoBehaviour:
   canBeSelected: 1
   typeOfOption: 3
   actionDescription: Check this hunter state and stats like power or defense.
+  actionButtonSound: 3
+  abilityButtonSound: 4
+  itemButtonSound: 5
 --- !u!114 &2441345063414427890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33545,8 +33651,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -33983,8 +34091,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}
@@ -34406,8 +34516,10 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
   highlightTextColor: {r: 0, g: 0, b: 0, a: 0}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
   appearPosition: 0
   buttonSpeed: 2
   defaultSprite: {fileID: 0}

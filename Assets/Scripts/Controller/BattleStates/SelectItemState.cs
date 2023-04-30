@@ -77,6 +77,8 @@ public class SelectItemState : BattleState
     protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
     {
         owner.itemSelectionUI.gameObject.SetActive(false);
+        AudioManager.instance.Play("Boton" + owner.exitMenu);
+
         owner.ChangeState<SelectActionState>();
     }
     protected override void OnMove(object sender, InfoEventArgs<Point> e)
