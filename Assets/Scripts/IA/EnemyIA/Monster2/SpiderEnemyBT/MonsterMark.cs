@@ -58,6 +58,7 @@ public class MonsterMark : ActionNode
 
         yield return new WaitForSeconds(0.5f);
         controller.SelectTile(chosenTarget.tile.pos);
+        AudioManager.instance.Play("HunterMark");
         ActionEffect.instance.Play(3, 0.5f, 0.01f, 0.05f);
 
         while (ActionEffect.instance.CheckActionEffectState())

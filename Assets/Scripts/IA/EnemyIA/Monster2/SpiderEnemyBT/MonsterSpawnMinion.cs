@@ -55,10 +55,10 @@ public class MonsterSpawnMinion : ActionNode
             for (int i = 0; i < numberToSpawn; i++)
             {
                 owner.controller.monsterAnimations.SetBool("spawn"+i, true);
-
                 Tile t = areaTiles[Random.Range(0, areaTiles.Count)];
                 areaTiles.Remove(t);
                 yield return new WaitForSeconds(0.8f);
+                AudioManager.instance.Play("MinionSpawn" + (i + 1));
 
                 if (i > owner.controller.minionsPrefab.Count - 1)
                 {
