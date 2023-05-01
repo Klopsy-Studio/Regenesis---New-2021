@@ -220,13 +220,11 @@ public class TimelineUI : MonoBehaviour
                     _topLane.Add(temp);
                 }
 
-                temp.image.sprite = playerFrame;
                 temp.element.iconTimeline = temp;
                 temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
 
                 temp.downSupport.GetComponent<Image>().enabled = true;
 
-                temp.downSupport.sprite = upSupport;
                 temp.offset = 70;
 
                 temp.velocityText.gameObject.SetActive(true);
@@ -246,12 +244,9 @@ public class TimelineUI : MonoBehaviour
 
                 temp.element.iconTimeline = temp;
 
-                temp.image.sprite = enemyFrame;
-
                 temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
 
                 temp.upSupport.GetComponent<Image>().enabled = true;
-                temp.upSupport.sprite = downSupport;
 
                 temp.velocityText.gameObject.SetActive(false);
                 temp.offset = -70;
@@ -268,7 +263,6 @@ public class TimelineUI : MonoBehaviour
 
                 temp.element.iconTimeline = temp;
 
-                temp.image.sprite = eventFrame;
                 temp.icon.sprite = eventIcon;
                 temp.velocityText.gameObject.SetActive(false);
                 temp.offset = 0;
@@ -284,7 +278,6 @@ public class TimelineUI : MonoBehaviour
 
                 temp.element.iconTimeline = temp;
 
-                temp.image.sprite = itemFrame;
                 temp.icon.sprite = itemIcon;
 
                 temp.offset = 0;
@@ -298,7 +291,6 @@ public class TimelineUI : MonoBehaviour
                     _midLane.Add(temp);
                 }
                 temp.element.iconTimeline = temp;
-                temp.upSupport.sprite = downSupport;
                 temp.velocityText.gameObject.SetActive(false);
                 temp.offset = 0;
             }
@@ -314,8 +306,6 @@ public class TimelineUI : MonoBehaviour
 
                 temp.element.iconTimeline = temp;
                 temp.upSupport.GetComponent<Image>().enabled = true;
-
-                temp.image.sprite = itemFrame;
                 temp.offset = 0;
 
                 temp.upSupport.gameObject.SetActive(true);
@@ -332,18 +322,15 @@ public class TimelineUI : MonoBehaviour
                     _topLane.Add(temp);
                 }
 
-                temp.image.sprite = playerFrame;
                 temp.element.iconTimeline = temp;
                 temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
 
                 temp.downSupport.GetComponent<Image>().enabled = true;
-                temp.downSupport.sprite = upSupport;
                 temp.offset = 70;
             }
             temp.barSize = content.sizeDelta.x;
             temp.originalOffset = temp.offset;
             temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
-            temp.image.SetNativeSize();
 
         }
     }
@@ -401,34 +388,34 @@ public class TimelineUI : MonoBehaviour
     }
     public void ShowIconActing(TimelineElements element)
     {
-        currentActorFrame.enabled = true;
         currentActorIcon.enabled = true;
         element.iconTimeline.isActing = true;
 
-        switch (element.timelineTypes)
-        {
-            case TimeLineTypes.Null:
-                break;
-            case TimeLineTypes.PlayerUnit:
-                currentActorFrame.sprite = playerFrame;
-                break;
-            case TimeLineTypes.EnemyUnit:
-                currentActorFrame.sprite = enemyFrame;
-                break;
-            case TimeLineTypes.RealtimeEvents:
-                currentActorFrame.sprite = eventFrame;
-                break;
-            case TimeLineTypes.Items:
-                currentActorFrame.sprite = eventFrame;
-                break;
-            case TimeLineTypes.PlayerDeath:
-                currentActorFrame.sprite = itemFrame;
-                break;
-            default:
-                break;
-        }
+        //switch (element.timelineTypes)
+        //{
+        //    case TimeLineTypes.Null:
+        //        break;
+        //    case TimeLineTypes.PlayerUnit:
+        //        currentActorFrame.sprite = playerFrame;
+        //        break;
+        //    case TimeLineTypes.EnemyUnit:
+        //        currentActorFrame.sprite = enemyFrame;
+        //        break;
+        //    case TimeLineTypes.RealtimeEvents:
+        //        currentActorFrame.sprite = eventFrame;
+        //        break;
+        //    case TimeLineTypes.Items:
+        //        currentActorFrame.sprite = eventFrame;
+        //        break;
+        //    case TimeLineTypes.PlayerDeath:
+        //        currentActorFrame.sprite = itemFrame;
+        //        break;
+        //    default:
+        //        break;
+        //}
 
         currentActorIcon.sprite = element.timelineIcon;
+        currentActorIcon.SetNativeSize();
     }
 
     public void HideIconActing()

@@ -422,7 +422,7 @@ MonoBehaviour:
   fTimelineVelocity: 15
   timelineFill: 0
   isTimelineActive: 0
-  timelineIcon: {fileID: 21300000, guid: 661e1416ebe772e4a911796cab24d885, type: 3}
+  timelineIcon: {fileID: 4374337227270745975, guid: 0f15af0bf4a1f6245a12eb91610f79fe, type: 3}
   eventDescription: 
   iconTimeline: {fileID: 0}
   previewTime: 0
@@ -474,6 +474,7 @@ MonoBehaviour:
   buffIndicator: {fileID: 1291311756755517916}
   debuffIndicator: {fileID: 9108246666323640013}
   tileIndicator: {fileID: 4303376924294974850}
+  popUps: {fileID: 0}
   currentParameters:
     cameraSize: 3
     effectDuration: 0.5
@@ -527,7 +528,8 @@ MonoBehaviour:
   unitPortrait: {fileID: -8665178763360255156, guid: 8bec534dda6f82c42ae5477e730eac43, type: 3}
   monsterControl: {fileID: 4319465372067614749}
   lowHealth: 0
-  monsterUI: {fileID: 1001810233096341232}
+  originalSpritePosition: {x: 0, y: 0, z: 0}
+  flippedSpritePosition: {x: 0, y: 0, z: 0}
   evolvedPortrait: {fileID: -5849888285636261961, guid: 473c3df3d4365b34c950520325ebaaea, type: 3}
   parent: {fileID: 0}
   movementRange:
@@ -737,6 +739,7 @@ MonoBehaviour:
   obstacle: {fileID: 986858306413133845, guid: 3ccb7408d54443c4eba8e9f77a2d75bc, type: 3}
   obstaclesInGame: []
   validObstacles: []
+  chosenObstacle: {fileID: 0}
   obstacleLimit: 4
   spiderMonsterMovementRange: []
   minionsPrefab: []

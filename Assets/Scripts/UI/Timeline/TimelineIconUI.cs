@@ -10,8 +10,6 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public RectTransform groupPos;
     public TextMeshProUGUI velocityText;
     public RectTransform rectTransform;
-    public Image image;
-
     public Image icon;
 
     public Image upSupport;
