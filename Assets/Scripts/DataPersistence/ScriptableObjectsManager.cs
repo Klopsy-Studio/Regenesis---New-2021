@@ -61,14 +61,14 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
                 
                 if(unitProfile.unitName == unit.Key)
                 {
-                    Debug.Log("UNIT PROFILE " + unitProfile.unitName + " unit key " + unit.Key);
+                    //Debug.Log("UNIT PROFILE " + unitProfile.unitName + " unit key " + unit.Key);
                     //When we have the unit, we want to add the correct weapon
                     for (int w = 0; w < allWeaponItems.Count; w++)
                     {
                         var weapon = allWeaponItems[w];
                         if(weapon.name == unit.Value)
                         {
-                            Debug.Log("weapon name " + weapon.name + " unit key " + unit.Value);
+                            //Debug.Log("weapon name " + weapon.name + " unit key " + unit.Value);
                             unitProfile.unitWeapon = weapon;
                             break;
                         }
@@ -127,11 +127,11 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
 
     private void LoadMaterialData(GameData data)
     {
-        Debug.Log("BBBBBBBBBB");
+    
         materialInventory.materialContainer.Clear();
         for (int i = 0; i < data.materialInventory.Count; i++)
         {
-            Debug.Log("suma " + i);
+        
             var itemData = data.materialInventory[i];
             for (int w = 0; w < allMaterialItems.Count; w++)
             {

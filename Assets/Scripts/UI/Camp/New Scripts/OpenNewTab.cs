@@ -55,10 +55,17 @@ public class OpenNewTab : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log("hola");
+        if (eventData.button !=PointerEventData.InputButton.Left)
+        {
+            return;
+        }
+        Debug.Log("funciona");
         OpenTab();
         foreach (var item in closeButtons)
         {
             item.SetActive(false);
         }
+
     }
 }
