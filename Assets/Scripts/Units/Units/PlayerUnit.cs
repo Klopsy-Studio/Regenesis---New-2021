@@ -46,7 +46,7 @@ public class PlayerUnit : Unit
     public int gunbladeAmmoAmount;
     public int gunbladeAmmoMax;
     public PlayerUnit droneUnit;
-    [SerializeField] GameObject droneIndicator;
+    public Animator droneIndicator;
     public int pushAmount;
     public Directions pushDirections;
 
@@ -129,7 +129,7 @@ public class PlayerUnit : Unit
     }
     public void EnableDrone()
     {
-        droneIndicator.SetActive(true);
+        droneIndicator.SetTrigger("appear");
     }
 
     public void IncreaseCriticalPercentage()
@@ -138,7 +138,7 @@ public class PlayerUnit : Unit
     }
     public void DisableDrone()
     {
-        droneIndicator.SetActive(false);
+        droneIndicator.SetTrigger("out");
     }
     //ESTA FUNCION HAY QUE REVISARLA
     public void EquipAllItems()
