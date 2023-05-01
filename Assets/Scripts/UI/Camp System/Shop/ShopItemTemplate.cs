@@ -16,7 +16,8 @@ public class ShopItemTemplate : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        //shopManager.shopItemSelected = this;
+        //TODO Hacer que no se pueda seleccionar cuando (buy item panel info) esté abierto
+        if (shopManager.buyItemPanel.GO.activeSelf) { return; }
         if (!shopManager.itemPanelInfo.GO.activeSelf) shopManager.itemPanelInfo.GO.SetActive(true);
         shopManager.itemPanelInfo.SetItemInfo(this);
 
