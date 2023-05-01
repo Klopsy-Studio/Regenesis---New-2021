@@ -18,6 +18,7 @@ public class MaterialPointsShopButton : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
+            if (originalMaterialAmounts <= 0) return;
             UseMaterial();
         }   
         else if (eventData.button == PointerEventData.InputButton.Right)

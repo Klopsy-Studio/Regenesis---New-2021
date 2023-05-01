@@ -86,8 +86,9 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         //OnSceneUnloaded() in the DataPersistenceManager
     }
 
-    public void OnContinueClicked()
+    public void SaveGame() //UNITY buttons
     {
+        Debug.Log("save game was clicked");
         DataPersistenceManager.instance.SaveGame();
     }
 

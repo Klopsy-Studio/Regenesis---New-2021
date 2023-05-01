@@ -26,6 +26,17 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
     [Header("Unit profile list")]
     [SerializeField] List<UnitProfile> allUnitProfile;
 
+    [Header("Debug things")]
+    public MonsterMaterial[] monsterMaterial;
+   
+    public void AddThingsToMatInventory()
+    {
+        foreach (var item in monsterMaterial)
+        {
+            materialInventory.AddMonsterMaterial(item, 10);
+        }
+        
+    }
    
     public void LoadData(GameData data)
     {

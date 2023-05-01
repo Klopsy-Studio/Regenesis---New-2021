@@ -2191,6 +2191,10 @@ PrefabInstance:
       value: DataPersistenceManager
       objectReference: {fileID: 0}
     - target: {fileID: 7713396412816037701, guid: 8014c5478e3890b49be2b50da48f7c73, type: 3}
+      propertyPath: enableLoading
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713396412816037701, guid: 8014c5478e3890b49be2b50da48f7c73, type: 3}
       propertyPath: initializeDataifNull
       value: 0
       objectReference: {fileID: 0}
@@ -3433,7 +3437,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 788003505}
         m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: OnContinueClicked
+        m_MethodName: SaveGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
