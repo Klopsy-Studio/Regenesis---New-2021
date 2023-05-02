@@ -40,6 +40,7 @@ public class DroneManager : MonoBehaviour
         {
             d.transform.parent = null;
             d.gameObject.SetActive(false);
+            Destroy(d.gameObject, 0.2f);
         }
 
         targets.Clear();
@@ -48,16 +49,65 @@ public class DroneManager : MonoBehaviour
 
     public void SetCurrentTarget(DroneTarget target)
     {
-        if(currentTarget != null)
+
+        StartCoroutine(SetCurrentTargetSequence(target));
+        Debug.Log("Setting new target");
+        //if(currentTarget != null)
+        //{
+        //    currentTarget.targetSetCheck.SetActive(false);
+        //    currentTarget.currentTarget.DisableDrone();
+        //    currentTarget = null;
+        //}
+
+        //currentTarget = target;
+        //currentTarget.targetSetCheck.SetActive(true);
+        //currentTarget.currentTarget.EnableDrone();
+
+    }
+
+    public void ApplyTarget(DroneTarget t)
+    {
+        currentTarget = t;
+        currentTarget.targetSetCheck.SetActive(true);
+    }
+    IEnumerator SetCurrentTargetSequence(DroneTarget target)
+    {
+        controller.actionSelectionUI.gameObject.SetActive(false);
+        controller.abilitySelectionUI.gameObject.SetActive(false);
+
+        foreach(DroneTarget t in targets)
         {
+            t.gameObject.SetActive(false);
+        }
+
+        if (currentTarget != null)
+        {
+            controller.SelectTile(currentTarget.currentTarget.tile.pos);
+            yield return new WaitForSeconds(0.2f);
+
             currentTarget.targetSetCheck.SetActive(false);
             currentTarget.currentTarget.DisableDrone();
             currentTarget = null;
+            yield return new WaitForSeconds(0.5f);
         }
+
+        controller.SelectTile(target.currentTarget.tile.pos);
+        yield return new WaitForSeconds(0.2f);
 
         currentTarget = target;
         currentTarget.targetSetCheck.SetActive(true);
         currentTarget.currentTarget.EnableDrone();
+
+        yield return new WaitForSeconds(0.5f);
+
+        controller.SelectTile(controller.currentUnit.tile.pos);
+        controller.actionSelectionUI.gameObject.SetActive(true);
+        controller.abilitySelectionUI.gameObject.SetActive(true);
+
+        foreach (DroneTarget t in targets)
+        {
+            t.gameObject.SetActive(true);
+        }
 
     }
 

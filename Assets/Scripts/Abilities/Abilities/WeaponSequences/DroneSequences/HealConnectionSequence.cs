@@ -6,27 +6,24 @@ using UnityEngine;
 
 public class HealConnectionSequence : AbilitySequence
 {
+    
     public override IEnumerator Sequence(List<Tile> tiles, List<Tile> droneTiles, BattleController controller)
     {
-        //Assigning variables
         playing = true;
         user = controller.currentUnit;
-
-        //Spending points
         user.SpendActionPoints(ability.actionCost);
 
-        //Action Effect (Placeholder)
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeDuration, ability.shakeDuration);
-        //Ability Effect
-        user.Heal(ability.initialHeal);
+        bool isDroneActive = droneTiles.Count > 0;
 
-        if (user.droneUnit != null)
+        List<PlayerUnit> targets1 = new List<PlayerUnit>();
+        targets1.Add(user);
+        List<PlayerUnit> targets2 = new List<PlayerUnit>();
+
+        if (isDroneActive)
         {
-            user.droneUnit.Heal(ability.initialHeal);
+            targets2.Add(user.droneUnit);
         }
-
-        List<PlayerUnit> targets = new List<PlayerUnit>();
 
         foreach (Tile t in tiles)
         {
@@ -34,35 +31,70 @@ public class HealConnectionSequence : AbilitySequence
             {
                 if (t.content.GetComponent<PlayerUnit>() != null)
                 {
-                    targets.Add(t.content.GetComponent<PlayerUnit>());
+                    targets1.Add(t.content.GetComponent<PlayerUnit>());
                 }
+
             }
         }
 
-        foreach (Tile t in droneTiles)
+        if (isDroneActive)
         {
-            if (t.content != null)
+            foreach (Tile t in droneTiles)
             {
-                if (t.content.GetComponent<PlayerUnit>() != null)
+                if (t.content != null)
                 {
-                    targets.Add(t.content.GetComponent<PlayerUnit>());
+                    if (t.content.GetComponent<PlayerUnit>() != null)
+                    {
+                        targets2.Add(t.content.GetComponent<PlayerUnit>());
+                    }
+
+                    targets2.Add(user.droneUnit);
                 }
             }
         }
 
+        user.animations.unitAnimator.SetTrigger("attack");
+        yield return new WaitForSeconds(0.8f);
+        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeDuration, ability.shakeDuration);
 
-        foreach (PlayerUnit p in targets)
+        foreach (PlayerUnit u in targets1)
         {
-            p.Heal(ability.initialHeal);
-            Debug.Log("Healed: "+ p.unitName);
+            u.droneVFX.SetTrigger("heal");
+            u.Heal(ability.initialHeal);
         }
-
 
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
         }
 
+        yield return new WaitForSeconds(0.5f);
+
+        if (isDroneActive)
+        {
+            controller.SelectTile(user.droneUnit.tile.pos);
+            yield return new WaitForSeconds(0.5f);
+            user.droneUnit.droneIndicator.SetTrigger("action");
+            yield return new WaitForSeconds(0.8f);
+
+            ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeDuration, ability.shakeDuration);
+
+            foreach (PlayerUnit u in targets2)
+            {
+                u.droneVFX.SetTrigger("heal");
+                u.Heal(ability.initialHeal);
+            }
+
+            while (ActionEffect.instance.CheckActionEffectState())
+            {
+                yield return null;
+            }
+
+
+            yield return new WaitForSeconds(1f);
+        }
+
         playing = false;
     }
 }
+

@@ -45,6 +45,21 @@ public class AbilityTargets : MonoBehaviour
         }
     }
     
+    public void CreateDroneTargets()
+    {
+        foreach(Unit p in controller.playerUnits)
+        {
+            if(p.GetComponent<PlayerUnit>() != controller.currentUnit && controller.currentUnit.droneUnit != p.GetComponent<PlayerUnit>() && !p.GetComponent<PlayerUnit>().hasDrone)
+            {
+                SpawnTarget(p.gameObject, AbilityTargetType.DroneTarget);
+            }
+        }
+
+        if(currentTargets.Count <= 0)
+        {
+            CreateCustomMessage("No targets!");
+        }
+    }
     public void CreateNoTarget()
     {
         GameObject a = Instantiate(noTargetText, parent.transform);
@@ -64,6 +79,7 @@ public class AbilityTargets : MonoBehaviour
         t.controller = controller;
         t.targetType = type;
         t.targetAssigned = targetAssigned;
+        currentTargets.Add(t);
         t.SetTarget();
     }
 

@@ -237,7 +237,7 @@ public class UseAbilityState : BattleState
                                     owner.UpdateUnitSprite();
                                     selectedTile = board.GetTile(e.info + t.pos);
 
-                                    if (selectTiles != null)
+                                    if (selectTiles.Count>0)
                                     {
                                         board.DeSelectTiles(selectTiles);
                                     }
@@ -558,7 +558,7 @@ public class UseAbilityState : BattleState
     {
         if(selectTiles != null)
         {
-            board.DeSelectTiles(selectTiles);
+            board.DeSelectDefaultTiles(selectTiles);
             selectTiles.Clear();
             selectTiles = new List<Tile>();
         }

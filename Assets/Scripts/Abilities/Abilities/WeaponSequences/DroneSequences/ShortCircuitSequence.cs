@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class ShortCircuitSequence : AbilitySequence
 {
-
+    [SerializeField] ActionEffectParameters parameters;
     public override IEnumerator Sequence(List<Tile> tiles, List<Tile> droneTiles, BattleController controller)
     {
         //Assign variables
         playing = true;
+        bool isDroneActive = droneTiles.Count > 0;
         user = controller.currentUnit;
         user.currentAbility = ability;
         List<Unit> units1 = new List<Unit>();
@@ -18,11 +19,9 @@ public class ShortCircuitSequence : AbilitySequence
 
         List<BearObstacleScript> obstacles1 = new List<BearObstacleScript>();
 
+
         //Spend Points
         user.SpendActionPoints(ability.actionCost);
-
-        //Play Action Effect (Placeholder)
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeIntensity, ability.shakeDuration);
 
         //Search for targets
         foreach (Tile t in tiles)
@@ -96,23 +95,49 @@ public class ShortCircuitSequence : AbilitySequence
             }
         }
 
-
+        user.animations.unitAnimator.SetTrigger("attack");
+        yield return new WaitForSeconds(1f);
+        ActionEffect.instance.Play(parameters);
         if (units1.Count > 0)
         {
             foreach (Unit u in units1)
             {
                 Attack(u);
+                u.droneVFX.SetTrigger("attack");
             }
         }
 
-        if (units2.Count > 0)
+        while (ActionEffect.instance.CheckActionEffectState())
         {
-            foreach (Unit u in units1)
-            {
-                Attack(u);
-            }
+            yield return null;
         }
 
+        if (isDroneActive)
+        {
+            user.controller.SelectTile(user.droneUnit.tile.pos);
+
+            user.droneUnit.droneIndicator.SetTrigger("action");
+            yield return new WaitForSeconds(1f);
+            
+            ActionEffect.instance.Play(parameters);
+
+            if (units2.Count > 0)
+            {
+                foreach (Unit u in units1)
+                {
+                    Attack(u);
+
+                    u.droneVFX.SetTrigger("attack");
+
+                }
+            }
+        }
+        
+
+        while (ActionEffect.instance.CheckActionEffectState())
+        {
+            yield return null;
+        }
 
         if (obstacles1.Count > 0)
         {
@@ -120,11 +145,6 @@ public class ShortCircuitSequence : AbilitySequence
             {
                 b.GetDestroyed(controller.board);
             }
-        }
-
-        while (ActionEffect.instance.CheckActionEffectState())
-        {
-            yield return null;
         }
 
         playing = false;

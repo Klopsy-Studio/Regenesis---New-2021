@@ -56,7 +56,10 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 case AbilityTargetType.Obstacles:
                     controller.tileSelectionToggle.MakeTileSelectionSmall();
                     owner.indicator.SetTarget(targetPosition, 2.5f);
+                    break;
 
+                case AbilityTargetType.DroneTarget:
+                    HighlightTarget();
                     break;
                 default:
                     break;
@@ -70,8 +73,27 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         MoveCursorAway();
+
+        switch (targetType)
+        {
+            case AbilityTargetType.DroneTarget:
+                ReturnTarget();
+                break;
+            default:
+                break;
+        }
+    }
+    public void HighlightTarget()
+    {
+        Unit u = targetAssigned.GetComponent<Unit>();
+        u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.g, u.unitSprite.color.b, 1f);
     }
 
+    public void ReturnTarget()
+    {
+        Unit u = targetAssigned.GetComponent<Unit>();
+        u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.g, u.unitSprite.color.b, 0.5f);
+    }
     public void MoveCursorAway()
     {
         if (!owner.stopSelection)
@@ -107,6 +129,11 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 Unit a  = targetAssigned.GetComponent<Unit>();
                 targetDisplay.text = a.unitName;
                 targetPosition = a.currentPoint;
+                break;
+            case AbilityTargetType.DroneTarget:
+                Unit p = targetAssigned.GetComponent<Unit>();
+                targetDisplay.text = p.unitName;
+                targetPosition = p.currentPoint;
                 break;
             default:
                 break;

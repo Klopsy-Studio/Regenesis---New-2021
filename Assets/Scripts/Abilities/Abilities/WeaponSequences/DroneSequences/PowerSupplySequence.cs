@@ -8,22 +8,24 @@ public class PowerSupplySequence : AbilitySequence
 {
     [SerializeField] Modifier powerSupplyBuff;
 
-    public override IEnumerator Sequence(List<Tile> tiles, BattleController controller)
+
+    public override IEnumerator Sequence(List<Tile> tiles, List<Tile> droneTiles, BattleController controller)
     {
         playing = true;
         user = controller.currentUnit;
         user.SpendActionPoints(ability.actionCost);
 
-        user.AddBuff(powerSupplyBuff);
 
-        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeDuration, ability.shakeDuration);
+        bool isDroneActive = droneTiles.Count > 0;
 
-        if (user.droneUnit != null)
+        List<PlayerUnit> targets1 = new List<PlayerUnit>();
+        targets1.Add(user);
+        List<PlayerUnit> targets2 = new List<PlayerUnit>();
+
+        if (isDroneActive)
         {
-            user.droneUnit.AddBuff(powerSupplyBuff);
+            targets2.Add(user.droneUnit);
         }
-
-        List<PlayerUnit> targets = new List<PlayerUnit>();
 
         foreach (Tile t in tiles)
         {
@@ -31,14 +33,35 @@ public class PowerSupplySequence : AbilitySequence
             {
                 if (t.content.GetComponent<PlayerUnit>() != null)
                 {
-                    targets.Add(t.content.GetComponent<PlayerUnit>());
+                    targets1.Add(t.content.GetComponent<PlayerUnit>());
                 }
+
             }
         }
 
-        foreach (PlayerUnit p in targets)
+        if (isDroneActive)
         {
-            p.AddBuff(powerSupplyBuff);
+            foreach (Tile t in droneTiles)
+            {
+                if (t.content != null)
+                {
+                    if (t.content.GetComponent<PlayerUnit>() != null)
+                    {
+                        targets2.Add(t.content.GetComponent<PlayerUnit>());
+                    }
+
+                    targets2.Add(user.droneUnit);
+                }
+            }
+        }
+        
+        user.animations.unitAnimator.SetTrigger("attack");
+        yield return new WaitForSeconds(0.8f);
+        ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeDuration, ability.shakeDuration);
+
+        foreach(PlayerUnit u in targets1)
+        {
+            u.droneVFX.SetTrigger("buff");
         }
 
         while (ActionEffect.instance.CheckActionEffectState())
@@ -46,6 +69,41 @@ public class PowerSupplySequence : AbilitySequence
             yield return null;
         }
 
+        foreach (PlayerUnit u in targets1)
+        {
+            u.AddBuff(powerSupplyBuff);
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        if (isDroneActive)
+        {
+            controller.SelectTile(user.droneUnit.tile.pos);
+            yield return new WaitForSeconds(0.5f);
+            user.droneUnit.droneIndicator.SetTrigger("action");
+            yield return new WaitForSeconds(0.5f);
+
+            ActionEffect.instance.Play(ability.cameraSize, ability.effectDuration, ability.shakeDuration, ability.shakeDuration);
+
+            foreach (PlayerUnit u in targets2)
+            {
+                u.droneVFX.SetTrigger("buff");
+            }
+
+            while (ActionEffect.instance.CheckActionEffectState())
+            {
+                yield return null;
+            }
+
+            foreach (PlayerUnit u in targets2)
+            {
+                u.AddBuff(powerSupplyBuff);
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+
         playing = false;
     }
+ 
 }
