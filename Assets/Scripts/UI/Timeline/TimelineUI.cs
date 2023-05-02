@@ -36,6 +36,7 @@ public class TimelineUI : MonoBehaviour
 
 
     public Image currentActorFrame;
+    public Animator currentActorAnimations;
     public Image currentActorIcon;
 
     List<TimelineIconUI> iconsInTimeline = new List<TimelineIconUI>();
@@ -211,7 +212,7 @@ public class TimelineUI : MonoBehaviour
             temp = iconsInTimeline[i];
             temp.owner = this;
             temp.element = battleController.timelineElements[i];
-
+            temp.iconAnimationsTimeline.SetFloat("character", temp.element.timelineIconIndex);
             if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.PlayerUnit)
             {
                 temp.lane = TimelineLane.Top;
@@ -388,49 +389,26 @@ public class TimelineUI : MonoBehaviour
     }
     public void ShowIconActing(TimelineElements element)
     {
-        currentActorIcon.enabled = true;
+        currentActorAnimations.gameObject.SetActive(true);
+        currentActorAnimations.SetFloat("character", element.timelineIconIndex);
+        currentActorAnimations.SetTrigger("appear");
         element.iconTimeline.isActing = true;
-
-        //switch (element.timelineTypes)
-        //{
-        //    case TimeLineTypes.Null:
-        //        break;
-        //    case TimeLineTypes.PlayerUnit:
-        //        currentActorFrame.sprite = playerFrame;
-        //        break;
-        //    case TimeLineTypes.EnemyUnit:
-        //        currentActorFrame.sprite = enemyFrame;
-        //        break;
-        //    case TimeLineTypes.RealtimeEvents:
-        //        currentActorFrame.sprite = eventFrame;
-        //        break;
-        //    case TimeLineTypes.Items:
-        //        currentActorFrame.sprite = eventFrame;
-        //        break;
-        //    case TimeLineTypes.PlayerDeath:
-        //        currentActorFrame.sprite = itemFrame;
-        //        break;
-        //    default:
-        //        break;
-        //}
-
-        currentActorIcon.sprite = element.timelineIcon;
         currentActorIcon.SetNativeSize();
     }
 
     public void HideIconActing()
     {
-        currentActorFrame.enabled = false;
-        currentActorIcon.enabled = false;
+        currentActorAnimations.SetTrigger("disappear");
+
     }
     public void HideTimelineIcon(TimelineElements element)
     {
-        element.iconTimeline.gameObject.SetActive(false);
+        element.iconTimeline.EnableDisappear();
     }
 
     public void ShowTimelineIcon(TimelineElements element)
     {
-        element.iconTimeline.gameObject.SetActive(true);
+        element.iconTimeline.EnableAppear();
         element.iconTimeline.isActing = false;
     }
 }

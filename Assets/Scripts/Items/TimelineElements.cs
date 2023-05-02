@@ -64,7 +64,7 @@ public abstract class TimelineElements : MonoBehaviour
     public Sprite timelineIcon;
     public string eventDescription;
     public TimelineIconUI iconTimeline;
-
+    public float timelineIconIndex;
     public float previewTime;
 
     public float GetActionBarPosition()

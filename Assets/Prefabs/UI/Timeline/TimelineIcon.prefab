@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3147959996331962723}
   - component: {fileID: 8617459234445188987}
   - component: {fileID: 5282224630486868304}
-  - component: {fileID: 9004903976858394086}
   m_Layer: 0
   m_Name: Icon
   m_TagString: Untagged
@@ -77,26 +76,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &9004903976858394086
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4953741691089234998}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 04225fa82ab1c8f4097d3d9663210749, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &5175329627059384717
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +405,8 @@ MonoBehaviour:
   downSupport: {fileID: 4486593791831518601}
   mouseOver: 0
   selected: 0
-  iconAnimations: {fileID: 9004903976858394086}
+  iconAnimationsTimeline: {fileID: 8340770281262760946}
+  iconAnimations: {fileID: 0}
   element: {fileID: 0}
   indexChild: 0
   stunnedIndicator: {fileID: 5175329627059384717}
@@ -454,7 +434,7 @@ Animator:
   m_GameObject: {fileID: 8700832473359294234}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92826e7eefea93046bb19a6258364f11, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
