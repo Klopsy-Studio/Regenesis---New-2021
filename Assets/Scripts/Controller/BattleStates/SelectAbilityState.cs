@@ -64,12 +64,16 @@ public class SelectAbilityState : BattleState
                 owner.gunbladeUI.ShowBullets(owner.currentUnit.gunbladeAmmoAmount);
                 break;
             case KitType.Drone:
-                foreach (PlayerUnit u in playerUnits)
+                owner.droneUI.gameObject.SetActive(true);
+                owner.droneUI.SetDefaultPosition();
+                owner.droneUI.MakeButtonAppear();
+                if(owner.currentUnit.droneUnit != null)
                 {
-                    if(u != owner.currentUnit)
-                    {
-                        owner.droneController.CreateTargets(u);
-                    }
+                    owner.droneUI.ChangeButtonImage(owner.droneUI.toggledSprite);
+                }
+                else
+                {
+                    owner.droneUI.ChangeButtonImage(owner.droneUI.defaultSprite);
                 }
                 break;
             default:
@@ -223,7 +227,6 @@ public class SelectAbilityState : BattleState
     {
         base.Exit();
         owner.abilitySelectionUI.DisableAbilitySelection();
-        owner.droneController.ClearTargets();
         owner.moveAbilitySelector = false;
         currentActionIndex = 0;
         AbilitySelectionUI.ResetSelector();

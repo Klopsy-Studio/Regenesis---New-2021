@@ -26,8 +26,8 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
 
     [Header("Toggle Images")]
-    [SerializeField] Sprite defaultSprite;
-    [SerializeField] Sprite toggledSprite;
+    public Sprite defaultSprite;
+    public Sprite toggledSprite;
     bool toggleIndex = false;
 
     float originalPosition;

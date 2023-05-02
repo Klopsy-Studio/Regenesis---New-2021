@@ -88,6 +88,9 @@ public class PopUpText : MonoBehaviour
             case TypeOfModifier.Antivirus:
                 statusIcon.sprite = references.defenseBuff;
                 break;
+            case TypeOfModifier.DroneUnit:
+                statusIcon.sprite = references.droneIcon;
+                break;
             default:
                 break;
         }
@@ -147,6 +150,9 @@ public class PopUpText : MonoBehaviour
                 break;
             case TypeOfModifier.Antivirus:
                 statusIcon.sprite = references.defenseBuff;
+                break;
+            case TypeOfModifier.DroneUnit:
+                statusIcon.sprite = references.droneIcon;
                 break;
             default:
                 break;

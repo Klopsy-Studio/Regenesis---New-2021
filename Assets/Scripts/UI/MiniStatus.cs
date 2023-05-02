@@ -47,6 +47,7 @@ public class MiniStatus : MonoBehaviour
     [SerializeField] GameObject bullseyeIcon;
     [SerializeField] GameObject stunnedIcon;
     [SerializeField] GameObject piercingIcon;
+    [SerializeField] GameObject droneIcon;
 
 
     [Space]
@@ -236,6 +237,9 @@ public class MiniStatus : MonoBehaviour
                         break;
                     case TypeOfModifier.Antivirus:
                         SpawnIcon(defenseBuff, targetParent);
+                        break;
+                    case TypeOfModifier.DroneUnit:
+                        SpawnIcon(droneIcon, targetParent);
                         break;
                     default:
                         break;

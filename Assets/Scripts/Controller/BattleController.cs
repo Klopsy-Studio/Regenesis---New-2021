@@ -57,6 +57,7 @@ public class BattleController : StateMachine
     public LootUIManager DefeatLootUIManager;
     public AbilityTargets targets;
     public GunbladeBullets gunbladeUI;
+    public MenuButton droneUI;
     public GameObject questComplete;
     [Space]
     [Header("Weapon trait references")]
@@ -398,6 +399,10 @@ public class BattleController : StateMachine
         tileSelectionIndicator.localPosition = board.playableTiles[p].center;
     }
 
+    public void OpenDroneTarget()
+    {
+        ChangeState<SelectDroneTarget>();
+    }
 
     public void ActivateTileSelector()
     {

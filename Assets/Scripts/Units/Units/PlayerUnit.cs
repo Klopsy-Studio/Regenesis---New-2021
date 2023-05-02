@@ -46,6 +46,7 @@ public class PlayerUnit : Unit
     public int gunbladeAmmoAmount;
     public int gunbladeAmmoMax;
     public PlayerUnit droneUnit;
+    public bool hasDrone;
     public Animator droneIndicator;
     public int pushAmount;
     public Directions pushDirections;
@@ -127,6 +128,8 @@ public class PlayerUnit : Unit
     public void EnableDrone()
     {
         droneIndicator.SetTrigger("appear");
+        hasDrone = true;
+        AddBuff(new Modifier { modifierType = TypeOfModifier.DroneUnit });
     }
 
     public void IncreaseCriticalPercentage()
@@ -136,6 +139,16 @@ public class PlayerUnit : Unit
     public void DisableDrone()
     {
         droneIndicator.SetTrigger("out");
+        hasDrone = false;
+
+        foreach(Modifier e in buffModifiers)
+        {
+            if (e.modifierType == TypeOfModifier.DroneUnit)
+            {
+                RemoveDebuff(e);
+                break;
+            }
+        }
     }
     //ESTA FUNCION HAY QUE REVISARLA
     public void EquipAllItems()
