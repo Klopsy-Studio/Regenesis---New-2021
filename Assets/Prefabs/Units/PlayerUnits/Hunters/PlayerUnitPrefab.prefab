@@ -1060,6 +1060,7 @@ Transform:
   - {fileID: 4077111533748319636}
   - {fileID: 4083699083350188607}
   - {fileID: 5228866158052212039}
+  - {fileID: 1791821626853676571}
   m_Father: {fileID: 1963601307369692096}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1184,6 +1185,7 @@ MonoBehaviour:
   debuffIndicator: {fileID: 3653615159924158692}
   tileIndicator: {fileID: 6897988717685679956}
   popUps: {fileID: 0}
+  droneVFX: {fileID: 6291754743773994706}
   currentParameters:
     cameraSize: 3
     effectDuration: 0.5
@@ -3502,7 +3504,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4233041066005892546}
   - component: {fileID: 4160076658913987573}
-  - component: {fileID: 7550032641549375592}
   m_Layer: 6
   m_Name: DroneIndicator
   m_TagString: Untagged
@@ -3518,7 +3519,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7771549255727016959}
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: 0.118257165, y: 0.8648519, z: 0.29930115}
+  m_LocalPosition: {x: 0.077, y: 0.867, z: 0.343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3577,18 +3578,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7550032641549375592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7771549255727016959}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e59374e681ed40f4cbcdf9fcf01a84f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7798481099334856715
 GameObject:
   m_ObjectHideFlags: 0
@@ -4854,6 +4843,97 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4362671115338849498, guid: b24361480dbee9c4484f6f56b0b0c590, type: 3}
   m_PrefabInstance: {fileID: 2963182665785646643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3736072260076702651
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6355952590008311557}
+    m_Modifications:
+    - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8535535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.35355338
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.35355338
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.1464466
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_Size.x
+      value: 2.2571428
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_Size.y
+      value: 2.2571428
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366506840374620615, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6919148779608544400, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_Name
+      value: DroneVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 7244599066747147625, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bb479c20624873f4eb9ef11b9183ddb6, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+--- !u!4 &1791821626853676571 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3099854969300966816, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+  m_PrefabInstance: {fileID: 3736072260076702651}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6291754743773994706 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7244599066747147625, guid: 24b4525659b9a5f46b871053efcfd99a, type: 3}
+  m_PrefabInstance: {fileID: 3736072260076702651}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5958823636653040756
 PrefabInstance:

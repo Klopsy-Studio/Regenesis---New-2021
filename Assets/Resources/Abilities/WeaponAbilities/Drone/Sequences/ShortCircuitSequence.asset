@@ -12,9 +12,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1268b9cc9a4db354b98012beb1382025, type: 3}
   m_Name: ShortCircuitSequence
   m_EditorClassIdentifier: 
-  ability: {fileID: 0}
+  ability: {fileID: 11400000, guid: b492f1f20ff74084184e0848343e8376, type: 2}
   user: {fileID: 0}
   weapon: {fileID: 0}
   playing: 0
   moving: 0
   extraAttack: 0
+  parameters:
+    cameraSize: 3
+    effectDuration: 0.5
+    shakeDefinition:
+      m_ImpulseChannel: 1
+      m_ImpulseShape: 0
+      m_CustomImpulseShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_ImpulseDuration: 0.2
+      m_ImpulseType: 0
+      m_DissipationRate: 0
+      m_RawSignal: {fileID: 0}
+      m_AmplitudeGain: 1
+      m_FrequencyGain: 1
+      m_RepeatMode: 0
+      m_Randomize: 1
+      m_TimeEnvelope:
+        m_AttackShape:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_DecayShape:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_AttackTime: 0
+        m_SustainTime: 0.2
+        m_DecayTime: 0.7
+        m_ScaleWithImpact: 1
+        m_HoldForever: 0
+      m_ImpactRadius: 100
+      m_DirectionMode: 0
+      m_DissipationMode: 2
+      m_DissipationDistance: 100
+      m_PropagationSpeed: 343
+    shakeVelocity: {x: 0, y: 0, z: 0}
+    shakeForce: 0

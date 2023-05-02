@@ -54,10 +54,18 @@ MonoBehaviour:
   test: 0
   canBeSelected: 1
   selected: 0
+  isContinueButton: 0
   defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
   highlightTextColor: {r: 0, g: 0, b: 0, a: 0}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
+  appearPosition: 0
+  buttonSpeed: 2
+  defaultSprite: {fileID: 0}
+  toggledSprite: {fileID: 0}
   buttonText: {fileID: 0}
   buttonImage: {fileID: 2043932918572055983}
+  buttonAnimations: {fileID: 0}
+  buttonRect: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls: []
@@ -100,6 +108,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7432469291968329821}
+        m_TargetAssemblyTypeName: DroneTarget, Assembly-CSharp
+        m_MethodName: SelectTargetTile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onExit:
     m_PersistentCalls:
       m_Calls:
@@ -130,6 +150,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7432469291968329821}
         m_TargetAssemblyTypeName: DroneTarget, Assembly-CSharp
         m_MethodName: ReturnTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7432469291968329821}
+        m_TargetAssemblyTypeName: DroneTarget, Assembly-CSharp
+        m_MethodName: SelectUserTile
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

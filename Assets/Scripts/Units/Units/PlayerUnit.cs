@@ -91,19 +91,16 @@ public class PlayerUnit : Unit
         {
             case KitType.Hammer:
                 animations.SetWeapon(0f);
-                bowParent.SetActive(false);
-                gunbladeParent.SetActive(false);
                 break;
             case KitType.Bow:
                 animations.SetWeapon(0.5f);
-
-                hammerParent.SetActive(false);
-                gunbladeParent.SetActive(false);
                 break;
             case KitType.Gunblade:
                 animations.SetWeapon(1f);
-                hammerParent.SetActive(false);
-                bowParent.SetActive(false);
+                break;
+
+            case KitType.Drone:
+                animations.SetWeapon(1.5f);
                 break;
             default:
                 break;

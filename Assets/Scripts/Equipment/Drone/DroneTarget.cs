@@ -21,15 +21,15 @@ public class DroneTarget : MenuButton
 
         //Show different sprite if unit already has the target set on this unit
 
-        if(currentTarget == user.droneUnit)
+        if (currentTarget == user.droneUnit)
         {
-            owner.SetCurrentTarget(this);
+            owner.ApplyTarget(this);
         }
     }
 
     public void PreviewCost()
     {
-        if(user.actionsPerTurn >= owner.droneCost)
+        if (user.actionsPerTurn >= owner.droneCost)
         {
             user.playerUI.PreviewActionCost(owner.droneCost);
         }
@@ -50,13 +50,23 @@ public class DroneTarget : MenuButton
     }
     public void AssignTarget()
     {
-        if(user.actionsPerTurn >= owner.droneCost && user.droneUnit != currentTarget)
+        if (user.actionsPerTurn >= owner.droneCost && user.droneUnit != currentTarget)
         {
             user.SetDrone(currentTarget, setTargetCost);
-            
+
             owner.controller.CheckAbilities();
             owner.SetCurrentTarget(this);
             owner.CanChangeDroneTarget();
         }
+    }
+
+    public void SelectTargetTile()
+    {
+        owner.controller.SelectTile(currentTarget.tile.pos);
+    }
+
+    public void SelectUserTile()
+    {
+        owner.controller.SelectTile(user.tile.pos);
     }
 }

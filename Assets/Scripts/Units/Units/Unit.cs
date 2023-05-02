@@ -96,6 +96,7 @@ public class Unit : TimelineElements
     [SerializeField] GameObject debuffIndicator;
     public GameObject tileIndicator;
     public UnitUI popUps;
+    public Animator droneVFX;
 
     [Header("Effects")]
     [HideInInspector] public ActionEffectParameters currentParameters;
