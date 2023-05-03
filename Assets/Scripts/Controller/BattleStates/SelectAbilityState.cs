@@ -131,11 +131,7 @@ public class SelectAbilityState : BattleState
         //Meter ActivarUI
     }
 
-    
-    protected override void OnEscape(object sender, InfoEventArgs<KeyCode> e)
-    {
-        owner.ChangeState<SelectActionState>();
-    }
+
 
     protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
     {

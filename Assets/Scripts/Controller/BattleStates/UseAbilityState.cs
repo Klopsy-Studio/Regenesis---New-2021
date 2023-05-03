@@ -646,15 +646,7 @@ public class UseAbilityState : BattleState
         }
     }
 
-    protected override void OnEscape(object sender, InfoEventArgs<KeyCode> e)
-    {
-        //if (!attacking)
-        //{
-        //    SelectTile(owner.currentUnit.currentPoint);
-        //    owner.ChangeState<SelectAbilityState>();
-        //}
-        
-    }
+
 
     protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
     {

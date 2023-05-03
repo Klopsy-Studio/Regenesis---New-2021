@@ -343,13 +343,7 @@ public class UseItemState : BattleState
 
         owner.ChangeState<SelectActionState>();
     }
-    protected override void OnEscape(object sender, InfoEventArgs<KeyCode> e)
-    {
-        if (!isTimelineItem) return;
-        SelectTile(owner.currentUnit.currentPoint);
-        owner.ChangeState<SelectItemState>();
 
-    }
     protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
     {
         if (!isTimelineItem) return;
