@@ -785,6 +785,7 @@ public class UseAbilityState : BattleState
         owner.ResetBowExtraAttack();
         isTargetTile = false;
         selectedTile = null;
+        owner.targets.indicator.DeactivateTarget();
     }
 
     public List<Tile> PreviewAbility(RangeData data)
