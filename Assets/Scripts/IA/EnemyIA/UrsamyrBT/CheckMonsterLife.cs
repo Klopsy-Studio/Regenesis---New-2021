@@ -25,7 +25,7 @@ public class CheckMonsterLife : ActionNode
         switch (comparison)
         {
             case ComparisonType.Equals:
-                if(lifePercentage == currentLifePercentage)
+                if(currentLifePercentage == lifePercentage)
                 {
                     return State.Success;
                 }
@@ -34,7 +34,7 @@ public class CheckMonsterLife : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.Greater:
-                if (lifePercentage > currentLifePercentage)
+                if (currentLifePercentage > lifePercentage)
                 {
                     return State.Success;
                 }
@@ -43,7 +43,7 @@ public class CheckMonsterLife : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.GreaterAndEqual:
-                if (lifePercentage >= currentLifePercentage)
+                if (currentLifePercentage >= lifePercentage)
                 {
                     return State.Success;
                 }
@@ -52,7 +52,7 @@ public class CheckMonsterLife : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.Lower:
-                if (lifePercentage < currentLifePercentage)
+                if (currentLifePercentage < lifePercentage)
                 {
                     return State.Success;
                 }
@@ -61,7 +61,7 @@ public class CheckMonsterLife : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.LowerAndEqual:
-                if (lifePercentage <= currentLifePercentage)
+                if (currentLifePercentage <= lifePercentage)
                 {
                     return State.Success;
                 }

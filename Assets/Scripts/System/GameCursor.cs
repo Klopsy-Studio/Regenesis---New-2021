@@ -29,13 +29,13 @@ public class GameCursor : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Confined;
         SetRegularCursor();
     }
     public void LateUpdate()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
         Vector2 cursorPos = Input.mousePosition;
         cursorSprite.rectTransform.position = cursorPos;
     }
