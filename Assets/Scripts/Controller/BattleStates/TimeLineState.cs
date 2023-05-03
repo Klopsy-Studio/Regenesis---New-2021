@@ -7,7 +7,7 @@ public class TimeLineState : BattleState
 {
     [SerializeField] PlayerUnit selectedUnit;
 
-    TimelineElements currentElement;
+    public TimelineElements currentElement;
     float timer = 2f;
     bool timerCheck;
     bool pause = false;
@@ -15,15 +15,15 @@ public class TimeLineState : BattleState
     public override void Enter()
     {
         base.Enter();
-        if(currentElement != null)
-        {
-            if (currentElement.elementEnabled)
-            {
-                owner.timelineUI.ShowTimelineIcon(currentElement);
-                currentElement = null;
-            }
-        }
-        owner.timelineUI.HideIconActing();
+        //if (currentElement != null)
+        //{
+        //    if (currentElement.elementEnabled)
+        //    {
+        //        owner.timelineUI.ShowTimelineIcon(currentElement);
+        //        currentElement = null;
+        //    }
+        //}
+        //owner.timelineUI.HideIconActing();
         owner.turnStatusUI.DeactivateTurn();
         owner.isTimeLineActive = true;
     }

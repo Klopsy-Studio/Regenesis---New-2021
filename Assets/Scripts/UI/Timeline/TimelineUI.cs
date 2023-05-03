@@ -49,12 +49,14 @@ public class TimelineUI : MonoBehaviour
     [SerializeField] PreviewTurnOrder previewTurnOrder;
 
     [SerializeField] List<TimelineIconUI> topLane = new List<TimelineIconUI>();
+    public int toplaneOffset;
     List<TimelineIconUI> _topLane = new List<TimelineIconUI>();
     [SerializeField] List<TimelineIconUI> midLane = new List<TimelineIconUI>();
     List<TimelineIconUI> _midLane = new List<TimelineIconUI>();
 
     [SerializeField] List<TimelineIconUI> bottomLane = new List<TimelineIconUI>();
     List<TimelineIconUI> _bottomLane = new List<TimelineIconUI>();
+    public int bottomLaneOffset;
 
 
     public void CallTimelinePreviewOrder()//Unity button 
@@ -226,7 +228,7 @@ public class TimelineUI : MonoBehaviour
 
                 temp.downSupport.GetComponent<Image>().enabled = true;
 
-                temp.offset = 70;
+                temp.offset = toplaneOffset;
 
                 temp.velocityText.gameObject.SetActive(true);
 
@@ -250,7 +252,7 @@ public class TimelineUI : MonoBehaviour
                 temp.upSupport.GetComponent<Image>().enabled = true;
 
                 temp.velocityText.gameObject.SetActive(false);
-                temp.offset = -70;
+                temp.offset = bottomLaneOffset;
 
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.RealtimeEvents)
@@ -310,7 +312,7 @@ public class TimelineUI : MonoBehaviour
                 temp.offset = 0;
 
                 temp.upSupport.gameObject.SetActive(true);
-                temp.offset = -70;
+                temp.offset = bottomLaneOffset;
 
             }
 
@@ -327,7 +329,7 @@ public class TimelineUI : MonoBehaviour
                 temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
 
                 temp.downSupport.GetComponent<Image>().enabled = true;
-                temp.offset = 70;
+                temp.offset = toplaneOffset;
             }
             temp.barSize = content.sizeDelta.x;
             temp.originalOffset = temp.offset;
