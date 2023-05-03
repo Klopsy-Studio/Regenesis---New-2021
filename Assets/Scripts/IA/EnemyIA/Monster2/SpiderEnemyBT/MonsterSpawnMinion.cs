@@ -95,7 +95,8 @@ public class MonsterSpawnMinion : ActionNode
         treeUpdate = false;
     }
     protected override State OnUpdate() {
-
+        if (owner.controller.turnFinished)
+            return State.Success;
         if (treeUpdate)
         {
             return State.Running;

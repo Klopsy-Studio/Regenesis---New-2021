@@ -14,7 +14,8 @@ public class SetLastTurnMinionSpawn : ActionNode
     }
 
     protected override State OnUpdate() {
-
+        if (owner.controller.turnFinished)
+            return State.Success;
         owner.controller.hasSpawnedMinionsInLastTurn = value;
         return State.Success;
     }

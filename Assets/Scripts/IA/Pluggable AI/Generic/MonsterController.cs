@@ -8,7 +8,7 @@ public class MonsterController : MonoBehaviour
     [Header("Behaviour Tree Variables")]
     public BehaviourTree tree;
     [SerializeField] BehaviourTreeRunner testRunner;
-
+    public bool turnFinished;
     //0 stands for no last sequence
     public int lastSequence = 0;
     public int currentSequence;
@@ -79,6 +79,7 @@ public class MonsterController : MonoBehaviour
         test = true;
         tree.rootNode.state = Node.State.Running;
         tree.ResetAllNodes();
+        turnFinished = false;
         //currentState.UpdateState(this);
     }
 

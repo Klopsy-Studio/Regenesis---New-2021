@@ -12,6 +12,7 @@ public class MinionEvolve : ActionNode
 
     [SerializeField] float evolveTime = 2f;
     protected override void OnStart() {
+
         owner.controller.currentEnemy.power = evolvedPower;
         owner.controller.currentEnemy.criticalPercentage = evolvedCrt;
 
@@ -37,7 +38,8 @@ public class MinionEvolve : ActionNode
     }
 
     protected override State OnUpdate() {
-
+        if (owner.controller.turnFinished)
+            return State.Success;
         evolveTime -= Time.deltaTime;
 
         if(evolveTime <= 0)

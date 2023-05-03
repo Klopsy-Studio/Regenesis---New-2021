@@ -15,6 +15,8 @@ public class CreateRandomSequence : ActionNode
     }
 
     protected override State OnUpdate() {
+        if (owner.controller.turnFinished)
+            return State.Success;
         owner.controller.currentSequence = Random.Range(minimumSequenceNumber, maximumSequenceNumber);
         return State.Success;
     }

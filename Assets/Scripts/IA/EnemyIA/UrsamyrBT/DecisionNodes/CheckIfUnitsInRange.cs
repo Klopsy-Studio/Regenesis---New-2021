@@ -18,8 +18,9 @@ public class CheckIfUnitsInRange : ActionNode
         
     }
     protected override State OnUpdate() {
-
-        if(abilities != null)
+        if (owner.controller.turnFinished)
+            return State.Success;
+        if (abilities != null)
         {
             if(abilities.Count > 0)
             {

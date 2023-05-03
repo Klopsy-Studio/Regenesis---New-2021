@@ -28,6 +28,8 @@ public class SpawnEvent : ActionNode
     }
 
     protected override State OnUpdate() {
+        if (owner.controller.turnFinished)
+            return State.Success;
         return State.Success;
     }
 }
