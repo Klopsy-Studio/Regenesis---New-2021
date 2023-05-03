@@ -41,7 +41,7 @@ public class PlayerUnitUI : UnitUI
 
     int index;
     [SerializeField] float timer = 2f;
-    [SerializeField]float originalTimer;
+    [SerializeField] float originalTimer;
     bool beginTimer;
     [SerializeField] bool toggleShowUnitUI;
 
