@@ -47,7 +47,7 @@ public class EnemyUnit : Unit
         timelineFill = 30;
         timelineTypes = TimeLineTypes.EnemyUnit;
         health = maxHealth;
-        originalSpritePosition = unitSprite.transform.position;
+        originalSpritePosition = unitSprite.transform.localPosition;
         SetOriginalValues();
     }
 
@@ -111,16 +111,15 @@ public class EnemyUnit : Unit
     {
         if(monsterControl.target != null)
         {
-
             if (tile.CheckSpecificDirection(monsterControl.target.tile, Directions.East) || tile.CheckSpecificDirection(monsterControl.target.tile, Directions.South))
             {
-                unitSprite.transform.position = originalSpritePosition;
+                unitSprite.transform.localPosition = originalSpritePosition;
                 unitSprite.flipX = false;
             }
 
             if (tile.CheckSpecificDirection(monsterControl.target.tile, Directions.West) || tile.CheckSpecificDirection(monsterControl.target.tile, Directions.North))
             {
-                unitSprite.transform.position = flippedSpritePosition;
+                unitSprite.transform.localPosition = flippedSpritePosition;
                 unitSprite.flipX = true;
             }
         } 

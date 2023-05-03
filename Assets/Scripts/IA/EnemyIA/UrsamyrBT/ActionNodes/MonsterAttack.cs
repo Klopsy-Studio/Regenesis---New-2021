@@ -36,8 +36,6 @@ public class MonsterAttack : ActionNode
             case TypeOfTarget.SingleTarget:
                 controller.targetsInRange.Add(controller.target);
                 owner.controller.currentEnemy.UpdateEnemyUnitSprite();
-
-
                 break;
             case TypeOfTarget.MultipleTarget:
 
