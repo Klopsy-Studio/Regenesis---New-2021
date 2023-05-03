@@ -12,6 +12,8 @@ public class EquipmentInventoryManager : MonoBehaviour
     public WeaponPanelInfo weaponPanelInfo;
 
     [SerializeField] Transform contentTransform;
+
+    public AbilityTooltip[] abilityTooltipList;
     // Start is called before the first frame update
     void Start()
     {

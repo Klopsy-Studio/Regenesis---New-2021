@@ -88,7 +88,7 @@ public class SetShopItemInfoPanelText
     public GameObject GO;
 
     [field:SerializeField] public TextMeshProUGUI ItemName { get; private set;}
-    [field:SerializeField] public Image ItemImage { get; private set;}
+   
     [SerializeField] TextMeshProUGUI itemAmountTxT;
     [SerializeField] TextMeshProUGUI itemCostTxT;
 
@@ -100,8 +100,8 @@ public class SetShopItemInfoPanelText
     public void SetItemInfo(ShopItemTemplate _shopItem)
     {
         ItemName.SetText(_shopItem.name);
-        ItemImage.sprite = _shopItem.item.consumable.itemSprite;
-        ItemImage.SetNativeSize();
+        //ItemImage.sprite = _shopItem.item.consumable.itemSprite;
+        //ItemImage.SetNativeSize();
         itemInfo = _shopItem.item;
 
         ResetPanelInfo();
@@ -146,7 +146,7 @@ public class BuyItemPanel
     [SerializeField] Image itemImage;
     [SerializeField] TextMeshProUGUI itemTotalCostTxT;
     [SerializeField] TextMeshProUGUI currentPointsTxTBuyPanel;
-  
+    [SerializeField] TextMeshProUGUI itemDescription;
     int itemTotalCost;
     
     int itemAmount;
@@ -164,7 +164,7 @@ public class BuyItemPanel
     {
        
         itemName.SetText(_itemInfoPanel.ItemName.text);
-        itemImage.sprite = _itemInfoPanel.ItemImage.sprite;
+        //itemImage.sprite = _itemInfoPanel.ItemImage.sprite;
         itemTotalCost = _itemInfoPanel.itemCost;
         itemTotalCostTxT.SetText(itemTotalCost.ToString());
         itemAmount = _itemInfoPanel.itemAmount;
@@ -172,9 +172,13 @@ public class BuyItemPanel
         shopManager = _shopManager;
         //currentPoints = 0;
         currentPointsTxTBuyPanel.SetText(shopManager.currentPoints.ToString());
-
+     
         itemInfo = _itemInfoPanel.itemInfo;
+
+        itemDescription.SetText(itemInfo.consumable.consumableDescription);
     }
+
+   
 
     public void SetUpButtons()
     {

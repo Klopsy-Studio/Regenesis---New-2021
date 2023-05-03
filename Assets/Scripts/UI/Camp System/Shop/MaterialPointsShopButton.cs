@@ -39,9 +39,16 @@ public class MaterialPointsShopButton : MonoBehaviour, IPointerClickHandler
 
     void UseMaterial()
     {
+
+      
         materialSlot.amount -= 1;
         amountText.SetText(materialSlot.amount.ToString());
         buyItemPanel.UpdateCurrentPoints(points);
+
+        //NEW CODE
+        GameManager.instance.materialInventory.SubstractMaterial(materialSlot);
+       
+        //
     }
 
     void ReturnMaterial()
