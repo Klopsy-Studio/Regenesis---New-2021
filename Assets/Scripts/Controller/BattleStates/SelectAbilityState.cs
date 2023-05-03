@@ -43,7 +43,7 @@ public class SelectAbilityState : BattleState
         owner.abilitySelectionUI.OriginalColor();
         owner.hammerTraitObject.gameObject.SetActive(false);
         owner.gunbladeUI.bulletParent.SetActive(false);
-
+        owner.droneUI.gameObject.SetActive(false);
         switch (owner.currentUnit.weapon.EquipmentType)
         {
             case KitType.Hammer:
