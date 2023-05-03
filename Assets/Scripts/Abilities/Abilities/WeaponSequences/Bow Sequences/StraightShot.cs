@@ -56,7 +56,10 @@ public class StraightShot : AbilitySequence
             yield return null;
         }
 
-
+        if(target.GetComponent<PlayerUnit>() != null)
+        {
+            target.GetComponent<PlayerUnit>().playerUI.DisableHealthBar();
+        }
         playing = false;
     }
 
