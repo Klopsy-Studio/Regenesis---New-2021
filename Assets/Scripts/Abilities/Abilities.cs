@@ -243,6 +243,11 @@ public class Abilities : ScriptableObject
                     user.RemoveBuff(m);
                 }
             }
+
+            else
+            {
+                finalDamage = (int)((((user.power * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier) - target.defense);
+            }
         }
 
         else

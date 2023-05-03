@@ -6,13 +6,12 @@ public class BullseyeEvent : HunterEvent
 {
     public Abilities ability;
     public int numberOfAttacks;
-
+    List<Modifier> bullseyeBuffs = new List<Modifier>();
     public override IEnumerator ApplyEvent(BattleController controller)
     {
         playing = true;
         if (target != null)
         {
-
             if (target.GetComponent<Unit>() != null)
             {
                 Unit u = target.GetComponent<Unit>();
@@ -24,7 +23,7 @@ public class BullseyeEvent : HunterEvent
                     case 1:
                         unit.animations.unitAnimator.SetBool("bullseye", false);
                         unit.animations.unitAnimator.SetTrigger("bullseyeRelease");
-
+                        
                         break;
                     case 2:
                         unit.animations.unitAnimator.SetBool("bullseye", false);
@@ -62,11 +61,14 @@ public class BullseyeEvent : HunterEvent
         {
             if(m.modifierType == TypeOfModifier.Bullseye)
             {
-                unit.RemoveBuff(m);
-                break;
+                bullseyeBuffs.Add(m);
             }
         }
 
+        foreach(Modifier m in bullseyeBuffs)
+        {
+            unit.RemoveBuff(m);
+        }
         unit.animations.unitAnimator.SetBool("bullseye", false);
         unit.animations.unitAnimator.SetTrigger("idle");
         playing = false;

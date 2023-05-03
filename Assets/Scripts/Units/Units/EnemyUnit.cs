@@ -181,6 +181,7 @@ public class EnemyUnit : Unit
     }
     public override bool ReceiveDamage(int damage, bool isCritical)
     {
+        DamageEffect();
         if(health-damage <= 0)
         {
             Time.timeScale = 0.3f;
