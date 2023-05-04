@@ -164,6 +164,14 @@ public class EnemyUnit : Unit
         }
     }
 
+    public override void Heal(float heal)
+    {
+        base.Heal(heal);
+        if (health >= lowHealth)
+        {
+            monsterControl.monsterAnimations.SetFloat("health", 0);
+        }
+    }
     public override void Stun()
     {
         if (!stunned)

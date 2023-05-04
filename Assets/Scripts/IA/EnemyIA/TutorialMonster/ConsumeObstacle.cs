@@ -7,7 +7,7 @@ using TheKiwiCoder;
 public class ConsumeObstacle : ActionNode
 {
     bool playing;
-    [SerializeField] int healAmmount;
+    [SerializeField] int healAmmount = 50;
     protected override void OnStart() {
         playing = true;
         owner.controller.StartCoroutine(Consume());
