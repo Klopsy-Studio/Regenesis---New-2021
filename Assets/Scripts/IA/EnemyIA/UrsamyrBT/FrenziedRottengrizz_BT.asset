@@ -1,0 +1,360 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: FrenziedRottengrizz_BT
+  m_EditorClassIdentifier: 
+  rootNode:
+    rid: 4967246187200249856
+  controller: {fileID: 0}
+  nodes:
+  - rid: 4967246187200249856
+  - rid: 4967246187200249857
+  - rid: 4967246187200249858
+  - rid: 4967246187200249859
+  - rid: 4967246187200249860
+  - rid: 4967246187200249861
+  - rid: 4967246187200249862
+  - rid: 4967246187200249863
+  - rid: 4967246187200249864
+  - rid: 4967246187200249865
+  - rid: 4967246187200249866
+  - rid: 4967246187200249867
+  - rid: 4967246187200249869
+  - rid: 4967246187200249871
+  - rid: 4967246187200249872
+  - rid: 4967246187200249873
+  - rid: 4967246187200249874
+  - rid: 4967246187200249875
+  - rid: 4967246187200249876
+  - rid: 4967246187200249877
+  - rid: 4967246187200249879
+  - rid: 4967246187200249884
+  treeState: 0
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  viewPosition: {x: 1613.6, y: -321.6, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 4967246187200249856
+      type: {class: RootNode, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 93067daf-f44c-4d7a-9fe8-0651a86170eb
+        position: {x: 0, y: 0}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        child:
+          rid: 4967246187200249857
+    - rid: 4967246187200249857
+      type: {class: Selector, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 64d80fdc0cd360d46894aa31b64bf44e
+        position: {x: -0.00021362305, y: 194.67755}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        children:
+        - rid: 4967246187200249858
+    - rid: 4967246187200249858
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 0d1947c23e8c56d469e3252c3bcc19cf
+        position: {x: -1718, y: 387}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        children:
+        - rid: 4967246187200249859
+        - rid: 4967246187200249860
+        - rid: 4967246187200249861
+        - rid: 4967246187200249862
+    - rid: 4967246187200249859
+      type: {class: CheckSequenceNumber, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: abf81d00897c3344599594026f25a6bc
+        position: {x: -2627, y: 612}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        sequenceCheck: 1
+    - rid: 4967246187200249860
+      type: {class: CheckMonsterLife, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 8e7fc0a118b791c4b89ccca2130c42d2
+        position: {x: -2346, y: 612}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        lifePercentage: 70
+        comparison: 4
+    - rid: 4967246187200249861
+      type: {class: CheckObstaclesCount, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 36ff6c4d99a353949b695c6c5e47f8a8
+        position: {x: -2095, y: 612}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        numberOfObstacles: 1
+        comparison: 2
+    - rid: 4967246187200249862
+      type: {class: Selector, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: f9f24daa45eb84249ad8fa7ea5437607
+        position: {x: -1718, y: 588}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        children:
+        - rid: 4967246187200249863
+        - rid: 4967246187200249884
+    - rid: 4967246187200249863
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 54b298fc82293b2408e4cb21e6e2d3e3
+        position: {x: -2346, y: 823}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        children:
+        - rid: 4967246187200249864
+        - rid: 4967246187200249865
+    - rid: 4967246187200249864
+      type: {class: IsMonsterHealthWithinRange, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: fa5d1f6f9a918bb4286561ffe0210c33
+        position: {x: -2703.5999, y: 986.79193}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        minimumLife: 40
+        maxLife: 70
+    - rid: 4967246187200249865
+      type: {class: Selector, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 770320a5c0dc9ec4a87ec61c4da269b2
+        position: {x: -2346, y: 1037}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        children:
+        - rid: 4967246187200249866
+        - rid: 4967246187200249875
+    - rid: 4967246187200249866
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: ea267b5602217c341be6965618b98eca
+        position: {x: -2687, y: 1182}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        children:
+        - rid: 4967246187200249867
+        - rid: 4967246187200249869
+        - rid: 4967246187200249871
+        - rid: 4967246187200249872
+        - rid: 4967246187200249873
+    - rid: 4967246187200249867
+      type: {class: CanMoveToObstacle, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: ec89bd455b59ce84db82d60aa15bf390
+        position: {x: -3638.1, y: 1468.8}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+    - rid: 4967246187200249869
+      type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 9a1f0be835e63fb46b04edb41a15abee
+        position: {x: -3426.7, y: 1468.8}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        typeOfMove: 0
+        treeRunning: 0
+    - rid: 4967246187200249871
+      type: {class: SpikeyArmor, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 72453120768615048a9a79a00d1fb7fd
+        position: {x: -3179.8508, y: 1468.8}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+    - rid: 4967246187200249872
+      type: {class: SetSequenceNumber, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 6b16d048d17e27b42946bfb9dd658835
+        position: {x: -2967.0007, y: 1468.7999}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        sequenceToSet: 1
+    - rid: 4967246187200249873
+      type: {class: FinishMonsterTurn, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 3de06021a5b81b245a9850c1d4c7f11c
+        position: {x: -2748.4001, y: 1468.8}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        finishVelocity: 2
+    - rid: 4967246187200249874
+      type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 7b3b38ec9e5578a4f8e3e41633f12221
+        position: {x: -2156, y: 1426}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        typeOfMove: 2
+        treeRunning: 0
+    - rid: 4967246187200249875
+      type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: ab3f37c8c74a9da41aa7056e9c7c68dd
+        position: {x: -2156, y: 1200}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        children:
+        - rid: 4967246187200249879
+        - rid: 4967246187200249874
+        - rid: 4967246187200249876
+        - rid: 4967246187200249877
+    - rid: 4967246187200249876
+      type: {class: SetSequenceNumber, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: f1ba2ce9a64734e4882127b16a89c5ff
+        position: {x: -1957, y: 1426}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        sequenceToSet: 1
+    - rid: 4967246187200249877
+      type: {class: FinishMonsterTurn, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 0e3d2be941747a2489aa5062e708bba8
+        position: {x: -1761, y: 1426}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        finishVelocity: 2
+    - rid: 4967246187200249879
+      type: {class: CanMoveToUnit, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: d8bd769c007399e46a3fa556dea7ee8f
+        position: {x: -2346, y: 1426}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        moveToCheck: 2
+        monsterToCheck: 0
+        differentUnit: 0
+    - rid: 4967246187200249884
+      type: {class: Selector, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 85143dbab6e21a74db82059e86f938d5
+        position: {x: -1317.1252, y: 866.9999}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 0}
+        children: []

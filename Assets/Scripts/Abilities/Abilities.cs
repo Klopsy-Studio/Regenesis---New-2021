@@ -271,7 +271,26 @@ public class Abilities : ScriptableObject
             isCritical = false;
         }
 
+        if (target.buffModifiers != null && target.buffModifiers.Count > 0)
+        {
+            List<Modifier> trashModifiers = new List<Modifier>();
 
+            foreach (Modifier d in target.buffModifiers)
+            {
+                if (d.modifierType == TypeOfModifier.SpikyArmor)
+                {
+                    int damage = (int)(finalDamage * 0.25f);
+                    user.ReceiveDamage(damage, false);
+                    trashModifiers.Add(d);
+                }
+            }
+
+            foreach (Modifier d in trashModifiers)
+            {
+                target.RemoveBuff(d);
+            }
+
+        }
         if (target.debuffModifiers != null && target.debuffModifiers.Count > 0)
         {
             List<Modifier> trashModifiers = new List<Modifier>();
