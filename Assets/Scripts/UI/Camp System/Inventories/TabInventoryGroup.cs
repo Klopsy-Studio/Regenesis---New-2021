@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class TabInventoryGroup : MonoBehaviour
 {
+
+    [Header("tutorialVariable")]
+    [SerializeField] GameObject tutorialPanel;
+    bool isTutorialFinished = false;
+
+
     public Color defaultColor;
     public Color selectedColor;
     public List<TabInventoryButton> tabInventoryButtons;
@@ -68,4 +74,16 @@ public class TabInventoryGroup : MonoBehaviour
             button.tabImage.color = defaultColor;
         }
     }
+
+    private void Start()
+    {
+        tutorialPanel.SetActive(false);
+        if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
+    }
+    public void FinishTutorial() //UnityButtons
+    {
+        tutorialPanel.SetActive(false);
+        isTutorialFinished = true;
+    }
+
 }

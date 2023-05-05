@@ -11,6 +11,7 @@ public class MaterialSlotButton : MonoBehaviour, IPointerClickHandler
     [SerializeField] TextMeshProUGUI amountText;
     public string materialName;
     public string description;
+    [SerializeField] Image selectedFrame;
     // Start is called before the first frame update
 
     MaterialInventoryMananger materialInventoryManager;
@@ -27,7 +28,24 @@ public class MaterialSlotButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        materialInventoryManager.ButtonClicked();
         materialInventoryManager.UpdateMaterialPanelInfo(this);
+        selectedFrame.gameObject.SetActive(true);
     }
 
+    private void OnEnable()
+    {
+        MaterialInventoryMananger.OnMatButtonCliked += DeactiveFrame;
+    }
+
+    private void OnDisable()
+    {
+        DeactiveFrame();
+        MaterialInventoryMananger.OnMatButtonCliked -= DeactiveFrame;
+    }
+
+    private void DeactiveFrame()
+    {
+        selectedFrame.gameObject.SetActive(false);
+    }
 }

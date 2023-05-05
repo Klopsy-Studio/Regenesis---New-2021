@@ -14,7 +14,7 @@ public class ConsSlotButton : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
 
     ConsumableInventoryManager consInventoryManager;
-
+    [SerializeField] Image selectedFrame;
     public void SetSlotButton(ConsumableSlot _consumableSlot, ConsumableInventoryManager _consInventoryManager)
     {
         consumableImage.sprite = _consumableSlot.consumable.iconSprite;
@@ -28,7 +28,24 @@ public class ConsSlotButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        consInventoryManager.ButtonClicked();
         consInventoryManager.UpdateConsPanelInfo(this);
+        selectedFrame.gameObject.SetActive(true);
     }
 
+    private void OnEnable()
+    {
+        ConsumableInventoryManager.OnConsButtonCliked += DeactiveFrame;
+    }
+
+    private void OnDisable()
+    {
+        DeactiveFrame();
+        ConsumableInventoryManager.OnConsButtonCliked -= DeactiveFrame;
+    }
+
+    private void DeactiveFrame()
+    {
+        selectedFrame.gameObject.SetActive(false);
+    }
 }

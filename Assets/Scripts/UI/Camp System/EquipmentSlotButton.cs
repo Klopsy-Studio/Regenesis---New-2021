@@ -19,6 +19,7 @@ public class EquipmentSlotButton : MonoBehaviour, IPointerClickHandler
 
     public List<string> abilitiesDescription;
     public List<string> abilitiesName;
+    [SerializeField] Image selectedFrame;
     public void SetSlotButton(WeaponSlot _weaponSlot)
     {
         equipmentImage.sprite = _weaponSlot.weapon.Sprite;
@@ -34,7 +35,7 @@ public class EquipmentSlotButton : MonoBehaviour, IPointerClickHandler
         WeaponCritic = _weapon.criticalPercentage;
         WeaponDefense = _weapon.Defense;
 
-        for(int i = 0; i < _weapon.Abilities.Length; i++)
+        for (int i = 0; i < _weapon.Abilities.Length; i++)
         {
             var description = _weapon.Abilities[i].description;
             var name = _weapon.Abilities[i].abilityName;
@@ -46,10 +47,30 @@ public class EquipmentSlotButton : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("FUNCIONA");
+        equipmentInventoryManager.ButtonClicked();
+        equipmentInventoryManager.rightPanel.SetActive(true);
         equipmentInventoryManager.UpdateEquipmentPanelInfo(this);
         for (int i = 0; i < abilitiesDescription.Count; i++)
         {
             equipmentInventoryManager.abilityTooltipList[i].SetAbilityTooltip(abilitiesName[i], abilitiesDescription[i]);
         }
+
+        selectedFrame.gameObject.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
+        EquipmentInventoryManager.OnEquipmentButtonCliked += DeactiveFrame;
+    }
+
+    private void OnDisable()
+    {
+        DeactiveFrame();
+        EquipmentInventoryManager.OnEquipmentButtonCliked -= DeactiveFrame;
+    }
+
+    private void DeactiveFrame()
+    {
+        selectedFrame.gameObject.SetActive(false);
     }
 }

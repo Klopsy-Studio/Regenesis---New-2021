@@ -7,6 +7,9 @@ using TMPro;
 
 public class BunkhouseUnitManager : MonoBehaviour
 {
+    [Header("tutorialVariable")]
+    [SerializeField] GameObject tutorialPanel;
+    bool isTutorialFinished = false;
 
     public delegate void ClickAction();
     public static event ClickAction changeUnitWeaponID;
@@ -31,8 +34,15 @@ public class BunkhouseUnitManager : MonoBehaviour
 
     private void Start()
     {
-       
+        tutorialPanel.SetActive(false);
+        if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
         UpdateDefaultWeaponPanel();
+    }
+
+    public void FinishTutorial() //UnityButtons
+    {
+        tutorialPanel.SetActive(false);
+        isTutorialFinished = true;
     }
     public void UpdateDefaultWeaponPanel()
     {

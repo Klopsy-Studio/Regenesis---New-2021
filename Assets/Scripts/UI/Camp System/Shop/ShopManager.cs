@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour, IDataPersistence
 {
+    [Header("tutorialVariable")]
+    [SerializeField] GameObject tutorialPanel;
+    bool isTutorialFinished = false;
+
     [SerializeField] ShopItemContainer shopItemContainer;
     [SerializeField] GameObject slotPrefab;
     [SerializeField] Transform transformContent;
@@ -18,12 +22,25 @@ public class ShopManager : MonoBehaviour, IDataPersistence
    
 
     public BuyItemPanel buyItemPanel;
-    
+
+    public delegate void ShopButtonSlotClicked();
+    public static event ShopButtonSlotClicked OnShopButtonCliked;
+
+    public void ButtonClicked()
+    {
+        OnShopButtonCliked?.Invoke();
+    }
+    public void FinishTutorial() //UnityButtons
+    {
+        tutorialPanel.SetActive(false);
+        isTutorialFinished = true;
+    }
 
     private void Start()
     {
-
-        currentPointsTxT.SetText(currentPoints.ToString());
+        tutorialPanel.SetActive(false);
+        if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
+        currentPointsTxT.SetText(currentPoints.ToString() + " p");
         itemPanelInfo.GO.SetActive(false);
         buyItemPanel.GO.SetActive(false);
         CreateDisplay();
@@ -62,7 +79,7 @@ public class ShopManager : MonoBehaviour, IDataPersistence
     public void CloseBuyItemPanel() //UnityButton calls this method
     {
         currentPointsTxT.gameObject.SetActive(true);
-        currentPointsTxT.SetText(currentPoints.ToString());
+        currentPointsTxT.SetText(currentPoints.ToString() + " p");
         buyItemPanel.GO.SetActive(false);
     }
 
@@ -160,6 +177,8 @@ public class BuyItemPanel
 
     ShopManager shopManager;
 
+
+  
     public void SetBuyPanelInfo(SetShopItemInfoPanelText _itemInfoPanel, ShopManager _shopManager)
     {
        

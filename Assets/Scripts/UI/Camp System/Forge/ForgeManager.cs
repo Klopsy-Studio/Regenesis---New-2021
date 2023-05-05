@@ -7,6 +7,10 @@ using System;
 
 public class ForgeManager : MonoBehaviour
 {
+    [Header("tutorialVariable")]
+    [SerializeField] GameObject tutorialPanel;
+    bool isTutorialFinished = false;
+
     [SerializeField] WeaponUpgradeSystem weaponUpgradeSystem;
     [SerializeField] Transform transformContent;
     [SerializeField] GameObject treePrefab;
@@ -20,16 +24,24 @@ public class ForgeManager : MonoBehaviour
     public WeaponInfoTemplate currentWeaponInfoTemplate;
     public AbilityTooltip[] abilityTooltipList;
 
-    public delegate void weaponSlotClicked();
-    public static event weaponSlotClicked buttonClicked;
+    public delegate void WeaponButtonSlotClicked();
+    public static event WeaponButtonSlotClicked OnWeaponButtonCliked;
     private void Start()
     {
+        tutorialPanel.SetActive(false);
+        if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
         CreateDisplay();
+    }
+
+    public void FinishTutorial() //UnityButtons
+    {
+        tutorialPanel.SetActive(false);
+        isTutorialFinished = true;
     }
 
     public void ButtonClicked()
     {
-        buttonClicked?.Invoke();
+        OnWeaponButtonCliked?.Invoke();
     }
 
     void CreateDisplay()

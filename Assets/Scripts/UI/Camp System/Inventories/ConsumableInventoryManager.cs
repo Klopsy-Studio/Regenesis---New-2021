@@ -13,6 +13,16 @@ public class ConsumableInventoryManager : MonoBehaviour
     public ConsumablePanelInfo consumablePanelInfo;
   
     [SerializeField] Transform contentTransform;
+
+    public delegate void ConsButtonSlotClicked();
+    public static event ConsButtonSlotClicked OnConsButtonCliked;
+
+    public void ButtonClicked()
+    {
+        OnConsButtonCliked?.Invoke();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {

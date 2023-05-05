@@ -12,6 +12,15 @@ public class MaterialInventoryMananger : MonoBehaviour
     Dictionary<MonsterMaterialSlot, MaterialSlotButton> materialDisplayed = new Dictionary<MonsterMaterialSlot, MaterialSlotButton>();
     public MaterialPanelInfo materialPanelInfo;
     [SerializeField] Transform contentTransform;
+
+    public delegate void MatButtonSlotClicked();
+    public static event MatButtonSlotClicked OnMatButtonCliked;
+
+    public void ButtonClicked()
+    {
+        OnMatButtonCliked?.Invoke();
+    }
+
     // Start is called before the first frame update
     void Start()
     {

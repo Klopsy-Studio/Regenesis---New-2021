@@ -9,17 +9,20 @@ public class ShopItemTemplate : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemCost;
 
-
+    public Image selectedframe;
     ShopManager shopManager;
     [HideInInspector] public ShopItemInfo item;
     public Sprite sprite;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        //TODO Hacer que no se pueda seleccionar cuando (buy item panel info) esté abierto
-        if (shopManager.buyItemPanel.GO.activeSelf) { return; }
+       
+        if (shopManager.buyItemPanel.GO.activeSelf) { shopManager.buyItemPanel.GO.SetActive(false); }
+
+        shopManager.ButtonClicked();
         if (!shopManager.itemPanelInfo.GO.activeSelf) shopManager.itemPanelInfo.GO.SetActive(true);
         shopManager.itemPanelInfo.SetItemInfo(this);
+        selectedframe.gameObject.SetActive(true);
 
     }
 
@@ -34,5 +37,20 @@ public class ShopItemTemplate : MonoBehaviour, IPointerClickHandler
         shopManager = _shopManager;
         item = _itemInfo;
     }
-    
+
+    private void OnEnable()
+    {
+        ShopManager.OnShopButtonCliked += DeactivateFrame;
+    }
+
+    private void OnDisable()
+    {
+        DeactivateFrame();
+        ShopManager.OnShopButtonCliked -= DeactivateFrame;
+    }
+
+    private void DeactivateFrame()
+    {
+        selectedframe.gameObject.SetActive(false);
+    }
 }

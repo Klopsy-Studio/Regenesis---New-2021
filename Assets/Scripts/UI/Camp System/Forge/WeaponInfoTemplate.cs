@@ -25,7 +25,7 @@ public class WeaponInfoTemplate : MonoBehaviour, IPointerClickHandler
 
     private void OnEnable()
     {
-        ForgeManager.buttonClicked += DeactivateFrame;
+        ForgeManager.OnWeaponButtonCliked += DeactivateFrame;
     }
 
     private void DeactivateFrame()
@@ -35,7 +35,7 @@ public class WeaponInfoTemplate : MonoBehaviour, IPointerClickHandler
     private void OnDisable()
     {
         weaponFrame.gameObject.SetActive(false);
-        ForgeManager.buttonClicked -= DeactivateFrame;
+        ForgeManager.OnWeaponButtonCliked -= DeactivateFrame;
     }
 
     public void OnPointerClick(PointerEventData eventData)

@@ -12,20 +12,31 @@ public class EquipmentInventoryManager : MonoBehaviour
     public WeaponPanelInfo weaponPanelInfo;
 
     [SerializeField] Transform contentTransform;
+    public GameObject rightPanel;
 
     public AbilityTooltip[] abilityTooltipList;
+
+    public delegate void EquipmentButtonSlotClicked();
+    public static event EquipmentButtonSlotClicked OnEquipmentButtonCliked;
+
+    public void ButtonClicked()
+    {
+        OnEquipmentButtonCliked?.Invoke();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         CreateDisplay();
+        rightPanel.SetActive(false);
     }
 
 
     // Update is called once per frame
-    void Update()
-    {
-        //UpdateDisplay();
-    }
+    //void Update()
+    //{
+    //    //UpdateDisplay();
+    //}
 
     private void CreateDisplay()
     {
@@ -50,6 +61,7 @@ public class EquipmentInventoryManager : MonoBehaviour
     private void OnDisable()
     {
         weaponPanelInfo.ResetInfo();
+        rightPanel.SetActive(false);
     }
 
 
