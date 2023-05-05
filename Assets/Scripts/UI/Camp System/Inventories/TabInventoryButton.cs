@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 public class TabInventoryButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public TabInventoryGroup tabGroup;
-    public Image background;
+    public Image tabImage;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -18,17 +18,17 @@ public class TabInventoryButton : MonoBehaviour, IPointerClickHandler, IPointerE
     public void OnPointerEnter(PointerEventData eventData)
     {
       
-        tabGroup.OnTabEnter(this);
+        //tabGroup.OnTabEnter(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        tabGroup.OnTabExit(this);
+        //tabGroup.OnTabExit(this);
     }
 
     private void Start()
     {
-        background = GetComponent<Image>();
+        tabImage = GetComponent<Image>();
         tabGroup.Subscribe(this);
     }
 

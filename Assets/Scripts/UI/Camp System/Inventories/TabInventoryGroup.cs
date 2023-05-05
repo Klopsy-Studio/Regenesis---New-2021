@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TabInventoryGroup : MonoBehaviour
 {
+    public Color defaultColor;
+    public Color selectedColor;
     public List<TabInventoryButton> tabInventoryButtons;
     //public Sprite tabIdle;
     //public Sprite tabHover;
@@ -22,27 +24,28 @@ public class TabInventoryGroup : MonoBehaviour
         tabInventoryButtons.Add(button);
     }
 
-    public void OnTabEnter(TabInventoryButton button)
-    {
+    //public void OnTabEnter(TabInventoryButton button)
+    //{
 
-        ResetTabs();
-        //if(selectedTab == null || button != selectedTab)
-        //{
-        //    button.background.sprite = tabHover;
-        //}
+    //    ResetTabs();
+    //    //if(selectedTab == null || button != selectedTab)
+    //    //{
+    //    //    button.background.sprite = tabHover;
+    //    //}
      
-    }
+    //}
 
-    public void OnTabExit(TabInventoryButton button)
-    {
-        ResetTabs();
-    }
+    //public void OnTabExit(TabInventoryButton button)
+    //{
+    //    ResetTabs();
+    //}
 
     public void OnTabSelected(TabInventoryButton button)
     {
         selectedTab = button;
         ResetTabs();
         //button.background.sprite = tabActive;
+        selectedTab.tabImage.color = selectedColor;
         int index = button.transform.GetSiblingIndex();
         for (int i = 0; i < objectsToSwap.Count; i++)
         {
@@ -59,10 +62,10 @@ public class TabInventoryGroup : MonoBehaviour
 
     public void ResetTabs()
     {
-        //foreach (TabInventoryButton button in tabInventoryButtons)
-        //{
-        //    if(selectedTab!= null && button == selectedTab) { continue; }
-        //    button.background.sprite = tabIdle;
-        //}
+        foreach (TabInventoryButton button in tabInventoryButtons)
+        {
+            if (selectedTab != null && button == selectedTab) { continue; }
+            button.tabImage.color = defaultColor;
+        }
     }
 }
