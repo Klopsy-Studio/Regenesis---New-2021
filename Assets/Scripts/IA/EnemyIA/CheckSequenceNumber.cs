@@ -15,7 +15,8 @@ public class CheckSequenceNumber : ActionNode
     }
 
     protected override State OnUpdate() {
-
+        if (owner.controller.turnFinished)
+            return State.Success;
         if(sequenceCheck != owner.controller.lastSequence)
         {
             return State.Success;

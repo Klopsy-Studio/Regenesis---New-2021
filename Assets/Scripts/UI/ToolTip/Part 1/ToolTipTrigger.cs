@@ -12,6 +12,7 @@ public class ToolTipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         ToolTipSystem.Show(content, header);
+        ToolTipSystem.instance.currentTrigger = this;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -19,5 +20,13 @@ public class ToolTipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         ToolTipSystem.Hide();
     }
 
-  
+    public void OnDisable()
+    {
+        if(ToolTipSystem.instance.currentTrigger == this)
+        {
+            ToolTipSystem.Hide();
+            ToolTipSystem.instance.currentTrigger = null;
+        }
+    }
+
 }

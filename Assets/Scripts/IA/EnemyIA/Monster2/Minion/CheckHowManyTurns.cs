@@ -15,6 +15,8 @@ public class CheckHowManyTurns : ActionNode
     }
 
     protected override State OnUpdate() {
+        if (owner.controller.turnFinished)
+            return State.Success;
 
         switch (typeOfCheck)
         {

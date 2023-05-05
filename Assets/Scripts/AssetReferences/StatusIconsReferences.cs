@@ -13,6 +13,7 @@ public class StatusIconsReferences : ScriptableObject
     public Sprite bullseyeIcon;
     public Sprite piercingIcon;
     public Sprite droneIcon;
+    public Sprite spikyArmor;
 
 
     [Header("Debuff Icons")]

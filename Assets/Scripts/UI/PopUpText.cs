@@ -91,6 +91,9 @@ public class PopUpText : MonoBehaviour
             case TypeOfModifier.DroneUnit:
                 statusIcon.sprite = references.droneIcon;
                 break;
+            case TypeOfModifier.SpikyArmor:
+                statusIcon.sprite = references.spikyArmor;
+                break;
             default:
                 break;
         }
@@ -153,6 +156,9 @@ public class PopUpText : MonoBehaviour
                 break;
             case TypeOfModifier.DroneUnit:
                 statusIcon.sprite = references.droneIcon;
+                break;
+            case TypeOfModifier.SpikyArmor:
+                statusIcon.sprite = references.spikyArmor;
                 break;
             default:
                 break;

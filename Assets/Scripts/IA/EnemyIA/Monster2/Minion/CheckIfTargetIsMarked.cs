@@ -14,6 +14,8 @@ public class CheckIfTargetIsMarked : ActionNode
     }
 
     protected override State OnUpdate() {
+        if (owner.controller.turnFinished)
+            return State.Success;
 
         List<Tile> tiles = abilityToCheck.GetAttackTiles(owner.controller);
         List<PlayerUnit> markedTargets = new List<PlayerUnit>();

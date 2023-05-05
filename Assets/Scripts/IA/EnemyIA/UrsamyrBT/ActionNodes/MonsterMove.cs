@@ -18,6 +18,7 @@ public class MonsterMove : ActionNode
 
     IEnumerator MoveAction()
     {
+        Debug.Log("Moving");
         MonsterController monster = owner.controller;
         Movement m = monster.GetComponent<Movement>();
        //controller.battleController.board.SelectMovementTiles(test);
@@ -51,13 +52,14 @@ public class MonsterMove : ActionNode
     }
 
     protected override State OnUpdate() {
+        if (owner.controller.turnFinished)
+            return State.Success;
         if (treeRunning)
         {
             return State.Running;
         }
         else
         {
-            treeRunning = false;
             return State.Success;
         }
     }

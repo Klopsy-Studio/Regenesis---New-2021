@@ -241,6 +241,9 @@ public class MiniStatus : MonoBehaviour
                     case TypeOfModifier.DroneUnit:
                         SpawnIcon(droneIcon, targetParent);
                         break;
+                    case TypeOfModifier.SpikyArmor:
+                        SpawnIcon(defenseBuff, targetParent);
+                        break;
                     default:
                         break;
                 }

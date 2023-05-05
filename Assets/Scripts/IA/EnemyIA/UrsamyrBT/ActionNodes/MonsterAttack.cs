@@ -36,8 +36,6 @@ public class MonsterAttack : ActionNode
             case TypeOfTarget.SingleTarget:
                 controller.targetsInRange.Add(controller.target);
                 owner.controller.currentEnemy.UpdateEnemyUnitSprite();
-
-
                 break;
             case TypeOfTarget.MultipleTarget:
 
@@ -171,7 +169,8 @@ public class MonsterAttack : ActionNode
 
     }
     protected override State OnUpdate() {
-
+        if (owner.controller.turnFinished)
+            return State.Success;
         if (treeRunning)
         {
             return State.Running;

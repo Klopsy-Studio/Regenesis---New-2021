@@ -13,7 +13,8 @@ public class CheckMinionRange : ActionNode
     }
 
     protected override State OnUpdate() {
-
+        if (owner.controller.turnFinished)
+            return State.Success;
         List<Tile> tiles = new List<Tile>();
         foreach (MinionUnit m in owner.controller.minionsInGame)
         {

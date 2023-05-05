@@ -131,7 +131,7 @@ public class AbilitySequence : ScriptableObject
         List<Tile> tiles = range.GetTilesInRange(controller.board);
         //Remove the tile the objective is supposed to be
 
-        if (tiles != null)
+        if (tiles.Count > 0)
         {
             if (tiles[tiles.Count - 1] != null)
             {

@@ -14,7 +14,8 @@ public class CanMoveCloseToUnit : ActionNode
     }
 
     protected override State OnUpdate() {
-
+        if (owner.controller.turnFinished)
+            return State.Success;
         PlayerUnit hunter = owner.controller.GetClosestHunter();
         owner.controller.tileToMove = hunter.GetNearestAvaibleTile(unitRange);
         return State.Success;

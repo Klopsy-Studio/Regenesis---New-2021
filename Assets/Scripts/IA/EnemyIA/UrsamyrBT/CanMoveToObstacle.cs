@@ -13,7 +13,8 @@ public class CanMoveToObstacle : ActionNode
     }
 
     protected override State OnUpdate() {
-
+        if (owner.controller.turnFinished)
+            return State.Success;
         //Get Farthest Obstacle
         List<BearObstacleScript> validObstacles = new List<BearObstacleScript>();
         float maxDistance = 0;
@@ -38,7 +39,7 @@ public class CanMoveToObstacle : ActionNode
 
         maxDistance = 0;
         List<Tile> obstacleTiles = obstacleTarget.GetValidTiles(owner.controller.battleController.board);
-
+        owner.controller.chosenObstacle = obstacleTarget;
         foreach(Tile t in obstacleTiles)
         {
             if(Vector3.Distance(owner.controller.transform.position, t.transform.position) >= maxDistance)

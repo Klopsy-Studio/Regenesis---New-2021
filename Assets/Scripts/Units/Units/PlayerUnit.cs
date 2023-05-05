@@ -587,7 +587,6 @@ public class PlayerUnit : Unit
     {
         health -= (int)damage;
 
-        //status.HealthAnimation(health);
         playerUI.HealthAnimation(health);
         DamageEffect();
         Debug.Log("Damaged");

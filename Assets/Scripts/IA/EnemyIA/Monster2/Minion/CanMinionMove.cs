@@ -15,7 +15,8 @@ public class CanMinionMove : ActionNode
 
     protected override State OnUpdate() {
 
-
+        if (owner.controller.turnFinished)
+            return State.Success;
         PlayerUnit t = new PlayerUnit();
         float value = 0f;
         Tile tileToMove = new Tile();

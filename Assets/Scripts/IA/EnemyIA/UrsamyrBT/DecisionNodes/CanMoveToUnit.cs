@@ -32,7 +32,8 @@ public class CanMoveToUnit : ActionNode
         return false;
     }
     protected override State OnUpdate() {
-
+           if (owner.controller.turnFinished)
+            return State.Success;
         
         PlayerUnit t = new PlayerUnit();
         float value = 0f;

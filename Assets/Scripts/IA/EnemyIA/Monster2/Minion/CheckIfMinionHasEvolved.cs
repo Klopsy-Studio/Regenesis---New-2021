@@ -13,6 +13,8 @@ public class CheckIfMinionHasEvolved : ActionNode
     }
 
     protected override State OnUpdate() {
+        if (owner.controller.turnFinished)
+            return State.Success;
 
         if (owner.controller.hasEvolved)
         {

@@ -94,6 +94,9 @@ public class GunbladeBullets : MonoBehaviour
         {
             for (int i = 0; i < bulletGain; i++)
             {
+                if (i >= usedBullets.Count)
+                    break;
+
                 usedBullets[i].SetBool("gain", true);
                 previewBullets.Add(usedBullets[i]);
             }
