@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &498851679851655655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6503730470853188162}
+  m_Layer: 6
+  m_Name: SpriteParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6503730470853188162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498851679851655655}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.13, y: 0, z: -0.62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3227255791469377653}
+  m_Father: {fileID: 592527016245274243}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1969824411022128312
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +62,7 @@ Transform:
   m_Children:
   - {fileID: 7149115899820527149}
   m_Father: {fileID: 592527016245274243}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4303376924294974850
 GameObject:
@@ -62,7 +94,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 592527016245274243}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &5449580061667280590
 SpriteRenderer:
@@ -142,11 +174,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4730507143645396883}
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: -0.13, y: 0, z: -0.62}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 592527016245274243}
+  m_Father: {fileID: 6503730470853188162}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
 --- !u!212 &6455163749675579260
@@ -355,7 +387,7 @@ Transform:
   - {fileID: 3433788016667772295}
   - {fileID: 6075209867990762843}
   m_Father: {fileID: 592527016245274243}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8324575531128616137
 GameObject:
@@ -397,10 +429,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3227255791469377653}
   - {fileID: 3689788925450557004}
   - {fileID: 89809595629621541}
   - {fileID: 3106528435321172434}
+  - {fileID: 6503730470853188162}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -460,7 +492,7 @@ MonoBehaviour:
   thisIsMyFuckingTurn: 0
   power: 60
   originalPower: 0
-  criticalPercentage: 15
+  criticalPercentage: 10
   originalCriticalPercentage: 0
   attackElement: 0
   defenseElement: 0
@@ -531,7 +563,7 @@ MonoBehaviour:
   monsterControl: {fileID: 4319465372067614749}
   lowHealth: 0
   originalSpritePosition: {x: 0, y: 0, z: 0}
-  flippedSpritePosition: {x: 0, y: 0, z: 0}
+  flippedSpritePosition: {x: -0.543, y: 0, z: 0.59}
   evolvedPortrait: {fileID: -5849888285636261961, guid: 473c3df3d4365b34c950520325ebaaea, type: 3}
   parent: {fileID: 0}
   movementRange:
@@ -721,6 +753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tree: {fileID: 11400000, guid: a17d573f96c25c44c84cbf4107d888bb, type: 2}
   testRunner: {fileID: 8411563162987415277}
+  turnFinished: 0
   lastSequence: 0
   currentSequence: 0
   test: 0

@@ -7,7 +7,7 @@ using TheKiwiCoder;
 public class ConsumeObstacle : ActionNode
 {
     bool playing;
-    [SerializeField] int healAmmount;
+    [SerializeField] int healAmmount = 50;
     protected override void OnStart() {
         playing = true;
         owner.controller.StartCoroutine(Consume());
@@ -17,11 +17,16 @@ public class ConsumeObstacle : ActionNode
     }
 
     protected override State OnUpdate() {
-
-        if (playing)
+        if (owner.controller.turnFinished)
             return State.Success;
-        else
+        if (playing)
+        {
             return State.Running;
+        }
+        else
+        {
+            return State.Success;
+        }
     }
 
 
@@ -49,8 +54,6 @@ public class ConsumeObstacle : ActionNode
         owner.controller.obstaclesInGame.Remove(owner.controller.chosenObstacle);
         owner.controller.validObstacles.Remove(owner.controller.chosenObstacle);
         owner.controller.chosenObstacle.gameObject.SetActive(false);
-
-
 
         playing = false;
     }

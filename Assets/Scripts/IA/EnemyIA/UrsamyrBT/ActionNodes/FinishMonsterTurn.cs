@@ -16,6 +16,7 @@ public class FinishMonsterTurn : ActionNode
 
     protected override State OnUpdate() {
         owner.controller.currentEnemy.timelineVelocity = finishVelocity;
+        owner.controller.turnFinished = true;
         owner.controller.currentEnemy.SetCurrentVelocity();
         owner.controller.battleController.ChangeState<FinishEnemyUnitTurnState>();
         return State.Success;    

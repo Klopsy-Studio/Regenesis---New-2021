@@ -5,7 +5,8 @@ using UnityEngine.Rendering;
 
 public class ToolTipSystem : MonoBehaviour
 {
-    private static ToolTipSystem instance;
+    public static ToolTipSystem instance;
+    public ToolTipTrigger currentTrigger;
     public ToolTip toolTip;
     private void Awake()
     {

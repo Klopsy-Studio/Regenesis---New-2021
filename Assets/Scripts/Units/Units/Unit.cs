@@ -283,7 +283,7 @@ public class Unit : TimelineElements
     public virtual void Heal(float heal)
     {
         AudioManager.instance.Play("HunterHeal");
-
+        HealEffect();
         health += (int)heal;
 
         if (health >= maxHealth)

@@ -8,7 +8,7 @@ public class MonsterController : MonoBehaviour
     [Header("Behaviour Tree Variables")]
     public BehaviourTree tree;
     [SerializeField] BehaviourTreeRunner testRunner;
-
+    public bool turnFinished;
     //0 stands for no last sequence
     public int lastSequence = 0;
     public int currentSequence;
@@ -79,6 +79,7 @@ public class MonsterController : MonoBehaviour
         test = true;
         tree.rootNode.state = Node.State.Running;
         tree.ResetAllNodes();
+        turnFinished = false;
         //currentState.UpdateState(this);
     }
 
@@ -161,7 +162,7 @@ public class MonsterController : MonoBehaviour
         return Instantiate(e);
     }
 
-    public void SpawnMinion(int indexToSpawn, Tile tileToSpawn)
+    public void SpawnMinion(int indexToSpawn, Tile tileToSpawn, bool spawnEvolved)
     {
         EnemyUnit minion = Instantiate(minionsPrefab[indexToSpawn], new Vector3(tileToSpawn.pos.x, minionsPrefab[indexToSpawn].transform.position.y, tileToSpawn.pos.y), minionsPrefab[indexToSpawn].transform.rotation).GetComponent<EnemyUnit>();
         minion.controller = battleController;
@@ -173,6 +174,12 @@ public class MonsterController : MonoBehaviour
         minion.timelineFill = Random.Range(0, 15);
         minion.Place(tileToSpawn);
         minion.Match();
+
+        if (spawnEvolved)
+        {
+            minion.monsterControl.monsterAnimations.SetFloat("evolve", 1);
+            minion.monsterControl.hasEvolved = true;
+        }
     }
 
 

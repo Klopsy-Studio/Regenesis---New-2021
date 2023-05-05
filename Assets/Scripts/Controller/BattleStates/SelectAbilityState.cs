@@ -43,7 +43,7 @@ public class SelectAbilityState : BattleState
         owner.abilitySelectionUI.OriginalColor();
         owner.hammerTraitObject.gameObject.SetActive(false);
         owner.gunbladeUI.bulletParent.SetActive(false);
-
+        owner.droneUI.gameObject.SetActive(false);
         switch (owner.currentUnit.weapon.EquipmentType)
         {
             case KitType.Hammer:
@@ -131,11 +131,7 @@ public class SelectAbilityState : BattleState
         //Meter ActivarUI
     }
 
-    
-    protected override void OnEscape(object sender, InfoEventArgs<KeyCode> e)
-    {
-        owner.ChangeState<SelectActionState>();
-    }
+
 
     protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
     {

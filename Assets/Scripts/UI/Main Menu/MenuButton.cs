@@ -92,6 +92,15 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         DataPersistenceManager.instance.SaveGame();
     }
 
+    public void EnableSelection()
+    {
+        canBeSelected = true;
+    }
+
+    public void DisableSelection()
+    {
+        canBeSelected = false;
+    }
     void Update()
     {
         if (appear)

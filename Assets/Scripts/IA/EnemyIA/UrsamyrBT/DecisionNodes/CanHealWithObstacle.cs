@@ -13,7 +13,8 @@ public class CanHealWithObstacle : ActionNode
     }
 
     protected override State OnUpdate() {
-
+        if (owner.controller.turnFinished)
+            return State.Success;
         if (owner.controller.validObstacles.Count > 0 && owner.controller.currentEnemy.health < owner.controller.currentEnemy.maxHealth)
         {
             return State.Success;

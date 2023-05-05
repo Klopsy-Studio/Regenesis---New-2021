@@ -15,6 +15,8 @@ public class SetSequenceNumber : ActionNode
     }
 
     protected override State OnUpdate() {
+        if (owner.controller.turnFinished)
+            return State.Success;
         owner.controller.lastSequence = sequenceToSet;
         return State.Success;
     }

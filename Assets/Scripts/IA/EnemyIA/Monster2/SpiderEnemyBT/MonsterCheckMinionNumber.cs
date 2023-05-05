@@ -15,7 +15,8 @@ public class MonsterCheckMinionNumber : ActionNode
     }
 
     protected override State OnUpdate() {
-
+        if (owner.controller.turnFinished)
+            return State.Success;
         switch (checkType)
         {
             case ComparisonType.Equals:

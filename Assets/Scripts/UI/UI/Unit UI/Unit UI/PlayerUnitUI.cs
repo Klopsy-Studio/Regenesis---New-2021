@@ -40,11 +40,14 @@ public class PlayerUnitUI : UnitUI
     List<Image> previewBullets = new List<Image>();
 
     int index;
-
+    [SerializeField] float timer = 2f;
+    [SerializeField] float originalTimer;
+    bool beginTimer;
     [SerializeField] bool toggleShowUnitUI;
 
     private void Start()
     {
+        originalTimer = timer;
         foreach(ActionPoint i in actionPoints)
         {
             originalActionPoints.Add(i);
@@ -246,7 +249,7 @@ public class PlayerUnitUI : UnitUI
     }
     public void DisableHealthBar()
     {
-        healthBar.gameObject.SetActive(true);
+        healthBar.gameObject.SetActive(false);
     }
 
     float currentTime;
@@ -260,7 +263,8 @@ public class PlayerUnitUI : UnitUI
     {
         s.gameObject.SetActive(true);
         updatingValue = true;
-
+        beginTimer = true;
+        timer = originalTimer;
         if (s.value >= targetValue)
         {
             while (s.value > targetValue)
@@ -291,9 +295,22 @@ public class PlayerUnitUI : UnitUI
 
         s.value = targetValue;
         currentTime = 0;
-        yield return new WaitForSeconds(0.5f);
-        s.gameObject.SetActive(false);
         updatingValue = false;
+    }
+
+    public void Update()
+    {
+        if (beginTimer)
+        {
+            timer -= Time.deltaTime;
+
+            if(timer <= 0)
+            {
+                beginTimer = false;
+                timer = originalTimer;
+                DisableHealthBar();
+            }
+        }
     }
 }
 

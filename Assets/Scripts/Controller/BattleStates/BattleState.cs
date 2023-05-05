@@ -30,7 +30,7 @@ public abstract class BattleState : State
     {
         InputController.moveEvent += OnMove;
         InputController.selectEvent += OnFire;
-        //InputController.escapeEvent += OnEscape;
+        InputController.escapeEvent += OnEscape;
         InputController.mouseConfirmEvent += OnMouseConfirm;
         InputController.mouseSelectEvent += OnMouseSelectEvent;
         InputController.mouseCancelEvent += OnMouseCancelEvent;
@@ -67,14 +67,23 @@ public abstract class BattleState : State
 
     protected virtual void OnEscape(object sender, InfoEventArgs<KeyCode> e)
     {
+        Debug.Log("?");
+        if (!owner.pauseButton.GetComponent<Pause>().gameIsPaused)
+        {
+            owner.pauseButton.onUp.Invoke();
+        }
 
+        else
+        {
+            owner.resumeButton.onUp.Invoke();
+        }
     }
 
     protected override void RemoveListeners()
 	{
 		InputController.moveEvent -= OnMove;
 		InputController.selectEvent -= OnFire;
-        //InputController.escapeEvent -= OnEscape;
+        InputController.escapeEvent -= OnEscape;
         InputController.mouseConfirmEvent -= OnMouseConfirm;
         InputController.mouseSelectEvent -= OnMouseSelectEvent;
         InputController.mouseCancelEvent -= OnMouseCancelEvent;

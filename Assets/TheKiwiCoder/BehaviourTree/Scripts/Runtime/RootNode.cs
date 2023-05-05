@@ -12,6 +12,7 @@ namespace TheKiwiCoder {
         public Node child;
 
         protected override void OnStart() {
+            Debug.Log("Starting");
 
         }
 

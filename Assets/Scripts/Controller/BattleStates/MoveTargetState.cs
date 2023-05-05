@@ -66,11 +66,7 @@ public class MoveTargetState : BattleState
         tiles = null;
     }
 
-    protected override void OnEscape(object sender, InfoEventArgs<KeyCode> e)
-    {
-        SelectTile(owner.currentUnit.currentPoint);
-        owner.ChangeState<SelectActionState>();
-    }
+
 
     protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
     {
