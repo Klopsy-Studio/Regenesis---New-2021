@@ -7,6 +7,7 @@ using TheKiwiCoder;
 public class MonsterSpawnMinion : ActionNode
 {
     bool treeUpdate;
+    [SerializeField] bool spawnEvolved = false;
     protected override void OnStart() {
         treeUpdate = true;
         owner.controller.StartCoroutine(SpawnMinions());
@@ -62,12 +63,12 @@ public class MonsterSpawnMinion : ActionNode
 
                 if (i > owner.controller.minionsPrefab.Count - 1)
                 {
-                    owner.controller.SpawnMinion(Random.Range(0, owner.controller.minionsPrefab.Count), t);
+                    owner.controller.SpawnMinion(Random.Range(0, owner.controller.minionsPrefab.Count), t, spawnEvolved);
                 }
 
                 else
                 {
-                    owner.controller.SpawnMinion(i, t);
+                    owner.controller.SpawnMinion(i, t, spawnEvolved);
                 }
 
                 yield return new WaitForSeconds(0.6f);

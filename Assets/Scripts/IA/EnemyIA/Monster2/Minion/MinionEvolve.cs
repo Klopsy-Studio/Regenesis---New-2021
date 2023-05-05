@@ -13,25 +13,29 @@ public class MinionEvolve : ActionNode
     [SerializeField] float evolveTime = 2f;
     protected override void OnStart() {
 
-        owner.controller.currentEnemy.power = evolvedPower;
-        owner.controller.currentEnemy.criticalPercentage = evolvedCrt;
-
-        owner.controller.currentEnemy.unitPortrait = owner.controller.currentEnemy.evolvedPortrait;
-        int healthToGive = evolvedHealth - owner.controller.currentEnemy.maxHealth;
-        owner.controller.currentEnemy.maxHealth = evolvedHealth;
-
-        owner.controller.currentEnemy.health += healthToGive;
-
-        if (owner.controller.currentEnemy.health >= owner.controller.currentEnemy.maxHealth)
+        if (!owner.controller.hasEvolved)
         {
-            owner.controller.currentEnemy.health = owner.controller.currentEnemy.maxHealth;
+            owner.controller.currentEnemy.power = evolvedPower;
+            owner.controller.currentEnemy.criticalPercentage = evolvedCrt;
+
+            owner.controller.currentEnemy.unitPortrait = owner.controller.currentEnemy.evolvedPortrait;
+            int healthToGive = evolvedHealth - owner.controller.currentEnemy.maxHealth;
+            owner.controller.currentEnemy.maxHealth = evolvedHealth;
+
+            owner.controller.currentEnemy.health += healthToGive;
+
+            if (owner.controller.currentEnemy.health >= owner.controller.currentEnemy.maxHealth)
+            {
+                owner.controller.currentEnemy.health = owner.controller.currentEnemy.maxHealth;
+            }
+
+            owner.controller.hasEvolved = true;
+            ActionEffect.instance.Play(3, 1.5f, 0.01f, 0.05f);
+
+            owner.controller.monsterAnimations.SetFloat("evolve", 1f);
+            owner.controller.monsterAnimations.SetTrigger("evolveTrigger");
         }
-
-        owner.controller.hasEvolved = true;
-        ActionEffect.instance.Play(3, 1.5f, 0.01f, 0.05f);
-
-        owner.controller.monsterAnimations.SetFloat("evolve", 1f);
-        owner.controller.monsterAnimations.SetTrigger("evolveTrigger");
+        
     }
 
     protected override void OnStop() {
@@ -40,17 +44,23 @@ public class MinionEvolve : ActionNode
     protected override State OnUpdate() {
         if (owner.controller.turnFinished)
             return State.Success;
-        evolveTime -= Time.deltaTime;
-
-        if(evolveTime <= 0)
+        if (!owner.controller.hasEvolved)
         {
-            return State.Success;
+            evolveTime -= Time.deltaTime;
 
+            if (evolveTime <= 0)
+            {
+                return State.Success;
+
+            }
+            else
+            {
+                return State.Running;
+            }
         }
         else
         {
-            return State.Running;
+            return State.Success;
         }
-
     }
 }
