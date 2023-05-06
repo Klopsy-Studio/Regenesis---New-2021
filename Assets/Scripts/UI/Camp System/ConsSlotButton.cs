@@ -28,6 +28,7 @@ public class ConsSlotButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        consInventoryManager.rightPanel.SetActive(true);
         consInventoryManager.ButtonClicked();
         consInventoryManager.UpdateConsPanelInfo(this);
         selectedFrame.gameObject.SetActive(true);

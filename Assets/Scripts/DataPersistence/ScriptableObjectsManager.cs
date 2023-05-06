@@ -28,8 +28,9 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
 
     [Header("Debug things")]
     public MonsterMaterial[] monsterMaterial;
+    public Weapons[] weapons;
    
-    public void AddThingsToMatInventory()
+    public void AddThingsToMatInventory() //unity buttons
     {
         foreach (var item in monsterMaterial)
         {
@@ -37,7 +38,16 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
         }
         
     }
-   
+
+    public void AddThingsToEquipInventory() //unity buttons
+    {
+        foreach (var item in weapons)
+        {
+            weaponInventory.AddItem(item);
+        }
+
+    }
+
     public void LoadData(GameData data)
     {
 

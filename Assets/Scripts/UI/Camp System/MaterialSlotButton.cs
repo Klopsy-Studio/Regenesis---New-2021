@@ -28,6 +28,7 @@ public class MaterialSlotButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        materialInventoryManager.rightPanel.SetActive(true);
         materialInventoryManager.ButtonClicked();
         materialInventoryManager.UpdateMaterialPanelInfo(this);
         selectedFrame.gameObject.SetActive(true);

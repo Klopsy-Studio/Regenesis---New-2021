@@ -11,7 +11,7 @@ public class ConsumableInventoryManager : MonoBehaviour
     [HideInInspector] public Dictionary<ConsumableSlot, ConsSlotButton> consumableDisplayed = new Dictionary<ConsumableSlot, ConsSlotButton>();
 
     public ConsumablePanelInfo consumablePanelInfo;
-  
+    public GameObject rightPanel;
     [SerializeField] Transform contentTransform;
 
     public delegate void ConsButtonSlotClicked();
@@ -26,6 +26,7 @@ public class ConsumableInventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rightPanel.SetActive(false);
         CreateDisplay();
     }
 
@@ -92,6 +93,7 @@ public class ConsumableInventoryManager : MonoBehaviour
 
     public void OnDisable()
     {
+        rightPanel.SetActive(false);
         consumablePanelInfo.ResetInfo();
     }
 }

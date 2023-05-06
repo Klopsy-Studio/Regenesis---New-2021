@@ -15,7 +15,7 @@ public class MaterialInventoryMananger : MonoBehaviour
 
     public delegate void MatButtonSlotClicked();
     public static event MatButtonSlotClicked OnMatButtonCliked;
-
+    public GameObject rightPanel;
     public void ButtonClicked()
     {
         OnMatButtonCliked?.Invoke();
@@ -24,6 +24,7 @@ public class MaterialInventoryMananger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rightPanel.SetActive(false);
         CreateDisplay();
     }
 
@@ -71,6 +72,12 @@ public class MaterialInventoryMananger : MonoBehaviour
     public void UpdateMaterialPanelInfo(MaterialSlotButton _materialSlotButton)
     {
         materialPanelInfo.UpdatePanelInfo(_materialSlotButton);
+    }
+
+    private void OnDisable()
+    {
+        materialPanelInfo.ResetInfo();
+        rightPanel.SetActive(false);
     }
 }
 
