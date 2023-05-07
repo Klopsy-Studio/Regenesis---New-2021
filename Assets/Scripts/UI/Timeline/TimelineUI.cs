@@ -36,6 +36,7 @@ public class TimelineUI : MonoBehaviour
 
 
     public Image currentActorFrame;
+    public Animator currentActorAnimations;
     public Image currentActorIcon;
 
     List<TimelineIconUI> iconsInTimeline = new List<TimelineIconUI>();
@@ -48,12 +49,14 @@ public class TimelineUI : MonoBehaviour
     [SerializeField] PreviewTurnOrder previewTurnOrder;
 
     [SerializeField] List<TimelineIconUI> topLane = new List<TimelineIconUI>();
+    public int toplaneOffset;
     List<TimelineIconUI> _topLane = new List<TimelineIconUI>();
     [SerializeField] List<TimelineIconUI> midLane = new List<TimelineIconUI>();
     List<TimelineIconUI> _midLane = new List<TimelineIconUI>();
 
     [SerializeField] List<TimelineIconUI> bottomLane = new List<TimelineIconUI>();
     List<TimelineIconUI> _bottomLane = new List<TimelineIconUI>();
+    public int bottomLaneOffset;
 
 
     public void CallTimelinePreviewOrder()//Unity button 
@@ -211,7 +214,7 @@ public class TimelineUI : MonoBehaviour
             temp = iconsInTimeline[i];
             temp.owner = this;
             temp.element = battleController.timelineElements[i];
-
+            temp.iconAnimationsTimeline.SetFloat("character", temp.element.timelineIconIndex);
             if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.PlayerUnit)
             {
                 temp.lane = TimelineLane.Top;
@@ -220,14 +223,12 @@ public class TimelineUI : MonoBehaviour
                     _topLane.Add(temp);
                 }
 
-                temp.image.sprite = playerFrame;
                 temp.element.iconTimeline = temp;
                 temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
 
                 temp.downSupport.GetComponent<Image>().enabled = true;
 
-                temp.downSupport.sprite = upSupport;
-                temp.offset = 70;
+                temp.offset = toplaneOffset;
 
                 temp.velocityText.gameObject.SetActive(true);
 
@@ -246,15 +247,12 @@ public class TimelineUI : MonoBehaviour
 
                 temp.element.iconTimeline = temp;
 
-                temp.image.sprite = enemyFrame;
-
                 temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
 
                 temp.upSupport.GetComponent<Image>().enabled = true;
-                temp.upSupport.sprite = downSupport;
 
                 temp.velocityText.gameObject.SetActive(false);
-                temp.offset = -70;
+                temp.offset = bottomLaneOffset;
 
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.RealtimeEvents)
@@ -268,7 +266,6 @@ public class TimelineUI : MonoBehaviour
 
                 temp.element.iconTimeline = temp;
 
-                temp.image.sprite = eventFrame;
                 temp.icon.sprite = eventIcon;
                 temp.velocityText.gameObject.SetActive(false);
                 temp.offset = 0;
@@ -284,7 +281,6 @@ public class TimelineUI : MonoBehaviour
 
                 temp.element.iconTimeline = temp;
 
-                temp.image.sprite = itemFrame;
                 temp.icon.sprite = itemIcon;
 
                 temp.offset = 0;
@@ -298,7 +294,6 @@ public class TimelineUI : MonoBehaviour
                     _midLane.Add(temp);
                 }
                 temp.element.iconTimeline = temp;
-                temp.upSupport.sprite = downSupport;
                 temp.velocityText.gameObject.SetActive(false);
                 temp.offset = 0;
             }
@@ -314,12 +309,10 @@ public class TimelineUI : MonoBehaviour
 
                 temp.element.iconTimeline = temp;
                 temp.upSupport.GetComponent<Image>().enabled = true;
-
-                temp.image.sprite = itemFrame;
                 temp.offset = 0;
 
                 temp.upSupport.gameObject.SetActive(true);
-                temp.offset = -70;
+                temp.offset = bottomLaneOffset;
 
             }
 
@@ -332,18 +325,15 @@ public class TimelineUI : MonoBehaviour
                     _topLane.Add(temp);
                 }
 
-                temp.image.sprite = playerFrame;
                 temp.element.iconTimeline = temp;
                 temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
 
                 temp.downSupport.GetComponent<Image>().enabled = true;
-                temp.downSupport.sprite = upSupport;
-                temp.offset = 70;
+                temp.offset = toplaneOffset;
             }
             temp.barSize = content.sizeDelta.x;
             temp.originalOffset = temp.offset;
             temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
-            temp.image.SetNativeSize();
 
         }
     }
@@ -401,49 +391,26 @@ public class TimelineUI : MonoBehaviour
     }
     public void ShowIconActing(TimelineElements element)
     {
-        currentActorFrame.enabled = true;
-        currentActorIcon.enabled = true;
+        currentActorAnimations.gameObject.SetActive(true);
+        currentActorAnimations.SetFloat("character", element.timelineIconIndex);
+        currentActorAnimations.SetTrigger("appear");
         element.iconTimeline.isActing = true;
-
-        switch (element.timelineTypes)
-        {
-            case TimeLineTypes.Null:
-                break;
-            case TimeLineTypes.PlayerUnit:
-                currentActorFrame.sprite = playerFrame;
-                break;
-            case TimeLineTypes.EnemyUnit:
-                currentActorFrame.sprite = enemyFrame;
-                break;
-            case TimeLineTypes.RealtimeEvents:
-                currentActorFrame.sprite = eventFrame;
-                break;
-            case TimeLineTypes.Items:
-                currentActorFrame.sprite = eventFrame;
-                break;
-            case TimeLineTypes.PlayerDeath:
-                currentActorFrame.sprite = itemFrame;
-                break;
-            default:
-                break;
-        }
-
-        currentActorIcon.sprite = element.timelineIcon;
+        currentActorIcon.SetNativeSize();
     }
 
     public void HideIconActing()
     {
-        currentActorFrame.enabled = false;
-        currentActorIcon.enabled = false;
+        currentActorAnimations.SetTrigger("disappear");
+
     }
     public void HideTimelineIcon(TimelineElements element)
     {
-        element.iconTimeline.gameObject.SetActive(false);
+        element.iconTimeline.EnableDisappear();
     }
 
     public void ShowTimelineIcon(TimelineElements element)
     {
-        element.iconTimeline.gameObject.SetActive(true);
+        element.iconTimeline.EnableAppear();
         element.iconTimeline.isActing = false;
     }
 }

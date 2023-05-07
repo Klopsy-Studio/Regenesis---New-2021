@@ -10,8 +10,6 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public RectTransform groupPos;
     public TextMeshProUGUI velocityText;
     public RectTransform rectTransform;
-    public Image image;
-
     public Image icon;
 
     public Image upSupport;
@@ -20,6 +18,7 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public bool mouseOver;
     public bool selected;
 
+    public Animator iconAnimationsTimeline;
     public Animator iconAnimations;
 
     public TimelineElements element;
@@ -62,6 +61,15 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         stunnedIndicator.SetActive(false);
     }
    
+    public void EnableAppear()
+    {
+        iconAnimationsTimeline.SetTrigger("appear");
+    }
+
+    public void EnableDisappear()
+    {
+        iconAnimationsTimeline.SetTrigger("disappear");
+    }
 
     void Update()
     {
@@ -214,12 +222,12 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void Grow()
     {
-        iconAnimations.SetBool("isGrow", true);
+        //iconAnimations.SetBool("isGrow", true);
     }
 
     public void Return()
     {
-        iconAnimations.SetBool("isGrow", false);
+        //iconAnimations.SetBool("isGrow", false);
     }
 }
 

@@ -55,11 +55,14 @@ public class FinishPlayerUnitTurnState : BattleState
 
         owner.pauseTimelineButton.canBeSelected = true;
         owner.resumeTimelineButton.canBeSelected = true;
+
+        owner.timelineUI.ShowTimelineIcon(owner.currentUnit);
+        owner.timelineUI.HideIconActing();
+
+        yield return new WaitForSeconds(0.5f);
+
         owner.resumeTimelineButton.onUp.Invoke();
-
-
-        //AudioManager.instance.Play("TurnEnd");
-        yield return null;
         owner.ChangeState<TimeLineState>();
+
     }
 }

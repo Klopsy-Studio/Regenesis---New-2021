@@ -482,31 +482,31 @@ public class BattleController : StateMachine
 
     public void ReorganizeIcons()
     {
-        foreach(TimelineElements e in timelineElements)
-        {
-            if(e.iconTimeline != null)
-            {
-                e.iconTimeline.timelineEnabled = false;
-                e.iconTimeline.PutPreviousOnTop();
-            }
+        //foreach(TimelineElements e in timelineElements)
+        //{
+        //    if(e.iconTimeline != null)
+        //    {
+        //        e.iconTimeline.timelineEnabled = false;
+        //        e.iconTimeline.PutPreviousOnTop();
+        //    }
             
-        }
+        //}
     }
 
     public void ResetIcons()
     {
-        foreach (TimelineElements e in timelineElements)
-        {
-            if(e.iconTimeline != null)
-            {
-                if (e.iconTimeline.previousPosition != null)
-                {
-                    e.iconTimeline.timelineEnabled = true;
-                    e.iconTimeline.ResetPrevious();
-                }
-            }
+        //foreach (TimelineElements e in timelineElements)
+        //{
+        //    if(e.iconTimeline != null)
+        //    {
+        //        if (e.iconTimeline.previousPosition != null)
+        //        {
+        //            e.iconTimeline.timelineEnabled = true;
+        //            e.iconTimeline.ResetPrevious();
+        //        }
+        //    }
 
-        }
+        //}
     }
     public void ToggleTimeline()
     {
