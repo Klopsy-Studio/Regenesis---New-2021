@@ -36,6 +36,11 @@ public class GameCursor : MonoBehaviour
     public void LateUpdate()
     {
         //Cursor.visible = false;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            SetRegularCursor();
+        }
         Vector2 cursorPos = Input.mousePosition;
         cursorSprite.rectTransform.position = cursorPos;
     }
