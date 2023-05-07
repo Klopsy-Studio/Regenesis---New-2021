@@ -10,12 +10,16 @@ public class MiniStatus : MonoBehaviour
     [SerializeField] BattleController controller;
     [Space(3)]
     [Header("Player Status References")]
+    [SerializeField] Color goodHealth;
+    [SerializeField] Color mediumHealth;
+    [SerializeField] Color lowHealth;
     [SerializeField] TextMeshProUGUI playerName;
     [SerializeField] Image playerWeapon;
     [SerializeField] GameObject playerStatus;
     [SerializeField] GameObject playerBuffsAndDebuffs;
     [SerializeField] Image playerPortrait;
     [SerializeField] Slider playerHealth;
+    [SerializeField] Image playerHealthBar;
     [Space(2)]
     [Header("Monster Status References")]
 
@@ -91,6 +95,20 @@ public class MiniStatus : MonoBehaviour
             ResetChilds(playerBuffsAndDebuffs);
             SetAlteredEffects(element, playerBuffsAndDebuffs.transform);
 
+            playerHealth.value = element.health;
+
+            if (playerHealth.value >= 50)
+            {
+                playerHealthBar.color = goodHealth;
+            }
+            else if (playerHealth.value < 50 && playerHealth.value >= 25)
+            {
+                playerHealthBar.color = mediumHealth;
+            }
+            else
+            {
+                playerHealthBar.color = lowHealth;
+            }
             switch (element.weapon.EquipmentType)
             {
                 case KitType.Hammer:
