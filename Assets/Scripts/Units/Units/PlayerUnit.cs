@@ -424,7 +424,7 @@ public class PlayerUnit : Unit
     }
     public override void NearDeath()
     {
-        NearDeathSprite();
+        animations.unitAnimator.SetBool("nearDeath", true);
         diedOnce = true;
         PlayerUnitDeath element = Instantiate(nearDeathElement);
         element.timelineIcon = deathTimelineSprite;
@@ -440,6 +440,8 @@ public class PlayerUnit : Unit
 
     public void Revive()
     {
+        animations.unitAnimator.SetBool("nearDeath", false);
+
         deathElement.DisableDeath(controller);
         elementEnabled = true;
         //status.unitPortrait.sprite = timelineIcon;
@@ -447,6 +449,7 @@ public class PlayerUnit : Unit
         playerUI.gameObject.SetActive(true);
         timelineFill = 0;
         iconTimeline.gameObject.SetActive(true);
+
         isNearDeath = false;
         timelineTypes = TimeLineTypes.PlayerUnit;
     }
@@ -454,6 +457,8 @@ public class PlayerUnit : Unit
     {
         base.Die();
         controller.playerUnits.Remove(this);
+        animations.unitAnimator.SetBool("nearDeath", true);
+
         isNearDeath = true;
 
         if(weapon.EquipmentType == KitType.Drone)
