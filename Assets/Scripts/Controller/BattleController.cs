@@ -202,6 +202,8 @@ public class BattleController : StateMachine
       
         zoomed = false;
         sceneTransition.SetBool("fadeOut", true);
+
+
         //BeginGame();
     }
     public void SetMission(LevelData level)
