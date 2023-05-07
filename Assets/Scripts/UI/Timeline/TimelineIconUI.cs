@@ -14,6 +14,8 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public Image upSupport;
     public Image downSupport;
+    public Image middleUpSupport;
+    public Image middleDownSupport;
 
     public bool mouseOver;
     public bool selected;

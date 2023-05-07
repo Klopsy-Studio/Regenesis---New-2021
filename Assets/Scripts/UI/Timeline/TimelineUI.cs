@@ -269,6 +269,9 @@ public class TimelineUI : MonoBehaviour
                 temp.icon.sprite = eventIcon;
                 temp.velocityText.gameObject.SetActive(false);
                 temp.offset = 0;
+
+                temp.middleDownSupport.enabled = true;
+                temp.middleUpSupport.enabled = true;
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.Items)
             {
@@ -284,6 +287,8 @@ public class TimelineUI : MonoBehaviour
                 temp.icon.sprite = itemIcon;
 
                 temp.offset = 0;
+                temp.middleDownSupport.enabled = true;
+                temp.middleUpSupport.enabled = true;
             }
 
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.PlayerDeath)
@@ -296,6 +301,11 @@ public class TimelineUI : MonoBehaviour
                 temp.element.iconTimeline = temp;
                 temp.velocityText.gameObject.SetActive(false);
                 temp.offset = 0;
+
+                temp.middleDownSupport.enabled = true;
+                temp.middleUpSupport.enabled = true;
+
+            
             }
 
             else if(battleController.timelineElements[i].timelineTypes == TimeLineTypes.EnemyEvent)
@@ -313,6 +323,8 @@ public class TimelineUI : MonoBehaviour
 
                 temp.upSupport.gameObject.SetActive(true);
                 temp.offset = bottomLaneOffset;
+                temp.middleDownSupport.enabled = true;
+                temp.middleUpSupport.enabled = true;
 
             }
 
