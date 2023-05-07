@@ -37,7 +37,7 @@ public class GameCursor : MonoBehaviour
     {
         //Cursor.visible = false;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
             SetRegularCursor();
         }
