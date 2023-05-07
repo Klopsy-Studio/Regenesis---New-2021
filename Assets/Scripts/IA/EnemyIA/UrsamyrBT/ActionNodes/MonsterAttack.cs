@@ -23,6 +23,7 @@ public class MonsterAttack : ActionNode
         Directions dir = Directions.North;
         if(controller.target != null)
         {
+            owner.controller.currentEnemy.UpdateEnemyUnitSprite();
             dir = controller.currentEnemy.tile.GetDirections(controller.target.tile);
             tiles = ability.ShowAttackRange(dir, controller);
         }

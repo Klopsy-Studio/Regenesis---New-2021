@@ -61,7 +61,7 @@ public class SelectActionState : BattleState
                 ActionSelectionUI.EnableSelectOption(typeOfAction.Ability);
             }
 
-            if (owner.currentUnit.actionsPerTurn >= 2)
+            if (CanUseItems())
             {
                 ActionSelectionUI.EnableSelectOption(typeOfAction.Item);
             }
@@ -88,7 +88,17 @@ public class SelectActionState : BattleState
     }
 
 
-
+    public bool CanUseItems()
+    {
+        if(owner.backpackInventory.consumableContainer.Count >0 && owner.currentUnit.actionsPerTurn >= owner.itemCost)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     
 
    
@@ -180,7 +190,7 @@ public class SelectActionState : BattleState
                 Debug.Log("CASE 2");
                 //right now it will change to SelectItemState. That state will select the potion item automatically. 
                 //we should change that in the future
-                if(owner.currentUnit.actionsPerTurn >= 2)
+                if(CanUseItems())
                 {
                     owner.ChangeState<SelectItemState>();
                     AudioManager.instance.Play("Boton" + owner.enterMenu);

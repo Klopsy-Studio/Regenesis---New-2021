@@ -31,6 +31,7 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (!owner.stopSelection)
         {
+            GameCursor.instance.SetHandCursor();
             AudioManager.instance.Play("Boton" + owner.controller.hoverOption);
             owner.controller.ActivateTileSelector();    
             owner.selectedTarget = this;
@@ -73,6 +74,7 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         MoveCursorAway();
+        GameCursor.instance.SetRegularCursor();
 
         switch (targetType)
         {
