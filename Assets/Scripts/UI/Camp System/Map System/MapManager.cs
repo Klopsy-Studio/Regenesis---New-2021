@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField] ZoneButton[] zoneButtons;
+    //[SerializeField] ZoneButton[] zoneButtons;
     [SerializeField] GameObject[] mapLists;
     public DisplayMapContainers[] displayMapContainerList;
     public MissionInfoPanel missionInfoPanel;
@@ -17,18 +17,18 @@ public class MapManager : MonoBehaviour
     {
         missionInfoPanel.gameObject.SetActive(false);
 
-        //
-        foreach (var button in zoneButtons)
-        {
-            button.FillVariables(this);
-        }
+        
+        //foreach (var button in zoneButtons)
+        //{
+        //    button.FillVariables(this);
+        //}
 
 
         SetUpMissions();
-        foreach (var button in zoneButtons)
-        {
-            button.UpdateNotifications();
-        }
+        //foreach (var button in zoneButtons)
+        //{
+        //    button.UpdateNotifications();
+        //}
     }
 
 
@@ -86,10 +86,10 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        foreach (var button in zoneButtons)
-        {
-            button.UpdateNotifications();
-        }
+        //foreach (var button in zoneButtons)
+        //{
+        //    button.UpdateNotifications();
+        //}
     }
 
 

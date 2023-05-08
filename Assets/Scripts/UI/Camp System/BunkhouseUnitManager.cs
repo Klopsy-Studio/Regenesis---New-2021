@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class BunkhouseUnitManager : MonoBehaviour
+public class BunkhouseUnitManager : MonoBehaviour, IDataPersistence
 {
     [Header("tutorialVariable")]
     [SerializeField] GameObject tutorialPanel;
@@ -92,7 +92,15 @@ public class BunkhouseUnitManager : MonoBehaviour
         }
     }
 
-    
+    public void LoadData(GameData data)
+    {
+        isTutorialFinished = data.isBarrackTutorialFinished;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.isBarrackTutorialFinished = isTutorialFinished;
+    }
 }
 
 [System.Serializable]

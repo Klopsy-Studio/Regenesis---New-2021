@@ -5,7 +5,7 @@ using TMPro;
 using System;
 
 
-public class ForgeManager : MonoBehaviour
+public class ForgeManager : MonoBehaviour, IDataPersistence
 {
     [Header("tutorialVariable")]
     [SerializeField] GameObject tutorialPanel;
@@ -127,6 +127,15 @@ public class ForgeManager : MonoBehaviour
         
     }
 
+    public void LoadData(GameData data)
+    {
+        isTutorialFinished = data.isForgeTutorialFinished;
+    }
+
+    public void SaveData(GameData data)
+    {
+       data.isForgeTutorialFinished = isTutorialFinished;
+    }
 }
 
 [System.Serializable]

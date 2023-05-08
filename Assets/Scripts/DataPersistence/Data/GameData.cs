@@ -19,6 +19,14 @@ public class GameData
 
     string[] unitsName = { "Isak", "Kaeo", "Ola" };
     string[] unitsWeapons = { "ScrapBow_3", "ScrapGunBlade_3", "ScrapHammer_3" };
+
+    //Tutorial saves
+    public bool isBarrackTutorialFinished;
+    public bool isForgeTutorialFinished;
+    public bool isShopTutorialFinished;
+    public bool isInventoryTutorialFinished;
+
+
     //the values defined in this constructor will be the default values
     //the game starts with when there's no data to load
     public GameData()
@@ -44,10 +52,15 @@ public class GameData
         consumableBackpack = new List<ItemData>();
         shopCurrentPoints = 0;
 
-      
-    }
 
-    private void UnitsProfileDefaultSetting()
+        isBarrackTutorialFinished = false; 
+        isForgeTutorialFinished = false ;
+        isShopTutorialFinished = false ;
+        isInventoryTutorialFinished=false;
+
+}
+
+private void UnitsProfileDefaultSetting()
     {
         for (int i = 0; i < 3; i++)
         {

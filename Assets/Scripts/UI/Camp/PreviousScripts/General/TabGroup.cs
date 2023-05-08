@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,20 @@ public class TabGroup : MonoBehaviour //THIS SCRIPT HAS BEEN MODIFIED. IT DOES N
     [SerializeField] public TabButtonUI selectedTabButton;
     
     [SerializeField] public List<GameObject> objectsToSwap;
+
+
+    [Header("Open tab and close tab")]
+    [SerializeField] GameObject openTab;
+    [SerializeField] GameObject[] closeTab;
+
+    private void Start()
+    {
+        foreach (var item in closeTab)
+        {
+            item.SetActive(false);
+        }
+        openTab.SetActive(true);
+    }
 
     public void Subscribe(TabButtonUI button)
     {

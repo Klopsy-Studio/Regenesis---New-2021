@@ -90,11 +90,13 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
+        isTutorialFinished = data.isShopTutorialFinished;
         currentPoints = data.shopCurrentPoints;
     }
 
     public void SaveData(GameData data)
     {
+        data.isShopTutorialFinished = isTutorialFinished;
         data.shopCurrentPoints = currentPoints;
     }
 }

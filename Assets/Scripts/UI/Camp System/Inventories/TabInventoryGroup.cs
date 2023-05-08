@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TabInventoryGroup : MonoBehaviour
+public class TabInventoryGroup : MonoBehaviour, IDataPersistence
 {
 
     [Header("tutorialVariable")]
@@ -86,4 +86,13 @@ public class TabInventoryGroup : MonoBehaviour
         isTutorialFinished = true;
     }
 
+    public void LoadData(GameData data)
+    {
+        isTutorialFinished = data.isInventoryTutorialFinished;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.isInventoryTutorialFinished = isTutorialFinished;
+    }
 }
