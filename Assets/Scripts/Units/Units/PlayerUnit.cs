@@ -17,7 +17,7 @@ public class PlayerUnit : Unit
     [HideInInspector] public UnitStatus status;
 
     public PlayerUnitUI playerUI;
-
+    public UnitPartyIcon partyIcon;
 
     [Header("Animations")]
     public UnitAnimations animations;
@@ -424,10 +424,11 @@ public class PlayerUnit : Unit
     }
     public override void NearDeath()
     {
+        partyIcon.UnitDead();
         animations.unitAnimator.SetBool("nearDeath", true);
         diedOnce = true;
         PlayerUnitDeath element = Instantiate(nearDeathElement);
-        element.timelineIcon = deathTimelineSprite;
+        element.timelineIcon = profile.unitDeathTimelineIcon;
         //status.unitPortrait.sprite = deathTimelineSprite;
         isNearDeath = true;
         deathElement = element;
@@ -441,6 +442,7 @@ public class PlayerUnit : Unit
     public void Revive()
     {
         animations.unitAnimator.SetBool("nearDeath", false);
+        partyIcon.UnitDefault();
 
         deathElement.DisableDeath(controller);
         elementEnabled = true;
@@ -594,6 +596,8 @@ public class PlayerUnit : Unit
 
         playerUI.HealthAnimation(health);
         DamageEffect();
+        partyIcon.UpdateHealthBar();
+
         Debug.Log("Damaged");
         if (health <= 0)
         {
@@ -640,7 +644,7 @@ public class PlayerUnit : Unit
         health += (int)heal;
 
         playerUI.HealthAnimation(health);
-
+        partyIcon.UpdateHealthBar();
         //status.HealthAnimation(health);
         HealEffect();
 

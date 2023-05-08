@@ -59,6 +59,9 @@ public class BattleController : StateMachine
     public GunbladeBullets gunbladeUI;
     public MenuButton droneUI;
     public GameObject questComplete;
+
+    public GameObject partyIconParent;
+    public GameObject partyIconPrefab;
     [Space]
     [Header("Weapon trait references")]
 
