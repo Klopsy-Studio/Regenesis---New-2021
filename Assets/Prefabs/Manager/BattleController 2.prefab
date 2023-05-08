@@ -570,7 +570,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &66823469
@@ -4250,7 +4250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &566840071
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4268,7 +4268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -860, y: 0}
+  m_AnchoredPosition: {x: -860, y: 202}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &566840072
@@ -22462,8 +22462,8 @@ MonoBehaviour:
   droneController: {fileID: 0}
   attackChosen: 0
   timelineElements: []
-  moveCost: 0
-  itemCost: 2
+  moveCost: 2
+  itemCost: 1
   environmentEvent: {fileID: 195445703}
   currentMonsterEvent: {fileID: 0}
   currentHunterEvent: {fileID: 0}
@@ -36521,6 +36521,10 @@ PrefabInstance:
     - target: {fileID: 7951137091442920731, guid: 37dc6353151cf4a49973e036ae45b51e, type: 3}
       propertyPath: m_Name
       value: TimelineNew
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951137091442920731, guid: 37dc6353151cf4a49973e036ae45b51e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8208486653684828131, guid: 37dc6353151cf4a49973e036ae45b51e, type: 3}
       propertyPath: m_IsActive
