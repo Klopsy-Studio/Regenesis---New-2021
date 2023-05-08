@@ -40,6 +40,7 @@ public class MonsterRoarState : BattleState
         owner.timelineUI.isActive = true;
         owner.timelineUI.gameObject.SetActive(true);
         owner.unitStatusUI.gameObject.SetActive(true);
+        owner.partyIconParent.gameObject.SetActive(true);
         
         owner.ChangeState<TimeLineState>();
     }

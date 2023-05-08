@@ -125,8 +125,6 @@ public class TutInitState : BattleState
             unit.Place(board.GetTile(p));
             unit.Match();
 
-            unit.unitSprite.color = GameManager.instance.unitProfilesList[i].unitColor;
-
             Movement m = instance.AddComponent(components[0]) as Movement;
             m.jumpHeight = 1;
 
@@ -187,13 +185,10 @@ public class TutInitState : BattleState
     public void AssignUnitData(UnitProfile data, PlayerUnit unit)
     {
         unit.unitPortrait = data.unitPortrait;
-        unit.fullUnitPortrait = data.unitFullPortrait;
         unit.weapon = data.unitWeapon;
         unit.unitName = data.unitName;
 
         unit.timelineIcon = data.unitTimelineIcon;
-
-        unit.deathTimelineSprite = data.deathTimeline;
 
     }
 }
