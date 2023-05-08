@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5104995330528271424}
   m_RootOrder: 0
@@ -35,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 34, y: 34}
+  m_SizeDelta: {x: 28, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8942432357982979387
 CanvasRenderer:
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d569a64e732d9c048871dc62f808857f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b197b4a898caab418c7db11b5c80a02, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -103,14 +104,15 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5104995330528271424}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 82.57017, y: -0.000021696}
-  m_SizeDelta: {x: 121.3448, y: 34}
+  m_AnchoredPosition: {x: 74.56526, y: -0.000021696}
+  m_SizeDelta: {x: 105.335, y: 34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1391478803009862910
 CanvasRenderer:
@@ -142,8 +144,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Putrid Bear Hammer I
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 796d3d4295cf22c4a965eb79a0e651e2, type: 2}
-  m_sharedMaterial: {fileID: -657879565399158427, guid: 796d3d4295cf22c4a965eb79a0e651e2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 04f72cf8bd125954990bb7a3fa3bf792, type: 2}
+  m_sharedMaterial: {fileID: -318577793918465233, guid: 04f72cf8bd125954990bb7a3fa3bf792, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -167,8 +169,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -221,6 +223,8 @@ GameObject:
   - component: {fileID: 5104995330528271426}
   - component: {fileID: 5104995330528271425}
   - component: {fileID: -1040291542680950204}
+  - component: {fileID: 5213716259717808470}
+  - component: {fileID: 3454683134800512868}
   m_Layer: 5
   m_Name: EquipmentBunkhouseButton
   m_TagString: Untagged
@@ -238,6 +242,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5138064919358518513}
   - {fileID: 5104995330917350920}
@@ -305,6 +310,31 @@ MonoBehaviour:
   equipmentID: 0
   weaponImage: {fileID: 5104995330917350921}
   weaponName: {fileID: 6547451181354219015}
+--- !u!114 &5213716259717808470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104995330528271439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3454683134800512868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5104995330528271439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04d7d845b31bed48b3f20a308f4fc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundNumber: 1
 --- !u!1 &5104995330917350967
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +363,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5104995330528271424}
   m_RootOrder: 1
@@ -340,7 +371,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 34, y: 34}
+  m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5104995330917350922
 CanvasRenderer:
@@ -370,7 +401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f27bb3364103b1d47b5a379514bc78f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
