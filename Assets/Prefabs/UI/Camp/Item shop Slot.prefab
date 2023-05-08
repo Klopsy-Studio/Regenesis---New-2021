@@ -88,6 +88,8 @@ GameObject:
   - component: {fileID: 2304057826153152308}
   - component: {fileID: 2304057826153152311}
   - component: {fileID: 2683697910522330553}
+  - component: {fileID: 4010670844473932269}
+  - component: {fileID: 498772174896994659}
   m_Layer: 5
   m_Name: Item shop Slot
   m_TagString: Untagged
@@ -178,6 +180,31 @@ MonoBehaviour:
     consumable: {fileID: 0}
     pointCosts: 0
   sprite: {fileID: 21300000, guid: ec8f175e10fa63f4cb8c4ca2e4b90702, type: 3}
+--- !u!114 &4010670844473932269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2304057826153152265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &498772174896994659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2304057826153152265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04d7d845b31bed48b3f20a308f4fc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundNumber: 1
 --- !u!1 &2304057827227179305
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,8 +273,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: BOMB
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 796d3d4295cf22c4a965eb79a0e651e2, type: 2}
-  m_sharedMaterial: {fileID: -657879565399158427, guid: 796d3d4295cf22c4a965eb79a0e651e2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 04f72cf8bd125954990bb7a3fa3bf792, type: 2}
+  m_sharedMaterial: {fileID: -318577793918465233, guid: 04f72cf8bd125954990bb7a3fa3bf792, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -271,8 +298,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -457,8 +484,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 5p
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 796d3d4295cf22c4a965eb79a0e651e2, type: 2}
-  m_sharedMaterial: {fileID: -657879565399158427, guid: 796d3d4295cf22c4a965eb79a0e651e2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 04f72cf8bd125954990bb7a3fa3bf792, type: 2}
+  m_sharedMaterial: {fileID: -318577793918465233, guid: 04f72cf8bd125954990bb7a3fa3bf792, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -482,14 +509,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

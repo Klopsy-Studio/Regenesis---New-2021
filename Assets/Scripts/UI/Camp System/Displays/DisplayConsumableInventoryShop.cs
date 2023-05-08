@@ -48,9 +48,10 @@ public class DisplayConsumableInventoryShop : MonoBehaviour
             {
                 var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, transform);
             
-             
+                //obj.consumableImage.sprite = inventory.consuma
                 consumableDisplayed.Add(inventory.consumableContainer[i], obj);
-              
+                obj.SetVariables(inventory.consumableContainer[i]);
+
 
             }
 

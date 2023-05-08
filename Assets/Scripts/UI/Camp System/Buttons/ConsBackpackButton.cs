@@ -19,6 +19,7 @@ public class ConsBackpackButton : UIButtons
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+       
         //var inventorySlot = inventory.consumableContainer[consumableID];
         //GameManager.instance.consumableBackpack.AddConsumable(inventorySlot.consumable, inventorySlot.amount);
 
