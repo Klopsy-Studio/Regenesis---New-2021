@@ -30,8 +30,14 @@ public class FinishEnemyUnitTurnState : BattleState
        
         yield return null;
         //owner.currentEnemyUnit.monsterControl.tree = null;
+
+
+        owner.timelineUI.ShowTimelineIcon(owner.currentEnemyUnit);
+        owner.timelineUI.HideIconActing();
         owner.currentEnemyUnit = null;
         owner.currentEnemyController = null;
+        yield return new WaitForSeconds(0.5f);
+        owner.resumeTimelineButton.onUp.Invoke();
 
         owner.ChangeState<TimeLineState>();
     }

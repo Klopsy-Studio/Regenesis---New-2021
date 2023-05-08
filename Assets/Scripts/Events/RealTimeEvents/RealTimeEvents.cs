@@ -27,14 +27,13 @@ public abstract class RealTimeEvents : TimelineElements
         if (battleController.isTimeLineActive && restarting)
         {
             restartTime -= Time.deltaTime;
-            iconTimeline.gameObject.SetActive(false);
 
             if (restartTime <= 0)
             {
                 restarting = false;
                 restartTime = 0;
                 fTimelineVelocity = 12f;
-                iconTimeline.gameObject.SetActive(true);
+                battleController.timelineUI.ShowTimelineIcon(this);
                 InitialSettings();
             }
         }
@@ -53,7 +52,6 @@ public abstract class RealTimeEvents : TimelineElements
             timelineFill += fTimelineVelocity * Time.deltaTime;
             if (timelineFill >= timelineFull)
             {
-
                 return true;
             }
 

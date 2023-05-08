@@ -33,6 +33,12 @@ public class MonsterEventState : BattleState
         owner.currentMonsterEvent.elementEnabled = false;
         owner.timelineElements.Remove(owner.currentMonsterEvent);
         owner.currentMonsterEvent = null;
+
+        owner.timelineUI.HideIconActing();
+
+        yield return new WaitForSeconds(0.5f);
+
+        owner.resumeTimelineButton.onUp.Invoke();
         owner.FinishAction();
 
         owner.ChangeState<TimeLineState>();

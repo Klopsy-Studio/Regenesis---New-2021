@@ -31,6 +31,10 @@ public class EventActiveState : BattleState
         }
         yield return new WaitForSeconds(0.6f);
 
+        owner.timelineUI.HideIconActing();
+
+        yield return new WaitForSeconds(0.5f);
+        owner.resumeTimelineButton.onUp.Invoke();
         owner.environmentEvent.StartRestartTimer();
         owner.FinishAction();
         owner.ChangeState<TimeLineState>();

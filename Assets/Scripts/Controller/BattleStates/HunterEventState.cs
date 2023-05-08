@@ -34,6 +34,12 @@ public class HunterEventState : BattleState
         owner.timelineElements.Remove(owner.currentHunterEvent);
         owner.currentHunterEvent = null;
         owner.FinishAction();
+
+        owner.timelineUI.HideIconActing();
+
+        yield return new WaitForSeconds(0.5f);
+        owner.resumeTimelineButton.onUp.Invoke();
+
         owner.ChangeState<TimeLineState>();
     }
 }
