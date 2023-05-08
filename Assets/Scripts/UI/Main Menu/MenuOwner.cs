@@ -88,10 +88,7 @@ public class MenuOwner : MonoBehaviour
     {
         sceneTransition.SetBool("fadeOut", true);
         yield return new WaitForSeconds(sceneTransitionWait);
-        mainMenuAnimation.SetBool("titleAnimation", true);
-        yield return new WaitForSeconds(optionsWait);
-        mainMenuAnimation.SetBool("optionsAppear", true);
-
+        mainMenuAnimation.SetTrigger("titleAnimation");
     }
 
 }
