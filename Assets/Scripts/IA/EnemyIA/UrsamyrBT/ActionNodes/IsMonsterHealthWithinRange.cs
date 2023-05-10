@@ -13,7 +13,7 @@ public class IsMonsterHealthWithinRange : ActionNode
     protected override void OnStart() {
 
         currentLifePercentage = (owner.controller.currentEnemy.health / owner.controller.currentEnemy.maxHealth) * 100;
-
+        Debug.Log("Percentage = " + currentLifePercentage + "%");
     }
 
     protected override void OnStop() {
