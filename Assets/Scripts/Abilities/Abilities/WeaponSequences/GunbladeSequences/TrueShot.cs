@@ -13,6 +13,8 @@ public class TrueShot : AbilitySequence
     {
         playing = true;
         user = controller.currentUnit;
+        CleanTargets();
+
         user.SpendActionPoints(ability.actionCost);
         user.SpendBullets(ability.ammoCost);
         user.currentAbility = ability;

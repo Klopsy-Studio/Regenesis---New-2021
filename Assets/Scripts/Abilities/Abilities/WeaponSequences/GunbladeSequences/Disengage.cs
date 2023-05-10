@@ -13,7 +13,8 @@ public class Disengage : AbilitySequence
     {
         playing = true;
         user = controller.currentUnit;
-        user.currentTargets.Clear();
+        CleanTargets();
+
         user.abilityTiles.Clear();
         user.currentAbility = ability;
         user.SpendActionPoints(ability.actionCost);

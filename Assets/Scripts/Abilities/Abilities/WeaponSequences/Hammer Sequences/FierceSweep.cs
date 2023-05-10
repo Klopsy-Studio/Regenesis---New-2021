@@ -11,6 +11,8 @@ public class FierceSweep : AbilitySequence
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         user = controller.currentUnit;
+        CleanTargets();
+
         playing = true;
         List<Tile> tiles = new List<Tile>();
 

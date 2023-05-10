@@ -10,6 +10,8 @@ public class AtomicBarrage : AbilitySequence
     {
         playing = true;
         user = controller.currentUnit;
+        CleanTargets();
+
         user.SpendActionPoints(ability.actionCost);
         user.SpendBullets(ability.ammoCost);
 

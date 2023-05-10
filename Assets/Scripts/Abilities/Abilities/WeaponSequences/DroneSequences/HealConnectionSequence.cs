@@ -11,6 +11,8 @@ public class HealConnectionSequence : AbilitySequence
     {
         playing = true;
         user = controller.currentUnit;
+        CleanTargets();
+
         user.SpendActionPoints(ability.actionCost);
 
 

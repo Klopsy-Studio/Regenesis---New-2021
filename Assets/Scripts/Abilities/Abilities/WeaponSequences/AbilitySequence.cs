@@ -37,6 +37,11 @@ public class AbilitySequence : ScriptableObject
         playing = false;
     }
 
+    public void CleanTargets()
+    {
+        user.currentTarget = null;
+        user.currentTargets.Clear();
+    }
     private void OnEnable()
     {
         extraAttack = false;

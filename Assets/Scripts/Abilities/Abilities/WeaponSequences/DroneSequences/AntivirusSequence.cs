@@ -12,6 +12,8 @@ public class AntivirusSequence : AbilitySequence
     {
         playing = true;
         user = controller.currentUnit;
+        CleanTargets();
+
         user.SpendActionPoints(ability.actionCost);
 
 

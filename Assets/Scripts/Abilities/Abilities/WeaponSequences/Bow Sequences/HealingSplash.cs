@@ -11,6 +11,8 @@ public class HealingSplash : AbilitySequence
     public override IEnumerator Sequence(List<Tile> tiles, BattleController controller)
     {
         user = controller.currentUnit;
+        CleanTargets();
+
         playing = true;
         yield return null;
         user.currentAbility = ability;

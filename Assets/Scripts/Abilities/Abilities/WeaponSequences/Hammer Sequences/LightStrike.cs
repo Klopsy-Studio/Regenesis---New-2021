@@ -11,6 +11,8 @@ public class LightStrike : AbilitySequence
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         user = controller.currentUnit;
+        CleanTargets();
+
         playing = true;
         user.currentAbility = ability;
         user.SpendActionPoints(ability.actionCost);
