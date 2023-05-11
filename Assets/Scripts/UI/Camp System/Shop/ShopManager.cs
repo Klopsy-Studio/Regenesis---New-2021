@@ -26,6 +26,7 @@ public class ShopManager : MonoBehaviour, IDataPersistence
     public delegate void ShopButtonSlotClicked();
     public static event ShopButtonSlotClicked OnShopButtonCliked;
 
+    public Animator animator;
     public void ButtonClicked()
     {
         OnShopButtonCliked?.Invoke();
@@ -86,6 +87,7 @@ public class ShopManager : MonoBehaviour, IDataPersistence
     public void BuyItem()//UnityButton function calls this method
     {
         buyItemPanel.BuyItem();
+
     }
 
     public void LoadData(GameData data)
@@ -232,6 +234,7 @@ public class BuyItemPanel
     {
      
         if (shopManager.currentPoints < itemTotalCost) return;
+        shopManager.animator.SetTrigger("purchased");
         UpdateCurrentPoints(-itemTotalCost);
         GameManager.instance.consumableInventory.AddConsumable(itemInfo.consumable, itemAmount);
         //GameManager.instance.materialInventory.SubstractMaterial(material1);

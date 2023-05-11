@@ -7,7 +7,7 @@ public class PurchaseForge : MonoBehaviour, IPointerClickHandler
     //[SerializeField] OldForgeManager forgeManager;
     [SerializeField] ForgeManager newForgeManager;
     [HideInInspector] public Weapons weaponToPurchase;
-
+    [SerializeField] Animator animator;
     public void OnPointerClick(PointerEventData eventData)
     {
         if(newForgeManager.currentWeaponInfoTemplate == null)
@@ -33,6 +33,7 @@ public class PurchaseForge : MonoBehaviour, IPointerClickHandler
 
         //UpdateUI
         newForgeManager.UpdateMaterialRequiredPanel(newForgeManager.currentWeaponInfoTemplate.WeaponUpgrade);
+        animator.SetTrigger("purchased");
 
     }
 
