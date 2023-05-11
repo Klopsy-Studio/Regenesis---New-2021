@@ -13,6 +13,8 @@ public class ShortCircuitSequence : AbilitySequence
         playing = true;
         bool isDroneActive = droneTiles.Count > 0;
         user = controller.currentUnit;
+        CleanTargets();
+
         user.currentAbility = ability;
         List<Unit> units1 = new List<Unit>();
         List<Unit> units2 = new List<Unit>();

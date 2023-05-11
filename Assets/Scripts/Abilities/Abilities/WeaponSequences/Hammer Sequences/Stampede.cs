@@ -13,6 +13,8 @@ public class Stampede : AbilitySequence
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         user = controller.currentUnit;
+        CleanTargets();
+
         user.currentAbility = ability;
         playing = true;
         Tile t;

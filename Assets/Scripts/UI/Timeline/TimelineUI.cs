@@ -215,6 +215,7 @@ public class TimelineUI : MonoBehaviour
             temp.owner = this;
             temp.element = battleController.timelineElements[i];
             temp.iconAnimationsTimeline.SetFloat("character", temp.element.timelineIconIndex);
+            temp.velocityText.enabled = false;
             if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.PlayerUnit)
             {
                 temp.lane = TimelineLane.Top;
@@ -230,7 +231,7 @@ public class TimelineUI : MonoBehaviour
 
                 temp.offset = toplaneOffset;
 
-                temp.velocityText.gameObject.SetActive(true);
+                temp.velocityText.enabled = true;
 
                 temp.SetTimelineIconTextVelocity();
                 var timelineVelocity = (int)temp.element.timelineVelocity;

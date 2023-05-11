@@ -12,6 +12,8 @@ public class BulletParty : AbilitySequence
     {
         playing = true;
         user = controller.currentUnit;
+        CleanTargets();
+
         user.currentAbility = ability;
         user.SpendActionPoints(ability.actionCost);
         int numberOfBullets = user.gunbladeAmmoAmount;

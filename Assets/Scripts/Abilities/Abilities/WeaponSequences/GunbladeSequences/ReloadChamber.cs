@@ -11,6 +11,8 @@ public class ReloadChamber : AbilitySequence
     {
         playing = true;
         user = controller.currentUnit;
+        CleanTargets();
+
         user.currentAbility = ability;
         user.SpendActionPoints(ability.actionCost);
         user.IncreaseBullets(5);

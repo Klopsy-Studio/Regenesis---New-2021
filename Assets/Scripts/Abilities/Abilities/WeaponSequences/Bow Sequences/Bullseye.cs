@@ -11,6 +11,7 @@ public class Bullseye : AbilitySequence
     public override IEnumerator Sequence(GameObject target, BattleController controller)
     {
         user = controller.currentUnit;
+        CleanTargets();
         playing = true;
         yield return null;
         controller.tileSelectionToggle.MakeTileSelectionSmall();

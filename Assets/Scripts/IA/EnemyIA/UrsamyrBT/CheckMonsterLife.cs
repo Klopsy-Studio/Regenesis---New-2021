@@ -14,7 +14,10 @@ public class CheckMonsterLife : ActionNode
     float currentLifePercentage;
     protected override void OnStart() {
 
-        currentLifePercentage = (owner.controller.currentEnemy.health / owner.controller.currentEnemy.maxHealth) * 100;
+        float currentLife = owner.controller.currentEnemy.health;
+        float maxLife = owner.controller.currentEnemy.maxHealth;
+
+        currentLifePercentage = (currentLife / maxLife) * 100;
     }
 
     protected override void OnStop() {
