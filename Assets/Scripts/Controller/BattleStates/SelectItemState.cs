@@ -129,7 +129,10 @@ public class SelectItemState : BattleState
         owner.ChangeState<UseItemState>();
     }
 
-
+    protected override void OnSelectCancelEvent(object sender, InfoEventArgs<int> e)
+    {
+        owner.ChangeState<SelectActionState>();
+    }
     public override void Exit()
     {
         base.Exit();
