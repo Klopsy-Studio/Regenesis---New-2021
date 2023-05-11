@@ -33,31 +33,12 @@ public class SelectItemState : BattleState
         for (int i = 0; i < itemList.Count; i++)
         {
             var item = itemList[i];
-            owner.itemSelectionUI.parent[i].gameObject.SetActive(true);
-            owner.itemSelectionUI.options[i].GetComponent<Text>().text = itemList[i].consumable.itemName;
-            owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = "x"+itemList[i].amount.ToString();
-            owner.itemSelectionUI.itemImage[i].GetComponent<Image>().sprite = itemList[i].consumable.iconSprite;
 
-            //Only for testing purposes
-            //if(item.amount == item.consumable.maxBackPackAmount)
-            //{
-            //    owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.green;
-            //}
-            //else if(item.amount < item.consumable.maxBackPackAmount)
-            //{
-            //    owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.black;
-            //}
-            //else if(item.amount > item.consumable.maxBackPackAmount)
-            //{
-            //    owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.red;
-            //}
 
             owner.itemSelectionUI.options[i].GetComponent<Text>().text = item.consumable.itemName;
             owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = item.amount.ToString();
-            owner.itemSelectionUI.itemImage[i].sprite = item.consumable.iconSprite;
-            
-            owner.itemSelectionUI.itemImage[i].SetNativeSize();
-           
+
+                       
             SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
             e.assignedConsumable = itemList[i].consumable;
             e.canBeSelected = true;
