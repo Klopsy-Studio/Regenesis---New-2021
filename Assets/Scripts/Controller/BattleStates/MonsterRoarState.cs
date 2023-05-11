@@ -7,11 +7,14 @@ public class MonsterRoarState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.timelineUI.gameObject.SetActive(false);
+
         StartCoroutine(MonsterRoarSequence());
     }
 
     IEnumerator MonsterRoarSequence()
     {
+
         owner.SelectTile(owner.levelData.beginPoint);
 
         float zoomTime = 0f;
@@ -34,7 +37,12 @@ public class MonsterRoarState : BattleState
         yield return new WaitForSeconds(0.2f);
 
         owner.SelectTile(owner.enemyUnits[0].currentPoint);
-        yield return new WaitForSeconds(0.5f);
+
+        yield return new WaitForSeconds(0.3f);
+        owner.enemyUnits[0].GetComponent<EnemyUnit>().monsterControl.monsterAnimations.SetTrigger("beginCombat");
+
+
+        yield return new WaitForSeconds(1f);
 
         MonsterController controller = owner.enemyUnits[0].GetComponent<MonsterController>();
 
@@ -56,9 +64,12 @@ public class MonsterRoarState : BattleState
         controller.monsterAnimations.SetBool("roar", false);
 
         owner.timelineUI.gameObject.SetActive(true);
+        owner.timelineUI.isActive = true;
         owner.unitStatusUI.gameObject.SetActive(true);
         owner.partyIconParent.gameObject.SetActive(true);
 
+
+        yield return new WaitForSeconds(0.5f);
         AudioManager.instance.Play("Music");
 
 
