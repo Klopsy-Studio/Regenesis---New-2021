@@ -24,6 +24,9 @@ public class TimeLineState : BattleState
         //    }
         //}
         //owner.timelineUI.HideIconActing();
+
+        owner.resumeTimelineButton.onUp.Invoke();
+        owner.canToggleTimeline = true;
         owner.turnStatusUI.DeactivateTurn();
         owner.isTimeLineActive = true;
     }
@@ -201,6 +204,8 @@ public class TimeLineState : BattleState
 
                     if (isTimeline)
                     {
+                        owner.canToggleTimeline = false;
+                        owner.pauseTimelineButton.onUp.Invoke();
                         AudioManager.instance.Play("TurnTransition");
 
                         currentElement = t;
