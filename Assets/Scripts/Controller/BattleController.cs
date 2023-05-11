@@ -136,6 +136,9 @@ public class BattleController : StateMachine
     public MenuButton pauseTimelineButton;
     public MenuButton resumeTimelineButton;
     public float huntTime;
+    [SerializeField] Color disabledTimelineColor;
+    [SerializeField] Color defaultTimelineColor;
+
     [Header("Zoom Variables")]
     [SerializeField] Animator zoomAnimations;
     [SerializeField] float minCameraZoom = 4f;
@@ -200,6 +203,16 @@ public class BattleController : StateMachine
 
     //}
 
+    public void DisableResumeTimelineButton()
+    {
+        resumeTimelineButton.GetComponent<Image>().color = disabledTimelineColor;
+        
+    }
+
+    public void EnableResumeTimelineButton()
+    {
+        resumeTimelineButton.GetComponent<Image>().color = defaultTimelineColor;
+    }
     private void Start()
     {
       
@@ -516,6 +529,7 @@ public class BattleController : StateMachine
     public void ToggleTimeline()
     {
         pauseTimeline = !pauseTimeline;
+        Debug.Log("Timeline Toggled to: " + pauseTimeline+" (true means it's paused, false means it's running");
     }
     public void ResetUnits()
     {
@@ -596,14 +610,12 @@ public class BattleController : StateMachine
     {
         pauseTimelineButton.canBeSelected = false;
         resumeTimelineButton.canBeSelected = false;
-        pauseTimelineButton.onUp.Invoke();
     }
 
     public void FinishAction()
     {
         pauseTimelineButton.canBeSelected = true;
         resumeTimelineButton.canBeSelected = true;
-        resumeTimelineButton.onUp.Invoke();
     }
 
 

@@ -37,7 +37,6 @@ public class FinishEnemyUnitTurnState : BattleState
         owner.currentEnemyUnit = null;
         owner.currentEnemyController = null;
         yield return new WaitForSeconds(0.5f);
-        owner.resumeTimelineButton.onUp.Invoke();
 
         owner.ChangeState<TimeLineState>();
     }

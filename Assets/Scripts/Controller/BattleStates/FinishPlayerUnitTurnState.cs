@@ -61,7 +61,6 @@ public class FinishPlayerUnitTurnState : BattleState
 
         yield return new WaitForSeconds(0.5f);
 
-        owner.resumeTimelineButton.onUp.Invoke();
         owner.ChangeState<TimeLineState>();
 
     }

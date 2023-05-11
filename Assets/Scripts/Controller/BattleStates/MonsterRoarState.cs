@@ -74,7 +74,7 @@ public class MonsterRoarState : BattleState
 
 
         //Maybe a hunt begin banner
-        
+        owner.ToggleTimeline();
         owner.ChangeState<TimeLineState>();
     }
 }

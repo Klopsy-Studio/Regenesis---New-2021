@@ -26,6 +26,7 @@ public class TimeLineState : BattleState
         //owner.timelineUI.HideIconActing();
 
         owner.resumeTimelineButton.onUp.Invoke();
+        owner.EnableResumeTimelineButton();
         owner.canToggleTimeline = true;
         owner.turnStatusUI.DeactivateTurn();
         owner.isTimeLineActive = true;
@@ -206,6 +207,8 @@ public class TimeLineState : BattleState
                     {
                         owner.canToggleTimeline = false;
                         owner.pauseTimelineButton.onUp.Invoke();
+                        owner.DisableResumeTimelineButton();
+
                         AudioManager.instance.Play("TurnTransition");
 
                         currentElement = t;
