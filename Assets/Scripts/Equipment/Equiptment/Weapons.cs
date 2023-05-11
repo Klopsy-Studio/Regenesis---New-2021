@@ -62,21 +62,7 @@ public class Weapons : Equipment
             }
         }
 
-        switch (EquipmentType)
-        {
-            case KitType.Hammer:
-                c.hammerSprite.sprite = weaponSprite;
-                break;
-            case KitType.Bow:
-                c.bowSprite.sprite = weaponSprite;
-                c.bowTensedSprite.sprite = bowTensed;
-                break;
-            case KitType.Gunblade:
-                c.gunbladeSprite.sprite = weaponSprite;
-                break;
-            default:
-                break;
-        }
+        
     }
 
     private void OnEnable()

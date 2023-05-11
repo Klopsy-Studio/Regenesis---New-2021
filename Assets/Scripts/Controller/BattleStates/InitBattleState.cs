@@ -13,6 +13,7 @@ public class InitBattleState : BattleState
     IEnumerator Init()
     {
         board.Load(levelData);
+        owner.canToggleTimeline = false;
         SpawnUnits();
         yield return null;
         //owner.ChangeState<StartPlayerTurnState>();
