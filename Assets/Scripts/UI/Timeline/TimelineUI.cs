@@ -106,7 +106,7 @@ public class TimelineUI : MonoBehaviour
         {
             BalanceAmountOf(iconPrefab, content, battleController.timelineElements.Count);
             SortList();
-
+          
             foreach (TimelineIconUI icon in topLane)
             {
                 AssignIcons(icon, topLane);

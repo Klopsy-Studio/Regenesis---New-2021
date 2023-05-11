@@ -23,7 +23,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
                 currentElement = null;
             }
         }
-        owner.timelineUI.HideIconActing();
+        //owner.timelineUI.HideIconActing();
         owner.turnStatusUI.DeactivateTurn();
         owner.isTimeLineActive = true;
         Debug.Log("is timelineactive " + owner.isTimeLineActive);
