@@ -109,23 +109,9 @@ public class MiniStatus : MonoBehaviour
             {
                 playerHealthBar.color = lowHealth;
             }
-            switch (element.weapon.EquipmentType)
-            {
-                case KitType.Hammer:
-                    playerWeapon.sprite = hammerSprite;
-                    break;
-                case KitType.Bow:
-                    playerWeapon.sprite = bowSprite;
-                    break;
-                case KitType.Gunblade:
-                    playerWeapon.sprite = gunbladeSprite;
-                    break;
-                case KitType.Drone:
-                    playerWeapon.sprite = droneSprite;
-                    break;
-                default:
-                    break;
-            }
+
+            playerWeapon.sprite = element.weapon.weaponIcon;
+            playerWeapon.SetNativeSize();
         }
         
     }
