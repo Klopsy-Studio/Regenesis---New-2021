@@ -10,6 +10,10 @@ public class WindEvent : RealTimeEvents
     List<Unit> units;
     public int pushStrength;
     public Directions direction;
+
+    [Header("Force Directions")]
+    [SerializeField] bool chooseDirection;
+    [SerializeField] Directions forcedDirection;
     protected override void Start()
     {
         base.Start();
@@ -21,29 +25,56 @@ public class WindEvent : RealTimeEvents
     {
         windEffect.SetActive(true);
 
-        //int i = new System.Random().Next(0, 4);
+        if (chooseDirection)
+        {
+            direction = forcedDirection;
+            switch (direction)
+            {
+                case Directions.North:
+                    windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, 190));
 
-        int i = 2;
+                    break;
+                case Directions.East:
+                    windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, -88));
 
-        if (i == 0)
-        {
-            direction = Directions.East;
-            windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, -88));
+                    break;
+                case Directions.South:
+                    windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, 12));
+
+                    break;
+                case Directions.West:
+                    windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, 90));
+
+                    break;
+                default:
+                    break;
+            }
         }
-        else if (i == 1)
+
+        else
         {
-            direction = Directions.South;
-            windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, 12));
-        }
-        else if (i == 2)
-        {
-            direction = Directions.West;
-            windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, 90));
-        }
-        else if (i == 3)
-        {
-            direction = Directions.North;
-            windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, 190));
+            int i = new System.Random().Next(0, 4);
+
+            if (i == 0)
+            {
+                direction = Directions.East;
+                windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, -88));
+            }
+            else if (i == 1)
+            {
+                direction = Directions.South;
+                windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, 12));
+            }
+            else if (i == 2)
+            {
+                direction = Directions.West;
+                windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, 90));
+            }
+            else if (i == 3)
+            {
+                direction = Directions.North;
+                windEffect.transform.rotation = Quaternion.Euler(new Vector3(80, 0, 190));
+            }
         }
 
         timelineFill = 0;

@@ -45,6 +45,7 @@ public class TutShowslideState : BattleState
         base.Exit();
         if (isNextState)
         {
+            owner.ToggleTimeline();
             tutOwner.stateIndex++;
         }
 

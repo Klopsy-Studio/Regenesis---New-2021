@@ -58,7 +58,7 @@ public class TUT_FinishPlayerUnitTurnStateOne : BattleState
         owner.resumeTimelineButton.canBeSelected = true;
         owner.resumeTimelineButton.onUp.Invoke();
 
-
+        owner.timelineUI.ShowTimelineIcon(owner.currentUnit);
         //AudioManager.instance.Play("TurnEnd");
         yield return null;
         owner.ChangeState<TUT_TimelineStateFirstHunter>();

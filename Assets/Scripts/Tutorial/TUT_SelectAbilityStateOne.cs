@@ -200,7 +200,6 @@ public class TUT_SelectAbilityStateOne : BattleState
         base.Exit();
         owner.abilitySelectionUI.DisableAbilitySelection();
 
-        owner.droneController.ClearTargets();
         owner.moveAbilitySelector = false;
         currentActionIndex = 0;
         AbilitySelectionUI.ResetSelector();

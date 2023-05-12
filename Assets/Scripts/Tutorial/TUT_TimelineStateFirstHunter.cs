@@ -15,14 +15,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
     {
         base.Enter();
         Debug.Log("HA ENTRADO A TUT_TIMELINESTATE FIRST HUNTER");
-        if (currentElement != null)
-        {
-            if (currentElement.elementEnabled)
-            {
-                owner.timelineUI.ShowTimelineIcon(currentElement);
-                currentElement = null;
-            }
-        }
+
         //owner.timelineUI.HideIconActing();
         owner.turnStatusUI.DeactivateTurn();
         owner.isTimeLineActive = true;
@@ -204,6 +197,10 @@ public class TUT_TimelineStateFirstHunter : BattleState
 
                     if (isTimeline)
                     {
+                        owner.canToggleTimeline = false;
+                        owner.pauseTimelineButton.onUp.Invoke();
+                        owner.DisableResumeTimelineButton();
+
                         AudioManager.instance.Play("TurnTransition");
 
                         currentElement = t;

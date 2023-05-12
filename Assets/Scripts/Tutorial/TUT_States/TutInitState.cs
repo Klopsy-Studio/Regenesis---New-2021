@@ -189,6 +189,6 @@ public class TutInitState : BattleState
         unit.unitName = data.unitName;
 
         unit.timelineIcon = data.unitTimelineIcon;
-
+        unit.timelineIconIndex = data.characterIconIndex;
     }
 }
