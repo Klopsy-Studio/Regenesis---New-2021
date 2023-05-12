@@ -16,7 +16,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
         base.Enter();
         Debug.Log("HA ENTRADO A TUT_TIMELINESTATE FIRST HUNTER");
 
-        //owner.timelineUI.HideIconActing();
+        owner.timelineUI.HideIconActing();
         owner.turnStatusUI.DeactivateTurn();
         owner.isTimeLineActive = true;
         Debug.Log("is timelineactive " + owner.isTimeLineActive);

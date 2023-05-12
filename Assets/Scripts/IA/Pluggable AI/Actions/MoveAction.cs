@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum MoveType
 {
-    ClosestUnit, LeastHealthUnit, GetAway, Random
+    ClosestUnit, LeastHealthUnit, GetAway, Random, SpecificUnit
 };
 [CreateAssetMenu(menuName = "PluggableAI/Actions/MoveAction")]
 public class MoveAction : Action

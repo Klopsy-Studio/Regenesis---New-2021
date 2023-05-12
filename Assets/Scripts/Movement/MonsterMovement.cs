@@ -18,7 +18,6 @@ public class MonsterMovement : WalkMovement
         lineRange.lineLength = pushStrength;
         lineRange.lineOffset = 0;
         lineRange.stopLine = true;
-        tiles.Add(unit.tile);
         List<Tile> rangeTiles = lineRange.GetTilesInRange(board);
 
         foreach(Tile t in rangeTiles)

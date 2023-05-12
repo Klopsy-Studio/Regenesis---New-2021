@@ -44,7 +44,6 @@ public class EnemyUnit : Unit
         base.Start();
         //timelineFill = Random.Range(0, 3);
 
-        timelineFill = 30;
         timelineTypes = TimeLineTypes.EnemyUnit;
         health = maxHealth;
         originalSpritePosition = unitSprite.transform.localPosition;
