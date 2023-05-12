@@ -20,6 +20,8 @@ public class TUT_BattleController : BattleController
         ChangeState<TutInitState>();
     }
 
+
+    
     //public void ChangeStateIndex(int index)
     //{
     //    stateIndex = index;

@@ -25,7 +25,6 @@ public class SelectItemState : BattleState
         //Abilities[] a = owner.currentUnit.weapon.Abilities;
         List<ConsumableSlot> itemList = owner.backpackInventory.consumableContainer;
 
-
         for (int i = 0; i < owner.itemSelectionUI.options.Length; i++)
         {
             owner.itemSelectionUI.parent[i].gameObject.SetActive(false);
@@ -34,7 +33,8 @@ public class SelectItemState : BattleState
         {
             var item = itemList[i];
 
-
+            owner.itemSelectionUI.parent[i].gameObject.SetActive(true);
+            owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>().controller = owner;
             owner.itemSelectionUI.options[i].GetComponent<Text>().text = item.consumable.itemName;
             owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = item.amount.ToString();
 
@@ -122,7 +122,10 @@ public class SelectItemState : BattleState
         owner.itemSelectionUI.ResetSelector();
     }
 
-   
+    protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
+    {
+        owner.ChangeState<SelectActionState>();
+    }
 
     //IEnumerator Init()
     //{
