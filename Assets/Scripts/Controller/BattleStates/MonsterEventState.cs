@@ -38,7 +38,7 @@ public class MonsterEventState : BattleState
 
         yield return new WaitForSeconds(0.5f);
 
-        owner.resumeTimelineButton.onUp.Invoke();
+
         owner.FinishAction();
 
         owner.ChangeState<TimeLineState>();
