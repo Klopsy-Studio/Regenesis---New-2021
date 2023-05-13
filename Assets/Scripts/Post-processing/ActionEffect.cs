@@ -104,7 +104,7 @@ public class ActionEffect : MonoBehaviour
 
     void SetBlackAndWhite()
     {
-        colorAdjustments.saturation.value -= Time.deltaTime * blackAndWhiteSpeed;
+        colorAdjustments.saturation.value -= Time.fixedDeltaTime * blackAndWhiteSpeed;
 
         if(colorAdjustments.saturation.value <= -100)
         {
@@ -133,11 +133,14 @@ public class ActionEffect : MonoBehaviour
             RecoverShake();
 
         if (blackAndWhite)
+        {
+            Debug.Log("Bruh");
             SetBlackAndWhite();
+
+        }
 
 
     }
-
     public void RecoverShake()
     {
         shakeTime += Time.deltaTime * 2;

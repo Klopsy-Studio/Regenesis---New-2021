@@ -8,6 +8,7 @@ public class WinState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.canPause = false;
         owner.unitStatusUI.gameObject.SetActive(false);
         owner.turnStatusUI.gameObject.SetActive(false);
         owner.timelineUI.gameObject.SetActive(false);

@@ -58,7 +58,11 @@ public class BattleController : StateMachine
     public AbilityTargets targets;
     public GunbladeBullets gunbladeUI;
     public MenuButton droneUI;
+
+    [Header("Quest Banners")]
     public GameObject questComplete;
+    public GameObject questFailed;
+    public GameObject questEscaped;
 
     public GameObject partyIconParent;
     public GameObject partyIconPrefab;
@@ -75,8 +79,7 @@ public class BattleController : StateMachine
 
     public Pause pause;
     public Animator pauseAnimations;
-    public MenuButton pauseButton;
-    public Button resumeButton;
+    public bool canPause;
 
     public MiniStatus miniStatus;
     public TargetIndicator turnArrow;
@@ -405,7 +408,6 @@ public class BattleController : StateMachine
     {
         pauseTimelineButton.canBeSelected = value;
         resumeTimelineButton.canBeSelected = value;
-        pauseButton.canBeSelected = value;
         canToggleTimeline = value;
     }
     public virtual void SelectTile(Point p)
@@ -600,7 +602,28 @@ public class BattleController : StateMachine
         Invoke("LoadingScreen", 1.5f);
     }
 
+    public void BeginEscape()
+    {
+        StartCoroutine(ReturnToCampRoutine());
+    }
+    public IEnumerator ReturnToCampRoutine()
+    {
+        actionSelectionUI.gameObject.SetActive(false);
+        itemSelectionUI.gameObject.SetActive(false);
+        abilitySelectionUI.gameObject.SetActive(false);
+        targets.gameObject.SetActive(false);
+        partyIconParent.gameObject.SetActive(false);
+        turnStatusUI.gear.gameObject.SetActive(false);
+        ActionEffect.instance.BlackAndWhite();
 
+        yield return new WaitForSecondsRealtime(1f);
+
+        questEscaped.gameObject.SetActive(true);
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        ReturnToCamp();
+    }
     public void LoadingScreen()
     {
         SceneManager.LoadScene("LoadingScreen");

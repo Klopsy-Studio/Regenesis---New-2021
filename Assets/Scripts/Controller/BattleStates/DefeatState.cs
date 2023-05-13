@@ -8,6 +8,8 @@ public class DefeatState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.canPause = false;
+
         owner.unitStatusUI.gameObject.SetActive(false);
         owner.turnStatusUI.gameObject.SetActive(false);
         owner.timelineUI.gameObject.SetActive(false);
@@ -33,7 +35,7 @@ public class DefeatState : BattleState
         //Deactivated for now, if we want to show loot screen later on we should define what happens when you lose
         //owner.ChangeState<LootUIState>();
 
-        owner.pauseButton.canBeSelected = false;
+
         owner.defeatScreen.SetActive(true);
         owner.ChangeState<DefeatUIState>();
     }

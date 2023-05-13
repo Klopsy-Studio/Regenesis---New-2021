@@ -67,17 +67,20 @@ public abstract class BattleState : State
 
     protected virtual void OnEscape(object sender, InfoEventArgs<KeyCode> e)
     {
-        Debug.Log("?");
-        if (!owner.pause.gameIsPaused)
+        if (owner.canPause)
         {
-            owner.pause.PauseGame();
-            owner.pauseAnimations.SetTrigger("pause");
-        }
+            if (!owner.pause.gameIsPaused)
+            {
+                owner.pause.PauseGame();
+                owner.pauseAnimations.SetTrigger("pause");
+            }
 
-        else
-        {
-            owner.pauseAnimations.SetTrigger("unpause");
+            else
+            {
+                owner.pauseAnimations.SetTrigger("unpause");
+            }
         }
+        
     }
 
     protected override void RemoveListeners()
