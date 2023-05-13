@@ -53,8 +53,8 @@ public abstract class TimelineElements : MonoBehaviour
     }
 
     public bool elementEnabled = true;
-
-
+    public bool hasDescription;
+    public ToolTipDrecription description;
 
     public float fTimelineVelocity;
     public float timelineFill;
@@ -73,4 +73,12 @@ public abstract class TimelineElements : MonoBehaviour
     }
 
     public abstract bool UpdateTimeLine();
+}
+
+
+[System.Serializable]
+public class ToolTipDrecription
+{
+    public string header;
+    [TextArea] public string content;
 }

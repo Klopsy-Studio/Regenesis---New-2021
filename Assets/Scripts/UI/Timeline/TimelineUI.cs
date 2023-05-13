@@ -212,8 +212,18 @@ public class TimelineUI : MonoBehaviour
         for (int i = 0; i < battleController.timelineElements.Count; i++)
         {
             temp = iconsInTimeline[i];
+
+
             temp.owner = this;
             temp.element = battleController.timelineElements[i];
+
+            if (temp.element.hasDescription)
+            {
+                temp.gameObject.AddComponent<ToolTipTrigger>();
+                ToolTipTrigger trigger = temp.GetComponent<ToolTipTrigger>();
+                trigger.header = temp.element.description.header;
+                trigger.content = temp.element.description.content;
+            }
             temp.iconAnimationsTimeline.SetFloat("character", temp.element.timelineIconIndex);
             temp.velocityText.enabled = false;
             if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.PlayerUnit)
