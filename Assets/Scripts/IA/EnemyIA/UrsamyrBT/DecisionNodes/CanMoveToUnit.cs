@@ -9,6 +9,7 @@ public class CanMoveToUnit : ActionNode
     [SerializeField] MoveType moveToCheck;
     [SerializeField] WhichMonster monsterToCheck = WhichMonster.BearMonster;
     [SerializeField] int specificUnit = 0;
+    [SerializeField] Point specificTile;
     [SerializeField] bool differentUnit;
     protected override void OnStart() {
     }
@@ -332,6 +333,28 @@ public class CanMoveToUnit : ActionNode
                     return State.Failure;
                 }
 
+
+            case MoveType.SpecificTile:
+
+                Tile ñ = owner.controller.battleController.board.GetTile(specificTile);
+
+                if(ñ != null)
+                {
+                    if (ñ.CheckSurroundings(controller.battleController.board) != null && ñ != owner.controller.currentEnemy.tile)
+                    {
+                        owner.controller.tileToMove = ñ;
+                        return State.Success;
+                    }
+                    else
+                    {
+                        return State.Failure;
+                    }
+                }
+                else
+                {
+                    return State.Failure;
+
+                }
             default:
                 return State.Success;
         }
