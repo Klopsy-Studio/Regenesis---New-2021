@@ -75,7 +75,7 @@ public abstract class BattleState : State
 
         else
         {
-            owner.resumeButton.onUp.Invoke();
+            owner.resumeButton.onClick.Invoke();
         }
     }
 

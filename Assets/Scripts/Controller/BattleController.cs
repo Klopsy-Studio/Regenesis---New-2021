@@ -73,7 +73,8 @@ public class BattleController : StateMachine
     public Text bowExtraAttackText;
     public GameObject defeatScreen;
     public MenuButton pauseButton;
-    public MenuButton resumeButton;
+
+    public Button resumeButton;
 
     public MiniStatus miniStatus;
     public TargetIndicator turnArrow;
