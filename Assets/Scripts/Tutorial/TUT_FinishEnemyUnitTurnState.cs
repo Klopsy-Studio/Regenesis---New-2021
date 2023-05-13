@@ -37,4 +37,5 @@ public class TUT_FinishEnemyUnitTurnState : BattleState
 
         owner.ChangeState<TUT_TimelineStateFirstHunter>();
     }
+
 }
