@@ -13,8 +13,10 @@ public class StatusIconsReferences : ScriptableObject
     public Sprite bullseyeIcon;
     public Sprite piercingIcon;
     public Sprite droneIcon;
-    public Sprite spikyArmor;
-
+    public Sprite spikyArmorIcon;
+    public Sprite antivirusIcon;
+    public Sprite frenzyIcon;
+    public Sprite evolveIcon;
 
     [Header("Debuff Icons")]
     public Sprite defenseDebuff;

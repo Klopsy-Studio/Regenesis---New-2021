@@ -85,6 +85,8 @@ public class Unit : TimelineElements
     public float criticalDamage = 1.5f;
     [HideInInspector] public float originalCriticalDamage;
 
+    public float damageModifier = 1f;
+
     [Header("Modifiers")]
 
     public List<Modifier> buffModifiers;

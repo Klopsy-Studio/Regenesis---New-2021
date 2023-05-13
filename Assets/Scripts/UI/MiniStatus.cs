@@ -52,7 +52,9 @@ public class MiniStatus : MonoBehaviour
     [SerializeField] GameObject stunnedIcon;
     [SerializeField] GameObject piercingIcon;
     [SerializeField] GameObject droneIcon;
-
+    [SerializeField] GameObject frenzyIcon;
+    [SerializeField] GameObject antivirusIcon;
+    [SerializeField] GameObject evolveIcon;
 
     [Space]
     [Header("Weapon sprites")]
@@ -240,13 +242,19 @@ public class MiniStatus : MonoBehaviour
                         SpawnIcon(piercingIcon, targetParent);
                         break;
                     case TypeOfModifier.Antivirus:
-                        SpawnIcon(defenseBuff, targetParent);
+                        SpawnIcon(antivirusIcon, targetParent);
                         break;
                     case TypeOfModifier.DroneUnit:
                         SpawnIcon(droneIcon, targetParent);
                         break;
                     case TypeOfModifier.SpikyArmor:
                         SpawnIcon(defenseBuff, targetParent);
+                        break;
+                    case TypeOfModifier.MinionFrenzy:
+                        SpawnIcon(frenzyIcon, targetParent);
+                        break;
+                    case TypeOfModifier.MinionEvolve:
+                        SpawnIcon(evolveIcon, targetParent);
                         break;
                     default:
                         break;

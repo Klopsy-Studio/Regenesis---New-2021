@@ -86,13 +86,19 @@ public class PopUpText : MonoBehaviour
                 statusIcon.sprite = references.damageBuff;
                 break;
             case TypeOfModifier.Antivirus:
-                statusIcon.sprite = references.defenseBuff;
+                statusIcon.sprite = references.antivirusIcon;
                 break;
             case TypeOfModifier.DroneUnit:
                 statusIcon.sprite = references.droneIcon;
                 break;
             case TypeOfModifier.SpikyArmor:
-                statusIcon.sprite = references.spikyArmor;
+                statusIcon.sprite = references.spikyArmorIcon;
+                break;
+            case TypeOfModifier.MinionEvolve:
+                statusIcon.sprite = references.evolveIcon;
+                break;
+            case TypeOfModifier.MinionFrenzy:
+                statusIcon.sprite = references.frenzyIcon;
                 break;
             default:
                 break;
@@ -158,7 +164,7 @@ public class PopUpText : MonoBehaviour
                 statusIcon.sprite = references.droneIcon;
                 break;
             case TypeOfModifier.SpikyArmor:
-                statusIcon.sprite = references.spikyArmor;
+                statusIcon.sprite = references.spikyArmorIcon;
                 break;
             default:
                 break;

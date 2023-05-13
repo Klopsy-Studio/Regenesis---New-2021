@@ -209,13 +209,6 @@ public class Abilities : ScriptableObject
                     }  
                 }
 
-                if(trash.Count > 0)
-                {
-                    foreach(Modifier d in trash)
-                    {
-                        target.RemoveBuff(d);
-                    }
-                }
             }
         }
 
@@ -412,7 +405,7 @@ public class Abilities : ScriptableObject
 
         else
         {
-            finalDamage = (int)((((user.power * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier) - target.defense);
+            finalDamage = (int)((((user.power * criticalDmg) + (user.power * user.elementPower) * elementEffectivenessNumber) * abilityModifier*target.damageModifier) - target.defense);
 
         }
 
@@ -433,6 +426,7 @@ public class Abilities : ScriptableObject
         }
         target.ResetValues();
 
+        
         return finalDamage;
     }
 

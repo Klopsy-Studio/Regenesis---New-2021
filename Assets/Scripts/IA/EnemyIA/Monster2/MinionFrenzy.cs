@@ -36,8 +36,9 @@ public class MinionFrenzy : ActionNode
 
         foreach (MinionUnit m in owner.controller.minionsInGame)
         {
-            m.AddBuff(new Modifier { modifierType = TypeOfModifier.Damage });
-            m.AddDebuff(new Modifier { modifierType = TypeOfModifier.Defense });
+            m.power += 10;
+            m.damageModifier = 1.7f;
+            m.AddBuff(new Modifier { modifierType = TypeOfModifier.MinionFrenzy });
         }
 
         treeRunning = false;

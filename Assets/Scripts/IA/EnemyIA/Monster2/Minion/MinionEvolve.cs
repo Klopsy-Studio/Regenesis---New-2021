@@ -29,7 +29,6 @@ public class MinionEvolve : ActionNode
                 owner.controller.currentEnemy.health = owner.controller.currentEnemy.maxHealth;
             }
 
-            owner.controller.hasEvolved = true;
             ActionEffect.instance.Play(3, 1.5f, 0.01f, 0.05f);
 
             owner.controller.monsterAnimations.SetFloat("evolve", 1f);
@@ -50,8 +49,10 @@ public class MinionEvolve : ActionNode
 
             if (evolveTime <= 0)
             {
-                return State.Success;
+                owner.controller.currentEnemy.AddBuff(new Modifier { modifierType = TypeOfModifier.MinionEvolve });
+                owner.controller.hasEvolved = true;
 
+                return State.Success;
             }
             else
             {
