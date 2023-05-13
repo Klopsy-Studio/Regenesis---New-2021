@@ -49,7 +49,7 @@ public class LevelData : ScriptableObject
     //[TextArea]
     public string environmentDescription;
     public Sprite missionImage;
-
+    public Sprite missionImageNotCompleted;
     //Level position
     public Point beginPoint;
     public string GenerateId()

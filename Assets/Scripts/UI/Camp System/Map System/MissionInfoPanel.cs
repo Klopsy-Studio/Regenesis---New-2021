@@ -22,8 +22,15 @@ public class MissionInfoPanel : MonoBehaviour
     {    
         missionName.text = _leveldata.missionName;
         environmentDescription.text = _leveldata.environmentDescription;
-        missionImage.sprite = _leveldata.missionImage;
 
+        if (_leveldata.hasBeenCompleted)
+        {
+            missionImage.sprite = _leveldata.missionImage;
+        }
+        else
+        {
+            missionImage.sprite = _leveldata.missionImageNotCompleted;
+        }
         //zone.text = _environment;   
     }
 }
