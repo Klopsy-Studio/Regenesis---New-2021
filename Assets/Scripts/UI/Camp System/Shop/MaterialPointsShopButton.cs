@@ -58,6 +58,28 @@ public class MaterialPointsShopButton : MonoBehaviour, IPointerClickHandler
         materialSlot.amount += 1;
         amountText.SetText(materialSlot.amount.ToString());
         buyItemPanel.UpdateCurrentPoints(-points);
+        GameManager.instance.materialInventory.AddMonsterMaterial(materialSlot.material, 1);
         Debug.Log("return material method");
+    }
+
+    public void ReturnAllMaterials()
+    {
+        while (materialSlot.amount < originalMaterialAmounts)
+        {
+         
+            materialSlot.amount += 1;
+           
+            amountText.SetText(materialSlot.amount.ToString());
+            buyItemPanel.UpdateCurrentPoints(-points);
+            GameManager.instance.materialInventory.AddMonsterMaterial(materialSlot.material, 1);
+            Debug.Log("return all material method");
+        }
+        //if (materialSlot.amount >= originalMaterialAmounts) return;
+        //int difference = originalMaterialAmounts - materialSlot.amount;
+        //int returnPoints = difference * points;
+        //materialSlot.amount = originalMaterialAmounts;
+        //amountText.SetText(materialSlot.amount.ToString());
+        //buyItemPanel.UpdateCurrentPoints(-returnPoints);
+        //Debug.Log("aaaaaa");
     }
 }

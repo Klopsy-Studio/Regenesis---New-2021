@@ -101,6 +101,12 @@ public class ShopManager : MonoBehaviour, IDataPersistence
         data.isShopTutorialFinished = isTutorialFinished;
         data.shopCurrentPoints = currentPoints;
     }
+
+    public void ReturnAllMaterials()
+    {
+        buyItemPanel.button1.ReturnAllMaterials();
+        buyItemPanel.button2.ReturnAllMaterials();
+    }
 }
 
 [System.Serializable]
@@ -175,8 +181,8 @@ public class BuyItemPanel
     [SerializeField] MaterialInventory materialInventory;
     [SerializeField] MonsterMaterialSlot material1;
     [SerializeField] MonsterMaterialSlot material2;
-    [SerializeField] MaterialPointsShopButton button1;
-    [SerializeField] MaterialPointsShopButton button2;
+    public MaterialPointsShopButton button1;
+    public MaterialPointsShopButton button2;
     ShopItemInfo itemInfo;
 
     ShopManager shopManager;
