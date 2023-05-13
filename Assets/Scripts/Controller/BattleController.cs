@@ -72,8 +72,10 @@ public class BattleController : StateMachine
     public Slider hammerPreviewFury;
     public Text bowExtraAttackText;
     public GameObject defeatScreen;
-    public MenuButton pauseButton;
 
+    public Pause pause;
+    public Animator pauseAnimations;
+    public MenuButton pauseButton;
     public Button resumeButton;
 
     public MiniStatus miniStatus;

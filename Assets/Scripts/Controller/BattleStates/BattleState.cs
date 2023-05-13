@@ -68,14 +68,15 @@ public abstract class BattleState : State
     protected virtual void OnEscape(object sender, InfoEventArgs<KeyCode> e)
     {
         Debug.Log("?");
-        if (!owner.pauseButton.GetComponent<Pause>().gameIsPaused)
+        if (!owner.pause.gameIsPaused)
         {
-            owner.pauseButton.onUp.Invoke();
+            owner.pause.PauseGame();
+            owner.pauseAnimations.SetTrigger("pause");
         }
 
         else
         {
-            owner.resumeButton.onClick.Invoke();
+            owner.pauseAnimations.SetTrigger("unpause");
         }
     }
 

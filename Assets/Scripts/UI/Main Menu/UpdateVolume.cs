@@ -8,10 +8,10 @@ public class UpdateVolume : MonoBehaviour
 {
     [SerializeField] AudioMixer mixer;
     [SerializeField] Slider slider;
-    
+
     public void ChangeVolume()
     {
-        if(slider != null)
+        if (slider != null)
         {
             mixer.SetFloat("Volume", Mathf.Log10(slider.value) * 20);
         }
@@ -19,6 +19,14 @@ public class UpdateVolume : MonoBehaviour
 
     private void Start()
     {
-        ChangeVolume();
+        //SetVolumeSettings();
+    }
+
+    public void SetVolumeSettings()
+    {
+        float value;
+        mixer.GetFloat("Volume", out value);
+        slider.value = value;
+        
     }
 }
