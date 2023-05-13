@@ -115,6 +115,24 @@ public class MonsterAttack : ActionNode
                                 u.AddDebuff(new Modifier { modifierType = TypeOfModifier.TimelineSpeed });
                             }                           
                             break;
+                        case TypeOfEffect.DefenseDown:
+                            if (u.buffModifiers.Count > 0)
+                            {
+                                foreach (Modifier m in u.buffModifiers)
+                                {
+                                    if (m.modifierType == TypeOfModifier.Antivirus)
+                                    {
+                                        u.RemoveBuff(m);
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                u.defense -= 5;
+                                u.AddDebuff(new Modifier { modifierType = TypeOfModifier.Defense });
+                            }
+                            break;
                         default:
                             break;
                     }

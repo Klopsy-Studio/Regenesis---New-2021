@@ -128,6 +128,8 @@ public class TutInitState : BattleState
             Movement m = instance.AddComponent(components[0]) as Movement;
             m.jumpHeight = 1;
 
+            UnitPartyIcon iconParty = Instantiate(owner.partyIconPrefab, owner.partyIconParent.transform).GetComponent<UnitPartyIcon>();
+            iconParty.AssignPartyIcon(player);
 
             unitsInGame.Add(unit);
             owner.playerUnits.Add(unit);
@@ -158,6 +160,7 @@ public class TutInitState : BattleState
 
             unitsInGame.Add(unit);
             owner.enemyUnits.Add(unit);
+            unit.timelineFill = 40;
         }
 
 

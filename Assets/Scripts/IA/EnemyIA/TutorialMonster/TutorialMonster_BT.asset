@@ -84,11 +84,12 @@ MonoBehaviour:
   - rid: 513517115567767556
   - rid: 513517115567767557
   - rid: 7176076012186763264
+  - rid: 4967246370794373120
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 1970, y: 431, z: 0}
-  viewScale: {x: 0.8695652, y: 0.8695652, z: 1}
+  viewPosition: {x: 2594, y: 478, z: 0}
+  viewScale: {x: 1, y: 1, z: 1}
   references:
     version: 2
     RefIds:
@@ -196,6 +197,7 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         moveToCheck: 1
         monsterToCheck: 0
+        specificUnit: 0
         differentUnit: 1
     - rid: 513517070685044745
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
@@ -384,6 +386,7 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         moveToCheck: 0
         monsterToCheck: 0
+        specificUnit: 0
         differentUnit: 1
     - rid: 513517070685044758
       type: {class: FinishMonsterTurn, ns: , asm: Assembly-CSharp}
@@ -717,6 +720,7 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         moveToCheck: 1
         monsterToCheck: 0
+        specificUnit: 0
         differentUnit: 0
     - rid: 513517070685044783
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
@@ -862,6 +866,7 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         moveToCheck: 0
         monsterToCheck: 0
+        specificUnit: 0
         differentUnit: 0
     - rid: 513517070685044794
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
@@ -1006,6 +1011,7 @@ MonoBehaviour:
         - rid: 513517115567767555
         - rid: 513517115567767554
         - rid: 513517115567767556
+        - rid: 4967246370794373120
         - rid: 513517115567767557
         - rid: 7176076012186763264
     - rid: 513517115567767554
@@ -1020,7 +1026,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        typeOfMove: 0
+        typeOfMove: 4
         treeRunning: 0
     - rid: 513517115567767555
       type: {class: CanMoveToUnit, ns: , asm: Assembly-CSharp}
@@ -1028,14 +1034,15 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: eb265a2240646ad49b71d2d8d5ea53f6
-        position: {x: -2481.8086, y: -146.68141}
+        position: {x: -2484, y: -147}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        moveToCheck: 0
+        moveToCheck: 4
         monsterToCheck: 0
+        specificUnit: 0
         differentUnit: 0
     - rid: 513517115567767556
       type: {class: CheckIfUnitsInRange, ns: , asm: Assembly-CSharp}
@@ -1057,21 +1064,34 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 7ba8b5120902fc14d9d851bc24a98414
-        position: {x: -1806.7526, y: -147.00002}
+        position: {x: -1565.5001, y: -148.14998}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
         abilities:
-        - {fileID: 11400000, guid: 9bd54169d27d9ca438adf02a64186ae1, type: 2}
+        - {fileID: 11400000, guid: c3b1fbfa7f080bf4d91825de82837216, type: 2}
+    - rid: 4967246370794373120
+      type: {class: AttackSpecificTaregt, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 1f9c5b16333b9304694da0136841d70c
+        position: {x: -1805.9, y: -134.00002}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 11400000}
+        unitToAttack: 0
     - rid: 7176076012186763264
       type: {class: TUT_FinishMonsterTurn, ns: , asm: Assembly-CSharp}
       data:
         state: 0
         started: 0
         guid: d894b27e65bcfcb41b9a0fcedc761205
-        position: {x: -1576.8004, y: -132.95012}
+        position: {x: -1335.5, y: -134.14998}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 

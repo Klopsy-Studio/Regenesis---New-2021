@@ -413,6 +413,7 @@ public class TimelineUI : MonoBehaviour
 
     public void HideIconActing()
     {
+        
         currentActorAnimations.SetTrigger("disappear");
 
     }

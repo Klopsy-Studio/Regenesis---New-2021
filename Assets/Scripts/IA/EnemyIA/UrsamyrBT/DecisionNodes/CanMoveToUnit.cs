@@ -8,7 +8,7 @@ public class CanMoveToUnit : ActionNode
 {
     [SerializeField] MoveType moveToCheck;
     [SerializeField] WhichMonster monsterToCheck = WhichMonster.BearMonster;
-
+    [SerializeField] int specificUnit = 0;
     [SerializeField] bool differentUnit;
     protected override void OnStart() {
     }
@@ -298,6 +298,40 @@ public class CanMoveToUnit : ActionNode
                     controller.tileToMove = validTiles[Random.Range(0, validTiles.Count)];
                     return State.Success;
                 }
+
+            case MoveType.SpecificUnit:
+
+                PlayerUnit h = controller.battleController.playerUnits[specificUnit].GetComponent<PlayerUnit>();
+
+                if (!CheckIfUnitIsValid(h, controller.battleController))
+                {
+                    return State.Failure;
+                }
+
+
+                owner.controller.previousTarget = h;
+
+                List<Tile> sur = h.GetSurroundings(controller.battleController.board);
+
+                foreach (Tile e in sur)
+                {
+                    if (e.CheckSurroundings(controller.battleController.board) != null && e != owner.controller.currentEnemy.tile)
+                    {
+                        validTiles.Add(e);
+                    }
+                }
+
+                if (validTiles.Count > 0)
+                {
+                    controller.tileToMove = validTiles[Random.Range(0, validTiles.Count)];
+                    controller.target = h;
+                    return State.Success;
+                }
+                else
+                {
+                    return State.Failure;
+                }
+
             default:
                 return State.Success;
         }

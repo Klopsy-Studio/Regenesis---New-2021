@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum TypeOfEffect
 {
-    PushUnit, FallBack, AddStunValue, SlowDown
+    PushUnit, FallBack, AddStunValue, SlowDown, DefenseDown
 };
 
 [System.Serializable]
