@@ -19,6 +19,7 @@ public class UnitProfile : ScriptableObject
 
     public float characterIndex;
     public float characterIconIndex;
+    public int onlyAbilityToUseOnTutorial;
     //public WeaponOffset hammerOffset;
     //public WeaponOffset slingShotOffset;
 

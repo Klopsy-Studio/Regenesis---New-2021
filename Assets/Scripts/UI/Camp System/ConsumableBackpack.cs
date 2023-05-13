@@ -82,6 +82,6 @@ public class ConsumableBackpack : ConsumableInventory
 
     public void OnDisable()
     {
-        consumableContainer.Clear();
+        //consumableContainer.Clear();
     }
 }

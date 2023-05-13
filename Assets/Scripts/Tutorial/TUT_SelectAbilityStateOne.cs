@@ -12,19 +12,7 @@ public class TUT_SelectAbilityStateOne : BattleState
 
     bool onPreview;
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.O))
-        {
-            owner.hammerTraitObject.GetComponent<MenuButton>().MakeButtonAppear();
-        }
 
-        if (Input.GetKey(KeyCode.Q))
-        {
-            owner.hammerTraitObject.GetComponent<MenuButton>().MakeButtonHide();
-        }
-
-    }
     public override void Enter()
     {
         base.Enter();
@@ -92,7 +80,7 @@ public class TUT_SelectAbilityStateOne : BattleState
 
                 if (owner.currentUnit.weapon.EquipmentType == KitType.Gunblade)
                 {
-                    if (owner.currentUnit.weapon.Abilities[i].CanDoAbility(owner.currentUnit.actionsPerTurn, owner.currentUnit))
+                    if (owner.currentUnit.weapon.Abilities[i].CanDoAbility(owner.currentUnit.actionsPerTurn, owner.currentUnit) && i == owner.currentUnit.profile.onlyAbilityToUseOnTutorial)
                     {
                         AbilitySelectionUI.EnableSelectAbilty(i);
                     }
@@ -103,7 +91,7 @@ public class TUT_SelectAbilityStateOne : BattleState
                 }
                 else
                 {
-                    if (owner.currentUnit.weapon.Abilities[i].CanDoAbility(owner.currentUnit.actionsPerTurn))
+                    if (owner.currentUnit.weapon.Abilities[i].CanDoAbility(owner.currentUnit.actionsPerTurn) && i == owner.currentUnit.profile.onlyAbilityToUseOnTutorial)
                     {
                         AbilitySelectionUI.EnableSelectAbilty(i);
 
@@ -170,7 +158,7 @@ public class TUT_SelectAbilityStateOne : BattleState
 
         if (owner.currentUnit.weapon.EquipmentType == KitType.Gunblade)
         {
-            if (abilityList[owner.attackChosen].CanDoAbility(owner.currentUnit.actionsPerTurn, owner.currentUnit))
+            if (abilityList[owner.attackChosen].CanDoAbility(owner.currentUnit.actionsPerTurn, owner.currentUnit) && owner.attackChosen == owner.currentUnit.profile.onlyAbilityToUseOnTutorial)
             {
                 //ActionSelectionUI.gameObject.SetActive(false);
 
@@ -179,7 +167,7 @@ public class TUT_SelectAbilityStateOne : BattleState
         }
         else
         {
-            if (abilityList[owner.attackChosen].CanDoAbility(owner.currentUnit.actionsPerTurn))
+            if (abilityList[owner.attackChosen].CanDoAbility(owner.currentUnit.actionsPerTurn) && owner.attackChosen == owner.currentUnit.profile.onlyAbilityToUseOnTutorial)
             {
                 //ActionSelectionUI.gameObject.SetActive(false);
                 owner.ChangeState<TutShowslideState>();
@@ -190,8 +178,8 @@ public class TUT_SelectAbilityStateOne : BattleState
 
     protected override void OnSelectCancelEvent(object sender, InfoEventArgs<int> e)
     {
-        owner.currentUnit.playerUI.ShowActionPoints();
-        owner.attackChosen = e.info;
+        //owner.currentUnit.playerUI.ShowActionPoints();
+        //owner.attackChosen = e.info;
     }
 
  

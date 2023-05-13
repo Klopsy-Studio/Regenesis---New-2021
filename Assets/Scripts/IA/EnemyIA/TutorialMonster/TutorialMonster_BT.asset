@@ -198,6 +198,9 @@ MonoBehaviour:
         moveToCheck: 1
         monsterToCheck: 0
         specificUnit: 0
+        specificTile:
+          x: 0
+          y: 0
         differentUnit: 1
     - rid: 513517070685044745
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
@@ -387,6 +390,9 @@ MonoBehaviour:
         moveToCheck: 0
         monsterToCheck: 0
         specificUnit: 0
+        specificTile:
+          x: 0
+          y: 0
         differentUnit: 1
     - rid: 513517070685044758
       type: {class: FinishMonsterTurn, ns: , asm: Assembly-CSharp}
@@ -721,6 +727,9 @@ MonoBehaviour:
         moveToCheck: 1
         monsterToCheck: 0
         specificUnit: 0
+        specificTile:
+          x: 0
+          y: 0
         differentUnit: 0
     - rid: 513517070685044783
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
@@ -867,6 +876,9 @@ MonoBehaviour:
         moveToCheck: 0
         monsterToCheck: 0
         specificUnit: 0
+        specificTile:
+          x: 0
+          y: 0
         differentUnit: 0
     - rid: 513517070685044794
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
@@ -1020,7 +1032,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: cad50dd003d17ed4f9c094fe87a71d12
-        position: {x: -2228.263, y: -147.00002}
+        position: {x: -2253, y: -147}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -1040,9 +1052,12 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        moveToCheck: 4
+        moveToCheck: 5
         monsterToCheck: 0
         specificUnit: 0
+        specificTile:
+          x: 2
+          y: 8
         differentUnit: 0
     - rid: 513517115567767556
       type: {class: CheckIfUnitsInRange, ns: , asm: Assembly-CSharp}
@@ -1050,7 +1065,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 077ff29048ddfb64a979ec440960166a
-        position: {x: -2021, y: -147.00002}
+        position: {x: -2021, y: -134}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
