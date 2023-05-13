@@ -10,7 +10,8 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
-    [SerializeField] AudioMixerGroup mixer;
+    [SerializeField] AudioMixerGroup sfxMixer;
+    [SerializeField] AudioMixerGroup musicMixer;
     public Sound[] sounds;
     private float volume = 0.5f;
 
@@ -40,7 +41,18 @@ public class AudioManager : MonoBehaviour
             sound.source.pitch = sound.pitch;
             sound.source.loop = sound.loop;
             sound.source.playOnAwake = sound.playOnAwake;
-            sound.source.outputAudioMixerGroup= mixer;
+
+            switch (sound.soundType)
+            {
+                case SoundType.SFX:
+                    sound.source.outputAudioMixerGroup = sfxMixer;
+                    break;
+                case SoundType.Music:
+                    sound.source.outputAudioMixerGroup = musicMixer;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

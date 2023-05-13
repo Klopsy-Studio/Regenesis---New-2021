@@ -16,4 +16,9 @@ public class UpdateVolume : MonoBehaviour
             mixer.SetFloat("Volume", Mathf.Log10(slider.value) * 20);
         }
     }
+
+    private void Start()
+    {
+        ChangeVolume();
+    }
 }
