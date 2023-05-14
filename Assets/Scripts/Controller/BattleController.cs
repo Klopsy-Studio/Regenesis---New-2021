@@ -119,6 +119,7 @@ public class BattleController : StateMachine
     public GameObject placeholderWinScreen;
 
     public CinemachineVirtualCamera cinemachineCamera;
+    public Camera uiCamera;
     public Camera cameraTest;
    
 
@@ -392,14 +393,24 @@ public class BattleController : StateMachine
 
         if (enableZoom)
         {
+
             fov = cinemachineCamera.m_Lens.OrthographicSize;
-            fov -= Input.GetAxis("Mouse ScrollWheel") * sensitivity*Time.deltaTime;
+            fov -= Input.GetAxis("Mouse ScrollWheel") * sensitivity * Time.deltaTime;
             fov = Mathf.Clamp(fov, minCameraZoom, maxCameraZoom);
             cinemachineCamera.m_Lens.OrthographicSize = fov;
+
+            uiCamera.orthographicSize = fov;
         }
 
     }
 
+    public void ScrollZoom(float cameraFov)
+    {
+        float fov = cameraFov;
+        fov -= Input.GetAxis("Mouse ScrollWheel") * sensitivity * Time.deltaTime;
+        fov = Mathf.Clamp(fov, minCameraZoom, maxCameraZoom);
+        cameraFov = fov;
+    }
     public void ActivateZoom()
     {
         zoomIn = true;
