@@ -128,6 +128,7 @@ public class Unit : TimelineElements
         buffModifiers.Add(m);
         popUps.CreatePopUpBuffIndicator(m);
         buffIndicator.SetActive(true);
+        AudioManager.instance.Play("AddBuff");
     }
 
     public void RemoveBuff(Modifier m)
@@ -148,6 +149,7 @@ public class Unit : TimelineElements
         debuffModifiers.Add(m);
         debuffIndicator.SetActive(true);
         popUps.CreatePopUpDebuffIndicator(m);
+        AudioManager.instance.Play("AddDebuff");
 
     }
 
