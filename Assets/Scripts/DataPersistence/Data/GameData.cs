@@ -25,6 +25,7 @@ public class GameData
     public bool isForgeTutorialFinished;
     public bool isShopTutorialFinished;
     public bool isInventoryTutorialFinished;
+    public bool isMapTutorialFinished;
 
 
     //the values defined in this constructor will be the default values
@@ -57,6 +58,7 @@ public class GameData
         isForgeTutorialFinished = false ;
         isShopTutorialFinished = false ;
         isInventoryTutorialFinished=false;
+        isMapTutorialFinished = false;
 
 }
 

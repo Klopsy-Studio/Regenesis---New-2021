@@ -147,10 +147,10 @@ public class DataPersistenceManager : MonoBehaviour
         Debug.Log("aaaaaaaa"); 
     }
 
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
+    //private void OnApplicationQuit()
+    //{
+    //    SaveGame();
+    //}
 
     public bool HasGameData()
     {

@@ -38,6 +38,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] Animator buttonAnimations;
     [SerializeField] RectTransform buttonRect;
 
+    [SerializeField] Button continueMainMenu;
     public UnityEvent action;
     public UnityEvent onHover;
     public UnityEvent onExit;
@@ -51,7 +52,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
 
     float currentTime;
-
 
    
 
@@ -85,6 +85,8 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         //load the gameplay scene - whick will in turn save the game because of 
         //OnSceneUnloaded() in the DataPersistenceManager
     }
+
+  
 
     public void SaveGame() //UNITY buttons
     {

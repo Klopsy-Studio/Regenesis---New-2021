@@ -105,6 +105,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls: []
@@ -3303,6 +3304,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -8536,6 +8538,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -12452,6 +12455,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -12467,7 +12471,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2601644219093969919}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
         m_MethodName: DefaultText
         m_Mode: 1
@@ -13869,6 +13873,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 6487757722583834917}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls: []
@@ -15929,213 +15934,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: ELE
---- !u!1 &1563402476517368514
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6983738836611542683}
-  - component: {fileID: 8607490115516600377}
-  - component: {fileID: 7932056486428088438}
-  - component: {fileID: 6048109343815564667}
-  - component: {fileID: 2601644219093969919}
-  m_Layer: 0
-  m_Name: Tutorial
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &6983738836611542683
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1563402476517368514}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6378625386162661745}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 197.47, y: 51.8184}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &8607490115516600377
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1563402476517368514}
-  m_CullTransparentMesh: 1
---- !u!114 &7932056486428088438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1563402476517368514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 6aee75e46f00f1640af7ce476a79e12f, type: 3}
-    m_FontSize: 52
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 91
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: Tutorial
---- !u!114 &6048109343815564667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1563402476517368514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ecabab27592f04f8b22a0a3bccb234, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tab: {fileID: 5232232883955915788}
-  currentTab: {fileID: 8531261274209820591}
---- !u!114 &2601644219093969919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1563402476517368514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f87de519930133842ba19dcad6ecf530, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  test: 0
-  canBeSelected: 1
-  selected: 0
-  isContinueButton: 0
-  defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
-  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
-  appearPosition: 0
-  buttonSpeed: 2
-  defaultSprite: {fileID: 0}
-  toggledSprite: {fileID: 0}
-  buttonText: {fileID: 7932056486428088438}
-  buttonImage: {fileID: 0}
-  buttonAnimations: {fileID: 0}
-  buttonRect: {fileID: 0}
-  action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6048109343815564667}
-        m_TargetAssemblyTypeName: MenuTab, Assembly-CSharp
-        m_MethodName: OpenTab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2601644219093969919}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: DefaultText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHover:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2601644219093969919}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: HighlightText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2601644219093969919}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: Selected
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2601644219093969919}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: DefaultText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2601644219093969919}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: UnSelected
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onUp:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1583007531910997097
 GameObject:
   m_ObjectHideFlags: 0
@@ -17090,6 +16888,7 @@ MonoBehaviour:
   buttonImage: {fileID: 5095762685556000928}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -18626,7 +18425,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6378625386162661745}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -18722,6 +18521,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -19218,6 +19018,8 @@ MonoBehaviour:
   gunbladeUI: {fileID: 1255951506}
   droneUI: {fileID: 8441782467248358936}
   questComplete: {fileID: 273975314}
+  questFailed: {fileID: 0}
+  questEscaped: {fileID: 0}
   partyIconParent: {fileID: 566840070}
   partyIconPrefab: {fileID: 5933493199402500841, guid: ffbf73baed167bd49a9eb657e13ee524, type: 3}
   bowExtraAttackObject: {fileID: 4510178363440437657}
@@ -19229,8 +19031,7 @@ MonoBehaviour:
   defeatScreen: {fileID: 736057973}
   pause: {fileID: 0}
   pauseAnimations: {fileID: 0}
-  pauseButton: {fileID: 1973731276034919631}
-  resumeButton: {fileID: 1833221748}
+  canPause: 0
   miniStatus: {fileID: 4338165786872812780}
   turnArrow: {fileID: 1154634532}
   currentSelectedIcon: {fileID: 0}
@@ -19253,6 +19054,7 @@ MonoBehaviour:
   placeholderCanvas: {fileID: 0}
   placeholderWinScreen: {fileID: 0}
   cinemachineCamera: {fileID: 1098223091}
+  uiCamera: {fileID: 0}
   cameraTest: {fileID: 5886122782810732646}
   playtestingFunctions: {fileID: 0}
   enablePreview: 0
@@ -19917,6 +19719,10 @@ MonoBehaviour:
   timelineTypes: 0
   timelineVelocity: 0
   elementEnabled: 1
+  hasDescription: 0
+  description:
+    header: 
+    content: 
   fTimelineVelocity: 0
   timelineFill: 0
   isTimelineActive: 0
@@ -21850,6 +21656,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls: []
@@ -22105,6 +21912,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -22120,7 +21928,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7887052229248297176}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
         m_MethodName: DefaultText
         m_Mode: 1
@@ -22914,6 +22722,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -24245,6 +24054,9 @@ MonoBehaviour:
   stunnedIcon: {fileID: 1262952444085346068, guid: 1ae2243f980b08f49af1b965ac127a9d, type: 3}
   piercingIcon: {fileID: 1262952444085346068, guid: df661c5f73cde7b458f64781a7ff9a14, type: 3}
   droneIcon: {fileID: 1262952444085346068, guid: 5f477ca34980a0f40baed144b93c0ae1, type: 3}
+  frenzyIcon: {fileID: 0}
+  antivirusIcon: {fileID: 0}
+  evolveIcon: {fileID: 0}
   hammerSprite: {fileID: 4637063932210033720, guid: 8bec534dda6f82c42ae5477e730eac43, type: 3}
   bowSprite: {fileID: -4465366891955389173, guid: 8bec534dda6f82c42ae5477e730eac43, type: 3}
   gunbladeSprite: {fileID: -7052188548359618984, guid: 8bec534dda6f82c42ae5477e730eac43, type: 3}
@@ -24688,7 +24500,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6378625386162661745}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -25033,6 +24845,7 @@ MonoBehaviour:
   buttonImage: {fileID: 1442573791216670853}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 6275627868856375098}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls: []
@@ -25815,6 +25628,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 3725899933446865974}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls: []
@@ -30149,6 +29963,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -30481,213 +30296,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 000
---- !u!1 &7923791524264679956
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8094692087685648227}
-  - component: {fileID: 3365563483126927696}
-  - component: {fileID: 5234490388669561638}
-  - component: {fileID: 7887052229248297176}
-  - component: {fileID: 8948425008242844874}
-  m_Layer: 0
-  m_Name: Controls
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &8094692087685648227
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7923791524264679956}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6378625386162661745}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 197.4654, y: 51.6339}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3365563483126927696
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7923791524264679956}
-  m_CullTransparentMesh: 1
---- !u!114 &5234490388669561638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7923791524264679956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 6aee75e46f00f1640af7ce476a79e12f, type: 3}
-    m_FontSize: 52
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 91
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: Controls
---- !u!114 &7887052229248297176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7923791524264679956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f87de519930133842ba19dcad6ecf530, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  test: 0
-  canBeSelected: 1
-  selected: 0
-  isContinueButton: 0
-  defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
-  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
-  appearPosition: 0
-  buttonSpeed: 2
-  defaultSprite: {fileID: 0}
-  toggledSprite: {fileID: 0}
-  buttonText: {fileID: 5234490388669561638}
-  buttonImage: {fileID: 0}
-  buttonAnimations: {fileID: 0}
-  buttonRect: {fileID: 0}
-  action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8948425008242844874}
-        m_TargetAssemblyTypeName: MenuTab, Assembly-CSharp
-        m_MethodName: OpenTab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4794967132605827062}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: DefaultText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHover:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7887052229248297176}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: HighlightText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7887052229248297176}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: Selected
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7887052229248297176}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: DefaultText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7887052229248297176}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: UnSelected
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onUp:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &8948425008242844874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7923791524264679956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ecabab27592f04f8b22a0a3bccb234, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tab: {fileID: 4411171650145018992}
-  currentTab: {fileID: 8531261274209820591}
 --- !u!1 &8129518387785922497
 GameObject:
   m_ObjectHideFlags: 0
@@ -31194,6 +30802,7 @@ MonoBehaviour:
   buttonImage: {fileID: 5751612391612397003}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 7375748114535279437}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls: []
@@ -31787,8 +31396,6 @@ RectTransform:
   m_Children:
   - {fileID: 2812332490627563835}
   - {fileID: 2845964635752975901}
-  - {fileID: 8094692087685648227}
-  - {fileID: 6983738836611542683}
   - {fileID: 7029511575422962901}
   - {fileID: 1764857174535441646}
   m_Father: {fileID: 3021947368382181694}

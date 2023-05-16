@@ -776,7 +776,6 @@ RectTransform:
   m_Children:
   - {fileID: 1788194461}
   - {fileID: 788003503}
-  - {fileID: 346328823}
   - {fileID: 1691033180}
   - {fileID: 1408031522}
   m_Father: {fileID: 1953615820}
@@ -1876,6 +1875,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -2188,6 +2188,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -2510,287 +2511,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &346328822
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 346328823}
-  - component: {fileID: 346328824}
-  - component: {fileID: 346328825}
-  - component: {fileID: 346328826}
-  m_Layer: 5
-  m_Name: OptionsButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &346328823
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346328822}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1362088717}
-  m_Father: {fileID: 95467935}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 181.688, y: 63.212}
-  m_Pivot: {x: 0.5, y: 0}
---- !u!114 &346328824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346328822}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f87de519930133842ba19dcad6ecf530, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  test: 0
-  canBeSelected: 0
-  selected: 0
-  isContinueButton: 0
-  defaultTextColor: {r: 0.94509804, g: 0.94509804, b: 0.94509804, a: 1}
-  highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
-  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
-  appearPosition: 0
-  buttonSpeed: 2
-  defaultSprite: {fileID: 0}
-  toggledSprite: {fileID: 0}
-  buttonText: {fileID: 1362088718}
-  buttonImage: {fileID: 0}
-  buttonAnimations: {fileID: 0}
-  buttonRect: {fileID: 0}
-  action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1953615821}
-        m_TargetAssemblyTypeName: MenuOwner, Assembly-CSharp
-        m_MethodName: DisableMenuButtons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1953615821}
-        m_TargetAssemblyTypeName: MenuOwner, Assembly-CSharp
-        m_MethodName: EnableOptionsButtons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1953615821}
-        m_TargetAssemblyTypeName: MenuOwner, Assembly-CSharp
-        m_MethodName: ResetOptionButtons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 346328825}
-        m_TargetAssemblyTypeName: MenuTab, Assembly-CSharp
-        m_MethodName: OpenTab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHover:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 346328824}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: HighlightText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 346328824}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: Selected
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 346328824}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: DefaultText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 346328824}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: UnSelected
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onUp:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &346328825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346328822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ecabab27592f04f8b22a0a3bccb234, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tab: {fileID: 37021438}
-  currentTab: {fileID: 95467934}
---- !u!114 &346328826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346328822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
-    m_PressedColor: {r: 0.6226415, g: 0.24583676, b: 0.1139551, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1362088718}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1953615821}
-        m_TargetAssemblyTypeName: MenuOwner, Assembly-CSharp
-        m_MethodName: DisableMenuButtons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1953615821}
-        m_TargetAssemblyTypeName: MenuOwner, Assembly-CSharp
-        m_MethodName: EnableOptionsButtons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1953615821}
-        m_TargetAssemblyTypeName: MenuOwner, Assembly-CSharp
-        m_MethodName: ResetOptionButtons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 346328825}
-        m_TargetAssemblyTypeName: MenuTab, Assembly-CSharp
-        m_MethodName: OpenTab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &356360803
 GameObject:
   m_ObjectHideFlags: 0
@@ -4032,6 +3752,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -4479,6 +4200,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -4670,6 +4392,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -4961,7 +4684,7 @@ GameObject:
   - component: {fileID: 788003503}
   - component: {fileID: 788003505}
   - component: {fileID: 788003504}
-  - component: {fileID: 788003506}
+  - component: {fileID: 788003507}
   m_Layer: 5
   m_Name: 'Continue '
   m_TagString: Untagged
@@ -5031,6 +4754,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -5127,7 +4851,7 @@ MonoBehaviour:
   onUp:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &788003506
+--- !u!114 &788003507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5136,77 +4860,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 788003502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ca2911ca1c914e45b18c6a83f9a9d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 1}
-    m_PressedColor: {r: 0.6226415, g: 0.24583676, b: 0.1139551, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 336304507}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1953615821}
-        m_TargetAssemblyTypeName: MenuOwner, Assembly-CSharp
-        m_MethodName: DisableMenuButtons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 788003505}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: SaveGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 788003504}
-        m_TargetAssemblyTypeName: GameStartSequence, Assembly-CSharp
-        m_MethodName: BeginGameStartSequence
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  menuOwner: {fileID: 1953615821}
+  menuButton: {fileID: 788003505}
+  gameStartSequence: {fileID: 788003504}
+  defaultTextColor: {r: 1, g: 1, b: 1, a: 0}
+  highlightTextColor: {r: 0.6117647, g: 0.29803923, b: 0.1882353, a: 0}
+  disableColor: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 0}
+  text: {fileID: 336304507}
 --- !u!1001 &836497343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6585,86 +6248,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277331730}
   m_CullTransparentMesh: 1
---- !u!1 &1362088716
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1362088717}
-  - component: {fileID: 1362088719}
-  - component: {fileID: 1362088718}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1362088717
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362088716}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 346328823}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.391916, y: -0.69595337}
-  m_SizeDelta: {x: 245.012, y: 128.707}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1362088718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362088716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 6aee75e46f00f1640af7ce476a79e12f, type: 3}
-    m_FontSize: 50
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 105
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: Options
---- !u!222 &1362088719
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362088716}
-  m_CullTransparentMesh: 1
 --- !u!1 &1395184743
 GameObject:
   m_ObjectHideFlags: 0
@@ -6833,7 +6416,7 @@ RectTransform:
   m_Children:
   - {fileID: 356360804}
   m_Father: {fileID: 95467935}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6867,6 +6450,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -7636,6 +7220,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -8224,7 +7809,7 @@ RectTransform:
   m_Children:
   - {fileID: 284674492}
   m_Father: {fileID: 95467935}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8272,6 +7857,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -8505,6 +8091,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:
@@ -9176,15 +8763,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuButtons:
   - {fileID: 1788194462}
-  - {fileID: 346328824}
+  - {fileID: 788003505}
   - {fileID: 1408031523}
   optionsButtons:
   - {fileID: 2128781603}
-  - {fileID: 644107050}
+  - {fileID: 788003505}
   - {fileID: 720151259}
   mainMenuAnimation: {fileID: 1953615822}
   sceneTransition: {fileID: 82417799}
-  sceneTransitionWait: 1
+  sceneTransitionWait: 2
   optionsWait: 1
 --- !u!95 &1953615822
 Animator:
@@ -9560,6 +9147,7 @@ MonoBehaviour:
   buttonImage: {fileID: 0}
   buttonAnimations: {fileID: 0}
   buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
   action:
     m_PersistentCalls:
       m_Calls:

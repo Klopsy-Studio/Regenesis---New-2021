@@ -1,9 +1,13 @@
+using RedBlueGames.MulliganRenamer;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapManager : MonoBehaviour
+public class MapManager : MonoBehaviour, IDataPersistence
 {
+    
+
+
     //[SerializeField] ZoneButton[] zoneButtons;
     [SerializeField] GameObject[] mapLists;
     public DisplayMapContainers[] displayMapContainerList;
@@ -12,9 +16,15 @@ public class MapManager : MonoBehaviour
 
     public Dictionary<LevelData, MissionContainer> allMissionsDictionary = new Dictionary<LevelData, MissionContainer>();
     public List<MissionContainer> allMisionsList = new List<MissionContainer >();
-   
+
+    [Header("tutorialVariable")]
+    bool isTutorialFinished = false;
+    [SerializeField] GameObject tutorialPanel;
     private void Start()
     {
+        tutorialPanel.SetActive(false);
+        if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
+
         missionInfoPanel.gameObject.SetActive(false);
 
 
@@ -29,6 +39,12 @@ public class MapManager : MonoBehaviour
         //{
         //    button.UpdateNotifications();
         //}
+    }
+
+    public void FinishTutorial() //UnityButtons
+    {
+        tutorialPanel.SetActive(false);
+        isTutorialFinished = true;
     }
 
     //private void Update()
@@ -134,5 +150,13 @@ public class MapManager : MonoBehaviour
         //}
     }
 
+    public void LoadData(GameData data)
+    {
+        isTutorialFinished = data.isMapTutorialFinished;
+    }
 
+    public void SaveData(GameData data)
+    {
+        data.isMapTutorialFinished = isTutorialFinished;
+    }
 }
