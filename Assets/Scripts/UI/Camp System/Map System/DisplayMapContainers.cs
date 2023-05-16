@@ -7,7 +7,8 @@ public class DisplayMapContainers : MonoBehaviour
     public MissionList missionList;
     [SerializeField] GameObject missionPrefab;
     [HideInInspector] public MapManager mapManager;
-  
+
+    public List<MissionContainer> missionContainerList;
 
     public void CreateMissionContainers()
     {
@@ -41,12 +42,35 @@ public class DisplayMapContainers : MonoBehaviour
                 missionContainer.notificationIMG.gameObject.SetActive(true);
               
             }
-            //missionContainerList.Add(missionContainer);
+            missionContainerList.Add(missionContainer);
         }
     }
 
     public void UpdateMissionContainers()
     {
+        foreach (var missionContainer in missionContainerList)
+        {
+            if (missionContainer.levelData.hasBeenCompleted)
+            {
 
+                missionContainer.completedIMG.gameObject.SetActive(true);
+                missionContainer.uncompletedIMG.gameObject.SetActive(false);
+            }
+            else
+            {
+                missionContainer.completedIMG.gameObject.SetActive(false);
+                missionContainer.uncompletedIMG.gameObject.SetActive(true);
+            }
+
+            if (missionContainer.levelData.isOld)
+            {
+                missionContainer.notificationIMG.gameObject.SetActive(false);
+            }
+            else
+            {
+                missionContainer.notificationIMG.gameObject.SetActive(true);
+
+            }
+        }
     }
 }

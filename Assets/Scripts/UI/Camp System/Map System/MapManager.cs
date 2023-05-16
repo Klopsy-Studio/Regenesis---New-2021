@@ -17,7 +17,7 @@ public class MapManager : MonoBehaviour
     {
         missionInfoPanel.gameObject.SetActive(false);
 
-        
+
         //foreach (var button in zoneButtons)
         //{
         //    button.FillVariables(this);
@@ -31,6 +31,15 @@ public class MapManager : MonoBehaviour
         //}
     }
 
+    //private void Update()
+    //{
+    //    UnlockMissions();
+    //}
+
+    private void OnEnable()
+    {
+        UnlockMissions();
+    }
 
 
     public void OpenMapPanelList(int mapSelectorId)
@@ -59,15 +68,48 @@ public class MapManager : MonoBehaviour
                 var unlockableMissions = mission.levelData.UnlockableMissions;
                 for (int i = 0; i < unlockableMissions.Length; i++)
                 {
+                    Debug.Log("aaaaa");
                     MissionContainer missionContainer = allMissionsDictionary[unlockableMissions[i]];
                     missionContainer.gameObject.SetActive(false);
-                    Debug.Log("hoa");
+                   
                 }
             }
         }
         //foreach (var displayMapContainer in displayMapContainerList)
     }
 
+    void UnlockMissions()
+    {
+        foreach (var displayMapContainerList in displayMapContainerList)
+        {
+            displayMapContainerList.UpdateMissionContainers();
+        }
+        foreach (var mission in allMisionsList)
+        {
+            Debug.Log("a");
+            if (mission.levelData.UnlockableMissions != null && mission.levelData.hasBeenCompleted)
+            {
+                Debug.Log("B");
+                var unlockableMissions = mission.levelData.UnlockableMissions;
+                for (int i = 0; i < unlockableMissions.Length; i++)
+                {
+                    MissionContainer missionContainer = allMissionsDictionary[unlockableMissions[i]];
+                    missionContainer.gameObject.SetActive(true);
+                    Debug.Log("hoa");
+                }
+            }
+            else
+            {
+                var unlockableMissions = mission.levelData.UnlockableMissions;
+                for (int i = 0; i < unlockableMissions.Length; i++)
+                {
+                    MissionContainer missionContainer = allMissionsDictionary[unlockableMissions[i]];
+                    missionContainer.gameObject.SetActive(false);
+                    Debug.Log("hoa");
+                }
+            }
+        }
+    }
 
    
 
