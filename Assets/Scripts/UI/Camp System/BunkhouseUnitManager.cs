@@ -38,7 +38,7 @@ public class BunkhouseUnitManager : MonoBehaviour, IDataPersistence
         if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
         UpdateDefaultWeaponPanel();
 
-        //hago esto para actualizar los objetos
+   
      
 
 
