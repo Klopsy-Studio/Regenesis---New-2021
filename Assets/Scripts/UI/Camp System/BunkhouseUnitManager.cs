@@ -30,14 +30,21 @@ public class BunkhouseUnitManager : MonoBehaviour, IDataPersistence
     public Text critico;
     public Text ataqElemental;
 
-   
+    public int currentId;
 
     private void Start()
     {
         tutorialPanel.SetActive(false);
         if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
         UpdateDefaultWeaponPanel();
+
+        //hago esto para actualizar los objetos
+     
+
+
     }
+
+   
 
     public void FinishTutorial() //UnityButtons
     {
@@ -57,17 +64,28 @@ public class BunkhouseUnitManager : MonoBehaviour, IDataPersistence
     {
         
         var unitProfile = GameManager.instance.unitProfilesList[id];
-
+        //Debug.Log("id" + id + " "+ unitProfile.name);
         openSelectWeaponPanel.SetUnitProfileID(id);
-        if (changeUnitWeaponID != null) changeUnitWeaponID();
+        //if (changeUnitWeaponID != null) changeUnitWeaponID();
+
         weaponIMG.sprite = unitProfile.unitWeapon.Sprite;
         movimiento.text = unitProfile.unitWeapon.range.ToString();
         defensa.text = unitProfile.unitWeapon.Defense.ToString();
       
         poder.text = unitProfile.unitWeapon.Power.ToString();
         critico.text = unitProfile.unitWeapon.CriticalPercentage.ToString();
-       
+        currentId = id;
     }
+
+   
+
+    public void UpdateCurrentId()
+    {
+        FillUnitVariables(currentId);
+
+    }
+
+
 
     public void UpdateWeaponIMG(int unitID)
     {

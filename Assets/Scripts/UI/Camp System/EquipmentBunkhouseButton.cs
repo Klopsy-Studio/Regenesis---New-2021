@@ -10,7 +10,7 @@ public class EquipmentBunkhouseButton : UIButtons
     public DisplayEquipmentBunkhouse displayEquipmentBunkhouse;
     public EquipmentInventory inventory;
     public int equipmentID;
-    private int unitProfileID;
+    public int unitProfileID;
     [SerializeField] Image weaponImage;
     [SerializeField] TextMeshProUGUI weaponName;
   

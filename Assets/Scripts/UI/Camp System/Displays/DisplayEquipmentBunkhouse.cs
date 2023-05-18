@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
@@ -12,12 +13,12 @@ public class DisplayEquipmentBunkhouse : MonoBehaviour
     public BunkhouseUnitManager bunkHouseManager;
 
     int unitProfileID = 0;
-    public List<GameObject> slotPrefablist;
+    public List<GameObject> slotPrefablist = new List<GameObject>();
     public Dictionary<WeaponSlot, GameObject> equipmentDisplayed = new Dictionary<WeaponSlot, GameObject>();
     void Start()
     {
         BunkhouseUnitManager.changeUnitWeaponID += UpdateUnitsProfileID;
-        CreateDisplay();
+        CreateDisplay(bunkHouseManager.currentId);
 
     }
 
@@ -31,8 +32,9 @@ public class DisplayEquipmentBunkhouse : MonoBehaviour
 
     public void SetUnitProfileID(int id)
     {
-
+        Debug.Log("SetUnitProfile ID es " + id);
         unitProfileID = id;
+        UpdateUnitsProfileID();
     }
 
     private void Update()
@@ -41,7 +43,7 @@ public class DisplayEquipmentBunkhouse : MonoBehaviour
         UpdateDisplay();
     }
 
-     void CreateDisplay()
+     void CreateDisplay(int currentId)
     {
         for (int i = 0; i < inventory.container.Count; i++)
         {
@@ -55,6 +57,18 @@ public class DisplayEquipmentBunkhouse : MonoBehaviour
                 button.FillVariables(inventory, i, this);
             }
         }
+
+        foreach (var item in slotPrefablist)
+        {
+
+            if (item.TryGetComponent(out EquipmentBunkhouseButton button))
+            {
+                Debug.Log("unit profile id es " + currentId);
+                button.SetUnitProfileID(currentId);
+            }
+        }
+
+
     }
 
      void UpdateDisplay()
@@ -82,12 +96,24 @@ public class DisplayEquipmentBunkhouse : MonoBehaviour
 
     void UpdateUnitsProfileID()
     {
+
         foreach (var item in slotPrefablist)
         {
+           
             if (item.TryGetComponent(out EquipmentBunkhouseButton button))
             {
+                Debug.Log("unit profile id es " + unitProfileID);
                 button.SetUnitProfileID(unitProfileID);
             }
+
+            //if (item.GetComponent<EquipmentBunkhouseButton>() != null)
+            //{
+            //    Debug.Log("AAAAAA");
+            //}
+            //else
+            //{
+            //    Debug.Log("NO ENTRA");
+            //}
         }
 
     }
