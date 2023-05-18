@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class SoundPlayer : MonoBehaviour
 {
+    public bool allowSound = true;
     public void PlaySound(string sound)
     {
-        AudioManager.instance.Play(sound);
+        if (allowSound)
+        {
+            AudioManager.instance.Play(sound);
+
+        }
     }
 
     public void StopSound(string sound)
