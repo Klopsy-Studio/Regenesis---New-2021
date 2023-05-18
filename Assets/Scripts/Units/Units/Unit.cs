@@ -183,6 +183,8 @@ public class Unit : TimelineElements
     public virtual void MovementEffect()
     {
         movementEffect.SetTrigger("move");
+        AudioManager.instance.Play("HunterMovement");
+
     }
     private void Update()
     {

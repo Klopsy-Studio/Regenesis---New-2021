@@ -238,9 +238,14 @@ public class BuyItemPanel
 
     public void BuyItem()
     {
-     
-        if (shopManager.currentPoints < itemTotalCost) return;
+        if (shopManager.currentPoints < itemTotalCost)
+        {
+            AudioManager.instance.Play("NoPurchase");
+            return;
+        }
         shopManager.animator.SetTrigger("purchased");
+        AudioManager.instance.Play("ComprarTienda");
+
         UpdateCurrentPoints(-itemTotalCost);
         GameManager.instance.consumableInventory.AddConsumable(itemInfo.consumable, itemAmount);
         //GameManager.instance.materialInventory.SubstractMaterial(material1);

@@ -20,7 +20,6 @@ public class MoveSequenceState : BattleState
 
     IEnumerator Sequence()
     {
-        AudioManager.instance.Play("HunterMovement");
         Movement m = owner.currentUnit.GetComponent<Movement>();
 
         owner.currentUnit.currentPoint = owner.currentTile.pos;

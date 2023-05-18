@@ -11,17 +11,25 @@ public class AmbientPlayer : MonoBehaviour
     float timeOffset;
 
     bool playing;
-
+    [SerializeField] bool playOnAwake = true;
     [SerializeField] float minTimeOffset;
     [SerializeField] float maxTimeOffset;
 
     void Start()
     {
-        if(source != null)
+        if (source != null)
         {
-            source.Play();
-            time = source.clip.length;
-            playing = true;
+            if (playOnAwake)
+            {
+                source.Play();
+                time = source.clip.length;
+                playing = true;
+            }
+            else
+            {
+                time = source.clip.length;
+                playing = true;
+            }
         }
 
         else
