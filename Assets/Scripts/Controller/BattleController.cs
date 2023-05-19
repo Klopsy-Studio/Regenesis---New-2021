@@ -195,6 +195,7 @@ public class BattleController : StateMachine
 
     public virtual void BeginGame()
     {
+        AudioManager.instance.ResetSound("Music");
         canToggleTimeline = true;
         originalZoomSize = cinemachineCamera.m_Lens.OrthographicSize;
         cinemachineCamera.m_Lens.NearClipPlane = -1f;
@@ -608,7 +609,10 @@ public class BattleController : StateMachine
     public void ReturnToCamp()
     {
         sceneTransition.SetTrigger("fadeIn");
+
         GameManager.instance.sceneToLoad = "CampScene";
+        AudioManager.instance.FadeOut("Music");
+
         Invoke("LoadingScreen", 1.5f);
     }
 
@@ -633,6 +637,7 @@ public class BattleController : StateMachine
 
         questEscaped.gameObject.SetActive(true);
 
+        
         yield return new WaitForSecondsRealtime(2f);
 
         ReturnToCamp();

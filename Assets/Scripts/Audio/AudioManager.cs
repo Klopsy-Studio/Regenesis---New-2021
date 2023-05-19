@@ -41,7 +41,7 @@ public class AudioManager : MonoBehaviour
             sound.source.pitch = sound.pitch;
             sound.source.loop = sound.loop;
             sound.source.playOnAwake = sound.playOnAwake;
-
+            sound.originalVolume = sound.source.volume;
             switch (sound.soundType)
             {
                 case SoundType.SFX:
@@ -114,6 +114,38 @@ public class AudioManager : MonoBehaviour
         if(newSound != null)
         {
             newSound.source.Stop();
+        }
+
+        else
+        {
+            Debug.Log("Sound: " + name + " not found");
+        }
+    }
+
+    public void ResetSound(string name)
+    {
+        Sound newSound = Array.Find(sounds, sound => sound.name == name);
+
+        newSound.source.volume = newSound.volume;
+    }
+    IEnumerator FadeInSound(Sound sound)
+    {
+        while(sound.source.volume > 0)
+        {
+            sound.source.volume -= Time.deltaTime;
+            yield return null;
+        }
+
+        sound.source.volume = 0;
+        Stop(sound.name);
+    }
+    public void FadeOut(string name)
+    {
+        Sound newSound = Array.Find(sounds, sound => sound.name == name);
+
+        if (newSound != null)
+        {
+            StartCoroutine(FadeInSound(newSound));
         }
 
         else

@@ -105,8 +105,9 @@ public class ActionEffect : MonoBehaviour
     void SetBlackAndWhite()
     {
         colorAdjustments.saturation.value -= Time.fixedDeltaTime * blackAndWhiteSpeed;
+        Debug.Log(colorAdjustments.saturation.value);
 
-        if(colorAdjustments.saturation.value <= -100)
+        if (colorAdjustments.saturation.value <= -100)
         {
             blackAndWhite = false;
         }
@@ -134,9 +135,7 @@ public class ActionEffect : MonoBehaviour
 
         if (blackAndWhite)
         {
-            Debug.Log("Bruh");
             SetBlackAndWhite();
-
         }
 
 

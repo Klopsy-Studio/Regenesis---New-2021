@@ -11,6 +11,8 @@ public class Sound
     public SoundType soundType;
     public bool loop;
     public bool playOnAwake;
+
+    [HideInInspector] public float originalVolume;
     [Range(0f, 1f)] public float volume = 0.5f;
     [Range(0f, 2f)] public float pitch = 1f;
 
