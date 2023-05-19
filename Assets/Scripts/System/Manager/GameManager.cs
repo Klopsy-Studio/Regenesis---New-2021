@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public LevelData currentMission;
 
    /* [HideInInspector] */public UnitProfile[] unitProfilesList;
+    /* [HideInInspector] */
+    public UnitProfile[] unitProfilesTutorialList;
 
     public GameObject unitsPrefab;
 
@@ -37,7 +39,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Battle");
     }
-
 
     public string sceneToLoad;
  

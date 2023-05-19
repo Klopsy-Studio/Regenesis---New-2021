@@ -92,8 +92,8 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: -174, y: 110, z: 0}
-  viewScale: {x: 0.25, y: 0.25, z: 1}
+  viewPosition: {x: 782, y: -128, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
   references:
     version: 2
     RefIds:
@@ -275,6 +275,10 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         moveToCheck: 0
         monsterToCheck: 0
+        specificUnit: 0
+        specificTile:
+          x: 0
+          y: 0
         differentUnit: 0
     - rid: 513517317156241442
       type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
@@ -853,6 +857,10 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         moveToCheck: 0
         monsterToCheck: 0
+        specificUnit: 0
+        specificTile:
+          x: 0
+          y: 0
         differentUnit: 0
     - rid: 513517522410274831
       type: {class: CheckIfUnitsInRange, ns: , asm: Assembly-CSharp}
@@ -1127,6 +1135,10 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         moveToCheck: 2
         monsterToCheck: 0
+        specificUnit: 0
+        specificTile:
+          x: 0
+          y: 0
         differentUnit: 0
     - rid: 4967246176198328330
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
