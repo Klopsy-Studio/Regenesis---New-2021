@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CampCursorUIInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CampCursorUIInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        GameCursor.instance.SetRegularCursor();
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         GameCursor.instance.SetHandCursor();
@@ -14,6 +19,8 @@ public class CampCursorUIInteraction : MonoBehaviour, IPointerEnterHandler, IPoi
     {
         GameCursor.instance.SetRegularCursor();
     }
+
+    
 
  
 }
