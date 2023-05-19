@@ -27,7 +27,14 @@ public class SelectItemState : BattleState
 
         for (int i = 0; i < owner.itemSelectionUI.options.Length; i++)
         {
-            owner.itemSelectionUI.parent[i].gameObject.SetActive(false);
+            owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>().controller = owner;
+            owner.itemSelectionUI.options[i].GetComponent<Text>().text = "No Item";
+            owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = "X";
+
+
+            SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
+            e.DisableOption();
+            
         }
         for (int i = 0; i < itemList.Count; i++)
         {
@@ -41,8 +48,7 @@ public class SelectItemState : BattleState
                        
             SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
             e.assignedConsumable = itemList[i].consumable;
-            e.canBeSelected = true;
-
+            e.EnableOption();
         }
 
 

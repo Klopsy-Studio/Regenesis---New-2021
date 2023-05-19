@@ -399,7 +399,6 @@ public class BattleController : StateMachine
             fov = Mathf.Clamp(fov, minCameraZoom, maxCameraZoom);
             cinemachineCamera.m_Lens.OrthographicSize = fov;
 
-            uiCamera.orthographicSize = fov;
         }
 
     }

@@ -40,11 +40,12 @@ public class BombTimeline : ItemElements
 
     public override IEnumerator ApplyEffect(BattleController controller)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         timelineFill = 0;
 
         foreach (var t in tiles)
         {
+            t.SetSmokeBomb();
             if(t.content != null)
             {
                 if (t.content.TryGetComponent(out Unit unit))
@@ -61,7 +62,7 @@ public class BombTimeline : ItemElements
                 if(t.occupied && !monsterDamaged)
                 {
                     Unit monster = controller.enemyUnits[0];
-                    monster.ReceiveDamage(30, false);
+                    monster.ReceiveDamage(50, false);
                     monster.Damage();
                     monster.DamageEffect();
                     monsterDamaged = true;
@@ -87,25 +88,14 @@ public class BombTimeline : ItemElements
 
         ActionEffect.instance.Play(3, 0.5f, 0.01f, 0.05f);
 
-        while (ActionEffect.instance.play)
+        while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
         }
 
-        foreach (var t in tiles)
-        {
-            if (t.content == null) continue;
-            if (t.content.TryGetComponent(out Unit unit))
-            {
-                unit.Default();
-            }
-        }
-
-        battleController.board.DeSelectDefaultTiles(tiles);
         elementEnabled = false;
         battleController.timelineElements.Remove(this);
         tile.content = null;
-
     }
 
     public void Place(Tile target)

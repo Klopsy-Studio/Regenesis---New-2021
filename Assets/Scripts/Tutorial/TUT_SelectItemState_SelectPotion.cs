@@ -29,7 +29,13 @@ public class TUT_SelectItemState_SelectPotion : BattleState
 
         for (int i = 0; i < owner.itemSelectionUI.options.Length; i++)
         {
-            owner.itemSelectionUI.parent[i].gameObject.SetActive(false);
+            owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>().controller = owner;
+            owner.itemSelectionUI.options[i].GetComponent<Text>().text = "No Item";
+            owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = "X";
+
+
+            SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
+            e.DisableOption();
         }
         for (int i = 0; i < itemList.Count; i++)
         {
@@ -37,40 +43,10 @@ public class TUT_SelectItemState_SelectPotion : BattleState
             owner.itemSelectionUI.parent[i].gameObject.SetActive(true);
             owner.itemSelectionUI.options[i].GetComponent<Text>().text = itemList[i].consumable.itemName;
             owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = "x" + itemList[i].amount.ToString();
-            owner.itemSelectionUI.itemImage[i].GetComponent<Image>().sprite = itemList[i].consumable.iconSprite;
 
-            //Only for testing purposes
-            //if(item.amount == item.consumable.maxBackPackAmount)
-            //{
-            //    owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.green;
-            //}
-            //else if(item.amount < item.consumable.maxBackPackAmount)
-            //{
-            //    owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.black;
-            //}
-            //else if(item.amount > item.consumable.maxBackPackAmount)
-            //{
-            //    owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().color = Color.red;
-            //}
-
-            owner.itemSelectionUI.options[i].GetComponent<Text>().text = item.consumable.itemName;
-            owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = item.amount.ToString();
-            owner.itemSelectionUI.itemImage[i].sprite = item.consumable.iconSprite;
-
-            owner.itemSelectionUI.itemImage[i].SetNativeSize();
-            if (i != 1)
-            {
-                SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
-                e.assignedConsumable = itemList[i].consumable;
-                e.canBeSelected = false;
-
-            }
-            else
-            {
-                SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
-                e.assignedConsumable = itemList[i].consumable;
-                e.canBeSelected = true;
-            }
+            SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
+            e.assignedConsumable = itemList[i].consumable;
+            e.EnableOption();
 
         }
         Debug.Log("Ha entrado a TUT SELECTITEMSTATE");

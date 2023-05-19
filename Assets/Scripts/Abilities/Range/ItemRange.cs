@@ -20,7 +20,7 @@ public class ItemRange : AbilityRange
         {
             foreach (Tile t in garbage)
             {
-                if (t.content != null)
+                if (t.content != null || t.occupied)
                 {
                     retValue.Remove(t);
                 }

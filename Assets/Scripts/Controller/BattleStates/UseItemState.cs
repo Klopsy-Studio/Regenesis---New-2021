@@ -17,6 +17,8 @@ public class UseItemState : BattleState
     bool itemUsed;
 
     bool firstClick = false;
+
+    Tile currentTile = new Tile();
     public override void Enter()
     {
         base.Enter();
@@ -51,16 +53,7 @@ public class UseItemState : BattleState
                 owner.ghostImage.sprite = currentItem.itemSprite;
             }
 
-            if(currentItem.itemName == "Bomb")
-            {
-                if ((Bomb)currentItem != null)
-                {
-                    var bomb = (Bomb)currentItem;
-                    var bombTimeline = bomb.bomb;
 
-                    owner.timelineUI.CallTimelinePreviewOrderOnItemSelect(owner.currentUnit, bombTimeline);
-                }
-            }
         }
 
 
@@ -227,8 +220,11 @@ public class UseItemState : BattleState
                 var t = a.GetComponent<Tile>();
                 if (t != null)
                 {
-                    if (tiles.Contains(t))
+                    if (tiles.Contains(t) && t != currentTile)
                     {
+                        currentTile = t;
+                        AudioManager.instance.Play("Boton" + owner.hoverTile);
+
                         SelectTile(e.info + t.pos);
                         owner.ActivateTileSelector();
                         if (selectTiles != null)
@@ -241,17 +237,21 @@ public class UseItemState : BattleState
                         board.SelectAttackTiles(selectTiles);
                     }
 
-                    else
-                    {
-                        if (selectTiles != null)
-                        {
-                            board.DeSelectTiles(selectTiles);
-                            selectTiles.Clear();
-                        }
-
-                        owner.DeactivateTileSelector();
-                    }
+                    
                 }
+
+            }
+
+            else
+            {
+                if (selectTiles != null)
+                {
+                    board.DeSelectTiles(selectTiles);
+                    selectTiles.Clear();
+                }
+
+                owner.DeactivateTileSelector();
+                currentTile = null;
 
             }
         }
@@ -271,10 +271,12 @@ public class UseItemState : BattleState
             {
                 if (!itemUsed)
                 {
+
                     owner.currentUnit.playerUI.HideActionPoints();
                     owner.ResetUnits();
 
                     board.DeSelectDefaultTiles(tiles);
+                    board.DeSelectDefaultTiles(selectTiles);
 
                     owner.targets.gameObject.SetActive(false);
                     owner.targets.stopSelection = true;
