@@ -624,6 +624,9 @@ public class BattleController : StateMachine
         targets.gameObject.SetActive(false);
         partyIconParent.gameObject.SetActive(false);
         turnStatusUI.gear.gameObject.SetActive(false);
+        timelineUI.gameObject.SetActive(false);
+        miniStatus.gameObject.SetActive(false);
+        partyIconParent.SetActive(false);
         ActionEffect.instance.BlackAndWhite();
 
         yield return new WaitForSecondsRealtime(1f);

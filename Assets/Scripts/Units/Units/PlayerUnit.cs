@@ -424,6 +424,20 @@ public class PlayerUnit : Unit
     }
     public override void NearDeath()
     {
+        switch (profile.characterIndex)
+        {
+            case 0:
+                AudioManager.instance.Play("KaeoDeath");
+                break;
+            case 0.5f:
+                AudioManager.instance.Play("IsakDeath");
+                break;
+            case 1f:
+                AudioManager.instance.Play("OlaDeath");
+                break;
+            default:
+                break;
+        }
         partyIcon.UnitDead();
         animations.unitAnimator.SetBool("nearDeath", true);
         diedOnce = true;
@@ -441,6 +455,8 @@ public class PlayerUnit : Unit
 
     public void Revive()
     {
+        animations.unitAnimator.ResetTrigger("damage");
+
         animations.unitAnimator.SetBool("nearDeath", false);
         partyIcon.UnitDefault();
 
