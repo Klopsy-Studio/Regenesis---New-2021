@@ -235,11 +235,13 @@ public class Tile : MonoBehaviour
         if(currentColor == null)
         {
             currentColor = newColorSelection;
+            selection.gameObject.SetActive(true);
             selection.transform.localPosition = new Vector3(selection.transform.localPosition.x, 0.505f, selection.transform.localPosition.z);
             selection.color = newColorSelection;
         }
         else
         {
+            selection.gameObject.SetActive(true);
             previousColor = currentColor;
             selection.transform.localPosition = new Vector3(selection.transform.localPosition.x, 0.505f, selection.transform.localPosition.z);
             currentColor = newColorSelection;
@@ -251,6 +253,8 @@ public class Tile : MonoBehaviour
     {
         if(currentColor != null)
         {
+            selection.gameObject.SetActive(false);
+
             previousColor = currentColor;
             currentObject.transform.localPosition = new Vector3(selection.transform.localPosition.x, 0, selection.transform.localPosition.z);
             selection.color = emptyColor;
