@@ -5,6 +5,7 @@ using UnityEngine;
 public class RootsEvent : MonsterEvent
 {
     [SerializeField] MonsterAbility rootsAbility;
+    [SerializeField] bool canPush;
     public override IEnumerator Event()
     {
         acting = true;
@@ -53,6 +54,7 @@ public class RootsEvent : MonsterEvent
                     }
                     else
                     {
+                        p.GetComponent<Movement>().PushUnit(controller.currentEnemy.tile.GetDirections(p.tile), 1, controller.battleController.board);
                         p.DecreaseTimelineVelocity(1);
                         p.AddDebuff(new Modifier { timelineSpeedReduction = 1, modifierType = TypeOfModifier.TimelineSpeed });
                     }
