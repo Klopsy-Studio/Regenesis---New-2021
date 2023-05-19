@@ -20,21 +20,19 @@ public class TUT_FinishEnemyUnitTurnState : BattleState
     public override void Exit()
     {
         base.Exit();
-        //new line
-        owner.pauseTimeline = false;
-        owner.isTimeLineActive = true;
+
     }
 
     IEnumerator FinishTurnCoroutine()
     {
         Debug.Log("Ending enemy turn");
         owner.currentEnemyUnit.timelineFill = 0;
+        owner.timelineUI.ShowTimelineIcon(owner.currentEnemyUnit);
 
         yield return null;
         //owner.currentEnemyUnit.monsterControl.tree = null;
         owner.currentEnemyUnit = null;
         owner.currentEnemyController = null;
-
         owner.ChangeState<TUT_TimelineStateFirstHunter>();
     }
 

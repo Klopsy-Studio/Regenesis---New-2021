@@ -24,7 +24,6 @@ public class TimeLineState : BattleState
         //    }
         //}
         //owner.timelineUI.HideIconActing();
-
         owner.resumeTimelineButton.onUp.Invoke();
         owner.EnableResumeTimelineButton();
         owner.canToggleTimeline = true;

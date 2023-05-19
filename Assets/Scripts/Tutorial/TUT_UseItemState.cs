@@ -17,6 +17,8 @@ public class TUT_UseItemState : BattleState
     bool itemUsed;
 
     bool firstClick = false;
+
+    Tile currentTile = new Tile();
     public override void Enter()
     {
         base.Enter();
@@ -42,9 +44,25 @@ public class TUT_UseItemState : BattleState
 
         else if (currentItem.ConsumableType == ConsumableType.TimelineConsumable || currentItem.ConsumableType == ConsumableType.TargetConsumable)
         {
+            if (currentItem.itemName == "Bomb")
+            {
+                tiles = new List<Tile>();
+                tiles.Add(GetBombRange());
+                if ((Bomb)currentItem != null)
+                {
+                    var bomb = (Bomb)currentItem;
+                    var bombTimeline = bomb.bomb;
+
+                }
+            }
+            else
+            {
+                tiles = GetRangeOnItems(currentItem.itemRange);
+
+            }
+
             isTimelineItem = true;
             owner.currentUnit.animations.SetPrepareThrow();
-            tiles = GetRangeOnItems(currentItem.itemRange);
             board.SelectMovementTiles(tiles);
 
             if (currentItem.itemRange != null)
@@ -52,16 +70,7 @@ public class TUT_UseItemState : BattleState
                 owner.ghostImage.sprite = currentItem.itemSprite;
             }
 
-            if (currentItem.itemName == "Bomb")
-            {
-                if ((Bomb)currentItem != null)
-                {
-                    var bomb = (Bomb)currentItem;
-                    var bombTimeline = bomb.bomb;
-
-                    owner.timelineUI.CallTimelinePreviewOrderOnItemSelect(owner.currentUnit, bombTimeline);
-                }
-            }
+            
         }
 
 
@@ -135,6 +144,10 @@ public class TUT_UseItemState : BattleState
         }
     }
 
+    public Tile GetBombRange()
+    {
+        return board.GetTile(owner.currentUnit.currentPoint + new Point(-1, 0));
+    }
     public List<Tile> GetRangeOnItems(RangeData data)
     {
         switch (data.range)
@@ -195,13 +208,6 @@ public class TUT_UseItemState : BattleState
         owner.ChangeState<FinishPlayerUnitTurnState>();
     }
 
-    protected override void OnMove(object sender, InfoEventArgs<Point> e)
-    {
-        if (!isTimelineItem) return;
-        SelectTile(e.info + pos);
-
-
-    }
 
   
 
@@ -218,8 +224,10 @@ public class TUT_UseItemState : BattleState
                 var t = a.GetComponent<Tile>();
                 if (t != null)
                 {
-                    if (tiles.Contains(t))
+                    if (tiles.Contains(t) && t != currentTile)
                     {
+                        currentTile = t;
+                        AudioManager.instance.Play("Boton"+owner.hoverTile);
                         SelectTile(e.info + t.pos);
                         owner.ActivateTileSelector();
                         if (selectTiles != null)
@@ -232,16 +240,19 @@ public class TUT_UseItemState : BattleState
                         board.SelectAttackTiles(selectTiles);
                     }
 
-                    else
-                    {
-                        if (selectTiles != null)
-                        {
-                            board.DeSelectTiles(selectTiles);
-                            selectTiles.Clear();
-                        }
+                    
+                }
 
-                        owner.DeactivateTileSelector();
+                else
+                {
+                    if (selectTiles != null)
+                    {
+                        board.DeSelectTiles(selectTiles);
+                        selectTiles.Clear();
                     }
+
+                    currentTile = null;
+                    owner.DeactivateTileSelector();
                 }
 
             }

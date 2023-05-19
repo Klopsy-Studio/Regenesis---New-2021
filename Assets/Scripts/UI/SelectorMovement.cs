@@ -12,6 +12,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
     [SerializeField] Color hoverColor;
     [SerializeField] Color normalColor;
+    [SerializeField] Color disabledColor;
 
 
     [SerializeField] OptionSelection optionSelection;
@@ -42,6 +43,17 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] int itemButtonSound = 5;
 
 
+    public void DisableOption()
+    {
+        textButton.color = disabledColor;
+        canBeSelected = false;
+    }
+
+    public void EnableOption()
+    {
+        textButton.color = normalColor;
+        canBeSelected = true;
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (canBeSelected)
@@ -222,6 +234,8 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         textButton.color = normalColor;
     }
+
+    
 
     public void ClearOption()
     {

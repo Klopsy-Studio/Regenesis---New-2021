@@ -5,8 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "InventorySystem/ConsumableBackpack")]
 public class ConsumableBackpack : ConsumableInventory
 {
-     
-     
+
+    [SerializeField] bool setOriginalConsumables;
+    public List<ConsumableSlot> originalConsumables;
     public void UseConsumable(int indexItem, Unit targetUnit = null, Tile tileSpawn = null, BattleController battleController = null)
     {
         bool consumableUsed = false;
@@ -83,5 +84,18 @@ public class ConsumableBackpack : ConsumableInventory
     public void OnDisable()
     {
         //consumableContainer.Clear();
+    }
+
+    public void OnEnable()
+    {
+        if (setOriginalConsumables)
+        {
+            consumableContainer.Clear();
+            foreach (ConsumableSlot slot in originalConsumables)
+            {
+                ConsumableSlot s = new ConsumableSlot(slot.consumable, slot.amount);
+                consumableContainer.Add(s);
+            }
+        }
     }
 }

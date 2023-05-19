@@ -14,12 +14,13 @@ public class TUT_TimelineStateFirstHunter : BattleState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("HA ENTRADO A TUT_TIMELINESTATE FIRST HUNTER");
-
         owner.timelineUI.HideIconActing();
+
+        owner.resumeTimelineButton.onUp.Invoke();
+        owner.EnableResumeTimelineButton();
+        owner.canToggleTimeline = true;
         owner.turnStatusUI.DeactivateTurn();
         owner.isTimeLineActive = true;
-        Debug.Log("is timelineactive " + owner.isTimeLineActive);
     }
 
     public void CheckIcon()

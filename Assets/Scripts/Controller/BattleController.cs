@@ -195,6 +195,7 @@ public class BattleController : StateMachine
 
     public virtual void BeginGame()
     {
+        AudioManager.instance.ResetSound("Music");
         canToggleTimeline = true;
         originalZoomSize = cinemachineCamera.m_Lens.OrthographicSize;
         cinemachineCamera.m_Lens.NearClipPlane = -1f;
@@ -399,7 +400,6 @@ public class BattleController : StateMachine
             fov = Mathf.Clamp(fov, minCameraZoom, maxCameraZoom);
             cinemachineCamera.m_Lens.OrthographicSize = fov;
 
-            uiCamera.orthographicSize = fov;
         }
 
     }
@@ -609,7 +609,10 @@ public class BattleController : StateMachine
     public void ReturnToCamp()
     {
         sceneTransition.SetTrigger("fadeIn");
+
         GameManager.instance.sceneToLoad = "CampScene";
+        AudioManager.instance.FadeOut("Music");
+
         Invoke("LoadingScreen", 1.5f);
     }
 
@@ -625,12 +628,16 @@ public class BattleController : StateMachine
         targets.gameObject.SetActive(false);
         partyIconParent.gameObject.SetActive(false);
         turnStatusUI.gear.gameObject.SetActive(false);
+        timelineUI.gameObject.SetActive(false);
+        miniStatus.gameObject.SetActive(false);
+        partyIconParent.SetActive(false);
         ActionEffect.instance.BlackAndWhite();
 
         yield return new WaitForSecondsRealtime(1f);
 
         questEscaped.gameObject.SetActive(true);
 
+        
         yield return new WaitForSecondsRealtime(2f);
 
         ReturnToCamp();
