@@ -432,9 +432,29 @@ public class BattleController : StateMachine
         tileSelectionIndicator.localPosition = board.playableTiles[p].center;
     }
 
+    public void CurrentUnitPreviewDroneCost()
+    {
+        if(currentUnit.actionsPerTurn >= 1)
+        {
+            currentUnit.playerUI.PreviewActionCost(1);
+        }
+    }
+
+    public void CurrentUnitShowActionPoints()
+    {
+        currentUnit.playerUI.ShowActionPoints();
+    }
     public void OpenDroneTarget()
     {
-        ChangeState<SelectDroneTarget>();
+        if(currentUnit.actionsPerTurn >= 1)
+        {
+            ChangeState<SelectDroneTarget>();
+        }
+
+        else
+        {
+            AudioManager.instance.Play("Boton12");
+        }
     }
 
     public void ActivateTileSelector()

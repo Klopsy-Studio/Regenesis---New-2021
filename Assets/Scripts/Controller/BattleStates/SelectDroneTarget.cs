@@ -24,6 +24,8 @@ public class SelectDroneTarget : BattleState
             owner.targets.gameObject.SetActive(false);
             currentTarget = owner.targets.selectedTarget.targetAssigned.GetComponent<PlayerUnit>();
             selecting = true;
+            owner.currentUnit.SpendActionPoints(1);
+            owner.currentUnit.playerUI.HideActionPoints();
             StartCoroutine(SetCurrentTargetSequence());
         }
     }
@@ -40,7 +42,7 @@ public class SelectDroneTarget : BattleState
         if (owner.currentUnit.droneUnit != null)
         {
             owner.SelectTile(owner.currentUnit.droneUnit.tile.pos);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.5f);
 
             owner.currentUnit.droneUnit.DisableDrone();
             yield return new WaitForSeconds(0.5f);
@@ -48,7 +50,7 @@ public class SelectDroneTarget : BattleState
 
         owner.SelectTile(currentTarget.tile.pos);
         owner.currentUnit.droneUnit = currentTarget;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         currentTarget.EnableDrone();
 
@@ -72,6 +74,7 @@ public class SelectDroneTarget : BattleState
     public override void Exit()
     {
         base.Exit();
+        owner.currentUnit.playerUI.ShowActionPoints();
         owner.targets.ClearTargets();
         selecting = false;
         owner.targets.gameObject.SetActive(false);

@@ -145,7 +145,7 @@ public class PlayerUnit : Unit
         {
             if (e.modifierType == TypeOfModifier.DroneUnit)
             {
-                RemoveDebuff(e);
+                RemoveBuff(e);
                 break;
             }
         }
