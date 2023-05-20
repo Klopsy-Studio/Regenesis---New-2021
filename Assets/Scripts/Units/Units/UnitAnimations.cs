@@ -40,7 +40,9 @@ public class UnitAnimations : MonoBehaviour
 
     public void SetDeath()
     {
-        SetAnimation("death");
+        unitAnimator.SetBool("nearDeath", false);
+        unitAnimator.SetBool("death", true);
+
     }
 
 

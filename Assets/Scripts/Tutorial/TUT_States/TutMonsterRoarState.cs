@@ -74,6 +74,8 @@ public class TutMonsterRoarState : BattleState
         //Maybe a hunt begin banner
         owner.ToggleTimeline();
 
+        owner.canPause = true;
+        
         owner.ChangeState<TutShowslideState>();
     }
 

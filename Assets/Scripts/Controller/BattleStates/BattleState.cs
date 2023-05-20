@@ -72,15 +72,12 @@ public abstract class BattleState : State
             if (!owner.pause.gameIsPaused)
             {
                 owner.pause.PauseGame();
-                owner.pauseAnimations.SetTrigger("pause");
             }
 
-            else
-            {
-                owner.pauseAnimations.SetTrigger("unpause");
-            }
+            owner.pauseAnimations.SetTrigger("pause");
+
         }
-        
+
     }
 
     protected override void RemoveListeners()
