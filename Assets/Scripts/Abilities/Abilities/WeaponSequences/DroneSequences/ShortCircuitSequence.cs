@@ -102,7 +102,6 @@ public class ShortCircuitSequence : AbilitySequence
         ActionEffect.instance.Play(parameters);
         if (units1.Count > 0)
         {
-            user.Attack();
 
             foreach (Unit u in units1)
             {
