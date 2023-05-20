@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject unitsPrefab;
 
-
+    public float previousMusicSliderValue = 1f;
+    public float previousSfxSliderValue = 1f;
     private void Awake()
     {
         if(instance != null)
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    
 
     public void LoadMission()
     {
@@ -44,7 +46,11 @@ public class GameManager : MonoBehaviour
 
     public string sceneToLoad;
 
-
+    public void RecordSliderValues(float sfxValue, float musicValue)
+    {
+        previousSfxSliderValue = sfxValue;
+        previousMusicSliderValue = musicValue;
+    }
     
  
 }

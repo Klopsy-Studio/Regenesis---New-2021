@@ -870,6 +870,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &727695540 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6278798924971183498, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+  m_PrefabInstance: {fileID: 85011357939115778}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &755943106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,6 +1436,17 @@ MonoBehaviour:
   buttons:
   - {fileID: 755943106}
   - {fileID: 207078570}
+--- !u!114 &1055659309 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8402547796306858520, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+  m_PrefabInstance: {fileID: 85011357939115778}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1172470581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,6 +2698,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1872484189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7485089925161328601, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+  m_PrefabInstance: {fileID: 85011357939115778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1872484191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872484189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8aa900c8ab08c547a3e567a143267ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxSlider: {fileID: 727695540}
+  musicSlider: {fileID: 1055659309}
 --- !u!1 &1944197938
 GameObject:
   m_ObjectHideFlags: 0
@@ -3450,6 +3491,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3362906719407151264, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: m_Name
+      value: MusicSlider
+      objectReference: {fileID: 0}
     - target: {fileID: 4686588770885205327, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3473,6 +3518,10 @@ PrefabInstance:
     - target: {fileID: 8209767139178012546, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402547796306858520, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b17578884795fd34fb5cc5374c73f868, type: 3}
