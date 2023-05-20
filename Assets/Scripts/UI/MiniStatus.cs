@@ -113,7 +113,6 @@ public class MiniStatus : MonoBehaviour
             }
 
             playerWeapon.sprite = element.weapon.weaponIcon;
-            playerWeapon.SetNativeSize();
         }
         
     }
