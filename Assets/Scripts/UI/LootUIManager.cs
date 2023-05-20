@@ -18,7 +18,6 @@ public class LootUIManager : MonoBehaviour
 
     [SerializeField] GameObject returnToCampButton;
 
-    [SerializeField] bool isDefeat = false;
 
     public IEnumerator LootSequence(DroppedMaterials dropped)
     {
@@ -66,18 +65,52 @@ public class LootUIManager : MonoBehaviour
 
         //Set the monster image
 
-        if (!isDefeat)
-        {
-            monsterImage.gameObject.SetActive(true);
-        }
+        monsterImage.gameObject.SetActive(true);
 
-        
+
+
 
         AudioManager.instance.Play("Boton4");
 
         returnToCampButton.gameObject.SetActive(true);
     }
+    public IEnumerator LootDefeat()
+    {
+        //Waiting for the frame to come down
+        yield return new WaitForSeconds(1f);
 
+        //Setting the variables
+        huntName.SetText(controller.levelData.missionName);
+        objectiveName.SetText(controller.enemyUnits[0].unitName);
+        int time = (int)controller.huntTime;
+        int minutesTime = time / 60;
+        int secondsTime = time % 60;
+
+        huntTime.SetText(minutesTime.ToString() + " ' " + secondsTime + "\"");
+
+
+        huntName.gameObject.SetActive(true);
+        AudioManager.instance.Play("Boton4");
+        yield return new WaitForSeconds(0.5f);
+
+        objectiveName.gameObject.SetActive(true);
+        AudioManager.instance.Play("Boton4");
+
+        yield return new WaitForSeconds(0.5f);
+
+        huntTime.gameObject.SetActive(true);
+        AudioManager.instance.Play("Boton4");
+
+        yield return new WaitForSeconds(0.5f);
+
+        AudioManager.instance.Play("Boton4");
+
+        //Set the monster image
+
+        AudioManager.instance.Play("Boton4");
+
+        returnToCampButton.gameObject.SetActive(true);
+    }
 
     public void UpdateLootUI(/*DropsContainer dropContainer*/DroppedMaterials dropped)
     {

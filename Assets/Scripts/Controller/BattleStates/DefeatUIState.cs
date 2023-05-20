@@ -24,7 +24,7 @@ public class DefeatUIState : BattleState
 
       
         owner.DefeatLootUIManager.gameObject.SetActive(true);
-        StartCoroutine(owner.DefeatLootUIManager.LootSequence(materialsDropped));
+        StartCoroutine(owner.DefeatLootUIManager.LootDefeat());
     }
 
   
