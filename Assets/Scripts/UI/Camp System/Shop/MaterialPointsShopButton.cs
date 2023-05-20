@@ -41,7 +41,7 @@ public class MaterialPointsShopButton : MonoBehaviour, IPointerClickHandler
     void UseMaterial()
     {
 
-      
+        if (buyItemPanel.shopManager.currentPoints >= buyItemPanel.itemTotalCost) return;
         materialSlot.amount -= 1;
         amountText.SetText(materialSlot.amount.ToString());
         buyItemPanel.UpdateCurrentPoints(points);
