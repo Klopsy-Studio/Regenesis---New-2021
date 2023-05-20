@@ -38,7 +38,6 @@ public class GameStartSequence : MonoBehaviour
             if(loading.progress >= 0.9f)
             {
                 yield return new WaitForSeconds(timeToWait);
-                GameManager.instance.sceneToLoad = "Cinematic";
                 loading.allowSceneActivation = true;
             }
 
