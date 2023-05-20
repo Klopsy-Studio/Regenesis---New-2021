@@ -20,6 +20,7 @@ public class LevelData : ScriptableObject
     
     [Header("Image")]
     [SerializeField] public Sprite monsterImage;
+    [SerializeField] public Sprite monsterPicture;
     [SerializeField] private Sprite backgroundImage;
 
     [Header("Environment information")]

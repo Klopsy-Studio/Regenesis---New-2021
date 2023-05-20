@@ -65,6 +65,7 @@ public class LootUIManager : MonoBehaviour
 
         //Set the monster image
 
+        monsterImage.sprite = controller.levelData.monsterPicture;
         monsterImage.gameObject.SetActive(true);
 
 
