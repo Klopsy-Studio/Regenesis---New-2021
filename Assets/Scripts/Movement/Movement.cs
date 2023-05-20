@@ -275,7 +275,51 @@ public abstract class Movement : MonoBehaviour
             unit.Stun();
         }             
     }
+    public virtual void FallBackPush(Directions pushDir, int pushStrength, Board board)
+    {
+        LineAbilityRange moveRange = unit.GetComponent<LineAbilityRange>();
+        moveRange.SetStartPos(unit.tile.pos);
+        moveRange.lineDir = pushDir;
+        moveRange.lineLength = pushStrength;
+        moveRange.stopLine = true;
+        List<Tile> tiles = new List<Tile>();
 
+        tiles.Add(unit.tile);
+        List<Tile> rangeTiles = moveRange.GetTilesInRange(board);
+
+        foreach (Tile t in rangeTiles)
+        {
+            tiles.Add(t);
+        }
+
+        Tile desiredTile = null;
+
+        for (int i = 0; i < tiles.Count; i++)
+        {
+            if (tiles[i].content == null && !tiles[i].occupied)
+            {
+                desiredTile = tiles[i];
+            }
+            else
+            {
+                if (tiles[i] != unit.tile)
+                {
+                    break;
+                }
+            }
+        }
+
+        if (desiredTile != null)
+        {
+            StartCoroutine(Traverse(desiredTile, board, tiles));
+
+            if (unit.GetComponent<PlayerUnit>() != null)
+            {
+                unit.GetComponent<PlayerUnit>().Push();
+            }
+
+        }
+    }
     public void ChangeRange(int newRange)
     {
         range = newRange;

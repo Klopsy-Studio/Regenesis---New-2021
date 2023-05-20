@@ -31,18 +31,20 @@ public class LootUIManager : MonoBehaviour
         int minutesTime = time / 60;
         int secondsTime = time % 60;
 
-        huntTime.SetText(minutesTime.ToString() + " min " + secondsTime + " ' ");
+        huntTime.SetText(minutesTime.ToString() + " ' " + secondsTime + "\"");
 
 
         huntName.gameObject.SetActive(true);
-
+        AudioManager.instance.Play("Boton4");
         yield return new WaitForSeconds(0.5f);
 
         objectiveName.gameObject.SetActive(true);
+        AudioManager.instance.Play("Boton4");
 
         yield return new WaitForSeconds(0.5f);
 
         huntTime.gameObject.SetActive(true);
+        AudioManager.instance.Play("Boton4");
 
         yield return new WaitForSeconds(0.5f);
 
@@ -52,19 +54,23 @@ public class LootUIManager : MonoBehaviour
             LootDrop obj = Instantiate(lootDropSlot, Vector3.zero, Quaternion.identity, parentTransform).GetComponent<LootDrop>();
             obj.materialIcon.sprite = dropped.materialContainer[i].material.sprite;
             obj.ammountText.SetText(dropped.materialContainer[i].amount.ToString());
+            AudioManager.instance.Play("Boton4");
 
             yield return new WaitForSeconds(0.2f);
         }
 
 
         yield return new WaitForSeconds(0.5f);
+        AudioManager.instance.Play("Boton4");
 
         //Set the monster image
 
-        
+
         monsterImage.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1f);
+
+        AudioManager.instance.Play("Boton4");
 
         returnToCampButton.gameObject.SetActive(true);
     }

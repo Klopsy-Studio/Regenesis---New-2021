@@ -369,7 +369,8 @@ public class BattleController : StateMachine
             }
             if (Input.GetKeyDown(KeyCode.B))
             {
-                ChangeState<WinState>();
+                AudioManager.instance.FadeOut("Music");
+                ChangeState<DefeatState>();
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
@@ -482,11 +483,14 @@ public class BattleController : StateMachine
 
     }
 
+    
     public void CheckAllUnits()
     {
         if(playerUnits.Count == 0)
         {
             isTimeLineActive = false;
+
+            AudioManager.instance.FadeOut("MainTheme");
             ChangeState<DefeatState>();
         }
 
@@ -501,6 +505,7 @@ public class BattleController : StateMachine
             }
 
             isTimeLineActive = false;
+            AudioManager.instance.FadeOut("MainTheme");
             ChangeState<DefeatState>();
         }
     }

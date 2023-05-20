@@ -128,7 +128,7 @@ public class AudioManager : MonoBehaviour
 
         newSound.source.volume = newSound.volume;
     }
-    IEnumerator FadeInSound(Sound sound)
+    IEnumerator FadeOutSound(Sound sound)
     {
         while(sound.source.volume > 0)
         {
@@ -145,7 +145,7 @@ public class AudioManager : MonoBehaviour
 
         if (newSound != null)
         {
-            StartCoroutine(FadeInSound(newSound));
+            StartCoroutine(FadeOutSound(newSound));
         }
 
         else

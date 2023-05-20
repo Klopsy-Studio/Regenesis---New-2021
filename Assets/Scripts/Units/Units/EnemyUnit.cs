@@ -104,6 +104,7 @@ public class EnemyUnit : Unit
         monsterControl.monsterAnimations.SetBool("death", true);
         
         isDead = true;
+        AudioManager.instance.FadeOut("Music");
         controller.ChangeState<WinState>();
     }
     public void UpdateEnemyUnitSprite()

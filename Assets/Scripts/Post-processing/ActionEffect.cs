@@ -23,7 +23,7 @@ public class ActionEffect : MonoBehaviour
     [SerializeField] private Vignette vignette;
     [SerializeField] private ChromaticAberration chromaticAberration;
     [SerializeField] private ColorAdjustments colorAdjustments;
-
+    [SerializeField] private Bloom bloom;
     [Header("Zoom")]
     private float effectDuration = 0.5f;
     [SerializeField] private float recoveryDuration = 0.5f;
@@ -89,6 +89,10 @@ public class ActionEffect : MonoBehaviour
         if (volume.profile.TryGet<ColorAdjustments>(out cad))
             colorAdjustments = cad;
 
+
+        Bloom b;
+        if (volume.profile.TryGet<Bloom>(out b))
+            bloom = b;
         // Save up some of the original parameters of these components
         originalCameraSize = cinemachineCamera.m_Lens.OrthographicSize; // Camera size
         originalVignetteIntensity = vignette.intensity.value;
@@ -102,9 +106,11 @@ public class ActionEffect : MonoBehaviour
         blackAndWhite = true;
     }
 
+   
     void SetBlackAndWhite()
     {
         colorAdjustments.saturation.value -= Time.fixedDeltaTime * blackAndWhiteSpeed;
+        bloom.intensity.value -= Time.deltaTime;
         Debug.Log(colorAdjustments.saturation.value);
 
         if (colorAdjustments.saturation.value <= -100)

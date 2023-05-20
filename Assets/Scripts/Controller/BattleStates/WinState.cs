@@ -9,6 +9,8 @@ public class WinState : BattleState
     {
         base.Enter();
         owner.canPause = false;
+        owner.partyIconParent.gameObject.SetActive(false);
+
         owner.unitStatusUI.gameObject.SetActive(false);
         owner.turnStatusUI.gameObject.SetActive(false);
         owner.timelineUI.gameObject.SetActive(false);
@@ -35,12 +37,15 @@ public class WinState : BattleState
         owner.itemSelectionUI.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(0.3f);
+        AudioManager.instance.Play("MainTheme");
+
         owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.winTurn);
         owner.actionSelectionUI.gameObject.SetActive(false);
         owner.abilitySelectionUI.gameObject.SetActive(false);
         owner.itemSelectionUI.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(0.3f);
+
         owner.turnStatusUI.DeactivateTurn();
         yield return new WaitForSeconds(0.5f);
         owner.levelData.hasBeenCompleted = true;

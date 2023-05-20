@@ -56,6 +56,6 @@ public class Effect
                 break;
         }
 
-        target.GetComponent<Movement>().PushUnit(oppositeDirection, 1, board);
+        target.GetComponent<Movement>().FallBackPush(oppositeDirection, 1, board);
     }
 }
