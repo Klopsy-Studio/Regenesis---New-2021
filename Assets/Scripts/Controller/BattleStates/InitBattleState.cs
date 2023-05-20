@@ -29,6 +29,7 @@ public class InitBattleState : BattleState
         //owner.unitStatusUI.gameObject.SetActive(false);
 
         owner.cinemachineCamera.m_Lens.NearClipPlane = -5f;
+        owner.lootSystem.dropContainer = levelData.dropContainer;
         owner.ChangeState<MonsterRoarState>();
     }
 

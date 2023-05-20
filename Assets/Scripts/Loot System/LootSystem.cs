@@ -5,7 +5,7 @@ using UnityEngine;
 public class LootSystem : MonoBehaviour
 {
    
-    [SerializeField] DropsContainer dropContainer;
+    public DropsContainer dropContainer;
     public List<MonsterMaterial> monsterMaterials = new List<MonsterMaterial>();
     public DroppedMaterials droppedMaterials = new DroppedMaterials();
     int ciclo = 0;
@@ -45,6 +45,7 @@ public class LootSystem : MonoBehaviour
         {
             int testInt = 0;
             int rolls = (int)drop.monsterMaterial.rarity;
+            
             Debug.Log("rolls " + rolls);
             for (int i = 0; i < rolls; i++)
             {
@@ -62,13 +63,12 @@ public class LootSystem : MonoBehaviour
 
         }
 
-       
 
 
-        foreach (var drop in dropContainer.containerList)
-        {
-            droppedMaterials.AddMonsterMaterial(drop.monsterMaterial, 0);
-        }
+        //foreach (var drop in dropContainer.containerList)
+        //{
+        //    droppedMaterials.AddMonsterMaterial(drop.monsterMaterial, 0);
+        //}
         foreach (var materials in monsterMaterials)
         {
             droppedMaterials.AddMonsterMaterial(materials, 1);
