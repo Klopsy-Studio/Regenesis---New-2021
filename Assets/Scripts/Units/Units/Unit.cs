@@ -200,7 +200,7 @@ public class Unit : TimelineElements
             tile.content = null;
         // Link unit and tile references
         tile = target;
-
+        currentPoint = tile.pos;
         if (target != null)
             target.content = gameObject;
     }
