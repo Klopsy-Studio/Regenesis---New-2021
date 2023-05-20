@@ -8460,6 +8460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 416879135}
   - component: {fileID: 416879140}
+  - component: {fileID: 416879141}
   m_Layer: 0
   m_Name: BaseMusicManager
   m_TagString: Untagged
@@ -8505,6 +8506,29 @@ MonoBehaviour:
   targetVolume: 0.2
   time: 0
   changeSpeed: 1
+--- !u!114 &416879141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416879134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38691c568ae25894e8bede5cf1cd2261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneTransition: {fileID: 1050749989}
+  sources:
+  - {fileID: 1786938373}
+  - {fileID: 622796363}
+  - {fileID: 1185665215}
+  - {fileID: 341594031}
+  - {fileID: 4228573}
+  - {fileID: 1479678490}
+  - {fileID: 1456526939}
+  timer: 2
+  speed: 0.3
 --- !u!1 &417043400
 GameObject:
   m_ObjectHideFlags: 0
@@ -31668,6 +31692,30 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Music
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 416879141}
+        m_TargetAssemblyTypeName: BaseReturnToCamp, Assembly-CSharp
+        m_MethodName: Return
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 271521085}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   onHover:

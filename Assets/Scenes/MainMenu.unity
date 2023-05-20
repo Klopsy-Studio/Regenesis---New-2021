@@ -2393,6 +2393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 343778053}
   - component: {fileID: 343778052}
+  - component: {fileID: 343778054}
   m_Layer: 0
   m_Name: MainMenuMusic
   m_TagString: Untagged
@@ -2511,6 +2512,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &343778054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343778051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38691c568ae25894e8bede5cf1cd2261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneTransition: {fileID: 82417799}
+  sources:
+  - {fileID: 343778052}
+  - {fileID: 297181839}
+  - {fileID: 297181841}
+  timer: 2
+  speed: 0.3
+  sceneToMove: 
 --- !u!1 &356360803
 GameObject:
   m_ObjectHideFlags: 0
@@ -4786,16 +4807,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 788003504}
-        m_TargetAssemblyTypeName: GameStartSequence, Assembly-CSharp
-        m_MethodName: BeginGameStartSequence
-        m_Mode: 1
+      - m_Target: {fileID: 343778054}
+        m_TargetAssemblyTypeName: MoveToAnotherScene, Assembly-CSharp
+        m_MethodName: ChangeSceneToLoad
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: CampScene
           m_BoolArgument: 0
         m_CallState: 2
   onHover:
@@ -7205,6 +7226,7 @@ MonoBehaviour:
   equipmentInventory: {fileID: 11400000, guid: f10321b6418451b4cad52286af6067e9, type: 2}
   consumableInventory: {fileID: 11400000, guid: 972abb1e68fcc244fa956728ca86e636, type: 2}
   consumableBackpack: {fileID: 11400000, guid: fc79751ca6ca7414cb0aa2740a95d8a5, type: 2}
+  TUT_consumbaleBackpack: {fileID: 0}
   currentMission: {fileID: 11400000, guid: 6f8d056180f863748b6497c8a3ee33d8, type: 2}
   unitProfilesList:
   - {fileID: 11400000, guid: bdf2f419ed9883641978a87198ace31a, type: 2}
@@ -8390,21 +8412,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-        m_MethodName: OnNewGameClicked
-        m_Mode: 1
+      - m_Target: {fileID: 343778054}
+        m_TargetAssemblyTypeName: MoveToAnotherScene, Assembly-CSharp
+        m_MethodName: ChangeSceneToLoad
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Cinematic
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1788194463}
-        m_TargetAssemblyTypeName: GameStartSequence, Assembly-CSharp
-        m_MethodName: BeginGameStartSequence
+      - m_Target: {fileID: 343778054}
+        m_TargetAssemblyTypeName: MoveToAnotherScene, Assembly-CSharp
+        m_MethodName: Return
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
