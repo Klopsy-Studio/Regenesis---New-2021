@@ -52,6 +52,8 @@ public class LevelData : ScriptableObject
     public Sprite missionImageNotCompleted;
     //Level position
     public Point beginPoint;
+
+    public DropsContainer dropContainer;
     public string GenerateId()
     {
         id = name.Substring(0, 3) + type.ToString().Substring(0,1) + rank.ToString() + position.ToString();
