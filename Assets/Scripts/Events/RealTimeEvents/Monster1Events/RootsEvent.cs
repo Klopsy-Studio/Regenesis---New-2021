@@ -54,7 +54,10 @@ public class RootsEvent : MonsterEvent
                     }
                     else
                     {
-                        p.GetComponent<Movement>().PushUnit(controller.currentEnemy.tile.GetDirections(p.tile), 1, controller.battleController.board);
+                        if (canPush)
+                        {
+                            p.GetComponent<Movement>().PushUnit(controller.currentEnemy.tile.GetDirections(p.tile), 1, controller.battleController.board);
+                        }
                         p.DecreaseTimelineVelocity(1);
                         p.AddDebuff(new Modifier { timelineSpeedReduction = 1, modifierType = TypeOfModifier.TimelineSpeed });
                     }

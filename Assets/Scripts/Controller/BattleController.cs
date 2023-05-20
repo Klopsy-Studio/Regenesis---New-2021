@@ -524,7 +524,7 @@ public class BattleController : StateMachine
             currentUnit.unitSprite.flipX = true;
         }
 
-        if (currentUnit.tile.CheckSpecificDirection(currentTile, Directions.West) || currentUnit.tile.CheckSpecificDirection(currentTile, Directions.North))
+        else if (currentUnit.tile.CheckSpecificDirection(currentTile, Directions.West) || currentUnit.tile.CheckSpecificDirection(currentTile, Directions.North))
         {
             Debug.Log("It's west");
 

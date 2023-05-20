@@ -61,6 +61,7 @@ public class LootUIManager : MonoBehaviour
 
         //Set the monster image
 
+        
         monsterImage.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1f);
