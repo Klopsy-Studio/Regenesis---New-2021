@@ -4819,6 +4819,18 @@ MonoBehaviour:
           m_StringArgument: CampScene
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 343778054}
+        m_TargetAssemblyTypeName: MoveToAnotherScene, Assembly-CSharp
+        m_MethodName: Return
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onHover:
     m_PersistentCalls:
       m_Calls:
@@ -8312,6 +8324,7 @@ GameObject:
   - component: {fileID: 1788194466}
   - component: {fileID: 1788194465}
   - component: {fileID: 1788194467}
+  - component: {fileID: 1788194468}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -8424,6 +8437,18 @@ MonoBehaviour:
           m_StringArgument: Cinematic
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1788194468}
+        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
+        m_MethodName: OnNewGameClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 343778054}
         m_TargetAssemblyTypeName: MoveToAnotherScene, Assembly-CSharp
         m_MethodName: Return
@@ -8490,6 +8515,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1788194468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788194460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87de519930133842ba19dcad6ecf530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: 0
+  canBeSelected: 0
+  selected: 0
+  isContinueButton: 0
+  defaultTextColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightTextColor: {r: 0, g: 0, b: 0, a: 0}
+  deactivatedTextColor: {r: 0, g: 0, b: 0, a: 0}
+  appearPosition: 0
+  buttonSpeed: 2
+  defaultSprite: {fileID: 0}
+  toggledSprite: {fileID: 0}
+  buttonText: {fileID: 0}
+  buttonImage: {fileID: 0}
+  buttonAnimations: {fileID: 0}
+  buttonRect: {fileID: 0}
+  continueMainMenu: {fileID: 0}
+  action:
+    m_PersistentCalls:
+      m_Calls: []
+  onHover:
+    m_PersistentCalls:
+      m_Calls: []
+  onExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1839231766
 GameObject:
   m_ObjectHideFlags: 0
