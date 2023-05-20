@@ -332,6 +332,15 @@ public class BattleController : StateMachine
                     u.animations.SetDeath();
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                foreach (PlayerUnit u in playerUnits)
+                {
+
+                    u.animations.SetNearDeath();
+                }
+            }
             playtestingFunctions.elements = timelineElements;
 
             if (Input.GetKeyDown(KeyCode.U))
@@ -358,7 +367,10 @@ public class BattleController : StateMachine
             {
                 board.toggleTileActivation = !board.toggleTileActivation;
             }
-
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                ChangeState<WinState>();
+            }
             if (Input.GetKeyDown(KeyCode.S))
             {
                 playerUnits[0].Stun();
