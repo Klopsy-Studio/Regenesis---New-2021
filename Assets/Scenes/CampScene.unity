@@ -17253,6 +17253,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993444559}
   m_CullTransparentMesh: 1
+--- !u!114 &1006495941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7713396412816037701, guid: 8014c5478e3890b49be2b50da48f7c73, type: 3}
+  m_PrefabInstance: {fileID: 92380672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a6d8524da8d6f4b9231839d6c8d0c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1019056025
 GameObject:
   m_ObjectHideFlags: 0
@@ -20850,8 +20861,8 @@ MonoBehaviour:
           m_StringArgument: purchased
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
+      - m_Target: {fileID: 1006495941}
+        m_TargetAssemblyTypeName: DataPersistenceManager, Assembly-CSharp
         m_MethodName: SaveGame
         m_Mode: 1
         m_Arguments:
@@ -29958,7 +29969,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: unpause
+          m_StringArgument: pause
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1752748913
@@ -31638,18 +31649,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1826907921}
         m_TargetAssemblyTypeName: Pause, Assembly-CSharp
         m_MethodName: UnPauseGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3641910625499111925, guid: ecec9ce888d34164c858996fdab13955, type: 3}
-        m_TargetAssemblyTypeName: BattleController, Assembly-CSharp
-        m_MethodName: ReturnToCamp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
