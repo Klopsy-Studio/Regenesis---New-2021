@@ -650,6 +650,8 @@ public class BattleController : StateMachine
 
         GameManager.instance.sceneToLoad = "CampScene";
         AudioManager.instance.FadeOut("Music");
+        AudioManager.instance.FadeOut("MainTheme");
+        AudioManager.instance.FadeOut("LoseTheme");
 
         Invoke("LoadingScreen", 1.5f);
     }

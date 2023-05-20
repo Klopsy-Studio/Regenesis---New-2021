@@ -41,7 +41,7 @@ public class DefeatUIState : BattleState
 
         yield return new WaitForSeconds(1f);
 
-        owner.questComplete.gameObject.SetActive(true);
+        owner.questFailed.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(2f);
 

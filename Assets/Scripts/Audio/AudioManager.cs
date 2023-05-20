@@ -138,6 +138,7 @@ public class AudioManager : MonoBehaviour
 
         sound.source.volume = 0;
         Stop(sound.name);
+        ResetSound(sound.name);
     }
     public void FadeOut(string name)
     {
