@@ -86,6 +86,7 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 
     public void BuyItem()//UnityButton function calls this method
     {
+      
         buyItemPanel.BuyItem();
 
     }
@@ -106,6 +107,11 @@ public class ShopManager : MonoBehaviour, IDataPersistence
     {
         buyItemPanel.button1.ReturnAllMaterials();
         buyItemPanel.button2.ReturnAllMaterials();
+    }
+
+    public void ResetPanelInfo() //button of closeButton
+    {
+        itemPanelInfo.ResetPanelInfo();
     }
 }
 
@@ -151,7 +157,7 @@ public class SetShopItemInfoPanelText
         itemCostTxT.SetText("TOTAL PRICE: " + itemCost + "p");
     }
 
-    void ResetPanelInfo()
+    public void ResetPanelInfo() 
     {
         itemAmount = 0;
         itemCost = 0;
@@ -174,7 +180,7 @@ public class BuyItemPanel
     [SerializeField] TextMeshProUGUI itemTotalCostTxT;
     [SerializeField] TextMeshProUGUI currentPointsTxTBuyPanel;
 
-    int itemTotalCost;
+    public int itemTotalCost;
     
     int itemAmount;
 
@@ -185,7 +191,7 @@ public class BuyItemPanel
     public MaterialPointsShopButton button2;
     ShopItemInfo itemInfo;
 
-    ShopManager shopManager;
+    public ShopManager shopManager;
 
 
   
@@ -250,6 +256,9 @@ public class BuyItemPanel
         GameManager.instance.consumableInventory.AddConsumable(itemInfo.consumable, itemAmount);
         //GameManager.instance.materialInventory.SubstractMaterial(material1);
         //GameManager.instance.materialInventory.SubstractMaterial(material2);
+
+        //actualizar los buttons;
+        SetUpButtons();
 
     }
 
