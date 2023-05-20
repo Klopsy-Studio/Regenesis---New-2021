@@ -646,6 +646,7 @@ public class BattleController : StateMachine
     public void ReturnToCamp()
     {
         sceneTransition.SetTrigger("fadeIn");
+        Time.timeScale = 1;
 
         GameManager.instance.sceneToLoad = "CampScene";
         AudioManager.instance.FadeOut("Music");
@@ -681,6 +682,7 @@ public class BattleController : StateMachine
     }
     public void LoadingScreen()
     {
+        Debug.Log("Loading");
         SceneManager.LoadScene("LoadingScreen");
     }
 

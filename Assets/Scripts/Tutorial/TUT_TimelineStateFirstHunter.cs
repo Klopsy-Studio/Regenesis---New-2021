@@ -11,6 +11,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
     bool timerCheck;
     bool pause = false;
     public List<Tile> selectTiles;
+    [SerializeField] bool isDefeat;
     public override void Enter()
     {
         base.Enter();

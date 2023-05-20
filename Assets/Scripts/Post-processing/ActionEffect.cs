@@ -111,7 +111,6 @@ public class ActionEffect : MonoBehaviour
     {
         colorAdjustments.saturation.value -= Time.fixedDeltaTime * blackAndWhiteSpeed;
         bloom.intensity.value -= Time.deltaTime;
-        Debug.Log(colorAdjustments.saturation.value);
 
         if (colorAdjustments.saturation.value <= -100)
         {
