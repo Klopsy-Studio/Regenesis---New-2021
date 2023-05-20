@@ -18,7 +18,7 @@ public class LootUIManager : MonoBehaviour
 
     [SerializeField] GameObject returnToCampButton;
 
-    [SerializeField] bool isDefeat;
+    [SerializeField] bool isDefeat = false;
 
     public IEnumerator LootSequence(DroppedMaterials dropped)
     {

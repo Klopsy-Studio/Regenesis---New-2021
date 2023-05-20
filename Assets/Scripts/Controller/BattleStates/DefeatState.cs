@@ -38,7 +38,7 @@ public class DefeatState : BattleState
 
         //Deactivated for now, if we want to show loot screen later on we should define what happens when you lose
         //owner.ChangeState<LootUIState>();
-
+ 
         owner.ChangeState<DefeatUIState>();
     }
 

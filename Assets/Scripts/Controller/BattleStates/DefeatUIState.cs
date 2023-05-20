@@ -16,11 +16,13 @@ public class DefeatUIState : BattleState
     IEnumerator ActivateLootUI()
     {
         yield return new WaitForSeconds(1);
+
+        //Habría que borrar este código
         var monsterDrops = owner.lootSystem;
         monsterDrops.DropMaterials();
         var materialsDropped = monsterDrops.droppedMaterials;
 
-
+      
         owner.DefeatLootUIManager.gameObject.SetActive(true);
         StartCoroutine(owner.DefeatLootUIManager.LootSequence(materialsDropped));
     }
