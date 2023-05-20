@@ -70,11 +70,10 @@ public class PlayerUnit : Unit
     public List<Tile> abilityTiles;
 
 
-
+    public bool isTutorial;
     protected override void Start()
     {
         base.Start();
-
         playerUI.unitUI.worldCamera = Camera.main;
         playerUI.unitUI.planeDistance = 0.01f;
 
@@ -110,17 +109,7 @@ public class PlayerUnit : Unit
 
     void SetUpTimelineFill()
     {
-        Debug.Log("SET UP TIMELINE FILL 1");
-        if (this.name == "TUT_KaeoProfile" || this.name == "TUT_IsakProfile" || this.name == "TUT_OlaProfile")
-        {
-            Debug.Log("SET UP TIMELINE FILL 2");
-            timelineFill = profile.tutTimelinePos;
-            if(this.name == "TUT_Ola")
-            {
-                health = 20;
-            }
-        }
-        else
+        if (!isTutorial)
         {
             timelineFill = Random.Range(50, 90);
         }

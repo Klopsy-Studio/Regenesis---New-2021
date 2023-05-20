@@ -115,8 +115,8 @@ public class TutInitState : BattleState
             instance.name = GameManager.instance.unitProfilesTutorialList[i].name;
             PlayerUnit player = instance.GetComponent<PlayerUnit>();
             AssignUnitData(GameManager.instance.unitProfilesTutorialList[i], player);
-
-            player.profile = GameManager.instance.unitProfilesList[i];
+            player.isTutorial = true;
+            player.profile = GameManager.instance.unitProfilesTutorialList[i];
             Point p = levelData.playerSpawnPoints.ToArray()[i];
 
             player.animations.SetCharacter(GameManager.instance.unitProfilesTutorialList[i].characterIndex);
@@ -124,7 +124,7 @@ public class TutInitState : BattleState
             unit.controller = owner;
             unit.Place(board.GetTile(p));
             unit.Match();
-
+            unit.timelineFill = player.profile.tutTimelinePos;
             Movement m = instance.AddComponent(components[0]) as Movement;
             m.jumpHeight = 1;
 
@@ -148,7 +148,7 @@ public class TutInitState : BattleState
             Unit unit = instance.GetComponent<Unit>();
             unit.controller = owner;
             unit.Place(board.GetTile(p));
-
+            
             unit.currentPoint = p;
             unit.Match();
 
