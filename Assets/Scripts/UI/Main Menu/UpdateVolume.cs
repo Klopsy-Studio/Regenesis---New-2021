@@ -19,14 +19,13 @@ public class UpdateVolume : MonoBehaviour
 
     private void Start()
     {
-        //SetVolumeSettings();
+        SetVolumeSettings();
     }
 
     public void SetVolumeSettings()
     {
         float value;
         mixer.GetFloat("Volume", out value);
-        slider.value = value;
         
     }
 }

@@ -3650,6 +3650,7 @@ GameObject:
   - component: {fileID: 122334492}
   - component: {fileID: 122334491}
   - component: {fileID: 122334490}
+  - component: {fileID: 122334494}
   m_Layer: 5
   m_Name: PauseCanvas
   m_TagString: Untagged
@@ -3741,6 +3742,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &122334494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122334489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8aa900c8ab08c547a3e567a143267ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxSlider: {fileID: 993444563}
+  musicSlider: {fileID: 477503708}
 --- !u!1 &146218551
 GameObject:
   m_ObjectHideFlags: 0
@@ -8529,6 +8544,7 @@ MonoBehaviour:
   - {fileID: 1456526939}
   timer: 2
   speed: 0.3
+  sceneToMove: 
 --- !u!1 &417043400
 GameObject:
   m_ObjectHideFlags: 0
@@ -9569,7 +9585,7 @@ GameObject:
   - component: {fileID: 477503705}
   - component: {fileID: 477503704}
   m_Layer: 0
-  m_Name: VolumeSlider
+  m_Name: MusicSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9713,7 +9729,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1043604577}
   m_HandleRect: {fileID: 614918002}
   m_Direction: 0
-  m_MinValue: 0.01
+  m_MinValue: 0.001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
@@ -17114,7 +17130,7 @@ GameObject:
   - component: {fileID: 993444565}
   - component: {fileID: 993444564}
   m_Layer: 0
-  m_Name: VolumeSlider
+  m_Name: SfxSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17220,7 +17236,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1360603622}
   m_HandleRect: {fileID: 2016114625}
   m_Direction: 0
-  m_MinValue: 0.01
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
@@ -37702,6 +37718,14 @@ PrefabInstance:
       propertyPath: consumableInventory
       value: 
       objectReference: {fileID: 11400000, guid: 972abb1e68fcc244fa956728ca86e636, type: 2}
+    - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
+      propertyPath: previousSfxSliderValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
+      propertyPath: previousMusicSliderValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8466311377366334691, guid: 8f5ba69734eb2584d99d798cde9ecca3, type: 3}
       propertyPath: unitProfilesList.Array.size
       value: 3

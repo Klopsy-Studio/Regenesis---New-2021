@@ -52,7 +52,6 @@ public class AbilitySequence : ScriptableObject
     public void Attack(Unit unitTarget)
     {
         unitTarget.ReceiveDamage(ability.CalculateDmg(user, unitTarget), ability.isCritical);
-        user.Attack();
     }
 
     public void AttackWithCrit(Unit unitTarget)

@@ -125,7 +125,7 @@ public class ShortCircuitSequence : AbilitySequence
 
             if (units2.Count > 0)
             {
-                foreach (Unit u in units1)
+                foreach (Unit u in units2)
                 {
                     Attack(u);
 

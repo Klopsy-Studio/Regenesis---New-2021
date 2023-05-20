@@ -73,6 +73,7 @@ public class OverclockSequence : AbilitySequence
 
         foreach (PlayerUnit u in targets1)
         {
+            u.IncreaseTimelineVelocity(1);
             u.AddBuff(overclockBuff);
         }
 
@@ -99,6 +100,8 @@ public class OverclockSequence : AbilitySequence
 
             foreach (PlayerUnit u in targets2)
             {
+                u.IncreaseTimelineVelocity(1);
+
                 u.AddBuff(overclockBuff);
             }
 

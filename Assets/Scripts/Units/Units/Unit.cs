@@ -513,7 +513,23 @@ public class Unit : TimelineElements
     }
     public void SetVelocityWhenTurnIsFinished()
     {
-        timelineVelocity += (int)actionsPerTurn;
+        int speed = (int)actionsPerTurn;
+        foreach (Modifier m in buffModifiers)
+        {
+            if(m.modifierType == TypeOfModifier.TimelineSpeed)
+            {
+                speed += 1;
+            }
+
+            if(speed >= 5)
+            {
+                speed = 5;
+            }
+
+        }
+
+
+        timelineVelocity += speed;
 
         switch (timelineVelocity)
         {

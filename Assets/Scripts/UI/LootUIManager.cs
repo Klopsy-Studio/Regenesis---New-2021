@@ -18,6 +18,7 @@ public class LootUIManager : MonoBehaviour
 
     [SerializeField] GameObject returnToCampButton;
 
+    [SerializeField] bool isDefeat;
 
     public IEnumerator LootSequence(DroppedMaterials dropped)
     {
@@ -65,10 +66,12 @@ public class LootUIManager : MonoBehaviour
 
         //Set the monster image
 
+        if (!isDefeat)
+        {
+            monsterImage.gameObject.SetActive(true);
+        }
 
-        monsterImage.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(1f);
+        
 
         AudioManager.instance.Play("Boton4");
 
