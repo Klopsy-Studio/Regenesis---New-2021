@@ -10,7 +10,8 @@ public class CinematicManager : MonoBehaviour
     [SerializeField] VideoPlayer player;
     [SerializeField] Animator transition;
     float videoLength;
-    
+
+    public bool skip;
     void Start()
     {
         videoLength = (float)player.clip.length;
@@ -22,10 +23,10 @@ public class CinematicManager : MonoBehaviour
     {
         videoLength -= Time.deltaTime;
 
-        if (videoLength <= Time.deltaTime)
+        if (videoLength <= Time.deltaTime || skip)
         {
             GameManager.instance.sceneToLoad = "Tutorial";
-
+            player.Stop();
             transition.SetBool("fadeOut", false);
             transition.SetBool("fadeIn", true);
             Invoke("Load", 1f);
@@ -36,5 +37,10 @@ public class CinematicManager : MonoBehaviour
     {
         SceneManager.LoadScene("LoadingScreen");
 
+    }
+
+    public void SkipCutscene()
+    {
+        skip = true;
     }
 }

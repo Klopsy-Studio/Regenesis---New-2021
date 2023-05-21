@@ -35,7 +35,7 @@ public class LootUIState : BattleState
     {
         owner.turnStatusUI.gear.gameObject.SetActive(false);
         ActionEffect.instance.BlackAndWhite();
-
+        owner.levelData.CompleteHunt();
         yield return new WaitForSeconds(1f);
 
         owner.questComplete.gameObject.SetActive(true);

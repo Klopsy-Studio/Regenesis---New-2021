@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Steamworks;
 
 
 [CustomEditor(typeof(Playtest))]
@@ -27,6 +28,11 @@ public class PlaytestEditor : Editor
         if (GUILayout.Button("Play Action Effect"))
         {
             current.PlayActionEffect();
+        }
+
+        if(GUILayout.Button("Restart Achievements"))
+        {
+            SteamUserStats.ResetAllStats(true);
         }
 
     }

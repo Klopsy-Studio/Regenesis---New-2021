@@ -675,7 +675,7 @@ public class BattleController : StateMachine
         yield return new WaitForSecondsRealtime(1f);
 
         questEscaped.gameObject.SetActive(true);
-
+        
         
         yield return new WaitForSecondsRealtime(2f);
 
