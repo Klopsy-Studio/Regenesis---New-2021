@@ -62,7 +62,7 @@ public class MinionUnit : EnemyUnit
     public override bool ReceiveDamage(int damage, bool isCritical)
     {
         health -= (int)damage;
-
+        DamageEffect();
         List<Modifier> trashModifiers = new List<Modifier>();
         if (debuffModifiers.Count > 0)
         {

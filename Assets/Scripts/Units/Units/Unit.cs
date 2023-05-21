@@ -617,6 +617,7 @@ public class Unit : TimelineElements
 
     public void DamageEffect()
     {
+        Debug.Log("Effect");
         GameObject temp = Instantiate(hitEffect, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), hitEffect.transform.rotation);
         Destroy(temp, 0.8f);
     }
