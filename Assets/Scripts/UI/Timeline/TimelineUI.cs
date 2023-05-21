@@ -418,7 +418,7 @@ public class TimelineUI : MonoBehaviour
         currentActorAnimations.SetFloat("character", element.timelineIconIndex);
         currentActorAnimations.SetTrigger("appear");
         element.iconTimeline.isActing = true;
-        currentActorIcon.SetNativeSize();
+        //currentActorIcon.SetNativeSize();
     }
 
     public void HideIconActing()
