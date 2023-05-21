@@ -131,6 +131,7 @@ public class TimelineUI : MonoBehaviour
 
         foreach (TimelineIconUI icon in topLane)
         {
+            
             AssignIcons(icon, topLane);
         }
 
@@ -301,7 +302,7 @@ public class TimelineUI : MonoBehaviour
                 temp.icon.sprite = eventIcon;
                 temp.velocityText.gameObject.SetActive(false);
                 temp.offset = 0;
-
+                temp.rectTransform.SetAsLastSibling();
                 temp.middleDownSupport.enabled = true;
                 temp.middleUpSupport.enabled = true;
             }
@@ -317,6 +318,7 @@ public class TimelineUI : MonoBehaviour
                 temp.element.iconTimeline = temp;
 
                 temp.icon.sprite = itemIcon;
+                temp.rectTransform.SetAsLastSibling();
 
                 temp.offset = 0;
                 temp.middleDownSupport.enabled = true;
