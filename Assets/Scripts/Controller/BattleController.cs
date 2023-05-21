@@ -323,6 +323,10 @@ public class BattleController : StateMachine
             {
                 playerUnits[0].ReceiveDamage(100, true);
             }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                playerUnits[1].ReceiveDamage(100, true);
+            }
 
             if (Input.GetKeyDown(KeyCode.F))
             {
