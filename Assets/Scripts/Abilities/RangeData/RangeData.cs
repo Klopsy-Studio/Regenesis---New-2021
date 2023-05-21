@@ -25,6 +25,7 @@ public class RangeData
 
     [SerializeField] public int itemRange;
     [SerializeField] public bool itemRemoveContent;
+    [SerializeField] public bool itemRemoveOrigin;
 
 
     public AbilityRange GetOrCreateRange(TypeOfAbilityRange rangeType, GameObject receiver)

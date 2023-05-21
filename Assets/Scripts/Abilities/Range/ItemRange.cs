@@ -10,6 +10,7 @@ public class ItemRange : AbilityRange
     Point pos;
 
     public bool removeContent = true;
+    public bool removeOrigin;
     public override List<Tile> GetTilesInRange(Board board)
     {
         List<Tile> retValue = board.Search(tile, ExpandSearch);
@@ -27,6 +28,10 @@ public class ItemRange : AbilityRange
             }
         }
 
+        if (removeOrigin)
+        {
+            retValue.Remove(tile);
+        }
         return retValue;
     }
 
@@ -35,6 +40,7 @@ public class ItemRange : AbilityRange
     {
         range = rangeData.itemRange;
         removeContent = rangeData.itemRemoveContent;
+        removeOrigin = rangeData.itemRemoveOrigin;
     }
     protected virtual bool ExpandSearch(Tile from, Tile to)
     {

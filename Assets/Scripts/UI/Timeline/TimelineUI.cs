@@ -124,6 +124,26 @@ public class TimelineUI : MonoBehaviour
         }
     }
 
+    public void UpdateTimeline()
+    {
+        BalanceAmountOf(iconPrefab, content, battleController.timelineElements.Count);
+        SortList();
+
+        foreach (TimelineIconUI icon in topLane)
+        {
+            AssignIcons(icon, topLane);
+        }
+
+        foreach (TimelineIconUI icon in midLane)
+        {
+            AssignIcons(icon, midLane);
+        }
+
+        foreach (TimelineIconUI icon in bottomLane)
+        {
+            AssignIcons(icon, bottomLane);
+        }
+    }
     public void SortList()
     {
         orderedIconsInTimeline = iconsInTimeline.OrderByDescending(x => x.element.timelineFill).ToList();
@@ -212,14 +232,16 @@ public class TimelineUI : MonoBehaviour
         for (int i = 0; i < battleController.timelineElements.Count; i++)
         {
             temp = iconsInTimeline[i];
-
-
             temp.owner = this;
             temp.element = battleController.timelineElements[i];
 
             if (temp.element.hasDescription)
             {
-                temp.gameObject.AddComponent<ToolTipTrigger>();
+                if (temp.gameObject.GetComponent<ToolTipTrigger>() == null)
+                {
+                    temp.gameObject.AddComponent<ToolTipTrigger>();
+                }
+
                 ToolTipTrigger trigger = temp.GetComponent<ToolTipTrigger>();
                 trigger.header = temp.element.description.header;
                 trigger.content = temp.element.description.content;

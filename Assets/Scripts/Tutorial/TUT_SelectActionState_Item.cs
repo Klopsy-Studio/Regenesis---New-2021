@@ -8,6 +8,8 @@ public class TUT_SelectActionState_Item : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.board.ActivateTileSelectionToggle();
+
         owner.turnArrow.SetTarget(owner.currentUnit.currentPoint, 3.5f);
         owner.miniStatus.SetStatus(owner.currentUnit);
 
