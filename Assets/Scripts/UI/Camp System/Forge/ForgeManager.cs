@@ -31,6 +31,12 @@ public class ForgeManager : MonoBehaviour, IDataPersistence
         tutorialPanel.SetActive(false);
         if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
         CreateDisplay();
+        weaponPanelInfo.GO.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        weaponPanelInfo.GO.SetActive(false);
     }
 
     public void FinishTutorial() //UnityButtons
@@ -141,6 +147,7 @@ public class ForgeManager : MonoBehaviour, IDataPersistence
 [System.Serializable]
 public class WeaponPanelInfo
 {
+    public GameObject GO;
     public TextMeshProUGUI weaponDamage;
     public TextMeshProUGUI weaponRange;
     public TextMeshProUGUI weaponCritic;

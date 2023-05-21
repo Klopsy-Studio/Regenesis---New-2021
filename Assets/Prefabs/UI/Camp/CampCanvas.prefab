@@ -518,6 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &2086067224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1663,6 +1664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &436813374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2043,6 +2045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &1797864457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2346,6 +2349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &1510448415243324096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2371,6 +2375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &550038734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3041,6 +3046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &546828217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3227,7 +3233,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8001820036809447682}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3439,6 +3445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &8909970892137708471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3464,6 +3471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &701166968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3482,7 +3490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &701166969
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3582,6 +3590,7 @@ MonoBehaviour:
     GO: {fileID: 3612672982471926962}
     itemTotalCostTxT: {fileID: 978584436}
     currentPointsTxTBuyPanel: {fileID: 1723457019}
+    itemTotalCost: 0
     materialInventory: {fileID: 11400000, guid: 2f9e3a9b313e7094ab10e3351d3b0017, type: 2}
     material1:
       material: {fileID: 11400000, guid: 1373267e2d06a9f47888fe222c9fdd8b, type: 2}
@@ -3591,6 +3600,7 @@ MonoBehaviour:
       amount: 0
     button1: {fileID: 6830464551744477233}
     button2: {fileID: 3405615319838858388}
+    shopManager: {fileID: 0}
   animator: {fileID: 1349404599}
 --- !u!1 &752565792
 GameObject:
@@ -3926,6 +3936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &526272925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4445,7 +4456,7 @@ RectTransform:
   m_Children:
   - {fileID: 1835703230}
   m_Father: {fileID: 8001820036809447682}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7215,6 +7226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &7956953416343412138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7240,6 +7252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &1723457017
 GameObject:
   m_ObjectHideFlags: 0
@@ -7548,7 +7561,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 11}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1753292544
 CanvasRenderer:
@@ -8123,6 +8136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &7962534184823012093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8148,6 +8162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &1832729325
 GameObject:
   m_ObjectHideFlags: 0
@@ -8880,6 +8895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &1938855275049612010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8905,6 +8921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &1979512000
 GameObject:
   m_ObjectHideFlags: 0
@@ -9965,6 +9982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &3086082841713019608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9990,6 +10008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &658758683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10721,6 +10740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &774159888737391905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10746,6 +10766,83 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
+--- !u!1 &1169386831947889664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5318605793626629146}
+  - component: {fileID: 500903326498081225}
+  - component: {fileID: 6384396176071217794}
+  m_Layer: 5
+  m_Name: Right Panel Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5318605793626629146
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169386831947889664}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8001820036809447682}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 516, y: 174}
+  m_SizeDelta: {x: 218, y: 325}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &500903326498081225
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169386831947889664}
+  m_CullTransparentMesh: 1
+--- !u!114 &6384396176071217794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169386831947889664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 822d194685024504b9c83ed25b48c5e2, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1191343686787157077
 GameObject:
   m_ObjectHideFlags: 0
@@ -11266,6 +11363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &1456796181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12072,7 +12170,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5869536639013547839}
   - component: {fileID: 5891818345375734768}
-  - component: {fileID: 5908784425918318153}
   m_Layer: 5
   m_Name: Right Panel
   m_TagString: Untagged
@@ -12095,7 +12192,7 @@ RectTransform:
   - {fileID: 65938435}
   - {fileID: 4824808935860707183}
   m_Father: {fileID: 8001820036809447682}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12110,36 +12207,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2363749021476845406}
   m_CullTransparentMesh: 1
---- !u!114 &5908784425918318153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2363749021476845406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 822d194685024504b9c83ed25b48c5e2, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2364846672410156124
 GameObject:
   m_ObjectHideFlags: 0
@@ -12791,6 +12858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &3806332770173655881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12816,6 +12884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &2910231553280585909
 GameObject:
   m_ObjectHideFlags: 0
@@ -13407,7 +13476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8001820036809447682
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13422,6 +13491,7 @@ RectTransform:
   m_Children:
   - {fileID: 7873319994669429057}
   - {fileID: 4795796227925291480}
+  - {fileID: 5318605793626629146}
   - {fileID: 5869536639013547839}
   - {fileID: 696019765}
   - {fileID: 5292111410036958283}
@@ -14250,6 +14320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &927446572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14592,6 +14663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &7743051347220846987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14617,6 +14689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &4145554488594184763
 GameObject:
   m_ObjectHideFlags: 0
@@ -15013,6 +15086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &1992602733820322668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15038,6 +15112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &4669969912656481088
 GameObject:
   m_ObjectHideFlags: 0
@@ -18683,7 +18758,7 @@ RectTransform:
   - {fileID: 7688963812452829914}
   - {fileID: 451991273618855367}
   m_Father: {fileID: 8001820036809447682}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -18943,6 +19018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &763460278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19577,6 +19653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &338257156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20338,6 +20415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &390466283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20584,6 +20662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &105631361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20944,6 +21023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &906303890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20969,6 +21049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &2610141455283735438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21161,6 +21242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &912350670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21376,6 +21458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &1613401500442735578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21401,6 +21484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &6830464553211602615
 GameObject:
   m_ObjectHideFlags: 0
@@ -21552,6 +21636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &1829201672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21577,6 +21662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &448177564127630894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22274,6 +22360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &3560324475038867291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22299,6 +22386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &6830464553711358736
 GameObject:
   m_ObjectHideFlags: 0
@@ -22452,6 +22540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &926494894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22477,6 +22566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &1112282653608074358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22730,6 +22820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &2541761664861225415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22755,6 +22846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &7057480434157441554
 GameObject:
   m_ObjectHideFlags: 0
@@ -23953,6 +24045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &6487354215133025555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23965,6 +24058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &7463643685785430939
 GameObject:
   m_ObjectHideFlags: 0
@@ -27065,6 +27159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &550892790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27090,6 +27185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &7485647806828483360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27725,6 +27821,10 @@ PrefabInstance:
     - target: {fileID: 4953031839819237183, guid: bf8356e99da5b0b4cb7b1f721f9a8c91, type: 3}
       propertyPath: m_Name
       value: Abilities Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953031839819237183, guid: bf8356e99da5b0b4cb7b1f721f9a8c91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5012509286570826950, guid: bf8356e99da5b0b4cb7b1f721f9a8c91, type: 3}
       propertyPath: m_AnchorMax.y

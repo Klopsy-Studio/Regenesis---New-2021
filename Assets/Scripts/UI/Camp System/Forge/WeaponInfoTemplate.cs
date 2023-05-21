@@ -42,6 +42,7 @@ public class WeaponInfoTemplate : MonoBehaviour, IPointerClickHandler
     {
 
         forgeManager.ButtonClicked();
+        forgeManager.weaponPanelInfo.GO.SetActive(true);
         forgeManager.weaponPanelInfo.UpdatePanelInfo(this);
         forgeManager.UpdateMaterialRequiredPanel(WeaponUpgrade);
         forgeManager.SelectCurrentWeaponPanelInfo(this);
