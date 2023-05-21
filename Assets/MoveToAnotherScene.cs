@@ -19,7 +19,7 @@ public class MoveToAnotherScene : MonoBehaviour
     }
     public IEnumerator MoveToScene()
     {
-        GameManager.instance.sceneToLoad = "sceneToMove";
+        GameManager.instance.sceneToLoad = sceneToMove;
 
         sceneTransition.SetBool("fadeIn", true);
 
@@ -47,5 +47,7 @@ public class MoveToAnotherScene : MonoBehaviour
     public void ChangeSceneToLoad(string scene)
     {
         sceneToMove = scene;
+        Debug.Log(sceneToMove);
+        
     }
 }

@@ -22,7 +22,7 @@ public class TUT_SelectItemState : BattleState
         owner.itemSelectionUI.OriginalColor();
         ItemSelectionUI.ChangeAllItemsToDefault();
         //Abilities[] a = owner.currentUnit.weapon.Abilities;
-        List<ConsumableSlot> itemList = owner.backpackInventory.consumableContainer;
+        List<ConsumableSlot> itemList = GameManager.instance.TUT_consumbaleBackpack.consumableContainer;
 
 
         for (int i = 0; i < owner.itemSelectionUI.options.Length; i++)
