@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [System.Serializable]
 public class GameData
@@ -17,8 +19,12 @@ public class GameData
     public NewSerializableDictionary<string, string> unitsProfiles;
     public int shopCurrentPoints;
 
+    [Header("DefaultSettings")]
     string[] unitsName = { "Isak", "Kaeo", "Ola" };
     string[] unitsWeapons = { "ScrapBow_3", "ScrapGunBlade_3", "ScrapHammer_3" };
+    string[] materialNameList = { "Metal Piece", "Biomass" };
+    int[] materialAmountList = { 3, 1};
+    string[] consumableNameList = { "Potion", "Mega Potion", "Bomb", "Smoke Bomb" };
 
     //Tutorial saves
     public bool isBarrackTutorialFinished;
@@ -34,14 +40,14 @@ public class GameData
     {
         this.clickCount = 0;
         coinsCollected = new NewSerializableDictionary<string, bool>();
-    
+
         consumableInventory = new List<ItemData>();
 
         materialInventory = new List<ItemData>();
- 
+
         materialInventory.Clear();
-        
-     
+
+
         weaponInventory = new List<ItemData>();
         isMissionNew = new NewSerializableDictionary<string, bool>();
         isMissionCompleted = new NewSerializableDictionary<string, bool>();
@@ -49,20 +55,21 @@ public class GameData
         //AL INICIAR QUE OBTENGAN ARMAS POR DEFECTOS
         unitsProfiles = new NewSerializableDictionary<string, string>();
         UnitsProfileDefaultSetting();
+        AddDefaultMaterials();
+        AddDefaultConsumables();
         //unitsProfiles = new SerializableDictionary<string, string>();
         consumableBackpack = new List<ItemData>();
         shopCurrentPoints = 0;
 
 
-        isBarrackTutorialFinished = false; 
-        isForgeTutorialFinished = false ;
-        isShopTutorialFinished = false ;
-        isInventoryTutorialFinished=false;
+        isBarrackTutorialFinished = false;
+        isForgeTutorialFinished = false;
+        isShopTutorialFinished = false;
+        isInventoryTutorialFinished = false;
         isMapTutorialFinished = false;
+    }
 
-}
-
-private void UnitsProfileDefaultSetting()
+    private void UnitsProfileDefaultSetting()
     {
         for (int i = 0; i < 3; i++)
         {
@@ -71,4 +78,32 @@ private void UnitsProfileDefaultSetting()
             unitsProfiles.Add(name, weapon);
         }
     }
+
+    private void AddDefaultMaterials()
+    {
+   
+        for (int i = 0; i < materialNameList.Length; i++)
+        {
+            Debug.Log("itemName" + materialNameList[i]);
+        }
+
+        for (int i = 0; i < materialNameList.Length; i++)
+        {
+            var materialName = materialNameList[i];
+            var materialAmount = materialAmountList[i];
+
+            materialInventory.Add(new ItemData(materialName, materialAmount));
+        }
+    }
+
+    private void AddDefaultConsumables()
+    {
+        for (int i = 0; i < consumableNameList.Length; i++)
+        {
+            var consumableName = consumableNameList[i];
+            consumableInventory.Add(new ItemData(consumableName, 1));
+        }
+    }
+
 }
+
