@@ -195,17 +195,6 @@ public class UseItemState : BattleState
         
     }
 
-    protected override void OnFire(object sender, InfoEventArgs<KeyCode> e)
-    {
-        if (!isTimelineItem) return;
-
-        if (owner.currentTile.content == null)
-        {
-            owner.backpackInventory.UseConsumable(owner.itemChosen, tileSpawn: owner.currentTile);
-            itemUsed = true;
-            owner.ChangeState<FinishPlayerUnitTurnState>();
-        }
-    }
 
     protected override void OnMouseSelectEvent(object sender, InfoEventArgs<Point> e)
     {

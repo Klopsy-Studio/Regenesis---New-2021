@@ -207,17 +207,7 @@ public class SelectAbilityState : BattleState
         owner.attackChosen = e.info;
     }
 
-    protected override void OnFire(object sender, InfoEventArgs<KeyCode> e)
-    {
-        owner.attackChosen = currentActionIndex;
 
-
-        if (owner.currentUnit.ActionsPerTurn >= abilityList[currentActionIndex].actionCost)
-        {
-            ActionSelectionUI.gameObject.SetActive(false);
-            owner.ChangeState<UseAbilityState>();
-        }
-    }
 
     public override void Exit()
     {

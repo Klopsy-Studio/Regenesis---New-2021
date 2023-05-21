@@ -129,16 +129,4 @@ public class MoveTargetState : BattleState
         }
     }
 
-    protected override void OnFire(object sender, InfoEventArgs<KeyCode> e)
-    {
-        if (tiles.Contains(owner.currentTile) && owner.currentTile != originPoint)
-        {
-            owner.currentUnit.playerUI.SpendActionPoints(2);
-
-            owner.currentUnit.didNotMove = false;
-            owner.currentUnit.ActionsPerTurn -= 1;
-            owner.currentUnit.actionDone = true;
-            owner.ChangeState<MoveSequenceState>();
-        }
-    }
 }
