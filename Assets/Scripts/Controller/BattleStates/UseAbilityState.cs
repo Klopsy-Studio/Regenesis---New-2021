@@ -181,9 +181,12 @@ public class UseAbilityState : BattleState
             if (owner.bowExtraAttack)
             {
                 owner.currentUnit.playerUI.PreviewActionCost(currentAbility.actionCost + 1);
+                owner.bowExtraAttackMenuButton.ToggleSprite();
             }
             else
             {
+                owner.bowExtraAttackMenuButton.ToggleSprite();
+
                 owner.currentUnit.playerUI.ShowActionPoints();
                 owner.currentUnit.playerUI.PreviewActionCost(currentAbility.actionCost);
             }

@@ -68,7 +68,7 @@ public class BattleController : StateMachine
     public GameObject partyIconPrefab;
     [Space]
     [Header("Weapon trait references")]
-
+   
     public GameObject bowExtraAttackObject;
     public MenuButton bowExtraAttackMenuButton;
     public GameObject hammerTraitObject;
