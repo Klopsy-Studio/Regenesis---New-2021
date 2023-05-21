@@ -47,7 +47,7 @@ public class PowerOutageSequence : AbilitySequence
 
         if (isDroneActive)
         {
-            foreach (Tile t in tiles)
+            foreach (Tile t in droneTiles)
             {
                 if (t.content != null)
                 {
