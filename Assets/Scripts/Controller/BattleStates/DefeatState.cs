@@ -26,7 +26,7 @@ public class DefeatState : BattleState
         owner.actionSelectionUI.gameObject.SetActive(false);
         owner.abilitySelectionUI.gameObject.SetActive(false);
         owner.itemSelectionUI.gameObject.SetActive(false);
-
+        owner.miniStatus.gameObject.SetActive(false);
         owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.loseTurn);
         yield return new WaitForSeconds(1);
         owner.turnStatusUI.DeactivateTurn();

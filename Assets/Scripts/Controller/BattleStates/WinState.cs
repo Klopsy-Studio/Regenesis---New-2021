@@ -10,7 +10,6 @@ public class WinState : BattleState
         base.Enter();
         owner.canPause = false;
         owner.partyIconParent.gameObject.SetActive(false);
-
         owner.unitStatusUI.gameObject.SetActive(false);
         owner.turnStatusUI.gameObject.SetActive(false);
         owner.timelineUI.gameObject.SetActive(false);
@@ -48,7 +47,6 @@ public class WinState : BattleState
 
         owner.turnStatusUI.DeactivateTurn();
         yield return new WaitForSeconds(0.5f);
-        owner.levelData.hasBeenCompleted = true;
 
         //Switch later to show Loot load camp scene 
         //SceneManager.LoadScene("Battle");

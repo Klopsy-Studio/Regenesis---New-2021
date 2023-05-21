@@ -369,8 +369,7 @@ public class BattleController : StateMachine
             }
             if (Input.GetKeyDown(KeyCode.B))
             {
-                AudioManager.instance.FadeOut("Music");
-                ChangeState<DefeatState>();
+                enemyUnits[0].GetComponent<EnemyUnit>().UpdateEnemyUnitSprite();
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
@@ -650,6 +649,8 @@ public class BattleController : StateMachine
 
         GameManager.instance.sceneToLoad = "CampScene";
         AudioManager.instance.FadeOut("Music");
+        AudioManager.instance.FadeOut("MainTheme");
+        AudioManager.instance.FadeOut("LoseTheme");
 
         Invoke("LoadingScreen", 1.5f);
     }
@@ -674,7 +675,7 @@ public class BattleController : StateMachine
         yield return new WaitForSecondsRealtime(1f);
 
         questEscaped.gameObject.SetActive(true);
-
+        
         
         yield return new WaitForSecondsRealtime(2f);
 

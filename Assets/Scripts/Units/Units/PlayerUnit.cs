@@ -432,14 +432,33 @@ public class PlayerUnit : Unit
         diedOnce = true;
         PlayerUnitDeath element = Instantiate(nearDeathElement);
         element.timelineIcon = profile.unitDeathTimelineIcon;
-        //status.unitPortrait.sprite = deathTimelineSprite;
+        
+        
+
         isNearDeath = true;
+
+        //status.unitPortrait.sprite = deathTimelineSprite;
         deathElement = element;
         deathElement.unit = this;
         controller.timelineElements.Add(element);
         iconTimeline.gameObject.SetActive(false);
         timelineTypes = TimeLineTypes.Null;
         controller.CheckAllUnits();
+
+        switch (profile.characterIndex)
+        {
+            case 0:
+                element.timelineIconIndex = 19;
+                break;
+            case 0.5f:
+                element.timelineIconIndex = 18;
+                break;
+            case 1f:
+                element.timelineIconIndex = 20;
+                break;
+            default:
+                break;
+        }
     }
 
     public void Revive()

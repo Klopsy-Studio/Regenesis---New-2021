@@ -41,7 +41,7 @@ public class CheckAttackRangeDecisionDrawer : PropertyDrawer
                 return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 5;
 
             case TypeOfAbilityRange.Item:
-                return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 5;
+                return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 6;
 
             default:
                 return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 2;
@@ -117,6 +117,7 @@ public class CheckAttackRangeDecisionDrawer : PropertyDrawer
             case TypeOfAbilityRange.Item:
                 DisplayVariable("itemRange", ref position, property);
                 DisplayVariable("itemRemoveContent", ref position, property);
+                DisplayVariable("itemRemoveOrigin", ref position, property);
                 break;
 
             default:

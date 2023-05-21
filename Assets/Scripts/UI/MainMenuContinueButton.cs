@@ -13,6 +13,7 @@ public class MainMenuContinueButton : MonoBehaviour, IPointerEnterHandler, IPoin
     [SerializeField] Color defaultTextColor;
     [SerializeField] Color highlightTextColor;
     [SerializeField] Color disableColor;
+    [SerializeField] CampCursorUIInteraction interaction;
     [SerializeField] Text text;
 
 
@@ -21,6 +22,15 @@ public class MainMenuContinueButton : MonoBehaviour, IPointerEnterHandler, IPoin
         if (!DataPersistenceManager.instance.HasGameData())
         {
             text.color = disableColor;
+            menuButton.canBeSelected = false;
+            interaction.canSelect = false;
+
+            Debug.Log("No save data");
+        }
+
+        else
+        {
+            text.color = defaultTextColor;
         }
     }
     public void OnPointerClick(PointerEventData eventData)
@@ -39,7 +49,9 @@ public class MainMenuContinueButton : MonoBehaviour, IPointerEnterHandler, IPoin
         {
             return;
         }
+
         text.color = highlightTextColor;
+
     }
 
     public void OnContinueGameClicked() //Unity Buttons

@@ -73,6 +73,13 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         iconAnimationsTimeline.SetTrigger("disappear");
     }
 
+    private void OnEnable()
+    {
+        if(element != null)
+        {
+            iconAnimationsTimeline.SetFloat("character", element.timelineIconIndex);
+        }
+    }
     void Update()
     {
         if (timelineEnabled)

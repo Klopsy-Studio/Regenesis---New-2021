@@ -5,20 +5,33 @@ using UnityEngine.EventSystems;
 
 public class CampCursorUIInteraction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    public bool canSelect = true;
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameCursor.instance.SetRegularCursor();
+        if (canSelect)
+        {
+            GameCursor.instance.SetRegularCursor();
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GameCursor.instance.SetHandCursor();
+        if (canSelect)
+        {
+            GameCursor.instance.SetHandCursor();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameCursor.instance.SetRegularCursor();
+        if (canSelect)
+        {
+            GameCursor.instance.SetRegularCursor();
+        }
     }
+
+
+    
 
     
 

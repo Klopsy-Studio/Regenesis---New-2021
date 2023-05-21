@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Steamworks;
 
 public enum Type { Hunt }
 public enum Zone { Desert }
@@ -20,6 +21,7 @@ public class LevelData : ScriptableObject
     
     [Header("Image")]
     [SerializeField] public Sprite monsterImage;
+    [SerializeField] public Sprite monsterPicture;
     [SerializeField] private Sprite backgroundImage;
 
     [Header("Environment information")]
@@ -43,6 +45,7 @@ public class LevelData : ScriptableObject
     public bool isOld = false;
 
     public bool hasBeenCompleted = false;
+    [SerializeField] string achievement;
     public LevelData[] UnlockableMissions;
 
     //Mission Description
@@ -60,7 +63,26 @@ public class LevelData : ScriptableObject
         return id;
     }
 
-  
+    public void CompleteHunt()
+    {
+        if (!hasBeenCompleted)
+        {
+            hasBeenCompleted = true;
+
+            if (SteamManager.Initialized)
+            {
+                Steamworks.SteamUserStats.GetAchievement(achievement, out bool achievementCompleted);
+
+                if (!achievementCompleted)
+                {
+                    SteamUserStats.SetAchievement(achievement);
+                    SteamUserStats.StoreStats();
+                }
+            }
+        }
+    }
+
+
     #region Board parameters
     public List<Vector3> tiles;
      public List<DataTile> tileData;
