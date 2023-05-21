@@ -86,12 +86,14 @@ public class PowerOutageSequence : AbilitySequence
 
         foreach (EnemyUnit u in targets1)
         {
+            u.damageModifier = +0.2f;
             u.AddDebuff(defenseDown);
         }
         yield return new WaitForSeconds(0.1f);
 
         foreach (EnemyUnit u in targets1)
         {
+            u.power -= 5;
             u.AddDebuff(attackDown);
         }
         yield return new WaitForSeconds(1f);
@@ -117,12 +119,15 @@ public class PowerOutageSequence : AbilitySequence
 
             foreach (EnemyUnit u in targets2)
             {
+                u.damageModifier =+ 0.2f;
                 u.AddDebuff(defenseDown);
             }
             yield return new WaitForSeconds(0.1f);
 
             foreach (EnemyUnit u in targets2)
             {
+                u.power -= 5;
+
                 u.AddDebuff(attackDown);
             }
         }

@@ -294,10 +294,8 @@ public class Abilities : ScriptableObject
                 {
                     user.power = user.originalPower;
 
-                    if (d.SpendModifier())
-                    {
-                        trashModifiers.Add(d);
-                    }
+                    trashModifiers.Add(d);
+
                 }
             }
 
@@ -307,6 +305,8 @@ public class Abilities : ScriptableObject
             }
 
         }
+
+
         target.ResetValues();
 
         return finalDamage;
