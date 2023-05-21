@@ -23,7 +23,7 @@ public class LootSystem : MonoBehaviour
         monsterMaterials.Clear();
         //droppedMaterials.materialContainer.Clear();
 
-        while (monsterMaterials.Count < 3/* droppedMaterials.materialContainer.Count<3*/)
+        while (monsterMaterials.Count < dropContainer.minimumDrops/* droppedMaterials.materialContainer.Count<3*/)
         {
             CalculaNumberOfMatDrops();
             ciclo++;
@@ -38,6 +38,7 @@ public class LootSystem : MonoBehaviour
 
 
         monsterMaterials.Clear();
+        droppedMaterials.materialContainer.Clear();
         //droppedMaterials.materialContainer.Clear();
 
 
@@ -69,9 +70,10 @@ public class LootSystem : MonoBehaviour
         //{
         //    droppedMaterials.AddMonsterMaterial(drop.monsterMaterial, 0);
         //}
-        foreach (var materials in monsterMaterials)
+        foreach (var material in monsterMaterials)
         {
-            droppedMaterials.AddMonsterMaterial(materials, 1);
+            Debug.Log("materials name: " + material.name);
+            droppedMaterials.AddMonsterMaterial(material, 1);
         }
 
 
@@ -98,6 +100,7 @@ public class LootSystem : MonoBehaviour
     
 }
 
+[System.Serializable]
 public class DroppedMaterials
 {
     public List<MonsterMaterialSlot> materialContainer = new List<MonsterMaterialSlot>();

@@ -6,6 +6,7 @@ using UnityEngine;
 public class DropsContainer : ScriptableObject
 {
     public List<MonsterDrops> containerList = new List<MonsterDrops> ();
+    public int minimumDrops;
 }
 
 [System.Serializable]

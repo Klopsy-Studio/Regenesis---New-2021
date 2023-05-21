@@ -19,7 +19,7 @@ public class LootUIManager : MonoBehaviour
     [SerializeField] GameObject returnToCampButton;
 
 
-    public IEnumerator LootSequence(DroppedMaterials dropped)
+    public IEnumerator LootSequence(DroppedMaterials monsterMaterialList)
     {
         //Waiting for the frame to come down
         yield return new WaitForSeconds(1f);
@@ -49,11 +49,11 @@ public class LootUIManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
 
-        for (int i = 0; i < dropped.materialContainer.Count; i++)
+        for (int i = 0; i < monsterMaterialList.materialContainer.Count; i++)
         {
             LootDrop obj = Instantiate(lootDropSlot, Vector3.zero, Quaternion.identity, parentTransform).GetComponent<LootDrop>();
-            obj.materialIcon.sprite = dropped.materialContainer[i].material.sprite;
-            obj.ammountText.SetText(dropped.materialContainer[i].amount.ToString());
+            obj.materialIcon.sprite = monsterMaterialList.materialContainer[i].material.sprite;
+            obj.ammountText.SetText(monsterMaterialList.materialContainer[i].amount.ToString());
             AudioManager.instance.Play("Boton4");
 
             yield return new WaitForSeconds(0.2f);
