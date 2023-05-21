@@ -46,8 +46,7 @@ public class AttackResetEvent : MonsterEvent
             }
         }
 
-        controller.monsterAnimations.SetBool("roar", true);
-        controller.monsterAnimations.SetBool("idle", false);
+        controller.monsterAnimations.SetTrigger("attackReset");
 
         ActionEffect.instance.Play(6, 0.5f, 0.01f, 0.05f);
 
@@ -57,8 +56,6 @@ public class AttackResetEvent : MonsterEvent
             yield return null;
         }
 
-        controller.monsterAnimations.SetBool("roar", false);
-        controller.monsterAnimations.SetBool("idle", true);
 
         battleController.board.DeSelectTiles(tiles);
 

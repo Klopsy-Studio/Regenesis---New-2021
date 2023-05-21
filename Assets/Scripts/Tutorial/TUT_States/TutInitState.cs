@@ -20,6 +20,7 @@ public class TutInitState : BattleState
         SelectTile(new Point(1, 5));
         owner.timelineUI.gameObject.SetActive(false);
         owner.unitStatusUI.gameObject.SetActive(false);
+        GameManager.instance.TUT_consumbaleBackpack.ResetConsumables();
         owner.ChangeState<TutMonsterRoarState>();
     }
 

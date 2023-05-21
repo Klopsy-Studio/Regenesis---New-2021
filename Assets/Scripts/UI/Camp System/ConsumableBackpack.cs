@@ -86,6 +86,19 @@ public class ConsumableBackpack : ConsumableInventory
         //consumableContainer.Clear();
     }
 
+
+    public void ResetConsumables()
+    {
+        if (setOriginalConsumables)
+        {
+            consumableContainer.Clear();
+            foreach (ConsumableSlot slot in originalConsumables)
+            {
+                ConsumableSlot s = new ConsumableSlot(slot.consumable, slot.amount);
+                consumableContainer.Add(s);
+            }
+        }
+    }
     public void OnEnable()
     {
         if (setOriginalConsumables)
