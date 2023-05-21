@@ -369,8 +369,7 @@ public class BattleController : StateMachine
             }
             if (Input.GetKeyDown(KeyCode.B))
             {
-                AudioManager.instance.FadeOut("Music");
-                ChangeState<DefeatState>();
+                enemyUnits[0].GetComponent<EnemyUnit>().UpdateEnemyUnitSprite();
             }
             if (Input.GetKeyDown(KeyCode.S))
             {

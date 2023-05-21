@@ -109,20 +109,32 @@ public class EnemyUnit : Unit
     }
     public void UpdateEnemyUnitSprite()
     {
-        if(monsterControl.target != null)
-        {
-            if (tile.CheckSpecificDirection(monsterControl.target.tile, Directions.East) || tile.CheckSpecificDirection(monsterControl.target.tile, Directions.South))
-            {
-                unitSprite.transform.localPosition = originalSpritePosition;
-                unitSprite.flipX = false;
-            }
+        //if(monsterControl.target != null)
+        //{
+        //    if (tile.CheckSpecificDirection(monsterControl.target.tile, Directions.East) || tile.CheckSpecificDirection(monsterControl.target.tile, Directions.South))
+        //    {
+        //        unitSprite.transform.localPosition = originalSpritePosition;
+        //        unitSprite.flipX = false;
+        //    }
 
-            if (tile.CheckSpecificDirection(monsterControl.target.tile, Directions.West) || tile.CheckSpecificDirection(monsterControl.target.tile, Directions.North))
-            {
-                unitSprite.transform.localPosition = flippedSpritePosition;
-                unitSprite.flipX = true;
-            }
-        } 
+        //    if (tile.CheckSpecificDirection(monsterControl.target.tile, Directions.West) || tile.CheckSpecificDirection(monsterControl.target.tile, Directions.North))
+        //    {
+        //        unitSprite.transform.localPosition = flippedSpritePosition;
+        //        unitSprite.flipX = true;
+        //    }
+        //}
+
+
+        if (unitSprite.flipX)
+        {
+            unitSprite.transform.localPosition = originalSpritePosition;
+            unitSprite.flipX = false;
+        }
+        else
+        {
+            unitSprite.transform.localPosition = flippedSpritePosition;
+            unitSprite.flipX = true;
+        }
     }
     public override bool UpdateTimeLine()
     {

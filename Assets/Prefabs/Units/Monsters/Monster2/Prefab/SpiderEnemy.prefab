@@ -625,6 +625,10 @@ MonoBehaviour:
   timelineTypes: 0
   timelineVelocity: 2
   elementEnabled: 1
+  hasDescription: 0
+  description:
+    header: 
+    content: 
   fTimelineVelocity: 0
   timelineFill: 0
   isTimelineActive: 0
@@ -676,6 +680,7 @@ MonoBehaviour:
   originalDefense: 0
   criticalDamage: 1.5
   originalCriticalDamage: 0
+  damageModifier: 1
   buffModifiers: []
   debuffModifiers: []
   buffIndicator: {fileID: 8005829972875006003}
@@ -738,7 +743,7 @@ MonoBehaviour:
   monsterControl: {fileID: 3600112416777368949}
   lowHealth: 100
   originalSpritePosition: {x: 0, y: 0, z: 0}
-  flippedSpritePosition: {x: 0, y: 0, z: 0}
+  flippedSpritePosition: {x: -1.21, y: 0, z: 0.82}
   evolvedPortrait: {fileID: 0}
 --- !u!114 &1131668777620481961
 MonoBehaviour:
@@ -1239,7 +1244,7 @@ SpriteRenderer:
   m_Size: {x: 12.8, y: 7.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7091243356935774560
