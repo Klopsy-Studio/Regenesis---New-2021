@@ -234,7 +234,6 @@ public class TimelineUI : MonoBehaviour
             temp = iconsInTimeline[i];
             temp.owner = this;
             temp.element = battleController.timelineElements[i];
-
             if (temp.element.hasDescription)
             {
                 if (temp.gameObject.GetComponent<ToolTipTrigger>() == null)
@@ -374,11 +373,12 @@ public class TimelineUI : MonoBehaviour
                 temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
 
                 temp.downSupport.GetComponent<Image>().enabled = true;
-                temp.offset = toplaneOffset;
+                temp.offset = toplaneOffset-5;
             }
             temp.barSize = content.sizeDelta.x;
             temp.originalOffset = temp.offset;
             temp.icon.sprite = battleController.timelineElements[i].timelineIcon;
+            temp.icon.SetNativeSize();
 
         }
     }
