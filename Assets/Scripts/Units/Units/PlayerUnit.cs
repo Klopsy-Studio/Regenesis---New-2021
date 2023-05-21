@@ -432,8 +432,28 @@ public class PlayerUnit : Unit
         diedOnce = true;
         PlayerUnitDeath element = Instantiate(nearDeathElement);
         element.timelineIcon = profile.unitDeathTimelineIcon;
-        //status.unitPortrait.sprite = deathTimelineSprite;
+
+        switch (profile.characterIndex)
+        {
+            case 0:
+                element.timelineIconIndex = 19;
+                element.iconTimeline.iconAnimationsTimeline.SetFloat("character", 19);
+                break;
+            case 0.5f:
+                element.timelineIconIndex = 18;
+                element.iconTimeline.iconAnimationsTimeline.SetFloat("character", 18);
+                break;
+            case 1f:
+                element.timelineIconIndex = 20;
+                element.iconTimeline.iconAnimationsTimeline.SetFloat("character", 20);
+                break;
+            default:
+                break;
+        }
+
         isNearDeath = true;
+
+        //status.unitPortrait.sprite = deathTimelineSprite;
         deathElement = element;
         deathElement.unit = this;
         controller.timelineElements.Add(element);
