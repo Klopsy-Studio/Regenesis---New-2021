@@ -34,7 +34,7 @@ public class UseItemState : BattleState
 
         currentItem = owner.backpackInventory.consumableContainer[owner.itemChosen].consumable;
 
-        owner.currentUnit.playerUI.PreviewActionCost(2);
+        owner.currentUnit.playerUI.PreviewActionCost(owner.itemCost);
 
         if(currentItem.ConsumableType == ConsumableType.NormalConsumable)
         {
