@@ -90,22 +90,7 @@ public class SelectItemState : BattleState
         }
     }
 
-    protected override void OnFire(object sender, InfoEventArgs<KeyCode> e)
-    {
-        //if (owner.currentUnit.weapon.Abilities[currentActionIndex].CanBeUsed(owner.currentUnit.stamina))
-        //{
-        //    owner.attackChosen = currentActionIndex;
-        //    ActionSelectionUI.gameObject.SetActive(false);
-        //    owner.ChangeState<UseAbilityState>();
-        //}
 
-
-        //owner.inventory.UseConsumable(currentActionIndex, owner.currentUnit);
-        //owner.ChangeState<FinishPlayerUnitTurnState>();
-
-        owner.itemChosen = currentItemIndex;
-        owner.ChangeState<UseItemState>();
-    }
 
     protected override void OnSelectAction(object sender, InfoEventArgs<int> e)
     {

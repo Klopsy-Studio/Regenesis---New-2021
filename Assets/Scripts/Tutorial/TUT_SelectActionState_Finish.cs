@@ -180,37 +180,5 @@ public class TUT_SelectActionState_Finish : BattleState
 
         }
     }
-    protected override void OnFire(object sender, InfoEventArgs<KeyCode> e)
-    {
-
-        switch (currentAction)
-        {
-            case typeOfAction.Move:
-                if (owner.currentUnit.CanMove())
-                {
-                    ActionSelectionUI.gameObject.SetActive(false);
-
-                    owner.ChangeState<MoveTargetState>();
-                }
-                break;
-
-            case typeOfAction.Ability:
-                owner.ChangeState<SelectAbilityState>();
-                break;
-
-            case typeOfAction.Item:
-                owner.ChangeState<SelectItemState>();
-                break;
-
-            case typeOfAction.Wait:
-                currentAction = typeOfAction.Move;
-                owner.ChangeState<TUT_RestUnitStateOne>();
-                break;
-            case typeOfAction.Status:
-                currentAction = typeOfAction.Status;
-                owner.ChangeState<CheckUnitStatusState>();
-                break;
-
-        }
-    }
+    
 }

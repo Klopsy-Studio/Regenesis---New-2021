@@ -68,7 +68,7 @@ public class BattleController : StateMachine
     public GameObject partyIconPrefab;
     [Space]
     [Header("Weapon trait references")]
-
+   
     public GameObject bowExtraAttackObject;
     public MenuButton bowExtraAttackMenuButton;
     public GameObject hammerTraitObject;
@@ -322,6 +322,10 @@ public class BattleController : StateMachine
             if (Input.GetKeyDown(KeyCode.D))
             {
                 playerUnits[0].ReceiveDamage(100, true);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                playerUnits[1].ReceiveDamage(100, true);
             }
 
             if (Input.GetKeyDown(KeyCode.F))

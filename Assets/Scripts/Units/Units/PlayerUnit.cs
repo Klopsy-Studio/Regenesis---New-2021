@@ -448,10 +448,10 @@ public class PlayerUnit : Unit
         switch (profile.characterIndex)
         {
             case 0:
-                element.timelineIconIndex = 19;
+                element.timelineIconIndex = 18;
                 break;
             case 0.5f:
-                element.timelineIconIndex = 18;
+                element.timelineIconIndex = 19;
                 break;
             case 1f:
                 element.timelineIconIndex = 20;

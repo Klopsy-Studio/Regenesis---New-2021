@@ -170,21 +170,7 @@ public class UseAbilityState : BattleState
         }
     }
 
-    protected override void OnFire(object sender, InfoEventArgs<KeyCode> e)
-    {
-        if (!attacking)
-        {
-            if (owner.currentTile.occupied)
-            {
-                if (owner.currentTile.content.gameObject.GetComponent<EnemyUnit>() != null && tiles.Contains(owner.currentTile))
-                {
-                    owner.currentUnit.playerUI.HideActionPoints();
-                    //StartCoroutine(UseAbilitySequence(owner.currentTile.content.gameObject.GetComponent<EnemyUnit>()));
-                }
-            }
-        }
 
-    }
 
     public void ExtraAttackBow()
     {
@@ -195,9 +181,12 @@ public class UseAbilityState : BattleState
             if (owner.bowExtraAttack)
             {
                 owner.currentUnit.playerUI.PreviewActionCost(currentAbility.actionCost + 1);
+                owner.bowExtraAttackMenuButton.ToggleSprite();
             }
             else
             {
+                owner.bowExtraAttackMenuButton.ToggleSprite();
+
                 owner.currentUnit.playerUI.ShowActionPoints();
                 owner.currentUnit.playerUI.PreviewActionCost(currentAbility.actionCost);
             }
