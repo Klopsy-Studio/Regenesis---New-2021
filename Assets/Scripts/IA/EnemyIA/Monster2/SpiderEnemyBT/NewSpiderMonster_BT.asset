@@ -83,8 +83,8 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 1695, y: 208, z: 0}
-  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
+  viewPosition: {x: 297, y: -160, z: 0}
+  viewScale: {x: 1, y: 1, z: 1}
   references:
     version: 2
     RefIds:
@@ -161,7 +161,7 @@ MonoBehaviour:
         drawGizmos: 0
         owner: {fileID: 11400000}
         checkType: 4
-        numberToCheck: 1
+        numberToCheck: 0
     - rid: 513517154457354249
       type: {class: RandomSelector, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -223,6 +223,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
+        spawnEvolved: 0
     - rid: 513517154457354253
       type: {class: MonsterMark, ns: , asm: Assembly-CSharp}
       data:
@@ -279,6 +280,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
+        spawnEvolved: 0
     - rid: 513517154457354258
       type: {class: SetSequenceNumber, ns: , asm: Assembly-CSharp}
       data:
@@ -639,6 +641,10 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         moveToCheck: 0
         monsterToCheck: 1
+        specificUnit: 0
+        specificTile:
+          x: 0
+          y: 0
         differentUnit: 0
     - rid: 513517154457354289
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
@@ -685,6 +691,10 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         moveToCheck: 3
         monsterToCheck: 1
+        specificUnit: 0
+        specificTile:
+          x: 0
+          y: 0
         differentUnit: 0
     - rid: 513517154457354293
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
