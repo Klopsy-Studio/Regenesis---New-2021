@@ -70,7 +70,7 @@ public class ConsumableBackpack : ConsumableInventory
         var inventorySlot = consumableContainer[consumableID];
 
         displayConsumableBackpack.consumableDisplayed.Remove(inventorySlot);
-        displayConsumableBackpack.slotPrefabList[consumableID].gameObject.SetActive(false);
+        //displayConsumableBackpack.slotPrefabList[consumableID].gameObject.SetActive(false);
         displayConsumableBackpack.slotPrefabList.RemoveAt(consumableID);
         consumableContainer.Remove(inventorySlot);
 

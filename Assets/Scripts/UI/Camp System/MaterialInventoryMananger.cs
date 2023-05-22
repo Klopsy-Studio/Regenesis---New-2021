@@ -25,9 +25,19 @@ public class MaterialInventoryMananger : MonoBehaviour
     void Start()
     {
         rightPanel.SetActive(false);
+       
+    }
+
+    private void OnEnable()
+    {
         CreateDisplay();
     }
 
+    //private void Update()
+    //{
+      
+    //    UpdateDisplay();
+    //}
 
     // Update is called once per frame
     //void Update()
@@ -37,6 +47,23 @@ public class MaterialInventoryMananger : MonoBehaviour
 
     private void CreateDisplay()
     {
+
+        foreach (Transform item in contentTransform)
+        {
+            Destroy(item.gameObject);
+        }
+
+        materialDisplayed.Clear();
+
+
+        foreach (var item in inventory.materialContainer)
+        {
+            if (item.amount == 0)
+            {
+                inventory.materialContainer.Remove(item);
+            }
+        }
+
         for (int i = 0; i < inventory.materialContainer.Count; i++)
         {
             var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, contentTransform);
@@ -46,6 +73,9 @@ public class MaterialInventoryMananger : MonoBehaviour
             obj.SetSlotButton(materialSlot, this);
             materialDisplayed.Add(inventory.materialContainer[i], obj);
         }
+
+
+     
     }
 
 
@@ -56,13 +86,14 @@ public class MaterialInventoryMananger : MonoBehaviour
             if (materialDisplayed.ContainsKey(inventory.materialContainer[i]))
             {
 
-                materialDisplayed[inventory.materialContainer[i]].GetComponentInChildren<Text>().text = inventory.materialContainer[i].amount.ToString();
+                //materialDisplayed[inventory.materialContainer[i]].GetComponentInChildren<Text>().text = inventory.materialContainer[i].amount.ToString();
+                materialDisplayed[inventory.materialContainer[i]].amountText.SetText(inventory.materialContainer[i].amount.ToString());
             }
             else
             {
                 var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, transform);
-                obj.transform.GetChild(0).GetComponentInChildren<Image>().sprite = inventory.materialContainer[i].material.sprite;
-                obj.GetComponentInChildren<Text>().text = inventory.materialContainer[i].amount.ToString();
+                var materialSlot = inventory.materialContainer[i];
+                obj.SetSlotButton(materialSlot, this);
                 materialDisplayed.Add(inventory.materialContainer[i], obj);
             }
 

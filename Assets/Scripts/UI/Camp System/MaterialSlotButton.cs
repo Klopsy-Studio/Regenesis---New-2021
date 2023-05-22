@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 public class MaterialSlotButton : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] Image materialImage;
-    [SerializeField] TextMeshProUGUI amountText;
+    public TextMeshProUGUI amountText;
     public string materialName;
     public string description;
     [SerializeField] Image selectedFrame;
