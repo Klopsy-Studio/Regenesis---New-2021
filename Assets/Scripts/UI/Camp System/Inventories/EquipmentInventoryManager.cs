@@ -41,13 +41,6 @@ public class EquipmentInventoryManager : MonoBehaviour
     }
 
 
-
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    UpdateDisplay();
-    //}
-
     private void CreateDisplay()
     {
 
@@ -56,7 +49,12 @@ public class EquipmentInventoryManager : MonoBehaviour
         //    slotButtonsList.Remove(item);
         //    Destroy(item.gameObject);
         //}
-       
+
+        foreach (Transform item in contentTransform)
+        {
+            Destroy(item.gameObject);
+        }
+
         consumableDisplayed.Clear();
         for (int i = 0; i < inventory.container.Count; i++)
         {
@@ -76,6 +74,8 @@ public class EquipmentInventoryManager : MonoBehaviour
             //slotButtonsList.Add(slotButton);
 
         }
+
+      
     }
 
     //private void UpdateDisplay()

@@ -4,36 +4,39 @@ using UnityEngine;
 using UnityEngine.UI;
 public class DisplayConsumableBackpack : MonoBehaviour
 {
-    //public Consumables a;
-    //public Consumables b;
-    //public Consumables c;
-
-    //public void AddConsumables()
-    //{
-    //    inventory.AddConsumable(a, 2);
-    //    inventory.AddConsumable(b, 1);
-    //    inventory.AddConsumable(c, 3);
-    //}
+    
     public GameObject slotPrefab;
     public ConsumableBackpack inventory;
     public List<GameObject> slotPrefabList;
     [HideInInspector] public Dictionary<ConsumableSlot, GameObject> consumableDisplayed = new Dictionary<ConsumableSlot, GameObject>();
 
     // Start is called before the first frame update
-    void Start()
+    public bool isForBox;
+
+
+    private void OnEnable()
     {
         CreateDisplay();
     }
-
-
-    // Update is called once per frame
     void Update()
     {
-        UpdateDisplay();
+        if (isForBox)
+        {
+            UpdateDisplay();
+        }
+
     }
 
-    private void CreateDisplay()
+    public void CreateDisplay()
     {
+
+        foreach (Transform item in transform)
+        {
+            Destroy(item.gameObject);
+        }
+        slotPrefabList.Clear();
+        consumableDisplayed.Clear();
+
         for (int i = 0; i < inventory.consumableContainer.Count; i++)
         {
             var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, transform);
@@ -68,10 +71,16 @@ public class DisplayConsumableBackpack : MonoBehaviour
                 obj.GetComponentInChildren<Text>().text = inventory.consumableContainer[i].amount.ToString();
                 consumableDisplayed.Add(inventory.consumableContainer[i], obj);
             }
-            if (slotPrefabList[i].TryGetComponent(out ConsBackpackButton inventoryButton))
-            {
+            //if (slotPrefabList[i].TryGetComponent(out ConsBackpackButton inventoryButton))
+            //{
 
-                inventoryButton.FillVariables(inventory, i, this);
+            //    inventoryButton.FillVariables(inventory, i, this);
+            //}
+
+            if (slotPrefabList[i].GetComponent<ConsBackpackButton>() != null)
+            {
+                slotPrefabList[i].GetComponent<ConsBackpackButton>().FillVariables(inventory, i, this);
+
             }
         }
     }

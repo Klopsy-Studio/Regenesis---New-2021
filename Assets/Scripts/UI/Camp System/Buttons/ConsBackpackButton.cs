@@ -7,6 +7,7 @@ public class ConsBackpackButton : UIButtons
 {
 
     public DisplayConsumableBackpack displayConsumableBackpack;
+  
     public ConsumableBackpack inventory;
     [HideInInspector] public int consumableID;
 
@@ -17,6 +18,8 @@ public class ConsBackpackButton : UIButtons
         displayConsumableBackpack = _displayConsumableBackpack;
     }
 
+  
+
     public override void OnPointerClick(PointerEventData eventData)
     {
        
@@ -26,6 +29,7 @@ public class ConsBackpackButton : UIButtons
         var consumableInventory = GameManager.instance.consumableInventory;
         inventory.TransferConsumablesToInventory(consumableInventory, consumableID, displayConsumableBackpack);
         Debug.Log("PIPO");
+        displayConsumableBackpack.CreateDisplay();
 
     }
 }
