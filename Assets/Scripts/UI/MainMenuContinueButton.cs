@@ -64,7 +64,6 @@ public class MainMenuContinueButton : MonoBehaviour, IPointerEnterHandler, IPoin
         }
 
         DataPersistenceManager.instance.SaveGame();
-        gameStartSequence.BeginGameStartSequence();
     }
 
     public void OnPointerExit(PointerEventData eventData)

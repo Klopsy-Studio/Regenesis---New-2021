@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fccd5963326a83478ff8e97dff7ce7e, type: 3}
-  m_Name: Potion
+  m_Script: {fileID: 11500000, guid: 1e41dd582cf748544aee0060d38bc14c, type: 3}
+  m_Name: Smoke Bomb
   m_EditorClassIdentifier: 
-  itemName: Injection
-  iconSprite: {fileID: 21300000, guid: fc15e04e84ec44343a3c2e7fdb2fb35e, type: 3}
-  itemSprite: {fileID: 21300000, guid: 1704e7fe92b595f4d949baebc0abb620, type: 3}
+  itemName: Smoke Bomb
+  iconSprite: {fileID: 21300000, guid: f27bb3364103b1d47b5a379514bc78f4, type: 3}
+  itemSprite: {fileID: 21300000, guid: f27bb3364103b1d47b5a379514bc78f4, type: 3}
   consumableType: 2
   itemRange:
     range: 10
@@ -34,9 +34,8 @@ MonoBehaviour:
     movementRange: 0
     removeOrigin: 0
     removeContent: 0
-    itemRange: 4
-    itemRemoveContent: 0
-    itemRemoveOrigin: 0
+    itemRange: 3
+    itemRemoveContent: 1
   effectRange:
     range: 10
     lineDir: 0
@@ -52,14 +51,13 @@ MonoBehaviour:
     alternateSideDir: 0
     alternateSideReach: 0
     alternateSideLength: 0
-    movementRange: 1
+    movementRange: 3
     removeOrigin: 0
     removeContent: 0
-    itemRange: 0
+    itemRange: 2
     itemRemoveContent: 0
-    itemRemoveOrigin: 0
-  maxBackPackAmount: 5
-  elementsToTarget: 02000000
-  consumableDescription: Use this consumable to heal you or your allies a light amount
-    of health
-  addHealth: 20
+  maxBackPackAmount: 2
+  elementsToTarget: 05000000
+  consumableDescription: Slows down elements in the timeline within the area of effect
+    until their next action
+  smokeBomb: {fileID: 8210305786149782341, guid: 0bdef58f0f3033a40a7855d80ff6af16, type: 3}

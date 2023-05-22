@@ -50,7 +50,6 @@ public class ScriptableObjectsManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-
         LoadConsumableInventoryData(data);
         LoadConsumableBackpackData(data);
         LoadMaterialData(data);
