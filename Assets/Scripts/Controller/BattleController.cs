@@ -641,6 +641,10 @@ public class BattleController : StateMachine
         currentUnit.ResetWeaponTraits();
     }
 
+    public void WinLevel()
+    {
+        levelData.CompleteHunt();
+    }
     public void PlayCorotuine(IEnumerator coroutine)
     {
         StartCoroutine(coroutine);

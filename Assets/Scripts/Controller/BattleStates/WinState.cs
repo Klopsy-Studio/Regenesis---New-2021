@@ -27,6 +27,8 @@ public class WinState : BattleState
 
     IEnumerator Win()
     {
+        owner.levelData.CompleteHunt();
+
         while (ActionEffect.instance.CheckActionEffectState())
         {
             yield return null;
