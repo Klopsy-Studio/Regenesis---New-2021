@@ -107,8 +107,8 @@ MonoBehaviour:
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 276, y: -219.2, z: 0}
-  viewScale: {x: 0.43232757, y: 0.43232757, z: 1}
+  viewPosition: {x: -3125, y: -273, z: 0}
+  viewScale: {x: 0.7561437, y: 0.7561437, z: 1}
   references:
     version: 2
     RefIds:
@@ -341,7 +341,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        finishVelocity: 2
+        finishVelocity: 3
     - rid: 4967246187200249874
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
       data:
@@ -398,7 +398,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        finishVelocity: 2
+        finishVelocity: 3
     - rid: 4967246187200249879
       type: {class: CanMoveToUnit, ns: , asm: Assembly-CSharp}
       data:
@@ -509,13 +509,13 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 8e38cec7673a0cf40bd8d4ecc98102c4
-        position: {x: -2490, y: 1485}
+        position: {x: -2490.0005, y: 1485.0001}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        finishVelocity: 2
+        finishVelocity: 3
     - rid: 4967246211101491206
       type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -578,7 +578,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        finishVelocity: 2
+        finishVelocity: 3
     - rid: 4967246211101491212
       type: {class: SetSequenceNumber, ns: , asm: Assembly-CSharp}
       data:
@@ -653,6 +653,7 @@ MonoBehaviour:
           removeContent: 0
           itemRange: 0
           itemRemoveContent: 0
+          itemRemoveOrigin: 0
         - range: 6
           lineDir: 0
           lineLength: 0
@@ -672,6 +673,7 @@ MonoBehaviour:
           removeContent: 0
           itemRange: 0
           itemRemoveContent: 0
+          itemRemoveOrigin: 0
         - range: 6
           lineDir: 0
           lineLength: 0
@@ -691,6 +693,7 @@ MonoBehaviour:
           removeContent: 0
           itemRange: 0
           itemRemoveContent: 0
+          itemRemoveOrigin: 0
         - range: 6
           lineDir: 0
           lineLength: 0
@@ -710,6 +713,7 @@ MonoBehaviour:
           removeContent: 0
           itemRange: 0
           itemRemoveContent: 0
+          itemRemoveOrigin: 0
     - rid: 4967246211101491216
       type: {class: Selector, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -859,7 +863,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        finishVelocity: 2
+        finishVelocity: 3
     - rid: 4967246211101491227
       type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -964,6 +968,7 @@ MonoBehaviour:
           removeContent: 1
           itemRange: 0
           itemRemoveContent: 0
+          itemRemoveOrigin: 0
     - rid: 4967246211101491235
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
       data:
@@ -1063,7 +1068,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        finishVelocity: 2
+        finishVelocity: 3
     - rid: 4967246211101491242
       type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -1119,7 +1124,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        finishVelocity: 2
+        finishVelocity: 3
     - rid: 4967246211101491246
       type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -1248,7 +1253,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        finishVelocity: 2
+        finishVelocity: 3
     - rid: 4967246211101491256
       type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -1304,7 +1309,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        finishVelocity: 2
+        finishVelocity: 3
     - rid: 4967246211101491261
       type: {class: Selector, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -1397,7 +1402,7 @@ MonoBehaviour:
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        finishVelocity: 2
+        finishVelocity: 3
     - rid: 4967246211101491267
       type: {class: Sequencer, ns: TheKiwiCoder, asm: Assembly-CSharp}
       data:
@@ -1447,6 +1452,7 @@ MonoBehaviour:
           removeContent: 1
           itemRange: 0
           itemRemoveContent: 0
+          itemRemoveOrigin: 0
     - rid: 4967246211101491269
       type: {class: MonsterMove, ns: , asm: Assembly-CSharp}
       data:
@@ -1467,13 +1473,13 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: 87995c226ab25f143b7138cf7dce910d
-        position: {x: 5686.145, y: 845.9999}
+        position: {x: 5687.3223, y: 846.00006}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
         drawGizmos: 0
         owner: {fileID: 11400000}
-        finishVelocity: 2
+        finishVelocity: 3
     - rid: 4967246211101491271
       type: {class: SetSequenceNumber, ns: , asm: Assembly-CSharp}
       data:

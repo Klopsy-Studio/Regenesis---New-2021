@@ -36,6 +36,7 @@ MonoBehaviour:
     removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
+    itemRemoveOrigin: 0
   tileTargetAbilityRange: []
   rangeData:
     range: 0
@@ -57,6 +58,7 @@ MonoBehaviour:
     removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
+    itemRemoveOrigin: 0
   cameraSize: 3
   effectDuration: 0.5
   shakeIntensity: 0.01
@@ -112,13 +114,13 @@ MonoBehaviour:
   initialHeal: 0
   initialBuff: 0
   initialDebuff: 0
-  furyGain: 20
+  furyGain: 30
   stunDamage: 0
   animationName: 
   lastTarget: {fileID: 0}
   weapon: {fileID: 11400000, guid: ef7ca232f21e73346a460ecdd1e743ff, type: 2}
   description: Encourage yourself and other hunters giving a <b>DEF</b> bonus until
-    they receive damage.
+    they receive damage. Generates 30 <b><color=#ff3636>Fury</color></b>.
   abilityTextFontSize: 25
   inAbilityEffects: []
   postAbilityEffect: []
