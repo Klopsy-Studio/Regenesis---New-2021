@@ -19,11 +19,11 @@ public class GameData
     public int shopCurrentPoints;
 
     [Header("DefaultSettings")]
-    string[] unitsName = { "Isak", "Kaeo", "Ola" };
-    string[] unitsWeapons = { "ScrapBow_3", "ScrapGunBlade_3", "ScrapHammer_3" };
+    string[] unitsName = { "Kaeo", "Isak", "Ola" };
+    string[] unitsWeapons = { "ScrapHammer", "ScrapBow", "ScrapGunBlade", };
     string[] materialNameList = { "Metal Piece", "Biomass" };
     int[] materialAmountList = { 3, 1};
-    string[] consumableNameList = { "Potion", "Mega Potion", "Bomb", "Smoke Bomb" };
+    string[] consumableNameList = { "Injection", "Mega Injection", "Bomb", "Smoke Bomb" };
 
     //Tutorial saves
     public bool isBarrackTutorialFinished;
