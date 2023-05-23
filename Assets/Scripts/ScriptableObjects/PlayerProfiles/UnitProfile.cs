@@ -24,6 +24,7 @@ public class UnitProfile : ScriptableObject
     //public WeaponOffset slingShotOffset;
 
     public float tutTimelinePos;
+    public int tutHealth;
 }
 
 [System.Serializable]

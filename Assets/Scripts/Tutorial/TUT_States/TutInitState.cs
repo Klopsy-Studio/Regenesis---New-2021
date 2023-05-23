@@ -125,6 +125,7 @@ public class TutInitState : BattleState
             unit.controller = owner;
             unit.Place(board.GetTile(p));
             unit.Match();
+            unit.health = player.profile.tutHealth;
             unit.timelineFill = player.profile.tutTimelinePos;
             Movement m = instance.AddComponent(components[0]) as Movement;
             m.jumpHeight = 1;
