@@ -8,6 +8,8 @@ public class SelectItemState : BattleState
     int currentItemIndex;
     public override void Enter()
     {
+        owner.ChangeCurrentControls("Items");
+
         base.Enter();
         owner.isTimeLineActive = false;
         owner.moveItemSelector = true;

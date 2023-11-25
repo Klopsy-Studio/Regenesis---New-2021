@@ -58,6 +58,7 @@ public class BattleController : StateMachine
     public AbilityTargets targets;
     public GunbladeBullets gunbladeUI;
     public MenuButton droneUI;
+    public ContextControls battleContextControls;
 
     [Header("Quest Banners")]
     public GameObject questComplete;
@@ -554,38 +555,18 @@ public class BattleController : StateMachine
     }
 
 
-    public void ReorganizeIcons()
-    {
-        //foreach(TimelineElements e in timelineElements)
-        //{
-        //    if(e.iconTimeline != null)
-        //    {
-        //        e.iconTimeline.timelineEnabled = false;
-        //        e.iconTimeline.PutPreviousOnTop();
-        //    }
-
-        //}
-    }
-
-    public void ResetIcons()
-    {
-        //foreach (TimelineElements e in timelineElements)
-        //{
-        //    if(e.iconTimeline != null)
-        //    {
-        //        if (e.iconTimeline.previousPosition != null)
-        //        {
-        //            e.iconTimeline.timelineEnabled = true;
-        //            e.iconTimeline.ResetPrevious();
-        //        }
-        //    }
-
-        //}
-    }
     public void ToggleTimeline()
     {
         pauseTimeline = !pauseTimeline;
-        Debug.Log("Timeline Toggled to: " + pauseTimeline + " (true means it's paused, false means it's running");
+
+        if (pauseTimeline)
+        {
+            ChangeCurrentControls("Resume");
+        }
+        else
+        {
+            ChangeCurrentControls("Pause");
+        }
     }
     public void ResetUnits()
     {
@@ -769,5 +750,15 @@ public class BattleController : StateMachine
 
         transposer.m_DeadZoneHeight = 0;
         transposer.m_DeadZoneWidth = 0;
+    }
+
+    public void ChangeCurrentControls(string controlsID)
+    {
+        battleContextControls.ChangeCurrentWindow(controlsID);
+    }
+
+    public void DeactivateCurrentControls()
+    {
+        battleContextControls.DeactivateCurrentWindow();
     }
 }

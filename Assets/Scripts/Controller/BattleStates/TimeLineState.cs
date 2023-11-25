@@ -29,6 +29,7 @@ public class TimeLineState : BattleState
         owner.canToggleTimeline = true;
         owner.turnStatusUI.DeactivateTurn();
         owner.isTimeLineActive = true;
+        owner.ChangeCurrentControls("Pause");
     }
 
     public void CheckIcon()

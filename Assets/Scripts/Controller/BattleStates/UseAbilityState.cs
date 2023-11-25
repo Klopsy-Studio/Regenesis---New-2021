@@ -23,7 +23,8 @@ public class UseAbilityState : BattleState
     public override void Enter()
     {
         base.Enter();
-        
+        owner.ChangeCurrentControls("Target");
+
         owner.ChangeUIButtons(false);
         CleanSelectTiles();
         owner.currentUnit.WeaponOut();

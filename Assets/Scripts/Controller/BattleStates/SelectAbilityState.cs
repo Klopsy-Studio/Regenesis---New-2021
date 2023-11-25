@@ -28,6 +28,8 @@ public class SelectAbilityState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.ChangeCurrentControls("Abilities");
+
         owner.actionSelectionUI.gameObject.SetActive(true);
         owner.isTimeLineActive = false;
         owner.moveAbilitySelector = true;
