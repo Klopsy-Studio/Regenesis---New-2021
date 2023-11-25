@@ -20,13 +20,7 @@ public class MoveTargetState : BattleState
 
         owner.isTimeLineActive = false;
 
-        //range = GetRange<MovementRange>();
-
-        //range.range = owner.currentUnit.weapon.range;
-        //range.unit = owner.currentUnit;
-        //range.tile = owner.currentUnit.tile;
-        //range.removeContent = true;
-        //tiles = range.GetTilesInRange(board);
+        owner.SetCameraStill(); 
 
         Movement m = owner.currentUnit.GetComponent<Movement>();
 
@@ -64,6 +58,8 @@ public class MoveTargetState : BattleState
         board.DeSelectDefaultTiles(tiles);
         test = false;
         tiles = null;
+
+        owner.ResetCamera();
     }
 
 
