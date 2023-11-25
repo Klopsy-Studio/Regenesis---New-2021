@@ -11,7 +11,7 @@ public class BearObstacleScript : MonoBehaviour
     public MonsterController controller;
     public Point pos;
     [SerializeField] Animator obstacleAnimations;
-
+    [SerializeField] GameObject hitEffect;
     public List<Tile> Explode(Board board, BattleController battleController)
     {
         AudioManager.instance.Play("ObstacleExplosion");
@@ -38,7 +38,10 @@ public class BearObstacleScript : MonoBehaviour
         AudioManager.instance.Play("ObstacleExplosion");
         board.GetTile(pos).content = null;
         controller.obstaclesInGame.Remove(this);
+        GetComponent<UnitUI>().CreatePopUpText(transform.position, 999, true);
         obstacleAnimations.SetTrigger("explode");
+        GameObject temp = Instantiate(hitEffect, new Vector3(transform.position.x, transform.position.y, transform.position.z), hitEffect.transform.rotation);
+        Destroy(temp, 0.8f);
         if (controller.validObstacles.Contains(this))
         {
             controller.validObstacles.Remove(this);

@@ -19,13 +19,14 @@ public class UpdateVolume : MonoBehaviour
 
     private void Start()
     {
-        SetVolumeSettings();
+        slider.value = Mathf.Pow(10, GetVolumeSettings()/20);
+        Debug.Log(slider.value);
     }
 
-    public void SetVolumeSettings()
+    public float GetVolumeSettings()
     {
         float value;
         mixer.GetFloat("Volume", out value);
-        
+        return value;
     }
 }

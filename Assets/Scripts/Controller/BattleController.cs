@@ -26,7 +26,7 @@ public class BattleController : StateMachine
     public PlayerUnit currentUnit;
     public EnemyUnit currentEnemyUnit;
     [HideInInspector] public EnemyController currentEnemyController;
-      
+
 
 
     [HideInInspector] public ItemElements currentItem;
@@ -68,7 +68,7 @@ public class BattleController : StateMachine
     public GameObject partyIconPrefab;
     [Space]
     [Header("Weapon trait references")]
-   
+
     public GameObject bowExtraAttackObject;
     public MenuButton bowExtraAttackMenuButton;
     public GameObject hammerTraitObject;
@@ -90,10 +90,10 @@ public class BattleController : StateMachine
     [Header("Combat Variables")]
     [HideInInspector] public int attackChosen;
     public List<TimelineElements> timelineElements;
-    [Range(0,5)]public int moveCost;
-    [Range(0,5)] public int itemCost;
+    [Range(0, 5)] public int moveCost;
+    [Range(0, 5)] public int itemCost;
 
-    
+
 
     public Tile currentTile { get { return board.GetTile(pos); } }
     [Space]
@@ -105,7 +105,7 @@ public class BattleController : StateMachine
     //Item variables
     [HideInInspector] public int itemChosen;
 
-  
+
 
     [HideInInspector] public bool moveActionSelector = false;
     [HideInInspector] public bool moveAbilitySelector = false;
@@ -121,7 +121,7 @@ public class BattleController : StateMachine
     public CinemachineVirtualCamera cinemachineCamera;
     public Camera uiCamera;
     public Camera cameraTest;
-   
+
 
     [Header("Playtesting")]
     [SerializeField] Playtest playtestingFunctions;
@@ -130,7 +130,7 @@ public class BattleController : StateMachine
     public bool enableZoom;
 
     [Header("Unit variables")]
-    [SerializeField] 
+    [SerializeField]
     [Range(0f, 1f)] float unitFadeValue;
     public bool bowExtraAttack = false;
     public bool endTurnInstantly = false;
@@ -153,7 +153,10 @@ public class BattleController : StateMachine
 
 
     float currentZoomSize;
-    
+
+    [SerializeField] float deadzoneWidth = 0;
+    [SerializeField] float deadzoneHeight = 0;
+
     int cameraInput
     {
         get
@@ -182,7 +185,7 @@ public class BattleController : StateMachine
     float currentTime;
 
     float fov;
-    [SerializeField] [Range(0, 1000)]float sensitivity = 10f;
+    [SerializeField] [Range(0, 1000)] float sensitivity = 10f;
 
 
     [Header("UI button sounds")]
@@ -214,7 +217,7 @@ public class BattleController : StateMachine
     public void DisableResumeTimelineButton()
     {
         resumeTimelineButton.GetComponent<Image>().color = disabledTimelineColor;
-        
+
     }
 
     public void EnableResumeTimelineButton()
@@ -450,7 +453,7 @@ public class BattleController : StateMachine
 
     public void CurrentUnitPreviewDroneCost()
     {
-        if(currentUnit.actionsPerTurn >= 1)
+        if (currentUnit.actionsPerTurn >= 1)
         {
             currentUnit.playerUI.PreviewActionCost(1);
         }
@@ -462,7 +465,7 @@ public class BattleController : StateMachine
     }
     public void OpenDroneTarget()
     {
-        if(currentUnit.actionsPerTurn >= 1)
+        if (currentUnit.actionsPerTurn >= 1)
         {
             ChangeState<SelectDroneTarget>();
         }
@@ -476,20 +479,20 @@ public class BattleController : StateMachine
     public void ActivateTileSelector()
     {
         tileSelectionIndicator.gameObject.SetActive(true);
-   
+
     }
 
     public void DeactivateTileSelector()
     {
         tileSelectionIndicator.gameObject.SetActive(false);
-  
+
 
     }
 
-    
+
     public void CheckAllUnits()
     {
-        if(playerUnits.Count == 0)
+        if (playerUnits.Count == 0)
         {
             isTimeLineActive = false;
 
@@ -499,7 +502,7 @@ public class BattleController : StateMachine
 
         else
         {
-            foreach(PlayerUnit p in playerUnits)
+            foreach (PlayerUnit p in playerUnits)
             {
                 if (!p.isNearDeath)
                 {
@@ -560,7 +563,7 @@ public class BattleController : StateMachine
         //        e.iconTimeline.timelineEnabled = false;
         //        e.iconTimeline.PutPreviousOnTop();
         //    }
-            
+
         //}
     }
 
@@ -582,7 +585,7 @@ public class BattleController : StateMachine
     public void ToggleTimeline()
     {
         pauseTimeline = !pauseTimeline;
-        Debug.Log("Timeline Toggled to: " + pauseTimeline+" (true means it's paused, false means it's running");
+        Debug.Log("Timeline Toggled to: " + pauseTimeline + " (true means it's paused, false means it's running");
     }
     public void ResetUnits()
     {
@@ -616,7 +619,7 @@ public class BattleController : StateMachine
     {
         zoomVeryOut = true;
         preferedZoomSize = 9;
-    
+
     }
     public void SetBowExtraAttack()
     {
@@ -683,8 +686,8 @@ public class BattleController : StateMachine
         yield return new WaitForSecondsRealtime(1f);
 
         questEscaped.gameObject.SetActive(true);
-        
-        
+
+
         yield return new WaitForSecondsRealtime(2f);
 
         ReturnToCamp();
@@ -739,5 +742,32 @@ public class BattleController : StateMachine
                 }
             }
         }
+    }
+
+    public void SetCameraStill()
+    {
+        CinemachineFramingTransposer transposer = cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+
+        if(transposer == null)
+        {
+            Debug.Log("Composer is null");
+            return;
+        }
+        transposer.m_DeadZoneHeight = deadzoneHeight;
+        transposer.m_DeadZoneWidth = deadzoneWidth;
+    }
+
+    public void ResetCamera()
+    {
+        CinemachineFramingTransposer transposer = cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+
+        if (transposer == null)
+        {
+            Debug.Log("Composer is null");
+            return;
+        }
+
+        transposer.m_DeadZoneHeight = 0;
+        transposer.m_DeadZoneWidth = 0;
     }
 }

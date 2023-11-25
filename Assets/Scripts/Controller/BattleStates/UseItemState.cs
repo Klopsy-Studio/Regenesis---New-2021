@@ -22,6 +22,7 @@ public class UseItemState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.SetCameraStill();
         isTargetTile = false;
         itemUsed = false;
         owner.isTimeLineActive = false;
@@ -371,5 +372,8 @@ public class UseItemState : BattleState
         owner.ChangeUIButtons(true);
 
         firstClick = false;
+
+        owner.ResetCamera();
+
     }
 }

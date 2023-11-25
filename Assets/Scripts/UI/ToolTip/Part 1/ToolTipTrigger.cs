@@ -8,16 +8,24 @@ public class ToolTipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public string header;
     [Multiline]
     public string content;
-   
+
+    public bool changeToFinger;
     public void OnPointerEnter(PointerEventData eventData)
     {
         ToolTipSystem.Show(content, header);
         ToolTipSystem.instance.currentTrigger = this;
+
+        if (changeToFinger)
+        {
+            GameCursor.instance.SetHandCursor(); 
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         ToolTipSystem.Hide();
+        GameCursor.instance.SetRegularCursor();
+
     }
 
     public void OnDisable()

@@ -14,16 +14,12 @@ public class ToolTipSystem : MonoBehaviour
     }
     public static void Show(string content, string header = "")
     {
-        instance.toolTip.SetText(content, header);
         instance.toolTip.gameObject.SetActive(true);
+        instance.toolTip.SetText(content, header);
     }
     public static void Hide()
     {
         instance.toolTip.gameObject.SetActive(false);
     }
 
-    public void Prueba()
-    {
-        DataPersistenceManager.instance.SaveGame();
-    }
 }

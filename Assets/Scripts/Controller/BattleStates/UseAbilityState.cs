@@ -152,6 +152,7 @@ public class UseAbilityState : BattleState
         }
         else
         {
+            owner.SetCameraStill();
             owner.actionSelectionUI.gameObject.SetActive(false);
             owner.abilitySelectionUI.gameObject.SetActive(false);
 
@@ -728,7 +729,7 @@ public class UseAbilityState : BattleState
     public override void Exit()
     {
         base.Exit();
-
+        owner.ResetCamera();
         owner.targets.indicator.DeactivateTarget();
 
         owner.timelineUI.ExitPreviewTurnOrder();

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1250418009008346394}
   - component: {fileID: 1306439643566243199}
   - component: {fileID: 8353051550376916818}
+  - component: {fileID: 2187896449074789166}
   m_Layer: 0
   m_Name: MonsterObstacle
   m_TagString: Untagged
@@ -128,6 +129,7 @@ MonoBehaviour:
     x: 0
     y: 0
   obstacleAnimations: {fileID: 3005922828519192898}
+  hitEffect: {fileID: 5030025760067142075, guid: 566a92dcb0e06b746880d6fc36f4c4c5, type: 3}
 --- !u!114 &1306439643566243199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +170,16 @@ MonoBehaviour:
     y: 0
   crossLength: 2
   offset: 1
+--- !u!114 &2187896449074789166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986858306413133845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 273cf65b98c65ec45a0246fadf01d355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpText: {fileID: 3058184175537077074, guid: 30dd75ad56442b1439fb30ac915768e2, type: 3}

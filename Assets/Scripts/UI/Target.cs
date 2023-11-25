@@ -125,7 +125,7 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case AbilityTargetType.Obstacles:
                 targetPosition = targetAssigned.GetComponent<BearObstacleScript>().pos;
-                targetDisplay.text = "Monster Obstacle";
+                targetDisplay.text = "Rotten Seed";
                 break;
             case AbilityTargetType.BigMonster:
                 Unit a  = targetAssigned.GetComponent<Unit>();
