@@ -6,17 +6,20 @@ public class DisplayConsumableInventoryShop : MonoBehaviour
 {
     public ConsShopSlot slotPrefab;
     public ConsumableInventory inventory;
-   
+    //Transform[] objTransform;
     [HideInInspector] public Dictionary<ConsumableSlot, ConsShopSlot> consumableDisplayed = new Dictionary<ConsumableSlot, ConsShopSlot>();
 
 
     // Start is called before the first frame update
-    void Start()
+    //void Start()
+    //{
+    //    CreateDisplay();
+    //}
+
+    private void OnEnable()
     {
         CreateDisplay();
     }
-
-
     // Update is called once per frame
     void Update()
     {
@@ -25,6 +28,12 @@ public class DisplayConsumableInventoryShop : MonoBehaviour
 
     private void CreateDisplay()
     {
+
+        foreach (Transform item in transform)
+        {
+            Destroy(item.gameObject);
+        }
+        consumableDisplayed.Clear();
         for (int i = 0; i < inventory.consumableContainer.Count; i++)
         {
             var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, transform);
@@ -33,6 +42,7 @@ public class DisplayConsumableInventoryShop : MonoBehaviour
             obj.SetVariables(inventory.consumableContainer[i]);
         }
     }
+
 
 
     public void UpdateDisplay()

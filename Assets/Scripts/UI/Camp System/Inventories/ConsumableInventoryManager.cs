@@ -24,13 +24,17 @@ public class ConsumableInventoryManager : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    //void Start()
+    //{
+    //    rightPanel.SetActive(false);
+    //    CreateDisplay();
+    //}
+
+    private void OnEnable()
     {
         rightPanel.SetActive(false);
         CreateDisplay();
     }
-
-
 
     void Update()
     {
@@ -39,6 +43,12 @@ public class ConsumableInventoryManager : MonoBehaviour
 
     private void CreateDisplay()
     {
+        foreach (Transform item in contentTransform)
+        {
+            Destroy(item.gameObject);
+        }
+
+        consumableDisplayed.Clear();
         for (int i = 0; i < inventory.consumableContainer.Count; i++)
         {
 
