@@ -9,8 +9,8 @@ public class VolumeSliderManagers : MonoBehaviour
     [SerializeField] Slider musicSlider;
     void Start()
     {
-        sfxSlider.value = GameManager.instance.previousSfxSliderValue;
-        musicSlider.value = GameManager.instance.previousMusicSliderValue;
+        //sfxSlider.value = GameManager.instance.previousSfxSliderValue;
+        //musicSlider.value = GameManager.instance.previousMusicSliderValue;
     }
 
     private void OnDestroy()
