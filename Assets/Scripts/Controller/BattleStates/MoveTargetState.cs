@@ -40,6 +40,7 @@ public class MoveTargetState : BattleState
             }
         }
 
+        owner.ChangeCurrentControls("Move");
     }
 
     public override void Exit()

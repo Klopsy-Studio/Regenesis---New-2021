@@ -395,6 +395,7 @@ public class BattleController : StateMachine
             else
             {
                 pauseTimelineButton.action.Invoke();
+
             }
         }
 
@@ -403,11 +404,12 @@ public class BattleController : StateMachine
             if (pauseTimeline)
             {
                 resumeTimelineButton.onUp.Invoke();
+                ChangeCurrentControls("Pause");
             }
             else
             {
                 pauseTimelineButton.onUp.Invoke();
-
+                ChangeCurrentControls("Resume");
             }
         }
 
@@ -558,15 +560,6 @@ public class BattleController : StateMachine
     public void ToggleTimeline()
     {
         pauseTimeline = !pauseTimeline;
-
-        if (pauseTimeline)
-        {
-            ChangeCurrentControls("Resume");
-        }
-        else
-        {
-            ChangeCurrentControls("Pause");
-        }
     }
     public void ResetUnits()
     {
@@ -755,6 +748,7 @@ public class BattleController : StateMachine
     public void ChangeCurrentControls(string controlsID)
     {
         battleContextControls.ChangeCurrentWindow(controlsID);
+        Debug.Log("Changed to " + controlsID);
     }
 
     public void DeactivateCurrentControls()

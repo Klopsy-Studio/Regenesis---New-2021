@@ -16,7 +16,6 @@ public class SelectActionState : BattleState
     public override void Enter()
     {
         base.Enter();
-        owner.ChangeCurrentControls("Action");
         if (!owner.battleEnded)
         {
             owner.turnArrow.SetTarget(owner.currentUnit.currentPoint, 3.5f);
@@ -76,7 +75,9 @@ public class SelectActionState : BattleState
                 owner.currentUnit.EnableHammerTrait();
             }
         }
-        
+
+        owner.ChangeCurrentControls("Actions");
+
     }
 
     public override void Exit()

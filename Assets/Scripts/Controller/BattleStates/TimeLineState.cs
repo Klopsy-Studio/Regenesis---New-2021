@@ -168,6 +168,7 @@ public class TimeLineState : BattleState
                     {
                         owner.canToggleTimeline = false;
                         owner.pauseTimelineButton.onUp.Invoke();
+                        owner.DeactivateCurrentControls();
                         owner.DisableResumeTimelineButton();
 
                         AudioManager.instance.Play("TurnTransition");

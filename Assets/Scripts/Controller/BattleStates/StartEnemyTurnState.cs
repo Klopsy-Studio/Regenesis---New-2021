@@ -30,6 +30,7 @@ public class StartEnemyTurnState : BattleState
             }
         }
 
+        owner.DeactivateCurrentControls();
         //StartCoroutine(StartEnemyTurnCoroutine());
         StartCoroutine(StartEnemyTurnCoroutine());
     }
