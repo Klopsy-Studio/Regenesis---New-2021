@@ -60,6 +60,7 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 
     public void IncreaseAmount() //UnityButton function calls this method
     {
+        
         itemPanelInfo.IncreaseAmount();
     }
 
@@ -126,9 +127,13 @@ public class SetShopItemInfoPanelText
     [SerializeField] TextMeshProUGUI itemCostTxT;
 
     public int itemAmount;
+   
+
     public int itemCost;
 
     public ShopItemInfo itemInfo;
+
+    public GameObject tradeButton;
 
     public void SetItemInfo(ShopItemTemplate _shopItem)
     {
@@ -146,12 +151,18 @@ public class SetShopItemInfoPanelText
         itemCost = itemAmount * itemInfo.pointCosts;
         itemAmountTxT.SetText("AMOUNT: " + itemAmount);
         itemCostTxT.SetText("TOTAL PRICE: " + itemCost + "p");
+        if (itemAmount > 0)
+        {
+            tradeButton.SetActive(true);
+        }
+       
     }
 
     public void DecreaseAmount()
     {
         if (itemAmount <= 0) return;
         itemAmount--;
+        if (itemAmount == 0) tradeButton.SetActive(false);
         itemCost = itemAmount * itemInfo.pointCosts;
         itemAmountTxT.SetText("AMOUNT: " + itemAmount);
         itemCostTxT.SetText("TOTAL PRICE: " + itemCost + "p");
@@ -163,6 +174,7 @@ public class SetShopItemInfoPanelText
         itemCost = 0;
         itemAmountTxT.SetText("AMOUNT: " + itemAmount);
         itemCostTxT.SetText("TOTAL PRICE: " + itemCost + "p");
+        tradeButton.SetActive(false);   
     }
 
    
@@ -193,11 +205,11 @@ public class BuyItemPanel
 
     public ShopManager shopManager;
 
-
+    public GameObject confirmButton;
   
     public void SetBuyPanelInfo(SetShopItemInfoPanelText _itemInfoPanel, ShopManager _shopManager)
     {
-       
+        confirmButton.SetActive(false);
         //itemName.SetText(_itemInfoPanel.ItemName.text);
         //itemImage.sprite = _itemInfoPanel.ItemImage.sprite;
         itemTotalCost = _itemInfoPanel.itemCost;
@@ -240,8 +252,21 @@ public class BuyItemPanel
     {
         shopManager.currentPoints += _points;
         currentPointsTxTBuyPanel.SetText(shopManager.currentPoints.ToString());
+
+        UpdateConfirmButtonStatus();
+
     }
 
+    public void UpdateConfirmButtonStatus()
+    {
+        if (shopManager.currentPoints>= itemTotalCost){
+            confirmButton.SetActive(true);
+        }
+        else
+        {
+            confirmButton.SetActive(false);
+        }
+    }
     public void BuyItem()
     {
         if (shopManager.currentPoints < itemTotalCost)
