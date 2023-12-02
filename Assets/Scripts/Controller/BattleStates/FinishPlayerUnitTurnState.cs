@@ -7,6 +7,7 @@ public class FinishPlayerUnitTurnState : BattleState
     public override void Enter()
     {
         base.Enter();
+        owner.battleContextControls.DeactivateCurrentWindow();
         StartCoroutine(FinishTurnCoroutine());
     }
 
