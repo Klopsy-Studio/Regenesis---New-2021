@@ -113,6 +113,13 @@ public class ShopManager : MonoBehaviour, IDataPersistence
     public void ResetPanelInfo() //button of closeButton
     {
         itemPanelInfo.ResetPanelInfo();
+        
+    }
+
+    public void CancelButton() //button of Cancel
+    {
+        ReturnAllMaterials();
+        buyItemPanel.GO.SetActive(false);
     }
 }
 

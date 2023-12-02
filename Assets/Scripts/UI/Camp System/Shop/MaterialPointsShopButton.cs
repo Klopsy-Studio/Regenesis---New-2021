@@ -49,7 +49,7 @@ public class MaterialPointsShopButton : MonoBehaviour, IPointerClickHandler
         //NEW CODE
         GameManager.instance.materialInventory.SubstractMaterial(materialSlot);
        
-        //
+        
     }
 
     void ReturnMaterial()
