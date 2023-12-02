@@ -165,18 +165,18 @@ public class WeaponPanelInfo
     public void UpdateInventoryPanelInfo(EquipmentSlotButton slotButton)
     {
         weaponName.SetText(slotButton.weaponName);
-        weaponDamage.SetText("DMG: " + slotButton.WeaponDamage.ToString());
-        weaponRange.SetText("RNG: " + slotButton.WeaponRange.ToString());
-        weaponCritic.SetText("CRT: " + slotButton.WeaponCritic.ToString() + "%");
-        weaponDefense.SetText("DEF: " + slotButton.WeaponDefense.ToString());
+        weaponDamage.SetText("Damage: " + slotButton.WeaponDamage.ToString());
+        weaponRange.SetText("Range: " + slotButton.WeaponRange.ToString());
+        weaponCritic.SetText("Critical: " + slotButton.WeaponCritic.ToString() + "%");
+        weaponDefense.SetText("Defense: " + slotButton.WeaponDefense.ToString());
     }
 
     public void ResetInfo() 
     {
         weaponName.SetText("Name");
-        weaponDamage.SetText("DMG: ");
-        weaponRange.SetText("RNG: ");
-        weaponCritic.SetText("CRT: ");
-        weaponDefense.SetText("DEF: ");
+        weaponDamage.SetText("Damage: ");
+        weaponRange.SetText("Range: ");
+        weaponCritic.SetText("Critical: ");
+        weaponDefense.SetText("Defense: ");
     }
 }
