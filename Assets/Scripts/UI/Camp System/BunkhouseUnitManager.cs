@@ -73,7 +73,7 @@ public class BunkhouseUnitManager : MonoBehaviour, IDataPersistence
         defensa.text = unitProfile.unitWeapon.Defense.ToString();
       
         poder.text = unitProfile.unitWeapon.Power.ToString();
-        critico.text = unitProfile.unitWeapon.CriticalPercentage.ToString();
+        critico.text = unitProfile.unitWeapon.CriticalPercentage.ToString() + "%";
         currentId = id;
     }
 
@@ -139,7 +139,7 @@ public class SetWeaponInfoText
         def.SetText(weapon.Defense.ToString());
       
         power.SetText(weapon.Power.ToString());
-        crit.SetText(weapon.CriticalPercentage.ToString());
+        crit.SetText(weapon.CriticalPercentage.ToString() + "%");
   
     }
 }

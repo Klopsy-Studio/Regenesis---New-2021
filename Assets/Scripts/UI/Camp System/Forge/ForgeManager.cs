@@ -156,19 +156,19 @@ public class WeaponPanelInfo
     public TextMeshProUGUI weaponName;
     public void UpdatePanelInfo(WeaponInfoTemplate _weaponInfoTemplate)
     {
-        weaponDamage.SetText("DMG: "+_weaponInfoTemplate.WeaponDamage.ToString());
-        weaponRange.SetText("RNG: "+_weaponInfoTemplate.WeaponRange.ToString());
-        weaponCritic.SetText("CRT: "+_weaponInfoTemplate.WeaponCritic.ToString()+"%");
-        weaponDefense.SetText("DEF: "+_weaponInfoTemplate.WeaponDefense.ToString());
+        weaponDamage.SetText(_weaponInfoTemplate.WeaponDamage.ToString());
+        weaponRange.SetText(_weaponInfoTemplate.WeaponRange.ToString());
+        weaponCritic.SetText(_weaponInfoTemplate.WeaponCritic.ToString()+"%");
+        weaponDefense.SetText(_weaponInfoTemplate.WeaponDefense.ToString());
     }
 
     public void UpdateInventoryPanelInfo(EquipmentSlotButton slotButton)
     {
         weaponName.SetText(slotButton.weaponName);
-        weaponDamage.SetText("Damage: " + slotButton.WeaponDamage.ToString());
-        weaponRange.SetText("Range: " + slotButton.WeaponRange.ToString());
-        weaponCritic.SetText("Critical: " + slotButton.WeaponCritic.ToString() + "%");
-        weaponDefense.SetText("Defense: " + slotButton.WeaponDefense.ToString());
+        weaponDamage.SetText(slotButton.WeaponDamage.ToString());
+        weaponRange.SetText(slotButton.WeaponRange.ToString());
+        weaponCritic.SetText(slotButton.WeaponCritic.ToString() + "%");
+        weaponDefense.SetText(slotButton.WeaponDefense.ToString());
     }
 
     public void ResetInfo() 

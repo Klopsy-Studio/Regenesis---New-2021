@@ -156,8 +156,8 @@ public class SetShopItemInfoPanelText
     {
         itemAmount++;
         itemCost = itemAmount * itemInfo.pointCosts;
-        itemAmountTxT.SetText("AMOUNT: " + itemAmount);
-        itemCostTxT.SetText("TOTAL PRICE: " + itemCost + "p");
+        itemAmountTxT.SetText("x" + itemAmount);
+        itemCostTxT.SetText("Total: " + itemCost + "p");
         if (itemAmount > 0)
         {
             tradeButton.SetActive(true);
@@ -171,16 +171,16 @@ public class SetShopItemInfoPanelText
         itemAmount--;
         if (itemAmount == 0) tradeButton.SetActive(false);
         itemCost = itemAmount * itemInfo.pointCosts;
-        itemAmountTxT.SetText("AMOUNT: " + itemAmount);
-        itemCostTxT.SetText("TOTAL PRICE: " + itemCost + "p");
+        itemAmountTxT.SetText("x" + itemAmount);
+        itemCostTxT.SetText("Total: " + itemCost + "p");
     }
 
     public void ResetPanelInfo() 
     {
         itemAmount = 0;
         itemCost = 0;
-        itemAmountTxT.SetText("AMOUNT: " + itemAmount);
-        itemCostTxT.SetText("TOTAL PRICE: " + itemCost + "p");
+        itemAmountTxT.SetText("x" + itemAmount);
+        itemCostTxT.SetText("Total: " + itemCost + "p");
         tradeButton.SetActive(false);   
     }
 
