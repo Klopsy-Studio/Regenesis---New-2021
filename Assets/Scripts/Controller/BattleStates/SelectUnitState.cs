@@ -14,13 +14,17 @@ public class SelectUnitState : BattleState
 
     IEnumerator SelectUnitCoroutine()
     {
-        StartCoroutine(owner.IndicateTurn(owner.turnStatusUI.playerTurn));
-
-        while (owner.indicatingTurn)
+        if(owner.currentEntity != CurrentEntityTurn.Hunter)
         {
-            yield return null;
+            StartCoroutine(owner.IndicateTurn(owner.turnStatusUI.playerTurn));
+
+            while (owner.indicatingTurn)
+            {
+                yield return null;
+            }
         }
 
+        owner.currentEntity = CurrentEntityTurn.Hunter;
         SelectTile(owner.currentUnit.currentPoint);
         yield return null;
         owner.ChangeState<StartPlayerTurnState>();

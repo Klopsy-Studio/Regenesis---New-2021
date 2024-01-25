@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BattleController : StateMachine
 {
+    [HideInInspector] public CurrentEntityTurn currentEntity;
     public ActionEffectParameters monsterRoar;
     [HideInInspector] public MonsterController monsterController;
 
@@ -35,8 +36,6 @@ public class BattleController : StateMachine
     [Space]
     [Header("Units lists")]
     public List<Unit> unitsInGame;
-
-
     public List<Unit> playerUnits;
     public List<Unit> enemyUnits;
 
@@ -229,6 +228,7 @@ public class BattleController : StateMachine
     {
         zoomed = false;
         sceneTransition.SetBool("fadeOut", true);
+        currentEntity = CurrentEntityTurn.None;
         BeginGame();
     }
     public void SetMission(LevelData level)

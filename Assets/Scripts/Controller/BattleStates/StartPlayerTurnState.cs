@@ -8,9 +8,6 @@ public class StartPlayerTurnState : BattleState
     {
         base.Enter();
 
-
-        //Disabling Mini Staus
-        //owner.currentUnit.status.ChangeToBig();
         Debug.Log("?");
         owner.turnStatusUI.ActivateTurn(owner.currentUnit.unitName);
         owner.board.ActivateTileSelection();

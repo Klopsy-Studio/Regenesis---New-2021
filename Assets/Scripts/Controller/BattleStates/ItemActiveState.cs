@@ -16,11 +16,16 @@ public class ItemActiveState : BattleState
     {
         owner.isTimeLineActive = false;
 
-        StartCoroutine(owner.IndicateTurn(owner.turnStatusUI.eventTurn));
-        while (owner.indicatingTurn)
+        if (owner.currentEntity != CurrentEntityTurn.Event)
         {
-            yield return null;
+            StartCoroutine(owner.IndicateTurn(owner.turnStatusUI.eventTurn));
+            while (owner.indicatingTurn)
+            {
+                yield return null;
+            }
         }
+
+        owner.currentEntity = CurrentEntityTurn.Event;
 
         owner.currentItem.Apply(owner);
 

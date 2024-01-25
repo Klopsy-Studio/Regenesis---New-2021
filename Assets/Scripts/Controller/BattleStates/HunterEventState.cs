@@ -17,12 +17,16 @@ public class HunterEventState : BattleState
 
     IEnumerator ApplyEvent()
     {
-        StartCoroutine(owner.IndicateTurn(owner.turnStatusUI.playerTurn));
-        while (owner.indicatingTurn)
+        if(owner.currentEntity != CurrentEntityTurn.Hunter)
         {
-            yield return null;
+            StartCoroutine(owner.IndicateTurn(owner.turnStatusUI.playerTurn));
+            while (owner.indicatingTurn)
+            {
+                yield return null;
+            }
         }
 
+        owner.currentEntity = CurrentEntityTurn.Hunter;
         owner.currentHunterEvent.Apply(owner);
 
         while (owner.currentHunterEvent.playing)
