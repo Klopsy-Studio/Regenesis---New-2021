@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
+//DEPRECATED
 public class BunkhouseUnitManager : MonoBehaviour, IDataPersistence
 {
     [Header("tutorialVariable")]
