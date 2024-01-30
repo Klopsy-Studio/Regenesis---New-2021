@@ -15,7 +15,7 @@ public class HasMonsterSpawnedLastTurn : ActionNode
     protected override State OnUpdate() {
         if (owner.controller.turnFinished)
             return State.Success;
-        if (owner.controller.hasSpawnedMinionsInLastTurn)
+        if (true)
         {
             return State.Success;
         }

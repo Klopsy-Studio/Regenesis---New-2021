@@ -59,6 +59,10 @@ public class MonsterCheckMinionNumber : ActionNode
             case ComparisonType.LowerAndEqual:
                 if (owner.controller.minionsInGame.Count <= numberToCheck  )
                 {
+                    if(owner.controller.minionsInGame.Count <= 0)
+                    {
+                        owner.controller.turnsWithoutMinions++;
+                    }
                     return State.Success;
                 }
                 else

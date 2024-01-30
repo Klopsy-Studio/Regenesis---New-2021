@@ -268,6 +268,9 @@ public class TimelineUI : MonoBehaviour
                 temp.SetTimelineIconTextVelocity();
                 var timelineVelocity = (int)temp.element.timelineVelocity;
                 temp.velocityText.SetText(timelineVelocity.ToString());
+                ToolTipTrigger trigger = temp.GetComponent<ToolTipTrigger>();
+                trigger.EnableFinger();
+
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.EnemyUnit)
             {
@@ -286,6 +289,8 @@ public class TimelineUI : MonoBehaviour
 
                 temp.velocityText.gameObject.SetActive(false);
                 temp.offset = bottomLaneOffset;
+                ToolTipTrigger trigger = temp.GetComponent<ToolTipTrigger>();
+                trigger.EnableFinger();
 
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.RealtimeEvents)

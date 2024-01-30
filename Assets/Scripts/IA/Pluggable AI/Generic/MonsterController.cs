@@ -50,7 +50,7 @@ public class MonsterController : MonoBehaviour
     public List<EnemyUnit> minionsInGame;
     public int maxMinions = 3;
     public List<RangeData> minionRangeSpawn;
-    public bool hasSpawnedMinionsInLastTurn;
+    public int turnsWithoutMinions = 0;
     public bool hasDoneFirstTurn = false;
     public bool hasEvolved;
     public int turnsAlive;
@@ -62,6 +62,7 @@ public class MonsterController : MonoBehaviour
 
     private void Start()
     {
+        turnsWithoutMinions = 1;
         originalTree = tree;
         context = CreateBehaviourTreeContext();
         tree = originalTree;

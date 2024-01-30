@@ -37,4 +37,8 @@ public class ToolTipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
     }
 
+    public void EnableFinger()
+    {
+        changeToFinger = true;
+    }
 }
