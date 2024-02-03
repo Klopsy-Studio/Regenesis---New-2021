@@ -110,7 +110,7 @@ public class ForgeManager : MonoBehaviour, IDataPersistence
 
 		//var materialsRequired = currentWeaponInfoTemplate
 
-		//ESTO ESTA MAL revisar weaponinfotemplate
+	
 		for (int i = 0; i < currentWeaponInfoTemplate.WeaponUpgrade.materialsRequired.Length; i++)
 		{
 	

@@ -35,7 +35,7 @@ public class EquipmentBunkhouseButton : UIButtons
         //GameManager.instance.unitProfilesList[UnitProfileID].unitWeapon = inventory.container[equipmentID].weapon;
       
         inventory.TransferEquipmentToUnit(equipmentID, displayEquipmentBunkhouse, unitProfileID);
-        displayEquipmentBunkhouse.UpdateWeaponImage(unitProfileID);
+        displayEquipmentBunkhouse.UpdateWeaponInfo(unitProfileID);
     }
 
    
