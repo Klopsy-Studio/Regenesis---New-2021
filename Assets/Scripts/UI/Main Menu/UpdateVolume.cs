@@ -20,7 +20,7 @@ public class UpdateVolume : MonoBehaviour
     private void Start()
     {
         slider.value = Mathf.Pow(10, GetVolumeSettings()/20);
-        Debug.Log(slider.value);
+        // Debug.Log(slider.value);
     }
 
     public float GetVolumeSettings()
