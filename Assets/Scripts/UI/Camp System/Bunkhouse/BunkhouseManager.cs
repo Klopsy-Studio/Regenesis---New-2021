@@ -5,9 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class BunkhouseManager : MonoBehaviour
+public class BunkhouseManager : MonoBehaviour, IDataPersistence
 {
 	
+	[SerializeField] GameObject tutorialPanel;
+	bool isTutorialFinished = false;
 	public  SetWeaponInfo weaponInfo;
 	Weapons unitWeapon;
 	[SerializeField] BunkhouseWeaponSlot hunterSlot;
@@ -25,9 +27,16 @@ public class BunkhouseManager : MonoBehaviour
 	
 	void Start()
 	{
+		tutorialPanel.SetActive(false);
+		if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
 		FirstUpdateHuntersInfo();
 	}
 	
+		public void FinishTutorial() //UnityButtons
+	{
+		tutorialPanel.SetActive(false);
+		isTutorialFinished = true;
+	}
 	void FirstUpdateHuntersInfo()
 	{
 		currentUnitId =0;
@@ -73,6 +82,15 @@ public class BunkhouseManager : MonoBehaviour
 		
 	}
 	
+	 public void LoadData(GameData data)
+	{
+		isTutorialFinished = data.isBarrackTutorialFinished;
+	}
+
+	public void SaveData(GameData data)
+	{
+		data.isBarrackTutorialFinished = isTutorialFinished;
+	}
 	
 	
 
