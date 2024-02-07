@@ -39,7 +39,7 @@ public class CheckObstaclesCount : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.GreaterAndEqual:
-                if (owner.controller.obstaclesInGame.Count >= numberOfObstacles)
+                if (owner.controller.obstaclesInGame.Count+2>= numberOfObstacles)
                 {
                     return State.Success;
                 }

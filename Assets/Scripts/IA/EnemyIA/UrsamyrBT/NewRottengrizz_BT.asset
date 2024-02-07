@@ -89,11 +89,13 @@ MonoBehaviour:
   - rid: 4967246176198328331
   - rid: 4967246176198328332
   - rid: 4967246176198328333
+  - rid: 7111299412307738624
+  - rid: 7111299412307738625
   treeState: 0
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
-  viewPosition: {x: 11, y: 267, z: 0}
-  viewScale: {x: 0.2842624, y: 0.2842624, z: 1}
+  viewPosition: {x: 1066, y: 19, z: 0}
+  viewScale: {x: 0.25, y: 0.25, z: 1}
   references:
     version: 2
     RefIds:
@@ -339,6 +341,7 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         children:
         - rid: 513517317156241448
+        - rid: 7111299412307738624
         - rid: 513517317156241449
         - rid: 513517317156241450
         - rid: 513517317156241451
@@ -348,7 +351,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: b40e0405c35ef2540ad20ac8aba4f602
-        position: {x: -1289.0001, y: 1415.0625}
+        position: {x: -1447.7, y: 1415}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -362,7 +365,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: aba371e1a0e454e459305fa230898066
-        position: {x: -1083, y: 1414}
+        position: {x: -1081.85, y: 1414.0002}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: Destroy Obstacle
@@ -713,6 +716,7 @@ MonoBehaviour:
         owner: {fileID: 11400000}
         children:
         - rid: 513517522410274820
+        - rid: 7111299412307738625
         - rid: 513517522410274821
         - rid: 513517522410274822
         - rid: 513517522410274823
@@ -722,7 +726,7 @@ MonoBehaviour:
         state: 0
         started: 0
         guid: aa7d8ee02e73dbd41b5aa01fa452f23b
-        position: {x: 193, y: 1303}
+        position: {x: 44.759995, y: 1303}
         blackboard:
           moveToPosition: {x: 0, y: 0, z: 0}
         description: 
@@ -1195,3 +1199,31 @@ MonoBehaviour:
         drawGizmos: 0
         owner: {fileID: 11400000}
         message: MOVING TO OBSTACLE
+    - rid: 7111299412307738624
+      type: {class: PlaceObstacle, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 26c87da25250f39498a5167939aa3a66
+        position: {x: -1262.6575, y: 1415}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 11400000}
+        obstacleRange: {fileID: 11400000, guid: 06fefaa7a6ed3ba499d50c6fd07d0100, type: 2}
+        obstaclesToPlace: 2
+    - rid: 7111299412307738625
+      type: {class: PlaceObstacle, ns: , asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: ace51f015d3e92242b5a1fa42c73badd
+        position: {x: 226.72964, y: 1303}
+        blackboard:
+          moveToPosition: {x: 0, y: 0, z: 0}
+        description: 
+        drawGizmos: 0
+        owner: {fileID: 11400000}
+        obstacleRange: {fileID: 11400000, guid: 06fefaa7a6ed3ba499d50c6fd07d0100, type: 2}
+        obstaclesToPlace: 2
