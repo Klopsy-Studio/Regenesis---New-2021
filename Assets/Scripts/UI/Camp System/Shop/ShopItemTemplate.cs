@@ -17,7 +17,7 @@ public class ShopItemTemplate : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         shopManager.ReturnAllMaterials();
-        if (shopManager.buyItemPanel.GO.activeSelf) { shopManager.buyItemPanel.GO.SetActive(false); }
+      
 
         shopManager.ButtonClicked();
         if (!shopManager.itemPanelInfo.GO.activeSelf) shopManager.itemPanelInfo.GO.SetActive(true);
