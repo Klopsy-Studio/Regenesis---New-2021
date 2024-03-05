@@ -12,13 +12,14 @@ public class TutorialDialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     
     [Header("Parameters")]
-    [SerializeField] private AnimationCurve curve;
+    [SerializeField] private AnimationCurve fadeCurve;
+    [SerializeField] private AnimationCurve imageCurve;
 
     [SerializeField] private float time;
     [SerializeField] private float speed = 1f;
 
-    [SerializeField] private float huh;
-    [SerializeField] private float value;
+    [SerializeField] private float fadeValue;
+    [SerializeField] private float imageValue;
 
     private bool show;
     private float finalYPosition;
@@ -41,30 +42,32 @@ public class TutorialDialogue : MonoBehaviour
         if (time < 1f && show)
         {
             time += Time.deltaTime * speed;
-            value = curve.Evaluate(time);
+            fadeValue = fadeCurve.Evaluate(time);
+            imageValue = imageCurve.Evaluate(time);
 
-            lowerVignette.color = new Vector4(255f, 255f, 255f, value);
-            text.color = new Vector4(255f, 255f, 255f, value);
+            lowerVignette.color = new Vector4(255f, 255f, 255f, fadeValue);
+            text.color = new Vector4(255f, 255f, 255f, fadeValue);
 
-            portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, finalYPosition * value);
+            portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, finalYPosition * imageValue);
         }
         else if (time > 0f && !show)
         {
             time -= Time.deltaTime * speed;
-            value = curve.Evaluate(time);
+            fadeValue = fadeCurve.Evaluate(time);
+            imageValue = imageCurve.Evaluate(time);
 
-            lowerVignette.color = new Vector4(255f, 255f, 255f, value);
-            text.color = new Vector4(255f, 255f, 255f, value);
+            lowerVignette.color = new Vector4(255f, 255f, 255f, fadeValue);
+            text.color = new Vector4(255f, 255f, 255f, fadeValue);
 
-            portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, finalYPosition * value);
+            portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, finalYPosition * imageValue);
         }
 
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             Enable();
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.S))
         {
             Disable();
         }
