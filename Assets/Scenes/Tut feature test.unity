@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -295,7 +295,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lowerVignette: {fileID: 1109206862}
   portrait: {fileID: 343357615}
-  text: {fileID: 671474725}
+  dialogueText: {fileID: 671474725}
+  dialogue: {fileID: 11400000, guid: b0ef0e92ed3165644be919bd77b82fb1, type: 2}
   fadeCurve:
     serializedVersion: 2
     m_Curve:
@@ -345,9 +346,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   time: 0
-  speed: 3.5
-  huh: 0
-  value: 0
+  animationSpeed: 3.5
+  typingSpeed: 0.05
 --- !u!1 &343357613
 GameObject:
   m_ObjectHideFlags: 0

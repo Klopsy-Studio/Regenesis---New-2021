@@ -9,31 +9,52 @@ public class TutorialDialogue : MonoBehaviour
     [Header("References")]
     [SerializeField] private Image lowerVignette;
     [SerializeField] private Image portrait;
-    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI dialogueText;
+
+    [SerializeField] private ScriptableObject dialogue;
     
     [Header("Parameters")]
     [SerializeField] private AnimationCurve fadeCurve;
     [SerializeField] private AnimationCurve imageCurve;
 
     [SerializeField] private float time;
-    [SerializeField] private float speed = 1f;
+    [SerializeField] private float animationSpeed = 1f;
+    [SerializeField] private float typingSpeed = 0.2f;
 
-    [SerializeField] private float fadeValue;
-    [SerializeField] private float imageValue;
+    private float fadeValue;
+    private float imageValue;
 
     private bool show;
     private float finalYPosition;
 
-    private string currentText;
+    private bool displayingLine = false;
 
 
     private void Start()
     {
-        currentText = text.text;
         finalYPosition = portrait.rectTransform.anchoredPosition.y;
 
-        // lowerVignette.color = new Vector4(255f, 255f, 255f, 0f);
-        // portrait.color = new Vector4(255f, 255f, 255f, 0f);
+        lowerVignette.color = new Vector4(255f, 255f, 255f, 0f);
+        dialogueText.color = new Vector4(255f, 255f, 255f, 0f);
+        portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, -portrait.rectTransform.anchoredPosition.y);
+    }
+
+    public void Enable()
+    {
+        show = true;
+        if (!displayingLine)
+        {
+            StartCoroutine(DisplayLine(dialogueText.text));
+        }
+        else
+        {
+            dialogueText.maxVisibleCharacters = dialogueText.text.Length;
+        }
+    }
+
+    public void Disable()
+    {
+        show = false;
     }
 
 
@@ -41,23 +62,23 @@ public class TutorialDialogue : MonoBehaviour
     {
         if (time < 1f && show)
         {
-            time += Time.deltaTime * speed;
+            time += Time.deltaTime * animationSpeed;
             fadeValue = fadeCurve.Evaluate(time);
             imageValue = imageCurve.Evaluate(time);
 
             lowerVignette.color = new Vector4(255f, 255f, 255f, fadeValue);
-            text.color = new Vector4(255f, 255f, 255f, fadeValue);
+            dialogueText.color = new Vector4(255f, 255f, 255f, fadeValue);
 
             portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, finalYPosition * imageValue);
         }
         else if (time > 0f && !show)
         {
-            time -= Time.deltaTime * speed;
+            time -= Time.deltaTime * animationSpeed;
             fadeValue = fadeCurve.Evaluate(time);
             imageValue = imageCurve.Evaluate(time);
 
             lowerVignette.color = new Vector4(255f, 255f, 255f, fadeValue);
-            text.color = new Vector4(255f, 255f, 255f, fadeValue);
+            dialogueText.color = new Vector4(255f, 255f, 255f, fadeValue);
 
             portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, finalYPosition * imageValue);
         }
@@ -73,13 +94,20 @@ public class TutorialDialogue : MonoBehaviour
         }
     }
 
-    public void Enable()
+
+    private IEnumerator DisplayLine (string line)
     {
-        show = true;
+        displayingLine = true;
+
+        dialogueText.text = line;
+        dialogueText.maxVisibleCharacters = 0;
+
+        foreach (char letter in line.ToCharArray())
+        {
+            dialogueText.maxVisibleCharacters++;
+            yield return new WaitForSeconds(typingSpeed);
+        }
     }
 
-    public void Disable()
-    {
-        show = false;
-    }
+
 }
