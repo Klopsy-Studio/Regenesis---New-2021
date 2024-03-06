@@ -11,7 +11,7 @@ public class TutorialDialogue : MonoBehaviour
     [SerializeField] private Image portrait;
     [SerializeField] private TextMeshProUGUI dialogueText;
 
-    [SerializeField] private ScriptableObject dialogue;
+    [SerializeField] private DialogueText dialogue;
     
     [Header("Parameters")]
     [SerializeField] private AnimationCurve fadeCurve;
@@ -29,6 +29,8 @@ public class TutorialDialogue : MonoBehaviour
 
     private bool displayingLine = false;
 
+    private int dialogueIndex = 0;
+
 
     private void Start()
     {
@@ -44,6 +46,7 @@ public class TutorialDialogue : MonoBehaviour
         show = true;
         if (!displayingLine)
         {
+            dialogueText.text = dialogue.dialogueLines[dialogueIndex].line;
             StartCoroutine(DisplayLine(dialogueText.text));
         }
         else
