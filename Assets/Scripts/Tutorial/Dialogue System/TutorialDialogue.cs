@@ -46,6 +46,7 @@ public class TutorialDialogue : MonoBehaviour
         show = true;
         if (!displayingLine)
         {
+            displayingLine = true;
             dialogueText.text = dialogue.dialogueLines[dialogueIndex].line;
             StartCoroutine(DisplayLine(dialogueText.text));
         }
@@ -58,6 +59,7 @@ public class TutorialDialogue : MonoBehaviour
     public void Disable()
     {
         show = false;
+        dialogueText.text = "";
     }
 
 
@@ -100,8 +102,6 @@ public class TutorialDialogue : MonoBehaviour
 
     private IEnumerator DisplayLine (string line)
     {
-        displayingLine = true;
-
         dialogueText.text = line;
         dialogueText.maxVisibleCharacters = 0;
 
