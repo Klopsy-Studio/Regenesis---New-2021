@@ -27,9 +27,9 @@ public class TutorialDialogue : MonoBehaviour
     private bool show;
     private float finalYPosition;
 
-    private bool displayingLine = false;
+    [SerializeField] private bool isDisplayingLine = false;
 
-    private int dialogueIndex = 0;
+    [SerializeField] private int dialogueIndex = 0;
 
 
     private void Start()
@@ -41,17 +41,26 @@ public class TutorialDialogue : MonoBehaviour
         portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, -portrait.rectTransform.anchoredPosition.y);
     }
 
-    public void Enable()
+    public void Continue()
     {
         show = true;
-        if (!displayingLine)
+
+        if (!isDisplayingLine)
         {
-            displayingLine = true;
+            if (dialogueIndex == dialogue.dialogueLines.Length)
+            {
+                Disable();
+                return;
+            }
+
+            isDisplayingLine = true;
             dialogueText.text = dialogue.dialogueLines[dialogueIndex].line;
             StartCoroutine(DisplayLine(dialogueText.text));
         }
         else
         {
+            isDisplayingLine = false;
+            dialogueIndex++;
             dialogueText.maxVisibleCharacters = dialogueText.text.Length;
         }
     }
@@ -60,6 +69,7 @@ public class TutorialDialogue : MonoBehaviour
     {
         show = false;
         dialogueText.text = "";
+        dialogueIndex = 0;
     }
 
 
@@ -91,11 +101,7 @@ public class TutorialDialogue : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Enable();
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            Disable();
+            Continue();
         }
     }
 
@@ -108,7 +114,25 @@ public class TutorialDialogue : MonoBehaviour
         foreach (char letter in line.ToCharArray())
         {
             dialogueText.maxVisibleCharacters++;
+            if (dialogueText.maxVisibleCharacters == dialogueText.text.Length)
+            {
+                isDisplayingLine = false;
+                dialogueIndex++;
+            }
             yield return new WaitForSeconds(typingSpeed);
+        }
+    }
+
+    private void NextLine()
+    {
+        dialogueIndex++;
+        if (dialogueIndex >= dialogue.dialogueLines.Length)
+        {
+            Disable();
+        }
+        else
+        {
+            Continue();
         }
     }
 
