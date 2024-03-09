@@ -347,7 +347,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   time: 0
   animationSpeed: 3.5
-  typingSpeed: 0.05
+  typingSpeed: 0.03
+  isDisplayingLine: 0
+  dialogueIndex: 0
 --- !u!1 &343357613
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +362,7 @@ GameObject:
   - component: {fileID: 343357616}
   - component: {fileID: 343357615}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -383,8 +385,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 99.2, y: 94.5}
-  m_SizeDelta: {x: 150, y: 189}
+  m_AnchoredPosition: {x: 107, y: 78.75}
+  m_SizeDelta: {x: 124.99999, y: 157.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &343357615
 MonoBehaviour:
@@ -642,8 +644,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 88.32446, y: 39.5}
-  m_SizeDelta: {x: 415.5268, y: 41.2798}
+  m_AnchoredPosition: {x: 92.518715, y: 40.42267}
+  m_SizeDelta: {x: 407.1382, y: 56.4344}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &671474725
 MonoBehaviour:
@@ -667,7 +669,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
     lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-    ipsum lorem ipsum lorem ipsum lorem ipsum...
+    <color="red"> ipsum </color> lorem ipsum lorem ipsum lorem ipsum...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 032d966ccca48224da3503d98c294e2c, type: 2}
   m_sharedMaterial: {fileID: -3193648949625684077, guid: 032d966ccca48224da3503d98c294e2c, type: 2}

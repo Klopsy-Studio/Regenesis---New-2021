@@ -55,6 +55,8 @@ public class TutorialDialogue : MonoBehaviour
 
             isDisplayingLine = true;
             dialogueText.text = dialogue.dialogueLines[dialogueIndex].line;
+            portrait.sprite = dialogue.dialogueLines[dialogueIndex].portrait;
+            portrait.SetNativeSize();
             StartCoroutine(DisplayLine(dialogueText.text));
         }
         else
@@ -99,7 +101,7 @@ public class TutorialDialogue : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Continue();
         }
@@ -122,19 +124,4 @@ public class TutorialDialogue : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
     }
-
-    private void NextLine()
-    {
-        dialogueIndex++;
-        if (dialogueIndex >= dialogue.dialogueLines.Length)
-        {
-            Disable();
-        }
-        else
-        {
-            Continue();
-        }
-    }
-
-
 }
