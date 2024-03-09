@@ -64,10 +64,12 @@ public class TutorialDialogue : MonoBehaviour
             isDisplayingLine = false;
             dialogueIndex++;
             dialogueText.maxVisibleCharacters = dialogueText.text.Length;
+
+            // Show indicator for complete line
         }
     }
 
-    public void Disable()
+    private void Disable()
     {
         show = false;
         dialogueText.text = "";
@@ -120,6 +122,9 @@ public class TutorialDialogue : MonoBehaviour
             {
                 isDisplayingLine = false;
                 dialogueIndex++;
+                dialogueText.maxVisibleCharacters = dialogueText.text.Length;
+
+                // Show indicator for complete line
             }
             yield return new WaitForSeconds(typingSpeed);
         }
