@@ -9,10 +9,10 @@ public class MaterialPointsShopButton : MonoBehaviour, IPointerClickHandler
 	public Image materialImage;
 	public TextMeshProUGUI amountText;
 	public int points;
-
+	SetShopItemInfoPanelText itemPanelInfo;
 
 	public MonsterMaterialSlot materialSlot;
-	BuyItemPanel buyItemPanel;
+	
 	public int originalMaterialAmounts;
 	public void OnPointerClick(PointerEventData eventData)
 	{
@@ -33,22 +33,17 @@ public class MaterialPointsShopButton : MonoBehaviour, IPointerClickHandler
 		   
 	}
 
-	public void SetMaterial(MonsterMaterialSlot _materialSlot, BuyItemPanel _buyItemPanel)
+	public void SetMaterial(MonsterMaterialSlot _materialSlot, SetShopItemInfoPanelText _itemPanelInfo)
 	{
 		materialImage.sprite = _materialSlot.material.sprite;
 		amountText.SetText(_materialSlot.amount.ToString());
 		materialSlot = _materialSlot;
-		buyItemPanel = _buyItemPanel;
+		itemPanelInfo = _itemPanelInfo;
 		originalMaterialAmounts = _materialSlot.amount;
 	}
 	
 	
-	//NEW
 	
-	
-	
-	
-	//OLD
 
 	void UseMaterial()
 	{
@@ -56,7 +51,7 @@ public class MaterialPointsShopButton : MonoBehaviour, IPointerClickHandler
 		//if (buyItemPanel.shopManager.currentPoints >= buyItemPanel.itemTotalCost) return;
 		materialSlot.amount -= 1;
 		amountText.SetText(materialSlot.amount.ToString());
-		buyItemPanel.UpdateCurrentPoints(points);
+		itemPanelInfo.UpdateCurrentPoints(points);
 
 		//NEW CODE
 		GameManager.instance.materialInventory.SubstractMaterial(materialSlot);
@@ -69,7 +64,7 @@ public class MaterialPointsShopButton : MonoBehaviour, IPointerClickHandler
 		if (materialSlot.amount >= originalMaterialAmounts) return;
 		materialSlot.amount += 1;
 		amountText.SetText(materialSlot.amount.ToString());
-		buyItemPanel.UpdateCurrentPoints(-points);
+		itemPanelInfo.UpdateCurrentPoints(-points);
 		GameManager.instance.materialInventory.AddMonsterMaterial(materialSlot.material, 1);
 		Debug.Log("return material method");
 	}
@@ -82,7 +77,7 @@ public class MaterialPointsShopButton : MonoBehaviour, IPointerClickHandler
 			materialSlot.amount += 1;
 		   
 			amountText.SetText(materialSlot.amount.ToString());
-			buyItemPanel.UpdateCurrentPoints(-points);
+			itemPanelInfo.UpdateCurrentPoints(-points);
 			GameManager.instance.materialInventory.AddMonsterMaterial(materialSlot.material, 1);
 			Debug.Log("return all material method");
 		}
