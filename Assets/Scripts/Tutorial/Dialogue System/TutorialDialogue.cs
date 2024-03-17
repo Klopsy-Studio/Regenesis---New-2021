@@ -6,12 +6,15 @@ using TMPro;
 
 public class TutorialDialogue : MonoBehaviour
 {
+    [SerializeField] private DialogueText dialogue;
+    
     [Header("References")]
     [SerializeField] private Image lowerVignette;
     [SerializeField] private Image portrait;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private Sprite continueSprite;
+    [SerializeField] private Image continueIndicator;
 
-    [SerializeField] private DialogueText dialogue;
     
     [Header("Parameters")]
     [SerializeField] private AnimationCurve fadeCurve;
@@ -31,6 +34,8 @@ public class TutorialDialogue : MonoBehaviour
 
     [SerializeField] private int dialogueIndex = 0;
 
+    private Coroutine displayLine;
+
 
     private void Start()
     {
@@ -39,6 +44,8 @@ public class TutorialDialogue : MonoBehaviour
         lowerVignette.color = new Vector4(255f, 255f, 255f, 0f);
         dialogueText.color = new Vector4(255f, 255f, 255f, 0f);
         portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, -portrait.rectTransform.anchoredPosition.y);
+
+        ShowContinueIndicator(false);
     }
 
     public void Continue()
@@ -57,15 +64,18 @@ public class TutorialDialogue : MonoBehaviour
             dialogueText.text = dialogue.dialogueLines[dialogueIndex].line;
             portrait.sprite = dialogue.dialogueLines[dialogueIndex].portrait;
             portrait.SetNativeSize();
-            StartCoroutine(DisplayLine(dialogueText.text));
+
+            ShowContinueIndicator(false);
+
+            if(displayLine != null)
+                StopCoroutine(displayLine);
+
+            displayLine = StartCoroutine(DisplayLine(dialogueText.text));
         }
         else
         {
-            isDisplayingLine = false;
-            dialogueIndex++;
-            dialogueText.maxVisibleCharacters = dialogueText.text.Length;
-
-            // Show indicator for complete line
+            LineComplete();
+            ShowContinueIndicator(true);
         }
     }
 
@@ -74,6 +84,7 @@ public class TutorialDialogue : MonoBehaviour
         show = false;
         dialogueText.text = "";
         dialogueIndex = 0;
+        ShowContinueIndicator(false);
     }
 
 
@@ -82,26 +93,13 @@ public class TutorialDialogue : MonoBehaviour
         if (time < 1f && show)
         {
             time += Time.deltaTime * animationSpeed;
-            fadeValue = fadeCurve.Evaluate(time);
-            imageValue = imageCurve.Evaluate(time);
-
-            lowerVignette.color = new Vector4(255f, 255f, 255f, fadeValue);
-            dialogueText.color = new Vector4(255f, 255f, 255f, fadeValue);
-
-            portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, finalYPosition * imageValue);
+            DisplayAnimations(time);
         }
         else if (time > 0f && !show)
         {
             time -= Time.deltaTime * animationSpeed;
-            fadeValue = fadeCurve.Evaluate(time);
-            imageValue = imageCurve.Evaluate(time);
-
-            lowerVignette.color = new Vector4(255f, 255f, 255f, fadeValue);
-            dialogueText.color = new Vector4(255f, 255f, 255f, fadeValue);
-
-            portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, finalYPosition * imageValue);
+            DisplayAnimations(time);
         }
-
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -109,6 +107,16 @@ public class TutorialDialogue : MonoBehaviour
         }
     }
 
+    private void DisplayAnimations(float time)
+    {
+        fadeValue = fadeCurve.Evaluate(time);
+        imageValue = imageCurve.Evaluate(time);
+
+        lowerVignette.color = new Vector4(255f, 255f, 255f, fadeValue);
+        dialogueText.color = new Vector4(255f, 255f, 255f, fadeValue);
+
+        portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, finalYPosition * imageValue);
+    }
 
     private IEnumerator DisplayLine (string line)
     {
@@ -120,13 +128,37 @@ public class TutorialDialogue : MonoBehaviour
             dialogueText.maxVisibleCharacters++;
             if (dialogueText.maxVisibleCharacters == dialogueText.text.Length)
             {
-                isDisplayingLine = false;
-                dialogueIndex++;
-                dialogueText.maxVisibleCharacters = dialogueText.text.Length;
-
-                // Show indicator for complete line
+                LineComplete();
+                ShowContinueIndicator(true);
             }
             yield return new WaitForSeconds(typingSpeed);
         }
     }
+
+
+    private void LineComplete()
+    {
+        isDisplayingLine = false;
+        dialogueIndex++;
+        dialogueText.maxVisibleCharacters = dialogueText.text.Length;
+    }
+
+
+    private void ShowContinueIndicator(bool value)
+    {
+        if (value)
+        {
+            if (dialogueIndex == dialogue.dialogueLines.Length)
+                continueIndicator.sprite = null;
+            else
+                continueIndicator.sprite = continueSprite;
+
+            continueIndicator.color = new Vector4(continueIndicator.color.r, continueIndicator.color.g, continueIndicator.color.b, 1f);
+        }
+        else
+        {
+            continueIndicator.color = new Vector4(continueIndicator.color.r, continueIndicator.color.g, continueIndicator.color.b, 0f);
+        }
+    }
+
 }
