@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Steamworks;
+using System.Diagnostics.Tracing;
 
 
 public class ShopManager : MonoBehaviour, IDataPersistence
@@ -13,14 +14,17 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 	[SerializeField] GameObject tutorialPanel;
 	bool isTutorialFinished = false;
 
+	public GameObject restOfTheShopUI;
+	[SerializeField] TextMeshProUGUI selectAnItemTxT;
 	[SerializeField] ShopItemContainer shopItemContainer;
 	[SerializeField] GameObject slotPrefab;
 	[SerializeField] Transform transformContent;
 	public int currentPoints;
+	[HideInInspector] public int itemQuantity =0;
+	public TextMeshProUGUI itemQuantityTxT; 
 	public Slider slider;
 
-	/* [HideInInspector]*/
-	public ShopItemTemplate shopItemSelected;
+	
 	public SetShopItemInfoPanelText itemPanelInfo;
 
 
@@ -32,44 +36,99 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 	public void ButtonClicked()
 	{
 		OnShopButtonCliked?.Invoke();
+		restOfTheShopUI.SetActive(true);
+		selectAnItemTxT.gameObject.SetActive(false);
 	}
 
 	public void UpdateCurrentPointsAndSlider(int _points, int itemCost)
 	{
-		int itemQuantity =0;
+		
 		Debug.Log("itemCost" + itemCost);
 		float result;
 		currentPoints += _points;
 		
-		result = (float)currentPoints / itemCost;
-		StartCoroutine(LerpSlider(slider.value, result, 0.3f));
+		//result = (float)currentPoints / itemCost;
 		
-		if(currentPoints == itemCost)
+		
+		if(currentPoints >= itemCost)
 		{
 			currentPoints -= itemCost;
 			itemQuantity++;
+			itemQuantityTxT.SetText("Result Quantity: " + itemQuantity);
+			result = (float)currentPoints / itemCost;
+			StartCoroutine(LerpSlider(slider.value, result, 0.3f, true));
 		}
+		else
+		{
+			result = (float)currentPoints / itemCost;
+			StartCoroutine(LerpSlider(slider.value, result, 0.3f, false));
+		}
+		
+		//StartCoroutine(LerpSlider(slider.value, result, 0.3f));
 		
 		Debug.Log("cureent points :" + currentPoints + "itemCost: " + itemCost + "slidervalue: " +slider.value);
 	}
 
 
-	IEnumerator LerpSlider(float startSlider, float endSlider, float overtime)
+	IEnumerator LerpSlider(float startSlider, float endSlider, float overtime, bool doesItAddItemQuantity)
 	{
-		float starTime = Time.time;
-
-		while (Time.time < starTime + overtime)
+		if(doesItAddItemQuantity)
 		{
-			slider.value = Mathf.Lerp(startSlider, endSlider, (Time.time - starTime) / overtime);
-			yield return null;
-		}
+			float starTime = Time.time;
+			
+			while (Time.time < starTime + overtime)
+			{
+				slider.value = Mathf.Lerp(startSlider, 1, (Time.time - starTime) / overtime);
+				yield return null;
+				
+			}
 		
-		slider.value = endSlider;
-		
-		if(slider.value >= slider.maxValue)
-		{
 			slider.value =0;
+			
+			float secondTime = Time.time;
+			
+			
+			
+			while (Time.time < secondTime + overtime)
+			{
+				slider.value = Mathf.Lerp(0, endSlider, (Time.time - secondTime) / overtime);
+				yield return null;
+				
+			}
+			
+			slider.value = endSlider;
+			
 		}
+		else
+		{
+			float starTime = Time.time;
+
+			while (Time.time < starTime + overtime)
+			{
+				slider.value = Mathf.Lerp(startSlider, endSlider, (Time.time - starTime) / overtime);
+				yield return null;
+				
+			}
+			slider.value = endSlider;
+		}
+		
+	
+		// }
+		
+		// float starTime = Time.time;
+
+		// while (Time.time < starTime + overtime)
+		// {
+		// 	slider.value = Mathf.Lerp(startSlider, endSlider, (Time.time - starTime) / overtime);
+		// 	yield return null;
+		// }
+		
+		// slider.value = endSlider;
+		
+		// if(slider.value >= slider.maxValue)
+		// {
+		// 	slider.value =0;
+		// }
 	
 		
 		
@@ -88,11 +147,12 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 		tutorialPanel.SetActive(false);
 		if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
 
-		itemPanelInfo.GO.SetActive(false);
+		itemPanelInfo.SetUpButtons();
+		restOfTheShopUI.gameObject.SetActive(false);
 
 		CreateDisplay();
 		// buyItemPanel.SetBuyPanelInfo(itemPanelInfo, this);
-		itemPanelInfo.SetUpButtons();
+		
 	}
 	private void CreateDisplay()
 	{
@@ -125,12 +185,21 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 	// 	buyItemPanel.SetUpButtons();
 
 	// }
+	
+	public void CloseShop() //unity button
+	{
+		ReturnAllMaterials();
+		restOfTheShopUI.SetActive(false);
+		selectAnItemTxT.gameObject.SetActive(true);
+	}
 
 
 	public void BuyItem()//UnityButton function calls this method
 	{
 
 		itemPanelInfo.BuyItem();
+		itemQuantityTxT.SetText("Result Quantity: " + itemQuantity);
+		
 
 	}
 
@@ -161,8 +230,13 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 	public void CancelButton() //button of Cancel
 	{
 		ReturnAllMaterials();
-
+		StartCoroutine(LerpSlider(slider.value, 0, 0.3f, false));
+		currentPoints =0;
+		itemQuantity =0;
+		itemQuantityTxT.SetText("Result Quantity: " + itemQuantity);
 	}
+	
+
 }
 
 [System.Serializable]
@@ -171,18 +245,21 @@ public class SetShopItemInfoPanelText
 	public GameObject GO;
 
 	//[field:SerializeField] public TextMeshProUGUI ItemName { get; private set;}
+	[SerializeField] Image itemImg;
 	[SerializeField] TextMeshProUGUI itemName;
 	[SerializeField] TextMeshProUGUI itemDescription;
-	[SerializeField] TextMeshProUGUI itemAmountTxT;
-	[SerializeField] TextMeshProUGUI itemCostTxT;
+	
 	[SerializeField] TextMeshProUGUI itemPointCostTxT;
 
 	[SerializeField] TextMeshProUGUI itemAmountInInventory;
 
 	//public int itemAmount;
 	[SerializeField] ShopManager shopManager;
+	[SerializeField] TextMeshProUGUI pointRequiredTxT;
 
 	public int itemCost;
+	
+	
 
 	public ShopItemInfo itemInfo;
 
@@ -201,13 +278,13 @@ public class SetShopItemInfoPanelText
 		//ItemName.SetText(_shopItem.name);
 		//ItemImage.sprite = _shopItem.item.consumable.itemSprite;
 		//ItemImage.SetNativeSize();
-		
+		itemImg.sprite = _shopItem.item.consumable.iconSprite;
 		itemInfo = _shopItem.item;
 		itemName.SetText(_shopItem.name);
 		itemDescription.SetText(_shopItem.item.consumable.consumableDescription);
 		itemPointCostTxT.SetText(_shopItem.item.pointCosts.ToString() + "pts");
 		itemCost = _shopItem.item.pointCosts;
-	
+		pointRequiredTxT.SetText ("Points required " +_shopItem.item.pointCosts.ToString()); 
 		CheckNumberOfItemInInventory(_shopItem);
 
 		// ResetPanelInfo();
@@ -294,25 +371,25 @@ public class SetShopItemInfoPanelText
 	}
 	public void BuyItem()
 	{
-		// if (shopManager.currentPoints < itemTotalCost)
-		// {
-		// 	AudioManager.instance.Play("NoPurchase");
-		// 	return;
-		// }
-		// shopManager.animator.SetTrigger("purchased");
-		// AudioManager.instance.Play("ComprarTienda");
+		if (shopManager.itemQuantity<=0)
+		{
+			AudioManager.instance.Play("NoPurchase");
+			return;
+		}
+		shopManager.animator.SetTrigger("purchased");
+		AudioManager.instance.Play("ComprarTienda");
 
 		// UpdateCurrentPoints(-itemTotalCost);
 
-		// //REVISAR ESTA LINEA DE CODIGO 04/03/24
-		// GameManager.instance.consumableInventory.AddConsumable(itemInfo.consumable, itemAmount);
+		//REVISAR ESTA LINEA DE CODIGO 04/03/24
+		GameManager.instance.consumableInventory.AddConsumable(itemInfo.consumable, shopManager.itemQuantity);
+		shopManager.itemQuantity =0;
 
-
-		// //GameManager.instance.materialInventory.SubstractMaterial(material1);
-		// //GameManager.instance.materialInventory.SubstractMaterial(material2);
+		GameManager.instance.materialInventory.SubstractMaterial(material1);
+		GameManager.instance.materialInventory.SubstractMaterial(material2);
 
 		// //actualizar los buttons;
-		// SetUpButtons();
+		SetUpButtons();
 
 	}
 

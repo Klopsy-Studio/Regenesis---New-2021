@@ -61,6 +61,7 @@ public class BunkhouseManager : MonoBehaviour, IDataPersistence
 	public void WeaponButtonClicked()
 	{
 		OnWeaponButtonCliked?.Invoke();
+		selectWeaponPanel.SetActive(true);
 		
 		
 	}
@@ -92,6 +93,10 @@ public class BunkhouseManager : MonoBehaviour, IDataPersistence
 		data.isBarrackTutorialFinished = isTutorialFinished;
 	}
 	
+	public void CloseBarrack() //unity button
+	{
+		selectWeaponPanel.SetActive(false);
+	}
 	
 
 }
