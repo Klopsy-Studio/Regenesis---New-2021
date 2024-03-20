@@ -81,10 +81,10 @@ public class GameData
     private void AddDefaultMaterials()
     {
    
-        for (int i = 0; i < materialNameList.Length; i++)
-        {
-            Debug.Log("itemName" + materialNameList[i]);
-        }
+        // for (int i = 0; i < materialNameList.Length; i++)
+        // {
+        //     Debug.Log("itemName" + materialNameList[i]);
+        // }
 
         for (int i = 0; i < materialNameList.Length; i++)
         {

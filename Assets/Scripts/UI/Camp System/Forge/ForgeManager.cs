@@ -29,6 +29,10 @@ public class ForgeManager : MonoBehaviour, IDataPersistence
 	
 	[SerializeField] GameObject forgeButton;
 	[SerializeField] TextMeshProUGUI selectWeaponTxT;
+	
+	List<WeaponInfoTemplate> weaponSlotList = new List<WeaponInfoTemplate>();
+	 
+
  	private void Start()
 	{
 		tutorialPanel.SetActive(false);
@@ -76,6 +80,7 @@ public class ForgeManager : MonoBehaviour, IDataPersistence
 			for (int w = 0; w < weaponUpgradeSystem.allWeaponsTrees[i].weaponUpgrade.Length; w++)
 			{
 				var weaponSlot = Instantiate(weaponSlotPrefab, Vector3.zero, Quaternion.identity, weaponTreeTemplate.contentTransform);
+				weaponSlotList.Add(weaponSlot.GetComponent<WeaponInfoTemplate>());
 				//weaponSlot.GetComponent<WeaponInfoTemplate>().weaponName.SetText(weaponUpgradeSystem.allWeaponsTrees[i].weaponUpgrade[w].itemName);
 				weaponSlot.GetComponent<WeaponInfoTemplate>().SetWeaponInfo(weaponUpgradeSystem.allWeaponsTrees[i].weaponUpgrade[w], this);
 			}
@@ -103,6 +108,14 @@ public class ForgeManager : MonoBehaviour, IDataPersistence
 	{
 		currentWeaponInfoTemplate = _weaponInfoTemplate;
 	}
+	
+	public void UpdateChest()
+	{
+		foreach (var weaponSlot in weaponSlotList)
+		{
+			weaponSlot.UpdateChest();
+		}
+	}
 
 	public bool CanPurchaseWeapon()
 	{
@@ -110,7 +123,7 @@ public class ForgeManager : MonoBehaviour, IDataPersistence
 
 		//var materialsRequired = currentWeaponInfoTemplate
 
-		//ESTO ESTA MAL revisar weaponinfotemplate
+	
 		for (int i = 0; i < currentWeaponInfoTemplate.WeaponUpgrade.materialsRequired.Length; i++)
 		{
 	

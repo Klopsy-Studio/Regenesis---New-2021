@@ -44,6 +44,8 @@ public class PurchaseForge : MonoBehaviour, IPointerClickHandler
 		newForgeManager.UpdateMaterialRequiredPanel(newForgeManager.currentWeaponInfoTemplate.WeaponUpgrade);
 		animatorPurchase.SetTrigger("purchased");
 		AudioManager.instance.Play("ComprarForja");
+		
+		newForgeManager.UpdateChest();
 
 	}
 

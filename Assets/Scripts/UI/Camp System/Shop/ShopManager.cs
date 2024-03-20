@@ -4,294 +4,518 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Steamworks;
+using System.Diagnostics.Tracing;
 
 
 public class ShopManager : MonoBehaviour, IDataPersistence
 {
-    [Header("tutorialVariable")]
-    [SerializeField] GameObject tutorialPanel;
-    bool isTutorialFinished = false;
+	[Header("tutorialVariable")]
+	[SerializeField] GameObject tutorialPanel;
+	bool isTutorialFinished = false;
 
-    [SerializeField] ShopItemContainer shopItemContainer;
-    [SerializeField] GameObject slotPrefab;
-    [SerializeField] Transform transformContent;
-    public int currentPoints;
-    [SerializeField] TextMeshProUGUI currentPointsTxT;
-   /* [HideInInspector]*/ public ShopItemTemplate shopItemSelected;
-    public SetShopItemInfoPanelText itemPanelInfo;
-   
+	public GameObject restOfTheShopUI;
+	[SerializeField] TextMeshProUGUI selectAnItemTxT;
+	[SerializeField] ShopItemContainer shopItemContainer;
+	[SerializeField] GameObject slotPrefab;
+	[SerializeField] Transform transformContent;
+	public int currentPoints;
+	[HideInInspector] public int itemQuantity =0;
+	public TextMeshProUGUI itemQuantityTxT; 
+	public Slider slider;
 
-    public BuyItemPanel buyItemPanel;
+	
+	public SetShopItemInfoPanelText itemPanelInfo;
 
-    public delegate void ShopButtonSlotClicked();
-    public static event ShopButtonSlotClicked OnShopButtonCliked;
 
-    public Animator animator;
-    public void ButtonClicked()
-    {
-        OnShopButtonCliked?.Invoke();
-    }
-    public void FinishTutorial() //UnityButtons
-    {
-        tutorialPanel.SetActive(false);
-        isTutorialFinished = true;
-    }
 
-    private void Start()
-    {
-        tutorialPanel.SetActive(false);
-        if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
-        currentPointsTxT.SetText(currentPoints.ToString() + " p");
-        itemPanelInfo.GO.SetActive(false);
-        buyItemPanel.GO.SetActive(false);
-        CreateDisplay();
-    }
-    private void CreateDisplay()
-    {
-        for (int i = 0; i < shopItemContainer.shopItems.Length; i++)
-        {
-            var itemShop = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, transformContent);
-            var itemInfo = shopItemContainer.shopItems[i];
-            itemShop.GetComponent<ShopItemTemplate>().SetItemInfo(itemInfo, this);
-           
+	public delegate void ShopButtonSlotClicked();
+	public static event ShopButtonSlotClicked OnShopButtonCliked;
 
-        }
-    }
+	public Animator animator;
+	public void ButtonClicked()
+	{
+		OnShopButtonCliked?.Invoke();
+		restOfTheShopUI.SetActive(true);
+		selectAnItemTxT.gameObject.SetActive(false);
+	}
 
-    public void IncreaseAmount() //UnityButton function calls this method
-    {
-        
-        itemPanelInfo.IncreaseAmount();
-    }
+	public void UpdateCurrentPointsAndSlider(int _points, int itemCost)
+	{
+		
+		Debug.Log("itemCost" + itemCost);
+		float result;
+		currentPoints += _points;
+		
+		//result = (float)currentPoints / itemCost;
+		
+		
+		if(currentPoints >= itemCost)
+		{
+			currentPoints -= itemCost;
+			itemQuantity++;
+			itemQuantityTxT.SetText("Result Quantity: " + itemQuantity);
+			result = (float)currentPoints / itemCost;
+			StartCoroutine(LerpSlider(slider.value, result, 0.3f, true));
+		}
+		else
+		{
+			result = (float)currentPoints / itemCost;
+			StartCoroutine(LerpSlider(slider.value, result, 0.3f, false));
+		}
+		
+		//StartCoroutine(LerpSlider(slider.value, result, 0.3f));
+		
+		Debug.Log("cureent points :" + currentPoints + "itemCost: " + itemCost + "slidervalue: " +slider.value);
+	}
 
-    public void DecreaseAmount()//UnityButton function calls this method
-    {
-        itemPanelInfo.DecreaseAmount();
-    }
 
-    public void OpenBuyItemPanel()//UnityButton function calls this method
-    {
-        if (itemPanelInfo.itemAmount <= 0) return;
-        buyItemPanel.GO.SetActive(true);
-        buyItemPanel.SetBuyPanelInfo(itemPanelInfo, this);
-        buyItemPanel.SetUpButtons();
-        currentPointsTxT.gameObject.SetActive(false);
-    }
+	IEnumerator LerpSlider(float startSlider, float endSlider, float overtime, bool doesItAddItemQuantity)
+	{
+		if(doesItAddItemQuantity)
+		{
+			float starTime = Time.time;
+			
+			while (Time.time < starTime + overtime)
+			{
+				slider.value = Mathf.Lerp(startSlider, 1, (Time.time - starTime) / overtime);
+				yield return null;
+				
+			}
+		
+			slider.value =0;
+			
+			float secondTime = Time.time;
+			
+			
+			
+			while (Time.time < secondTime + overtime)
+			{
+				slider.value = Mathf.Lerp(0, endSlider, (Time.time - secondTime) / overtime);
+				yield return null;
+				
+			}
+			
+			slider.value = endSlider;
+			
+		}
+		else
+		{
+			float starTime = Time.time;
 
-    public void CloseBuyItemPanel() //UnityButton calls this method
-    {
-        currentPointsTxT.gameObject.SetActive(true);
-        currentPointsTxT.SetText(currentPoints.ToString() + " p");
-        buyItemPanel.GO.SetActive(false);
-    }
+			while (Time.time < starTime + overtime)
+			{
+				slider.value = Mathf.Lerp(startSlider, endSlider, (Time.time - starTime) / overtime);
+				yield return null;
+				
+			}
+			slider.value = endSlider;
+		}
+		
+	
+		// }
+		
+		// float starTime = Time.time;
 
-    public void BuyItem()//UnityButton function calls this method
-    {
-      
-        buyItemPanel.BuyItem();
+		// while (Time.time < starTime + overtime)
+		// {
+		// 	slider.value = Mathf.Lerp(startSlider, endSlider, (Time.time - starTime) / overtime);
+		// 	yield return null;
+		// }
+		
+		// slider.value = endSlider;
+		
+		// if(slider.value >= slider.maxValue)
+		// {
+		// 	slider.value =0;
+		// }
+	
+		
+		
 
-    }
+	}
 
-    public void LoadData(GameData data)
-    {
-        isTutorialFinished = data.isShopTutorialFinished;
-        currentPoints = data.shopCurrentPoints;
-    }
+	
+	public void FinishTutorial() //UnityButtons
+	{
+		tutorialPanel.SetActive(false);
+		isTutorialFinished = true;
+	}
 
-    public void SaveData(GameData data)
-    {
-        data.isShopTutorialFinished = isTutorialFinished;
-        data.shopCurrentPoints = currentPoints;
-    }
+	private void Start()
+	{
+		tutorialPanel.SetActive(false);
+		if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
 
-    public void ReturnAllMaterials()
-    {
-        buyItemPanel.button1.ReturnAllMaterials();
-        buyItemPanel.button2.ReturnAllMaterials();
-    }
+		itemPanelInfo.SetUpButtons();
+		restOfTheShopUI.gameObject.SetActive(false);
 
-    public void ResetPanelInfo() //button of closeButton
-    {
-        itemPanelInfo.ResetPanelInfo();
-        
-    }
+		CreateDisplay();
+		// buyItemPanel.SetBuyPanelInfo(itemPanelInfo, this);
+		
+	}
+	private void CreateDisplay()
+	{
+		for (int i = 0; i < shopItemContainer.shopItems.Length; i++)
+		{
+			var itemShop = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, transformContent);
+			var itemInfo = shopItemContainer.shopItems[i];
+			itemShop.GetComponent<ShopItemTemplate>().SetItemInfo(itemInfo, this);
 
-    public void CancelButton() //button of Cancel
-    {
-        ReturnAllMaterials();
-        buyItemPanel.GO.SetActive(false);
-    }
+
+		}
+	}
+
+	// public void IncreaseAmount() //DEPRECATED UnityButton function calls this method
+	// {
+
+	// 	itemPanelInfo.IncreaseAmount();
+	// }
+
+	// public void DecreaseAmount()//DEPRECATED UnityButton function calls this method
+	// {
+	// 	itemPanelInfo.DecreaseAmount();
+	// }
+
+	// public void OpenBuyItemPanel()//UnityButton function calls this method DEPRECATED
+	// {
+	// 	if (itemPanelInfo.itemAmount <= 0) return;
+
+	// 	buyItemPanel.SetBuyPanelInfo(itemPanelInfo, this);
+	// 	buyItemPanel.SetUpButtons();
+
+	// }
+	
+	public void CloseShop() //unity button
+	{
+		ReturnAllMaterials();
+		restOfTheShopUI.SetActive(false);
+		selectAnItemTxT.gameObject.SetActive(true);
+	}
+
+
+	public void BuyItem()//UnityButton function calls this method
+	{
+
+		itemPanelInfo.BuyItem();
+		itemQuantityTxT.SetText("Result Quantity: " + itemQuantity);
+		
+
+	}
+
+	public void LoadData(GameData data)
+	{
+		isTutorialFinished = data.isShopTutorialFinished;
+		currentPoints = data.shopCurrentPoints;
+	}
+
+	public void SaveData(GameData data)
+	{
+		data.isShopTutorialFinished = isTutorialFinished;
+		data.shopCurrentPoints = currentPoints;
+	}
+
+	public void ReturnAllMaterials()
+	{
+		itemPanelInfo.button1.ReturnAllMaterials();
+		itemPanelInfo.button2.ReturnAllMaterials();
+	}
+
+	// public void ResetPanelInfo() //button of closeButton
+	// {
+	// 	itemPanelInfo.ResetPanelInfo();
+
+	// }
+
+	public void CancelButton() //button of Cancel
+	{
+		ReturnAllMaterials();
+		StartCoroutine(LerpSlider(slider.value, 0, 0.3f, false));
+		currentPoints =0;
+		itemQuantity =0;
+		itemQuantityTxT.SetText("Result Quantity: " + itemQuantity);
+	}
+	
+
 }
 
 [System.Serializable]
 public class SetShopItemInfoPanelText
 {
-    public GameObject GO;
+	public GameObject GO;
 
-    //[field:SerializeField] public TextMeshProUGUI ItemName { get; private set;}
-    [SerializeField] TextMeshProUGUI itemDescription;
-    [SerializeField] TextMeshProUGUI itemAmountTxT;
-    [SerializeField] TextMeshProUGUI itemCostTxT;
+	//[field:SerializeField] public TextMeshProUGUI ItemName { get; private set;}
+	[SerializeField] Image itemImg;
+	[SerializeField] TextMeshProUGUI itemName;
+	[SerializeField] TextMeshProUGUI itemDescription;
+	
+	[SerializeField] TextMeshProUGUI itemPointCostTxT;
 
-    public int itemAmount;
-   
+	[SerializeField] TextMeshProUGUI itemAmountInInventory;
 
-    public int itemCost;
+	//public int itemAmount;
+	[SerializeField] ShopManager shopManager;
+	[SerializeField] TextMeshProUGUI pointRequiredTxT;
 
-    public ShopItemInfo itemInfo;
+	public int itemCost;
+	
+	
 
-    public GameObject tradeButton;
+	public ShopItemInfo itemInfo;
 
-    public void SetItemInfo(ShopItemTemplate _shopItem)
-    {
-        //ItemName.SetText(_shopItem.name);
-        //ItemImage.sprite = _shopItem.item.consumable.itemSprite;
-        //ItemImage.SetNativeSize();
-        itemInfo = _shopItem.item;
-        itemDescription.SetText(_shopItem.item.consumable.consumableDescription);
-        ResetPanelInfo();
-    }
-
-    public void IncreaseAmount()
-    {
-        itemAmount++;
-        itemCost = itemAmount * itemInfo.pointCosts;
-        itemAmountTxT.SetText("x" + itemAmount);
-        itemCostTxT.SetText("Total: " + itemCost + "p");
-        if (itemAmount > 0)
-        {
-            tradeButton.SetActive(true);
-        }
-       
-    }
-
-    public void DecreaseAmount()
-    {
-        if (itemAmount <= 0) return;
-        itemAmount--;
-        if (itemAmount == 0) tradeButton.SetActive(false);
-        itemCost = itemAmount * itemInfo.pointCosts;
-        itemAmountTxT.SetText("x" + itemAmount);
-        itemCostTxT.SetText("Total: " + itemCost + "p");
-    }
-
-    public void ResetPanelInfo() 
-    {
-        itemAmount = 0;
-        itemCost = 0;
-        itemAmountTxT.SetText("x" + itemAmount);
-        itemCostTxT.SetText("Total: " + itemCost + "p");
-        tradeButton.SetActive(false);   
-    }
-
-   
-   
-
-}
-
-[System.Serializable]
-public class BuyItemPanel
-{
-    public GameObject GO;
-    
-   
-
-    [SerializeField] TextMeshProUGUI itemTotalCostTxT;
-    [SerializeField] TextMeshProUGUI currentPointsTxTBuyPanel;
-
-    public int itemTotalCost;
-    
-    int itemAmount;
-
-    [SerializeField] MaterialInventory materialInventory;
-    [SerializeField] MonsterMaterialSlot material1;
-    [SerializeField] MonsterMaterialSlot material2;
-    public MaterialPointsShopButton button1;
-    public MaterialPointsShopButton button2;
-    ShopItemInfo itemInfo;
-
-    public ShopManager shopManager;
-
-    public GameObject confirmButton;
-  
-    public void SetBuyPanelInfo(SetShopItemInfoPanelText _itemInfoPanel, ShopManager _shopManager)
-    {
-        confirmButton.SetActive(false);
-        //itemName.SetText(_itemInfoPanel.ItemName.text);
-        //itemImage.sprite = _itemInfoPanel.ItemImage.sprite;
-        itemTotalCost = _itemInfoPanel.itemCost;
-        itemTotalCostTxT.SetText(itemTotalCost.ToString());
-        itemAmount = _itemInfoPanel.itemAmount;
-        //itemAmountTxT.SetText("x "+_itemInfoPanel.itemAmount.ToString());
-        shopManager = _shopManager;
-        //currentPoints = 0;
-        currentPointsTxTBuyPanel.SetText(shopManager.currentPoints.ToString());
-     
-        itemInfo = _itemInfoPanel.itemInfo;
-
-     
-    }
-
-   
-
-    public void SetUpButtons()
-    {
-
-        var item1 = materialInventory.materialContainer.Find(x => x.material == material1.material);
-        if(item1 != null)
-        {
-            material1.amount = item1.amount;
-        }
-
-        button1.SetMaterial(material1, this);
-
-        var item2 = materialInventory.materialContainer.Find(y => y.material == material2.material);
-        if(item2 != null)
-        {
-            material2.amount = item2.amount;
-        }
-        button2.SetMaterial(material2, this);
+	[SerializeField] MaterialInventory materialInventory;
+	[SerializeField] MonsterMaterialSlot material1;
+	[SerializeField] MonsterMaterialSlot material2;
+	public MaterialPointsShopButton button1;
+	public MaterialPointsShopButton button2;
 
 
-    }
 
-    public void UpdateCurrentPoints(int _points)
-    {
-        shopManager.currentPoints += _points;
-        currentPointsTxTBuyPanel.SetText(shopManager.currentPoints.ToString());
 
-        UpdateConfirmButtonStatus();
 
-    }
+	public void SetItemInfo(ShopItemTemplate _shopItem)
+	{
+		//ItemName.SetText(_shopItem.name);
+		//ItemImage.sprite = _shopItem.item.consumable.itemSprite;
+		//ItemImage.SetNativeSize();
+		itemImg.sprite = _shopItem.item.consumable.iconSprite;
+		itemInfo = _shopItem.item;
+		itemName.SetText(_shopItem.name);
+		itemDescription.SetText(_shopItem.item.consumable.consumableDescription);
+		itemPointCostTxT.SetText(_shopItem.item.pointCosts.ToString() + "pts");
+		itemCost = _shopItem.item.pointCosts;
+		pointRequiredTxT.SetText ("Points required " +_shopItem.item.pointCosts.ToString()); 
+		CheckNumberOfItemInInventory(_shopItem);
 
-    public void UpdateConfirmButtonStatus()
-    {
-        if (shopManager.currentPoints>= itemTotalCost){
-            confirmButton.SetActive(true);
-        }
-        else
-        {
-            confirmButton.SetActive(false);
-        }
-    }
-    public void BuyItem()
-    {
-        if (shopManager.currentPoints < itemTotalCost)
-        {
-            AudioManager.instance.Play("NoPurchase");
-            return;
-        }
-        shopManager.animator.SetTrigger("purchased");
-        AudioManager.instance.Play("ComprarTienda");
+		// ResetPanelInfo();
+	}
+	
+	
 
-        UpdateCurrentPoints(-itemTotalCost);
-        GameManager.instance.consumableInventory.AddConsumable(itemInfo.consumable, itemAmount);
-        //GameManager.instance.materialInventory.SubstractMaterial(material1);
-        //GameManager.instance.materialInventory.SubstractMaterial(material2);
+	void CheckNumberOfItemInInventory(ShopItemTemplate _shopItem)
+	{
+		var itemInfo = _shopItem.item.consumable;
+		int numberOfItems = 0;
+		var consumableInventory = GameManager.instance.consumableInventory;
+		var backpackInventory = GameManager.instance.consumableBackpack;
+		foreach (var item in consumableInventory.consumableContainer)
+		{
+			if (itemInfo == item.consumable)
+			{
+				numberOfItems += item.amount;
+			}
+		}
 
-        //actualizar los buttons;
-        SetUpButtons();
+		foreach (var item in backpackInventory.consumableContainer)
+		{
+			if (itemInfo == item.consumable)
+			{
+				numberOfItems += item.amount;
+			}
+		}
 
-    }
+		itemAmountInInventory.SetText(numberOfItems.ToString());
+	}
+	// public void IncreaseAmount() //DEPRECATED
+	// {
+	// 	itemAmount++;
+	// 	itemCost = itemAmount * itemInfo.pointCosts;
+	// 	itemAmountTxT.SetText("x" + itemAmount);
+	// 	itemCostTxT.SetText("Total: " + itemCost + "p");
+	// 	if (itemAmount > 0)
+	// 	{
+	// 		tradeButton.SetActive(true);
+	// 	}
+
+	// }
+
+	// public void DecreaseAmount() //DEPRECATED
+	// {
+	// 	if (itemAmount <= 0) return;
+	// 	itemAmount--;
+	// 	if (itemAmount == 0) tradeButton.SetActive(false);
+	// 	itemCost = itemAmount * itemInfo.pointCosts;
+	// 	itemAmountTxT.SetText("x" + itemAmount);
+	// 	itemCostTxT.SetText("Total: " + itemCost + "p");
+	// }
+
+	//Por ahora no hace falta esta funcion 11/03/2024
+	// public void ResetPanelInfo()
+	// {
+	// 	// itemAmount = 0;
+	// 	itemCost = 0;
+	// 	// itemAmountTxT.SetText("x" + itemAmount);
+	// 	itemCostTxT.SetText("Total: " + itemCost + "p");
+
+	// }
+
+	public void SetUpButtons()
+	{
+
+		var item1 = materialInventory.materialContainer.Find(x => x.material == material1.material);
+		if (item1 != null)
+		{
+			material1.amount = item1.amount;
+		}
+
+		button1.SetMaterial(material1, this);
+
+		var item2 = materialInventory.materialContainer.Find(y => y.material == material2.material);
+		if (item2 != null)
+		{
+			material2.amount = item2.amount;
+		}
+		button2.SetMaterial(material2, this);
+
+
+	}
+	public void BuyItem()
+	{
+		if (shopManager.itemQuantity<=0)
+		{
+			AudioManager.instance.Play("NoPurchase");
+			return;
+		}
+		shopManager.animator.SetTrigger("purchased");
+		AudioManager.instance.Play("ComprarTienda");
+
+		// UpdateCurrentPoints(-itemTotalCost);
+
+		//REVISAR ESTA LINEA DE CODIGO 04/03/24
+		GameManager.instance.consumableInventory.AddConsumable(itemInfo.consumable, shopManager.itemQuantity);
+		shopManager.itemQuantity =0;
+
+		GameManager.instance.materialInventory.SubstractMaterial(material1);
+		GameManager.instance.materialInventory.SubstractMaterial(material2);
+
+		// //actualizar los buttons;
+		SetUpButtons();
+
+	}
+
+
+	//es necesario esta funcion o necesita modificarse? -06/03/24
+	public void UpdateCurrentPoints(int _points)
+	{
+		shopManager.UpdateCurrentPointsAndSlider(_points, itemCost);
+		// currentPointsTxTBuyPanel.SetText(shopManager.currentPoints.ToString());
+
+		// UpdateConfirmButtonStatus();
+
+	}
+
 
 }
+
+// [System.Serializable]
+// public class BuyItemPanel
+// {
+
+
+
+// 	[SerializeField] Sprite itemIMG;
+// 	[SerializeField] TextMeshProUGUI itemTotalCostTxT;
+// 	[SerializeField] TextMeshProUGUI currentPointsTxTBuyPanel;
+
+// 	public int itemTotalCost;
+
+// 	//int itemAmount;
+
+
+// 	[SerializeField] MaterialInventory materialInventory;
+// 	[SerializeField] MonsterMaterialSlot material1;
+// 	[SerializeField] MonsterMaterialSlot material2;
+// 	public MaterialPointsShopButton button1;
+// 	public MaterialPointsShopButton button2;
+// 	ShopItemInfo itemInfo;
+
+// 	public ShopManager shopManager;
+
+// 	public GameObject confirmButton;
+
+// 	public void SetBuyPanelInfo(SetShopItemInfoPanelText _itemInfoPanel, ShopManager _shopManager)
+// 	{
+// 		confirmButton.SetActive(false);
+// 		//itemName.SetText(_itemInfoPanel.ItemName.text);
+// 		//itemImage.sprite = _itemInfoPanel.ItemImage.sprite;
+// 		itemTotalCost = _itemInfoPanel.itemCost;
+// 		itemTotalCostTxT.SetText(itemTotalCost.ToString());
+// 		//itemAmount = _itemInfoPanel.itemAmount;
+// 		//itemAmountTxT.SetText("x "+_itemInfoPanel.itemAmount.ToString());
+// 		shopManager = _shopManager;
+// 		//currentPoints = 0;
+// 		currentPointsTxTBuyPanel.SetText(shopManager.currentPoints.ToString());
+
+// 		itemInfo = _itemInfoPanel.itemInfo;
+
+
+// 	}
+
+
+
+// 	public void SetUpButtons()
+// 	{
+
+// 		var item1 = materialInventory.materialContainer.Find(x => x.material == material1.material);
+// 		if (item1 != null)
+// 		{
+// 			material1.amount = item1.amount;
+// 		}
+
+// 		button1.SetMaterial(material1, this);
+
+// 		var item2 = materialInventory.materialContainer.Find(y => y.material == material2.material);
+// 		if (item2 != null)
+// 		{
+// 			material2.amount = item2.amount;
+// 		}
+// 		button2.SetMaterial(material2, this);
+
+
+// 	}
+
+// 	public void UpdateCurrentPoints(int _points)
+// 	{
+// 		shopManager.UpdateCurrentPointsAndSlider(_points, itemTotalCost);
+// 		currentPointsTxTBuyPanel.SetText(shopManager.currentPoints.ToString());
+
+// 		UpdateConfirmButtonStatus();
+
+// 	}
+
+// 	public void UpdateConfirmButtonStatus()
+// 	{
+// 		if (shopManager.currentPoints >= itemTotalCost)
+// 		{
+// 			confirmButton.SetActive(true);
+// 		}
+// 		else
+// 		{
+// 			confirmButton.SetActive(false);
+// 		}
+// 	}
+// 	public void BuyItem()
+// 	{
+// 		if (shopManager.currentPoints < itemTotalCost)
+// 		{
+// 			AudioManager.instance.Play("NoPurchase");
+// 			return;
+// 		}
+// 		shopManager.animator.SetTrigger("purchased");
+// 		AudioManager.instance.Play("ComprarTienda");
+
+// 		UpdateCurrentPoints(-itemTotalCost);
+
+// 		//REVISAR ESTA LINEA DE CODIGO 04/03/24
+// 		//GameManager.instance.consumableInventory.AddConsumable(itemInfo.consumable, itemAmount);
+
+
+// 		//GameManager.instance.materialInventory.SubstractMaterial(material1);
+// 		//GameManager.instance.materialInventory.SubstractMaterial(material2);
+
+// 		//actualizar los buttons;
+// 		SetUpButtons();
+
+// 	}
+
+// }
