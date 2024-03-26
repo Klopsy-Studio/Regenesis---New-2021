@@ -59,8 +59,11 @@ public class InitBattleState : BattleState
 
             //Party Icon
             UnitPartyIcon iconParty = Instantiate(owner.partyIconPrefab, owner.partyIconParent.transform).GetComponent<UnitPartyIcon>();
-            iconParty.AssignPartyIcon(player);
 
+            
+            iconParty.AssignPartyIcon(player);
+            iconParty.timeline = GetComponent<TimeLineState>();
+            iconParty.owner = owner;
 
             unitsInGame.Add(unit);
             owner.playerUnits.Add(unit);

@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UnitPartyIcon : MonoBehaviour
+public class UnitPartyIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     PlayerUnit user;
+
+    //Battle state components
+    [HideInInspector] public BattleController owner;
+    [HideInInspector] public TimeLineState timeline;
+
     [SerializeField] Slider hunterHealth;
     [SerializeField] Image healthBarImage;
     [SerializeField] Image hunterPortraitImage;
@@ -103,5 +109,36 @@ public class UnitPartyIcon : MonoBehaviour
         ManageHealth();
 
         currentTime = 0;
+    }
+
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (owner.pauseTimeline)
+        {
+            GameCursor.instance.SetHandCursor();
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        GameCursor.instance.SetRegularCursor();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (owner.pauseTimeline)
+        {
+            if(owner.TryGetComponent<TimeLineState>(out TimeLineState t))
+            {
+                if (t.currentSelectedElement != null)
+                {
+                    t.currentSelectedElement.iconTimeline.DeactivateIconHightlight();
+                }
+
+                t.currentSelectedElement = user;
+                t.CheckIcon();
+            }
+        }
     }
 }

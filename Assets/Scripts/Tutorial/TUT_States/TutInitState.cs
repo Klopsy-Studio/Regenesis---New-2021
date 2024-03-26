@@ -132,7 +132,8 @@ public class TutInitState : BattleState
 
             UnitPartyIcon iconParty = Instantiate(owner.partyIconPrefab, owner.partyIconParent.transform).GetComponent<UnitPartyIcon>();
             iconParty.AssignPartyIcon(player);
-
+            iconParty.owner = owner;
+            iconParty.timeline = GetComponent<TimeLineState>();
             unitsInGame.Add(unit);
             owner.playerUnits.Add(unit);
         }

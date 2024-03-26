@@ -232,6 +232,7 @@ public class BattleController : StateMachine
         zoomed = false;
         sceneTransition.SetBool("fadeOut", true);
         currentEntity = CurrentEntityTurn.None;
+        isTimeLineActive = false;
         BeginGame();
     }
     public void SetMission(LevelData level)

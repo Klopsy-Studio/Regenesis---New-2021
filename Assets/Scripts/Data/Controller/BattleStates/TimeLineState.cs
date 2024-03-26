@@ -114,6 +114,10 @@ public class TimeLineState : BattleState
                 }
                 else
                 {
+                    if(currentSelectedElement != null)
+                    {
+                        currentSelectedElement.iconTimeline.DeactivateIconHightlight();
+                    }
                     owner.currentSelectedIcon = owner.timelineUI.selectedIcon;
                     currentSelectedElement = owner.currentSelectedIcon.element;
                     CheckIcon();
