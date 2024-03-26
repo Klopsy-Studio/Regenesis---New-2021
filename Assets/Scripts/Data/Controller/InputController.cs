@@ -10,6 +10,8 @@ public class InputController : MonoBehaviour
     public static event EventHandler<InfoEventArgs<KeyCode>> escapeEvent;
     public static event EventHandler<InfoEventArgs<KeyCode>> mouseConfirmEvent;
     public static event EventHandler<InfoEventArgs<KeyCode>> mouseCancelEvent;
+    public static event EventHandler<InfoEventArgs<KeyCode>> moveForwardEvent;
+    public static event EventHandler<InfoEventArgs<KeyCode>> moveBackwardEvent;
     public static event EventHandler<InfoEventArgs<Point>> mouseSelectEvent;
 
     Repeater _hor = new Repeater("Horizontal");
@@ -86,6 +88,21 @@ public class InputController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            if (moveBackwardEvent!= null)
+            {
+                moveBackwardEvent(this, new InfoEventArgs<KeyCode>());
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if(moveForwardEvent != null)
+            {
+                moveForwardEvent(this, new InfoEventArgs<KeyCode>());
+            }
+        }
     }
 
    

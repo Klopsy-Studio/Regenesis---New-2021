@@ -8,6 +8,8 @@ public class TimeLineState : BattleState
     [SerializeField] PlayerUnit selectedUnit;
 
     public TimelineElements currentElement;
+    public TimelineElements currentSelectedElement;
+
     float timer = 2f;
     bool timerCheck;
     bool pause = false;
@@ -15,6 +17,7 @@ public class TimeLineState : BattleState
     public override void Enter()
     {
         base.Enter();
+
         //if (currentElement != null)
         //{
         //    if (currentElement.elementEnabled)
@@ -34,53 +37,49 @@ public class TimeLineState : BattleState
 
     public void CheckIcon()
     {
-        if (owner.timelineUI.selectedIcon.element.GetComponent<Unit>() != null)
+        currentSelectedElement.iconTimeline.ActivateIconHightlight();
+        currentSelectedElement.iconTimeline.transform.SetAsLastSibling();
+        if (currentSelectedElement.TryGetComponent<Unit>(out Unit u))
         {
-            if (owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>() != null)
+            if (u.TryGetComponent<PlayerUnit>(out PlayerUnit p))
             {
                 owner.ZoomIn();
 
                 if (selectedUnit == null)
                 {
-                    selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>();
+                    selectedUnit = p;
                     Debug.Log("Setting Unit");
-                    //selectedUnit.status.ChangeToBig();
                 }
                 else
                 {
-                    if (selectedUnit != owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>())
+                    if (selectedUnit != p)
                     {
-                        //selectedUnit.status.ChangeToSmall();
-                        selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnit>();
-                        //selectedUnit.status.ChangeToBig();
+                        selectedUnit = p;
                         Debug.Log("Setting Unit");
                     }
                 }
-                owner.SelectTile(selectedUnit.tile.pos);
-                owner.miniStatus.SetStatus(selectedUnit);
-
+                owner.SelectTile(p.tile.pos);
+                owner.miniStatus.SetStatus(p);
             }
 
-            if (owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>() != null)
+            if (u.TryGetComponent<EnemyUnit>(out EnemyUnit e))
             {
-                Debug.Log("enemy");
-                owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>();
-                owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element.GetComponent<EnemyUnit>());
+                owner.miniStatus.SetStatus(e);
             }
 
-            SelectTile(owner.timelineUI.selectedIcon.element.GetComponent<Unit>().tile.pos);
+            SelectTile(u.tile.pos);
         }
 
-        if (owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnitDeath>() != null)
+        if (currentSelectedElement.TryGetComponent<PlayerUnitDeath>(out PlayerUnitDeath playerDeath))
         {
-            selectedUnit = owner.timelineUI.selectedIcon.element.GetComponent<PlayerUnitDeath>().unit;
+            selectedUnit = playerDeath.unit;
             SelectTile(selectedUnit.currentPoint);
         }
 
-        if (owner.timelineUI.selectedIcon.element.timelineTypes == TimeLineTypes.Items)
+        if (currentSelectedElement.timelineTypes == TimeLineTypes.Items)
         {
-            owner.SelectTile(owner.timelineUI.selectedIcon.element.GetComponent<BombTimeline>().currentPoint);
-            owner.miniStatus.SetStatus(owner.timelineUI.selectedIcon.element);
+            owner.SelectTile(currentSelectedElement.GetComponent<BombTimeline>().currentPoint);
+            owner.miniStatus.SetStatus(currentElement);
         }
     }
     protected override void OnMouseConfirm(object sender, InfoEventArgs<KeyCode> e)
@@ -91,23 +90,32 @@ public class TimeLineState : BattleState
             {
                 if(owner.currentSelectedIcon != null)
                 {
+                    if (currentSelectedElement != null)
+                    {
+                        currentSelectedElement.iconTimeline.DeactivateIconHightlight();
+                    }
+
                     if (owner.currentSelectedIcon != owner.timelineUI.selectedIcon)
                     {
+                        
                         owner.currentSelectedIcon.Return();
                         owner.timelineUI.selectedIcon.selected = true;
                         owner.currentSelectedIcon = owner.timelineUI.selectedIcon;
+                        currentSelectedElement = owner.currentSelectedIcon.element;
                         CheckIcon();             
                     }
-                    else
-                    {
-                        owner.currentSelectedIcon.Return();
-                        owner.currentSelectedIcon = null;
-                        CleanPause();
-                    }
+                    //else
+                    //{
+                    //    owner.currentSelectedIcon.Return();
+                    //    owner.currentSelectedIcon = null;
+                    //    currentSelectedElement = null;
+                    //    CleanPause();
+                    //}
                 }
                 else
                 {
                     owner.currentSelectedIcon = owner.timelineUI.selectedIcon;
+                    currentSelectedElement = owner.currentSelectedIcon.element;
                     CheckIcon();
                 }
             }
@@ -115,9 +123,9 @@ public class TimeLineState : BattleState
             {
                 CleanPause();
                 owner.timelineUI.selectedIcon.selected = false;
-
                 owner.timelineUI.selectedIcon.Return();
                 owner.timelineUI.selectedIcon = null;
+                currentSelectedElement = null;
             }
         }
        
@@ -145,12 +153,15 @@ public class TimeLineState : BattleState
                 if (selectedUnit != null)
                 {
                     owner.miniStatus.DeactivateStatus();
+
+                    selectedUnit.iconTimeline.DeactivateIconHightlight();
                     selectedUnit = null;
                 }
 
                 if(owner.timelineUI.selectedIcon != null)
                 {
                     owner.timelineUI.selectedIcon.Return();
+                    owner.timelineUI.selectedIcon.DeactivateIconHightlight();
                     owner.timelineUI.selectedIcon.selected = false;
 
                 }
@@ -242,7 +253,73 @@ public class TimeLineState : BattleState
         }
     }
 
-    
+    protected override void OnMoveForwardEvent(object sender, InfoEventArgs<KeyCode> e)
+    {
+        Debug.Log("Moving Forward");
+        SelectNextElement();
+    }
+
+    protected override void OnMoveBackwardsEvent(object sender, InfoEventArgs<KeyCode> e)
+    {
+        Debug.Log("Moving backwards");
+        SelectPreviousElement();
+    }
+
+    public void SelectNextElement()
+    {
+        if(owner.pauseTimeline && !owner.battleEnded)
+        {
+            if (currentSelectedElement != null)
+            {
+                int timelineElementsIndex = owner.orderedTimelineSlements.IndexOf(currentSelectedElement);
+                timelineElementsIndex--;
+
+                if (timelineElementsIndex < 0)
+                {
+                    timelineElementsIndex = owner.orderedTimelineSlements.Count - 1;
+                }
+
+                currentSelectedElement.iconTimeline.DeactivateIconHightlight();
+                currentSelectedElement = owner.orderedTimelineSlements[timelineElementsIndex];
+                CheckIcon();
+            }
+
+            else
+            {
+                currentSelectedElement = owner.orderedTimelineSlements[owner.timelineElements.Count - 1];
+                CheckIcon();
+            }
+        }
+    }
+
+    public void SelectPreviousElement()
+    {
+        if (owner.pauseTimeline && !owner.battleEnded)
+        {
+            if (currentSelectedElement != null)
+            {
+                int timelineElementsIndex = owner.orderedTimelineSlements.IndexOf(currentSelectedElement);
+                timelineElementsIndex++;
+
+                if (timelineElementsIndex >= owner.orderedTimelineSlements.Count)
+                {
+                    timelineElementsIndex = 0;
+                }
+                currentSelectedElement.iconTimeline.DeactivateIconHightlight();
+                currentSelectedElement = owner.orderedTimelineSlements[timelineElementsIndex];
+                CheckIcon();
+            }
+
+            else
+            {
+                currentSelectedElement = owner.orderedTimelineSlements[0];
+                CheckIcon();
+            }
+            
+        }
+    }
+
+
 
 
 }
