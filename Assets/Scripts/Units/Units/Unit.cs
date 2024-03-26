@@ -348,9 +348,9 @@ public class Unit : TimelineElements
             timelineVelocity = TimelineVelocity.Stun;
             AddDebuff(new Modifier { modifierType = TypeOfModifier.Stun });
             previousVelocity = timelineVelocity;
-            Debug.Log(gameObject.name + "previousVelocity es " + previousVelocity);
             stunned = true;
             stunEffect.SetTrigger("stun");
+            iconTimeline.EnableStun();
             SetCurrentVelocity();
         }
     }

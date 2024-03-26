@@ -57,18 +57,12 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [HideInInspector] public bool isActing;
 
     [HideInInspector] public bool enableUpdate;
-    public void EnableStun()
-    {
-        iconStunnedIndicator.SetActive(true);
-    }
+
     private void Start()
     {
         this.gameObject.name = element.name;
     }
-    public void DisableStun()
-    {
-        iconStunnedIndicator.SetActive(false);
-    }
+    
    
     public void EnableAppear()
     {
@@ -246,6 +240,8 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         //iconAnimations.SetBool("isGrow", false);
     }
 
+
+    #region VFX
     public void ActivateIconHightlight()
     {
         iconHighlight.SetActive(true);
@@ -255,6 +251,16 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         iconHighlight.SetActive(false);
     }
+    public void EnableStun()
+    {
+        iconStunnedIndicator.SetActive(true);
+    }
+
+    public void DisableStun()
+    {
+        iconStunnedIndicator.SetActive(false);
+    }
+    #endregion
 }
 
 public enum TimelineLane
