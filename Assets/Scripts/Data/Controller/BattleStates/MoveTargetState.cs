@@ -31,35 +31,26 @@ public class MoveTargetState : BattleState
         tiles.Add(owner.currentTile);
         originPoint = owner.currentTile;
         owner.ghostImage.sprite = owner.currentUnit.unitSprite.sprite;
-
-        foreach(Unit u in unitsInGame)
-        {
-            if(u != owner.currentUnit)
-            {
-                u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.b, u.unitSprite.color.g, u.unitSprite.color.a - 0.35f);
-            }
-        }
+        owner.currentLevelManager.FadeProps();
 
         owner.ChangeCurrentControls("Move");
+
+        owner.FadeUnits();
     }
 
     public override void Exit()
     {
         base.Exit();
         owner.ghostImage.gameObject.SetActive(false);
+        owner.currentLevelManager.ResetProps();
 
-        foreach (Unit u in unitsInGame)
-        {
-            if (u != owner.currentUnit)
-            {
-                u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.b, u.unitSprite.color.g, u.unitSprite.color.a + 0.35f);
-            }
-        }
+        owner.ResetUnits();
 
         board.DeSelectDefaultTiles(tiles);
         test = false;
         tiles = null;
 
+        
         owner.ResetCamera();
     }
 

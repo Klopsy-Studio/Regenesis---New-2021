@@ -90,7 +90,7 @@ public class BattleController : StateMachine
     [Space]
     [Header("Combat Variables")]
     [HideInInspector] public int attackChosen;
-
+    [HideInInspector] public LevelManager currentLevelManager;
     public List<TimelineElements> timelineElements;
     public List<TimelineElements> orderedTimelineSlements;
 
@@ -571,9 +571,11 @@ public class BattleController : StateMachine
             if (u == currentUnit)
                 continue;
 
-            u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.g, u.unitSprite.color.b, unitFadeValue);
+            u.SetUnitFade(true);
+            //u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.g, u.unitSprite.color.b, unitFadeValue);
         }
     }
+
 
 
     public void ToggleTimeline()
@@ -587,7 +589,8 @@ public class BattleController : StateMachine
             if (u == currentUnit)
                 continue;
 
-            u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.g, u.unitSprite.color.b, 1f);
+            u.SetUnitFade(false);
+            //u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.g, u.unitSprite.color.b, 1f);
         }
     }
 

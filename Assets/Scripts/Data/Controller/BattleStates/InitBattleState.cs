@@ -12,7 +12,7 @@ public class InitBattleState : BattleState
 
     IEnumerator Init()
     {
-        board.Load(levelData);
+        owner.currentLevelManager = board.Load(levelData).GetComponent<LevelManager>();
         owner.canToggleTimeline = false;
         SpawnUnits();
         yield return null;
