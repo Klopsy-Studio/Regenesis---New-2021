@@ -18,6 +18,7 @@ public class MonsterMovement : WalkMovement
         lineRange.lineLength = pushStrength;
         lineRange.lineOffset = 0;
         lineRange.stopLine = true;
+        lineRange.monsterUse = true;
         List<Tile> rangeTiles = lineRange.GetTilesInRange(board);
 
         foreach(Tile t in rangeTiles)
@@ -40,7 +41,7 @@ public class MonsterMovement : WalkMovement
 
         }
         
-        if(tiles.Count < pushStrength)
+        if(tiles.Count > pushStrength)
         {
             willStun = true;
         }
