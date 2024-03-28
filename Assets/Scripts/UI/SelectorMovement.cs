@@ -31,7 +31,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     bool monsterSelected;
 
-    List<SpriteRenderer> targets = new List<SpriteRenderer>();
+    List<Unit> targets = new List<Unit>();
 
     [SerializeField] TabType typeOfOption;
 
@@ -72,7 +72,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     controller.board.SelectAbilityTiles(abilityPreviewTiles);
 
                     controller.currentUnit.playerUI.PreviewActionCost(assignedAbility.actionCost);
-
+                    
                     AudioManager.instance.Play("Boton" + controller.hoverOption);
                     switch (assignedAbility.abilityEquipmentType)
                     {
@@ -116,9 +116,9 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     {
                         if (targets.Count > 0)
                         {
-                            foreach (SpriteRenderer target in targets)
+                            foreach (Unit target in targets)
                             {
-                                target.color = new Color(target.color.r, target.color.g, target.color.b, target.color.a + 0.5f);
+                                target.SetUnitFade(false);
                             }
                         }
                     }
@@ -202,9 +202,9 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     {
                         if (targets.Count > 0)
                         {
-                            foreach (SpriteRenderer target in targets)
+                            foreach (Unit target in targets)
                             {
-                                target.color = new Color(target.color.r, target.color.g, target.color.b, target.color.a - 0.5f);
+                                target.SetUnitFade(true);
                             }
                         }
                     }
@@ -301,15 +301,15 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     {
                         if (t.occupied && !monsterSelected)
                         {
-                            targets.Add(controller.enemyUnits[0].unitSprite);
+                            targets.Add(controller.enemyUnits[0]);
                             monsterSelected = true;
                         }
 
                         if(t.content!= null)
                         {
-                            if(t.content.GetComponent<MinionUnit>() != null)
+                            if(t.content.TryGetComponent<MinionUnit>(out MinionUnit m))
                             {
-                                targets.Add(t.content.GetComponent<MinionUnit>().unitSprite);
+                                targets.Add(m);
                             }
                         }
                     }
@@ -319,13 +319,11 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     {
                         if (t.content != null)
                         {
-                            if (t.content.GetComponent<PlayerUnit>() != null)
+                            if (t.content.TryGetComponent<PlayerUnit>(out PlayerUnit p))
                             {
-                                PlayerUnit u = t.content.GetComponent<PlayerUnit>();
-
-                                if (!u.isNearDeath && !u.isDead)
+                                if (!p.isNearDeath && !p.isDead)
                                 {
-                                    targets.Add(t.content.GetComponent<PlayerUnit>().unitSprite);
+                                    targets.Add(p);
                                 }
                             }
                         }
@@ -338,7 +336,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                         {
                             if (t.content.GetComponent<BearObstacleScript>() != null)
                             {
-                                targets.Add(t.content.GetComponent<SpriteRenderer>());
+                                //targets.Add(t.content.GetComponent<SpriteRenderer>());
                             }
                         }
                     }
@@ -348,13 +346,11 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     {
                         if (t.content != null)
                         {
-                            if (t.content.GetComponent<PlayerUnit>() != null)
+                            if (t.content.TryGetComponent<PlayerUnit>(out PlayerUnit p))
                             {
-                                PlayerUnit u = t.content.GetComponent<PlayerUnit>();
-
-                                if (!u.isNearDeath)
+                                if (!p.isNearDeath)
                                 {
-                                    targets.Add(t.content.GetComponent<PlayerUnit>().unitSprite);
+                                    targets.Add(p);
                                 }
                             }
                         }

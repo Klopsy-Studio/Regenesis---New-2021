@@ -34,6 +34,8 @@ public abstract class BattleState : State
         InputController.mouseConfirmEvent += OnMouseConfirm;
         InputController.mouseSelectEvent += OnMouseSelectEvent;
         InputController.mouseCancelEvent += OnMouseCancelEvent;
+        InputController.moveForwardEvent += OnMoveForwardEvent;
+        InputController.moveBackwardEvent += OnMoveBackwardsEvent;
 
 
         UIController.buttonClick += OnSelectAction;
@@ -44,6 +46,15 @@ public abstract class BattleState : State
     protected virtual void OnSelectAction(object sender, InfoEventArgs<int> e)
     {
        
+    }
+    protected virtual void OnMoveForwardEvent(object sender, InfoEventArgs<KeyCode> e)
+    {
+
+    }
+
+    protected virtual void OnMoveBackwardsEvent(object sender, InfoEventArgs<KeyCode> e)
+    {
+
     }
 
     protected virtual void OnMouseConfirm(object sender, InfoEventArgs<KeyCode> e)
@@ -88,7 +99,8 @@ public abstract class BattleState : State
         InputController.mouseConfirmEvent -= OnMouseConfirm;
         InputController.mouseSelectEvent -= OnMouseSelectEvent;
         InputController.mouseCancelEvent -= OnMouseCancelEvent;
-
+        InputController.moveForwardEvent -= OnMoveForwardEvent;
+        InputController.moveBackwardEvent -= OnMoveBackwardsEvent;
 
         UIController.buttonClick -= OnSelectAction;
         UIController.buttonCancel -= OnSelectCancelEvent;

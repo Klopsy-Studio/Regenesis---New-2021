@@ -29,7 +29,7 @@ public class SelectAbilityState : BattleState
     {
         base.Enter();
         owner.ChangeCurrentControls("Abilities");
-
+        owner.currentLevelManager.FadeProps();
         owner.actionSelectionUI.gameObject.SetActive(true);
         owner.isTimeLineActive = false;
         owner.moveAbilitySelector = true;
@@ -46,6 +46,7 @@ public class SelectAbilityState : BattleState
         owner.hammerTraitObject.gameObject.SetActive(false);
         owner.gunbladeUI.bulletParent.SetActive(false);
         owner.droneUI.gameObject.SetActive(false);
+
         switch (owner.currentUnit.weapon.EquipmentType)
         {
             case KitType.Hammer:
@@ -138,6 +139,8 @@ public class SelectAbilityState : BattleState
     protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
     {
         owner.ResetUnits();
+        owner.currentLevelManager.ResetProps();
+
         AbilitySelectionUI.gameObject.SetActive(false);
         AudioManager.instance.Play("Boton" + owner.exitMenu);
 

@@ -637,8 +637,6 @@ public class UseAbilityState : BattleState
         }
     }
 
-
-
     protected override void OnMouseCancelEvent(object sender, InfoEventArgs<KeyCode> e)
     {
         if (!attacking)
@@ -652,8 +650,6 @@ public class UseAbilityState : BattleState
             owner.ChangeState<SelectAbilityState>();
         }
     }
-
-    
     IEnumerator UseAbilitySequence(GameObject target)
     {
         owner.targets.indicator.DeactivateTarget();
@@ -730,6 +726,7 @@ public class UseAbilityState : BattleState
     public override void Exit()
     {
         base.Exit();
+        owner.currentLevelManager.ResetProps();
         owner.ResetCamera();
         owner.targets.indicator.DeactivateTarget();
 

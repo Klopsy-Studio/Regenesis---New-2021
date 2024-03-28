@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using System.Linq;
 using UnityEngine.UI;
 
 public class BattleController : StateMachine
@@ -89,11 +90,13 @@ public class BattleController : StateMachine
     [Space]
     [Header("Combat Variables")]
     [HideInInspector] public int attackChosen;
+    [HideInInspector] public LevelManager currentLevelManager;
     public List<TimelineElements> timelineElements;
+    public List<TimelineElements> orderedTimelineSlements;
+
+    [Header("Combat costs")]
     [Range(0, 5)] public int moveCost;
     [Range(0, 5)] public int itemCost;
-
-
 
     public Tile currentTile { get { return board.GetTile(pos); } }
     [Space]
@@ -229,6 +232,7 @@ public class BattleController : StateMachine
         zoomed = false;
         sceneTransition.SetBool("fadeOut", true);
         currentEntity = CurrentEntityTurn.None;
+        isTimeLineActive = false;
         BeginGame();
     }
     public void SetMission(LevelData level)
@@ -266,7 +270,10 @@ public class BattleController : StateMachine
 
     private void Update()
     {
+        //Calculating hunt time
         huntTime += Time.deltaTime;
+
+        #region Playtest functions
 
         if (playtestToggle)
         {
@@ -385,7 +392,9 @@ public class BattleController : StateMachine
             }
         }
 
-        //Pause Timeline With Input
+        #endregion
+
+        #region Pause and resume timeline
         if (Input.GetKeyDown(toggleTimelineKey) && canToggleTimeline)
         {
             if (pauseTimeline)
@@ -413,6 +422,9 @@ public class BattleController : StateMachine
             }
         }
 
+        #endregion
+
+        #region Zoom in and out
 
         if (enableZoom)
         {
@@ -423,6 +435,13 @@ public class BattleController : StateMachine
             cinemachineCamera.m_Lens.OrthographicSize = fov;
 
         }
+
+        #endregion
+
+
+        //Create an ordered timeline elements list
+        if(!pauseTimeline)
+            SortTimelineList();
 
     }
 
@@ -552,9 +571,11 @@ public class BattleController : StateMachine
             if (u == currentUnit)
                 continue;
 
-            u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.g, u.unitSprite.color.b, unitFadeValue);
+            u.SetUnitFade(true);
+            //u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.g, u.unitSprite.color.b, unitFadeValue);
         }
     }
+
 
 
     public void ToggleTimeline()
@@ -568,7 +589,8 @@ public class BattleController : StateMachine
             if (u == currentUnit)
                 continue;
 
-            u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.g, u.unitSprite.color.b, 1f);
+            u.SetUnitFade(false);
+            //u.unitSprite.color = new Color(u.unitSprite.color.r, u.unitSprite.color.g, u.unitSprite.color.b, 1f);
         }
     }
 
@@ -754,5 +776,11 @@ public class BattleController : StateMachine
     public void DeactivateCurrentControls()
     {
         battleContextControls.DeactivateCurrentWindow();
+    }
+
+
+    void SortTimelineList()
+    {
+        orderedTimelineSlements = timelineElements.OrderByDescending(x => x.timelineFill).ToList();
     }
 }

@@ -8,7 +8,7 @@ public class LineAbilityRange : AbilityRange
     public Directions lineDir;
     public bool stopLine = false;
     public int lineOffset = 0;
-
+    public bool monsterUse;
     public override List<Tile> GetTilesInRange(Board board)
     {
         Point startPos = unit.tile.pos;
@@ -32,9 +32,19 @@ public class LineAbilityRange : AbilityRange
 
                             if (stopLine)
                             {
-                                if (t.content != null || t.occupied)
+                                if (t.content != null)
                                 {
-                                    break;
+                                    if (monsterUse)
+                                    {
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (t.occupied)
+                                        {
+                                            break;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -61,9 +71,19 @@ public class LineAbilityRange : AbilityRange
 
                             if (stopLine)
                             {
-                                if (t.content != null || t.occupied)
+                                if (t.content != null)
                                 {
-                                    break;
+                                    if (monsterUse)
+                                    {
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (t.occupied)
+                                        {
+                                            break;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -91,9 +111,19 @@ public class LineAbilityRange : AbilityRange
 
                             if (stopLine)
                             {
-                                if (t.content != null || t.occupied)
+                                if (t.content != null)
                                 {
-                                    break;
+                                    if (monsterUse)
+                                    {
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (t.occupied)
+                                        {
+                                            break;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -119,14 +149,23 @@ public class LineAbilityRange : AbilityRange
                             retValue.Add(t);
                             if (stopLine)
                             {
-                                if (t.content != null || t.occupied)
+                                if (stopLine)
                                 {
-                                    break;
+                                    if (t.content != null)
+                                    {
+                                        if (monsterUse)
+                                        {
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            if (t.occupied)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                retValue.Add(t);
                             }
                         }
 

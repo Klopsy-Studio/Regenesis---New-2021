@@ -65,7 +65,11 @@ public class Unit : TimelineElements
     [SerializeField] Animator hasteEffect;
 
     public SpriteRenderer unitSprite;
-
+    [SerializeField] float fadeDuration;
+    bool setFade;
+    bool fadeTransition;
+    float fadeTime;
+    
     [Header("Testing")]
     [SerializeField] bool thisIsMyFuckingTurn;
 
@@ -108,7 +112,6 @@ public class Unit : TimelineElements
     {
         buffModifiers = new List<Modifier>();
         debuffModifiers = new List<Modifier>();
-
         Match();
         SetInitVelocity();
         originalTimeStunned = timeStunned;
@@ -192,6 +195,55 @@ public class Unit : TimelineElements
         {
             fTimelineVelocity = 100000f;
         }
+    }
+
+    public void LateUpdate()
+    {
+        if (setFade)
+        {
+            if (fadeTransition)
+            {
+                fadeTime += Time.deltaTime;
+
+                unitSprite.color = unitSprite.color = new Color(unitSprite.color.r, unitSprite.color.g, unitSprite.color.b, Mathf.Lerp(unitSprite.color.a, 0.5f, fadeTime/0.2f));
+
+                if (fadeTime >= 0.2f)
+                {
+                    unitSprite.color = unitSprite.color = new Color(unitSprite.color.r, unitSprite.color.g, unitSprite.color.b, 0.5f);
+                    fadeTransition = false;
+                    fadeTime = 0;
+                }
+            }
+            else
+            {
+                unitSprite.color = new Color(unitSprite.color.r, unitSprite.color.g, unitSprite.color.b, 0.5f);
+            }
+        }
+
+        else
+        {
+            if (fadeTransition)
+            {
+                Debug.Log("Returning from fade");
+                fadeTime += Time.deltaTime;
+
+                unitSprite.color = new Color(unitSprite.color.r, unitSprite.color.g, unitSprite.color.b, Mathf.Lerp(0.5f, 1, fadeTime / 0.2f));
+
+                if (fadeTime >= 0.2f)
+                {
+                    unitSprite.color = unitSprite.color = new Color(unitSprite.color.r, unitSprite.color.g, unitSprite.color.b, 1);
+                    fadeTransition = false;
+                    fadeTime = 0;
+                }
+            }
+        }
+    }
+    
+    public void SetUnitFade(bool value)
+    {
+        setFade = value;
+        fadeTransition = true;
+        fadeTime = 0;
     }
     public void Place(Tile target)
     {
@@ -348,9 +400,9 @@ public class Unit : TimelineElements
             timelineVelocity = TimelineVelocity.Stun;
             AddDebuff(new Modifier { modifierType = TypeOfModifier.Stun });
             previousVelocity = timelineVelocity;
-            Debug.Log(gameObject.name + "previousVelocity es " + previousVelocity);
             stunned = true;
             stunEffect.SetTrigger("stun");
+            iconTimeline.EnableStun();
             SetCurrentVelocity();
         }
     }
@@ -645,4 +697,5 @@ public class Unit : TimelineElements
         ActionEffect.instance.Play(size, duration, 0.01f, 0.05f);
 
     }
+
 }

@@ -54,6 +54,7 @@ public class Battlecry : AbilitySequence
             o.GetComponent<Unit>().AddBuff(battlecryData);
         }
 
+        user.AddBuff(battlecryData);
         yield return new WaitForSeconds(1f);        
         playing = false;
     }

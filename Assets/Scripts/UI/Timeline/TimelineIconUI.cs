@@ -6,29 +6,35 @@ using UnityEngine.EventSystems;
 using TMPro;
 public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [Header("Icon position variables")]
     public TimelineLane lane;
     public RectTransform groupPos;
     public TextMeshProUGUI velocityText;
     public RectTransform rectTransform;
     public Image icon;
-
+    [Space]
+    [Header("Icon supports")]
     public Image upSupport;
     public Image downSupport;
     public Image middleUpSupport;
     public Image middleDownSupport;
+    [Space]
 
-    public bool mouseOver;
-    public bool selected;
 
+    [HideInInspector] public bool mouseOver;
+    [HideInInspector] public bool selected;
+
+    [Header("Icon animations")]
     public Animator iconAnimationsTimeline;
-    public Animator iconAnimations;
+    [SerializeField] GameObject iconHighlight;
+    public GameObject iconStunnedIndicator;
+    [Space]
 
-    public TimelineElements element;
+    [HideInInspector] public TimelineElements element;
 
 
-    public int indexChild;
+    [HideInInspector] public int indexChild;
    
-    public GameObject stunnedIndicator;
 
     public int offset;
     public int originalOffset;
@@ -37,31 +43,26 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public RectTransform iconTransform;
 
-    public TimelineIconUI prevIcon;
-    public TimelineIconUI nextIcon;
-    public TimelineUI owner;
+    [HideInInspector] public TimelineIconUI prevIcon;
+    [HideInInspector] public TimelineIconUI nextIcon;
+    [HideInInspector] public TimelineUI owner;
+
     public float minDistance;
     public Vector2 previousPosition;
     public float maxDistance;
 
-    public bool timelineEnabled = true;
+    [HideInInspector] public bool timelineEnabled = true;
     [SerializeField] bool allowExpandUnits;
 
-    public bool isActing;
+    [HideInInspector] public bool isActing;
 
-    public bool enableUpdate;
-    public void EnableStun()
-    {
-        stunnedIndicator.SetActive(true);
-    }
+    [HideInInspector] public bool enableUpdate;
+
     private void Start()
     {
         this.gameObject.name = element.name;
     }
-    public void DisableStun()
-    {
-        stunnedIndicator.SetActive(false);
-    }
+    
    
     public void EnableAppear()
     {
@@ -238,6 +239,28 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         //iconAnimations.SetBool("isGrow", false);
     }
+
+
+    #region VFX
+    public void ActivateIconHightlight()
+    {
+        iconHighlight.SetActive(true);
+    }
+    
+    public void DeactivateIconHightlight()
+    {
+        iconHighlight.SetActive(false);
+    }
+    public void EnableStun()
+    {
+        iconStunnedIndicator.SetActive(true);
+    }
+
+    public void DisableStun()
+    {
+        iconStunnedIndicator.SetActive(false);
+    }
+    #endregion
 }
 
 public enum TimelineLane
