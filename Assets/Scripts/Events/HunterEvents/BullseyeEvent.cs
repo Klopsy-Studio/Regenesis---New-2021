@@ -74,5 +74,25 @@ public class BullseyeEvent : HunterEvent
         playing = false;
     }
 
-   
+
+    public override bool UpdateTimeLine()
+    {
+        if(target == null)
+        {
+            iconTimeline.EnableDisappear();
+            unit.controller.timelineElements.Remove(this);
+            unit.currentBullseyeEvent = null;
+        }
+
+        if (timelineFill >= timelineFull)
+        {
+            return true;
+        }
+
+        timelineFill += fTimelineVelocity * Time.deltaTime;
+
+
+        return false;
+    }
+
 }

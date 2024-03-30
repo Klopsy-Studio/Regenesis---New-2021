@@ -1426,7 +1426,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.72, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.000045776367, y: 0.000012397766}
   m_SizeDelta: {x: -0.8571434, y: 0.5714283}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5382,7 +5382,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.59, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.000045776367, y: 0.000012397766}
   m_SizeDelta: {x: -0.8571434, y: 0.5714283}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9279,6 +9279,7 @@ MonoBehaviour:
   header: 
   content: This unit is currently acting
   changeToFinger: 0
+  allowTooltip: 1
 --- !u!1 &1164059254
 GameObject:
   m_ObjectHideFlags: 0
@@ -13725,7 +13726,7 @@ RectTransform:
   - {fileID: 616239768}
   - {fileID: 1537303148}
   m_Father: {fileID: 1685295732233959227}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -23345,8 +23346,6 @@ GameObject:
   m_Component:
   - component: {fileID: 225364641422578304}
   - component: {fileID: 4204888595285438334}
-  - component: {fileID: 1373950199}
-  - component: {fileID: 1373950200}
   m_Layer: 0
   m_Name: AbilityTargets
   m_TagString: Untagged
@@ -23375,7 +23374,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1264, y: -382.84772}
-  m_SizeDelta: {x: 128.69519, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4204888595285438334
 MonoBehaviour:
@@ -23397,46 +23396,6 @@ MonoBehaviour:
   currentTargets: []
   noTargetText: {fileID: 8093830130233069109, guid: c28103c91cf33bd4e91ce9a78f134f0a, type: 3}
   stopSelection: 0
---- !u!114 &1373950199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2447756547382359183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: -115.17
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 1
---- !u!114 &1373950200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2447756547382359183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
 --- !u!1 &2550272976914123546
 GameObject:
   m_ObjectHideFlags: 0
@@ -24771,7 +24730,9 @@ MonoBehaviour:
   sceneTransition: {fileID: 0}
   droneController: {fileID: 0}
   attackChosen: 0
+  currentLevelManager: {fileID: 0}
   timelineElements: []
+  orderedTimelineSlements: []
   moveCost: 2
   itemCost: 1
   environmentEvent: {fileID: 195445703}
@@ -25759,6 +25720,7 @@ MonoBehaviour:
   header: Turn Status
   content: This unit is currently acting.
   changeToFinger: 0
+  allowTooltip: 1
 --- !u!1 &3099776045131052851
 GameObject:
   m_ObjectHideFlags: 0
@@ -27387,6 +27349,7 @@ MonoBehaviour:
   content: When the fury bar is full, it will unleash a powerful attack that pushes
     the unit further
   changeToFinger: 0
+  allowTooltip: 1
 --- !u!1 &3245667849246673524
 GameObject:
   m_ObjectHideFlags: 0
@@ -31224,6 +31187,7 @@ GameObject:
   - component: {fileID: 1442573791216670853}
   - component: {fileID: 85011357939115783}
   - component: {fileID: 1296951275}
+  - component: {fileID: 5222740258741020657}
   m_Layer: 0
   m_Name: BowTraitButton
   m_TagString: Untagged
@@ -31243,14 +31207,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1685295732233959227}
+  m_Father: {fileID: 6767534060960714601}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 76.9, y: 0}
-  m_SizeDelta: {x: 131.42857, y: 62.857143}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 126.6, y: 0}
+  m_SizeDelta: {x: 131.42859, y: 62.857143}
+  m_Pivot: {x: 1, y: 0.50000006}
 --- !u!222 &995432516366886251
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31380,6 +31344,27 @@ MonoBehaviour:
   header: 
   content: Use this to charge the bow and perform the next ability twice.
   changeToFinger: 1
+  allowTooltip: 1
+--- !u!114 &5222740258741020657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510178363440437657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 1
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &4540494528902263679
 GameObject:
   m_ObjectHideFlags: 0
@@ -32068,6 +32053,7 @@ MonoBehaviour:
   header: 
   content: Some abilities use ammo to execute powerful attacks
   changeToFinger: 0
+  allowTooltip: 1
 --- !u!1 &5050269071259566907
 GameObject:
   m_ObjectHideFlags: 0
@@ -33526,7 +33512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 49.619736, y: -50}
+  m_AnchoredPosition: {x: 79.07545, y: -50}
   m_SizeDelta: {x: 158.1509, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5479704479797801145
@@ -36005,16 +35991,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6275627868856375098}
   - {fileID: 1718648704}
   m_Father: {fileID: 3454478767114353247}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.6, y: 0}
+  m_AnchoredPosition: {x: 188.3, y: 50}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.7590246, y: 0.54089904}
 --- !u!1 &7377753951044374784
 GameObject:
   m_ObjectHideFlags: 0
@@ -37960,6 +37945,7 @@ MonoBehaviour:
   header: 
   content: Use this to set or change the drone to other hunters.
   changeToFinger: 1
+  allowTooltip: 1
 --- !u!1 &8247808525913537079
 GameObject:
   m_ObjectHideFlags: 0
@@ -39414,14 +39400,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6275627868856375098}
   m_Father: {fileID: 225364641422578304}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 85.71429}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 4.4000244, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &550931127551645702
 CanvasRenderer:
@@ -39492,14 +39479,14 @@ MonoBehaviour:
     m_Right: 30
     m_Top: 30
     m_Bottom: 30
-  m_ChildAlignment: 4
+  m_ChildAlignment: 3
   m_Spacing: 20
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleWidth: 1
+  m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
 --- !u!1 &9189964061267627426
 GameObject:

@@ -60,9 +60,12 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     [HideInInspector] public bool enableUpdate;
 
+    private ToolTipTrigger iconTooltip;
+
     private void Start()
     {
         this.gameObject.name = element.name;
+        iconTooltip = GetComponent<ToolTipTrigger>();
     }
     
    
@@ -278,7 +281,18 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         speedImageComponent.sprite = speedSprites[speedIndex];
     }
 
+
     #endregion
+
+    public void DisableTooltip()
+    {
+        iconTooltip.allowTooltip = false;
+    }
+
+    public void EnableTooltip()
+    {
+        iconTooltip.allowTooltip = true;
+    }
 }
 
 public enum TimelineLane

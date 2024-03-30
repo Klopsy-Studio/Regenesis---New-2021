@@ -18,6 +18,7 @@ public class Bullseye : AbilitySequence
         controller.SelectTile(controller.currentUnit.tile.pos);
         yield return new WaitForSeconds(0.3f);
         BullseyeEvent e = Instantiate(bullseyeEvent);
+        user.currentBullseyeEvent = e;
 
         e.unit = user;
         e.target = target;

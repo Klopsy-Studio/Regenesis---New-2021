@@ -50,6 +50,7 @@ public class PlayerUnit : Unit
     public Animator droneIndicator;
     public int pushAmount;
     public Directions pushDirections;
+    [HideInInspector] public BullseyeEvent currentBullseyeEvent;
 
 
     [Header("Monster Variables")]
@@ -429,6 +430,16 @@ public class PlayerUnit : Unit
         }
         partyIcon.UnitDead();
         animations.unitAnimator.SetBool("nearDeath", true);
+
+        //Remove bullseye
+        animations.unitAnimator.SetBool("bullseye", false);
+
+        if(currentBullseyeEvent != null)
+        {
+            currentBullseyeEvent.iconTimeline.EnableDisappear();
+            controller.timelineElements.Remove(currentBullseyeEvent);
+            currentBullseyeEvent = null;
+        }
         diedOnce = true;
         PlayerUnitDeath element = Instantiate(nearDeathElement);
         element.timelineIcon = profile.unitDeathTimelineIcon;
@@ -508,7 +519,15 @@ public class PlayerUnit : Unit
                 }
             }
         }
-        
+
+        if (currentBullseyeEvent != null)
+        {
+            animations.unitAnimator.SetBool("bullseye", false);
+            currentBullseyeEvent.iconTimeline.EnableDisappear();
+            controller.timelineElements.Remove(currentBullseyeEvent);
+            currentBullseyeEvent = null;
+        }
+
         controller.timelineElements.Remove(this);
         elementEnabled = false;
         animations.SetDeath();

@@ -469,6 +469,7 @@ public class TimelineUI : MonoBehaviour
     public void ShowIconActing(TimelineElements element)
     {
         currentActorAnimations.gameObject.SetActive(true);
+        element.iconTimeline.DisableTooltip();
         currentActorAnimations.SetFloat("character", element.timelineIconIndex);
         currentActorAnimations.SetTrigger("appear");
         element.iconTimeline.isActing = true;
@@ -494,12 +495,12 @@ public class TimelineUI : MonoBehaviour
     public void ShowTimelineIcon(TimelineElements element)
     {
         element.iconTimeline.EnableAppear();
+        element.iconTimeline.EnableTooltip();
 
         if (element.timelineTypes == TimeLineTypes.PlayerUnit)
         {
             element.iconTimeline.ChangeSpeedImageMode(true);
             element.iconTimeline.SetUnitSpeed(((int)element.timelineVelocity));
-
         }
 
         element.iconTimeline.isActing = false;
