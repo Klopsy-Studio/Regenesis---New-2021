@@ -23,33 +23,45 @@ public class MonsterMark : ActionNode
         //First we randomly select the hunter which will receive the mark
         canGetMarked = true;
         BattleController controller = owner.controller.battleController;
-        Unit chosenTarget = controller.playerUnits[Random.Range(0, controller.playerUnits.Count)];
-        
-        if(chosenTarget.GetComponent<PlayerUnit>()!= null)
+        PlayerUnit chosenTarget = null;
+
+        for (int i = 0; i < controller.playerUnits.Count; i++)
         {
-            PlayerUnit u = chosenTarget.GetComponent<PlayerUnit>();
-            if (u.buffModifiers.Count > 0)
+            if(controller.playerUnits[i].TryGetComponent(out PlayerUnit p))
             {
-                foreach (Modifier m in u.buffModifiers)
+                if (p.isNearDeath)
                 {
-                    if (m.modifierType == TypeOfModifier.Antivirus)
-                    {
-                        u.RemoveBuff(m);
-                        canGetMarked = false;
-                        break;
-                    }
+                    continue;
                 }
             }
+        }
 
+        if(chosenTarget == null)
+        {
+            treeUpdate = false;
+            yield break;
+        }
 
-            if (canGetMarked)
+        if (chosenTarget.buffModifiers.Count > 0)
+        {
+            foreach (Modifier m in chosenTarget.buffModifiers)
             {
-                u.marked = true;
-                u.EnableCriticalMark();
-                monsterMark.modifierType = TypeOfModifier.SpiderMark;
-                u.AddDebuff(monsterMark);
+                if (m.modifierType == TypeOfModifier.Antivirus)
+                {
+                    chosenTarget.RemoveBuff(m);
+                    canGetMarked = false;
+                    break;
+                }
             }
-            
+        }
+
+
+        if (canGetMarked)
+        {
+            chosenTarget.marked = true;
+            chosenTarget.EnableCriticalMark();
+            monsterMark.modifierType = TypeOfModifier.SpiderMark;
+            chosenTarget.AddDebuff(monsterMark);
         }
 
         //Action Effect
@@ -73,7 +85,6 @@ public class MonsterMark : ActionNode
         yield return new WaitForSeconds(0.5f);
 
         treeUpdate = false;
-
     }
     protected override State OnUpdate() {
         if (owner.controller.turnFinished)

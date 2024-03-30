@@ -12,6 +12,9 @@ public class BullseyeEvent : HunterEvent
         playing = true;
         if (target != null)
         {
+            Point pos = new Point((int)target.transform.position.x, (int)target.transform.position.z);
+            controller.SelectTile(pos);
+
             if (target.GetComponent<Unit>() != null)
             {
                 Unit u = target.GetComponent<Unit>();
