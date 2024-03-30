@@ -80,6 +80,7 @@ public class BullseyeEvent : HunterEvent
 
     public override bool UpdateTimeLine()
     {
+        Debug.Log(target);
         if(target == null)
         {
             iconTimeline.EnableDisappear();

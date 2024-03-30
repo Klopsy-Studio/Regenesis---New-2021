@@ -417,10 +417,10 @@ public class PlayerUnit : Unit
         switch (profile.characterIndex)
         {
             case 0:
-                AudioManager.instance.Play("KaeoDeath");
+                AudioManager.instance.Play("IsakDeath");
                 break;
             case 0.5f:
-                AudioManager.instance.Play("IsakDeath");
+                AudioManager.instance.Play("KaeoDeath");
                 break;
             case 1f:
                 AudioManager.instance.Play("OlaDeath");

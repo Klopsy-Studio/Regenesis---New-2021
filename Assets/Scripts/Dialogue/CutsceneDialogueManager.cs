@@ -14,6 +14,8 @@ public class CutsceneDialogueManager : MonoBehaviour
     bool textActive;
     CutsceneText currentText;
     [SerializeField] TextMeshProUGUI cutsceneTextComponent;
+
+    [SerializeField] bool allowWrite;
     void Start()
     {
         cutsceneIndex = 0;
@@ -39,21 +41,28 @@ public class CutsceneDialogueManager : MonoBehaviour
     IEnumerator ShowText()
     {
         Invoke("FadeOutMethod", cutsceneText[cutsceneIndex].timeUntilFadeOut);
-
-        if (cutsceneIndex >= cutsceneText.Length)
-        {
-            yield break;
-        }
-
         char[] textCharacters = cutsceneText[cutsceneIndex].cutsceneText.ToCharArray();
 
-        for (int i = 0; i < textCharacters.Length; i++)
+        if (allowWrite)
         {
-            cutsceneTextComponent.maxVisibleCharacters++;
-            yield return new WaitForSeconds(textShowSpeed);
+            if (cutsceneIndex >= cutsceneText.Length)
+            {
+                yield break;
+            }
+
+            for (int i = 0; i < textCharacters.Length; i++)
+            {
+                cutsceneTextComponent.maxVisibleCharacters++;
+                yield return new WaitForSeconds(textShowSpeed);
+            }
+
+            cutsceneTextComponent.maxVisibleCharacters = textCharacters.Length;
+        }
+        else
+        {
+            cutsceneTextComponent.maxVisibleCharacters = textCharacters.Length;
         }
 
-        cutsceneTextComponent.maxVisibleCharacters = textCharacters.Length;
     }
 
     public void FadeOutMethod()
