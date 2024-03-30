@@ -17,6 +17,8 @@ public class DefeatState : BattleState
         tileSelectionIndicator.gameObject.SetActive(false);
         owner.battleEnded = true;
         owner.isTimeLineActive = false;
+        owner.battleContextControls.gameObject.SetActive(false);
+
         StartCoroutine(LoseState());
     }
 

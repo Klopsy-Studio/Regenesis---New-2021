@@ -429,6 +429,9 @@ public class PlayerUnit : Unit
                 break;
         }
         partyIcon.UnitDead();
+
+        animations.unitAnimator.SetBool("allowDeath", true);
+
         animations.unitAnimator.SetBool("nearDeath", true);
 
         //Remove bullseye
