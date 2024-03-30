@@ -30,7 +30,7 @@ public class CheckHowManyTurns : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.Greater:
-                if (numberOfTurns > owner.controller.turnsAlive)
+                if (owner.controller.turnsAlive > numberOfTurns)
                 {
                     return State.Success;
                 }
@@ -39,7 +39,7 @@ public class CheckHowManyTurns : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.GreaterAndEqual:
-                if (numberOfTurns >= owner.controller.turnsAlive)
+                if (owner.controller.turnsAlive >= numberOfTurns)
                 {
                     return State.Success;
                 }
@@ -48,7 +48,7 @@ public class CheckHowManyTurns : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.Lower:
-                if (numberOfTurns < owner.controller.turnsAlive)
+                if ( owner.controller.turnsAlive < numberOfTurns)
                 {
                     return State.Success;
                 }
@@ -57,7 +57,7 @@ public class CheckHowManyTurns : ActionNode
                     return State.Failure;
                 }
             case ComparisonType.LowerAndEqual:
-                if (numberOfTurns <= owner.controller.turnsAlive)
+                if (owner.controller.turnsAlive <= numberOfTurns)
                 {
                     return State.Success;
                 }
