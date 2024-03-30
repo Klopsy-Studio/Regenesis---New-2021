@@ -10,6 +10,7 @@ public class ItemRange : AbilityRange
     Point pos;
 
     public bool removeContent = true;
+    public bool removeMonster;
     public bool removeOrigin;
     public override List<Tile> GetTilesInRange(Board board)
     {
@@ -21,9 +22,18 @@ public class ItemRange : AbilityRange
         {
             foreach (Tile t in garbage)
             {
-                if (t.content != null || t.occupied)
+                if (t.content != null)
                 {
                     retValue.Remove(t);
+                    continue;
+                }
+
+                if (t.occupied)
+                {
+                    if (removeMonster)
+                    {
+                        retValue.Remove(t);
+                    }
                 }
             }
         }
@@ -32,6 +42,7 @@ public class ItemRange : AbilityRange
         {
             retValue.Remove(tile);
         }
+
         return retValue;
     }
 

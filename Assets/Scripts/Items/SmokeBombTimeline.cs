@@ -15,6 +15,7 @@ public class SmokeBombTimeline : MonoBehaviour
     }
     public IEnumerator ApplyEffectSequence(BattleController controller)
     {
+        range.removeMonster = false;
         List<Tile> tiles = range.GetTilesInRange(controller.board);
         List<Unit> units = new List<Unit>();
 
@@ -23,12 +24,20 @@ public class SmokeBombTimeline : MonoBehaviour
             t.SetSmokeBomb();
             if(t.content != null)
             {
-                if(t.content.GetComponent<Unit>() != null)
+                if(t.content.TryGetComponent(out Unit u))
                 {
-                    if (!units.Contains(t.content.GetComponent<Unit>()))
+                    if (!units.Contains(u))
                     {
-                        units.Add(t.content.GetComponent<Unit>());
+                        units.Add(u);
                     }
+                }
+            }
+
+            if (t.occupied)
+            {
+                if (!units.Contains(controller.enemyUnits[0]))
+                {
+                    units.Add(controller.enemyUnits[0]);
                 }
             }
         }
