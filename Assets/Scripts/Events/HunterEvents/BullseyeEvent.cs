@@ -81,7 +81,7 @@ public class BullseyeEvent : HunterEvent
     public override bool UpdateTimeLine()
     {
         Debug.Log(target);
-        if(target == null)
+        if(!target.gameObject.activeSelf)
         {
             iconTimeline.EnableDisappear();
             unit.controller.timelineElements.Remove(this);
