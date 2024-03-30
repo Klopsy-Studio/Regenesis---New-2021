@@ -60,6 +60,7 @@ public class CutsceneDialogueManager : MonoBehaviour
         }
         else
         {
+            StartCoroutine(FadeInText());
             cutsceneTextComponent.maxVisibleCharacters = textCharacters.Length;
         }
 
@@ -88,6 +89,20 @@ public class CutsceneDialogueManager : MonoBehaviour
 
         Invoke("SetText", cutsceneText[cutsceneIndex].timeUntilNextSentence);
         NextText();
+    }
+
+    IEnumerator FadeInText()
+    {
+        float value = 0;
+        cutsceneTextComponent.color = new Color(cutsceneTextComponent.color.r, cutsceneTextComponent.color.g, cutsceneTextComponent.color.b, 0);
+        while (value > 0)
+        {
+            value += Time.deltaTime * fadeOutSpeed;
+            cutsceneTextComponent.color = new Color(cutsceneTextComponent.color.r, cutsceneTextComponent.color.g, cutsceneTextComponent.color.b, value);
+            yield return null;
+        }
+
+        cutsceneTextComponent.color = new Color(cutsceneTextComponent.color.r, cutsceneTextComponent.color.g, cutsceneTextComponent.color.b, 1);
     }
 }
 
