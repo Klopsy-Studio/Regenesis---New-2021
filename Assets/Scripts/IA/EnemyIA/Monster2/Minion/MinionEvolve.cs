@@ -33,11 +33,9 @@ public class MinionEvolve : ActionNode
 
             owner.controller.monsterAnimations.SetFloat("evolve", 1f);
             owner.controller.monsterAnimations.SetTrigger("evolveTrigger");
-            owner.controller.currentEnemy.description.header = owner.controller.currentEnemy.GetComponent<MinionUnit>().evolvedName;
-            owner.controller.currentEnemy.description.content = owner.controller.currentEnemy.GetComponent<MinionUnit>().evolvedDescription;
-
+            owner.controller.currentEnemy.description.header = owner.controller.currentEnemy.GetComponent<MinionUnit>().evolvedHeader;
             owner.controller.currentEnemy.unitName = owner.controller.currentEnemy.GetComponent<MinionUnit>().evolvedName;
-
+            owner.controller.currentEnemy.description.content = owner.controller.currentEnemy.GetComponent<MinionUnit>().evolvedDescription;
         }
 
     }

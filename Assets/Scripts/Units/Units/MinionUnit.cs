@@ -9,6 +9,7 @@ public class MinionUnit : EnemyUnit
     [SerializeField] List<RangeData> eventAttackRange;
 
     public string evolvedName;
+    public string evolvedHeader;
     public string evolvedDescription;
 
     protected override void Start()

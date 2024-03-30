@@ -298,6 +298,7 @@ public class BattleController : StateMachine
             {
                 ChangeState<WinState>();
             }
+
             if (Input.GetKeyDown(KeyCode.L))
             {
                 if (tilesTest)
@@ -334,6 +335,7 @@ public class BattleController : StateMachine
             {
                 playerUnits[0].ReceiveDamage(100, true);
             }
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 playerUnits[1].ReceiveDamage(100, true);
@@ -356,6 +358,8 @@ public class BattleController : StateMachine
                     u.animations.SetNearDeath();
                 }
             }
+
+
             playtestingFunctions.elements = timelineElements;
 
             if (Input.GetKeyDown(KeyCode.U))
