@@ -755,32 +755,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutsceneText:
-  - cutsceneText: "Society was on the brink of disaster: pollution, corruption and
-      disease plagued the planet.\r"
-    timeUntilFadeOut: 8
+  - cutsceneText: 'Society was on the brink of disaster: pollution, corruption and
+      disease plagued the planet.'
+    timeUntilFadeOut: 7.5
     timeUntilNextSentence: 1
-  - cutsceneText: "Until a giant organism, The Mother Plant rose from the\r chaos
-      spreading its spores across all continents.\r"
+  - cutsceneText: Until a giant organism, the Mother Plant, rose from chaos spreading
+      its spores across all continents.
     timeUntilFadeOut: 8
     timeUntilNextSentence: 2
-  - cutsceneText: "The spores caused  fauna and flora to mutate in mysterious ways
-      but was lethal to humans if inhaled.\r"
-    timeUntilFadeOut: 8
+  - cutsceneText: The spores caused fauna and flora to mutate in mysterious ways,
+      but they were lethal to humans if inhaled.
+    timeUntilFadeOut: 6.5
+    timeUntilNextSentence: 1.3
+  - cutsceneText: Thus, humanity was forced to live underground and create a new
+      way of life.
+    timeUntilFadeOut: 7
     timeUntilNextSentence: 2
-  - cutsceneText: "For this reason humanity was forced to live underground\r and
-      create a new way of life\r."
-    timeUntilFadeOut: 8
+  - cutsceneText: We the hunters, a selected group of individuals, promised to reach
+      the base of the Mother Plant and destroy it.
+    timeUntilFadeOut: 6.5
     timeUntilNextSentence: 1
-  - cutsceneText: "We the hunters, a selected group of individuals, promised\r to
-      reach the base of The Mother Plant and destroy it.\r"
-    timeUntilFadeOut: 8
-    timeUntilNextSentence: 2
-  - cutsceneText: "There have been many obstacles in our mission, so far no one has\r
-      been successful, but we will never give up.\r"
-    timeUntilFadeOut: 8
+  - cutsceneText: No one has found success yet, as the obstacles are formidable,
+      but we will never give up.
+    timeUntilFadeOut: 7
     timeUntilNextSentence: 1
-  textShowSpeed: 0.05
-  fadeOutSpeed: 1
+  textShowSpeed: 0.043
+  fadeOutSpeed: 0.75
   cutsceneTextComponent: {fileID: 788284582}
 --- !u!1001 &934370900
 PrefabInstance:
@@ -1398,7 +1398,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743188000}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: e98e9850f0fbde0448fd55488ba0b733, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: d895d81272d0aef47838da0bf1892d0f, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 273913534}
@@ -1411,12 +1411,14 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
   m_Url: 
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 0
