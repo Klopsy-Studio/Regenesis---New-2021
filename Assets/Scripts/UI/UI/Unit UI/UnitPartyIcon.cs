@@ -15,6 +15,7 @@ public class UnitPartyIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] Slider hunterHealth;
     [SerializeField] Image healthBarImage;
     [SerializeField] Image hunterPortraitImage;
+    [SerializeField] ToolTipTrigger tooltip;
 
     Sprite hunterDefaultSprite;
     Sprite hunterDeadSprite;
@@ -48,6 +49,8 @@ public class UnitPartyIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         hunterDeadSprite = user.profile.unitPartyIconDead;
 
         hunterPortraitImage.sprite = hunterDefaultSprite;
+
+        tooltip.header = user.unitName;
     }
 
     public void UpdateHealthColor(Color newColor)

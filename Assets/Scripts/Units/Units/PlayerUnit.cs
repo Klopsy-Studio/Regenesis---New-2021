@@ -78,12 +78,11 @@ public class PlayerUnit : Unit
         playerUI.unitUI.planeDistance = 0.01f;
 
         didNotMove = true;
-        //timelineFill = Random.Range(50, 90);
         SetUpTimelineFill();
-        //ESTO DEBER�A DE ESTAR EN UNIT
-
+        
         timelineTypes = TimeLineTypes.PlayerUnit;
 
+        
 
         EquipAllItems();
         SetOriginalValues();
@@ -111,7 +110,8 @@ public class PlayerUnit : Unit
     {
         if (!isTutorial)
         {
-            timelineFill = Random.Range(50, 90);
+            float randomValue = Random.Range(50, 90);
+            timelineFill = randomValue;
         }
     }
     public void EnableDrone()
@@ -522,6 +522,7 @@ public class PlayerUnit : Unit
     public override void Stun()
     {
         base.Stun();
+        iconTimeline.ChangeSpeedImageMode(false);
         animations.unitAnimator.SetTrigger("stun");
     }
 
@@ -563,7 +564,9 @@ public class PlayerUnit : Unit
                     }
                     //playerUI.DisableStun();
                     iconTimeline.velocityText.gameObject.SetActive(true);
+                    iconTimeline.DisableStun();
                     iconTimeline.SetTimelineIconTextVelocity();
+                    iconTimeline.ChangeSpeedImageMode(true);
 
                     //Disabling Stun icon for now
                     //iconTimeline.DisableStun();

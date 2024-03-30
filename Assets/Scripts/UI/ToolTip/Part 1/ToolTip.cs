@@ -5,11 +5,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 [ExecuteInEditMode()]
 public class ToolTip : MonoBehaviour
 {
     [SerializeField] float offset;
+    public Image background;
     public TextMeshProUGUI headerField;
     public TextMeshProUGUI contentField;
     public LayoutElement layoutElement;
@@ -17,6 +19,8 @@ public class ToolTip : MonoBehaviour
     public int characterWrapLimit;
 
     RectTransform rectTransform;
+
+    public Animator tooltipAnim;
 
     private void Awake()
     {
@@ -97,5 +101,15 @@ public class ToolTip : MonoBehaviour
 
 
         transform.position = mousePosition;
+    }
+
+    public void ChangeTooltipMode(bool value)
+    {
+        background.enabled = value;
+        headerField.enabled = value;
+        contentField.enabled = value;
+
+        if (value)
+            tooltipAnim.SetTrigger("appear");
     }
 }

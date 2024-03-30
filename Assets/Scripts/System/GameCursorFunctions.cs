@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class GameCursorFunctions : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void SetRegularCursor()
     {
-        
+        GameCursor.instance.SetRegularCursor();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetHandCursor()
     {
-        
+        GameCursor.instance.SetHandCursor();
     }
 }

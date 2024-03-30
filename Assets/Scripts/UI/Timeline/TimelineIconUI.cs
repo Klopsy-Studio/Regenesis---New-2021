@@ -19,8 +19,10 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public Image middleUpSupport;
     public Image middleDownSupport;
     [Space]
-
-
+    [Header("Unit Speed")]
+    public Image speedImageComponent;
+    public Sprite[] speedSprites;
+    [Space]
     [HideInInspector] public bool mouseOver;
     [HideInInspector] public bool selected;
 
@@ -260,6 +262,22 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         iconStunnedIndicator.SetActive(false);
     }
+    #endregion
+
+    #region Unit Speed
+    public void ChangeSpeedImageMode(bool value)
+    {
+        speedImageComponent.gameObject.SetActive(value);
+    }
+
+    public void SetUnitSpeed(int speedIndex)
+    {
+        if (speedIndex >= speedSprites.Length)
+            return;
+
+        speedImageComponent.sprite = speedSprites[speedIndex];
+    }
+
     #endregion
 }
 
