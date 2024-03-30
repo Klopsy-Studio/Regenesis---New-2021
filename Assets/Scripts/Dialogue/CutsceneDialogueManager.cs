@@ -95,7 +95,7 @@ public class CutsceneDialogueManager : MonoBehaviour
     {
         float value = 0;
         cutsceneTextComponent.color = new Color(cutsceneTextComponent.color.r, cutsceneTextComponent.color.g, cutsceneTextComponent.color.b, 0);
-        while (value > 0)
+        while (value <= 1)
         {
             value += Time.deltaTime * fadeOutSpeed;
             cutsceneTextComponent.color = new Color(cutsceneTextComponent.color.r, cutsceneTextComponent.color.g, cutsceneTextComponent.color.b, value);
