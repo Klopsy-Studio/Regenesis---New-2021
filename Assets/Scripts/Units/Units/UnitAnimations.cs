@@ -28,6 +28,10 @@ public class UnitAnimations : MonoBehaviour
         SetAnimation("idle");
     }
 
+    public void ResetAllowDeath()
+    {
+        unitAnimator.SetBool("allowDeath", true);
+    }
     public void SetCombatIdle()
     {
         SetAnimation("combatIdle");

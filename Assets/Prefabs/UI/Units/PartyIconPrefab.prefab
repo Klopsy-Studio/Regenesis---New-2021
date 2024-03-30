@@ -314,6 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5933493199402500840}
   - component: {fileID: 6773538982203747197}
+  - component: {fileID: 3804629490418252464}
   m_Layer: 0
   m_Name: PartyIconPrefab
   m_TagString: Untagged
@@ -356,13 +357,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f048b65527e4a4ca94b34208b3c677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  timeline: {fileID: 0}
   hunterHealth: {fileID: 5933493200014610572}
   healthBarImage: {fileID: 5933493199086210764}
   hunterPortraitImage: {fileID: 5933493198469275902}
+  tooltip: {fileID: 3804629490418252464}
+  hunterDeath: 'This hunter is dead. '
   goodHealthColor: {r: 0.8156863, g: 0.972549, b: 0.13333334, a: 1}
   mediumHealthColor: {r: 0.972549, g: 0.65882355, b: 0.13333334, a: 1}
   lowHealthColor: {r: 0.972549, g: 0.23529412, b: 0.13333334, a: 1}
-  timer: 0
+--- !u!114 &3804629490418252464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933493199402500841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4260828b04d1b4aa73df8be14d55b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: Hunter
+  content: Inspect.
+  changeToFinger: 1
+  allowTooltip: 1
 --- !u!1 &5933493200014610574
 GameObject:
   m_ObjectHideFlags: 0

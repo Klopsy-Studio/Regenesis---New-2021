@@ -12,6 +12,9 @@ public class BullseyeEvent : HunterEvent
         playing = true;
         if (target != null)
         {
+            Point pos = new Point((int)target.transform.position.x, (int)target.transform.position.z);
+            controller.SelectTile(pos);
+
             if (target.GetComponent<Unit>() != null)
             {
                 Unit u = target.GetComponent<Unit>();
@@ -74,5 +77,25 @@ public class BullseyeEvent : HunterEvent
         playing = false;
     }
 
-   
+
+    public override bool UpdateTimeLine()
+    {
+        if(target == null)
+        {
+            iconTimeline.EnableDisappear();
+            unit.controller.timelineElements.Remove(this);
+            unit.currentBullseyeEvent = null;
+        }
+
+        if (timelineFill >= timelineFull)
+        {
+            return true;
+        }
+
+        timelineFill += fTimelineVelocity * Time.deltaTime;
+
+
+        return false;
+    }
+
 }

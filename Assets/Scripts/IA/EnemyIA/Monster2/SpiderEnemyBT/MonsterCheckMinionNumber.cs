@@ -48,7 +48,7 @@ public class MonsterCheckMinionNumber : ActionNode
                 }
 
             case ComparisonType.GreaterAndEqual:
-                if (numberToCheck >= owner.controller.minionsInGame.Count)
+                if (owner.controller.minionsInGame.Count >= numberToCheck)
                 {
                     return State.Success;
                 }

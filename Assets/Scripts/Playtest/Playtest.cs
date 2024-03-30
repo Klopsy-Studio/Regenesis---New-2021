@@ -6,7 +6,7 @@ using Cinemachine;
 public class Playtest : MonoBehaviour
 {
     public BattleController controller;
-    [HideInInspector]public List<TimelineElements> elements;
+    [HideInInspector] public List<TimelineElements> elements;
     [SerializeField] ActionEffectParameters testParameters;
 
 

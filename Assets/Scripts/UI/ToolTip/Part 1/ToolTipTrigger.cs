@@ -10,8 +10,13 @@ public class ToolTipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public string content;
 
     public bool changeToFinger;
+
+    public bool allowTooltip = true;
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!allowTooltip)
+            return;
+
         ToolTipSystem.Show(content, header);
         ToolTipSystem.instance.currentTrigger = this;
 
@@ -23,6 +28,8 @@ public class ToolTipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!allowTooltip)
+            return;
         ToolTipSystem.Hide();
         GameCursor.instance.SetRegularCursor();
 

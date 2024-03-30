@@ -50,6 +50,7 @@ public class PlayerUnit : Unit
     public Animator droneIndicator;
     public int pushAmount;
     public Directions pushDirections;
+    [HideInInspector] public BullseyeEvent currentBullseyeEvent;
 
 
     [Header("Monster Variables")]
@@ -78,12 +79,11 @@ public class PlayerUnit : Unit
         playerUI.unitUI.planeDistance = 0.01f;
 
         didNotMove = true;
-        //timelineFill = Random.Range(50, 90);
         SetUpTimelineFill();
-        //ESTO DEBER�A DE ESTAR EN UNIT
-
+        
         timelineTypes = TimeLineTypes.PlayerUnit;
 
+        
 
         EquipAllItems();
         SetOriginalValues();
@@ -111,7 +111,8 @@ public class PlayerUnit : Unit
     {
         if (!isTutorial)
         {
-            timelineFill = Random.Range(50, 90);
+            float randomValue = Random.Range(50, 90);
+            timelineFill = randomValue;
         }
     }
     public void EnableDrone()
@@ -428,7 +429,20 @@ public class PlayerUnit : Unit
                 break;
         }
         partyIcon.UnitDead();
+
+        animations.unitAnimator.SetBool("allowDeath", true);
+
         animations.unitAnimator.SetBool("nearDeath", true);
+
+        //Remove bullseye
+        animations.unitAnimator.SetBool("bullseye", false);
+
+        if(currentBullseyeEvent != null)
+        {
+            currentBullseyeEvent.iconTimeline.EnableDisappear();
+            controller.timelineElements.Remove(currentBullseyeEvent);
+            currentBullseyeEvent = null;
+        }
         diedOnce = true;
         PlayerUnitDeath element = Instantiate(nearDeathElement);
         element.timelineIcon = profile.unitDeathTimelineIcon;
@@ -508,7 +522,15 @@ public class PlayerUnit : Unit
                 }
             }
         }
-        
+
+        if (currentBullseyeEvent != null)
+        {
+            animations.unitAnimator.SetBool("bullseye", false);
+            currentBullseyeEvent.iconTimeline.EnableDisappear();
+            controller.timelineElements.Remove(currentBullseyeEvent);
+            currentBullseyeEvent = null;
+        }
+
         controller.timelineElements.Remove(this);
         elementEnabled = false;
         animations.SetDeath();
@@ -522,6 +544,7 @@ public class PlayerUnit : Unit
     public override void Stun()
     {
         base.Stun();
+        iconTimeline.ChangeSpeedImageMode(false);
         animations.unitAnimator.SetTrigger("stun");
     }
 
@@ -563,7 +586,9 @@ public class PlayerUnit : Unit
                     }
                     //playerUI.DisableStun();
                     iconTimeline.velocityText.gameObject.SetActive(true);
+                    iconTimeline.DisableStun();
                     iconTimeline.SetTimelineIconTextVelocity();
+                    iconTimeline.ChangeSpeedImageMode(true);
 
                     //Disabling Stun icon for now
                     //iconTimeline.DisableStun();

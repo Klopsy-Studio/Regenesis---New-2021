@@ -20,7 +20,7 @@ public class WinState : BattleState
         tileSelectionIndicator.gameObject.SetActive(false);
         owner.isTimeLineActive = false;
         owner.battleEnded = true;
-
+        owner.battleContextControls.gameObject.SetActive(false);
         StartCoroutine(Win());
     }
 

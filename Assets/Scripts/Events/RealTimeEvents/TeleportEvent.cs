@@ -110,14 +110,17 @@ public class TeleportEvent : RealTimeEvents
                 else
                 {
                     battleController.SelectTile(u.tile.pos);
-                    if(u.GetComponent<PlayerUnit>()!= null)
+
+                    if(u.TryGetComponent<PlayerUnit>(out PlayerUnit p))
                     {
-                        u.GetComponent<PlayerUnit>().animations.unitAnimator.SetTrigger("drop");
+                        p.animations.unitAnimator.SetBool("allowDeath", false);
+
+                        p.animations.unitAnimator.SetTrigger("drop");
                     }
 
-                    if(u.GetComponent<EnemyUnit>()!= null)
+                    if (u.TryGetComponent<EnemyUnit>(out EnemyUnit e))
                     {
-                        u.GetComponent<EnemyUnit>().monsterControl.monsterAnimations.SetTrigger("drop");
+                        e.monsterControl.monsterAnimations.SetTrigger("drop");
                     }
 
                     yield return new WaitForSeconds(1.5f);
@@ -132,14 +135,14 @@ public class TeleportEvent : RealTimeEvents
                 }
                 else
                 {
-                    if (u.GetComponent<PlayerUnit>() != null)
+                    if (u.TryGetComponent<PlayerUnit>(out PlayerUnit p))
                     {
-                        u.GetComponent<PlayerUnit>().animations.unitAnimator.SetTrigger("appear");
+                        p.animations.unitAnimator.SetTrigger("appear");
                     }
 
-                    if (u.GetComponent<EnemyUnit>() != null)
+                    if (u.TryGetComponent<EnemyUnit>(out EnemyUnit e))
                     {
-                        u.GetComponent<EnemyUnit>().monsterControl.monsterAnimations.SetTrigger("appear");
+                        e.monsterControl.monsterAnimations.SetTrigger("appear");
                     }
 
                     Tile t = validTilesForUnits[Random.Range(0, validTilesForUnits.Count)];
@@ -185,4 +188,6 @@ public class TeleportEvent : RealTimeEvents
         playing = false;
 
     }
+
+    
 }

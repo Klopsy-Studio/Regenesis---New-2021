@@ -89,6 +89,11 @@ public class AbilityTargets : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
+            if(parent.transform.GetChild(0).name == "BowTraitButton")
+            {
+                parent.transform.GetChild(0).SetAsLastSibling();
+                continue;
+            }
             parent.transform.GetChild(0).gameObject.SetActive(false);
             parent.transform.GetChild(0).transform.parent = null;
         }

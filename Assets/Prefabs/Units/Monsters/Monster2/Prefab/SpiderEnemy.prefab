@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1387f5090e7122048a4cc3bc65fa3f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 58c6c2268d3da6d4ea4cc709b8abdcdc, type: 2}
+  tree: {fileID: 11400000, guid: e313db3d939f1954d9c1af8541f49a4d, type: 2}
   testRunner: {fileID: 5977670217988991083}
   turnFinished: 0
   lastSequence: 0
@@ -630,7 +630,7 @@ MonoBehaviour:
     itemRange: 0
     itemRemoveContent: 0
     itemRemoveOrigin: 0
-  hasSpawnedMinionsInLastTurn: 0
+  turnsWithoutMinions: 0
   hasDoneFirstTurn: 0
   hasEvolved: 0
   turnsAlive: 0
@@ -694,6 +694,7 @@ MonoBehaviour:
   slowEffect: {fileID: 1065309422069548685}
   hasteEffect: {fileID: 326797753001765973}
   unitSprite: {fileID: 1262454043973379550}
+  fadeDuration: 0
   thisIsMyFuckingTurn: 0
   power: 50
   originalPower: 0
@@ -925,6 +926,7 @@ MonoBehaviour:
   lineDir: 0
   stopLine: 0
   lineOffset: 0
+  monsterUse: 0
 --- !u!114 &5977670217988991083
 MonoBehaviour:
   m_ObjectHideFlags: 0

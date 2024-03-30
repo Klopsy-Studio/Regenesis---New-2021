@@ -639,7 +639,7 @@ MonoBehaviour:
   elementEnabled: 1
   hasDescription: 1
   description:
-    header: Reckless Blossomfiend
+    header: Hardened Blossomfiend
     content: This is a minion unit.
   fTimelineVelocity: 15
   timelineFill: 0
@@ -664,7 +664,7 @@ MonoBehaviour:
   maxHealth: 60
   health: 60
   hurtAnimation: {fileID: 0}
-  unitName: Reckless Blossomfiend
+  unitName: H. Blossomfiend
   particleHitPrefab: {fileID: 0}
   isInAction: 0
   isDead: 0
@@ -679,6 +679,7 @@ MonoBehaviour:
   slowEffect: {fileID: 5186808100553562442}
   hasteEffect: {fileID: 2174452624457060711}
   unitSprite: {fileID: 6455163749675579260}
+  fadeDuration: 0
   thisIsMyFuckingTurn: 0
   power: 45
   originalPower: 0
@@ -939,7 +940,8 @@ MonoBehaviour:
     itemRange: 0
     itemRemoveContent: 0
     itemRemoveOrigin: 0
-  evolvedName: E. Reckless Blossomfiend
+  evolvedName: E. H.Blossomfiend
+  evolvedHeader: Evolved Hardened Blossomfiend
   evolvedDescription: This is an evolved minion unit.
 --- !u!114 &4319465372067614749
 MonoBehaviour:
@@ -983,7 +985,7 @@ MonoBehaviour:
   minionsInGame: []
   maxMinions: 3
   minionRangeSpawn: []
-  hasSpawnedMinionsInLastTurn: 0
+  turnsWithoutMinions: 0
   hasDoneFirstTurn: 0
   hasEvolved: 0
   turnsAlive: 0
@@ -1121,6 +1123,7 @@ MonoBehaviour:
   lineDir: 0
   stopLine: 0
   lineOffset: 0
+  monsterUse: 1
 --- !u!114 &1657144206059741189
 MonoBehaviour:
   m_ObjectHideFlags: 0

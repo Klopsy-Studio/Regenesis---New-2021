@@ -15,7 +15,8 @@ public class UnitPartyIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] Slider hunterHealth;
     [SerializeField] Image healthBarImage;
     [SerializeField] Image hunterPortraitImage;
-
+    [SerializeField] ToolTipTrigger tooltip;
+    [SerializeField] string hunterDeath;
     Sprite hunterDefaultSprite;
     Sprite hunterDeadSprite;
 
@@ -31,6 +32,7 @@ public class UnitPartyIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void UnitDead()
     {
         hunterPortraitImage.sprite = hunterDeadSprite;
+        tooltip.content = hunterDeath;
     }
 
     public void UnitDefault()
@@ -48,6 +50,8 @@ public class UnitPartyIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         hunterDeadSprite = user.profile.unitPartyIconDead;
 
         hunterPortraitImage.sprite = hunterDefaultSprite;
+
+        tooltip.header = user.unitName;
     }
 
     public void UpdateHealthColor(Color newColor)
@@ -114,7 +118,7 @@ public class UnitPartyIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (owner.pauseTimeline)
+        if (owner.pauseTimeline && !user.isDead)
         {
             GameCursor.instance.SetHandCursor();
         }
@@ -127,7 +131,7 @@ public class UnitPartyIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (owner.pauseTimeline)
+        if (owner.pauseTimeline && !user.isDead)
         {
             if(owner.TryGetComponent<TimeLineState>(out TimeLineState t))
             {

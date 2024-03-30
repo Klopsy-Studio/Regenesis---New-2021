@@ -12,14 +12,21 @@ public class ToolTipSystem : MonoBehaviour
     {
         instance = this;
     }
+
+    private void Start()
+    {
+        toolTip.gameObject.SetActive(true);
+        toolTip.ChangeTooltipMode(false);
+    }
     public static void Show(string content, string header = "")
     {
-        instance.toolTip.gameObject.SetActive(true);
+        instance.toolTip.ChangeTooltipMode(true);
         instance.toolTip.SetText(content, header);
     }
     public static void Hide()
     {
-        instance.toolTip.gameObject.SetActive(false);
+
+        instance.toolTip.ChangeTooltipMode(false);
     }
 
 }

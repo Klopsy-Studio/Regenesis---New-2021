@@ -159,7 +159,7 @@ public class EnemyUnit : Unit
                 UpdateCurrentVelocity();
                 stunned = false;
                 timeStunned = originalTimeStunned;
-
+                iconTimeline.DisableStun();
                 foreach (Modifier m in debuffModifiers)
                 {
                     if(m.modifierType == TypeOfModifier.Stun)
@@ -190,6 +190,7 @@ public class EnemyUnit : Unit
         {
             //fTimelineVelocity = 0;
             timelineVelocity = TimelineVelocity.Stun;
+            iconTimeline.EnableStun();
             AddDebuff(new Modifier { modifierType = TypeOfModifier.Stun });
             previousVelocity = timelineVelocity;
             Debug.Log(gameObject.name + "previousVelocity es " + previousVelocity);

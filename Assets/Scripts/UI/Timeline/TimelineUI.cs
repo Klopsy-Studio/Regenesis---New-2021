@@ -243,8 +243,18 @@ public class TimelineUI : MonoBehaviour
                 }
 
                 ToolTipTrigger trigger = temp.GetComponent<ToolTipTrigger>();
-                trigger.header = temp.element.description.header;
+
+                if(temp.element.timelineTypes == TimeLineTypes.PlayerUnit)
+                {
+                    trigger.header = temp.element.GetComponent<Unit>().unitName;
+                }
+                else
+                {
+                    trigger.header = temp.element.description.header;
+                }
+
                 trigger.content = temp.element.description.content;
+
             }
             temp.iconAnimationsTimeline.SetFloat("character", temp.element.timelineIconIndex);
             temp.velocityText.enabled = false;
@@ -271,6 +281,11 @@ public class TimelineUI : MonoBehaviour
                 ToolTipTrigger trigger = temp.GetComponent<ToolTipTrigger>();
                 trigger.EnableFinger();
 
+                temp.ChangeSpeedImageMode(true);
+                temp.SetUnitSpeed(((int)timelineVelocity));
+
+                temp.icon.SetNativeSize();
+
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.EnemyUnit)
             {
@@ -291,6 +306,8 @@ public class TimelineUI : MonoBehaviour
                 temp.offset = bottomLaneOffset;
                 ToolTipTrigger trigger = temp.GetComponent<ToolTipTrigger>();
                 trigger.EnableFinger();
+                temp.icon.SetNativeSize();
+
 
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.RealtimeEvents)
@@ -310,6 +327,8 @@ public class TimelineUI : MonoBehaviour
                 temp.rectTransform.SetAsLastSibling();
                 temp.middleDownSupport.enabled = true;
                 temp.middleUpSupport.enabled = true;
+                temp.icon.SetNativeSize();
+
             }
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.Items)
             {
@@ -328,6 +347,9 @@ public class TimelineUI : MonoBehaviour
                 temp.offset = 0;
                 temp.middleDownSupport.enabled = true;
                 temp.middleUpSupport.enabled = true;
+                temp.icon.SetNativeSize();
+
+
             }
 
             else if (battleController.timelineElements[i].timelineTypes == TimeLineTypes.PlayerDeath)
@@ -343,8 +365,9 @@ public class TimelineUI : MonoBehaviour
 
                 temp.middleDownSupport.enabled = true;
                 temp.middleUpSupport.enabled = true;
+                temp.icon.SetNativeSize();
 
-            
+
             }
 
             else if(battleController.timelineElements[i].timelineTypes == TimeLineTypes.EnemyEvent)
@@ -364,6 +387,8 @@ public class TimelineUI : MonoBehaviour
                 temp.offset = bottomLaneOffset;
                 temp.middleDownSupport.enabled = true;
                 temp.middleUpSupport.enabled = true;
+                temp.icon.SetNativeSize();
+
 
             }
 
@@ -444,9 +469,15 @@ public class TimelineUI : MonoBehaviour
     public void ShowIconActing(TimelineElements element)
     {
         currentActorAnimations.gameObject.SetActive(true);
+        element.iconTimeline.DisableTooltip();
         currentActorAnimations.SetFloat("character", element.timelineIconIndex);
         currentActorAnimations.SetTrigger("appear");
         element.iconTimeline.isActing = true;
+
+        if(element.timelineTypes == TimeLineTypes.PlayerUnit)
+        {
+            element.iconTimeline.ChangeSpeedImageMode(false);
+        }
         //currentActorIcon.SetNativeSize();
     }
 
@@ -464,6 +495,14 @@ public class TimelineUI : MonoBehaviour
     public void ShowTimelineIcon(TimelineElements element)
     {
         element.iconTimeline.EnableAppear();
+        element.iconTimeline.EnableTooltip();
+
+        if (element.timelineTypes == TimeLineTypes.PlayerUnit)
+        {
+            element.iconTimeline.ChangeSpeedImageMode(true);
+            element.iconTimeline.SetUnitSpeed(((int)element.timelineVelocity));
+        }
+
         element.iconTimeline.isActing = false;
     }
 }
