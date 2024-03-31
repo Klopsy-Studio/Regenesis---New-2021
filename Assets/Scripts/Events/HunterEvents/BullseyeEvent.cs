@@ -84,19 +84,38 @@ public class BullseyeEvent : HunterEvent
         if(!target.gameObject.activeSelf)
         {
             iconTimeline.EnableDisappear();
-            unit.controller.timelineElements.Remove(this);
+            elementEnabled = false;
+            timelineVelocity = 0;
             unit.currentBullseyeEvent = null;
-        }
 
-        if (timelineFill >= timelineFull)
+            foreach(Modifier m in unit.buffModifiers)
+            {
+                if (m.modifierType == TypeOfModifier.Bullseye)
+                {
+                    unit.RemoveBuff(m);
+                    break;
+                }
+            }
+
+            unit.animations.unitAnimator.SetBool("bullseye", false);
+            unit.animations.SetIdle();
+        }
+        else
         {
-            return true;
+            if (timelineFill >= timelineFull)
+            {
+                return true;
+            }
+
+            timelineFill += fTimelineVelocity * Time.deltaTime;
+
+            return false;
         }
-
-        timelineFill += fTimelineVelocity * Time.deltaTime;
-
 
         return false;
+
+
+
     }
 
 }
