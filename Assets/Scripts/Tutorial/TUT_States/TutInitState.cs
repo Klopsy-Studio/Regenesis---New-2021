@@ -166,7 +166,7 @@ public class TutInitState : BattleState
             MonsterMovement m = instance.GetComponent<MonsterMovement>();
             m.range = 10;
             m.jumpHeight = 1;
-
+            unit.timelineFill = 40;
             unitsInGame.Add(unit);
             owner.enemyUnits.Add(unit);
         }

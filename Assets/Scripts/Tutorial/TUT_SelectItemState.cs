@@ -47,6 +47,7 @@ public class TUT_SelectItemState : BattleState
 
             SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
             e.assignedConsumable = itemList[i].consumable;
+            e.UpdateTooltip();
             e.EnableOption();
 
             if (i != 0)

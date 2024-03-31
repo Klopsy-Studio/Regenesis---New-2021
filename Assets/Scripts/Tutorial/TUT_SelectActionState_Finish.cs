@@ -33,7 +33,7 @@ public class TUT_SelectActionState_Finish : BattleState
         owner.currentUnit.GetComponent<Movement>().ResetRange();
 
 
-    
+        ActionSelectionUI.EnableSelectOption(typeOfAction.Wait);
         ActionSelectionUI.DisableSelectOption(typeOfAction.Move);
         ActionSelectionUI.DisableSelectOption(typeOfAction.Item);
         ActionSelectionUI.DisableSelectOption(typeOfAction.Ability);

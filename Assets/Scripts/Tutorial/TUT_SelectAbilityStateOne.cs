@@ -107,6 +107,7 @@ public class TUT_SelectAbilityStateOne : BattleState
 
                 SelectorMovement e = AbilitySelectionUI.options[i].GetComponent<SelectorMovement>();
                 e.assignedAbility = abilityList[i];
+                e.UpdateTooltip();
                 e.ClearOption();
                 e.GetPreviewRange();
                 e.GetTargets();

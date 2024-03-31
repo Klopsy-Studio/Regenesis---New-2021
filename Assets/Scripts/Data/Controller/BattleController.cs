@@ -654,7 +654,11 @@ public class BattleController : StateMachine
 
     public void ReturnToCamp()
     {
-        battleContextControls.gameObject.SetActive(false);
+        if(battleContextControls != null)
+        {
+            battleContextControls.gameObject.SetActive(false);
+        }
+
         sceneTransition.SetBool("fadeInPause", true);
         uiController.gameObject.SetActive(false);
         GameManager.instance.sceneToLoad = "CampScene";
@@ -665,6 +669,28 @@ public class BattleController : StateMachine
         StartCoroutine(LoadingScreen());
     }
 
+    public void ReturnToCampDelay()
+    {
+        if (battleContextControls != null)
+        {
+            battleContextControls.gameObject.SetActive(false);
+        }
+
+        sceneTransition.SetBool("fadeInPause", true);
+        uiController.gameObject.SetActive(false);
+        GameManager.instance.sceneToLoad = "CampScene";
+        AudioManager.instance.FadeOut("Music");
+        AudioManager.instance.FadeOut("MainTheme");
+        AudioManager.instance.FadeOut("LoseTheme");
+
+        Invoke("LoadingCall", 3f);
+    }
+
+    public void LoadingCall()
+    {
+        StartCoroutine(LoadingScreen());
+
+    }
     public void BeginEscape()
     {
         StartCoroutine(ReturnToCampRoutine());
@@ -686,6 +712,9 @@ public class BattleController : StateMachine
 
         questEscaped.gameObject.SetActive(true);
 
+
+        yield return new WaitForSecondsRealtime(2f);
+        sceneTransition.SetBool("fadeInPause", true);
 
         yield return new WaitForSecondsRealtime(2f);
 
