@@ -24902,11 +24902,12 @@ RectTransform:
   - {fileID: 1435599197}
   - {fileID: 674369386}
   - {fileID: 3099776045282983162}
+  - {fileID: 5236397250127606196}
   m_Father: {fileID: 3099776044916344231}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 174, y: 264.22278}
   m_Pivot: {x: 0, y: 1}
@@ -25451,8 +25452,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3099776044916344231}
   - component: {fileID: 3099776044916344230}
-  - component: {fileID: 1594835658}
-  - component: {fileID: 1594835659}
   m_Layer: 0
   m_Name: AbilityUI
   m_TagString: Untagged
@@ -25478,7 +25477,6 @@ RectTransform:
   - {fileID: 6200843812749580307}
   - {fileID: 3099776044160166974}
   - {fileID: 686888886}
-  - {fileID: 5236397250127606196}
   m_Father: {fileID: 3099776044058413340}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25545,46 +25543,6 @@ MonoBehaviour:
   buttonSelectItem4: {fileID: 0}
   title: {fileID: 1661265331257048615}
   onOption: 0
---- !u!114 &1594835658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3099776044916343897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 15
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
---- !u!114 &1594835659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3099776044916343897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
 --- !u!1 &3099776044948691997
 GameObject:
   m_ObjectHideFlags: 0
@@ -30276,6 +30234,7 @@ MonoBehaviour:
   frenzyIcon: {fileID: 1262952444085346068, guid: 9628da2368d23834b8b526e686a7dbb7, type: 3}
   antivirusIcon: {fileID: 1262952444085346068, guid: 218b6090aa3b07a4a940b47b0179d600, type: 3}
   evolveIcon: {fileID: 1262952444085346068, guid: 4c3161d5ba0b7b048a494123ab35e7b7, type: 3}
+  nearDeathIcon: {fileID: 0}
   hammerSprite: {fileID: 4637063932210033720, guid: 8bec534dda6f82c42ae5477e730eac43, type: 3}
   bowSprite: {fileID: -4465366891955389173, guid: 8bec534dda6f82c42ae5477e730eac43, type: 3}
   gunbladeSprite: {fileID: -7052188548359618984, guid: 8bec534dda6f82c42ae5477e730eac43, type: 3}
@@ -40016,7 +39975,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3099776044916344231}
+    m_TransformParent: {fileID: 3099776044160166974}
     m_Modifications:
     - target: {fileID: 1155850818920054116, guid: d9a5328f0cd56534db61ca29f694e82a, type: 3}
       propertyPath: m_Pivot.y
@@ -40097,7 +40056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5587533997408133005, guid: d9a5328f0cd56534db61ca29f694e82a, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5587533997408133005, guid: d9a5328f0cd56534db61ca29f694e82a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -40387,7 +40346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreLayout: 0
+  m_IgnoreLayout: 1
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
