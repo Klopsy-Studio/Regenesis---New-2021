@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6223653754699309038}
   - component: {fileID: 3676229516809350543}
   - component: {fileID: 4477902261131412452}
-  - component: {fileID: -8247780759984267831}
+  - component: {fileID: 3782001599159898521}
+  - component: {fileID: 3243220472165999285}
   m_Layer: 0
-  m_Name: DefenseBuff
+  m_Name: NearDeathMonsterSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1984861795894739620, guid: 8bec534dda6f82c42ae5477e730eac43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22be4db8a22fa4b40bed60d25f79074f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -77,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-8247780759984267831
+--- !u!114 &3782001599159898521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +90,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4260828b04d1b4aa73df8be14d55b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  header: Defense Buff
-  content: Increases the unit's defense until the next hit.
+  header: Near Death
+  content: The monster is almost out of strength! Finish him!
   changeToFinger: 0
   allowTooltip: 1
+--- !u!95 &3243220472165999285
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262952444085346068}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e8466cbc932361649a30b491a4dcede1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

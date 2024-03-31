@@ -181,6 +181,15 @@ public class EnemyUnit : Unit
         base.Heal(heal);
         if (health >= lowHealth)
         {
+            foreach (Modifier m in debuffModifiers)
+            {
+                if (m.modifierType == TypeOfModifier.NearDeath)
+                {
+                    RemoveDebuff(m);
+                    break;
+                }
+            }
+
             monsterControl.monsterAnimations.SetFloat("health", 0);
         }
     }
@@ -238,8 +247,11 @@ public class EnemyUnit : Unit
 
         if (health <= lowHealth)
         {
+            AddDebuff(new Modifier { modifierType = TypeOfModifier.NearDeath });
             monsterControl.monsterAnimations.SetFloat("health", 1);
         }
+
+        
 
         if (health <= 0)
         {

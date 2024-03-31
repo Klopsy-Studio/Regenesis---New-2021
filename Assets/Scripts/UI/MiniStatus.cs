@@ -55,7 +55,7 @@ public class MiniStatus : MonoBehaviour
     [SerializeField] GameObject frenzyIcon;
     [SerializeField] GameObject antivirusIcon;
     [SerializeField] GameObject evolveIcon;
-
+    [SerializeField] GameObject nearDeathIcon;
     [Space]
     [Header("Weapon sprites")]
     [SerializeField] Sprite hammerSprite;
@@ -202,6 +202,9 @@ public class MiniStatus : MonoBehaviour
                         break;
                     case TypeOfModifier.SpiderMark:
                         SpawnIcon(spiderMarkIcon, targetParent);
+                        break;
+                    case TypeOfModifier.NearDeath:
+                        SpawnIcon(nearDeathIcon, targetParent);
                         break;
                     default:
                         break;

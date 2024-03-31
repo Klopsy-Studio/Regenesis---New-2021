@@ -89,7 +89,7 @@ public class TutorialDialogue : MonoBehaviour
         }
     }
 
-    private void Disable()
+    public virtual void Disable()
     {
         show = false;
         dialogueText.text = "";
