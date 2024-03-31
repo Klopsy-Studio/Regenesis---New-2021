@@ -28,6 +28,10 @@ public class TUT_BattleController : BattleController
     }
 
 
+    public void ResumeTimeline()
+    {
+        isTimeLineActive = true;
+    }
     //public void ChangeStateIndex(int index)
     //{
     //    stateIndex = index;

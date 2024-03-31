@@ -328,12 +328,16 @@ public class OptionSelection : MonoBehaviour
     {
         option.color = disabledColor;
         option.GetComponent<SelectorMovement>().canBeSelected = false;
+        option.GetComponent<SelectorMovement>().abilityTooltip.allowTooltip = false;
+
     }
 
     void EnableOption(Text option)
     {
         option.color = defaultColor;
         option.GetComponent<SelectorMovement>().canBeSelected = true;
+        option.GetComponent<SelectorMovement>().abilityTooltip.allowTooltip = true;
+
     }
 
     public void DisableSelectOption(typeOfAction action)

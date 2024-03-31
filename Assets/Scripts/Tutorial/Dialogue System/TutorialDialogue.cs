@@ -36,7 +36,7 @@ public class TutorialDialogue : MonoBehaviour
 
     private Coroutine displayLine;
 
-
+    bool dialogueEnd;
     private void Start()
     {
         finalYPosition = portrait.rectTransform.anchoredPosition.y;
@@ -60,6 +60,8 @@ public class TutorialDialogue : MonoBehaviour
 
     public void Continue()
     {
+        if (dialogueEnd)
+            return;
         show = true;
 
         if (!isDisplayingLine)
@@ -85,6 +87,8 @@ public class TutorialDialogue : MonoBehaviour
         else
         {
             LineComplete();
+            if (displayLine != null)
+                StopCoroutine(displayLine);
             ShowContinueIndicator(true);
         }
     }
@@ -92,6 +96,7 @@ public class TutorialDialogue : MonoBehaviour
     public virtual void Disable()
     {
         show = false;
+        dialogueEnd = true;
         dialogueText.text = "";
         dialogueIndex = 0;
         ShowContinueIndicator(false);
@@ -114,10 +119,14 @@ public class TutorialDialogue : MonoBehaviour
                 this.gameObject.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
+        if (!dialogueEnd)
         {
-            Continue();
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
+            {
+                Continue();
+            }
         }
+
     }
 
     private void DisplayAnimations(float time)
@@ -141,7 +150,9 @@ public class TutorialDialogue : MonoBehaviour
             dialogueText.maxVisibleCharacters++;
 
             // Typing sound goes here.
+            if(dialogue.dialogueLines[dialogueIndex] != null)
             AudioManager.instance.PlayWithRandomPitch(dialogue.dialogueLines[dialogueIndex].speakerSound, 1f, 1.4f);
+
             if (dialogueText.maxVisibleCharacters == dialogueText.text.Length)
             {
                 LineComplete();
