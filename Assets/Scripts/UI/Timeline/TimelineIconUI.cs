@@ -32,7 +32,7 @@ public class TimelineIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public GameObject iconStunnedIndicator;
     [Space]
 
-    [HideInInspector] public TimelineElements element;
+    /*[HideInInspector]*/ public TimelineElements element;
 
 
     [HideInInspector] public int indexChild;
