@@ -98,6 +98,7 @@ public class SelectAbilityState : BattleState
                     {
                         AbilitySelectionUI.EnableSelectAbilty(i);
                     }
+
                     else
                     {
                         AbilitySelectionUI.DisableSelectAbilty(i);
@@ -108,7 +109,6 @@ public class SelectAbilityState : BattleState
                     if (owner.currentUnit.weapon.Abilities[i].CanDoAbility(owner.currentUnit.actionsPerTurn))
                     {
                         AbilitySelectionUI.EnableSelectAbilty(i);
-
                     }
                     else
                     {
@@ -121,6 +121,7 @@ public class SelectAbilityState : BattleState
 
                 SelectorMovement e = AbilitySelectionUI.options[i].GetComponent<SelectorMovement>();
                 e.assignedAbility = abilityList[i];
+                e.UpdateTooltip();
                 e.ClearOption();
                 e.GetPreviewRange();
                 e.GetTargets();
