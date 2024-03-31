@@ -9,18 +9,29 @@ public class TUT_BattleController : BattleController
     public int stateIndex;
     public override void BeginGame()
     {
+        Debug.Log("Begin");
+        sceneTransition.SetBool("fadeOut", true);
         canToggleTimeline = true;
         originalZoomSize = cinemachineCamera.m_Lens.OrthographicSize;
         cinemachineCamera.m_Lens.NearClipPlane = -1f;
         Destroy(placeholderCanvas.gameObject);
         cameraTest.transparencySortMode = TransparencySortMode.CustomAxis;
         cameraTest.transparencySortAxis = new Vector3(1, 1, 1);
-
         ChangeState<TutInitState>();
     }
 
+    public override void Start()
+    {
+        zoomed = false;
+        currentEntity = CurrentEntityTurn.None;
+        isTimeLineActive = false;
+    }
 
-    
+
+    public void ResumeTimeline()
+    {
+        isTimeLineActive = true;
+    }
     //public void ChangeStateIndex(int index)
     //{
     //    stateIndex = index;

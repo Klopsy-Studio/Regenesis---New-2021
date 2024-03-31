@@ -328,12 +328,16 @@ public class OptionSelection : MonoBehaviour
     {
         option.color = disabledColor;
         option.GetComponent<SelectorMovement>().canBeSelected = false;
+        option.GetComponent<SelectorMovement>().abilityTooltip.allowTooltip = false;
+
     }
 
     void EnableOption(Text option)
     {
         option.color = defaultColor;
         option.GetComponent<SelectorMovement>().canBeSelected = true;
+        option.GetComponent<SelectorMovement>().abilityTooltip.allowTooltip = true;
+
     }
 
     public void DisableSelectOption(typeOfAction action)
@@ -388,21 +392,36 @@ public class OptionSelection : MonoBehaviour
         {
             case 0:
                 ability1.color = defaultColor;
-                ability1.GetComponent<SelectorMovement>().canBeSelected = true;
+                if (ability1.TryGetComponent(out SelectorMovement s))
+                {
+                    s.canBeSelected = true;
+                    s.abilityTooltip.allowTooltip = true;
+                }
                 break;
             case 1:
                 ability2.color = defaultColor;
-                ability2.GetComponent<SelectorMovement>().canBeSelected = true;
-
+                if (ability2.TryGetComponent(out SelectorMovement e))
+                {
+                    e.canBeSelected = true;
+                    e.abilityTooltip.allowTooltip = true;
+                }
                 break;
             case 2:
                 ability3.color = defaultColor;
-                ability3.GetComponent<SelectorMovement>().canBeSelected = true;
+                if (ability3.TryGetComponent(out SelectorMovement w))
+                {
+                    w.canBeSelected = true;
+                    w.abilityTooltip.allowTooltip = true;
+                }
 
                 break;
             case 3:
                 ability4.color = defaultColor;
-                ability4.GetComponent<SelectorMovement>().canBeSelected = true;
+                if (ability4.TryGetComponent(out SelectorMovement q))
+                {
+                    q.canBeSelected = true;
+                    q.abilityTooltip.allowTooltip = true;
+                }
 
                 break;
         }
@@ -414,21 +433,35 @@ public class OptionSelection : MonoBehaviour
         {
             case 0:
                 ability1.color = disabledColor;
-                ability1.GetComponent<SelectorMovement>().canBeSelected = false;
+                if (ability1.TryGetComponent(out SelectorMovement s))
+                {
+                    s.canBeSelected = false;
+                    s.abilityTooltip.allowTooltip = false;
+                }
                 break;
             case 1:
                 ability2.color = disabledColor;
-                ability2.GetComponent<SelectorMovement>().canBeSelected = false;
-
+                if (ability2.TryGetComponent(out SelectorMovement e))
+                {
+                    e.canBeSelected = false;
+                    e.abilityTooltip.allowTooltip = false;
+                }
                 break;
             case 2:
                 ability3.color = disabledColor;
-                ability3.GetComponent<SelectorMovement>().canBeSelected = false;
-
+                if (ability3.TryGetComponent(out SelectorMovement w))
+                {
+                    w.canBeSelected = false;
+                    w.abilityTooltip.allowTooltip = false;
+                }
                 break;
             case 3:
                 ability4.color = disabledColor;
-                ability4.GetComponent<SelectorMovement>().canBeSelected = false;
+                if (ability4.TryGetComponent(out SelectorMovement q))
+                {
+                    q.canBeSelected = false;
+                    q.abilityTooltip.allowTooltip = false;
+                }
                 break;
         }
     }

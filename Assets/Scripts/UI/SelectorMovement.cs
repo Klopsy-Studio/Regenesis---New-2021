@@ -42,16 +42,47 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] int abilityButtonSound = 4;
     [SerializeField] int itemButtonSound = 5;
 
+    public ToolTipTrigger abilityTooltip;
 
+    void Start()
+    {
+        
+    }
+
+    public void UpdateTooltip()
+    {
+        switch (typeOfOption)
+        {
+            case TabType.Ability:
+                abilityTooltip.header = assignedAbility.abilityName;
+                abilityTooltip.content = assignedAbility.description;
+                break;
+            case TabType.ItemConsumable:
+                abilityTooltip.header = assignedConsumable.itemName;
+                abilityTooltip.content = assignedConsumable.consumableDescription;
+                break;
+            case TabType.Move:
+                break;
+            case TabType.Regular:
+                break;
+            case TabType.ItemAction:
+                break;
+            default:
+                break;
+        }        
+    }
     public void DisableOption()
     {
+        abilityTooltip.allowTooltip = false;
         textButton.color = disabledColor;
         canBeSelected = false;
     }
 
     public void EnableOption()
     {
+        abilityTooltip.allowTooltip = true;
         textButton.color = normalColor;
+        //UpdateTooltip();
         canBeSelected = true;
     }
     public void OnPointerEnter(PointerEventData eventData)
@@ -63,14 +94,13 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
             {
                 abilityDescription.gameObject.SetActive(true);          
             }
-
             switch (typeOfOption)
             {
                 case TabType.Ability:
                     abilityDescription.gameObject.SetActive(true);
-                    abilityDescription.AssignData(assignedAbility);
-                    controller.board.SelectAbilityTiles(abilityPreviewTiles);
+                    //abilityDescription.AssignData(assignedAbility);
 
+                    controller.board.SelectAbilityTiles(abilityPreviewTiles);
                     controller.currentUnit.playerUI.PreviewActionCost(assignedAbility.actionCost);
                     
                     AudioManager.instance.Play("Boton" + controller.hoverOption);
@@ -125,15 +155,14 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     break;
                 case TabType.ItemConsumable:
                     AudioManager.instance.Play("Boton" + controller.hoverOption);
-
-                    abilityDescription.AssignData(assignedConsumable);
+                    //abilityDescription.AssignData(assignedConsumable);
                     break;
                 case TabType.Move:
                     AudioManager.instance.Play("Boton" + controller.hoverOption);
 
                     controller.currentUnit.playerUI.PreviewActionCost(controller.moveCost);
                     controller.board.SelectMovementTiles(abilityPreviewTiles);
-                    abilityDescription.abilityDescription.SetText(actionDescription);
+                    //abilityDescription.abilityDescription.SetText(actionDescription);
 
                     break;
                 case TabType.Regular:
@@ -146,7 +175,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     AudioManager.instance.Play("Boton" + controller.hoverOption);
 
                     controller.currentUnit.playerUI.PreviewActionCost(controller.itemCost);
-                    abilityDescription.abilityDescription.SetText(actionDescription);
+                    //abilityDescription.abilityDescription.SetText(actionDescription);
                     break;
                 default:
                     break;

@@ -66,7 +66,6 @@ public class TutShowslideState : BattleState
       
         if(nextState == 0)
         {
-            
             owner.ChangeState<TUT_TimelineStateFirstHunter>();
         }
         else if(nextState == 1)
