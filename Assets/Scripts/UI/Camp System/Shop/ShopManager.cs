@@ -54,7 +54,7 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 		{
 			currentPoints -= itemCost;
 			itemQuantity++;
-			itemQuantityTxT.SetText("Result Quantity: " + itemQuantity);
+			itemQuantityTxT.SetText("x" + itemQuantity);
 			result = (float)currentPoints / itemCost;
 			StartCoroutine(LerpSlider(slider.value, result, 0.3f, true));
 		}
@@ -198,7 +198,7 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 	{
 
 		itemPanelInfo.BuyItem();
-		itemQuantityTxT.SetText("Result Quantity: " + itemQuantity);
+		itemQuantityTxT.SetText("x" + itemQuantity);
 		
 
 	}
@@ -233,7 +233,7 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 		StartCoroutine(LerpSlider(slider.value, 0, 0.3f, false));
 		currentPoints =0;
 		itemQuantity =0;
-		itemQuantityTxT.SetText("Result Quantity: " + itemQuantity);
+		itemQuantityTxT.SetText("x" + itemQuantity);
 	}
 	
 
@@ -246,6 +246,7 @@ public class SetShopItemInfoPanelText
 
 	//[field:SerializeField] public TextMeshProUGUI ItemName { get; private set;}
 	[SerializeField] Image itemImg;
+	[SerializeField] Image resultItemImg;
 	[SerializeField] TextMeshProUGUI itemName;
 	[SerializeField] TextMeshProUGUI itemDescription;
 	
@@ -279,6 +280,7 @@ public class SetShopItemInfoPanelText
 		//ItemImage.sprite = _shopItem.item.consumable.itemSprite;
 		//ItemImage.SetNativeSize();
 		itemImg.sprite = _shopItem.item.consumable.iconSprite;
+		resultItemImg.sprite = _shopItem.item.consumable.iconSprite;
 		itemInfo = _shopItem.item;
 		itemName.SetText(_shopItem.name);
 		itemDescription.SetText(_shopItem.item.consumable.consumableDescription);
