@@ -50,6 +50,7 @@ public class SelectItemState : BattleState
                        
             SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
             e.assignedConsumable = itemList[i].consumable;
+            e.UpdateTooltip();
             e.EnableOption();
         }
 
