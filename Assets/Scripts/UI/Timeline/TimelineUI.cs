@@ -57,7 +57,7 @@ public class TimelineUI : MonoBehaviour
     [SerializeField] List<TimelineIconUI> bottomLane = new List<TimelineIconUI>();
     List<TimelineIconUI> _bottomLane = new List<TimelineIconUI>();
     public int bottomLaneOffset;
-
+    public int smallBottomLaneOffset;
 
     public void CallTimelinePreviewOrder()//Unity button 
     {
@@ -303,7 +303,17 @@ public class TimelineUI : MonoBehaviour
                 temp.upSupport.GetComponent<Image>().enabled = true;
 
                 temp.velocityText.gameObject.SetActive(false);
-                temp.offset = bottomLaneOffset;
+
+                if(temp.element.TryGetComponent(out MinionUnit m))
+                {
+                    temp.icon.rectTransform.anchoredPosition = new Vector3(temp.icon.rectTransform.anchoredPosition.x, 5.6f, 0);
+                    temp.offset = smallBottomLaneOffset;
+                }
+                else
+                {
+                    temp.offset = bottomLaneOffset;
+                }
+
                 ToolTipTrigger trigger = temp.GetComponent<ToolTipTrigger>();
                 trigger.EnableFinger();
                 temp.icon.SetNativeSize();
