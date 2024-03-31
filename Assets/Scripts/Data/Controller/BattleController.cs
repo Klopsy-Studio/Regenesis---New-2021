@@ -85,7 +85,7 @@ public class BattleController : StateMachine
     public MiniStatus miniStatus;
     public TargetIndicator turnArrow;
     [HideInInspector] public TimelineIconUI currentSelectedIcon;
-    [SerializeField] Animator sceneTransition;
+    [SerializeField] protected Animator sceneTransition;
     public DroneManager droneController;
     [Space]
     [Header("Combat Variables")]
@@ -227,7 +227,7 @@ public class BattleController : StateMachine
     {
         resumeTimelineButton.GetComponent<Image>().color = defaultTimelineColor;
     }
-    private void Start()
+    public virtual void Start()
     {
         zoomed = false;
         sceneTransition.SetBool("fadeOut", true);

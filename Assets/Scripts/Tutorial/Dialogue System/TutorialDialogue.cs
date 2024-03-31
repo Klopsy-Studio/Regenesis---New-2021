@@ -141,7 +141,7 @@ public class TutorialDialogue : MonoBehaviour
             dialogueText.maxVisibleCharacters++;
 
             // Typing sound goes here.
-
+            AudioManager.instance.PlayWithRandomPitch(dialogue.dialogueLines[dialogueIndex].speakerSound, 1f, 1.4f);
             if (dialogueText.maxVisibleCharacters == dialogueText.text.Length)
             {
                 LineComplete();

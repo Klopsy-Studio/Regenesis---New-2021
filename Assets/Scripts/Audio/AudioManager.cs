@@ -106,7 +106,21 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound: " + name + " not found");
         }
     }
+    
+    public void PlayWithRandomPitch(string name, float min, float max)
+    {
+        Sound newSound = Array.Find(sounds, sound => sound.name == name);
 
+        if (newSound != null)
+        {
+            newSound.source.pitch = UnityEngine.Random.Range(min, max);
+            newSound.source.PlayOneShot(newSound.clip);
+        }
+        else
+        {
+            Debug.Log("Sound: " + name + " not found");
+        }
+    }
     public void Stop(string name)
     {
         Sound newSound = Array.Find(sounds, sound => sound.name == name);

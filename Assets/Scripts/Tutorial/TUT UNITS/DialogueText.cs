@@ -14,4 +14,5 @@ public class Line
 {
     public Sprite portrait;
     public string line;
+    public string speakerSound;
 }
