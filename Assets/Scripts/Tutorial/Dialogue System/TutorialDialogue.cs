@@ -41,12 +41,22 @@ public class TutorialDialogue : MonoBehaviour
     {
         finalYPosition = portrait.rectTransform.anchoredPosition.y;
 
-        lowerVignette.color = new Vector4(255f, 255f, 255f, 0f);
-        dialogueText.color = new Vector4(255f, 255f, 255f, 0f);
+        lowerVignette.color = new Vector4(lowerVignette.color.r, lowerVignette.color.g, lowerVignette.color.b, 0f);
+        dialogueText.color = new Vector4(dialogueText.color.r, dialogueText.color.g, dialogueText.color.b, 0f);
         portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, -portrait.rectTransform.anchoredPosition.y);
 
         ShowContinueIndicator(false);
+
+        StartCoroutine(FirstContinue());
     }
+
+
+    private IEnumerator FirstContinue()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Continue();
+    }
+
 
     public void Continue()
     {
@@ -99,9 +109,12 @@ public class TutorialDialogue : MonoBehaviour
         {
             time -= Time.deltaTime * animationSpeed;
             DisplayAnimations(time);
+
+            if (time <= 0f)
+                this.gameObject.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
         {
             Continue();
         }
@@ -112,8 +125,8 @@ public class TutorialDialogue : MonoBehaviour
         fadeValue = fadeCurve.Evaluate(time);
         imageValue = imageCurve.Evaluate(time);
 
-        lowerVignette.color = new Vector4(255f, 255f, 255f, fadeValue);
-        dialogueText.color = new Vector4(255f, 255f, 255f, fadeValue);
+        lowerVignette.color = new Vector4(lowerVignette.color.r, lowerVignette.color.g, lowerVignette.color.b, fadeValue);
+        dialogueText.color = new Vector4(dialogueText.color.r, dialogueText.color.g, dialogueText.color.b, fadeValue);
 
         portrait.rectTransform.anchoredPosition = new Vector2(portrait.rectTransform.anchoredPosition.x, finalYPosition * imageValue);
     }
@@ -126,6 +139,9 @@ public class TutorialDialogue : MonoBehaviour
         foreach (char letter in line.ToCharArray())
         {
             dialogueText.maxVisibleCharacters++;
+
+            // Typing sound goes here.
+
             if (dialogueText.maxVisibleCharacters == dialogueText.text.Length)
             {
                 LineComplete();
