@@ -62,6 +62,7 @@ public class TutorialDialogue : MonoBehaviour
     {
         if (dialogueEnd)
             return;
+
         show = true;
 
         if (!isDisplayingLine)
