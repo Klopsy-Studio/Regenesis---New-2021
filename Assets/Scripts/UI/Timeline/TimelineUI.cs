@@ -40,7 +40,7 @@ public class TimelineUI : MonoBehaviour
     public Image currentActorIcon;
 
     List<TimelineIconUI> iconsInTimeline = new List<TimelineIconUI>();
-    public List<TimelineIconUI> orderedIconsInTimeline;
+    public List<TimelineIconUI> orderedIconsInTimeline = new List<TimelineIconUI>();
 
     public bool isActive;
     //The bar size. Dependant on size delta. Only works for a static scale object as delta isn't mesured the same way with different anchors.

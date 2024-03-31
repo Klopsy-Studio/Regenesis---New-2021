@@ -110,30 +110,34 @@ public class TutInitState : BattleState
     {
         System.Type[] components = new System.Type[] { typeof(WalkMovement) };
 
-        for (int i = 0; i < GameManager.instance.unitProfilesTutorialList.Length; i++)
+        for (int i = 0; i < GameManager.instance.unitProfilesList.Length; i++)
         {
             GameObject instance = Instantiate(GameManager.instance.unitsPrefab);
-            instance.name = GameManager.instance.unitProfilesTutorialList[i].name;
+            instance.name = GameManager.instance.unitProfilesList[i].name;
             PlayerUnit player = instance.GetComponent<PlayerUnit>();
-            AssignUnitData(GameManager.instance.unitProfilesTutorialList[i], player);
-            player.isTutorial = true;
-            player.profile = GameManager.instance.unitProfilesTutorialList[i];
+            AssignUnitData(GameManager.instance.unitProfilesList[i], player);
+
+            player.profile = GameManager.instance.unitProfilesList[i];
             Point p = levelData.playerSpawnPoints.ToArray()[i];
 
-            player.animations.SetCharacter(GameManager.instance.unitProfilesTutorialList[i].characterIndex);
+            player.animations.SetCharacter(GameManager.instance.unitProfilesList[i].characterIndex);
             Unit unit = instance.GetComponent<Unit>();
             unit.controller = owner;
             unit.Place(board.GetTile(p));
             unit.Match();
-            unit.health = player.profile.tutHealth;
-            unit.timelineFill = player.profile.tutTimelinePos;
+
+
             Movement m = instance.AddComponent(components[0]) as Movement;
             m.jumpHeight = 1;
 
+            //Party Icon
             UnitPartyIcon iconParty = Instantiate(owner.partyIconPrefab, owner.partyIconParent.transform).GetComponent<UnitPartyIcon>();
+
+
             iconParty.AssignPartyIcon(player);
-            iconParty.owner = owner;
             iconParty.timeline = GetComponent<TimeLineState>();
+            iconParty.owner = owner;
+
             unitsInGame.Add(unit);
             owner.playerUnits.Add(unit);
         }
@@ -151,7 +155,7 @@ public class TutInitState : BattleState
             Unit unit = instance.GetComponent<Unit>();
             unit.controller = owner;
             unit.Place(board.GetTile(p));
-            
+
             unit.currentPoint = p;
             unit.Match();
 
@@ -163,7 +167,6 @@ public class TutInitState : BattleState
 
             unitsInGame.Add(unit);
             owner.enemyUnits.Add(unit);
-            unit.timelineFill = 40;
         }
 
 
