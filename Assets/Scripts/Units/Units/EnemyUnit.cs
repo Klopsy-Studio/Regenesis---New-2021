@@ -19,6 +19,8 @@ public class EnemyUnit : Unit
     //Enemy Stats
 
     public Sprite unitPortrait;
+    public Sprite lowHealthPortrait;
+    public Sprite originalSpritePortrait;
     public MonsterController monsterControl;
 
     public int lowHealth;
@@ -190,6 +192,7 @@ public class EnemyUnit : Unit
                 }
             }
 
+            unitPortrait = originalSpritePortrait;
             monsterControl.monsterAnimations.SetFloat("health", 0);
         }
     }
@@ -248,6 +251,7 @@ public class EnemyUnit : Unit
         if (health <= lowHealth)
         {
             AddDebuff(new Modifier { modifierType = TypeOfModifier.NearDeath });
+            unitPortrait = lowHealthPortrait;
             monsterControl.monsterAnimations.SetFloat("health", 1);
         }
 

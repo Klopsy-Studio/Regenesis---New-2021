@@ -630,7 +630,7 @@ MonoBehaviour:
     itemRange: 0
     itemRemoveContent: 0
     itemRemoveOrigin: 0
-  hasSpawnedMinionsInLastTurn: 0
+  turnsWithoutMinions: 0
   hasDoneFirstTurn: 0
   hasEvolved: 0
   turnsAlive: 0
@@ -694,6 +694,7 @@ MonoBehaviour:
   slowEffect: {fileID: 1065309422069548685}
   hasteEffect: {fileID: 326797753001765973}
   unitSprite: {fileID: 1262454043973379550}
+  fadeDuration: 0
   thisIsMyFuckingTurn: 0
   power: 55
   originalPower: 0
@@ -767,6 +768,8 @@ MonoBehaviour:
   monsterAttackElement: 0
   monsterDefenseElement: 0
   unitPortrait: {fileID: 4355816146884465333, guid: e38351d211bada34d9af44a6be69fdf3, type: 3}
+  lowHealthPortrait: {fileID: 4355816146884465333, guid: e38351d211bada34d9af44a6be69fdf3, type: 3}
+  originalSpritePortrait: {fileID: 4355816146884465333, guid: e38351d211bada34d9af44a6be69fdf3, type: 3}
   monsterControl: {fileID: 3600112416777368949}
   lowHealth: 100
   originalSpritePosition: {x: 0, y: 0, z: 0}
@@ -925,6 +928,7 @@ MonoBehaviour:
   lineDir: 0
   stopLine: 0
   lineOffset: 0
+  monsterUse: 0
 --- !u!114 &5977670217988991083
 MonoBehaviour:
   m_ObjectHideFlags: 0
