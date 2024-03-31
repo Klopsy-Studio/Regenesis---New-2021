@@ -115,6 +115,7 @@ public class TutInitState : BattleState
             GameObject instance = Instantiate(GameManager.instance.unitsPrefab);
             instance.name = GameManager.instance.unitProfilesList[i].name;
             PlayerUnit player = instance.GetComponent<PlayerUnit>();
+            player.isTutorial = true;
             AssignUnitData(GameManager.instance.unitProfilesList[i], player);
 
             player.profile = GameManager.instance.unitProfilesList[i];
@@ -133,6 +134,7 @@ public class TutInitState : BattleState
             //Party Icon
             UnitPartyIcon iconParty = Instantiate(owner.partyIconPrefab, owner.partyIconParent.transform).GetComponent<UnitPartyIcon>();
 
+            unit.timelineFill = player.profile.tutTimelinePos;
 
             iconParty.AssignPartyIcon(player);
             iconParty.timeline = GetComponent<TimeLineState>();

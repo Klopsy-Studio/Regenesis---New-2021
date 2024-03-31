@@ -21,7 +21,7 @@ public class MoveToAnotherScene : MonoBehaviour
     {
         GameManager.instance.sceneToLoad = sceneToMove;
 
-        sceneTransition.SetBool("fadeIn", true);
+        sceneTransition.SetBool("fadeInPause", true);
 
         while (timer > 0)
         {

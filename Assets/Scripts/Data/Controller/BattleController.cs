@@ -85,7 +85,7 @@ public class BattleController : StateMachine
     public MiniStatus miniStatus;
     public TargetIndicator turnArrow;
     [HideInInspector] public TimelineIconUI currentSelectedIcon;
-    [SerializeField] Animator sceneTransition;
+    [SerializeField] protected Animator sceneTransition;
     public DroneManager droneController;
     [Space]
     [Header("Combat Variables")]
@@ -227,7 +227,7 @@ public class BattleController : StateMachine
     {
         resumeTimelineButton.GetComponent<Image>().color = defaultTimelineColor;
     }
-    private void Start()
+    public virtual void Start()
     {
         zoomed = false;
         sceneTransition.SetBool("fadeOut", true);
@@ -442,7 +442,6 @@ public class BattleController : StateMachine
 
         #endregion
 
-
         //Create an ordered timeline elements list
         if(!pauseTimeline)
             SortTimelineList();
@@ -655,15 +654,15 @@ public class BattleController : StateMachine
 
     public void ReturnToCamp()
     {
-        sceneTransition.SetTrigger("fadeIn");
-        Time.timeScale = 1;
-
+        battleContextControls.gameObject.SetActive(false);
+        sceneTransition.SetBool("fadeInPause", true);
+        uiController.gameObject.SetActive(false);
         GameManager.instance.sceneToLoad = "CampScene";
         AudioManager.instance.FadeOut("Music");
         AudioManager.instance.FadeOut("MainTheme");
         AudioManager.instance.FadeOut("LoseTheme");
 
-        Invoke("LoadingScreen", 1.5f);
+        StartCoroutine(LoadingScreen());
     }
 
     public void BeginEscape()
@@ -692,9 +691,10 @@ public class BattleController : StateMachine
 
         ReturnToCamp();
     }
-    public void LoadingScreen()
+    IEnumerator LoadingScreen()
     {
-        Debug.Log("Loading");
+        yield return new WaitForSeconds(0.1f);
+        Time.timeScale = 1;
         SceneManager.LoadScene("LoadingScreen");
     }
 
