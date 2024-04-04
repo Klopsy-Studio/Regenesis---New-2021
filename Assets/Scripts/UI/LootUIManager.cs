@@ -25,13 +25,13 @@ public class LootUIManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         //Setting the variables
-        huntName.SetText(controller.levelData.missionName);
+        huntName.SetText(controller.levelData.missionLocation);
         objectiveName.SetText(controller.enemyUnits[0].unitName);
         int time = (int)controller.huntTime;
         int minutesTime = time / 60;
         int secondsTime = time % 60;
 
-        huntTime.SetText(minutesTime.ToString() + " ' " + secondsTime + "\"");
+        huntTime.SetText(minutesTime.ToString() + " min. " + secondsTime + " sec. ");
 
 
         huntName.gameObject.SetActive(true);
@@ -81,7 +81,7 @@ public class LootUIManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         //Setting the variables
-        huntName.SetText(controller.levelData.missionName);
+        huntName.SetText(controller.levelData.missionLocation);
         objectiveName.SetText(controller.enemyUnits[0].unitName);
         int time = (int)controller.huntTime;
         int minutesTime = time / 60;

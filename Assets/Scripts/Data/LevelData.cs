@@ -17,6 +17,7 @@ public class LevelData : ScriptableObject
     [SerializeField] private int position;
     [SerializeField] public int rank;
     [SerializeField] public string missionName;
+    [SerializeField] public string missionLocation;
     [SerializeField] public Type type;
     
     [Header("Image")]
