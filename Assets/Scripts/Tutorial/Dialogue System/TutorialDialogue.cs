@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class TutorialDialogue : MonoBehaviour
 {
     [SerializeField] private DialogueText dialogue;
-    
+    [SerializeField] private UnityEvent[] events;
+
     [Header("References")]
     [SerializeField] private Image lowerVignette;
     [SerializeField] private Image portrait;
@@ -63,6 +65,7 @@ public class TutorialDialogue : MonoBehaviour
         if (dialogueEnd)
             return;
 
+        
         show = true;
 
         if (!isDisplayingLine)
@@ -84,6 +87,11 @@ public class TutorialDialogue : MonoBehaviour
                 StopCoroutine(displayLine);
 
             displayLine = StartCoroutine(DisplayLine(dialogueText.text));
+
+            if(dialogue.dialogueLines[dialogueIndex].eventIndex >= 0 && events[dialogue.dialogueLines[dialogueIndex].eventIndex] != null)
+            {
+                events[dialogue.dialogueLines[dialogueIndex].eventIndex].Invoke();
+            }
         }
         else
         {
