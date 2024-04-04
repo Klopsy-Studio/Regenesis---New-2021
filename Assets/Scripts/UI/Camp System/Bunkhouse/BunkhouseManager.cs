@@ -7,7 +7,8 @@ using System;
 
 public class BunkhouseManager : MonoBehaviour, IDataPersistence
 {
-	
+	[SerializeField] GameObject activateRestOfPanel;
+	[SerializeField] TextMeshProUGUI selectHunterTxT;
 	[SerializeField] GameObject tutorialPanel;
 	bool isTutorialFinished = false;
 	public  SetWeaponInfo weaponInfo;
@@ -27,6 +28,8 @@ public class BunkhouseManager : MonoBehaviour, IDataPersistence
 	
 	void Start()
 	{
+		activateRestOfPanel.SetActive(false);
+		selectHunterTxT.gameObject.SetActive(true);
 		tutorialPanel.SetActive(false);
 		if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
 		FirstUpdateHuntersInfo();
@@ -62,6 +65,8 @@ public class BunkhouseManager : MonoBehaviour, IDataPersistence
 	{
 		OnWeaponButtonCliked?.Invoke();
 		selectWeaponPanel.SetActive(true);
+		activateRestOfPanel.SetActive(true);
+		selectHunterTxT.gameObject.SetActive(false);
 		
 		
 	}
@@ -81,6 +86,12 @@ public class BunkhouseManager : MonoBehaviour, IDataPersistence
 		
 	
 		
+	}
+	
+	void  OnEnable()
+	{
+		activateRestOfPanel.SetActive(false);
+		selectHunterTxT.gameObject.SetActive(true);
 	}
 	
 	 public void LoadData(GameData data)
@@ -110,10 +121,27 @@ public class SetWeaponInfo
 
 	public TextMeshProUGUI power;
 	public TextMeshProUGUI crit;
+	public TextMeshProUGUI weaponDescription;
 	
 	public void UpdateWeaponStats(Weapons weapon)
 	{
-	
+		if(weapon.EquipmentType == KitType.Bow)
+		{
+			weaponDescription.SetText("This flexible weapon can attack enemies from a safe distance while providing a high level utility");
+		}
+		else if(weapon.EquipmentType == KitType.Drone)
+		{
+			weaponDescription.SetText("falta el dron");
+		}
+		else if(weapon.EquipmentType == KitType.Gunblade)
+		{
+			weaponDescription.SetText("A powerful weapon that uses bullets and excels in both melee and ranged combat");
+		}else if(weapon.EquipmentType == KitType.Hammer)
+		{
+			weaponDescription.SetText("An all-rounder weapon that combines great defensive and offensive attributes");
+		}
+		
+		
 		range.SetText(weapon.range.ToString());
 		def.SetText(weapon.Defense.ToString());
 		power.SetText(weapon.Power.ToString());
