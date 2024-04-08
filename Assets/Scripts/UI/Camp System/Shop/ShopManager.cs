@@ -32,7 +32,8 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 	public delegate void ShopButtonSlotClicked();
 	public static event ShopButtonSlotClicked OnShopButtonCliked;
 
-	public Animator animator;
+	public Animator purchaseAnimator;
+	public Animator noPurchaseAnimator;
 	public void ButtonClicked()
 	{
 		OnShopButtonCliked?.Invoke();
@@ -263,6 +264,7 @@ public class SetShopItemInfoPanelText
 	
 
 	public ShopItemInfo itemInfo;
+	ShopItemTemplate shopItem;
 
 	[SerializeField] MaterialInventory materialInventory;
 	[SerializeField] MonsterMaterialSlot material1;
@@ -279,6 +281,7 @@ public class SetShopItemInfoPanelText
 		//ItemName.SetText(_shopItem.name);
 		//ItemImage.sprite = _shopItem.item.consumable.itemSprite;
 		//ItemImage.SetNativeSize();
+		shopItem = _shopItem;
 		itemImg.sprite = _shopItem.item.consumable.iconSprite;
 		resultItemImg.sprite = _shopItem.item.consumable.iconSprite;
 		itemInfo = _shopItem.item;
@@ -318,6 +321,8 @@ public class SetShopItemInfoPanelText
 
 		itemAmountInInventory.SetText(numberOfItems.ToString());
 	}
+	
+	
 	// public void IncreaseAmount() //DEPRECATED
 	// {
 	// 	itemAmount++;
@@ -376,9 +381,10 @@ public class SetShopItemInfoPanelText
 		if (shopManager.itemQuantity<=0)
 		{
 			AudioManager.instance.Play("NoPurchase");
+			shopManager.noPurchaseAnimator.SetTrigger("purchased");
 			return;
 		}
-		shopManager.animator.SetTrigger("purchased");
+		shopManager.purchaseAnimator.SetTrigger("purchased");
 		AudioManager.instance.Play("ComprarTienda");
 
 		// UpdateCurrentPoints(-itemTotalCost);
@@ -390,6 +396,8 @@ public class SetShopItemInfoPanelText
 		GameManager.instance.materialInventory.SubstractMaterial(material1);
 		GameManager.instance.materialInventory.SubstractMaterial(material2);
 
+
+		CheckNumberOfItemInInventory(shopItem);
 		// //actualizar los buttons;
 		SetUpButtons();
 
@@ -503,7 +511,7 @@ public class SetShopItemInfoPanelText
 // 			AudioManager.instance.Play("NoPurchase");
 // 			return;
 // 		}
-// 		shopManager.animator.SetTrigger("purchased");
+// 		shopManager.purchaseAnimator.SetTrigger("purchased");
 // 		AudioManager.instance.Play("ComprarTienda");
 
 // 		UpdateCurrentPoints(-itemTotalCost);
