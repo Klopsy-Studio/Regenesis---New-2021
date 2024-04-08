@@ -59,12 +59,13 @@ public class TutShowslideState : BattleState
 
     public void UpdateNextState() //UNITY BUTTONS
     {
-        tutOwner.tutorialManager.slidesArray[tutOwner.tutorialSlidesIndex].SetActive(false);
-        tutOwner.tutorialSlidesIndex++;
+        //tutOwner.tutorialManager.slidesArray[tutOwner.tutorialSlidesIndex].SetActive(false);
+
         isNextState = true;
-        int nextState = tutOwner.stateIndex;
-      
-        if(nextState == 0)
+        int nextState = tutOwner.tutorialSlidesIndex;
+        tutOwner.tutorialSlidesIndex++;
+
+        if (nextState == 0)
         {
             owner.ChangeState<TUT_TimelineStateFirstHunter>();
         }
@@ -80,7 +81,8 @@ public class TutShowslideState : BattleState
         else if (nextState == 3)
         {
             Debug.Log("next state 3");
-             owner.ChangeState<TUT_UseAbilityStateOne>();
+            owner.ChangeState<TUT_SelectActionState_Abilities>();
+
         }
         else if(nextState == 4)
         {
@@ -89,30 +91,37 @@ public class TutShowslideState : BattleState
         }
         else if(nextState == 5)
         {
+            owner.ChangeState<TUT_EventActiveState>();
+        }
+        else if (nextState == 6)
+        {
             owner.ChangeState<TUT_TimelineStateFirstHunter>();
         }
-        else if(nextState == 6)
+        else if (nextState == 7)
         {
             owner.ChangeState<TUT_SelectActionState_Abilities>();
         }
-        else if(nextState == 7)
-        {
-            owner.ChangeState<TUT_UseAbilityStateOne>();
-        }
-        else if (nextState == 8)
+        else if(nextState == 8)
         {
             owner.ChangeState<TUT_StartMonsterController>();
         }
-        else if(nextState == 9)
+        else if (nextState == 9)
         {
-            owner.ChangeState<TUT_SelectActionState_Item>();
-           
+            owner.ChangeState<TUT_TimelineStateFirstHunter>();
         }
-        else if(nextState == 10)
+        else if (nextState == 10)
         {
             owner.ChangeState<TUT_SelectActionState_Item>();
         }
         else if(nextState == 11)
+        {
+            owner.ChangeState<TUT_SelectActionState_Finish>();
+        }
+        else if(nextState == 12)
+        {
+            owner.ChangeState<TUT_TimelineStateFirstHunter>();
+        }
+        else if (nextState == 13)
         {
             Debug.Log("Ha entrado en NEXT STATE 11");
             owner.currentUnit.ActionsPerTurn = 3;

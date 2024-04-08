@@ -33,7 +33,7 @@ public class TUT_FinishEnemyUnitTurnState : BattleState
         //owner.currentEnemyUnit.monsterControl.tree = null;
         owner.currentEnemyUnit = null;
         owner.currentEnemyController = null;
-        owner.ChangeState<TUT_TimelineStateFirstHunter>();
+        owner.ChangeState<TutShowslideState>();
     }
 
 }

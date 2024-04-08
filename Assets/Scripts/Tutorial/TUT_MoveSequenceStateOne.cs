@@ -30,7 +30,7 @@ public class TUT_MoveSequenceStateOne : BattleState
         owner.currentUnit.actionDone = true;
 
         yield return null;
-        owner.ChangeState<TUT_SelectActionState_Abilities>();
+        owner.ChangeState<TutShowslideState>();
 
     }
 }

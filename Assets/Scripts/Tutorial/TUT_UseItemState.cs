@@ -205,7 +205,7 @@ public class TUT_UseItemState : BattleState
 
         owner.currentUnit.SpendActionPoints(owner.itemCost);
 
-        owner.ChangeState<FinishPlayerUnitTurnState>();
+        owner.ChangeState<TutShowslideState>();
     }
 
 
@@ -346,8 +346,7 @@ public class TUT_UseItemState : BattleState
         stateIndex++;
         if (stateIndex == 1)
         {
-            owner.ChangeState<TUT_SelectActionState_Finish>();
-
+            owner.ChangeState<TutShowslideState>();
         }
         else if(stateIndex == 2)
         {

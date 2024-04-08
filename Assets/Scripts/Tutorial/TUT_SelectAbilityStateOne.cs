@@ -163,7 +163,7 @@ public class TUT_SelectAbilityStateOne : BattleState
             {
                 //ActionSelectionUI.gameObject.SetActive(false);
 
-                owner.ChangeState<TutShowslideState>();
+                owner.ChangeState<TUT_UseAbilityStateOne>();
             }
         }
         else
@@ -171,7 +171,7 @@ public class TUT_SelectAbilityStateOne : BattleState
             if (abilityList[owner.attackChosen].CanDoAbility(owner.currentUnit.actionsPerTurn) && owner.attackChosen == owner.currentUnit.profile.onlyAbilityToUseOnTutorial)
             {
                 //ActionSelectionUI.gameObject.SetActive(false);
-                owner.ChangeState<TutShowslideState>();
+                owner.ChangeState<TUT_UseAbilityStateOne>();
             }
         }
 

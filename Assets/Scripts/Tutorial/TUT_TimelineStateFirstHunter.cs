@@ -12,6 +12,8 @@ public class TUT_TimelineStateFirstHunter : BattleState
     bool pause = false;
     public List<Tile> selectTiles;
     [SerializeField] bool isDefeat;
+
+    int timesKaeo = 0;
     public override void Enter()
     {
         base.Enter();
@@ -211,12 +213,20 @@ public class TUT_TimelineStateFirstHunter : BattleState
                         owner.ZoomOut();
                         if (t is PlayerUnit p)
                         {
-
                             owner.currentUnit = p;
                             owner.currentUnit.playerUI.ResetActionPoints();
                             if(p.profile.name == "TUT_KaeoProfile")
                             {
-                                owner.ChangeState<TutShowslideState>();
+                                if(timesKaeo == 0)
+                                {
+                                    timesKaeo++;
+                                    owner.ChangeState<TutShowslideState>();
+                                }
+                                else
+                                {
+                                    owner.ChangeState<TUT_SelectActionState_Item>();
+                                }
+                                
                             }
                             else if(p.profile.name== "TUT_IsakProfile")
                             {
@@ -225,7 +235,7 @@ public class TUT_TimelineStateFirstHunter : BattleState
                             }
                             else if(p.profile.name == "TUT_OlaProfile")
                             {
-                                owner.ChangeState<TUT_SelectUnitState>();
+                                owner.ChangeState<TutShowslideState>();
                             }
                             else
                             {
@@ -252,7 +262,8 @@ public class TUT_TimelineStateFirstHunter : BattleState
 
                         if (t is RealTimeEvents)
                         {
-                            owner.ChangeState<TUT_EventActiveState>();
+                            owner.ChangeState<TutShowslideState>();
+                            
                             break;
                         }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TUT_SelectActionState_Item : BattleState
 {
     public typeOfAction currentAction = typeOfAction.Move;
+    int test = 0;
     public override void Enter()
     {
         base.Enter();
@@ -33,11 +34,7 @@ public class TUT_SelectActionState_Item : BattleState
 
         owner.currentUnit.GetComponent<Movement>().ResetRange();
 
-
-       
-
-
-
+        owner.currentUnit.actionsPerTurn = 5;
         if (owner.currentUnit.hammerFuryAmount >= owner.currentUnit.hammerFuryMax)
         {
             owner.currentUnit.EnableHammerTrait();
@@ -153,8 +150,8 @@ public class TUT_SelectActionState_Item : BattleState
                 //we should change that in the future
                 if (owner.currentUnit.actionsPerTurn >= 2)
                 {
-                    stateIndex++;
-                    if(stateIndex == 1)
+                    test++;
+                    if(test == 1)
                     {
                         owner.ChangeState<TUT_SelectItemState>();
                     }

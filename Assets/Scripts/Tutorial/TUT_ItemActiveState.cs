@@ -27,7 +27,7 @@ public class TUT_ItemActiveState : BattleState
         yield return new WaitForSeconds(2);
         owner.FinishAction();
 
-        owner.ChangeState<TUT_TimelineStateFirstHunter>();
+        owner.ChangeState<TutShowslideState>();
     }
 
     public override void Exit()
