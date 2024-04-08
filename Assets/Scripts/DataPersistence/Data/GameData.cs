@@ -31,6 +31,7 @@ public class GameData
     public bool isShopTutorialFinished;
     public bool isInventoryTutorialFinished;
     public bool isMapTutorialFinished;
+    public bool isMainCampTutorialFinished;
 
 
     //the values defined in this constructor will be the default values
@@ -66,6 +67,7 @@ public class GameData
         isShopTutorialFinished = false;
         isInventoryTutorialFinished = false;
         isMapTutorialFinished = false;
+        isMainCampTutorialFinished = false;
     }
 
     private void UnitsProfileDefaultSetting()

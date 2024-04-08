@@ -35,7 +35,7 @@ public class BunkhouseManager : MonoBehaviour, IDataPersistence
 		FirstUpdateHuntersInfo();
 	}
 	
-		public void FinishTutorial() //UnityButtons
+	public void FinishTutorial() //UnityButtons
 	{
 		tutorialPanel.SetActive(false);
 		isTutorialFinished = true;
@@ -94,7 +94,7 @@ public class BunkhouseManager : MonoBehaviour, IDataPersistence
 		selectHunterTxT.gameObject.SetActive(true);
 	}
 	
-	 public void LoadData(GameData data)
+	public void LoadData(GameData data)
 	{
 		isTutorialFinished = data.isBarrackTutorialFinished;
 	}

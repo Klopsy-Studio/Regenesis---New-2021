@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChangeCampModes : MonoBehaviour
+public class ChangeCampModes : MonoBehaviour, IDataPersistence
 {
     [SerializeField] List<OpenNewTab> campButtons;
     [SerializeField] CanvasScaler campCanvas;
     [SerializeField] float windowScaleFactor;
     GameObject currentStructure;
     public List<GameObject> structures;
+
+    public bool isTutorialFinished;
+    [SerializeField] GameObject tutorial;
     // Update is called once per frame
     public void SetNormalScale()
     {
@@ -77,5 +80,26 @@ public class ChangeCampModes : MonoBehaviour
             Debug.Log("Camp buttons is null");
         }
         
+    }
+
+
+
+    private void Start()
+    {
+        if (!isTutorialFinished)
+        {
+            isTutorialFinished = true;
+            tutorial.SetActive(true);
+        }
+    }
+
+    public void LoadData(GameData data)
+    {
+        isTutorialFinished = data.isMainCampTutorialFinished;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.isMainCampTutorialFinished = isTutorialFinished;
     }
 }
