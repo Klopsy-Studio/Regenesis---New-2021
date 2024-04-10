@@ -26,10 +26,10 @@ public class MaterialPointsShopButton : MonoBehaviour, IPointerClickHandler
 			
 			UseMaterial();
 		}   
-		else if (eventData.button == PointerEventData.InputButton.Right)
-		{
-			ReturnMaterial();
-		}
+		// else if (eventData.button == PointerEventData.InputButton.Right)
+		// {
+		// 	ReturnMaterial();
+		// }
 		   
 	}
 

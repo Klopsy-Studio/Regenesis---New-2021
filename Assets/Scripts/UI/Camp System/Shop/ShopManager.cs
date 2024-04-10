@@ -39,6 +39,7 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 		OnShopButtonCliked?.Invoke();
 		restOfTheShopUI.SetActive(true);
 		selectAnItemTxT.gameObject.SetActive(false);
+		CancelButton(); //resetear los materiales y las cantidades de objetos al cambiar de objeto de compra
 	}
 
 	public void UpdateCurrentPointsAndSlider(int _points, int itemCost)
@@ -192,6 +193,11 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 		ReturnAllMaterials();
 		restOfTheShopUI.SetActive(false);
 		selectAnItemTxT.gameObject.SetActive(true);
+		
+	
+		currentPoints =0;
+		itemQuantity =0;
+		itemQuantityTxT.SetText("x" + itemQuantity);
 	}
 
 
@@ -236,6 +242,8 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 		itemQuantity =0;
 		itemQuantityTxT.SetText("x" + itemQuantity);
 	}
+	
+	
 	
 
 }

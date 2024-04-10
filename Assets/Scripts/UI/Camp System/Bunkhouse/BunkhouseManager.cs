@@ -127,11 +127,11 @@ public class SetWeaponInfo
 	{
 		if(weapon.EquipmentType == KitType.Bow)
 		{
-			weaponDescription.SetText("This flexible weapon can attack enemies from a safe distance while providing a high level utility");
+			weaponDescription.SetText("A ranged weapon that can provide different utilities and damages");
 		}
 		else if(weapon.EquipmentType == KitType.Drone)
 		{
-			weaponDescription.SetText("falta el dron");
+			weaponDescription.SetText("Control a drone to support your allies with various effects from any distance");
 		}
 		else if(weapon.EquipmentType == KitType.Gunblade)
 		{
