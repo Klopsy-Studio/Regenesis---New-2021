@@ -8,7 +8,7 @@ public class LineAbilityRange : AbilityRange
     public Directions lineDir;
     public bool stopLine = false;
     public int lineOffset = 0;
-    public bool monsterUse;
+    public bool monsterUse = false;
     public override List<Tile> GetTilesInRange(Board board)
     {
         Point startPos = unit.tile.pos;
@@ -40,7 +40,7 @@ public class LineAbilityRange : AbilityRange
                                     }
                                     else
                                     {
-                                        if (t.occupied)
+                                        if (t.occupied || t.content != null)
                                         {
                                             break;
                                         }

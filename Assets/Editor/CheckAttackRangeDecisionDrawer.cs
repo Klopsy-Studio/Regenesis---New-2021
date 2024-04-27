@@ -22,7 +22,7 @@ public class CheckAttackRangeDecisionDrawer : PropertyDrawer
                 return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 2;
 
             case TypeOfAbilityRange.LineAbility:
-                return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 6;
+                return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 7;
 
             case TypeOfAbilityRange.SelfAbility:
                 return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 2;
@@ -86,6 +86,8 @@ public class CheckAttackRangeDecisionDrawer : PropertyDrawer
                 DisplayVariable("lineLength", ref position, property);
                 DisplayVariable("stopLine", ref position, property);
                 DisplayVariable("lineOffset", ref position, property);
+                DisplayVariable("monsterUse", ref position, property);
+
                 break;
             case TypeOfAbilityRange.SelfAbility:
                 break;
