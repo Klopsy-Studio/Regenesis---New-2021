@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TurnStatusUI : MonoBehaviour
 {
 
     [Header("Turn Status")]
     [SerializeField] Image turnStatus;
-    [SerializeField] Text turnUser;
+    // [SerializeField] Text turnUser;
+    [SerializeField] TextMeshProUGUI text;
 
     [SerializeField] Animator turnStatusAnim;
 
@@ -26,7 +28,8 @@ public class TurnStatusUI : MonoBehaviour
     public void ActivateTurn(string turn)
     {
         turnStatusAnim.SetBool("inScreen", true);
-        turnUser.text = turn;
+        // turnUser.text = turn;
+        text.text = turn;
     }
 
     public void DeactivateTurn()

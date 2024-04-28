@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SelectAbilityState : BattleState
 {
@@ -117,7 +118,7 @@ public class SelectAbilityState : BattleState
                 }
                 
 
-                AbilitySelectionUI.options[i].GetComponent<Text>().text = abilityList[i].abilityName;
+                AbilitySelectionUI.options[i].GetComponent<TextMeshProUGUI>().text = abilityList[i].abilityName;
 
                 SelectorMovement e = AbilitySelectionUI.options[i].GetComponent<SelectorMovement>();
                 e.assignedAbility = abilityList[i];

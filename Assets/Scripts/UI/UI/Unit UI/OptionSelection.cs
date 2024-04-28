@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class OptionSelection : MonoBehaviour
 {
@@ -29,11 +30,11 @@ public class OptionSelection : MonoBehaviour
     [Space]
 
     [Header("Action Options")]
-    [SerializeField] Text moveText;
-    [SerializeField] Text abilityText;
-    [SerializeField] Text itemText;
-    [SerializeField] Text waitText;
-    [SerializeField] Text statusText;
+    [SerializeField] GameObject moveText;
+    [SerializeField] GameObject abilityText;
+    [SerializeField] GameObject itemText;
+    [SerializeField] GameObject waitText;
+    [SerializeField] GameObject statusText;
 
     public GameObject actionDescription;
     [Space]
@@ -46,10 +47,10 @@ public class OptionSelection : MonoBehaviour
     [Space]
 
     [Header("Ability Options")]
-    [SerializeField] Text ability1;
-    [SerializeField] Text ability2;
-    [SerializeField] Text ability3;
-    [SerializeField] Text ability4;
+    [SerializeField] TextMeshProUGUI ability1;
+    [SerializeField] TextMeshProUGUI ability2;
+    [SerializeField] TextMeshProUGUI ability3;
+    [SerializeField] TextMeshProUGUI ability4;
     public int currentSelection = 0;
 
     [Space]
@@ -324,20 +325,19 @@ public class OptionSelection : MonoBehaviour
     }
 
 
-    void DisableOption(Text option)
+    void DisableOption(GameObject option)
     {
-        option.color = disabledColor;
+        option.GetComponent<Text>().color = disabledColor;
+        option.GetComponent<TextMeshProUGUI>().color = disabledColor;
         option.GetComponent<SelectorMovement>().canBeSelected = false;
         option.GetComponent<SelectorMovement>().abilityTooltip.allowTooltip = false;
 
     }
 
-    void EnableOption(Text option)
+    void EnableOption(GameObject option)
     {
-        option.color = defaultColor;
         option.GetComponent<SelectorMovement>().canBeSelected = true;
         option.GetComponent<SelectorMovement>().abilityTooltip.allowTooltip = true;
-
     }
 
     public void DisableSelectOption(typeOfAction action)

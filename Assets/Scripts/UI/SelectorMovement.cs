@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public enum TabType
 {
@@ -14,9 +15,8 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField] Color normalColor;
     [SerializeField] Color disabledColor;
 
-
     [SerializeField] OptionSelection optionSelection;
-    [SerializeField] Text textButton;
+    [SerializeField] TextMeshProUGUI text;
 
     [SerializeField] int selection;
 
@@ -74,14 +74,14 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void DisableOption()
     {
         abilityTooltip.allowTooltip = false;
-        textButton.color = disabledColor;
+        text.color = disabledColor;
         canBeSelected = false;
     }
 
     public void EnableOption()
     {
         abilityTooltip.allowTooltip = true;
-        textButton.color = normalColor;
+        text.color = normalColor;
         //UpdateTooltip();
         canBeSelected = true;
     }
@@ -184,7 +184,7 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
             optionSelection.MouseOverEnter(this);
             optionSelection.currentSelection = selection;
 
-            textButton.color = hoverColor;
+            text.color = hoverColor;
         }
     }
   
@@ -254,14 +254,14 @@ public class SelectorMovement : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
             optionSelection.MouseOverExit(this);
 
-            textButton.color = normalColor;
+            text.color = normalColor;
         }
     }
 
 
     public void ChangeToDefault()
     {
-        textButton.color = normalColor;
+        text.color = normalColor;
     }
 
     
