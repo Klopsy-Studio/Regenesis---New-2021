@@ -187,6 +187,9 @@ public class TimelineUI : MonoBehaviour
             {
                 var a = content.GetChild(i).GetComponent<TimelineIconUI>();
 
+                if (a == null)
+                    continue;
+
                 if (!a.element.elementEnabled)
                 {
                     a.transform.parent = removedChildren;

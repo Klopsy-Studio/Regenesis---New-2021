@@ -50,6 +50,7 @@ public class Stampede : AbilitySequence
         range.lineDir = user.tile.GetDirections(t);
         range.lineLength = 4;
         range.stopLine = true;
+        range.monsterUse = false;
 
         List<Tile> tiles = range.GetTilesInRange(controller.board);
         int scaling = tiles.Count;
