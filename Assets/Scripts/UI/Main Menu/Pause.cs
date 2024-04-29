@@ -14,14 +14,19 @@ public class Pause : MonoBehaviour
     }
     public void PauseGame()
     {
+        if (GameManager.instance.gameIsPaused)
+            return;
         Time.timeScale = 0;
-        gameIsPaused = true;
+        GameManager.instance.gameIsPaused = true;
     }
 
     public void UnPauseGame()
     {
+        if (!GameManager.instance.gameIsPaused)
+            return;
+        
         Time.timeScale = 1;
-        gameIsPaused = false;
+        GameManager.instance.gameIsPaused = false;
 
     }
 }

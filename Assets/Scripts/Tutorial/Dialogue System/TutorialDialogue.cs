@@ -65,6 +65,8 @@ public class TutorialDialogue : MonoBehaviour
         if (dialogueEnd)
             return;
 
+        if (GameManager.instance.gameIsPaused)
+            return;
         
         show = true;
 

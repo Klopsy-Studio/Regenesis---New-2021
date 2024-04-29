@@ -87,7 +87,6 @@ public class CheckAttackRangeDecisionDrawer : PropertyDrawer
                 DisplayVariable("stopLine", ref position, property);
                 DisplayVariable("lineOffset", ref position, property);
                 DisplayVariable("monsterUse", ref position, property);
-
                 break;
             case TypeOfAbilityRange.SelfAbility:
                 break;

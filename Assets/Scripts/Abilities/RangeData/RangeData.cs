@@ -10,6 +10,7 @@ public class RangeData
     [SerializeField] public int lineLength;
     [SerializeField] public bool stopLine;
     [SerializeField] public int lineOffset;
+    [SerializeField] public bool monsterUse;
     [SerializeField] public Directions sideDir;
     [SerializeField] public int sideReach;
     [SerializeField] public int sideLength;

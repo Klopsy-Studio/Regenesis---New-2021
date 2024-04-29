@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class MenuOwner : MonoBehaviour
 {
-    [SerializeField] List<MenuButton> mainMenuButtons;
-    [SerializeField] List<MenuButton> optionsButtons;
+    [SerializeField] List<Button> mainMenuButtons;
+    [SerializeField] List<Button> optionsButtons;
 
     [SerializeField] Animator mainMenuAnimation;
     [SerializeField] Animator sceneTransition;
@@ -25,18 +26,18 @@ public class MenuOwner : MonoBehaviour
     }
 
     #region Generic Methods
-    public void EnableButtons(List<MenuButton> buttons)
+    public void EnableButtons(List<Button> buttons)
     {
-        foreach (MenuButton b in buttons)
+        foreach (Button b in buttons)
         {
-            b.canBeSelected = true;
+            b.enabled = true;
         }
     }
-    public void DisableButtons(List<MenuButton> buttons)
+    public void DisableButtons(List<Button> buttons)
     {
-        foreach (MenuButton b in buttons)
+        foreach (Button b in buttons)
         {
-            b.canBeSelected = false;
+            b.enabled = false;
         }
     }
     public void ResetButtons(List<MenuButton> buttons)
@@ -61,7 +62,7 @@ public class MenuOwner : MonoBehaviour
 
     public void ResetMenuButtons()
     {
-        ResetButtons(mainMenuButtons);
+        //ResetButtons(mainMenuButtons);
     }
 
     #endregion
@@ -69,17 +70,17 @@ public class MenuOwner : MonoBehaviour
     #region Option Buttons
     public void EnableOptionsButtons()
     {
-        EnableButtons(optionsButtons);
+        //EnableButtons(optionsButtons);
     }
 
     public void DisableOptionButtons()
     {
-        DisableButtons(optionsButtons);
+        //DisableButtons(optionsButtons);
     }
 
     public void ResetOptionButtons()
     {
-        ResetButtons(optionsButtons);
+        //ResetButtons(optionsButtons);
     }
 
     #endregion

@@ -195,5 +195,6 @@ public class LineAbilityRange : AbilityRange
         lineLength = rangeData.lineLength;
         stopLine = rangeData.stopLine;
         lineOffset = rangeData.lineOffset;
+        monsterUse = rangeData.monsterUse;
     }
 }

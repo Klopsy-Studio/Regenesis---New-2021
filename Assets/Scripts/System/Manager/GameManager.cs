@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public float previousMusicSliderValue = 1f;
     public float previousSfxSliderValue = 1f;
+
+    public bool gameIsPaused;
     private void Awake()
     {
         if(instance != null)

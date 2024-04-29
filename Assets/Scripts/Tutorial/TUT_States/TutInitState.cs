@@ -110,18 +110,18 @@ public class TutInitState : BattleState
     {
         System.Type[] components = new System.Type[] { typeof(WalkMovement) };
 
-        for (int i = 0; i < GameManager.instance.unitProfilesList.Length; i++)
+        for (int i = 0; i < GameManager.instance.unitProfilesTutorialList.Length; i++)
         {
             GameObject instance = Instantiate(GameManager.instance.unitsPrefab);
-            instance.name = GameManager.instance.unitProfilesList[i].name;
+            instance.name = GameManager.instance.unitProfilesTutorialList[i].name;
             PlayerUnit player = instance.GetComponent<PlayerUnit>();
             player.isTutorial = true;
-            AssignUnitData(GameManager.instance.unitProfilesList[i], player);
+            AssignUnitData(GameManager.instance.unitProfilesTutorialList[i], player);
 
-            player.profile = GameManager.instance.unitProfilesList[i];
+            player.profile = GameManager.instance.unitProfilesTutorialList[i];
             Point p = levelData.playerSpawnPoints.ToArray()[i];
 
-            player.animations.SetCharacter(GameManager.instance.unitProfilesList[i].characterIndex);
+            player.animations.SetCharacter(GameManager.instance.unitProfilesTutorialList[i].characterIndex);
             Unit unit = instance.GetComponent<Unit>();
             unit.controller = owner;
             unit.Place(board.GetTile(p));

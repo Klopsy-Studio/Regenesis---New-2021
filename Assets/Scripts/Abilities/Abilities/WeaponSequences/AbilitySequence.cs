@@ -131,6 +131,7 @@ public class AbilitySequence : ScriptableObject
         range.lineDir = dir;
         range.lineLength = moveDistance;
         range.stopLine = true;
+        range.monsterUse = false;
 
         List<Tile> tiles = range.GetTilesInRange(controller.board);
         //Remove the tile the objective is supposed to be

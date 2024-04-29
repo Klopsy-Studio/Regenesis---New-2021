@@ -16,41 +16,43 @@ public class MainMenuContinueButton : MonoBehaviour, IPointerEnterHandler, IPoin
     [SerializeField] CampCursorUIInteraction interaction;
     [SerializeField] Text text;
 
-
+    [SerializeField] Button button;
     private void Start()
     {
         if (!DataPersistenceManager.instance.HasGameData())
         {
-            text.color = disableColor;
-            menuButton.canBeSelected = false;
-            interaction.canSelect = false;
+            button.enabled = false;
+            //text.color = disableColor;
+            //menuButton.canBeSelected = false;
+            //interaction.canSelect = false;
 
-            Debug.Log("No save data");
+            //Debug.Log("No save data");
         }
 
         else
         {
-            text.color = defaultTextColor;
+            button.enabled = true;
+
         }
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!DataPersistenceManager.instance.HasGameData())
-        {
-            return;
-        }
-        menuOwner.DisableMenuButtons();
-        OnContinueGameClicked();
+        //if (!DataPersistenceManager.instance.HasGameData())
+        //{
+        //    return;
+        //}
+        
+        //OnContinueGameClicked();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!DataPersistenceManager.instance.HasGameData())
-        {
-            return;
-        }
+        //if (!DataPersistenceManager.instance.HasGameData())
+        //{
+        //    return;
+        //}
 
-        text.color = highlightTextColor;
+        //text.color = highlightTextColor;
 
     }
 
@@ -63,15 +65,16 @@ public class MainMenuContinueButton : MonoBehaviour, IPointerEnterHandler, IPoin
             return;
         }
 
+        menuOwner.DisableMenuButtons();
         DataPersistenceManager.instance.SaveGame();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!DataPersistenceManager.instance.HasGameData())
-        {
-            return;
-        }
-        text.color = defaultTextColor;
+        //if (!DataPersistenceManager.instance.HasGameData())
+        //{
+        //    return;
+        //}
+        //text.color = defaultTextColor;
     }
 }
