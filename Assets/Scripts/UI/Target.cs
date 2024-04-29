@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 
 public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -11,7 +12,7 @@ public class Target : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Point targetPosition;
     public AbilityTargetType targetType;
     public BattleController controller;
-    public Text targetDisplay;
+    public TextMeshProUGUI targetDisplay;
 
     public AbilityTargets owner;
 

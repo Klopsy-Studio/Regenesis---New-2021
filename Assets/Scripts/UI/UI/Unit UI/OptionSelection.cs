@@ -327,7 +327,6 @@ public class OptionSelection : MonoBehaviour
 
     void DisableOption(GameObject option)
     {
-        option.GetComponent<Text>().color = disabledColor;
         option.GetComponent<TextMeshProUGUI>().color = disabledColor;
         option.GetComponent<SelectorMovement>().canBeSelected = false;
         option.GetComponent<SelectorMovement>().abilityTooltip.allowTooltip = false;

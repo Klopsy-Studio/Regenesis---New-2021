@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SelectItemState : BattleState
 {
@@ -30,8 +31,8 @@ public class SelectItemState : BattleState
         for (int i = 0; i < owner.itemSelectionUI.options.Length; i++)
         {
             owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>().controller = owner;
-            owner.itemSelectionUI.options[i].GetComponent<Text>().text = "No Item";
-            owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = "X";
+            owner.itemSelectionUI.options[i].GetComponent<TextMeshProUGUI>().text = "No Item";
+            owner.itemSelectionUI.itemAmountText[i].GetComponent<TextMeshProUGUI>().text = "X";
 
 
             SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
@@ -44,8 +45,8 @@ public class SelectItemState : BattleState
 
             owner.itemSelectionUI.parent[i].gameObject.SetActive(true);
             owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>().controller = owner;
-            owner.itemSelectionUI.options[i].GetComponent<Text>().text = item.consumable.itemName;
-            owner.itemSelectionUI.itemAmountText[i].GetComponent<Text>().text = item.amount.ToString();
+            owner.itemSelectionUI.options[i].GetComponent<TextMeshProUGUI>().text = item.consumable.itemName;
+            owner.itemSelectionUI.itemAmountText[i].GetComponent<TextMeshProUGUI>().text = item.amount.ToString();
 
                        
             SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
