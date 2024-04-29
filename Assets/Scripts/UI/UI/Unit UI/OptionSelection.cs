@@ -63,10 +63,10 @@ public class OptionSelection : MonoBehaviour
     [Space]
 
     [Header("Item Options")]
-    [SerializeField] Text item1;
-    [SerializeField] Text item2;
-    [SerializeField] Text item3;
-    [SerializeField] Text item4;
+    [SerializeField] TextMeshProUGUI item1;
+    [SerializeField] TextMeshProUGUI item2;
+    [SerializeField] TextMeshProUGUI item3;
+    [SerializeField] TextMeshProUGUI item4;
 
     [Space]
     [SerializeField] Button buttonSelectItem1;
