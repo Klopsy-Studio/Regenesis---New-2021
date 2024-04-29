@@ -497,8 +497,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 032d966ccca48224da3503d98c294e2c, type: 2}
+  m_sharedMaterial: {fileID: -3193648949625684077, guid: 032d966ccca48224da3503d98c294e2c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -850,7 +850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1015955135
 Animator:
   serializedVersion: 5
@@ -1190,18 +1190,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3224284163545633426, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
       propertyPath: m_fontSize
-      value: 7
+      value: 8.78
       objectReference: {fileID: 0}
     - target: {fileID: 3224284163545633426, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 032d966ccca48224da3503d98c294e2c, type: 2}
+    - target: {fileID: 3224284163545633426, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
       propertyPath: m_fontSizeBase
-      value: 7
+      value: 8.78
       objectReference: {fileID: 0}
+    - target: {fileID: 3224284163545633426, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3193648949625684077, guid: 032d966ccca48224da3503d98c294e2c, type: 2}
     - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
@@ -1209,7 +1221,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 829432797}
     - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 829432799}
+    - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
@@ -1217,11 +1237,23 @@ PrefabInstance:
       value: SkipCutscene
       objectReference: {fileID: 0}
     - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: FadeOutMethod
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: CinematicManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: CutsceneDialogueManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438858030147459036, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8568411181399862861, guid: 41b57fa102357de4a98e557a528bd45f, type: 3}

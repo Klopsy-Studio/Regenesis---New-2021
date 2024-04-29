@@ -13704,6 +13704,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988064839}
   m_CullTransparentMesh: 1
+--- !u!114 &1006195936 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2098216532, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+  m_PrefabInstance: {fileID: 6830464551892030694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0902de609aad818489dbc3afa1a8b908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1019056025
 GameObject:
   m_ObjectHideFlags: 0
@@ -35251,16 +35262,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1897083531, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
-      propertyPath: campButtons.Array.data[2]
+      propertyPath: structures.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: campButtons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: campButtons.Array.data[1]
       value: 
       objectReference: {fileID: 1818112088}
     - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
-      propertyPath: campButtons.Array.data[3]
+      propertyPath: campButtons.Array.data[2]
       value: 
       objectReference: {fileID: 1719413305}
+    - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: campButtons.Array.data[3]
+      value: 
+      objectReference: {fileID: 84221133}
     - target: {fileID: 2000108142, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: campButtons.Array.data[4]
       value: 
@@ -35290,6 +35313,14 @@ PrefabInstance:
       value: -32
       objectReference: {fileID: 0}
     - target: {fileID: 2014127018, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014127018, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014127018, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 416879140}
@@ -35298,9 +35329,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1832061681}
     - target: {fileID: 2014127018, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_Target
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
       objectReference: {fileID: 271521085}
+    - target: {fileID: 2014127018, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_Target
+      value: 
+      objectReference: {fileID: 1006195936}
+    - target: {fileID: 2014127018, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
+      value: CloseBarrack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014127018, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_TargetAssemblyTypeName
+      value: BunkhouseManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2014127018, guid: fe16939626ed62c4a942fe57660cf50b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
       value: 
