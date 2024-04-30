@@ -30,14 +30,14 @@ public class MenuOwner : MonoBehaviour
     {
         foreach (Button b in buttons)
         {
-            b.enabled = true;
+            b.interactable = true;
         }
     }
     public void DisableButtons(List<Button> buttons)
     {
         foreach (Button b in buttons)
         {
-            b.enabled = false;
+            b.interactable = false;
         }
     }
     public void ResetButtons(List<MenuButton> buttons)
