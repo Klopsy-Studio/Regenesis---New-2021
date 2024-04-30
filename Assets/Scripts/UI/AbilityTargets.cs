@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class AbilityTargets : MonoBehaviour
 {
     [SerializeField] GameObject abilityTargetPrefab;
@@ -68,8 +68,7 @@ public class AbilityTargets : MonoBehaviour
 
     public void CreateCustomMessage(string message)
     {
-        Text text = Instantiate(noTargetText, parent.transform).GetComponent<Text>();
-        text.text = message;
+        GameObject text = Instantiate(noTargetText, parent.transform);
         text.gameObject.SetActive(true);
     }
     public void SpawnTarget(GameObject targetAssigned, AbilityTargetType type)

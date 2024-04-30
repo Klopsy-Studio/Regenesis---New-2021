@@ -24,5 +24,6 @@ public class StatusIconsReferences : ScriptableObject
     public Sprite damageDebuff;
     public Sprite spiderMarkIcon;
     public Sprite stunnedIcon;
+    public Sprite nearDeathIcon;
 
 }

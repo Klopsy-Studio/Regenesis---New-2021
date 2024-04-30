@@ -84,52 +84,26 @@ public class TimeLineState : BattleState
     }
     protected override void OnMouseConfirm(object sender, InfoEventArgs<KeyCode> e)
     {
-        if (owner.timelineUI.selectedIcon != null && owner.isTimeLineActive)
+        if (owner.timelineUI.selectedIcon != null && owner.isTimeLineActive && owner.pauseTimeline)
         {
             if (owner.timelineUI.selectedIcon.mouseOver)
             {
                 if(owner.currentSelectedIcon != null)
                 {
-                    if (currentSelectedElement != null)
-                    {
+                    if (currentSelectedElement != null && owner.timelineUI.selectedIcon != currentSelectedElement.iconTimeline)
                         currentSelectedElement.iconTimeline.DeactivateIconHightlight();
-                    }
 
-                    if (owner.currentSelectedIcon != owner.timelineUI.selectedIcon)
-                    {
-                        
-                        owner.currentSelectedIcon.Return();
-                        owner.timelineUI.selectedIcon.selected = true;
-                        owner.currentSelectedIcon = owner.timelineUI.selectedIcon;
-                        currentSelectedElement = owner.currentSelectedIcon.element;
-                        CheckIcon();             
-                    }
-                    //else
-                    //{
-                    //    owner.currentSelectedIcon.Return();
-                    //    owner.currentSelectedIcon = null;
-                    //    currentSelectedElement = null;
-                    //    CleanPause();
-                    //}
-                }
-                else
-                {
-                    if(currentSelectedElement != null)
-                    {
-                        currentSelectedElement.iconTimeline.DeactivateIconHightlight();
-                    }
+                    owner.timelineUI.selectedIcon.selected = true;
                     owner.currentSelectedIcon = owner.timelineUI.selectedIcon;
                     currentSelectedElement = owner.currentSelectedIcon.element;
                     CheckIcon();
                 }
-            }
-            else
-            {
-                CleanPause();
-                owner.timelineUI.selectedIcon.selected = false;
-                owner.timelineUI.selectedIcon.Return();
-                owner.timelineUI.selectedIcon = null;
-                currentSelectedElement = null;
+                else
+                {                    
+                    owner.currentSelectedIcon = owner.timelineUI.selectedIcon;
+                    currentSelectedElement = owner.currentSelectedIcon.element;
+                    CheckIcon();
+                }
             }
         }
        

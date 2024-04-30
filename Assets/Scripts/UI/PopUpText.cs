@@ -57,6 +57,9 @@ public class PopUpText : MonoBehaviour
             case TypeOfModifier.SpiderMark:
                 statusIcon.sprite = references.spiderMarkIcon;
                 break;
+            case TypeOfModifier.NearDeath:
+                statusIcon.sprite = references.nearDeathIcon;
+                break;
             default:
                 break;
         }
