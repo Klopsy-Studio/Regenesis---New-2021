@@ -13,7 +13,7 @@ public class MoveToAnotherScene : MonoBehaviour
 
     [SerializeField] string sceneToMove;
 
-    public void Return()
+    public void GoToNewScene()
     {
         StartCoroutine(MoveToScene());
     }

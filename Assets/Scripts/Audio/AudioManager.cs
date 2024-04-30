@@ -18,11 +18,7 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         #region Singleton
-        if (instance == null)
             instance = this;
-        else
-            Destroy(this.gameObject);
-        DontDestroyOnLoad(this.gameObject);
         #endregion
 
         volume = PlayerPrefs.GetFloat("Volume", 0.5f); // For storing the General volume value

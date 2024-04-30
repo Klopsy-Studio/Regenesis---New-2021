@@ -69,6 +69,7 @@ public class AbilityTargets : MonoBehaviour
     public void CreateCustomMessage(string message)
     {
         GameObject text = Instantiate(noTargetText, parent.transform);
+        text.GetComponent<TextMeshProUGUI>().text = message;
         text.gameObject.SetActive(true);
     }
     public void SpawnTarget(GameObject targetAssigned, AbilityTargetType type)

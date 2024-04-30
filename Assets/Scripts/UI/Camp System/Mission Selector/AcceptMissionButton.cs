@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class AcceptMissionButton : MonoBehaviour, IPointerClickHandler
 {
 
     [HideInInspector] public LevelData mission;
     [HideInInspector] public MissionInfoPanel missionInfoPanel;
-
+    [SerializeField] MoveToAnotherScene sceneManager;
     [SerializeField] Animator sceneTransition;
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -17,10 +16,9 @@ public class AcceptMissionButton : MonoBehaviour, IPointerClickHandler
         {
             DataPersistenceManager.instance.SaveGame();
             GameManager.instance.currentMission = mission;
+            sceneManager.ChangeSceneToLoad("Battle");
+            sceneManager.GoToNewScene();
             missionInfoPanel.gameObject.SetActive(false);
-            GameManager.instance.sceneToLoad = "Battle";
-            sceneTransition.SetTrigger("fadeIn");
-            Invoke("LoadSceneAfterAnimation", 2f);
         }
         else
         {
@@ -31,6 +29,6 @@ public class AcceptMissionButton : MonoBehaviour, IPointerClickHandler
 
     public void LoadSceneAfterAnimation()
     {
-        SceneManager.LoadScene("LoadingScreen");
+
     }
 }

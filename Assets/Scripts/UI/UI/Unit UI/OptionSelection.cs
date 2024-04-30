@@ -337,6 +337,7 @@ public class OptionSelection : MonoBehaviour
     {
         option.GetComponent<SelectorMovement>().canBeSelected = true;
         option.GetComponent<SelectorMovement>().abilityTooltip.allowTooltip = true;
+        option.GetComponent<SelectorMovement>().ChangeToDefault();
     }
 
     public void DisableSelectOption(typeOfAction action)
@@ -354,9 +355,6 @@ public class OptionSelection : MonoBehaviour
                 break;
             case typeOfAction.Wait:
                 DisableOption(waitText);
-                break;
-            case typeOfAction.Status:
-                DisableOption(statusText);
                 break;
             default:
                 break;

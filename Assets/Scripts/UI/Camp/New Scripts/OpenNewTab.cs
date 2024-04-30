@@ -64,6 +64,9 @@ public class OpenNewTab : MonoBehaviour, IPointerClickHandler
         OpenTab();
         foreach (var item in closeButtons)
         {
+            if (item == null)
+                continue;
+
             item.SetActive(false);
         }
 

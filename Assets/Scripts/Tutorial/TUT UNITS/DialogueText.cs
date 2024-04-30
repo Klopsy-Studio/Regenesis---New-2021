@@ -14,7 +14,7 @@ public class DialogueText : ScriptableObject
 public class Line
 {
     public Sprite portrait;
-    public string line;
+    [TextArea()]public string line;
     public string speakerSound;
     public int eventIndex = -1;
 }
