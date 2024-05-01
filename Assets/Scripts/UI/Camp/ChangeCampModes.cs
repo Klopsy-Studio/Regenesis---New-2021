@@ -43,17 +43,9 @@ public class ChangeCampModes : MonoBehaviour, IDataPersistence
             {
                 foreach (OpenNewTab o in campButtons)
                 {
-                    o.EnableButton();
+                    o.gameObject.GetComponent<Button>().interactable = true;
                 }
             }
-            else
-            {
-                Debug.Log("Camp buttons is count = 0");
-            }
-        }
-        else
-        {
-            Debug.Log("Camp buttons is null");
         }
     }
 
@@ -65,21 +57,10 @@ public class ChangeCampModes : MonoBehaviour, IDataPersistence
             {
                 foreach (OpenNewTab o in campButtons)
                 {
-                    o.DisableButton();
+                    o.gameObject.GetComponent<Button>().interactable = false;
                 }
             }
-            else
-            {
-                Debug.Log("Camp buttons is count = 0");
-
-            }
-        }
-
-        else
-        {
-            Debug.Log("Camp buttons is null");
-        }
-        
+        }        
     }
 
 
