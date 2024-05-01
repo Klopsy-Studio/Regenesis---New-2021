@@ -360,7 +360,6 @@ public class TUT_UseItemState : BattleState
     {
         base.Exit();
         owner.targets.indicator.DeactivateTarget();
-        owner.timelineUI.ExitPreviewTurnOrder();
         owner.itemChosen = 0;
         owner.targets.ClearTargets();
         targetTiles.Clear();

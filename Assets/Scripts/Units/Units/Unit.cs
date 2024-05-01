@@ -224,7 +224,6 @@ public class Unit : TimelineElements
         {
             if (fadeTransition)
             {
-                Debug.Log("Returning from fade");
                 fadeTime += Time.deltaTime;
 
                 unitSprite.color = new Color(unitSprite.color.r, unitSprite.color.g, unitSprite.color.b, Mathf.Lerp(0.5f, 1, fadeTime / 0.2f));

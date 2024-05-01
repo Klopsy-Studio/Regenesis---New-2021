@@ -30,6 +30,7 @@ public class PopUpText : MonoBehaviour
     {
         textMesh.SetText(damageAmount.ToString());
         textAnim.SetTrigger("crit");
+        AudioManager.instance.Play("CriticalDamage");
     }
 
     public void SetUpDebuff(TypeOfModifier modifier)

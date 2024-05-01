@@ -507,6 +507,7 @@ public class TimelineUI : MonoBehaviour
 
     public void ShowTimelineIcon(TimelineElements element)
     {
+        Debug.Log("Appearing");
         element.iconTimeline.EnableAppear();
         element.iconTimeline.EnableTooltip();
 

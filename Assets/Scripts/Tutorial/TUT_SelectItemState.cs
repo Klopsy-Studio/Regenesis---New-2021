@@ -30,7 +30,7 @@ public class TUT_SelectItemState : BattleState
         {
             owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>().controller = owner;
             owner.itemSelectionUI.options[i].GetComponent<TextMeshProUGUI>().text = "No Item";
-            owner.itemSelectionUI.itemAmountText[i].GetComponent<TextMeshProUGUI>().text = "X";
+            owner.itemSelectionUI.itemAmountText[i].GetComponent<TextMeshProUGUI>().text = "0";
 
 
             SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();

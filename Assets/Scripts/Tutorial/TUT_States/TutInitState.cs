@@ -115,6 +115,7 @@ public class TutInitState : BattleState
             GameObject instance = Instantiate(GameManager.instance.unitsPrefab);
             instance.name = GameManager.instance.unitProfilesTutorialList[i].name;
             PlayerUnit player = instance.GetComponent<PlayerUnit>();
+            player.controller = owner;
             player.isTutorial = true;
             AssignUnitData(GameManager.instance.unitProfilesTutorialList[i], player);
 

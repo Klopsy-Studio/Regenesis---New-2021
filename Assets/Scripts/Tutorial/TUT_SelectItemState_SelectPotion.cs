@@ -32,7 +32,7 @@ public class TUT_SelectItemState_SelectPotion : BattleState
         {
             owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>().controller = owner;
             owner.itemSelectionUI.options[i].GetComponent<TextMeshProUGUI>().text = "No Item";
-            owner.itemSelectionUI.itemAmountText[i].GetComponent<TextMeshProUGUI>().text = "X";
+            owner.itemSelectionUI.itemAmountText[i].GetComponent<TextMeshProUGUI>().text = "0";
 
 
             SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
@@ -43,7 +43,7 @@ public class TUT_SelectItemState_SelectPotion : BattleState
             var item = itemList[i];
             //owner.itemSelectionUI.parent[i].gameObject.SetActive(true);
             owner.itemSelectionUI.options[i].GetComponent<TextMeshProUGUI>().text = itemList[i].consumable.itemName;
-            owner.itemSelectionUI.itemAmountText[i].GetComponent<TextMeshProUGUI>().text = "x" + itemList[i].amount.ToString();
+            owner.itemSelectionUI.itemAmountText[i].GetComponent<TextMeshProUGUI>().text = itemList[i].amount.ToString();
 
             SelectorMovement e = owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>();
             e.assignedConsumable = itemList[i].consumable;
