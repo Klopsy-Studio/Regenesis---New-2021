@@ -41,7 +41,7 @@ public class TUT_SelectItemState_SelectPotion : BattleState
         for (int i = 0; i < itemList.Count; i++)
         {
             var item = itemList[i];
-            owner.itemSelectionUI.parent[i].gameObject.SetActive(true);
+            //owner.itemSelectionUI.parent[i].gameObject.SetActive(true);
             owner.itemSelectionUI.options[i].GetComponent<TextMeshProUGUI>().text = itemList[i].consumable.itemName;
             owner.itemSelectionUI.itemAmountText[i].GetComponent<TextMeshProUGUI>().text = "x" + itemList[i].amount.ToString();
 

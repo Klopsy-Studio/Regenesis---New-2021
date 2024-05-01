@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ChangeCampModes : MonoBehaviour, IDataPersistence
 {
     [SerializeField] List<OpenNewTab> campButtons;
+    [SerializeField] List<Button> campButtonsComponent;
     [SerializeField] CanvasScaler campCanvas;
     [SerializeField] float windowScaleFactor;
     GameObject currentStructure;
@@ -37,30 +38,34 @@ public class ChangeCampModes : MonoBehaviour, IDataPersistence
 
     public void EnableAllButtons()
     {
-        if(campButtons != null)
+        if(campButtonsComponent != null)
         {
-            if(campButtons.Count > 0)
+            foreach (Button o in campButtonsComponent)
             {
-                foreach (OpenNewTab o in campButtons)
-                {
-                    o.gameObject.GetComponent<Button>().interactable = true;
-                }
+                o.interactable = true;
             }
         }
+        //if(campButtons != null)
+        //{
+        //    if(campButtons.Count > 0)
+        //    {
+        //        foreach (OpenNewTab o in campButtons)
+        //        {
+        //            o.gameObject.GetComponent<Button>().interactable = true;
+        //        }
+        //    }
+        //}
     }
 
     public void DisableAllButtons()
     {
-        if (campButtons != null)
+        if (campButtonsComponent != null)
         {
-            if (campButtons.Count > 0)
+            foreach (Button o in campButtonsComponent)
             {
-                foreach (OpenNewTab o in campButtons)
-                {
-                    o.gameObject.GetComponent<Button>().interactable = false;
-                }
+                o.interactable = false;
             }
-        }        
+        }
     }
 
 

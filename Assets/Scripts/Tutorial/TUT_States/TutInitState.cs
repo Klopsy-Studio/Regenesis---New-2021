@@ -123,7 +123,7 @@ public class TutInitState : BattleState
 
             player.animations.SetCharacter(GameManager.instance.unitProfilesTutorialList[i].characterIndex);
             Unit unit = instance.GetComponent<Unit>();
-            unit.controller = owner;
+            unit.health = GameManager.instance.unitProfilesTutorialList[i].tutHealth;
             unit.Place(board.GetTile(p));
             unit.Match();
 

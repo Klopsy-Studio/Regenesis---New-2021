@@ -40,7 +40,7 @@ public class TUT_SelectItemState : BattleState
         {
             var item = itemList[i];
 
-            owner.itemSelectionUI.parent[i].gameObject.SetActive(true);
+            //owner.itemSelectionUI.parent[i].gameObject.SetActive(true);
             owner.itemSelectionUI.options[i].GetComponent<SelectorMovement>().controller = owner;
             owner.itemSelectionUI.options[i].GetComponent<TextMeshProUGUI>().text = item.consumable.itemName;
             owner.itemSelectionUI.itemAmountText[i].GetComponent<TextMeshProUGUI>().text = item.amount.ToString();
