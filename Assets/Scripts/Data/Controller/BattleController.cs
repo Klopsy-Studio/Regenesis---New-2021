@@ -268,6 +268,13 @@ public class BattleController : StateMachine
         enableZoom = false;
     }
 
+    public void RenameInspectInUnits(string newText)
+    {
+        foreach (Unit u in unitsInGame)
+        {
+            u.description.content = newText;
+        }
+    }
     private void Update()
     {
         //Calculating hunt time
@@ -402,13 +409,12 @@ public class BattleController : StateMachine
         if (Input.GetKeyDown(toggleTimelineKey) && canToggleTimeline)
         {
             if (pauseTimeline)
-            {
+            {               
                 resumeTimelineButton.action.Invoke();
             }
             else
             {
                 pauseTimelineButton.action.Invoke();
-
             }
         }
 
