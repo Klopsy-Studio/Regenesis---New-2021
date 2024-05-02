@@ -12,7 +12,7 @@ public class ChangeCampModes : MonoBehaviour, IDataPersistence
     GameObject currentStructure;
     public List<GameObject> structures;
 
-    public bool isTutorialFinished;
+    public bool isTutorialFinished = false;
     [SerializeField] GameObject tutorial;
     // Update is called once per frame
     public void SetNormalScale()

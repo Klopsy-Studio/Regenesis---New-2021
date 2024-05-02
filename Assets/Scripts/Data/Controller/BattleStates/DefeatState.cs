@@ -29,18 +29,11 @@ public class DefeatState : BattleState
         owner.abilitySelectionUI.gameObject.SetActive(false);
         owner.itemSelectionUI.gameObject.SetActive(false);
         owner.miniStatus.gameObject.SetActive(false);
-        owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.loseTurn);
-        yield return new WaitForSeconds(1);
-        owner.turnStatusUI.DeactivateTurn();
 
         AudioManager.instance.Play("LoseTheme");
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
-
-        //Deactivated for now, if we want to show loot screen later on we should define what happens when you lose
-        //owner.ChangeState<LootUIState>();
- 
         owner.ChangeState<DefeatUIState>();
     }
 

@@ -160,7 +160,7 @@ public class SelectActionState : BattleState
 
 
     protected override void OnSelectAction(object sender, InfoEventArgs<int> e)
-    {
+       {
         owner.actionSelectionUI.actionDescription.SetActive(false);
         switch (e.info)
         {

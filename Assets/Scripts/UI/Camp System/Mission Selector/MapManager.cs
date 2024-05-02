@@ -22,7 +22,11 @@ public class MapManager : MonoBehaviour, IDataPersistence
     private void Start()
     {
         tutorialPanel.SetActive(false);
-        if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
+        if (!isTutorialFinished)
+        {
+            tutorialPanel.SetActive(true);
+            isTutorialFinished = true;
+        }
 
         missionInfoPanel.gameObject.SetActive(false);
 

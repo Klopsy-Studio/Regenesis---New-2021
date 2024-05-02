@@ -21,6 +21,7 @@ public class MonsterMovement : WalkMovement
         lineRange.monsterUse = true;
         List<Tile> rangeTiles = lineRange.GetTilesInRange(board);
 
+        int indexTest = 0;
         foreach(Tile t in rangeTiles)
         {
             tiles.Add(t);
@@ -33,6 +34,7 @@ public class MonsterMovement : WalkMovement
             if (tiles[i] != null && tiles[i].CheckSurroundings(board) != null)
             {
                 desiredTile = tiles[i];
+                indexTest = i;
             }
             else
             {
@@ -41,14 +43,25 @@ public class MonsterMovement : WalkMovement
 
         }
         
-        if(tiles.Count > pushStrength)
+        if(pushStrength > tiles.Count)
         {
             willStun = true;
+            
         }
 
         if (desiredTile != null)
         {
+            if (willStun)
+            {
+                if(indexTest > 0)
+                {
+                    desiredTile = tiles[indexTest - 1];
+
+                }
+            }
             StartCoroutine(Traverse(desiredTile, board, tiles));
+
+
         }        
         else
         {

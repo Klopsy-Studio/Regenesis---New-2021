@@ -25,6 +25,7 @@ public class Battlecry : AbilitySequence
         List<Tile> tiles = r.GetTilesInRange(controller.board);
         List<GameObject> units = new List<GameObject>();
 
+        units.Add(user.gameObject);
         foreach(Tile t in tiles)
         {
             if(t.content != null)

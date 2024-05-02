@@ -19,7 +19,6 @@ public class InputController : MonoBehaviour
     //string[] _buttons = new string[] { "Fire1", "Fire2", "Fire3" };
     KeyCode mouseConfirmKey = KeyCode.Mouse0;
     KeyCode mouseCancelKey = KeyCode.Mouse1;
-    KeyCode acceptKey = KeyCode.Space;
     KeyCode escapeKey = KeyCode.Escape;
 
     void Update()
@@ -55,13 +54,13 @@ public class InputController : MonoBehaviour
         //    }
         //}
 
-        if (Input.GetKeyUp(acceptKey))
-        {
-            if (selectEvent != null)
-            {
-                selectEvent(this, new InfoEventArgs<KeyCode>());
-            }
-        }
+        //if (Input.GetKeyUp(acceptKey))
+        //{
+        //    if (selectEvent != null)
+        //    {
+        //        selectEvent(this, new InfoEventArgs<KeyCode>());
+        //    }
+        //}
 
 
         if (Input.GetKeyUp(escapeKey))

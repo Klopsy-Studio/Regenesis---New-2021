@@ -32,6 +32,7 @@ public class DataPersistenceManager : MonoBehaviour
         DontDestroyOnLoad(this);
         //Application.persistentDataPath give the standard directory for a Unity Game
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+
     }
 
     private void OnEnable()

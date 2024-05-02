@@ -24,6 +24,7 @@ public class EnemyUnit : Unit
     public MonsterController monsterControl;
 
     public int lowHealth;
+    bool lowHealthCheck;
     List<Tile> monsterSpace;
 
     [Header("UI")]
@@ -183,6 +184,7 @@ public class EnemyUnit : Unit
         base.Heal(heal);
         if (health >= lowHealth)
         {
+            lowHealthCheck = true;
             foreach (Modifier m in debuffModifiers)
             {
                 if (m.modifierType == TypeOfModifier.NearDeath)
@@ -248,11 +250,12 @@ public class EnemyUnit : Unit
 
         monsterControl.monsterAnimations.SetTrigger("damage");
 
-        if (health <= lowHealth)
+        if (health <= lowHealth && !lowHealthCheck)
         {
             AddDebuff(new Modifier { modifierType = TypeOfModifier.NearDeath });
             unitPortrait = lowHealthPortrait;
             monsterControl.monsterAnimations.SetFloat("health", 1);
+            lowHealthCheck = true;
         }
 
         

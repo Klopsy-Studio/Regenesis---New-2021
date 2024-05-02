@@ -21,7 +21,7 @@ public class MainMenuContinueButton : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         if (!DataPersistenceManager.instance.HasGameData())
         {
-            button.enabled = false;
+            button.interactable = false;
             //text.color = disableColor;
             //menuButton.canBeSelected = false;
             //interaction.canSelect = false;
@@ -31,7 +31,7 @@ public class MainMenuContinueButton : MonoBehaviour, IPointerEnterHandler, IPoin
 
         else
         {
-            button.enabled = true;
+            button.interactable = true;
 
         }
     }

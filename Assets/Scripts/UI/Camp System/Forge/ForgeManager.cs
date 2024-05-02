@@ -36,7 +36,11 @@ public class ForgeManager : MonoBehaviour, IDataPersistence
  	private void Start()
 	{
 		tutorialPanel.SetActive(false);
-		if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
+		if (!isTutorialFinished)
+        {
+			tutorialPanel.SetActive(true);
+			isTutorialFinished = true;
+        } 
 		CreateDisplay();
 		weaponPanelInfo.GO.SetActive(false);
 		

@@ -14,7 +14,6 @@ public class TUT_BattleController : BattleController
         canToggleTimeline = true;
         originalZoomSize = cinemachineCamera.m_Lens.OrthographicSize;
         cinemachineCamera.m_Lens.NearClipPlane = -1f;
-        Destroy(placeholderCanvas.gameObject);
         cameraTest.transparencySortMode = TransparencySortMode.CustomAxis;
         cameraTest.transparencySortAxis = new Vector3(1, 1, 1);
         ChangeState<TutInitState>();

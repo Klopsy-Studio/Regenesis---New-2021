@@ -147,7 +147,11 @@ public class ShopManager : MonoBehaviour, IDataPersistence
 	private void Start()
 	{
 		tutorialPanel.SetActive(false);
-		if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
+		if (!isTutorialFinished)
+        {
+			tutorialPanel.SetActive(true);
+			isTutorialFinished = true;
+        }
 
 		itemPanelInfo.SetUpButtons();
 		restOfTheShopUI.gameObject.SetActive(false);

@@ -73,8 +73,13 @@ public class MiniStatus : MonoBehaviour
             parent.SetActive(false);
             ResetChilds(playerBuffsAndDebuffs);
             ResetChilds(monsterBuffsAndDebuffs);
-            currentStatus.SetActive(false);
-            currentStatus = null;
+
+            if(currentStatus != null)
+            {
+                currentStatus.SetActive(false);
+                currentStatus = null;
+            }
+
         } 
     }
     public void SetStatus(PlayerUnit element)

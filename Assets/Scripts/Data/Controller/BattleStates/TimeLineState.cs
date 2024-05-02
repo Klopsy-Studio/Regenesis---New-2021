@@ -14,9 +14,12 @@ public class TimeLineState : BattleState
     bool timerCheck;
     bool pause = false;
     public List<Tile> selectTiles;
+
+
     public override void Enter()
     {
         base.Enter();
+        owner.ChangeUIButtons(true);
 
         //if (currentElement != null)
         //{
@@ -35,6 +38,14 @@ public class TimeLineState : BattleState
         owner.ChangeCurrentControls("Pause");
     }
 
+
+    public override void Exit()
+    {
+        base.Exit();
+        owner.canToggleTimeline = false;
+        owner.ChangeUIButtons(false);
+
+    }
     public void CheckIcon()
     {
         currentSelectedElement.iconTimeline.ActivateIconHightlight();
@@ -132,11 +143,15 @@ public class TimeLineState : BattleState
                 {
                     owner.miniStatus.DeactivateStatus();
 
+                    
                     selectedUnit.iconTimeline.DeactivateIconHightlight();
                     selectedUnit = null;
                 }
-
-                if(owner.timelineUI.selectedIcon != null)
+                if (currentSelectedElement != null)
+                {
+                    currentSelectedElement.iconTimeline.DeactivateIconHightlight();
+                }
+                if (owner.timelineUI.selectedIcon != null)
                 {
                     owner.timelineUI.selectedIcon.Return();
                     owner.timelineUI.selectedIcon.DeactivateIconHightlight();

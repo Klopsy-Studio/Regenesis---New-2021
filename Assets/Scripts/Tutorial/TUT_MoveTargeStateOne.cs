@@ -19,7 +19,6 @@ public class TUT_MoveTargeStateOne : BattleState
 
         owner.isTimeLineActive = false;
 
-
         AbilityRange abilityRange = range.GetOrCreateRange(range.range, owner.currentUnit.gameObject);
         abilityRange.unit = owner.currentUnit;
         tiles = abilityRange.GetTilesInRange(board);

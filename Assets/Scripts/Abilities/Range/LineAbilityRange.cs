@@ -79,7 +79,7 @@ public class LineAbilityRange : AbilityRange
                                     }
                                     else
                                     {
-                                        if (t.occupied)
+                                        if (t.occupied || t.content != null)
                                         {
                                             break;
                                         }
@@ -119,7 +119,7 @@ public class LineAbilityRange : AbilityRange
                                     }
                                     else
                                     {
-                                        if (t.occupied)
+                                        if (t.occupied || t.content != null)
                                         {
                                             break;
                                         }
@@ -149,20 +149,17 @@ public class LineAbilityRange : AbilityRange
                             retValue.Add(t);
                             if (stopLine)
                             {
-                                if (stopLine)
+                                if (t.content != null)
                                 {
-                                    if (t.content != null)
+                                    if (monsterUse)
                                     {
-                                        if (monsterUse)
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (t.occupied || t.content != null)
                                         {
                                             break;
-                                        }
-                                        else
-                                        {
-                                            if (t.occupied)
-                                            {
-                                                break;
-                                            }
                                         }
                                     }
                                 }

@@ -198,14 +198,26 @@ public class BattleController : StateMachine
     public int hoverTile;
 
 
+    public void ActivateUnitTooltip()
+    {
+        foreach(Unit u in unitsInGame)
+        {
+            u.iconTimeline.GetComponent<ToolTipTrigger>().allowTooltip = true;
+        }
+    }
 
+    public void DeactivateUnitTooltip()
+    {
+        foreach (Unit u in unitsInGame)
+        {
+            u.iconTimeline.GetComponent<ToolTipTrigger>().allowTooltip = false;
+        }
+    }
     public virtual void BeginGame()
     {
         AudioManager.instance.ResetSound("Music");
-        canToggleTimeline = true;
         originalZoomSize = cinemachineCamera.m_Lens.OrthographicSize;
         cinemachineCamera.m_Lens.NearClipPlane = -1f;
-        Destroy(placeholderCanvas.gameObject);
         levelData = GameManager.instance.currentMission;
         cameraTest.transparencySortMode = TransparencySortMode.CustomAxis;
         cameraTest.transparencySortAxis = new Vector3(1, 1, 1);
@@ -409,7 +421,7 @@ public class BattleController : StateMachine
         if (Input.GetKeyDown(toggleTimelineKey) && canToggleTimeline)
         {
             if (pauseTimeline)
-            {               
+            {
                 resumeTimelineButton.action.Invoke();
             }
             else

@@ -31,7 +31,11 @@ public class BunkhouseManager : MonoBehaviour, IDataPersistence
 		activateRestOfPanel.SetActive(false);
 		selectHunterTxT.gameObject.SetActive(true);
 		tutorialPanel.SetActive(false);
-		if (!isTutorialFinished) { tutorialPanel.SetActive(true); }
+		if (!isTutorialFinished)
+        {
+			tutorialPanel.SetActive(true);
+			isTutorialFinished = true;
+        }
 		FirstUpdateHuntersInfo();
 	}
 	

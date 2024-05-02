@@ -24,7 +24,6 @@ public class TUT_UseAbilityStateOne : BattleState
     {
         base.Enter();
 
-        owner.ChangeUIButtons(false);
         CleanSelectTiles();
         owner.currentUnit.WeaponOut();
         owner.isTimeLineActive = false;
@@ -740,7 +739,6 @@ public class TUT_UseAbilityStateOne : BattleState
         {
             board.DeSelectDefaultTiles(selectTiles);
         }
-        owner.ChangeUIButtons(true);
 
         attacking = false;
         tiles = null;

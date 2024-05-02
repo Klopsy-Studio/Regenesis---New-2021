@@ -29,7 +29,6 @@ public class UseItemState : BattleState
         owner.actionSelectionUI.ThirdWindow();
         owner.itemSelectionUI.SecondWindow();
         owner.itemSelectionUI.title.SetActive(false);
-        owner.ChangeUIButtons(false);
 
         owner.targets.stopSelection = false;
 
@@ -369,7 +368,6 @@ public class UseItemState : BattleState
         
         owner.ghostImage.gameObject.SetActive(false);
 
-        owner.ChangeUIButtons(true);
 
         firstClick = false;
 

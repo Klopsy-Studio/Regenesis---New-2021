@@ -37,21 +37,13 @@ public class WinState : BattleState
         owner.abilitySelectionUI.gameObject.SetActive(false);
         owner.itemSelectionUI.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1f);
         AudioManager.instance.Play("MainTheme");
 
-        owner.turnStatusUI.IndicateTurnStatus(owner.turnStatusUI.winTurn);
         owner.actionSelectionUI.gameObject.SetActive(false);
         owner.abilitySelectionUI.gameObject.SetActive(false);
         owner.itemSelectionUI.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(0.3f);
-
-        owner.turnStatusUI.DeactivateTurn();
-        yield return new WaitForSeconds(0.5f);
-
-        //Switch later to show Loot load camp scene 
-        //SceneManager.LoadScene("Battle");
         owner.ChangeState<LootUIState>();
     }
 }

@@ -481,6 +481,9 @@ public class TimelineUI : MonoBehaviour
     }
     public void ShowIconActing(TimelineElements element)
     {
+        if (element.iconTimeline == null)
+            return;
+
         currentActorAnimations.gameObject.SetActive(true);
         element.iconTimeline.DisableTooltip();
         currentActorAnimations.SetFloat("character", element.timelineIconIndex);

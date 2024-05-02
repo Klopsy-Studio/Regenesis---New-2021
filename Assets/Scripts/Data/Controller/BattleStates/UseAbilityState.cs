@@ -25,7 +25,6 @@ public class UseAbilityState : BattleState
         base.Enter();
         owner.ChangeCurrentControls("Target");
 
-        owner.ChangeUIButtons(false);
         CleanSelectTiles();
         owner.currentUnit.WeaponOut();
         owner.isTimeLineActive = false;
@@ -740,7 +739,6 @@ public class UseAbilityState : BattleState
         {
             board.DeSelectDefaultTiles(selectTiles);
         }
-        owner.ChangeUIButtons(true);
 
         attacking = false;
         tiles = null;
