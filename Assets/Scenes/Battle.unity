@@ -1987,6 +1987,7 @@ GameObject:
   - component: {fileID: 244822199}
   - component: {fileID: 244822200}
   - component: {fileID: 244822201}
+  - component: {fileID: 244822202}
   m_Layer: 5
   m_Name: SFX Slider (new)
   m_TagString: Untagged
@@ -2096,6 +2097,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: ab110cfe914c66c409bf58ac0aaaf973, type: 2}
   slider: {fileID: 244822200}
+--- !u!114 &244822202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244822198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &347246536
 GameObject:
   m_ObjectHideFlags: 0
@@ -5998,6 +6012,7 @@ GameObject:
   - component: {fileID: 1194339655}
   - component: {fileID: 1194339657}
   - component: {fileID: 1194339656}
+  - component: {fileID: 1194339658}
   m_Layer: 5
   m_Name: Music Slider (new)
   m_TagString: Untagged
@@ -6107,6 +6122,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1194339658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194339654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ee5caa46f6fa24bb65ec4cc0c21123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!1 &1194998197
 GameObject:
   m_ObjectHideFlags: 0
@@ -7653,7 +7681,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3343429932621236379, guid: 11ea759305f0665408345530a429a64f, type: 3}
       propertyPath: m_Pivot.x
-      value: 1.01
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3343429932621236379, guid: 11ea759305f0665408345530a429a64f, type: 3}
       propertyPath: m_Pivot.y
@@ -7669,11 +7697,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3343429932621236379, guid: 11ea759305f0665408345530a429a64f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 957.2975
+      value: -6.3269043
       objectReference: {fileID: 0}
     - target: {fileID: 3343429932621236379, guid: 11ea759305f0665408345530a429a64f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1354.919
+      value: 619.40247
       objectReference: {fileID: 0}
     - target: {fileID: 3343429932726031071, guid: 11ea759305f0665408345530a429a64f, type: 3}
       propertyPath: m_AnchorMax.y

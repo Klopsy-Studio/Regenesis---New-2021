@@ -184,7 +184,7 @@ public class EnemyUnit : Unit
         base.Heal(heal);
         if (health >= lowHealth)
         {
-            lowHealthCheck = true;
+            lowHealthCheck = false;
             foreach (Modifier m in debuffModifiers)
             {
                 if (m.modifierType == TypeOfModifier.NearDeath)
