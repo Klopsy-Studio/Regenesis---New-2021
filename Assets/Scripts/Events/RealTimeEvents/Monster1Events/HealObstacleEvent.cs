@@ -57,7 +57,7 @@ public class HealObstacleEvent : MonsterEvent
             controller.monsterAnimations.SetBool("idle", false);
 
             //Hardcoded heal, replace when skills are implemented
-            controller.currentEnemy.Heal(30);
+            controller.currentEnemy.Heal(20);
             controller.currentEnemy.HealEffect();
             ActionEffect.instance.Play(4, 0.5f, 0.01f, 0.05f);
 

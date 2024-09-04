@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DisplayConsumableInventoryBarrack : MonoBehaviour
 {
@@ -50,14 +51,14 @@ public class DisplayConsumableInventoryBarrack : MonoBehaviour
             if (consumableDisplayed.ContainsKey(inventory.consumableContainer[i]))
             {
 
-                consumableDisplayed[inventory.consumableContainer[i]].GetComponentInChildren<Text>().text =inventory.consumableContainer[i].amount.ToString();
+                consumableDisplayed[inventory.consumableContainer[i]].GetComponentInChildren<TextMeshProUGUI>().text =inventory.consumableContainer[i].amount.ToString();
             }
             else
             {
                 var obj = Instantiate(slotPrefab, Vector3.zero, Quaternion.identity, transform);
                 slotPrefabList.Add(obj);
                 obj.transform.GetChild(0).GetComponentInChildren<Image>().sprite = inventory.consumableContainer[i].consumable.iconSprite;
-                obj.GetComponentInChildren<Text>().text = inventory.consumableContainer[i].amount.ToString();
+                obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.consumableContainer[i].amount.ToString();
                 consumableDisplayed.Add(inventory.consumableContainer[i], obj);
            
             }

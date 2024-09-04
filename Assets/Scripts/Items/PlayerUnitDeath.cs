@@ -19,7 +19,6 @@ public class PlayerUnitDeath : TimelineElements
         elementEnabled = false;
         unit.elementEnabled = false;
 
-        controller.timelineUI.HideIconActing();
         controller.timelineElements.Remove(this);
         //disabled = true;
         timelineFill = 0;

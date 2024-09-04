@@ -17,9 +17,11 @@ public class BearObstacleScript : MonoBehaviour
         AudioManager.instance.Play("ObstacleExplosion");
         obstacleAnimations.SetTrigger("explode");
         List<Tile> tiles = squareRange.GetTilesInRangeWithoutUnit(board, pos);
+        
         board.SelectAttackTiles(tiles);
         foreach(Tile t in tiles)
         {
+            t.SetSmokeBomb();
             if(t.content != null)
             {
                 if(t.content.GetComponent<PlayerUnit>() != null)

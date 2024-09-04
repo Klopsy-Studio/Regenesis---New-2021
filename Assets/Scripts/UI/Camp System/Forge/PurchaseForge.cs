@@ -29,7 +29,7 @@ public class PurchaseForge : MonoBehaviour, IPointerClickHandler
 		if (!newForgeManager.CanPurchaseWeapon())
 		{
 			AudioManager.instance.Play("NoPurchase");
-			animatorNotPurchase.SetTrigger("purchased");
+			animatorNotPurchase.SetTrigger("save");
 			return;
 		}
 
@@ -42,7 +42,8 @@ public class PurchaseForge : MonoBehaviour, IPointerClickHandler
 
 		//UpdateUI
 		newForgeManager.UpdateMaterialRequiredPanel(newForgeManager.currentWeaponInfoTemplate.WeaponUpgrade);
-		animatorPurchase.SetTrigger("purchased");
+		animatorPurchase.SetTrigger("save");
+
 		AudioManager.instance.Play("ComprarForja");
 		
 		newForgeManager.UpdateChest();

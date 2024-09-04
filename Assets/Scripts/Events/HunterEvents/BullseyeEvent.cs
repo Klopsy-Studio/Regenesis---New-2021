@@ -38,19 +38,32 @@ public class BullseyeEvent : HunterEvent
                 }
             }
 
-            if(target!= null)
+            if (target.GetComponent<BearObstacleScript>() != null)
             {
-                if (target.GetComponent<BearObstacleScript>() != null)
+                BearObstacleScript b = target.GetComponent<BearObstacleScript>();
+
+                switch (numberOfAttacks)
                 {
-                    BearObstacleScript b = target.GetComponent<BearObstacleScript>();
+                    case 1:
+                        unit.animations.unitAnimator.SetBool("bullseye", false);
+                        unit.animations.unitAnimator.SetTrigger("bullseyeRelease");
 
-                    b.GetDestroyed(controller.board);
+                        break;
+                    case 2:
+                        unit.animations.unitAnimator.SetBool("bullseye", false);
+                        unit.animations.unitAnimator.SetTrigger("doubleAttack");
+                        break;
 
-                    //Replace with charge animation
-                    unit.Attack();
+                    default:
+                        break;
                 }
+
+                yield return new WaitForSeconds(0.5f);
+                b.GetDestroyed(controller.board);
+                //Replace with charge animation
+                unit.Attack();
             }
-            
+
         }
 
         yield return new WaitForSeconds(1f);

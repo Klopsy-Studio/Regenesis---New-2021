@@ -22,6 +22,7 @@ MonoBehaviour:
     lineLength: 0
     stopLine: 0
     lineOffset: 0
+    monsterUse: 0
     sideDir: 0
     sideReach: 2
     sideLength: 1
@@ -36,12 +37,14 @@ MonoBehaviour:
     removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
+    itemRemoveOrigin: 0
   tileTargetAbilityRange:
   - range: 5
     lineDir: 0
     lineLength: 0
     stopLine: 0
     lineOffset: 0
+    monsterUse: 0
     sideDir: 0
     sideReach: 0
     sideLength: 0
@@ -56,12 +59,14 @@ MonoBehaviour:
     removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
+    itemRemoveOrigin: 0
   rangeData:
     range: 9
     lineDir: 0
     lineLength: 0
     stopLine: 0
     lineOffset: 0
+    monsterUse: 0
     sideDir: 0
     sideReach: 0
     sideLength: 0
@@ -76,6 +81,7 @@ MonoBehaviour:
     removeContent: 0
     itemRange: 0
     itemRemoveContent: 0
+    itemRemoveOrigin: 0
   cameraSize: 3
   effectDuration: 0.5
   shakeIntensity: 0.01
@@ -127,8 +133,8 @@ MonoBehaviour:
     shakeForce: 0.1
   abilityName: Healing Splash
   abilityEffect: 1
-  abilityModifier: 0.1
-  initialHeal: 15
+  abilityModifier: 0.3
+  initialHeal: 30
   initialBuff: 0
   initialDebuff: 0
   furyGain: 0

@@ -24,7 +24,7 @@ public abstract class RealTimeEvents : TimelineElements
 
     private void Update()
     {
-        if (battleController.isTimeLineActive && restarting)
+        if (battleController.isTimeLineActive && restarting && !battleController.pauseTimeline)
         {
             restartTime -= Time.deltaTime;
 

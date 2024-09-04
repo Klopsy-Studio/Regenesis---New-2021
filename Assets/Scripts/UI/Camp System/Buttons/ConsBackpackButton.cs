@@ -16,9 +16,11 @@ public class ConsBackpackButton : UIButtons
         inventory = _inventory;
         consumableID = i;
         displayConsumableBackpack = _displayConsumableBackpack;
+        GetComponent<ToolTipTrigger>().header = _inventory.consumableContainer[i].consumable.itemName;
+
     }
 
-  
+
 
     public override void OnPointerClick(PointerEventData eventData)
     {
@@ -28,8 +30,8 @@ public class ConsBackpackButton : UIButtons
 
         var consumableInventory = GameManager.instance.consumableInventory;
         inventory.TransferConsumablesToInventory(consumableInventory, consumableID, displayConsumableBackpack);
-        Debug.Log("PIPO");
         displayConsumableBackpack.CreateDisplay();
+        AudioManager.instance.Play("Backpack");
 
     }
 }

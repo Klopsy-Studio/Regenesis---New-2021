@@ -71,18 +71,16 @@ public class LineAbilityRange : AbilityRange
                             {
                                 if (t.content != null)
                                 {
-                                    if (monsterUse)
+                                    break;
+                                }
+                                if (t.occupied)
+                                {
+                                    if (!monsterUse)
                                     {
                                         break;
                                     }
-                                    else
-                                    {
-                                        if (t.occupied || t.content != null)
-                                        {
-                                            break;
-                                        }
-                                    }
                                 }
+
                             }
                         }
                         else
@@ -111,18 +109,16 @@ public class LineAbilityRange : AbilityRange
                             {
                                 if (t.content != null)
                                 {
-                                    if (monsterUse)
+                                    break;
+                                }
+                                if (t.occupied)
+                                {
+                                    if (!monsterUse)
                                     {
                                         break;
                                     }
-                                    else
-                                    {
-                                        if (t.occupied || t.content != null)
-                                        {
-                                            break;
-                                        }
-                                    }
                                 }
+
                             }
                         }
                         else
@@ -149,18 +145,16 @@ public class LineAbilityRange : AbilityRange
                             {
                                 if (t.content != null)
                                 {
-                                    if (monsterUse)
+                                    break;
+                                }
+                                if (t.occupied)
+                                {
+                                    if (!monsterUse)
                                     {
                                         break;
                                     }
-                                    else
-                                    {
-                                        if (t.occupied || t.content != null)
-                                        {
-                                            break;
-                                        }
-                                    }
                                 }
+
                             }
                         }
 
